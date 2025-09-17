@@ -1,0 +1,1983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VerifyCV - Professional CV Verification Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --primary-light: #2d2d2d;
+            --secondary: #6366f1;
+            --secondary-light: #818cf8;
+            --accent: #10b981;
+            --background: #ffffff;
+            --surface: #f8fafc;
+            --surface-elevated: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --border-light: #f1f5f9;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --radius: 12px;
+            --radius-lg: 16px;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--background);
+            line-height: 1.6;
+            font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-light);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            height: 72px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            letter-spacing: -0.025em;
+        }
+
+        .logo i {
+            margin-right: 8px;
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.2s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .cta-button {
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 160px 0 120px;
+            text-align: center;
+            background: linear-gradient(180deg, var(--surface) 0%, var(--background) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--surface-elevated);
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .hero-badge i {
+            color: var(--success);
+            font-size: 12px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 24px;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 640px;
+            margin: 0 auto 48px;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 64px;
+        }
+
+        .hero-btn {
+            padding: 16px 32px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .btn-secondary {
+            background-color: var(--surface-elevated);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--surface);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .signup-form {
+            max-width: 480px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .form-input {
+            padding: 16px 20px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 16px;
+            outline: none;
+            width: 100%;
+            background: var(--surface-elevated);
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .form-input:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .submit-button:hover {
+            background-color: var(--secondary-light);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Trust Badges */
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 48px;
+            margin-top: 64px;
+            flex-wrap: wrap;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .trust-badge i {
+            color: var(--success);
+            font-size: 16px;
+        }
+
+        /* Sections */
+        section {
+            padding: 120px 0;
+        }
+
+        section h2 {
+            text-align: center;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 64px;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        /* Two Sides Section */
+        .two-sides {
+            background-color: var(--surface);
+            padding: 120px 0;
+        }
+
+        .two-sides .reputation-intro {
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto 64px;
+            font-size: 20px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .tabs-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 64px;
+            background: var(--surface-elevated);
+            border-radius: var(--radius-lg);
+            padding: 8px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+        }
+
+        .tab {
+            padding: 16px 32px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            border-radius: var(--radius);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-secondary);
+            background: transparent;
+            border: none;
+        }
+
+        .tab.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .tab i {
+            font-size: 18px;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .side-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .side-icon {
+            font-size: 48px;
+            color: var(--secondary);
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0.05) 100%);
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 32px;
+            border: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .side-description {
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 48px;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            width: 100%;
+        }
+
+        .benefit-card {
+            background: var(--surface-elevated);
+            padding: 32px;
+            border-radius: var(--radius-lg);
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--secondary);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--secondary);
+        }
+
+        .benefit-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .benefit-icon {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            background: rgba(99, 102, 241, 0.1);
+            width: 56px;
+            height: 56px;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .benefit-title {
+            font-weight: 600;
+            margin-bottom: 12px;
+            font-size: 18px;
+            color: var(--text-primary);
+        }
+
+        .benefit-description {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: var(--primary);
+            padding: 80px 0;
+            color: white;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 48px;
+            text-align: center;
+        }
+
+        .stat {
+            padding: 24px;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+        }
+
+        /* CV Preview Section */
+        .cv-preview {
+            background-color: var(--background);
+        }
+
+        .cv-showcase {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--surface-elevated);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .cv-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 48px;
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 32px;
+            font-size: 48px;
+            color: white;
+        }
+
+        .profile-info h2 {
+            font-size: 32px;
+            margin-bottom: 8px;
+            text-align: left;
+            color: white;
+            font-weight: 700;
+        }
+
+        .profile-info p {
+            font-size: 18px;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-light);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            height: 72px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            letter-spacing: -0.025em;
+        }
+
+        .logo i {
+            margin-right: 8px;
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.2s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .cta-button {
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 160px 0 120px;
+            text-align: center;
+            background: linear-gradient(180deg, var(--surface) 0%, var(--background) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--surface-elevated);
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .hero-badge i {
+            color: var(--success);
+            font-size: 12px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 24px;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 640px;
+            margin: 0 auto 48px;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 64px;
+        }
+
+        .hero-btn {
+            padding: 16px 32px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .btn-secondary {
+            background-color: var(--surface-elevated);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--surface);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .signup-form {
+            max-width: 480px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .form-input {
+            padding: 16px 20px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 16px;
+            outline: none;
+            width: 100%;
+            background: var(--surface-elevated);
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .form-input:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .submit-button:hover {
+            background-color: var(--secondary-light);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Trust Badges */
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 48px;
+            margin-top: 64px;
+            flex-wrap: wrap;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .trust-badge i {
+            color: var(--success);
+            font-size: 16px;
+        }
+
+        /* Sections */
+        section {
+            padding: 120px 0;
+        }
+
+        section h2 {
+            text-align: center;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 64px;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        /* Two Sides Section */
+        .two-sides {
+            background-color: var(--surface);
+            padding: 120px 0;
+        }
+
+        .two-sides .reputation-intro {
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto 64px;
+            font-size: 20px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .tabs-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 64px;
+            background: var(--surface-elevated);
+            border-radius: var(--radius-lg);
+            padding: 8px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+        }
+
+        .tab {
+            padding: 16px 32px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            border-radius: var(--radius);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-secondary);
+            background: transparent;
+            border: none;
+        }
+
+        .tab.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .tab i {
+            font-size: 18px;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .side-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .side-icon {
+            font-size: 48px;
+            color: var(--secondary);
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0.05) 100%);
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 32px;
+            border: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .side-description {
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 48px;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            width: 100%;
+        }
+
+        .benefit-card {
+            background: var(--surface-elevated);
+            padding: 32px;
+            border-radius: var(--radius-lg);
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--secondary);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--secondary);
+        }
+
+        .benefit-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .benefit-icon {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            background: rgba(99, 102, 241, 0.1);
+            width: 56px;
+            height: 56px;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .benefit-title {
+            font-weight: 600;
+            margin-bottom: 12px;
+            font-size: 18px;
+            color: var(--text-primary);
+        }
+
+        .benefit-description {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+
+        /* Stats Section */
+        .stats {
+            background: var(--primary);
+            padding: 80px 0;
+            color: white;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 48px;
+            text-align: center;
+        }
+
+        .stat {
+            padding: 24px;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+        }
+
+        /* CV Preview Section */
+        .cv-preview {
+            background-color: var(--background);
+        }
+
+        .cv-showcase {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--surface-elevated);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .cv-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 48px;
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 32px;
+            font-size: 48px;
+            color: white;
+        }
+
+        .profile-info h2 {
+            font-size: 32px;
+            margin-bottom: 8px;
+            text-align: left;
+            color: white;
+            font-weight: 700;
+        }
+
+        .profile-info p {
+            font-size: 18px;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .hero {
+                padding: 120px 0 80px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-btn {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+
+            .trust-badges {
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .tabs-container {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .tab {
+                justify-content: center;
+                padding: 16px 24px;
+            }
+
+            .cv-header {
+                flex-direction: column;
+                text-align: center;
+                padding: 32px 24px;
+            }
+
+            .profile-img {
+                margin-right: 0;
+                margin-bottom: 24px;
+            }
+
+            .cv-body {
+                grid-template-columns: 1fr;
+                padding: 24px;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 80px 0;
+            }
+
+            .stats {
+                padding: 60px 0;
+            }
+
+            .stats-container {
+                gap: 32px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-badge {
+                font-size: 13px;
+                padding: 6px 12px;
+            }
+
+            .benefit-card {
+                padding: 24px;
+            }
+
+            .form-input {
+                padding: 14px 16px;
+            }
+
+            .hero-btn, .submit-button {
+                padding: 14px 24px;
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <i class="fas fa-shield-check"></i>
+                VerifyCV
+            </div>
+            <div class="nav-links">
+                <a href="#how-it-works">How It Works</a>
+                <a href="#features">Features</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#faq">FAQ</a>
+            </div>
+            <a href="#signup" class="cta-button">Get Started</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-check-circle"></i>
+                    Trusted by 10,000+ professionals worldwide
+                </div>
+                <h1>Professional CV Verification Made Simple</h1>
+                <p>Build trust in your professional credentials with blockchain-verified CVs. Connect with industry experts who validate your skills and experience.</p>
+                
+                <div class="hero-buttons">
+                    <a href="#signup" class="hero-btn btn-primary">
+                        <i class="fas fa-rocket"></i>
+                        Start Verification
+                    </a>
+                    <a href="#demo" class="hero-btn btn-secondary">
+                        <i class="fas fa-play"></i>
+                        Watch Demo
+                    </a>
+                </div>
+
+                <!-- Trust Badges -->
+                <div class="trust-badges">
+                    <div class="trust-badge">
+                        <i class="fas fa-shield-check"></i>
+                        Blockchain Secured
+                    </div>
+                    <div class="trust-badge">
+                        <i class="fas fa-users"></i>
+                        Expert Network
+                    </div>
+                    <div class="trust-badge">
+                        <i class="fas fa-clock"></i>
+                        24/7 Support
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Two Sides Section - Redesigned -->
+    <section class="two-sides">
+        <div class="container">
+            <h2>Twitter Community Notes, but for your skills</h2>
+            <p class="reputation-intro">Inspired by models like Twitter's Community Notes, SkillVerdict brings
+                transparent, community-driven verification to member's skills. It’s unbiased assessment, powered by the
+                community.</p>
+
+            <div class="tabs-container">
+                <div class="tab active" data-tab="vetter">
+                    <i class="fas fa-money-bill-wave"></i> Tech professions
+                </div>
+                <div class="tab" data-tab="candidate">
+                    <i class="fas fa-award"></i> Members
+                </div>
+            </div>
+
+            <div class="tab-content active" id="vetter-content">
+                <div class="side-content">
+                    <div class="side-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <p class="side-description">Top talent is valued in the
+                        SkillVerdict community. Monetize your
+                        expertise by verifying the skills of other members.</p>
+
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <div class="benefit-title">Earn extra income</div>
+                            <div class="benefit-description">Get paid for reviewing code and conducting technical
+                                interviews</div>
+                        </div>
+
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div class="benefit-title">Flexible schedule</div>
+                            <div class="benefit-description">Work on your own time from anywhere - no contracts or
+                                minimum hours</div>
+                        </div>
+
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="benefit-title">Build your reputation</div>
+                            <div class="benefit-description">Establish yourself as an industry expert in the community
+                            </div>
+                        </div>
+
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <div class="benefit-title">Expand your network</div>
+                            <div class="benefit-description">Connect with
+                                talented tech professionals</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="candidate-content">
+                <div class="side-content">
+                    <div class="side-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <p class="side-description">Get your skills verified by global industry experts and boost your
+                        career with a next-generation CV2.0.</p>
+
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <div class="benefit-title">Verified skill badges</div>
+                            <div class="benefit-description">Stand out with verified skill badges on your profile</div>
+                        </div>
+
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-forward"></i>
+                            </div>
+                            <div class="benefit-title">Possibly skip lengthy interviews</div>
+                            <div class="benefit-description">Chance to reduce multi-step
+                                interviews or skip fully because your skills are already
+                                verified by world's top talent</div>
+                        </div>
+
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <div class="benefit-title">Increase Hiring Chances</div>
+                            <div class="benefit-description">Don't just say
+                                you're good—prove it. Verified skills from
+                                top professionals make employers notice</div>
+                        </div>
+
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-qrcode"></i>
+                            </div>
+                            <div class="benefit-title">Customizable digital CV2.0</div>
+                            <div class="benefit-description">Share your verified
+                                skills instantly. Export a digital CV2.0
+                                with a trusted QR code or send a live link to anyone.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="process" id="how-it-works">
+        <div class="container">
+            <h2>How SkillVerdict Works</h2>
+            <p class="reputation-intro">
+                Our process ensures rigorous verification while maintaining
+                flexibility for both tech professionals and members. We hand
+                pick our verifiers, you will be assured that your skills are
+                going to be verified in the upmost professional manner,
+                unbiased, professional, fast and transparent.
+            </p>
+
+            <div class="process-tabs">
+                <div class="process-tab active" data-tab="vetter">Tech professionals</div>
+                <div class="process-tab" data-tab="candidate">Members</div>
+            </div>
+
+            <div class="process-content active" id="vetter-process">
+                <div class="steps">
+                    <div class="step">
+                        <div class="icon">📋</div>
+                        <h3>1. Apply as a verifier</h3>
+                        <p>Sign up to the community, submit your traditional CV and areas of expertise for
+                            review</p>
+                    </div>
+                    <div class="step">
+                        <div class="icon">🧪</div>
+                        <h3>2. Interview</h3>
+                        <p>Demonstrate your expertise and pass the interview to
+                            a become verifier </p>
+                    </div>
+                    <div class="step">
+                        <div class="icon">💬</div>
+                        <h3>3. Start verifying</h3>
+                        <p>Access our AI-assisted dashboard to easily review candidate submissions</p>
+                    </div>
+                    <div class="step">
+                        <div class="icon">💰</div>
+                        <h3>4. Earn</h3>
+                        <p>Earn income by selling your credibility. Grow your
+                            expertise by learning from candidate
+                            feedback.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="process-content" id="candidate-process">
+                <div class="steps">
+                    <div class="step">
+                        <div class="icon">📝</div>
+                        <h3>1. Create profile</h3>
+                        <p>Sign up to the community, upload your traditional CV
+                            and select the skills you want to verify
+                        </p>
+                    </div>
+                    <div class="step">
+                        <div class="icon">🧠</div>
+                        <h3>2. Complete assignment</h3>
+                        <p>Complete a short take at home assignment that demonstrates your
+                            skills. Our take at home assignment are designed to
+                            surface your true skills</p>
+                    </div>
+                    <div class="step">
+                        <div class="icon">💬</div>
+                        <h3>3. Technical discussion</h3>
+                        <p>If your solution is picked by a verifier, you will have a
+                            technical discussion with the verifier to validate your
+                            skills and knowledge</p>
+                    </div>
+                    <div class="step">
+                        <div class="icon">✅</div>
+                        <h3>4. Final conclusion</h3>
+                        <p>If you pass the technical discussion, you will receive your verified
+                            skill badge and get a chance to rate the verifier</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CV2.0 Preview Section -->
+    <section class="cv-preview">
+        <div class="container">
+            <h2>Your Digital CV2.0 - Verified by the Community</h2>
+            <p class="reputation-intro">See what makes our verified CV different from traditional
+                resumes. Our flexible CV2.0 platform lets you showcase your verified skills
+                in a format that best represents your expertise and achievements.
+                You can hide your community status or display it proudly, you can
+                hide skills badges and other tons of customizations.
+                This is just one of many CV2.0 templates used to display your
+                verified skills
+            </p>
+            <p class="reputation-intro"> Note: This is not going to be the final version, our CV2.0 platform
+                is heavily in development and is going to be much more advanced and
+                customizable.</p>
+
+            <div class="cv-showcase">
+                <div class="cv-header">
+                    <div class="profile-img">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="profile-info">
+                        <h2>Alex Johnson</h2>
+                        <p>Senior Full Stack Developer</p>
+                    </div>
+                </div>
+
+                <div class="cv-body">
+                    <div class="left-column">
+                        <div class="cv-section">
+                            <h3 class="cv-section-title"><i class="fas fa-user-tie"></i> Profile</h3>
+                            <p class="item-description">Full stack developer with 8+ years of experience building
+                                scalable web applications. Passionate about clean code and innovative solutions.</p>
+                        </div>
+
+                        <div class="cv-section">
+                            <h3 class="cv-section-title"><i class="fas fa-code"></i> Technical Skills</h3>
+                            <div class="skills-grid">
+                                <div class="skill">
+                                    <span class="skill-name">JavaScript</span>
+                                    <span class="verified-badge"><i class="fas fa-check"></i> Verified</span>
+                                    <div class="skill-tooltip">
+                                        Verified by Sarah Chen
+                                        <div class="verifier-info">Senior Developer at Google</div>
+                                    </div>
+                                </div>
+                                <div class="skill">
+                                    <span class="skill-name">React</span>
+                                    <span class="verified-badge"><i class="fas fa-check"></i> Verified</span>
+                                    <div class="skill-tooltip">
+                                        Verified by Michael Rodriguez
+                                        <div class="verifier-info">Engineering Lead at Meta</div>
+                                    </div>
+                                </div>
+                                <div class="skill">
+                                    <span class="skill-name">Node.js</span>
+                                    <span class="unverified-badge"><i class="fas fa-clock"></i> Unverified</span>
+                                </div>
+                                <div class="skill">
+                                    <span class="skill-name">Python</span>
+                                    <span class="verified-badge"><i class="fas fa-check"></i> Verified</span>
+                                    <div class="skill-tooltip">
+                                        Verified by James Wilson
+                                        <div class="verifier-info">Principal Engineer at Netflix</div>
+                                    </div>
+                                </div>
+                                <div class="skill">
+                                    <span class="skill-name">AWS</span>
+                                    <span class="verified-badge"><i class="fas fa-check"></i> Verified</span>
+                                    <div class="skill-tooltip">
+                                        Verified by Emily Zhang
+                                        <div class="verifier-info">Cloud Architect at Amazon</div>
+                                    </div>
+                                </div>
+                                <div class="skill">
+                                    <span class="skill-name">Docker</span>
+                                    <span class="unverified-badge"><i class="fas fa-clock"></i> Pending</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cv-section">
+                            <h3 class="cv-section-title"><i class="fas fa-graduation-cap"></i> Education</h3>
+                            <div class="education-item">
+                                <div class="item-header">
+                                    <span class="item-title">MSc Computer Science</span>
+                                    <span class="item-date">2016</span>
+                                </div>
+                                <div class="item-subtitle">Stanford University</div>
+                                <span class="verification-status status-pending"><i class="fas fa-clock"></i>
+                                    Pending</span>
+                            </div>
+                            <div class="education-item">
+                                <div class="item-header">
+                                    <span class="item-title">BSc Software Engineering</span>
+                                    <span class="item-date">2014</span>
+                                </div>
+                                <div class="item-subtitle">MIT</div>
+                                <span class="verification-status status-pending"><i class="fas fa-clock"></i>
+                                    Pending</span>
+                            </div>
+                        </div>
+
+                        <!-- Projects Section -->
+                        <div class="cv-section">
+                            <h3 class="cv-section-title"><i class="fas fa-project-diagram"></i> Projects</h3>
+                            <div class="project-item">
+                                <div class="item-header">
+                                    <span class="item-title">Real-Time Object Detection System</span>
+                                    <span class="verified-badge"><i class="fas fa-check"></i> Verified</span>
+                                </div>
+                                <div class="item-subtitle">Python, OpenCV, YOLOv5</div>
+                                <p class="item-description">Developed a real-time object detection system using YOLOv5
+                                    that achieves 95% accuracy on the COCO dataset. Optimized inference speed to 30 FPS
+                                    on NVIDIA GTX 1080Ti.</p>
+                                <div class="skill-tooltip">
+                                    Verified by Michael Rodriguez
+                                    <div class="verifier-info">Computer Vision Engineer at Tesla</div>
+                                </div>
+                            </div>
+
+                            <div class="project-item">
+                                <div class="item-header">
+                                    <span class="item-title">AI-Powered Document Scanner</span>
+                                    <span class="unverified-badge"><i class="fas fa-clock"></i> Pending</span>
+                                </div>
+                                <div class="item-subtitle">Python, OpenCV, TensorFlow</div>
+                                <p class="item-description">Building a mobile document scanner with perspective
+                                    correction and OCR capabilities using OpenCV and Tesseract.</p>
+                            </div>
+
+                            <div class="project-item">
+                                <div class="item-header">
+                                    <span class="item-title">Face Recognition Attendance System</span>
+                                    <span class="verified-badge"><i class="fas fa-check"></i> Verified</span>
+                                </div>
+                                <div class="item-subtitle">Python, Dlib, Face Recognition API</div>
+                                <p class="item-description">Created a facial recognition system that automatically
+                                    records attendance with 99.2% accuracy in varied lighting conditions.</p>
+                                <div class="skill-tooltip">
+                                    Verified by Emily Zhang
+                                    <div class="verifier-info">AI Researcher at Microsoft</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="right-column">
+                        <div class="cv-section">
+                            <h3 class="cv-section-title"><i class="fas fa-briefcase"></i> Experience</h3>
+                            <div class="experience-item">
+                                <div class="item-header">
+                                    <span class="item-title">Senior Developer</span>
+                                    <span class="item-date">2020 - Present</span>
+                                </div>
+                                <div class="item-subtitle">TechInnovate Inc.</div>
+                                <p class="item-description">Lead development of customer-facing web applications using
+                                    React and Node.js. Mentored junior developers and implemented CI/CD pipelines.</p>
+                                <span class="verification-status status-unverified"><i class="fas fa-clock"></i>
+                                    Unverified</span>
+                            </div>
+                            <div class="experience-item">
+                                <div class="item-header">
+                                    <span class="item-title">Full Stack Developer</span>
+                                    <span class="item-date">2017 - 2020</span>
+                                </div>
+                                <div class="item-subtitle">WebSolutions LLC</div>
+                                <p class="item-description">Developed and maintained multiple web applications for
+                                    clients across various industries. Implemented responsive designs and optimized
+                                    performance.</p>
+                                <span class="verification-status status-verified"><i class="fas fa-check"></i>
+                                    Verified</span>
+                            </div>
+                            <div class="experience-item">
+                                <div class="item-header">
+                                    <span class="item-title">Junior Developer</span>
+                                    <span class="item-date">2015 - 2017</span>
+                                </div>
+                                <div class="item-subtitle">DigitalCreations</div>
+                                <p class="item-description">Assisted in development of front-end interfaces and backend
+                                    APIs. Participated in code reviews and agile development processes.</p>
+                                <span class="verification-status status-unverified"><i class="fas fa-clock"></i>
+                                    Unverified</span>
+                            </div>
+                        </div>
+
+                        <div class="cv-section">
+                            <h3 class="cv-section-title"><i class="fas fa-medal"></i> Certifications</h3>
+                            <div class="skills-grid">
+                                <div class="skill">
+                                    <span class="skill-name">AWS Certified</span>
+                                    <span class="verified-badge"><i class="fas fa-check"></i> Verified</span>
+                                    <div class="skill-tooltip">
+                                        Verified by David Kim
+                                        <div class="verifier-info">Solutions Architect at Amazon</div>
+                                    </div>
+                                </div>
+                                <div class="skill">
+                                    <span class="skill-name">React Expert</span>
+                                    <span class="verified-badge"><i class="fas fa-check"></i> Verified</span>
+                                    <div class="skill-tooltip">
+                                        Verified by Lisa Johnson
+                                        <div class="verifier-info">Frontend Lead at Meta</div>
+                                    </div>
+                                </div>
+                                <div class="skill">
+                                    <span class="skill-name">Node.js Master</span>
+                                    <span class="verified-badge"><i class="fas fa-check"></i> Verified</span>
+                                    <div class="skill-tooltip">
+                                        Verified by Robert Williams
+                                        <div class="verifier-info">Backend Engineer at Netflix</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="qr-section">
+                    <div class="qr-code">
+                        <i class="fas fa-qrcode"></i>
+                    </div>
+                    <p>Scan to view my verified skills</p>
+                    <a href="#" class="verification-link">View full verification history</a>
+                </div>
+            </div>
+
+            <div class="cv-features">
+                <div class="cv-feature">
+                    <i class="fas fa-qrcode"></i>
+                    <h3>QR Verification</h3>
+                    <p>Employers can scan QR codes to verify credential authenticity instantly</p>
+                </div>
+                <div class="cv-feature">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Skill Badges</h3>
+                    <p>Visual badges show exactly which skills have been
+                        verified by the community</p>
+                </div>
+                <div class="cv-feature">
+                    <i class="fas fa-database"></i>
+                    <h3>Optimized metadata</h3>
+                    <p>Every exported CV2.0 is optimized for HR AIs to read and understand your skills</p>
+                </div>
+                <div class="cv-feature">
+                    <i class="fas fa-link"></i>
+                    <h3>Live Links</h3>
+                    <p>Direct links to your verified projects and code repositories</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2>Frequently asked questions for members</h2>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How does the verification process work? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our verification process involves a multi-step evaluation where your skills are assessed by
+                            experienced tech professionals in the field. Our tech
+                            professionals come from different backgrounds and
+                            companies like Google, Netflix, Airbnb, Amazon, Meta and many more.
+                            Once verified, your skills are permanently recorded and
+                            can be easily validated by employers through QR codes or direct links.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How long does it take to get verified? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The verification process typically takes 3-5 business days, depending on the complexity of
+                            the skills being assessed and the availability of our verifiers.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can I update my skills after verification? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, you can always add new skills or request re-verification of existing skills as you
+                            continue to develop your expertise. The platform is designed to grow with your career.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How do employers verify my skills? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Employers can verify your skills by scanning the QR code on your digital CV or by visiting
+                            your unique profile URL. They'll see a complete verification history with timestamps and
+                            reviewer credentials.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        I am not happy with my verification outcome, what can I do? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can always submit a complaint if you think you
+                            have not been treated fairly. We will investigate your
+                            complaint, if your claim turns out to be true, we will
+                            assign a new verifier to your case.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can I become a verifier as well and earn? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Of course you can, after you have verified the skills
+                            you want to verify other members skills with, you can apply
+                            and go through the become a verifier process.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Is my data and code safe? Who can see my verification results? <i
+                            class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Your privacy is paramount. Your specific code and assignment solutions are only visible to
+                            the verifiers assigned to you. Your public profile and CV2.0 will only show the skills you
+                            choose to make public and their verification status. You have full control over your
+                            visibility settings.</p>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2>Frequently asked questions for verifiers</h2>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How much can I earn as a verifier? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Earnings are based on a share of the verification fee for each assessment you complete. The
+                            more complex the skill, the higher the fee and your potential earnings. We provide a clear
+                            breakdown of potential earnings in your verifier dashboard.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What's the time commitment for being a verifier? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>There is no minimum time commitment. You can choose
+                            to take on as many or as few verification
+                            tasks as your schedule allows. The platform is designed for flexibility.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How does the "AI-assisted dashboard" help me? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our dashboard helps you streamline the review process. It can help with initial code
+                            analysis, flagging common patterns, managing your queue of assignments, and generating
+                            structured feedback templates, allowing you to focus on the high-level assessment.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What happens if a candidate disputes my assessment? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our admin team will review the dispute neutrally. If your feedback is found to be
+                            constructive, professional, and accurate, your rating and standing will be unaffected. This
+                            system protects verifiers from frivolous disputes while ensuring fairness for candidates.
+                        </p>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta" id="waitlist">
+        <div class="container">
+            <h2>Tired of your job applications getting ignored?</h2>
+            <p>Join our community to be among the first to access SkillVerdict
+                and see how it works</p>
+
+            <div style="margin-top: 30px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="#for-vetters" class="cta-button">Verify my skills</a>
+                <a href="#for-candidates" class="cta-button">Earn by verifying</a>
+            </div>
+            <form class="signup-form">
+                <input type="email" class="form-input" placeholder="Your email address *" required>
+                <input type="url" class="form-input" placeholder="Your LinkedIn profile URL *" required>
+                <textarea class="form-input form-textarea"
+                    placeholder="Biggest pain point with job hunting (optional)"></textarea>
+                <button type="submit" class="submit-button">Secure My Spot</button>
+            </form>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2024 SkillVerdict. All rights reserved.</p>
+            <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple form submission handling
+        document.querySelectorAll('.signup-form').forEach(form => {
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const email = this.querySelector('input[type="email"]').value;
+                const linkedin = this.querySelector('input[type="url"]').value;
+
+                if (email && linkedin) {
+                    alert(`Thank you! We've added ${email} to our waitlist. You'll be among the first to know when we launch!`);
+                    this.reset();
+                }
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Process tabs functionality
+        const processTabs = document.querySelectorAll('.process-tab');
+        const processContents = document.querySelectorAll('.process-content');
+
+        processTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.getAttribute('data-tab');
+
+                // Update active tab
+                processTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+
+                // Show relevant content
+                processContents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === `${tabId}-process`) {
+                        content.classList.add('active');
+                    }
+                });
+            });
+        });
+
+        // FAQ accordion functionality
+        const faqQuestions = document.querySelectorAll('.faq-question');
+
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+
+                // Close other FAQ items
+                document.querySelectorAll('.faq-item').forEach(faqItem => {
+                    if (faqItem !== item) {
+                        faqItem.classList.remove('active');
+                    }
+                });
+
+                // Toggle current item
+                item.classList.toggle('active');
+            });
+        });
+
+        // Two Sides Section Tabs
+        const twoSidesTabs = document.querySelectorAll('.two-sides .tab');
+        const twoSidesTabContents = document.querySelectorAll('.two-sides .tab-content');
+
+        twoSidesTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.getAttribute('data-tab');
+
+                // Update active tab
+                twoSidesTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+
+                // Show relevant content
+                twoSidesTabContents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === `${tabId}-content`) {
+                        content.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

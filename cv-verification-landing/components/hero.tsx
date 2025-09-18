@@ -6,12 +6,14 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Shield, Clock, UserCheck } from "lucide-react"
+import type { WaitlistFormData } from "@/types/form-data"
 
 export function Hero() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<WaitlistFormData>({
     email: "",
     linkedin: "",
     painPoint: "",
+    userType: null,
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [errors, setErrors] = useState<{[key: string]: string}>({})
@@ -40,6 +42,10 @@ export function Hero() {
       newErrors.linkedin = "LinkedIn profile URL is required"
     } else if (!validateLinkedIn(formData.linkedin)) {
       newErrors.linkedin = "Please enter a valid LinkedIn profile URL"
+    }
+
+    if (!formData.userType) {
+      newErrors.userType = "Please select whether you want to verify your skills or earn by verifying"
     }
 
     setErrors(newErrors)
@@ -78,7 +84,7 @@ export function Hero() {
       localStorage.setItem('waitlist-submissions', JSON.stringify(submissions))
 
       setSubmitStatus('success')
-      setFormData({ email: "", linkedin: "", painPoint: "" })
+      setFormData({ email: "", linkedin: "", painPoint: "", userType: null })
     } catch (error) {
       console.error('Form submission error:', error)
       setSubmitStatus('error')
@@ -109,31 +115,67 @@ export function Hero() {
             today
           </h1>
 
-          <p className="text-body-large text-slate-600 mb-12 max-w-4xl mx-auto text-pretty">
+          <p className="text-body-large text-slate-600 mb-8 max-w-4xl mx-auto text-pretty">
             SkillVerdict is a decentralized, unbiased and respected community where global tech professionals from
             leading companies verify your skills. Replace empty resume claims with proven endorsements, build your CV2.0
             and get hired faster, or earn income by selling your own credibility as a tech professional
           </p>
 
+          <p className="text-lg text-slate-700 mb-8 font-medium">
+            Choose your path to get started:
+          </p>
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
             <Button
-              variant="outline"
+              variant={formData.userType === 'verify-skills' ? "default" : "outline"}
               size="lg"
-              onClick={() => scrollToSection("for-candidates")}
-              className="btn-secondary h-14 px-8 text-lg cursor-pointer"
-              aria-label="Learn about skill verification for candidates"
+              onClick={() => {
+                setFormData({ ...formData, userType: 'verify-skills' })
+                if (errors.userType) {
+                  setErrors({ ...errors, userType: "" })
+                }
+                scrollToSection("for-candidates")
+              }}
+              className={`h-14 px-8 text-lg cursor-pointer transition-all duration-200 ${
+                formData.userType === 'verify-skills'
+                  ? "btn-primary ring-2 ring-blue-500 ring-offset-2"
+                  : "btn-secondary hover:ring-2 hover:ring-blue-300 hover:ring-offset-2"
+              }`}
+              aria-label="Select to verify your skills and learn more about skill verification for candidates"
+              aria-pressed={formData.userType === 'verify-skills'}
             >
               Verify my skills
             </Button>
             <Button
+              variant={formData.userType === 'earn-by-verifying' ? "default" : "outline"}
               size="lg"
-              onClick={() => scrollToSection("for-vetters")}
-              className="btn-primary h-14 px-8 text-lg cursor-pointer"
-              aria-label="Learn about earning by verifying skills"
+              onClick={() => {
+                setFormData({ ...formData, userType: 'earn-by-verifying' })
+                if (errors.userType) {
+                  setErrors({ ...errors, userType: "" })
+                }
+                scrollToSection("for-vetters")
+              }}
+              className={`h-14 px-8 text-lg cursor-pointer transition-all duration-200 ${
+                formData.userType === 'earn-by-verifying'
+                  ? "btn-primary ring-2 ring-blue-500 ring-offset-2"
+                  : "btn-secondary hover:ring-2 hover:ring-blue-300 hover:ring-offset-2"
+              }`}
+              aria-label="Select to earn by verifying skills and learn more about earning opportunities"
+              aria-pressed={formData.userType === 'earn-by-verifying'}
             >
               Earn by verifying
             </Button>
           </div>
+
+          {/* User Type Selection Error */}
+          {errors.userType && (
+            <div className="max-w-lg mx-auto mb-4">
+              <p className="text-red-500 text-sm text-center bg-red-50 border border-red-200 rounded-lg p-3">
+                {errors.userType}
+              </p>
+            </div>
+          )}
 
           <div className="max-w-lg mx-auto mb-16">
             <form
@@ -217,7 +259,7 @@ export function Hero() {
 
               <Button
                 type="submit"
-                disabled={isSubmitting || !formData.email || !formData.linkedin}
+                disabled={isSubmitting || !formData.email || !formData.linkedin || !formData.userType}
                 className="w-full h-14 text-lg btn-primary disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                 aria-label={isSubmitting ? "Submitting form" : "Submit waitlist form"}
               >

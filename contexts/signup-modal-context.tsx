@@ -2,10 +2,12 @@
 
 import type React from "react"
 import { createContext, useContext, useState, useCallback } from "react"
+import type { UserType } from "@/types/form-data"
 
 interface SignupModalContextType {
   isOpen: boolean
-  openModal: () => void
+  userType: UserType
+  openModal: (userType?: UserType) => void
   closeModal: () => void
   toggleModal: () => void
 }
@@ -26,13 +28,17 @@ interface SignupModalProviderProps {
 
 export function SignupModalProvider({ children }: SignupModalProviderProps) {
   const [isOpen, setIsOpen] = useState(false)
+  const [userType, setUserType] = useState<UserType>(null)
 
-  const openModal = useCallback(() => {
+  const openModal = useCallback((selectedUserType?: UserType) => {
+    setUserType(selectedUserType || null)
     setIsOpen(true)
   }, [])
 
   const closeModal = useCallback(() => {
     setIsOpen(false)
+    // Reset user type when modal closes
+    setTimeout(() => setUserType(null), 300)
   }, [])
 
   const toggleModal = useCallback(() => {
@@ -41,6 +47,7 @@ export function SignupModalProvider({ children }: SignupModalProviderProps) {
 
   const value: SignupModalContextType = {
     isOpen,
+    userType,
     openModal,
     closeModal,
     toggleModal,

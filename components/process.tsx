@@ -4,7 +4,7 @@ import { useState } from "react"
 import { ClipboardList, TestTube, MessageCircle, DollarSign, FileText, Brain, CheckCircle } from "lucide-react"
 
 export function Process() {
-  const [activeTab, setActiveTab] = useState("vetter")
+  const [activeTab, setActiveTab] = useState("candidate")
 
   const vetterSteps = [
     {
@@ -70,20 +70,20 @@ export function Process() {
         <div className="flex justify-center mb-8">
           <div className="flex bg-gray-100 rounded-lg p-1">
             <button
-              onClick={() => setActiveTab("vetter")}
-              className={`px-6 py-3 rounded-md font-semibold transition-all ${
-                activeTab === "vetter" ? "bg-white text-primary shadow-sm" : "text-gray-600 hover:text-gray-900"
-              }`}
-            >
-              Tech professionals
-            </button>
-            <button
               onClick={() => setActiveTab("candidate")}
               className={`px-6 py-3 rounded-md font-semibold transition-all ${
                 activeTab === "candidate" ? "bg-white text-primary shadow-sm" : "text-gray-600 hover:text-gray-900"
               }`}
             >
               Members
+            </button>
+            <button
+              onClick={() => setActiveTab("vetter")}
+              className={`px-6 py-3 rounded-md font-semibold transition-all ${
+                activeTab === "vetter" ? "bg-white text-primary shadow-sm" : "text-gray-600 hover:text-gray-900"
+              }`}
+            >
+              Tech professionals
             </button>
           </div>
         </div>

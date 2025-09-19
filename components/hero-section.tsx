@@ -7,13 +7,6 @@ import { useSignupModal } from "@/contexts/signup-modal-context"
 export function HeroSection() {
   const { openModal } = useSignupModal()
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" })
-    }
-  }
-
   return (
     <section
       id="home"
@@ -35,14 +28,26 @@ export function HeroSection() {
             and get hired faster, or earn income by selling your own credibility as a tech professional
           </p>
 
-          <div className="mb-16">
+          <p className="text-lg text-slate-700 mb-8 font-medium">
+            Choose your path to get started:
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
             <Button
-              onClick={openModal}
+              onClick={() => openModal('verify-skills')}
               size="lg"
-              className="h-16 px-12 text-xl btn-primary shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-              aria-label="Open signup modal to join SkillVerdict"
+              className="h-16 px-12 text-xl bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 rounded-lg font-medium"
+              aria-label="Open signup modal to verify your skills"
             >
-              Join SkillVerdict Today
+              Verify my skills
+            </Button>
+            <Button
+              onClick={() => openModal('earn-by-verifying')}
+              size="lg"
+              className="h-16 px-12 text-xl bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 rounded-lg font-medium"
+              aria-label="Open signup modal to earn by verifying skills"
+            >
+              Earn by verifying
             </Button>
           </div>
 

@@ -4,7 +4,7 @@ import { useState } from "react"
 import { DollarSign, Award, Calendar, TrendingUp, Network, Medal, FastForward, Rocket, QrCode } from "lucide-react"
 
 export function TwoSides() {
-  const [activeTab, setActiveTab] = useState("vetter")
+  const [activeTab, setActiveTab] = useState("candidate")
 
   const vetterBenefits = [
     {
@@ -63,7 +63,7 @@ export function TwoSides() {
       <div className="container-wide">
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-heading-1 text-slate-900 mb-6 text-balance">
-            Twitter Community Notes, but for your{" "}
+            Twitter Community Notes, but for your
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">skills</span>
           </h2>
           <p className="text-body-large text-slate-600 max-w-4xl mx-auto text-pretty leading-relaxed">
@@ -79,20 +79,6 @@ export function TwoSides() {
             aria-label="Choose user type"
           >
             <button
-              onClick={() => setActiveTab("vetter")}
-              className={`flex items-center gap-3 px-8 py-4 rounded-lg font-semibold transition-all duration-300 cursor-pointer ${
-                activeTab === "vetter"
-                  ? "bg-white text-blue-600 shadow-md border border-blue-100"
-                  : "text-slate-600 hover:text-slate-900 hover:bg-white/50"
-              }`}
-              role="tab"
-              aria-selected={activeTab === "vetter"}
-              aria-controls="vetter-panel"
-            >
-              <DollarSign className="h-5 w-5" aria-hidden="true" />
-              Tech professionals
-            </button>
-            <button
               onClick={() => setActiveTab("candidate")}
               className={`flex items-center gap-3 px-8 py-4 rounded-lg font-semibold transition-all duration-300 cursor-pointer ${
                 activeTab === "candidate"
@@ -106,6 +92,21 @@ export function TwoSides() {
               <Award className="h-5 w-5" aria-hidden="true" />
               Members
             </button>
+            <button
+              onClick={() => setActiveTab("vetter")}
+              className={`flex items-center gap-3 px-8 py-4 rounded-lg font-semibold transition-all duration-300 cursor-pointer ${
+                activeTab === "vetter"
+                  ? "bg-white text-blue-600 shadow-md border border-blue-100"
+                  : "text-slate-600 hover:text-slate-900 hover:bg-white/50"
+              }`}
+              role="tab"
+              aria-selected={activeTab === "vetter"}
+              aria-controls="vetter-panel"
+            >
+              <DollarSign className="h-5 w-5" aria-hidden="true" />
+              Tech professionals
+            </button>
+      
           </div>
         </div>
 

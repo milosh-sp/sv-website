@@ -12,9 +12,10 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { useSignupModal } from "@/contexts/signup-modal-context"
+import { getUserSegmentLabel } from "@/types/form-data"
 
 export function SignupModal() {
-  const { isOpen, closeModal } = useSignupModal()
+  const { isOpen, userType, closeModal } = useSignupModal()
   const [formData, setFormData] = useState({
     email: "",
     linkedin: "",
@@ -102,6 +103,7 @@ export function SignupModal() {
       // Log form data for development (replace with actual API call)
       console.log('Form submitted:', {
         ...formData,
+        userType,
         timestamp: new Date().toISOString(),
         source: 'signup-modal'
       })
@@ -110,6 +112,7 @@ export function SignupModal() {
       const submissions = JSON.parse(localStorage.getItem('waitlist-submissions') || '[]')
       submissions.push({
         ...formData,
+        userType,
         timestamp: new Date().toISOString(),
         source: 'signup-modal'
       })
@@ -147,9 +150,14 @@ export function SignupModal() {
           >
             <X className="h-4 w-4" />
           </button>
-          <DialogTitle className="text-2xl font-bold text-slate-900 text-center mb-6 pr-12">
+          <DialogTitle className="text-2xl font-bold text-slate-900 text-center mb-2 pr-12">
             Join SkillVerdict
           </DialogTitle>
+          {userType && (
+            <p className="text-sm text-blue-600 text-center mb-4 font-medium">
+              {getUserSegmentLabel(userType)}
+            </p>
+          )}
         </DialogHeader>
 
         <form

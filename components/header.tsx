@@ -3,9 +3,11 @@
 import { useState } from "react"
 import { Menu, X, Shield } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useSignupModal } from "@/contexts/signup-modal-context"
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { openModal } = useSignupModal()
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -73,9 +75,9 @@ export function Header() {
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full" />
             </button>
             <Button
-              onClick={() => scrollToSection("waitlist")}
+              onClick={openModal}
               className="btn-primary h-11 px-6 text-base"
-              aria-label="Join the waitlist"
+              aria-label="Open signup modal to join the community"
             >
               Join community
             </Button>
@@ -136,7 +138,7 @@ export function Header() {
               </button>
               <div className="pt-2 mt-2 border-t border-slate-200">
                 <Button
-                  onClick={() => scrollToSection("waitlist")}
+                  onClick={openModal}
                   className="w-full btn-primary h-12 text-base"
                   role="menuitem"
                 >

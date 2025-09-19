@@ -4,6 +4,7 @@ import { Inter } from "next/font/google"
 import "./globals.css"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import { SignupModalProvider } from "@/contexts/signup-modal-context"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -25,9 +26,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} antialiased`}>
       <body className="font-sans">
-        <Header />
-        {children}
-        <Footer />
+        <SignupModalProvider>
+          <Header />
+          {children}
+          <Footer />
+        </SignupModalProvider>
       </body>
     </html>
   )

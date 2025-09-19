@@ -242,6 +242,8 @@ export function Hero() {
                 )}
               </div>
 
+              
+
               <div className="space-y-2">
                 <label htmlFor="painPoint" className="sr-only">
                   Biggest pain point with job hunting

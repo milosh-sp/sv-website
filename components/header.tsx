@@ -63,7 +63,7 @@ export function Header() {
               className="text-slate-700 hover:text-blue-600 transition-colors duration-200 font-medium py-2 px-1 relative group cursor-pointer"
               aria-label="Go to company discovery section"
             >
-              For Companies
+              Companies
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full" />
             </button>
             <button

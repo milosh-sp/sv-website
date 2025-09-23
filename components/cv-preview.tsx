@@ -1,4 +1,4 @@
-import { User, Code, Briefcase, GraduationCap, Award, QrCode, Shield, Database, Link, FolderOpen } from "lucide-react"
+import { User, Code, Briefcase, GraduationCap, Award, QrCode, Shield, Database, Link, FolderOpen, Globe } from "lucide-react"
 
 export function CVPreview() {
   return (
@@ -248,6 +248,69 @@ export function CVPreview() {
                         </div>
                         <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-slate-900"></div>
                       </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Languages */}
+              <div>
+                <h3 className="flex items-center gap-2 text-lg font-semibold text-slate-800 mb-4 pb-2 border-b border-slate-200">
+                  <Globe className="h-5 w-5" />
+                  Languages
+                </h3>
+                <div className="grid grid-cols-1 gap-3">
+                  {[
+                    {
+                      name: "English",
+                      level: "Native",
+                      verified: true,
+                      verifier: "Sarah Mitchell - Language Specialist at Cambridge Assessment"
+                    },
+                    {
+                      name: "Spanish",
+                      level: "Intermediate",
+                      verified: "pending"
+                    },
+                    {
+                      name: "French",
+                      level: "Beginner",
+                      verified: false
+                    },
+                  ].map((language, index) => (
+                    <div
+                      key={index}
+                      className="bg-slate-50 p-3 rounded-lg border-l-4 border-slate-700 group relative"
+                    >
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="font-medium text-sm text-slate-800">{language.name}</span>
+                        <span
+                          className={`text-xs px-2 py-1 rounded-full ${
+                            language.verified === true
+                              ? "bg-green-100 text-green-800"
+                              : language.verified === "pending"
+                              ? "bg-yellow-100 text-yellow-800"
+                              : "bg-gray-100 text-gray-800"
+                          }`}
+                        >
+                          {language.verified === true
+                            ? "✓ Verified"
+                            : language.verified === "pending"
+                            ? "⏱ Pending"
+                            : "○ Unverified"
+                          }
+                        </span>
+                      </div>
+                      <div className="text-slate-600 text-xs">{language.level}</div>
+                      {language.verified === true && language.verifier && (
+                        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-slate-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-200 z-10 shadow-lg max-w-48">
+                          <div className="text-center">
+                            <div>Verified by {language.verifier.split(' - ')[0]}</div>
+                            <div className="text-slate-300 mt-1">{language.verifier.split(' - ')[1]}</div>
+                          </div>
+                          <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-slate-900"></div>
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>

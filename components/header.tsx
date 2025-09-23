@@ -59,6 +59,14 @@ export function Header() {
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full" />
             </button>
             <button
+              onClick={() => scrollToSection("company-discovery")}
+              className="text-slate-700 hover:text-blue-600 transition-colors duration-200 font-medium py-2 px-1 relative group cursor-pointer"
+              aria-label="Go to company discovery section"
+            >
+              For Companies
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full" />
+            </button>
+            <button
               onClick={() => scrollToSection("process")}
               className="text-slate-700 hover:text-blue-600 transition-colors duration-200 font-medium py-2 px-1 relative group cursor-pointer"
               aria-label="Go to process section"
@@ -121,6 +129,13 @@ export function Header() {
                 role="menuitem"
               >
                 CV Preview
+              </button>
+              <button
+                onClick={() => scrollToSection("company-discovery")}
+                className="text-left text-slate-700 hover:text-blue-600 hover:bg-slate-50 transition-all duration-200 font-medium py-3 px-4 rounded-lg cursor-pointer"
+                role="menuitem"
+              >
+                For Companies
               </button>
               <button
                 onClick={() => scrollToSection("process")}

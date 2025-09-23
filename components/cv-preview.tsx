@@ -263,19 +263,19 @@ export function CVPreview() {
                   {[
                     {
                       name: "English",
-                      level: "Native",
+                      level: "C2",
                       verified: true,
                       verifier: "Sarah Mitchell - Language Specialist at Cambridge Assessment"
                     },
                     {
                       name: "Spanish",
-                      level: "Intermediate",
+                      level: "B2",
                       verified: "pending"
                     },
                     {
                       name: "French",
-                      level: "Beginner",
-                      verified: false
+                      level: "A2",
+                      verified: "pending"
                     },
                   ].map((language, index) => (
                     <div

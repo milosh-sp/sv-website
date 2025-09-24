@@ -5,6 +5,7 @@ import { TwoSides } from "@/components/two-sides";
 import { HeroSection } from "@/components/hero-section";
 import { SignupModal } from "@/components/signup-modal";
 import { FloatingSignupButton } from "@/components/floating-signup-button";
+import { CompanyDiscovery } from "@/components/company-discovery";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <HeroSection />
       <TwoSides />
       <Process />
+      <CompanyDiscovery />
       <CVPreview />
       <FAQ />
       <SignupModal />

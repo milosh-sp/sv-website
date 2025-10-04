@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Shield, Clock, UserCheck } from "lucide-react"
 import type { WaitlistFormData } from "@/types/form-data"
+import { submitForm, mapUserTypeToApiFormat } from "@/lib/api"
 
 export function Hero() {
   const [formData, setFormData] = useState<WaitlistFormData>({
@@ -64,30 +65,41 @@ export function Hero() {
     setErrors({})
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1500))
-
-      // Log form data for development (replace with actual API call)
-      console.log('Form submitted:', {
-        ...formData,
-        timestamp: new Date().toISOString(),
-        source: 'hero-form'
+      // Submit to Netlify function
+      const result = await submitForm({
+        email: formData.email,
+        fields: {
+          linkedin: formData.linkedin,
+          user_type: mapUserTypeToApiFormat(formData.userType),
+          pain_point: formData.painPoint,
+          source: 'hero-form',
+        },
       })
 
-      // Store in localStorage as backup
-      const submissions = JSON.parse(localStorage.getItem('waitlist-submissions') || '[]')
-      submissions.push({
-        ...formData,
-        timestamp: new Date().toISOString(),
-        source: 'hero-form'
-      })
-      localStorage.setItem('waitlist-submissions', JSON.stringify(submissions))
+      if (result.success) {
+        setSubmitStatus('success')
+        setFormData({ email: "", linkedin: "", painPoint: "", userType: null })
 
-      setSubmitStatus('success')
-      setFormData({ email: "", linkedin: "", painPoint: "", userType: null })
+        // Store in localStorage as backup
+        const submissions = JSON.parse(localStorage.getItem('waitlist-submissions') || '[]')
+        submissions.push({
+          ...formData,
+          timestamp: new Date().toISOString(),
+          source: 'hero-form'
+        })
+        localStorage.setItem('waitlist-submissions', JSON.stringify(submissions))
+      } else {
+        console.error('Form submission failed:', result.error)
+        setSubmitStatus('error')
+        // Set specific error message if available
+        if (result.error) {
+          setErrors({ submit: result.error })
+        }
+      }
     } catch (error) {
       console.error('Form submission error:', error)
       setSubmitStatus('error')
+      setErrors({ submit: 'An unexpected error occurred. Please try again.' })
     } finally {
       setIsSubmitting(false)
     }
@@ -286,7 +298,7 @@ export function Hero() {
               {submitStatus === 'error' && (
                 <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg">
                   <p className="text-red-800 text-sm font-medium">
-                    ❌ Something went wrong. Please try again or contact support.
+                    ❌ {errors.submit || 'Something went wrong. Please try again or contact support.'}
                   </p>
                 </div>
               )}

@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/dialog"
 import { useSignupModal } from "@/contexts/signup-modal-context"
 import { getUserSegmentLabel } from "@/types/form-data"
+import { submitForm, mapUserTypeToApiFormat } from "@/lib/api"
 
 export function SignupModal() {
   const { isOpen, userType, closeModal } = useSignupModal()
@@ -97,38 +98,47 @@ export function SignupModal() {
     setErrors({})
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1500))
-
-      // Log form data for development (replace with actual API call)
-      console.log('Form submitted:', {
-        ...formData,
-        userType,
-        timestamp: new Date().toISOString(),
-        source: 'signup-modal'
+      // Submit to Netlify function
+      const result = await submitForm({
+        email: formData.email,
+        fields: {
+          linkedin: formData.linkedin,
+          user_type: mapUserTypeToApiFormat(userType),
+          source: 'signup-modal',
+        },
       })
 
-      // Store in localStorage as backup
-      const submissions = JSON.parse(localStorage.getItem('waitlist-submissions') || '[]')
-      submissions.push({
-        ...formData,
-        userType,
-        timestamp: new Date().toISOString(),
-        source: 'signup-modal'
-      })
-      localStorage.setItem('waitlist-submissions', JSON.stringify(submissions))
+      if (result.success) {
+        setSubmitStatus('success')
+        setFormData({ email: "", linkedin: "" })
 
-      setSubmitStatus('success')
-      setFormData({ email: "", linkedin: "" })
-      
-      // Close modal after successful submission
-      setTimeout(() => {
-        closeModal()
-        setSubmitStatus('idle')
-      }, 2000)
+        // Store in localStorage as backup
+        const submissions = JSON.parse(localStorage.getItem('waitlist-submissions') || '[]')
+        submissions.push({
+          ...formData,
+          userType,
+          timestamp: new Date().toISOString(),
+          source: 'signup-modal'
+        })
+        localStorage.setItem('waitlist-submissions', JSON.stringify(submissions))
+
+        // Close modal after successful submission
+        setTimeout(() => {
+          closeModal()
+          setSubmitStatus('idle')
+        }, 2000)
+      } else {
+        console.error('Form submission failed:', result.error)
+        setSubmitStatus('error')
+        // Set specific error message if available
+        if (result.error) {
+          setErrors({ submit: result.error })
+        }
+      }
     } catch (error) {
       console.error('Form submission error:', error)
       setSubmitStatus('error')
+      setErrors({ submit: 'An unexpected error occurred. Please try again.' })
     } finally {
       setIsSubmitting(false)
     }
@@ -254,7 +264,7 @@ export function SignupModal() {
             {submitStatus === 'error' && (
               <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg">
                 <p className="text-red-800 text-sm font-medium">
-                  ❌ Something went wrong. Please try again or contact support.
+                  ❌ {errors.submit || 'Something went wrong. Please try again or contact support.'}
                 </p>
               </div>
             )}

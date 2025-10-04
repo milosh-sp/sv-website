@@ -1,4 +1,5 @@
 import { Twitter, Linkedin, Github } from "lucide-react"
+import Link from "next/link"
 
 export function Footer() {
   return (
@@ -6,9 +7,9 @@ export function Footer() {
       <div className="container mx-auto px-4 text-center">
         <p className="mb-4">© 2024 SkillVerdict. All rights reserved.</p>
         <div className="flex justify-center gap-6 mb-6 text-sm">
-          <a href="#" className="text-blue-300 hover:text-white transition-colors">
+          <Link href="/privacy-policy" className="text-blue-300 hover:text-white transition-colors">
             Privacy Policy
-          </a>
+          </Link>
           <span className="text-gray-500">|</span>
           <a href="#" className="text-blue-300 hover:text-white transition-colors">
             Terms of Service

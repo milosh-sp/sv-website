@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Menu, X, Shield } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useSignupModal } from "@/contexts/signup-modal-context"
+import Link from "next/link"
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -24,14 +25,14 @@ export function Header() {
     >
       <div className="max-w-full mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
         <nav className="flex items-center justify-between h-20" role="navigation" aria-label="Main navigation">
-          <div className="flex items-center gap-3">
+          <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity duration-200" aria-label="Go to homepage">
             <div className="p-2 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg shadow-md">
               <Shield className="h-6 w-6 text-white" aria-hidden="true" />
             </div>
             <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
               SkillVerdict
             </span>
-          </div>
+          </Link>
 
           <div className="hidden md:flex items-center gap-8">
             <button

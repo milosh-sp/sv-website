@@ -1,4 +1,5 @@
 import { Handler, HandlerEvent, HandlerContext } from '@netlify/functions';
+import { validateEmail, validateLinkedIn } from '../../lib/validation';
 
 // Types for the request body
 interface FormSubmissionData {
@@ -13,17 +14,7 @@ interface FormSubmissionData {
   };
 }
 
-// Validation functions
-const validateEmail = (email: string): boolean => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-};
 
-const validateLinkedIn = (url: string): boolean => {
-  if (!url) return false; // LinkedIn is mandatory
-  const linkedinRegex = /^https?:\/\/(www\.)?linkedin\.com\/in\/[a-zA-Z0-9-]+\/?$/;
-  return linkedinRegex.test(url);
-};
 
 // CORS headers for static site compatibility
 const corsHeaders = {
@@ -171,7 +162,8 @@ export const handler: Handler = async (event: HandlerEvent, context: HandlerCont
       };
     }
 
-    if (!validateEmail(email)) {
+    const emailValidation = validateEmail(email);
+    if (!emailValidation.isValid) {
       return {
         statusCode: 400,
         headers: {
@@ -180,23 +172,26 @@ export const handler: Handler = async (event: HandlerEvent, context: HandlerCont
         },
         body: JSON.stringify({
           success: false,
-          error: 'Please provide a valid email address.',
+          error: emailValidation.message || 'Please provide a valid email address.',
         }),
       };
     }
 
-    if (fields.linkedin && !validateLinkedIn(fields.linkedin)) {
-      return {
-        statusCode: 400,
-        headers: {
-          ...corsHeaders,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          success: false,
-          error: 'Please provide a valid LinkedIn profile URL.',
-        }),
-      };
+    if (fields.linkedin) {
+      const linkedinValidation = validateLinkedIn(fields.linkedin);
+      if (!linkedinValidation.isValid) {
+        return {
+          statusCode: 400,
+          headers: {
+            ...corsHeaders,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            success: false,
+            error: linkedinValidation.message || 'Please provide a valid LinkedIn profile URL.',
+          }),
+        };
+      }
     }
 
     // Get API token from environment variables

@@ -57,9 +57,9 @@ export async function submitForm(data: FormSubmissionData): Promise<ApiResponse>
  */
 export function mapUserTypeToApiFormat(userType: string | null): string {
   switch (userType) {
-    case 'verify-skills':
+    case 'member':
       return 'member';
-    case 'earn-by-verifying':
+    case 'tech-pro':
       return 'verifier';
     default:
       return 'unknown';

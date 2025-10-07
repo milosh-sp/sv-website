@@ -3,7 +3,7 @@
  */
 
 // User type selection for waitlist segmentation
-export type UserType = 'verify-skills' | 'earn-by-verifying' | null
+export type UserType = 'member' | 'tech-pro' | null
 
 // Form data interface for waitlist signup
 export interface WaitlistFormData {
@@ -21,16 +21,16 @@ export interface WaitlistSubmission extends WaitlistFormData {
 
 // User segmentation categories for analytics and targeting
 export const USER_SEGMENTS = {
-  VERIFY_SKILLS: 'verify-skills',
-  EARN_BY_VERIFYING: 'earn-by-verifying'
+  MEMBER: 'member',
+  TECH_PRO: 'tech-pro'
 } as const
 
 // Helper function to get user segment label
 export function getUserSegmentLabel(userType: UserType): string {
   switch (userType) {
-    case 'verify-skills':
+    case 'member':
       return 'Skill Verification Candidate'
-    case 'earn-by-verifying':
+    case 'tech-pro':
       return 'Tech Professional Verifier'
     default:
       return 'Unknown'

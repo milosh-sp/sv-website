@@ -14,6 +14,7 @@ import {
 import { useSignupModal } from "@/contexts/signup-modal-context"
 import { getUserSegmentLabel } from "@/types/form-data"
 import { submitForm, mapUserTypeToApiFormat } from "@/lib/api"
+import { useHoneypot } from "@/hooks/use-honeypot"
 
 export function SignupModal() {
   const { isOpen, userType, closeModal } = useSignupModal()
@@ -26,7 +27,18 @@ export function SignupModal() {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const firstInputRef = useRef<HTMLInputElement>(null)
 
-  // Focus management for accessibility
+  // Honeypot bot detection
+  const {
+    honeypotValue,
+    setHoneypotValue,
+    validateSubmission,
+    resetHoneypot
+  } = useHoneypot()
+
+  // Track form start time for server-side validation
+  const [formStartTime] = useState(() => new Date().toISOString())
+
+  // Focus management for accessibility and honeypot reset
   useEffect(() => {
     if (isOpen && firstInputRef.current) {
       // Small delay to ensure modal is fully rendered
@@ -34,8 +46,11 @@ export function SignupModal() {
         firstInputRef.current?.focus()
       }, 100)
       return () => clearTimeout(timer)
+    } else if (!isOpen) {
+      // Reset honeypot when modal closes
+      resetHoneypot()
     }
-  }, [isOpen])
+  }, [isOpen, resetHoneypot])
 
   // Keyboard event handling for accessibility
   useEffect(() => {
@@ -69,6 +84,15 @@ export function SignupModal() {
 
   const validateForm = () => {
     const newErrors: {[key: string]: string} = {}
+
+    // Honeypot validation using the hook
+    const honeypotValidation = validateSubmission()
+    if (!honeypotValidation.isValid) {
+      console.log('Bot detected:', honeypotValidation.reason)
+      newErrors.honeypot = "Invalid submission detected"
+      setErrors(newErrors)
+      return false
+    }
 
     if (!formData.email) {
       newErrors.email = "Email is required"
@@ -105,12 +129,15 @@ export function SignupModal() {
           linkedin: formData.linkedin,
           user_type: mapUserTypeToApiFormat(userType),
           source: 'signup-modal',
+          website: honeypotValue, // Include honeypot field
+          form_start_time: formStartTime, // Include timing for server validation
         },
       })
 
       if (result.success) {
         setSubmitStatus('success')
         setFormData({ email: "", linkedin: "" })
+        resetHoneypot() // Reset honeypot state
 
         // Store in localStorage as backup
         const submissions = JSON.parse(localStorage.getItem('waitlist-submissions') || '[]')
@@ -205,6 +232,25 @@ export function SignupModal() {
                   {errors.email}
                 </p>
               )}
+            </div>
+
+            {/* Honeypot field - hidden from users but visible to bots */}
+            <div className="absolute left-[-9999px] opacity-0 pointer-events-none" aria-hidden="true">
+              <label htmlFor="website">
+                Website (leave this field empty)
+              </label>
+              <Input
+                id="website"
+                name="website"
+                type="text"
+                placeholder="Your website"
+                value={honeypotValue}
+                onChange={(e) => {
+                  setHoneypotValue(e.target.value)
+                }}
+                tabIndex={-1}
+                autoComplete="off"
+              />
             </div>
 
             <div className="space-y-2">

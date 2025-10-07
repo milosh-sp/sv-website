@@ -8,6 +8,8 @@ interface FormSubmissionData {
     user_type?: string;
     pain_point?: string;
     source?: string;
+    website?: string; // Honeypot field
+    form_start_time?: string; // For timing validation
   };
 }
 
@@ -33,6 +35,13 @@ const corsHeaders = {
 
 // Main handler function
 export const handler: Handler = async (event: HandlerEvent, context: HandlerContext) => {
+  console.log('Form submit function called:', {
+    method: event.httpMethod,
+    path: event.path,
+    headers: event.headers,
+    hasBody: !!event.body,
+  });
+
   // Handle preflight OPTIONS request
   if (event.httpMethod === 'OPTIONS') {
     return {
@@ -93,6 +102,61 @@ export const handler: Handler = async (event: HandlerEvent, context: HandlerCont
     // Validate required fields
     const { email, fields = {} } = requestData;
 
+    // Honeypot validation - if website field is filled, it's likely a bot
+    if (fields.website && fields.website.trim() !== '') {
+      console.log('Bot detected via honeypot field:', fields.website);
+      return {
+        statusCode: 400,
+        headers: {
+          ...corsHeaders,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          success: false,
+          error: 'Invalid submission detected.',
+        }),
+      };
+    }
+
+    // Additional timing validation (if form_start_time is provided)
+    if (fields.form_start_time) {
+      const startTime = new Date(fields.form_start_time).getTime();
+      const currentTime = Date.now();
+      const timeTaken = currentTime - startTime;
+
+      // Check if form was submitted too quickly (less than 2 seconds)
+      if (timeTaken < 2000) {
+        console.log('Bot detected: form submitted too quickly', timeTaken);
+        return {
+          statusCode: 400,
+          headers: {
+            ...corsHeaders,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            success: false,
+            error: 'Invalid submission detected.',
+          }),
+        };
+      }
+
+      // Check if form was submitted too slowly (more than 30 minutes)
+      if (timeTaken > 30 * 60 * 1000) {
+        console.log('Bot detected: form session expired', timeTaken);
+        return {
+          statusCode: 400,
+          headers: {
+            ...corsHeaders,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            success: false,
+            error: 'Form session expired. Please refresh and try again.',
+          }),
+        };
+      }
+    }
+
     if (!email) {
       return {
         statusCode: 400,
@@ -152,11 +216,12 @@ export const handler: Handler = async (event: HandlerEvent, context: HandlerCont
       };
     }
 
-    // Prepare data for Sender.net API
+    // Prepare data for Sender.net API (exclude honeypot and timing fields)
+    const { website, form_start_time, ...cleanFields } = fields;
     const senderData = {
       email,
       fields: {
-        ...fields,
+        ...cleanFields,
         // Add timestamp for tracking
         signup_timestamp: new Date().toISOString(),
       },

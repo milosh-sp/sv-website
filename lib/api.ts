@@ -10,6 +10,8 @@ export interface FormSubmissionData {
     user_type?: string;
     pain_point?: string;
     source?: string;
+    website?: string; // Honeypot field
+    form_start_time?: string; // For timing validation
   };
 }
 
@@ -33,7 +35,37 @@ export async function submitForm(data: FormSubmissionData): Promise<ApiResponse>
       body: JSON.stringify(data),
     });
 
-    const result = await response.json();
+    // Check if response is JSON
+    const contentType = response.headers.get('content-type');
+    const isJson = contentType && contentType.includes('application/json');
+
+    let result: any;
+
+    if (isJson) {
+      try {
+        result = await response.json();
+      } catch (jsonError) {
+        console.error('JSON parsing error:', jsonError);
+        return {
+          success: false,
+          error: `Server returned invalid JSON. Status: ${response.status}`,
+        };
+      }
+    } else {
+      // Handle non-JSON responses (HTML error pages, plain text, etc.)
+      const textResponse = await response.text();
+      console.error('Non-JSON response received:', {
+        status: response.status,
+        statusText: response.statusText,
+        contentType,
+        body: textResponse.substring(0, 200) + (textResponse.length > 200 ? '...' : ''),
+      });
+
+      return {
+        success: false,
+        error: `Server error. Status: ${response.status} ${response.statusText}`,
+      };
+    }
 
     if (!response.ok) {
       return {

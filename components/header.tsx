@@ -36,14 +36,6 @@ export function Header() {
 
           <div className="hidden md:flex items-center gap-8">
             <button
-              onClick={() => scrollToSection("home")}
-              className="text-slate-700 hover:text-blue-600 transition-colors duration-200 font-medium py-2 px-1 relative group"
-              aria-label="Go to home section"
-            >
-              Home
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full" />
-            </button>
-            <button
               onClick={() => scrollToSection("how-it-works")}
               className="text-slate-700 hover:text-blue-600 transition-colors duration-200 font-medium py-2 px-1 relative group cursor-pointer"
               aria-label="Go to how it works section"
@@ -84,9 +76,9 @@ export function Header() {
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full" />
             </button>
             <Button
-              onClick={openModal}
+              onClick={() => scrollToSection("home")}
               className="btn-primary h-11 px-6 text-base"
-              aria-label="Open signup modal to join the community"
+              aria-label="Scroll to hero section to join the community"
             >
               Join community
             </Button>
@@ -154,7 +146,7 @@ export function Header() {
               </button>
               <div className="pt-2 mt-2 border-t border-slate-200">
                 <Button
-                  onClick={openModal}
+                  onClick={() => scrollToSection("home")}
                   className="w-full btn-primary h-12 text-base"
                   role="menuitem"
                 >

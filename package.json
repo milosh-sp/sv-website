@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "build": "next build",
+    "typecheck": "tsc --noEmit",
     "dev": "next dev --turbo",
     "lint": "next lint",
     "start": "next start"
@@ -62,6 +63,7 @@
     "zod": "4.1.9"
   },
   "devDependencies": {
+    "@netlify/functions": "^4.2.7",
     "@tailwindcss/postcss": "^4.1.13",
     "@types/node": "^24.5.1",
     "@types/react": "^19.1.13",

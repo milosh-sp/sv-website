@@ -2,23 +2,27 @@
 
 import { Button } from "@/components/ui/button"
 import { UserPlus, Sparkles } from "lucide-react"
-import { useSignupModal } from "@/contexts/signup-modal-context"
 
 export function FloatingSignupButton() {
-  const { openModal } = useSignupModal()
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" })
+    }
+  }
 
   return (
     <div className="fixed bottom-6 right-6 z-40">
       <Button
-        onClick={openModal}
+        onClick={() => scrollToSection("home")}
         size="lg"
         className="h-14 px-6 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 rounded-full group"
-        aria-label="Open signup modal to join SkillVerdict"
+        aria-label="Scroll to hero section to sign up"
       >
         <div className="flex items-center gap-3">
-          <div className="relative">
+          <div className="flex items-center gap-1">
             <UserPlus className="h-5 w-5 transition-transform group-hover:scale-110" />
-            <Sparkles className="h-3 w-3 absolute -top-1 -right-1 text-yellow-300 animate-pulse" />
+            <Sparkles className="h-3 w-3 text-yellow-300 animate-pulse" />
           </div>
           <span className="font-semibold text-base">Sign Up</span>
         </div>

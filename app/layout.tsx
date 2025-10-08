@@ -1,21 +1,30 @@
 import type React from "react"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { SignupModalProvider } from "@/contexts/signup-modal-context"
+import { defaultMetadata, generateOrganizationSchema, generateWebsiteSchema } from "@/lib/seo"
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap", // Optimize font loading
+  fallback: ["system-ui", "arial"], // Fallback fonts
 })
 
-export const metadata: Metadata = {
-  title: "SkillVerdict | Monetize Your Expertise as a Developer",
-  description:
-    "SkillVerdict is a decentralized, unbiased and respected community where global tech professionals from leading companies verify your skills.",
-    generator: 'v0.app'
+export const metadata: Metadata = defaultMetadata
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0f172a" },
+  ],
 }
 
 export default function RootLayout({
@@ -23,12 +32,48 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const organizationSchema = generateOrganizationSchema()
+  const websiteSchema = generateWebsiteSchema()
+
   return (
     <html lang="en" className={`${inter.variable} antialiased`}>
+      <head>
+        {/* Preconnect to external domains for performance */}
+        {process.env.NODE_ENV === "production" && (
+          <>
+            <link rel="preconnect" href="https://fonts.googleapis.com" />
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+          </>
+        )}
+
+        {/* Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteSchema),
+          }}
+        />
+      </head>
       <body className="font-sans">
+        {/* Skip to main content for accessibility */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-blue-600 text-white px-4 py-2 rounded-md z-50 transition-all"
+        >
+          Skip to main content
+        </a>
+
         <SignupModalProvider>
           <Header />
-          {children}
+          <main id="main-content">
+            {children}
+          </main>
           <Footer />
         </SignupModalProvider>
       </body>

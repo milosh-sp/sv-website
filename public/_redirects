@@ -1,0 +1,15 @@
+# Redirects for Netlify hosting
+# These redirects will be applied when deployed to Netlify
+
+# Redirect common variations to canonical URLs
+/home              /                    301
+/index             /                    301
+/privacy           /privacy-policy      301
+/terms             /terms-of-service    301
+/tos               /terms-of-service    301
+
+# Redirect old URLs if you had them before
+# /old-page        /new-page           301
+
+# Fallback for SPA routing (if needed in the future)
+# /*               /index.html         200

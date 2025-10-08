@@ -9,7 +9,7 @@ import { CompanyDiscovery } from "@/components/company-discovery";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <>
       <HeroSection />
       <TwoSides />
       <Process />
@@ -18,6 +18,6 @@ export default function Home() {
       <FAQ />
       <SignupModal />
       <FloatingSignupButton />
-    </main>
+    </>
   )
 }

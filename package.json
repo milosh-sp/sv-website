@@ -7,7 +7,9 @@
     "typecheck": "tsc --noEmit",
     "dev": "next dev --turbo",
     "lint": "next lint",
-    "start": "next start"
+    "start": "next start",
+    "seo:test": "node scripts/seo-test.js",
+    "seo:validate": "npm run seo:test && npm run build"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

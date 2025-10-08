@@ -11,9 +11,9 @@ export function Footer() {
             Privacy Policy
           </Link>
           <span className="text-gray-500">|</span>
-          <a href="#" className="text-blue-300 hover:text-white transition-colors">
+          <Link href="/terms-of-service" className="text-blue-300 hover:text-white transition-colors">
             Terms of Service
-          </a>
+          </Link>
         </div>
         <div className="flex justify-center gap-6">
           <a href="#" className="text-gray-400 hover:text-white transition-colors">

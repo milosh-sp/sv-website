@@ -2,13 +2,14 @@
  * Breadcrumb navigation component with structured data
  */
 
-"use client"
+'use client'
 
-import React, { useEffect } from "react"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { generateBreadcrumbSchema } from "@/lib/seo"
+import React, { useEffect } from 'react'
+import Link from 'next/link'
+import { ChevronRight, Home } from 'lucide-react'
+import { cn } from '@/lib/utils'
+import { generateBreadcrumbSchema } from '@/lib/seo'
+import { strings } from '@/lib/strings'
 
 export interface BreadcrumbItem {
   name: string
@@ -22,17 +23,23 @@ interface BreadcrumbProps {
   showHome?: boolean
 }
 
-export function Breadcrumb({ items, className, showHome = true }: BreadcrumbProps) {
+export function Breadcrumb({
+  items,
+  className,
+  showHome = true,
+}: BreadcrumbProps) {
   // Prepare items with home if needed
-  const breadcrumbItems = showHome 
-    ? [{ name: "Home", url: "/" }, ...items]
+  const breadcrumbItems = showHome
+    ? [{ name: strings.navigation.menu.home, url: '/' }, ...items]
     : items
 
   useEffect(() => {
     // Add breadcrumb structured data
-    const script = document.createElement("script")
-    script.type = "application/ld+json"
-    script.textContent = JSON.stringify(generateBreadcrumbSchema(breadcrumbItems))
+    const script = document.createElement('script')
+    script.type = 'application/ld+json'
+    script.textContent = JSON.stringify(
+      generateBreadcrumbSchema(breadcrumbItems)
+    )
     document.head.appendChild(script)
 
     return () => {
@@ -43,9 +50,12 @@ export function Breadcrumb({ items, className, showHome = true }: BreadcrumbProp
   }, [breadcrumbItems])
 
   return (
-    <nav 
-      aria-label="Breadcrumb" 
-      className={cn("flex items-center space-x-1 text-sm text-slate-600", className)}
+    <nav
+      aria-label={strings.common.accessibility.menu}
+      className={cn(
+        'flex items-center space-x-1 text-sm text-slate-600',
+        className
+      )}
     >
       <ol className="flex items-center space-x-1" role="list">
         {breadcrumbItems.map((item, index) => {
@@ -55,18 +65,20 @@ export function Breadcrumb({ items, className, showHome = true }: BreadcrumbProp
           return (
             <li key={item.url} className="flex items-center" role="listitem">
               {index > 0 && (
-                <ChevronRight 
-                  className="h-4 w-4 text-slate-400 mx-1" 
-                  aria-hidden="true" 
+                <ChevronRight
+                  className="h-4 w-4 text-slate-400 mx-1"
+                  aria-hidden="true"
                 />
               )}
-              
+
               {isLast ? (
-                <span 
+                <span
                   className="font-medium text-slate-900"
                   aria-current="page"
                 >
-                  {isHome && <Home className="h-4 w-4 mr-1 inline" aria-hidden="true" />}
+                  {isHome && (
+                    <Home className="h-4 w-4 mr-1 inline" aria-hidden="true" />
+                  )}
                   {item.name}
                 </span>
               ) : (
@@ -75,7 +87,9 @@ export function Breadcrumb({ items, className, showHome = true }: BreadcrumbProp
                   className="hover:text-blue-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-sm px-1 py-0.5"
                   aria-label={`Go to ${item.name}`}
                 >
-                  {isHome && <Home className="h-4 w-4 mr-1 inline" aria-hidden="true" />}
+                  {isHome && (
+                    <Home className="h-4 w-4 mr-1 inline" aria-hidden="true" />
+                  )}
                   {item.name}
                 </Link>
               )}
@@ -92,7 +106,11 @@ export function PrivacyPolicyBreadcrumb() {
   return (
     <Breadcrumb
       items={[
-        { name: "Privacy Policy", url: "/privacy-policy", current: true }
+        {
+          name: strings.footer.links.privacyPolicy,
+          url: '/privacy-policy',
+          current: true,
+        },
       ]}
     />
   )
@@ -102,7 +120,11 @@ export function TermsBreadcrumb() {
   return (
     <Breadcrumb
       items={[
-        { name: "Terms of Service", url: "/terms-of-service", current: true }
+        {
+          name: strings.footer.links.termsOfService,
+          url: '/terms-of-service',
+          current: true,
+        },
       ]}
     />
   )
@@ -110,15 +132,15 @@ export function TermsBreadcrumb() {
 
 // Hook to generate breadcrumbs from pathname
 export function useBreadcrumbs(pathname: string): BreadcrumbItem[] {
-  const segments = pathname.split("/").filter(Boolean)
-  
+  const segments = pathname.split('/').filter(Boolean)
+
   return segments.map((segment, index) => {
-    const url = "/" + segments.slice(0, index + 1).join("/")
+    const url = '/' + segments.slice(0, index + 1).join('/')
     const name = segment
-      .split("-")
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ")
-    
+      .split('-')
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ')
+
     return {
       name,
       url,

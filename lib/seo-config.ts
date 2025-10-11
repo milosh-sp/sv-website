@@ -1,9 +1,12 @@
 /**
  * Centralized SEO Configuration for SkillVerdict
  * This file serves as the single source of truth for all SEO-related values
+ *
+ * Content is imported from strings.ts to maintain single source of truth
  */
 
 import type { Metadata } from 'next'
+import { strings } from './strings'
 
 // ============================================================================
 // CORE SITE CONFIGURATION
@@ -11,12 +14,10 @@ import type { Metadata } from 'next'
 
 export const siteConfig = {
   // Basic site information
-  name: 'SkillVerdict',
-  title: 'SkillVerdict | Monetize Your Expertise as a Developer',
-  description:
-    'SkillVerdict is a decentralized, unbiased and respected community where global tech professionals from leading companies verify your skills.',
-  shortDescription:
-    "Get your CV2.0 today - verified skills from world's top talent",
+  name: strings.branding.companyName,
+  title: `${strings.branding.companyName} | ${strings.branding.tagline}`,
+  description: strings.hero.subHeading,
+  shortDescription: strings.hero.mainHeading,
 
   // URLs and domains
   url: 'https://skillverdict.com',
@@ -41,11 +42,11 @@ export const siteConfig = {
 
   // Company information
   company: {
-    name: 'SkillVerdict',
+    name: strings.branding.companyName,
     foundingDate: '2024',
     category: 'Technology',
-    creator: 'SkillVerdict',
-    publisher: 'SkillVerdict',
+    creator: strings.branding.companyName,
+    publisher: strings.branding.companyName,
   },
 
   // Social media profiles
@@ -132,27 +133,24 @@ export const seoKeywords = {
 
 export const pageSeoConfig = {
   home: {
-    title: 'SkillVerdict | Monetize Your Expertise as a Developer',
-    description:
-      'SkillVerdict is a decentralized, unbiased and respected community where global tech professionals from leading companies verify your skills. Replace empty resume claims with proven endorsements, build your CV2.0 and get hired faster, or earn income by selling your own credibility as a tech professional',
+    title: siteConfig.title,
+    description: siteConfig.description,
     keywords: seoKeywords.pages.home,
     canonical: siteConfig.url,
     ogImage: siteConfig.ogImage,
   },
 
   terms: {
-    title: 'Terms of Service',
-    description:
-      "Read SkillVerdict's terms of service, user agreements, and platform guidelines for our skill verification community.",
+    title: `${strings.footer.links.termsOfService} | ${strings.branding.companyName}`,
+    description: `Read ${strings.branding.companyName}'s terms of service, user agreements, and platform guidelines for our skill verification community.`,
     keywords: seoKeywords.pages.terms,
     canonical: `${siteConfig.url}/terms-of-service`,
     ogImage: siteConfig.ogImage,
   },
 
   privacy: {
-    title: 'Privacy Policy',
-    description:
-      'Learn how SkillVerdict protects your privacy and handles your personal data in our skill verification platform.',
+    title: `${strings.footer.links.privacyPolicy} | ${strings.branding.companyName}`,
+    description: `Learn how ${strings.branding.companyName} protects your privacy and handles your personal data in our skill verification platform.`,
     keywords: seoKeywords.pages.privacy,
     canonical: `${siteConfig.url}/privacy-policy`,
     ogImage: siteConfig.ogImage,
@@ -162,207 +160,42 @@ export const pageSeoConfig = {
 // ============================================================================
 // STRUCTURED DATA CONTENT
 // ============================================================================
+// Note: Content is now sourced from strings.ts to maintain single source of truth
 
 export const structuredData = {
   // Hero section content
   hero: {
-    mainHeading:
-      "Don't let your CV be ignored by AI and HR, get your CV2.0 today",
-    subHeading:
-      'SkillVerdict is a decentralized, unbiased and respected community where global tech professionals from leading companies verify your skills. Replace empty resume claims with proven endorsements, build your CV2.0 and get hired faster, or earn income by selling your own credibility as a tech professional',
-    callToAction: 'Choose your path to get started:',
-    primaryButton: 'Verify my skills',
-    secondaryButton: 'Earn by verifying',
-    trustIndicators: [
-      '100% Secure & transparent',
-      'No time commitment',
-      "Verified by world's top talent",
-    ],
+    mainHeading: strings.hero.mainHeading,
+    subHeading: strings.hero.subHeading,
+    callToAction: strings.hero.callToAction,
+    primaryButton: strings.hero.buttons.verifySkills,
+    secondaryButton: strings.hero.buttons.earnByVerifying,
+    trustIndicators: strings.hero.trustIndicators,
   },
 
   // Benefits for verifiers
-  verifierBenefits: [
-    {
-      title: 'Earn extra income',
-      description:
-        'Get paid for reviewing code and conducting technical interviews',
-    },
-    {
-      title: 'Flexible schedule',
-      description:
-        'Work on your own time from anywhere - no contracts or minimum hours',
-    },
-    {
-      title: 'Build your reputation',
-      description: 'Establish yourself as an industry expert in the community',
-    },
-    {
-      title: 'Expand your network',
-      description: 'Connect with talented tech professionals',
-    },
-  ],
+  verifierBenefits: strings.howItWorks.techProfessionals.benefits,
 
   // Benefits for members
-  memberBenefits: [
-    {
-      title: 'Verified skill badges',
-      description: 'Stand out with verified skill badges on your profile',
-    },
-    {
-      title: 'Possibly skip lengthy interviews',
-      description:
-        "Chance to reduce multi-step interviews or skip fully because your skills are already verified by world's top talent",
-    },
-    {
-      title: 'Increase Hiring Chances',
-      description:
-        "Don't just say you're good—prove it. Verified skills from top professionals make employers notice",
-    },
-    {
-      title: 'Customizable digital CV2.0',
-      description:
-        'Share your verified skills instantly. Export a digital CV2.0 with a trusted QR code or send a live link to anyone.',
-    },
-  ],
+  memberBenefits: strings.howItWorks.members.benefits,
 
   // Process steps
-  verifierProcess: [
-    {
-      title: '1. Apply as a verifier',
-      description:
-        'Sign up to the community, submit your traditional CV and areas of expertise for review',
-    },
-    {
-      title: '2. Interview',
-      description:
-        'Demonstrate your expertise and pass the interview to become a verifier',
-    },
-    {
-      title: '3. Start verifying',
-      description:
-        'Access our AI-assisted dashboard to easily review candidate submissions',
-    },
-    {
-      title: '4. Earn',
-      description:
-        'Earn income by selling your credibility. Grow your expertise by learning from candidate feedback.',
-    },
-  ],
+  verifierProcess: strings.process.techProfessionalSteps,
 
-  memberProcess: [
-    {
-      title: '1. Create profile',
-      description:
-        'Sign up to the community, upload your traditional CV and select the skills you want to verify',
-    },
-    {
-      title: '2. Complete assignment',
-      description:
-        'Complete a short take at home assignment that demonstrates your skills. Our take at home assignment are designed to surface your true skills',
-    },
-    {
-      title: '3. Technical discussion',
-      description:
-        'If your solution is picked by a verifier, you will have a technical discussion with the verifier to validate your skills and knowledge',
-    },
-    {
-      title: '4. Final conclusion',
-      description:
-        'If you pass the technical discussion, you will receive your verified skill badge and get a chance to rate the verifier',
-    },
-  ],
+  memberProcess: strings.process.memberSteps,
 
   // CV2.0 features
-  cvFeatures: [
-    {
-      title: 'QR Verification',
-      description:
-        'Employers can scan QR codes to verify credential authenticity instantly',
-    },
-    {
-      title: 'Skill Badges',
-      description:
-        'Visual badges show exactly which skills have been verified by the community',
-    },
-    {
-      title: 'Optimized metadata',
-      description:
-        'Every exported CV2.0 is optimized for HR AIs to read and understand your skills',
-    },
-    {
-      title: 'Live Links',
-      description:
-        'Direct links to your verified projects and code repositories',
-    },
-  ],
+  cvFeatures: strings.cvPreview.features,
 } as const
 
 // ============================================================================
 // FAQ CONTENT
 // ============================================================================
+// Note: Content is now sourced from strings.ts to maintain single source of truth
 
 export const faqContent = {
-  member: [
-    {
-      question: 'How does the verification process work?',
-      answer:
-        'Our verification process involves a multi-step evaluation where your skills are assessed by experienced tech professionals in the field. Our tech professionals come from different backgrounds and companies like Google, Netflix, Airbnb, Amazon, Meta and many more. Once verified, your skills are permanently recorded and can be easily validated by employers through QR codes or direct links.',
-    },
-    {
-      question: 'How long does it take to get verified?',
-      answer:
-        'The verification process typically takes 3-5 business days, depending on the complexity of the skills being assessed and the availability of our verifiers.',
-    },
-    {
-      question: 'Can I update my skills after verification?',
-      answer:
-        'Yes, you can always add new skills or request re-verification of existing skills as you continue to develop your expertise. The platform is designed to grow with your career.',
-    },
-    {
-      question: 'How do employers verify my skills?',
-      answer:
-        "Employers can verify your skills by scanning the QR code on your digital CV or by visiting your unique profile URL. They'll see a complete verification history with timestamps and reviewer credentials.",
-    },
-    {
-      question: 'I am not happy with my verification outcome, what can I do?',
-      answer:
-        'You can always submit a complaint if you think you have not been treated fairly. We will investigate your complaint, if your claim turns out to be true, we will assign a new verifier to your case.',
-    },
-    {
-      question: 'Can I become a verifier as well and earn?',
-      answer:
-        'Of course you can, after you have verified the skills you want to verify other members skills with, you can apply and go through the become a verifier process.',
-    },
-    {
-      question:
-        'Is my data and code safe? Who can see my verification results?',
-      answer:
-        'Your privacy is paramount. Your specific code and assignment solutions are only visible to the verifiers assigned to you. Your public profile and CV2.0 will only show the skills you choose to make public and their verification status. You have full control over your visibility settings.',
-    },
-  ],
-
-  verifier: [
-    {
-      question: 'How much can I earn as a verifier?',
-      answer:
-        'Earnings are based on a share of the verification fee for each assessment you complete. The more complex the skill, the higher the fee and your potential earnings. We provide a clear breakdown of potential earnings in your verifier dashboard.',
-    },
-    {
-      question: "What's the time commitment for being a verifier?",
-      answer:
-        'There is no minimum time commitment. You can choose to take on as many or as few verification tasks as your schedule allows. The platform is designed for flexibility.',
-    },
-    {
-      question: 'How does the "AI-assisted dashboard" help me?',
-      answer:
-        'Our dashboard helps you streamline the review process. It can help with initial code analysis, flagging common patterns, managing your queue of assignments, and generating structured feedback templates, allowing you to focus on the high-level assessment.',
-    },
-    {
-      question: 'What happens if a candidate disputes my assessment?',
-      answer:
-        'Our admin team will review the dispute neutrally. If your feedback is found to be constructive, professional, and accurate, your rating and standing will be unaffected. This system protects verifiers from frivolous disputes while ensuring fairness for candidates.',
-    },
-  ],
+  member: strings.faq.members,
+  verifier: strings.faq.verifiers,
 } as const
 
 // ============================================================================
@@ -411,8 +244,8 @@ export const technicalSeo = {
 
   // Manifest configuration
   manifest: {
-    name: 'SkillVerdict - Monetize Your Expertise as a Developer',
-    short_name: 'SkillVerdict',
+    name: siteConfig.title,
+    short_name: strings.branding.companyName,
     description: siteConfig.description,
     start_url: '/',
     display: 'standalone',

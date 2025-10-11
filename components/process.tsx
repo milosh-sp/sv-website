@@ -10,17 +10,19 @@ import {
   Brain,
   CheckCircle,
 } from 'lucide-react'
-import { structuredData } from '@/lib/seo-config'
+import { strings } from '@/lib/strings'
 
 export function Process() {
   const [activeTab, setActiveTab] = useState('candidate')
 
-  const vetterSteps = structuredData.verifierProcess.map((step, index) => ({
-    ...step,
-    icon: [ClipboardList, TestTube, MessageCircle, DollarSign][index],
-  }))
+  const vetterSteps = strings.process.techProfessionalSteps.map(
+    (step, index) => ({
+      ...step,
+      icon: [ClipboardList, TestTube, MessageCircle, DollarSign][index],
+    })
+  )
 
-  const candidateSteps = structuredData.memberProcess.map((step, index) => ({
+  const candidateSteps = strings.process.memberSteps.map((step, index) => ({
     ...step,
     icon: [FileText, Brain, MessageCircle, CheckCircle][index],
   }))
@@ -30,14 +32,10 @@ export function Process() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-            How SkillVerdict Works
+            {strings.process.heading}
           </h2>
           <p className="text-lg text-gray-600 max-w-4xl mx-auto text-pretty">
-            Our process ensures rigorous verification while maintaining
-            flexibility for both tech professionals and members. We hand pick
-            our verifiers, you will be assured that your skills are going to be
-            verified in the upmost professional manner, unbiased, professional,
-            fast and transparent.
+            {strings.process.description}
           </p>
         </div>
 
@@ -51,7 +49,7 @@ export function Process() {
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
-              Members
+              {strings.process.tabs.members}
             </button>
             <button
               onClick={() => setActiveTab('vetter')}
@@ -61,7 +59,7 @@ export function Process() {
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
-              Tech professionals
+              {strings.process.tabs.techProfessionals}
             </button>
           </div>
         </div>

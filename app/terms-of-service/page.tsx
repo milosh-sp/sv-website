@@ -10,6 +10,7 @@ import {
 import { generateMetadata } from '@/lib/seo'
 import { pageSeoConfig } from '@/lib/seo-config'
 import { TermsBreadcrumb } from '@/components/ui/breadcrumb'
+import { strings } from '@/lib/strings'
 
 export const metadata: Metadata = generateMetadata(pageSeoConfig.terms)
 
@@ -31,14 +32,13 @@ export default function TermsOfServicePage() {
               </div>
             </div>
             <h1 className="text-display-2 text-slate-900 mb-4 text-balance">
-              Terms of Service
+              {strings.legalPages.termsOfService.title}
             </h1>
             <p className="text-body-large text-slate-600 max-w-2xl mx-auto">
-              Please read these terms carefully before using SkillVerdict's
-              platform and services.
+              {strings.legalPages.termsOfService.description}
             </p>
             <p className="text-sm text-slate-500 mt-4">
-              Last updated: December 2024
+              Last updated: {strings.legalPages.termsOfService.lastUpdated}
             </p>
           </div>
 

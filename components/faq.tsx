@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { ChevronDown } from 'lucide-react'
 import { generateFAQSchema } from '@/lib/seo'
-import { faqContent } from '@/lib/seo-config'
+import { strings } from '@/lib/strings'
 
 export function FAQ() {
   const [openItems, setOpenItems] = useState<number[]>([])
@@ -15,8 +15,8 @@ export function FAQ() {
   }
 
   // Use centralized FAQ content
-  const memberFAQs = faqContent.member
-  const verifierFAQs = faqContent.verifier
+  const memberFAQs = strings.faq.members
+  const verifierFAQs = strings.faq.verifiers
 
   // Combine all FAQs for structured data
   const allFAQs = [...memberFAQs, ...verifierFAQs]
@@ -46,13 +46,13 @@ export function FAQ() {
         <div className="max-w-3xl mx-auto">
           {/* Page heading for accessibility */}
           <h1 id="faq-heading" className="sr-only">
-            Frequently Asked Questions
+            {strings.faq.mainHeading}
           </h1>
 
           {/* Members FAQ */}
           <div className="mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">
-              Frequently asked questions for members
+              {strings.faq.membersHeading}
             </h2>
 
             <div className="space-y-4" role="list">
@@ -106,7 +106,7 @@ export function FAQ() {
           {/* Verifiers FAQ */}
           <div>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">
-              Frequently asked questions for verifiers
+              {strings.faq.verifiersHeading}
             </h2>
 
             <div className="space-y-4">

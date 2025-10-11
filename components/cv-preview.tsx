@@ -11,7 +11,7 @@ import {
   FolderOpen,
   Globe,
 } from 'lucide-react'
-import { structuredData } from '@/lib/seo-config'
+import { strings } from '@/lib/strings'
 
 export function CVPreview() {
   return (
@@ -19,20 +19,13 @@ export function CVPreview() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-            Your Digital CV2.0 - Verified by the Community
+            {strings.cvPreview.heading}
           </h2>
           <p className="text-lg text-gray-600 max-w-4xl mx-auto mb-4 text-pretty">
-            See what makes our verified CV different from traditional resumes.
-            Our flexible CV2.0 platform lets you showcase your verified skills
-            in a format that best represents your expertise and achievements.
-            You can hide your community status or display it proudly, you can
-            hide skills badges and other tons of customizations. This is just
-            one of many CV2.0 templates used to display your verified skills
+            {strings.cvPreview.description}
           </p>
           <p className="text-sm text-gray-500 max-w-3xl mx-auto">
-            Note: This is not going to be the final version, our CV2.0 platform
-            is heavily in development and is going to be much more advanced and
-            customizable.
+            {strings.cvPreview.note}
           </p>
         </div>
 
@@ -437,7 +430,7 @@ export function CVPreview() {
 
         {/* CV Features */}
         <div className="grid md:grid-cols-4 gap-8 mt-12">
-          {structuredData.cvFeatures
+          {strings.cvPreview.features
             .map((feature, index) => {
               const icons = [QrCode, Shield, Database, Link]
               const Icon = icons[index]

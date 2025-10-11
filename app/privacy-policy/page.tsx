@@ -3,6 +3,7 @@ import { Shield, Lock, Eye, UserCheck, Database, Globe } from 'lucide-react'
 import { generateMetadata } from '@/lib/seo'
 import { pageSeoConfig } from '@/lib/seo-config'
 import { PrivacyPolicyBreadcrumb } from '@/components/ui/breadcrumb'
+import { strings } from '@/lib/strings'
 
 export const metadata: Metadata = generateMetadata(pageSeoConfig.privacy)
 
@@ -23,14 +24,13 @@ export default function PrivacyPolicyPage() {
               </div>
             </div>
             <h1 className="text-display-2 text-slate-900 mb-4 text-balance">
-              Privacy Policy
+              {strings.legalPages.privacyPolicy.title}
             </h1>
             <p className="text-body-large text-slate-600 max-w-2xl mx-auto">
-              Your privacy is fundamental to our mission. Learn how we protect
-              and handle your data.
+              {strings.legalPages.privacyPolicy.description}
             </p>
             <p className="text-sm text-slate-500 mt-4">
-              Last updated: December 2024
+              Last updated: {strings.legalPages.privacyPolicy.lastUpdated}
             </p>
           </div>
 

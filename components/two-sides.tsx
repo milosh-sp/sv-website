@@ -12,19 +12,19 @@ import {
   Rocket,
   QrCode,
 } from 'lucide-react'
-import { structuredData } from '@/lib/seo-config'
+import { strings } from '@/lib/strings'
 
 export function TwoSides() {
   const [activeTab, setActiveTab] = useState('candidate')
 
-  const vetterBenefits = structuredData.verifierBenefits.map(
+  const vetterBenefits = strings.howItWorks.techProfessionals.benefits.map(
     (benefit, index) => ({
       ...benefit,
       icon: [DollarSign, Calendar, TrendingUp, Network][index],
     })
   )
 
-  const candidateBenefits = structuredData.memberBenefits.map(
+  const candidateBenefits = strings.howItWorks.members.benefits.map(
     (benefit, index) => ({
       ...benefit,
       icon: [Medal, FastForward, Rocket, QrCode][index],
@@ -35,20 +35,18 @@ export function TwoSides() {
     <section
       className="section-padding bg-gradient-to-b from-white to-slate-50/50"
       id="how-it-works"
-      aria-label="How SkillVerdict works for different users"
+      aria-label={strings.howItWorks.accessibility.howItWorksSection}
     >
       <div className="container-wide">
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-heading-1 text-slate-900 mb-6 text-balance">
-            Twitter Community Notes, but for your
+            {strings.howItWorks.heading}
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              skills
+              {strings.howItWorks.headingHighlight}
             </span>
           </h2>
           <p className="text-body-large text-slate-600 max-w-4xl mx-auto text-pretty leading-relaxed">
-            Inspired by models like Twitter's Community Notes, SkillVerdict
-            brings transparent, community-driven verification to member's
-            skills. It's unbiased assessment, powered by the community.
+            {strings.howItWorks.description}
           </p>
         </div>
 
@@ -56,7 +54,7 @@ export function TwoSides() {
           <div
             className="flex bg-slate-100/80 backdrop-blur-sm rounded-xl p-1.5 shadow-sm border border-slate-200/50"
             role="tablist"
-            aria-label="Choose user type"
+            aria-label={strings.howItWorks.tabAccessibility.chooseUserType}
           >
             <button
               onClick={() => setActiveTab('candidate')}
@@ -70,7 +68,7 @@ export function TwoSides() {
               aria-controls="candidate-panel"
             >
               <Award className="h-5 w-5" aria-hidden="true" />
-              Members
+              {strings.howItWorks.tabs.members}
             </button>
             <button
               onClick={() => setActiveTab('vetter')}
@@ -84,7 +82,7 @@ export function TwoSides() {
               aria-controls="vetter-panel"
             >
               <DollarSign className="h-5 w-5" aria-hidden="true" />
-              Tech professionals
+              {strings.howItWorks.tabs.techProfessionals}
             </button>
           </div>
         </div>
@@ -104,8 +102,7 @@ export function TwoSides() {
                 />
               </div>
               <p className="text-body-large text-slate-600 mb-12 max-w-3xl mx-auto text-pretty">
-                Top talent is valued in the SkillVerdict community. Monetize
-                your expertise by verifying the skills of other members.
+                {strings.howItWorks.techProfessionals.description}
               </p>
               <div className="grid md:grid-cols-2 gap-8">
                 {vetterBenefits.map((benefit, index) => (
@@ -142,8 +139,7 @@ export function TwoSides() {
                 <Award className="h-14 w-14 text-white" aria-hidden="true" />
               </div>
               <p className="text-body-large text-slate-600 mb-12 max-w-3xl mx-auto text-pretty">
-                Get your skills verified by global industry experts and boost
-                your career with a next-generation CV2.0.
+                {strings.howItWorks.members.description}
               </p>
               <div className="grid md:grid-cols-2 gap-8">
                 {candidateBenefits.map((benefit, index) => (

@@ -6,7 +6,6 @@
  */
 
 const fs = require('fs')
-const path = require('path')
 
 // Colors for console output
 const colors = {
@@ -36,35 +35,6 @@ function checkFileContent(filePath, searchText, description) {
     return found
   } catch (error) {
     log(`❌ ${description} (file not found)`, 'red')
-    return false
-  }
-}
-
-function validateStructuredData(filePath) {
-  try {
-    const content = fs.readFileSync(filePath, 'utf8')
-    const jsonLdMatches = content.match(/<script[^>]*type="application\/ld\+json"[^>]*>(.*?)<\/script>/gs)
-    
-    if (!jsonLdMatches) {
-      log('❌ No structured data found', 'red')
-      return false
-    }
-
-    let validCount = 0
-    jsonLdMatches.forEach((match, index) => {
-      try {
-        const jsonContent = match.replace(/<script[^>]*>/, '').replace(/<\/script>/, '').trim()
-        JSON.parse(jsonContent)
-        validCount++
-        log(`✅ Structured data block ${index + 1} is valid JSON-LD`, 'green')
-      } catch (error) {
-        log(`❌ Structured data block ${index + 1} has invalid JSON: ${error.message}`, 'red')
-      }
-    })
-
-    return validCount > 0
-  } catch (error) {
-    log(`❌ Error reading file: ${error.message}`, 'red')
     return false
   }
 }
@@ -151,9 +121,9 @@ function runSEOTests() {
   log('\n📊 Test Results Summary:', 'bold')
   const percentage = Math.round((passedTests / totalTests) * 100)
   const color = percentage >= 90 ? 'green' : percentage >= 70 ? 'yellow' : 'red'
-  
+
   log(`Passed: ${passedTests}/${totalTests} tests (${percentage}%)`, color)
-  
+
   if (percentage >= 90) {
     log('\n🎉 Excellent! Your SEO implementation is comprehensive.', 'green')
   } else if (percentage >= 70) {

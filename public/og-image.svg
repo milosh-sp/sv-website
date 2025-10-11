@@ -1,0 +1,69 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e40af;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e2e8f0;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  
+  <!-- Decorative Elements -->
+  <circle cx="100" cy="100" r="50" fill="rgba(255,255,255,0.1)"/>
+  <circle cx="1100" cy="530" r="80" fill="rgba(255,255,255,0.1)"/>
+  <rect x="900" y="50" width="200" height="200" rx="20" fill="rgba(255,255,255,0.05)" transform="rotate(15 1000 150)"/>
+  
+  <!-- Shield Icon -->
+  <g transform="translate(100, 200)">
+    <path d="M60 20L60 20C60 20 60 20 60 20L100 40L140 20C140 20 140 20 140 20L140 20C140 35 140 50 140 65C140 95 120 120 100 130C80 120 60 95 60 65C60 50 60 35 60 20Z" 
+          fill="rgba(255,255,255,0.9)" 
+          stroke="rgba(255,255,255,1)" 
+          stroke-width="2"/>
+    <path d="M85 75L95 85L115 65" 
+          stroke="url(#bgGradient)" 
+          stroke-width="4" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" 
+          fill="none"/>
+  </g>
+  
+  <!-- Main Title -->
+  <text x="300" y="280" font-family="system-ui, -apple-system, sans-serif" font-size="72" font-weight="bold" fill="url(#textGradient)">
+    SkillVerdict
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="300" y="340" font-family="system-ui, -apple-system, sans-serif" font-size="32" font-weight="500" fill="rgba(255,255,255,0.9)">
+    Monetize Your Expertise as a Developer
+  </text>
+  
+  <!-- Description -->
+  <text x="300" y="400" font-family="system-ui, -apple-system, sans-serif" font-size="24" fill="rgba(255,255,255,0.8)">
+    Decentralized, unbiased community verification
+  </text>
+  <text x="300" y="440" font-family="system-ui, -apple-system, sans-serif" font-size="24" fill="rgba(255,255,255,0.8)">
+    for global tech professionals
+  </text>
+  
+  <!-- URL -->
+  <text x="300" y="520" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="rgba(255,255,255,0.7)">
+    skillverdict.com
+  </text>
+  
+  <!-- Verification Badge -->
+  <g transform="translate(950, 400)">
+    <rect x="0" y="0" width="200" height="80" rx="40" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+    <text x="100" y="35" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="600" fill="white" text-anchor="middle">
+      ✓ VERIFIED
+    </text>
+    <text x="100" y="55" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="rgba(255,255,255,0.8)" text-anchor="middle">
+      COMMUNITY
+    </text>
+  </g>
+</svg>

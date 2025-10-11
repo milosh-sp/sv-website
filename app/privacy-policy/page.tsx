@@ -1,16 +1,24 @@
 import type { Metadata } from "next"
 import { Shield, Lock, Eye, UserCheck, Database, Globe } from "lucide-react"
+import { generateMetadata } from "@/lib/seo"
+import { PrivacyPolicyBreadcrumb } from "@/components/ui/breadcrumb"
 
-export const metadata: Metadata = {
-  title: "Privacy Policy | SkillVerdict",
+export const metadata: Metadata = generateMetadata({
+  title: "Privacy Policy",
   description: "Learn how SkillVerdict protects your privacy and handles your personal data in our skill verification platform.",
-}
+  keywords: ["privacy policy", "data protection", "GDPR", "privacy rights", "data security"],
+  canonical: "https://skillverdict.com/privacy-policy",
+})
 
 export default function PrivacyPolicyPage() {
   return (
-    <main className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background">
       <div className="section-padding">
         <div className="container-narrow">
+          {/* Breadcrumb Navigation */}
+          <div className="mb-8">
+            <PrivacyPolicyBreadcrumb />
+          </div>
           {/* Header Section */}
           <div className="text-center mb-16">
             <div className="flex justify-center mb-6">
@@ -279,6 +287,6 @@ export default function PrivacyPolicyPage() {
           </div>
         </div>
       </div>
-    </main>
+    </div>
   )
 }

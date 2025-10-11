@@ -1,58 +1,35 @@
-"use client"
+'use client'
 
-import { useState } from "react"
-import { DollarSign, Award, Calendar, TrendingUp, Network, Medal, FastForward, Rocket, QrCode } from "lucide-react"
+import { useState } from 'react'
+import {
+  DollarSign,
+  Award,
+  Calendar,
+  TrendingUp,
+  Network,
+  Medal,
+  FastForward,
+  Rocket,
+  QrCode,
+} from 'lucide-react'
+import { structuredData } from '@/lib/seo-config'
 
 export function TwoSides() {
-  const [activeTab, setActiveTab] = useState("candidate")
+  const [activeTab, setActiveTab] = useState('candidate')
 
-  const vetterBenefits = [
-    {
-      icon: DollarSign,
-      title: "Earn extra income",
-      description: "Get paid for reviewing code and conducting technical interviews",
-    },
-    {
-      icon: Calendar,
-      title: "Flexible schedule",
-      description: "Work on your own time from anywhere - no contracts or minimum hours",
-    },
-    {
-      icon: TrendingUp,
-      title: "Build your reputation",
-      description: "Establish yourself as an industry expert in the community",
-    },
-    {
-      icon: Network,
-      title: "Expand your network",
-      description: "Connect with talented tech professionals",
-    },
-  ]
+  const vetterBenefits = structuredData.verifierBenefits.map(
+    (benefit, index) => ({
+      ...benefit,
+      icon: [DollarSign, Calendar, TrendingUp, Network][index],
+    })
+  )
 
-  const candidateBenefits = [
-    {
-      icon: Medal,
-      title: "Verified skill badges",
-      description: "Stand out with verified skill badges on your profile",
-    },
-    {
-      icon: FastForward,
-      title: "Possibly skip lengthy interviews",
-      description:
-        "Chance to reduce multi-step interviews or skip fully because your skills are already verified by world's top talent",
-    },
-    {
-      icon: Rocket,
-      title: "Increase Hiring Chances",
-      description: "Don't just say you're good—prove it. Verified skills from top professionals make employers notice",
-    },
-    {
-      icon: QrCode,
-      title: "Customizable digital CV2.0",
-      description:
-        "Share your verified skills instantly. Export a digital CV2.0 with a trusted QR code or send a live link to anyone.",
-    },
-  ]
+  const candidateBenefits = structuredData.memberBenefits.map(
+    (benefit, index) => ({
+      ...benefit,
+      icon: [Medal, FastForward, Rocket, QrCode][index],
+    })
+  )
 
   return (
     <section
@@ -64,11 +41,14 @@ export function TwoSides() {
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-heading-1 text-slate-900 mb-6 text-balance">
             Twitter Community Notes, but for your
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">skills</span>
+            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              skills
+            </span>
           </h2>
           <p className="text-body-large text-slate-600 max-w-4xl mx-auto text-pretty leading-relaxed">
-            Inspired by models like Twitter's Community Notes, SkillVerdict brings transparent, community-driven
-            verification to member's skills. It's unbiased assessment, powered by the community.
+            Inspired by models like Twitter's Community Notes, SkillVerdict
+            brings transparent, community-driven verification to member's
+            skills. It's unbiased assessment, powered by the community.
           </p>
         </div>
 
@@ -79,39 +59,38 @@ export function TwoSides() {
             aria-label="Choose user type"
           >
             <button
-              onClick={() => setActiveTab("candidate")}
+              onClick={() => setActiveTab('candidate')}
               className={`flex items-center gap-3 px-8 py-4 rounded-lg font-semibold transition-all duration-300 cursor-pointer ${
-                activeTab === "candidate"
-                  ? "bg-white text-blue-600 shadow-md border border-blue-100"
-                  : "text-slate-600 hover:text-slate-900 hover:bg-white/50"
+                activeTab === 'candidate'
+                  ? 'bg-white text-blue-600 shadow-md border border-blue-100'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-white/50'
               }`}
               role="tab"
-              aria-selected={activeTab === "candidate"}
+              aria-selected={activeTab === 'candidate'}
               aria-controls="candidate-panel"
             >
               <Award className="h-5 w-5" aria-hidden="true" />
               Members
             </button>
             <button
-              onClick={() => setActiveTab("vetter")}
+              onClick={() => setActiveTab('vetter')}
               className={`flex items-center gap-3 px-8 py-4 rounded-lg font-semibold transition-all duration-300 cursor-pointer ${
-                activeTab === "vetter"
-                  ? "bg-white text-blue-600 shadow-md border border-blue-100"
-                  : "text-slate-600 hover:text-slate-900 hover:bg-white/50"
+                activeTab === 'vetter'
+                  ? 'bg-white text-blue-600 shadow-md border border-blue-100'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-white/50'
               }`}
               role="tab"
-              aria-selected={activeTab === "vetter"}
+              aria-selected={activeTab === 'vetter'}
               aria-controls="vetter-panel"
             >
               <DollarSign className="h-5 w-5" aria-hidden="true" />
               Tech professionals
             </button>
-      
           </div>
         </div>
 
         <div className="max-w-6xl mx-auto">
-          {activeTab === "vetter" && (
+          {activeTab === 'vetter' && (
             <div
               className="text-center animate-fade-in-scale"
               role="tabpanel"
@@ -119,27 +98,40 @@ export function TwoSides() {
               aria-labelledby="vetter-tab"
             >
               <div className="w-28 h-28 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-lg">
-                <DollarSign className="h-14 w-14 text-white" aria-hidden="true" />
+                <DollarSign
+                  className="h-14 w-14 text-white"
+                  aria-hidden="true"
+                />
               </div>
               <p className="text-body-large text-slate-600 mb-12 max-w-3xl mx-auto text-pretty">
-                Top talent is valued in the SkillVerdict community. Monetize your expertise by verifying the skills of
-                other members.
+                Top talent is valued in the SkillVerdict community. Monetize
+                your expertise by verifying the skills of other members.
               </p>
               <div className="grid md:grid-cols-2 gap-8">
                 {vetterBenefits.map((benefit, index) => (
-                  <div key={index} className="card-interactive p-8 text-left group cursor-pointer">
+                  <div
+                    key={index}
+                    className="card-interactive p-8 text-left group cursor-pointer"
+                  >
                     <div className="w-14 h-14 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-200">
-                      <benefit.icon className="h-7 w-7 text-blue-600" aria-hidden="true" />
+                      <benefit.icon
+                        className="h-7 w-7 text-blue-600"
+                        aria-hidden="true"
+                      />
                     </div>
-                    <h3 className="text-xl font-semibold text-slate-900 mb-3">{benefit.title}</h3>
-                    <p className="text-slate-600 leading-relaxed">{benefit.description}</p>
+                    <h3 className="text-xl font-semibold text-slate-900 mb-3">
+                      {benefit.title}
+                    </h3>
+                    <p className="text-slate-600 leading-relaxed">
+                      {benefit.description}
+                    </p>
                   </div>
                 ))}
               </div>
             </div>
           )}
 
-          {activeTab === "candidate" && (
+          {activeTab === 'candidate' && (
             <div
               className="text-center animate-fade-in-scale"
               role="tabpanel"
@@ -150,16 +142,27 @@ export function TwoSides() {
                 <Award className="h-14 w-14 text-white" aria-hidden="true" />
               </div>
               <p className="text-body-large text-slate-600 mb-12 max-w-3xl mx-auto text-pretty">
-                Get your skills verified by global industry experts and boost your career with a next-generation CV2.0.
+                Get your skills verified by global industry experts and boost
+                your career with a next-generation CV2.0.
               </p>
               <div className="grid md:grid-cols-2 gap-8">
                 {candidateBenefits.map((benefit, index) => (
-                  <div key={index} className="card-interactive p-8 text-left group cursor-pointer">
+                  <div
+                    key={index}
+                    className="card-interactive p-8 text-left group cursor-pointer"
+                  >
                     <div className="w-14 h-14 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-200">
-                      <benefit.icon className="h-7 w-7 text-emerald-600" aria-hidden="true" />
+                      <benefit.icon
+                        className="h-7 w-7 text-emerald-600"
+                        aria-hidden="true"
+                      />
                     </div>
-                    <h3 className="text-xl font-semibold text-slate-900 mb-3">{benefit.title}</h3>
-                    <p className="text-slate-600 leading-relaxed">{benefit.description}</p>
+                    <h3 className="text-xl font-semibold text-slate-900 mb-3">
+                      {benefit.title}
+                    </h3>
+                    <p className="text-slate-600 leading-relaxed">
+                      {benefit.description}
+                    </p>
                   </div>
                 ))}
               </div>

@@ -141,7 +141,7 @@ export function generateMetadata(pageData: PageMetadata): Metadata {
     title,
     description,
     keywords,
-    robots:  defaultMetadata.robots,
+    robots:  'index, follow',
     openGraph: {
       ...defaultMetadata.openGraph,
       title,

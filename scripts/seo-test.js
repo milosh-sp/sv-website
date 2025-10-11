@@ -45,7 +45,6 @@ function runSEOTests() {
   let passedTests = 0
   let totalTests = 0
 
-  // Test 1: Essential Files
   log('📁 Checking Essential SEO Files:', 'blue')
   totalTests += 4
   passedTests += checkFile('public/robots.txt', 'Robots.txt') ? 1 : 0

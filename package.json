@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "generate:sitemap": "tsx scripts/generate-sitemap.ts",
     "typecheck": "tsc --noEmit",
     "dev": "next dev --turbo",
     "lint": "next lint",

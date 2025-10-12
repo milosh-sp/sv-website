@@ -7,6 +7,7 @@ import { Footer } from "@/components/footer"
 import { SignupModalProvider } from "@/contexts/signup-modal-context"
 import { defaultMetadata, generateOrganizationSchema, generateWebsiteSchema } from "@/lib/seo"
 import { strings } from "@/lib/strings"
+import { GoogleAnalytics } from "@/components/google-analytics"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -62,6 +63,9 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans">
+        {/* Google Analytics 4 - Loads after page is interactive */}
+        <GoogleAnalytics />
+
         {/* Skip to main content for accessibility */}
         <a
           href="#main-content"

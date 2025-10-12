@@ -38,10 +38,10 @@ export function CVPreview() {
               </div>
               <div className="text-center md:text-left">
                 <h2 className="text-2xl md:text-3xl font-bold mb-2 text-white">
-                  Alex Johnson
+                  {strings.cvSampleData.profile.name}
                 </h2>
                 <p className="text-lg text-slate-200">
-                  Senior Full Stack Developer
+                  {strings.cvSampleData.profile.title}
                 </p>
               </div>
             </div>
@@ -55,12 +55,10 @@ export function CVPreview() {
               <div>
                 <h3 className="flex items-center gap-2 text-lg font-semibold text-slate-800 mb-4 pb-2 border-b border-slate-200">
                   <User className="h-5 w-5" />
-                  Profile
+                  {strings.cvSampleData.sections.profile}
                 </h3>
                 <p className="text-gray-600 text-sm">
-                  Full stack developer with 8+ years of experience building
-                  scalable web applications. Passionate about clean code and
-                  innovative solutions.
+                  {strings.cvSampleData.profile.bio}
                 </p>
               </div>
 
@@ -68,33 +66,10 @@ export function CVPreview() {
               <div>
                 <h3 className="flex items-center gap-2 text-lg font-semibold text-slate-800 mb-4 pb-2 border-b border-slate-200">
                   <Code className="h-5 w-5" />
-                  Technical Skills
+                  {strings.cvSampleData.sections.technicalSkills}
                 </h3>
                 <div className="grid grid-cols-2 gap-3">
-                  {[
-                    {
-                      name: 'JavaScript',
-                      verified: true,
-                      verifier: 'Sarah Chen - Senior Developer at Google',
-                    },
-                    {
-                      name: 'React',
-                      verified: true,
-                      verifier: 'Michael Rodriguez - Engineering Lead at Meta',
-                    },
-                    { name: 'Node.js', verified: false },
-                    {
-                      name: 'Python',
-                      verified: true,
-                      verifier: 'James Wilson - Principal Engineer at Netflix',
-                    },
-                    {
-                      name: 'AWS',
-                      verified: true,
-                      verifier: 'Emily Zhang - Cloud Architect at Amazon',
-                    },
-                    { name: 'Docker', verified: false },
-                  ].map((skill, index) => (
+                  {strings.cvSampleData.skills.map((skill, index) => (
                     <div
                       key={index}
                       className="bg-slate-50 p-3 rounded-lg border-l-4 border-slate-700 flex items-center justify-between group relative"
@@ -109,7 +84,9 @@ export function CVPreview() {
                             : 'bg-yellow-100 text-yellow-800'
                         }`}
                       >
-                        {skill.verified ? '✓ Verified' : '⏱ Pending'}
+                        {skill.verified
+                          ? strings.cvSampleData.statusLabels.verified
+                          : strings.cvSampleData.statusLabels.pending}
                       </span>
                       {skill.verified && skill.verifier && (
                         <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-slate-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-200 z-10 shadow-lg max-w-48">
@@ -133,37 +110,35 @@ export function CVPreview() {
               <div>
                 <h3 className="flex items-center gap-2 text-lg font-semibold text-slate-800 mb-4 pb-2 border-b border-slate-200">
                   <GraduationCap className="h-5 w-5" />
-                  Education
+                  {strings.cvSampleData.sections.education}
                 </h3>
                 <div className="space-y-4">
-                  <div className="relative">
-                    <div className="flex justify-between items-start mb-1">
-                      <span className="font-medium text-sm">
-                        MSc Computer Science
+                  {strings.cvSampleData.education.map((edu, index) => (
+                    <div key={index} className="relative">
+                      <div className="flex justify-between items-start mb-1">
+                        <span className="font-medium text-sm">
+                          {edu.degree}
+                        </span>
+                        <span className="text-xs text-gray-500">
+                          {edu.year}
+                        </span>
+                      </div>
+                      <div className="text-slate-800 text-sm mb-2">
+                        {edu.institution}
+                      </div>
+                      <span
+                        className={`absolute top-0 right-0 text-xs px-2 py-1 rounded-full ${
+                          edu.verified
+                            ? 'bg-green-100 text-green-800'
+                            : 'bg-yellow-100 text-yellow-800'
+                        }`}
+                      >
+                        {edu.verified
+                          ? strings.cvSampleData.statusLabels.verified
+                          : strings.cvSampleData.statusLabels.pending}
                       </span>
-                      <span className="text-xs text-gray-500">2016</span>
                     </div>
-                    <div className="text-slate-800 text-sm mb-2">
-                      Stanford University
-                    </div>
-                    <span className="absolute top-0 right-0 text-xs px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full">
-                      ⏱ Pending
-                    </span>
-                  </div>
-                  <div className="relative">
-                    <div className="flex justify-between items-start mb-1">
-                      <span className="font-medium text-sm">
-                        BSc Software Engineering
-                      </span>
-                      <span className="text-xs text-gray-500">2014</span>
-                    </div>
-                    <div className="text-slate-800 text-sm mb-2">
-                      UC Berkeley
-                    </div>
-                    <span className="absolute top-0 right-0 text-xs px-2 py-1 bg-green-100 text-green-800 rounded-full">
-                      ✓ Verified
-                    </span>
-                  </div>
+                  ))}
                 </div>
               </div>
 
@@ -171,29 +146,10 @@ export function CVPreview() {
               <div>
                 <h3 className="flex items-center gap-2 text-lg font-semibold text-slate-800 mb-4 pb-2 border-b border-slate-200">
                   <Briefcase className="h-5 w-5" />
-                  Experience
+                  {strings.cvSampleData.sections.experience}
                 </h3>
                 <div className="space-y-6">
-                  {[
-                    {
-                      title: 'Senior Developer',
-                      company: 'TechInnovate Inc.',
-                      period: '2020 - Present',
-                      verified: false,
-                    },
-                    {
-                      title: 'Full Stack Developer',
-                      company: 'WebSolutions LLC',
-                      period: '2017 - 2020',
-                      verified: true,
-                    },
-                    {
-                      title: 'Junior Developer',
-                      company: 'DigitalCreations',
-                      period: '2015 - 2017',
-                      verified: false,
-                    },
-                  ].map((job, index) => (
+                  {strings.cvSampleData.experience.map((job, index) => (
                     <div key={index} className="relative pb-4">
                       <div className="flex justify-between items-start mb-1">
                         <span className="font-medium text-sm">{job.title}</span>
@@ -205,12 +161,7 @@ export function CVPreview() {
                         {job.company}
                       </div>
                       <p className="text-gray-600 text-xs">
-                        {index === 0 &&
-                          'Lead development of customer-facing web applications using React and Node.js. Mentored junior developers and implemented CI/CD pipelines.'}
-                        {index === 1 &&
-                          'Developed and maintained multiple web applications for clients across various industries. Implemented responsive designs and optimized performance.'}
-                        {index === 2 &&
-                          'Assisted in development of front-end interfaces and backend APIs. Participated in code reviews and agile development processes.'}
+                        {job.description}
                       </p>
                       <span
                         className={`absolute top-0 right-0 text-xs px-2 py-1 rounded-full ${
@@ -219,7 +170,9 @@ export function CVPreview() {
                             : 'bg-yellow-100 text-yellow-800'
                         }`}
                       >
-                        {job.verified ? '✓ Verified' : '⏱ Unverified'}
+                        {job.verified
+                          ? strings.cvSampleData.statusLabels.verified
+                          : strings.cvSampleData.statusLabels.unverified}
                       </span>
                     </div>
                   ))}
@@ -232,31 +185,10 @@ export function CVPreview() {
               <div>
                 <h3 className="flex items-center gap-2 text-lg font-semibold text-slate-800 mb-4 pb-2 border-b border-slate-200">
                   <FolderOpen className="h-5 w-5" />
-                  Projects
+                  {strings.cvSampleData.sections.projects}
                 </h3>
                 <div className="space-y-4">
-                  {[
-                    {
-                      name: 'E-commerce Platform',
-                      description:
-                        'Full-stack React/Node.js application with payment integration',
-                      verified: true,
-                      verifier: 'Lisa Chen - Product Manager at Shopify',
-                    },
-                    {
-                      name: 'Task Management App',
-                      description:
-                        'React Native mobile app with real-time synchronization',
-                      verified: false,
-                    },
-                    {
-                      name: 'Data Analytics Dashboard',
-                      description:
-                        'Python/Django dashboard with interactive visualizations',
-                      verified: true,
-                      verifier: 'Mark Thompson - Data Engineer at Airbnb',
-                    },
-                  ].map((project, index) => (
+                  {strings.cvSampleData.projects.map((project, index) => (
                     <div
                       key={index}
                       className="bg-slate-50 p-3 rounded-lg border-l-4 border-slate-700 group relative"
@@ -272,7 +204,9 @@ export function CVPreview() {
                               : 'bg-yellow-100 text-yellow-800'
                           }`}
                         >
-                          {project.verified ? '✓ Verified' : '⏱ Pending'}
+                          {project.verified
+                            ? strings.cvSampleData.statusLabels.verified
+                            : strings.cvSampleData.statusLabels.pending}
                         </span>
                       </div>
                       <p className="text-slate-600 text-xs">
@@ -300,23 +234,10 @@ export function CVPreview() {
               <div>
                 <h3 className="flex items-center gap-2 text-lg font-semibold text-slate-800 mb-4 pb-2 border-b border-slate-200">
                   <Award className="h-5 w-5" />
-                  Certifications
+                  {strings.cvSampleData.sections.certifications}
                 </h3>
                 <div className="grid grid-cols-1 gap-3">
-                  {[
-                    {
-                      name: 'AWS Certified',
-                      verifier: 'David Kim - Solutions Architect at Amazon',
-                    },
-                    {
-                      name: 'React Expert',
-                      verifier: 'Lisa Johnson - Frontend Lead at Meta',
-                    },
-                    {
-                      name: 'Node.js Master',
-                      verifier: 'Robert Williams - Backend Engineer at Netflix',
-                    },
-                  ].map((cert, index) => (
+                  {strings.cvSampleData.certifications.map((cert, index) => (
                     <div
                       key={index}
                       className="bg-slate-50 p-3 rounded-lg border-l-4 border-slate-700 flex items-center justify-between group relative"
@@ -325,7 +246,7 @@ export function CVPreview() {
                         {cert.name}
                       </span>
                       <span className="text-xs px-2 py-1 bg-green-100 text-green-800 rounded-full">
-                        ✓ Verified
+                        {strings.cvSampleData.statusLabels.verified}
                       </span>
                       <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-slate-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-200 z-10 shadow-lg max-w-48">
                         <div className="text-center">
@@ -345,28 +266,10 @@ export function CVPreview() {
               <div>
                 <h3 className="flex items-center gap-2 text-lg font-semibold text-slate-800 mb-4 pb-2 border-b border-slate-200">
                   <Globe className="h-5 w-5" />
-                  Languages
+                  {strings.cvSampleData.sections.languages}
                 </h3>
                 <div className="grid grid-cols-1 gap-3">
-                  {[
-                    {
-                      name: 'English',
-                      level: 'C2',
-                      verified: true,
-                      verifier:
-                        'Sarah Mitchell - Language Specialist at Cambridge Assessment',
-                    },
-                    {
-                      name: 'Spanish',
-                      level: 'B2',
-                      verified: 'pending',
-                    },
-                    {
-                      name: 'French',
-                      level: 'A2',
-                      verified: 'pending',
-                    },
-                  ].map((language, index) => (
+                  {strings.cvSampleData.languages.map((language, index) => (
                     <div
                       key={index}
                       className="bg-slate-50 p-3 rounded-lg border-l-4 border-slate-700 group relative"
@@ -385,10 +288,10 @@ export function CVPreview() {
                           }`}
                         >
                           {language.verified === true
-                            ? '✓ Verified'
+                            ? strings.cvSampleData.statusLabels.verified
                             : language.verified === 'pending'
-                            ? '⏱ Pending'
-                            : '○ Unverified'}
+                            ? strings.cvSampleData.statusLabels.pending
+                            : strings.cvSampleData.statusLabels.unverified}
                         </span>
                       </div>
                       <div className="text-slate-600 text-xs">
@@ -420,10 +323,10 @@ export function CVPreview() {
               <QrCode className="h-12 w-12 text-gray-600" />
             </div>
             <p className="text-sm text-gray-600 mb-2">
-              Scan to view my verified skills
+              {strings.cvSampleData.qrSection.scanText}
             </p>
             <a href="#" className="text-slate-800 text-sm hover:underline">
-              View full verification history
+              {strings.cvSampleData.qrSection.viewHistoryLink}
             </a>
           </div>
         </div>

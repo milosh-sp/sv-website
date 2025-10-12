@@ -727,6 +727,162 @@ export const errorPages = {
 } as const
 
 // ============================================================================
+// LAYOUT & ACCESSIBILITY
+// ============================================================================
+
+export const layout = {
+  accessibility: {
+    skipToMain: 'Skip to main content',
+  },
+} as const
+
+// ============================================================================
+// CV PREVIEW SAMPLE DATA
+// ============================================================================
+
+export const cvSampleData = {
+  profile: {
+    name: 'Alex Johnson',
+    title: 'Senior Full Stack Developer',
+    bio: 'Full stack developer with 8+ years of experience building scalable web applications. Passionate about clean code and innovative solutions.',
+  },
+  sections: {
+    profile: 'Profile',
+    technicalSkills: 'Technical Skills',
+    education: 'Education',
+    experience: 'Experience',
+    projects: 'Projects',
+    certifications: 'Certifications',
+    languages: 'Languages',
+  },
+  skills: [
+    {
+      name: 'JavaScript',
+      verified: true,
+      verifier: 'Sarah Chen - Senior Developer at Google',
+    },
+    {
+      name: 'React',
+      verified: true,
+      verifier: 'Michael Rodriguez - Engineering Lead at Meta',
+    },
+    { name: 'Node.js', verified: false },
+    {
+      name: 'Python',
+      verified: true,
+      verifier: 'James Wilson - Principal Engineer at Netflix',
+    },
+    {
+      name: 'AWS',
+      verified: true,
+      verifier: 'Emily Zhang - Cloud Architect at Amazon',
+    },
+    { name: 'Docker', verified: false },
+  ],
+  education: [
+    {
+      degree: 'MSc Computer Science',
+      institution: 'Stanford University',
+      year: '2016',
+      verified: false,
+    },
+    {
+      degree: 'BSc Software Engineering',
+      institution: 'UC Berkeley',
+      year: '2014',
+      verified: true,
+    },
+  ],
+  experience: [
+    {
+      title: 'Senior Developer',
+      company: 'TechInnovate Inc.',
+      period: '2020 - Present',
+      description:
+        'Lead development of customer-facing web applications using React and Node.js. Mentored junior developers and implemented CI/CD pipelines.',
+      verified: false,
+    },
+    {
+      title: 'Full Stack Developer',
+      company: 'WebSolutions LLC',
+      period: '2017 - 2020',
+      description:
+        'Developed and maintained multiple web applications for clients across various industries. Implemented responsive designs and optimized performance.',
+      verified: true,
+    },
+    {
+      title: 'Junior Developer',
+      company: 'DigitalCreations',
+      period: '2015 - 2017',
+      description:
+        'Assisted in development of front-end interfaces and backend APIs. Participated in code reviews and agile development processes.',
+      verified: false,
+    },
+  ],
+  projects: [
+    {
+      name: 'E-commerce Platform',
+      description:
+        'Full-stack React/Node.js application with payment integration',
+      verified: true,
+      verifier: 'Lisa Chen - Product Manager at Shopify',
+    },
+    {
+      name: 'Task Management App',
+      description: 'React Native mobile app with real-time synchronization',
+      verified: false,
+    },
+    {
+      name: 'Data Analytics Dashboard',
+      description: 'Python/Django dashboard with interactive visualizations',
+      verified: true,
+      verifier: 'Mark Thompson - Data Engineer at Airbnb',
+    },
+  ],
+  certifications: [
+    {
+      name: 'AWS Certified',
+      verifier: 'David Kim - Solutions Architect at Amazon',
+    },
+    {
+      name: 'React Expert',
+      verifier: 'Lisa Johnson - Frontend Lead at Meta',
+    },
+    {
+      name: 'Node.js Master',
+      verifier: 'Robert Williams - Backend Engineer at Netflix',
+    },
+  ],
+  languages: [
+    {
+      name: 'English',
+      level: 'C2',
+      verified: true,
+      verifier: 'Sarah Mitchell - Language Specialist at Cambridge Assessment',
+    },
+    {
+      name: 'Spanish',
+      level: 'B2',
+      verified: 'pending',
+    },
+    {
+      name: 'French',
+      level: 'A2',
+      verified: 'pending',
+    },
+  ],
+  qrSection: {
+    scanText: 'Scan to view my verified skills',
+    viewHistoryLink: 'View full verification history',
+  },
+  statusLabels: {
+    verified: '✓ Verified',
+    pending: '⏱ Pending',
+    unverified: '⏱ Unverified',
+  },
+} as const
+
+// ============================================================================
 // COMMON UI ELEMENTS
 // ============================================================================
 
@@ -784,6 +940,8 @@ export const strings = {
   legalPages,
   errorPages,
   common,
+  layout,
+  cvSampleData,
 } as const
 
 // Type exports for TypeScript support
@@ -802,3 +960,5 @@ export type Footer = typeof footer
 export type LegalPages = typeof legalPages
 export type ErrorPages = typeof errorPages
 export type Common = typeof common
+export type Layout = typeof layout
+export type CvSampleData = typeof cvSampleData

@@ -51,22 +51,18 @@ export default function TermsOfServicePage() {
                   <FileText className="h-5 w-5 text-blue-600" />
                 </div>
                 <h2 className="text-heading-1 text-slate-900 mb-0">
-                  Acceptance of Terms
+                  {
+                    strings.legalPages.termsOfService.sections.acceptance
+                      .title
+                  }
                 </h2>
               </div>
               <div className="text-body text-slate-700 space-y-4">
-                <p>
-                  By accessing and using SkillVerdict ("the Platform"), you
-                  accept and agree to be bound by the terms and provision of
-                  this agreement. If you do not agree to abide by the above,
-                  please do not use this service.
-                </p>
-                <p>
-                  These Terms of Service ("Terms") govern your use of our
-                  website located at skillverdict.com and our skill verification
-                  services (together or individually "Service") operated by
-                  SkillVerdict.
-                </p>
+                {strings.legalPages.termsOfService.sections.acceptance.content.map(
+                  (paragraph, index) => (
+                    <p key={index}>{paragraph}</p>
+                  )
+                )}
               </div>
             </section>
 
@@ -77,20 +73,25 @@ export default function TermsOfServicePage() {
                   <Users className="h-5 w-5 text-green-600" />
                 </div>
                 <h2 className="text-heading-1 text-slate-900 mb-0">
-                  Description of Service
+                  {
+                    strings.legalPages.termsOfService.sections.description
+                      .title
+                  }
                 </h2>
               </div>
               <div className="text-body text-slate-700 space-y-4">
-                <p>
-                  SkillVerdict is a platform that provides skill verification
-                  services for technology professionals. Our service includes:
-                </p>
+                {strings.legalPages.termsOfService.sections.description.content.map(
+                  (paragraph, index) =>
+                    typeof paragraph === 'string' ? (
+                      <p key={index}>{paragraph}</p>
+                    ) : null
+                )}
                 <ul className="list-disc list-inside space-y-2 ml-4">
-                  <li>Peer-to-peer skill verification and assessment</li>
-                  <li>Digital CV2.0 generation with verified credentials</li>
-                  <li>Community-driven skill validation</li>
-                  <li>Professional networking and discovery features</li>
-                  <li>Verifier marketplace and earning opportunities</li>
+                  {strings.legalPages.termsOfService.sections.description.content
+                    .slice(1)
+                    .map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
                 </ul>
               </div>
             </section>
@@ -102,32 +103,39 @@ export default function TermsOfServicePage() {
                   <Shield className="h-5 w-5 text-purple-600" />
                 </div>
                 <h2 className="text-heading-1 text-slate-900 mb-0">
-                  User Accounts
+                  {
+                    strings.legalPages.termsOfService.sections.userAccounts
+                      .title
+                  }
                 </h2>
               </div>
               <div className="text-body text-slate-700 space-y-6">
                 <div>
                   <h3 className="text-heading-2 text-slate-800 mb-3">
-                    Account Creation
+                    {
+                      strings.legalPages.termsOfService.sections.userAccounts
+                        .accountCreation.title
+                    }
                   </h3>
                   <p>
-                    To use certain features of our Service, you must register
-                    for an account. You agree to provide accurate, current, and
-                    complete information during the registration process and to
-                    update such information to keep it accurate, current, and
-                    complete.
+                    {
+                      strings.legalPages.termsOfService.sections.userAccounts
+                        .accountCreation.content
+                    }
                   </p>
                 </div>
                 <div>
                   <h3 className="text-heading-2 text-slate-800 mb-3">
-                    Account Security
+                    {
+                      strings.legalPages.termsOfService.sections.userAccounts
+                        .accountSecurity.title
+                    }
                   </h3>
                   <p>
-                    You are responsible for safeguarding the password and for
-                    maintaining the confidentiality of your account. You agree
-                    not to disclose your password to any third party and to take
-                    sole responsibility for any activities or actions under your
-                    account.
+                    {
+                      strings.legalPages.termsOfService.sections.userAccounts
+                        .accountSecurity.content
+                    }
                   </p>
                 </div>
               </div>
@@ -140,42 +148,27 @@ export default function TermsOfServicePage() {
                   <AlertTriangle className="h-5 w-5 text-red-600" />
                 </div>
                 <h2 className="text-heading-1 text-slate-900 mb-0">
-                  Prohibited Uses
+                  {
+                    strings.legalPages.termsOfService.sections.prohibitedUses
+                      .title
+                  }
                 </h2>
               </div>
               <div className="text-body text-slate-700 space-y-4">
-                <p>You may not use our Service:</p>
-                <ul className="list-disc list-inside space-y-2 ml-4">
-                  <li>
-                    For any unlawful purpose or to solicit others to perform
-                    unlawful acts
-                  </li>
-                  <li>
-                    To violate any international, federal, provincial, or state
-                    regulations, rules, laws, or local ordinances
-                  </li>
-                  <li>
-                    To infringe upon or violate our intellectual property rights
-                    or the intellectual property rights of others
-                  </li>
-                  <li>
-                    To harass, abuse, insult, harm, defame, slander, disparage,
-                    intimidate, or discriminate
-                  </li>
-                  <li>To submit false or misleading information</li>
-                  <li>
-                    To upload or transmit viruses or any other type of malicious
-                    code
-                  </li>
-                  <li>
-                    To spam, phish, pharm, pretext, spider, crawl, or scrape
-                  </li>
-                  <li>For any obscene or immoral purpose</li>
-                  <li>
-                    To interfere with or circumvent the security features of the
-                    Service
-                  </li>
-                </ul>
+                {strings.legalPages.termsOfService.sections.prohibitedUses.content.map(
+                  (item, index) =>
+                    index === 0 ? (
+                      <p key={index}>{item}</p>
+                    ) : (
+                      <ul key={index} className="list-disc list-inside space-y-2 ml-4">
+                        {strings.legalPages.termsOfService.sections.prohibitedUses.content
+                          .slice(1)
+                          .map((listItem, idx) => (
+                            <li key={idx}>{listItem}</li>
+                          ))}
+                      </ul>
+                    )
+                )}
               </div>
             </section>
 
@@ -186,20 +179,18 @@ export default function TermsOfServicePage() {
                   <Gavel className="h-5 w-5 text-indigo-600" />
                 </div>
                 <h2 className="text-heading-1 text-slate-900 mb-0">
-                  Intellectual Property Rights
+                  {
+                    strings.legalPages.termsOfService.sections
+                      .intellectualProperty.title
+                  }
                 </h2>
               </div>
               <div className="text-body text-slate-700 space-y-4">
-                <p>
-                  The Service and its original content, features, and
-                  functionality are and will remain the exclusive property of
-                  SkillVerdict and its licensors. The Service is protected by
-                  copyright, trademark, and other laws.
-                </p>
-                <p>
-                  Our trademarks and trade dress may not be used in connection
-                  with any product or service without our prior written consent.
-                </p>
+                {strings.legalPages.termsOfService.sections.intellectualProperty.content.map(
+                  (paragraph, index) => (
+                    <p key={index}>{paragraph}</p>
+                  )
+                )}
               </div>
             </section>
 
@@ -210,22 +201,18 @@ export default function TermsOfServicePage() {
                   <AlertTriangle className="h-5 w-5 text-orange-600" />
                 </div>
                 <h2 className="text-heading-1 text-slate-900 mb-0">
-                  Termination
+                  {
+                    strings.legalPages.termsOfService.sections.termination
+                      .title
+                  }
                 </h2>
               </div>
               <div className="text-body text-slate-700 space-y-4">
-                <p>
-                  We may terminate or suspend your account and bar access to the
-                  Service immediately, without prior notice or liability, under
-                  our sole discretion, for any reason whatsoever and without
-                  limitation, including but not limited to a breach of the
-                  Terms.
-                </p>
-                <p>
-                  If you wish to terminate your account, you may simply
-                  discontinue using the Service or contact us to request account
-                  deletion.
-                </p>
+                {strings.legalPages.termsOfService.sections.termination.content.map(
+                  (paragraph, index) => (
+                    <p key={index}>{paragraph}</p>
+                  )
+                )}
               </div>
             </section>
 
@@ -236,15 +223,18 @@ export default function TermsOfServicePage() {
                   <AlertTriangle className="h-5 w-5 text-yellow-600" />
                 </div>
                 <h2 className="text-heading-1 text-slate-900 mb-0">
-                  Disclaimer
+                  {
+                    strings.legalPages.termsOfService.sections.disclaimer
+                      .title
+                  }
                 </h2>
               </div>
               <div className="text-body text-slate-700 space-y-4">
                 <p>
-                  The information on this website is provided on an "as is"
-                  basis. To the fullest extent permitted by law, this Company
-                  excludes all representations, warranties, conditions and
-                  terms.
+                  {
+                    strings.legalPages.termsOfService.sections.disclaimer
+                      .content
+                  }
                 </p>
               </div>
             </section>
@@ -256,25 +246,30 @@ export default function TermsOfServicePage() {
                   <Users className="h-5 w-5 text-slate-600" />
                 </div>
                 <h2 className="text-heading-1 text-slate-900 mb-0">
-                  Contact Us
+                  {strings.legalPages.termsOfService.sections.contact.title}
                 </h2>
               </div>
               <div className="text-body text-slate-700 space-y-4">
-                <p>
-                  If you have any questions about these Terms of Service, please
-                  contact us:
-                </p>
+                <p>{strings.legalPages.termsOfService.sections.contact.content}</p>
                 <div className="bg-slate-50 p-6 rounded-lg border border-slate-200">
                   <ul className="space-y-2">
                     <li>
-                      <strong>Email:</strong> legal@skillverdict.com
+                      <strong>Email:</strong>{' '}
+                      {strings.legalPages.termsOfService.sections.contact.email}
                     </li>
                     <li>
-                      <strong>Address:</strong> SkillVerdict Legal Team
+                      <strong>Address:</strong>{' '}
+                      {
+                        strings.legalPages.termsOfService.sections.contact
+                          .address
+                      }
                     </li>
                     <li>
-                      <strong>Response Time:</strong> We aim to respond within
-                      48 hours
+                      <strong>Response Time:</strong>{' '}
+                      {
+                        strings.legalPages.termsOfService.sections.contact
+                          .responseTime
+                      }
                     </li>
                   </ul>
                 </div>

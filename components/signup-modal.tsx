@@ -1,42 +1,45 @@
-"use client"
+'use client'
 
-import type React from "react"
-import { useState, useEffect, useRef } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { X } from "lucide-react"
+import type React from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { X } from 'lucide-react'
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog"
-import { useSignupModal } from "@/contexts/signup-modal-context"
-import { getUserSegmentLabel } from "@/types/form-data"
-import { submitForm, mapUserTypeToApiFormat } from "@/lib/api"
-import { useHoneypot } from "@/hooks/use-honeypot"
-import { validateEmail, validateLinkedIn, validateSignupForm } from "@/lib/validation"
-import { cn } from "@/lib/utils"
-import { useDebouncedCallback } from "@/hooks/use-debounce"
+} from '@/components/ui/dialog'
+import { useSignupModal } from '@/contexts/signup-modal-context'
+import { getUserSegmentLabel } from '@/types/form-data'
+import { submitForm, mapUserTypeToApiFormat } from '@/lib/api'
+import { useHoneypot } from '@/hooks/use-honeypot'
+import {
+  validateEmail,
+  validateLinkedIn,
+  validateSignupForm,
+} from '@/lib/validation'
+import { cn } from '@/lib/utils'
+import { useDebouncedCallback } from '@/hooks/use-debounce'
+import { strings } from '@/lib/strings'
 
 export function SignupModal() {
   const { isOpen, userType, closeModal } = useSignupModal()
   const [formData, setFormData] = useState({
-    email: "",
-    linkedin: "",
+    email: '',
+    linkedin: '',
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [errors, setErrors] = useState<{[key: string]: string}>({})
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [errors, setErrors] = useState<{ [key: string]: string }>({})
+  const [submitStatus, setSubmitStatus] = useState<
+    'idle' | 'success' | 'error'
+  >('idle')
   const firstInputRef = useRef<HTMLInputElement>(null)
 
   // Honeypot bot detection
-  const {
-    honeypotValue,
-    setHoneypotValue,
-    validateSubmission,
-    resetHoneypot
-  } = useHoneypot()
+  const { honeypotValue, setHoneypotValue, validateSubmission, resetHoneypot } =
+    useHoneypot()
 
   // Track form start time for server-side validation
   const [formStartTime] = useState(() => new Date().toISOString())
@@ -76,34 +79,42 @@ export function SignupModal() {
   }, [isOpen, closeModal])
 
   // Validate individual field and update errors (non-debounced version for immediate use)
-  const validateFieldImmediate = (fieldName: 'email' | 'linkedin', value: string) => {
-    let validation;
+  const validateFieldImmediate = (
+    fieldName: 'email' | 'linkedin',
+    value: string
+  ) => {
+    let validation
 
     if (fieldName === 'email') {
-      validation = validateEmail(value);
+      validation = validateEmail(value)
     } else if (fieldName === 'linkedin') {
-      validation = validateLinkedIn(value);
+      validation = validateLinkedIn(value)
     } else {
-      return;
+      return
     }
 
-    setErrors(prev => ({
+    setErrors((prev) => ({
       ...prev,
-      [fieldName]: validation.isValid ? "" : (validation.message || "Invalid input")
-    }));
+      [fieldName]: validation.isValid
+        ? ''
+        : validation.message || 'Invalid input',
+    }))
   }
 
   // Debounced version for real-time validation during typing
-  const debouncedValidateField = useDebouncedCallback(validateFieldImmediate, 600);
+  const debouncedValidateField = useDebouncedCallback(
+    validateFieldImmediate,
+    600
+  )
 
   const validateForm = () => {
-    const newErrors: {[key: string]: string} = {}
+    const newErrors: { [key: string]: string } = {}
 
     // Honeypot validation using the hook
     const honeypotValidation = validateSubmission()
     if (!honeypotValidation.isValid) {
       console.log('Bot detected:', honeypotValidation.reason)
-      newErrors.honeypot = "Invalid submission detected"
+      newErrors.honeypot = 'Invalid submission detected'
       setErrors(newErrors)
       return false
     }
@@ -144,18 +155,23 @@ export function SignupModal() {
 
       if (result.success) {
         setSubmitStatus('success')
-        setFormData({ email: "", linkedin: "" })
+        setFormData({ email: '', linkedin: '' })
         resetHoneypot() // Reset honeypot state
 
         // Store in localStorage as backup
-        const submissions = JSON.parse(localStorage.getItem('waitlist-submissions') || '[]')
+        const submissions = JSON.parse(
+          localStorage.getItem('waitlist-submissions') || '[]'
+        )
         submissions.push({
           ...formData,
           userType,
           timestamp: new Date().toISOString(),
-          source: 'signup-modal'
+          source: 'signup-modal',
         })
-        localStorage.setItem('waitlist-submissions', JSON.stringify(submissions))
+        localStorage.setItem(
+          'waitlist-submissions',
+          JSON.stringify(submissions)
+        )
 
         // Close modal after successful submission
         setTimeout(() => {
@@ -179,24 +195,19 @@ export function SignupModal() {
     }
   }
 
-
-
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && closeModal()}>
-      <DialogContent
-        className="max-w-md"
-        showCloseButton={false}
-      >
+      <DialogContent className="max-w-md" showCloseButton={false}>
         <DialogHeader className="relative">
           <button
             onClick={closeModal}
             className="absolute top-0 right-0 p-2 rounded-full bg-slate-100 hover:bg-slate-200 transition-colors z-10"
-            aria-label="Close modal"
+            aria-label={strings.signupModal.accessibility.closeModal}
           >
             <X className="h-4 w-4" />
           </button>
           <DialogTitle className="text-2xl font-bold text-slate-900 text-center mb-2 pr-12">
-            Join SkillVerdict
+            {strings.signupModal.title}
           </DialogTitle>
           {userType && (
             <p className="text-sm text-blue-600 text-center mb-4 font-medium">
@@ -211,153 +222,178 @@ export function SignupModal() {
           role="form"
           aria-label="Signup form"
         >
-            <div className="space-y-2">
-              <label htmlFor="email" className="sr-only">
-                Email address
-              </label>
-              <Input
-                ref={firstInputRef}
-                id="email"
-                type="email"
-                placeholder="Your email address *"
-                value={formData.email}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  setFormData({ ...formData, email: value })
+          <div className="space-y-2">
+            <label htmlFor="email" className="sr-only">
+              {strings.signupModal.form.email.label}
+            </label>
+            <Input
+              ref={firstInputRef}
+              id="email"
+              type="email"
+              placeholder={strings.signupModal.form.email.placeholder}
+              value={formData.email}
+              onChange={(e) => {
+                const value = e.target.value
+                setFormData({ ...formData, email: value })
 
-                  // Clear error immediately when user starts typing
-                  if (errors.email) {
-                    setErrors({ ...errors, email: "" })
-                  }
+                // Clear error immediately when user starts typing
+                if (errors.email) {
+                  setErrors({ ...errors, email: '' })
+                }
 
-                  // Trigger debounced validation
-                  debouncedValidateField('email', value)
-                }}
-                required
-                disabled={isSubmitting}
-                className={cn(
-                  "h-12 text-base border-slate-300 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50",
-                  errors.email && "border-destructive focus:border-destructive focus:ring-destructive/20"
-                )}
-                aria-describedby="email-error"
-                aria-invalid={!!errors.email}
-              />
-              {errors.email && (
-                <p
-                  id="email-error"
-                  className="text-destructive text-sm mt-2 flex items-start gap-2 px-1"
-                  role="alert"
-                  aria-live="polite"
-                >
-                  <span className="text-destructive font-medium text-xs mt-0.5" aria-hidden="true">⚠</span>
-                  <span className="leading-relaxed">{errors.email}</span>
-                </p>
+                // Trigger debounced validation
+                debouncedValidateField('email', value)
+              }}
+              required
+              disabled={isSubmitting}
+              className={cn(
+                'h-12 text-base border-slate-300 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50',
+                errors.email &&
+                  'border-destructive focus:border-destructive focus:ring-destructive/20'
               )}
-            </div>
-
-            {/* Honeypot field - hidden from users but visible to bots */}
-            <div className="absolute left-[-9999px] opacity-0 pointer-events-none" aria-hidden="true">
-              <label htmlFor="website">
-                Website (leave this field empty)
-              </label>
-              <Input
-                id="website"
-                name="website"
-                type="text"
-                placeholder="Your website"
-                value={honeypotValue}
-                onChange={(e) => {
-                  setHoneypotValue(e.target.value)
-                }}
-                tabIndex={-1}
-                autoComplete="off"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label htmlFor="linkedin" className="sr-only">
-                LinkedIn profile URL
-              </label>
-              <Input
-                id="linkedin"
-                type="url"
-                placeholder="Your LinkedIn profile URL *"
-                value={formData.linkedin}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  setFormData({ ...formData, linkedin: value })
-
-                  // Clear error immediately when user starts typing
-                  if (errors.linkedin) {
-                    setErrors({ ...errors, linkedin: "" })
-                  }
-
-                  // Trigger debounced validation
-                  debouncedValidateField('linkedin', value)
-                }}
-                required
-                disabled={isSubmitting}
-                className={cn(
-                  "h-12 text-base border-slate-300 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50",
-                  errors.linkedin && "border-destructive focus:border-destructive focus:ring-destructive/20"
-                )}
-                aria-describedby="linkedin-error"
-                aria-invalid={!!errors.linkedin}
-              />
-              {errors.linkedin && (
-                <p
-                  id="linkedin-error"
-                  className="text-destructive text-sm mt-2 flex items-start gap-2 px-1"
-                  role="alert"
-                  aria-live="polite"
-                >
-                  <span className="text-destructive font-medium text-xs mt-0.5" aria-hidden="true">⚠</span>
-                  <span className="leading-relaxed">{errors.linkedin}</span>
-                </p>
-              )}
-            </div>
-
-            <Button
-              type="submit"
-              disabled={isSubmitting || !formData.email || !formData.linkedin}
-              className="w-full h-12 text-base btn-primary disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
-              aria-label={isSubmitting ? "Submitting form" : "Submit signup form"}
-            >
-              {isSubmitting ? (
-                <>
-                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
-                  Securing your spot...
-                </>
-              ) : (
-                "Secure my spot"
-              )}
-            </Button>
-
-            {submitStatus === 'success' && (
-              <div
-                className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg"
-                role="status"
+              aria-describedby={strings.signupModal.accessibility.emailError}
+              aria-invalid={!!errors.email}
+            />
+            {errors.email && (
+              <p
+                id="email-error"
+                className="text-destructive text-sm mt-2 flex items-start gap-2 px-1"
+                role="alert"
                 aria-live="polite"
               >
-                <p className="text-green-800 text-sm font-medium flex items-start gap-2">
-                  <span className="text-green-600" aria-hidden="true">🎉</span>
-                  <span>Success! We've added you to our waitlist. You'll be among the first to know when we launch!</span>
-                </p>
-              </div>
+                <span
+                  className="text-destructive font-medium text-xs mt-0.5"
+                  aria-hidden="true"
+                >
+                  ⚠
+                </span>
+                <span className="leading-relaxed">{errors.email}</span>
+              </p>
             )}
+          </div>
 
-            {submitStatus === 'error' && (
-              <div
-                className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg"
+          {/* Honeypot field - hidden from users but visible to bots */}
+          <div
+            className="absolute left-[-9999px] opacity-0 pointer-events-none"
+            aria-hidden="true"
+          >
+            <label htmlFor="website">
+              {strings.signupModal.form.website.label}
+            </label>
+            <Input
+              id="website"
+              name="website"
+              type="text"
+              placeholder={strings.signupModal.form.website.placeholder}
+              value={honeypotValue}
+              onChange={(e) => {
+                setHoneypotValue(e.target.value)
+              }}
+              tabIndex={-1}
+              autoComplete="off"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <label htmlFor="linkedin" className="sr-only">
+              {strings.signupModal.form.linkedin.label}
+            </label>
+            <Input
+              id="linkedin"
+              type="url"
+              placeholder={strings.signupModal.form.linkedin.placeholder}
+              value={formData.linkedin}
+              onChange={(e) => {
+                const value = e.target.value
+                setFormData({ ...formData, linkedin: value })
+
+                // Clear error immediately when user starts typing
+                if (errors.linkedin) {
+                  setErrors({ ...errors, linkedin: '' })
+                }
+
+                // Trigger debounced validation
+                debouncedValidateField('linkedin', value)
+              }}
+              required
+              disabled={isSubmitting}
+              className={cn(
+                'h-12 text-base border-slate-300 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50',
+                errors.linkedin &&
+                  'border-destructive focus:border-destructive focus:ring-destructive/20'
+              )}
+              aria-describedby={strings.signupModal.accessibility.linkedinError}
+              aria-invalid={!!errors.linkedin}
+            />
+            {errors.linkedin && (
+              <p
+                id="linkedin-error"
+                className="text-destructive text-sm mt-2 flex items-start gap-2 px-1"
                 role="alert"
-                aria-live="assertive"
+                aria-live="polite"
               >
-                <p className="text-red-800 text-sm font-medium flex items-start gap-2">
-                  <span className="text-red-600" aria-hidden="true">❌</span>
-                  <span>{errors.submit || 'Something went wrong. Please try again or contact support.'}</span>
-                </p>
-              </div>
+                <span
+                  className="text-destructive font-medium text-xs mt-0.5"
+                  aria-hidden="true"
+                >
+                  ⚠
+                </span>
+                <span className="leading-relaxed">{errors.linkedin}</span>
+              </p>
             )}
+          </div>
+
+          <Button
+            type="submit"
+            disabled={isSubmitting || !formData.email || !formData.linkedin}
+            className="w-full h-12 text-base btn-primary disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+            aria-label={
+              isSubmitting
+                ? strings.signupModal.submitButton.ariaLabel.submitting
+                : strings.signupModal.submitButton.ariaLabel.idle
+            }
+          >
+            {isSubmitting ? (
+              <>
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
+                {strings.signupModal.submitButton.submitting}
+              </>
+            ) : (
+              strings.signupModal.submitButton.idle
+            )}
+          </Button>
+
+          {submitStatus === 'success' && (
+            <div
+              className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg"
+              role="status"
+              aria-live="polite"
+            >
+              <p className="text-green-800 text-sm font-medium flex items-start gap-2">
+                <span className="text-green-600" aria-hidden="true">
+                  {strings.signupModal.status.success.icon}
+                </span>
+                <span>{strings.signupModal.status.success.message}</span>
+              </p>
+            </div>
+          )}
+
+          {submitStatus === 'error' && (
+            <div
+              className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg"
+              role="alert"
+              aria-live="assertive"
+            >
+              <p className="text-red-800 text-sm font-medium flex items-start gap-2">
+                <span className="text-red-600" aria-hidden="true">
+                  {strings.signupModal.status.error.icon}
+                </span>
+                <span>
+                  {errors.submit || strings.signupModal.status.error.message}
+                </span>
+              </p>
+            </div>
+          )}
         </form>
       </DialogContent>
     </Dialog>

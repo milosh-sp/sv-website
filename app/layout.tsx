@@ -6,6 +6,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { SignupModalProvider } from "@/contexts/signup-modal-context"
 import { defaultMetadata, generateOrganizationSchema, generateWebsiteSchema } from "@/lib/seo"
+import { strings } from "@/lib/strings"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -66,7 +67,7 @@ export default function RootLayout({
           href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-blue-600 text-white px-4 py-2 rounded-md z-50 transition-all"
         >
-          Skip to main content
+          {strings.layout.accessibility.skipToMain}
         </a>
 
         <SignupModalProvider>

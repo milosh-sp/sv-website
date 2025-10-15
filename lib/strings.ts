@@ -27,7 +27,7 @@ export const branding = {
   },
 
   // Copyright and legal
-  copyright: '© 2024 SkillVerdict. All rights reserved.',
+  copyright: '© 2025 SkillVerdict. All rights reserved.',
 } as const
 
 // ============================================================================
@@ -74,8 +74,7 @@ export const navigation = {
 
 export const hero = {
   // Main hero content
-  mainHeading:
-    "Don't let your CV be ignored by AI and HR, get your CV2.0 today",
+  mainHeading: "Don't chase your next role, attract it with your CV2.0!",
   subHeading:
     'SkillVerdict is a decentralized, unbiased and respected community where global tech professionals from leading companies verify your skills. Replace empty resume claims with proven endorsements, build your CV2.0 and get hired faster, or earn income by selling your own credibility as a tech professional',
   callToAction: 'Choose your path to get started:',
@@ -490,7 +489,7 @@ export const legalPages = {
     title: 'Terms of Service',
     description:
       "Please read these terms carefully before using SkillVerdict's platform and services.",
-    lastUpdated: 'December 2024',
+    lastUpdated: 'October 2025',
     sections: {
       acceptance: {
         title: 'Acceptance of Terms',

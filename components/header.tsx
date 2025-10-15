@@ -12,7 +12,14 @@ export function Header() {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      const headerOffset = 80 // Height of fixed header (h-20 = 5rem = 80px)
+      const elementPosition = element.getBoundingClientRect().top
+      const offsetPosition = elementPosition + window.scrollY - headerOffset
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      })
     }
     setIsMenuOpen(false)
   }

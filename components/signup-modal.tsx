@@ -4,7 +4,7 @@ import type React from 'react'
 import { useState, useEffect, useRef } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { X } from 'lucide-react'
+import { CheckCircle2, DollarSign, X } from 'lucide-react'
 import {
   Dialog,
   DialogContent,
@@ -23,6 +23,7 @@ import {
 import { cn } from '@/lib/utils'
 import { useDebouncedCallback } from '@/hooks/use-debounce'
 import { strings } from '@/lib/strings'
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 
 /**
  * Interface for form field errors
@@ -257,18 +258,52 @@ export function SignupModal() {
           <button
             type='button'
             onClick={closeModal}
-            className='absolute top-0 right-0 p-2 rounded-full bg-slate-100 hover:bg-slate-200 transition-colors z-10'
+            className='absolute right-[-20] top-[-20] p-2 rounded-full bg-slate-100 hover:bg-slate-200 transition-colors z-10 cursorpointer'
             aria-label={strings.signupModal.accessibility.closeModal}
           >
             <X className='h-4 w-4' />
           </button>
-          <DialogTitle className='text-2xl font-bold text-slate-900 text-center mb-2 pr-12'>
-            {strings.signupModal.title}
-          </DialogTitle>
+
+          <VisuallyHidden>
+            <DialogTitle className='text-2xl font-bold text-slate-900 text-center mb-2 pr-12'>
+              {strings.signupModal.title}
+            </DialogTitle>
+          </VisuallyHidden>
           {userType && (
-            <p className='text-sm text-blue-600 text-center mb-4 font-medium'>
-              {getUserSegmentLabel(userType)}
-            </p>
+            <div>
+              <div className='flex items-center justify-center gap-3 mb-3'>
+                <div
+                  className={cn(
+                    'p-2 rounded-lg shadow-sm',
+                    userType === 'member' ? 'bg-emerald-600' : 'bg-blue-600'
+                  )}
+                >
+                  {userType === 'member' ? (
+                    <CheckCircle2
+                      className='h-5 w-5 text-white'
+                      aria-hidden='true'
+                    />
+                  ) : (
+                    <DollarSign
+                      className='h-5 w-5 text-white'
+                      aria-hidden='true'
+                    />
+                  )}
+                </div>
+              </div>
+              <div className='text-center'>
+                <p
+                  className={cn(
+                    'text-xl font-semibold bg-white px-4 py-2 rounded-lg inline-block shadow-sm',
+                    userType === 'member'
+                      ? 'text-emerald-600 border border-emerald-100'
+                      : 'text-blue-600 border border-blue-100'
+                  )}
+                >
+                  {getUserSegmentLabel(userType)}
+                </p>
+              </div>
+            </div>
           )}
         </DialogHeader>
 

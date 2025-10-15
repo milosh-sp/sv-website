@@ -18,7 +18,7 @@
 export const branding = {
   // Company name and tagline
   companyName: 'SkillVerdict',
-  tagline: 'Monetize Your Expertise as a Developer',
+  tagline: "Don't chase, attract!",
 
   // Logo and visual elements
   logo: {
@@ -74,7 +74,11 @@ export const navigation = {
 
 export const hero = {
   // Main hero content
-  mainHeading: "Don't chase your next role, attract it with your CV2.0!",
+  mainHeading: "Don't chase your next role, attract it with your",
+  /**
+   * Will be placed next to the main heading to the right side, with a gradient applied
+   */
+  mainHeadingHighlight: ' CV2.0!',
   subHeading:
     'SkillVerdict is a decentralized, unbiased and respected community where global tech professionals from leading companies verify your skills. Replace empty resume claims with proven endorsements, build your CV2.0 and get hired faster, or earn income by selling your own credibility as a tech professional',
   callToAction: 'Choose your path to get started:',
@@ -194,7 +198,7 @@ export const howItWorks = {
 
 export const cvPreview = {
   // Section header
-  heading: 'Your Digital CV2.0 - Verified by the Community',
+  heading: 'Your Digital CV2.0 - The only CV that grows with you',
   description:
     'See what makes our verified CV different from traditional resumes. Our flexible CV2.0 platform lets you showcase your verified skills in a format that best represents your expertise and achievements. You can hide your community status or display it proudly, you can hide skills badges and other tons of customizations. This is just one of many CV2.0 templates used to display your verified skills',
   note: 'Note: This is not going to be the final version, our CV2.0 platform is heavily in development and is going to be much more advanced and customizable.',
@@ -231,7 +235,7 @@ export const cvPreview = {
 export const companyDiscovery = {
   // Section content
   iconAriaLabel: 'Building icon for company discovery',
-  heading: 'Companies come to you',
+  heading: 'Your CV2.0 attracts companies!',
   description:
     'With passive discovery, companies on SkillVerdict discover and contact you directly with opportunities that match your verified skills.',
 

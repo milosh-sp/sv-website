@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import {
   ClipboardList,
-  TestTube,
+  Video,
   MessageCircle,
   DollarSign,
   FileText,
@@ -18,13 +18,13 @@ export function Process() {
   const vetterSteps = strings.process.techProfessionalSteps.map(
     (step, index) => ({
       ...step,
-      icon: [ClipboardList, TestTube, MessageCircle, DollarSign][index],
+      icon: [ClipboardList, Video, MessageCircle, DollarSign][index],
     })
   )
 
   const candidateSteps = strings.process.memberSteps.map((step, index) => ({
     ...step,
-    icon: [FileText, Brain, MessageCircle, CheckCircle][index],
+    icon: [FileText, Brain, Video, CheckCircle][index],
   }))
 
   return (

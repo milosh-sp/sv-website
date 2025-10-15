@@ -3,13 +3,11 @@
 import { useState } from 'react'
 import { Menu, X, Shield } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { useSignupModal } from '@/contexts/signup-modal-context'
 import Link from 'next/link'
 import { strings } from '@/lib/strings'
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const { openModal } = useSignupModal()
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)

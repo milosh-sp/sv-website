@@ -41,7 +41,7 @@ export function TwoSides() {
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-heading-1 text-slate-900 mb-6 text-balance">
             {strings.howItWorks.heading}
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="ml-1.5 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               {strings.howItWorks.headingHighlight}
             </span>
           </h2>

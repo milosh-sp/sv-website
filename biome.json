@@ -1,72 +1,81 @@
 {
-	"$schema": "https://biomejs.dev/schemas/2.2.6/schema.json",
-	"vcs": {
-		"enabled": false,
-		"clientKind": "git",
-		"useIgnoreFile": false
-	},
-	"files": {
-		"ignoreUnknown": false,
-		"includes": [
-			"**",
-			"!.out/**/*",
-			"!node_modules/**/*",
-			"!public/**/*",
-			"!.next/**/*"
-		]
-	},
-	"formatter": {
-		"enabled": true,
-		"useEditorconfig": true,
-		"formatWithErrors": false,
-		"indentStyle": "space",
-		"indentWidth": 2,
-		"lineEnding": "lf",
-		"lineWidth": 80,
-		"attributePosition": "auto",
-		"bracketSpacing": true,
-		"includes": [
-			"**",
-			"!**/package.json",
-			"!**/out/**/*",
-			"!**/.netlify/**/*",
-			"!.vscode/**/*",
-			"!**/dist/**/*",
-			"!**/.next/**/*",
-			"!**/.sanity/**/*",
-			"!**/coverage/**/*",
-			"!**/coverage-ts/**/*",
-			"!**/node_modules/**/*",
-			"!**/public/**/*",
-			"!**/.cache/**/*",
-			"!**/.turbo/**/*",
-			"!**/.vercel/**/*",
-			"!**/*.d.ts"
-		]
-	},
-	"linter": {
-		"enabled": true,
-		"rules": {
-			"recommended": true,
-			"correctness": {
-				"useUniqueElementIds": "off"
-			},
-			"suspicious": {
-				"noUnknownAtRules": "off"
-			}
-		}
-	},
-	"javascript": {
-		"formatter": {
-			"quoteStyle": "double"
-		}
-	},
-	"assist": {
-		"enabled": true,
-		"actions": {
-			"source": {
-				"organizeImports": "on"
-			}
-		}
-	}
+  "$schema": "https://biomejs.dev/schemas/2.2.6/schema.json",
+  "vcs": {
+    "enabled": false,
+    "clientKind": "git",
+    "useIgnoreFile": false
+  },
+  "files": {
+    "ignoreUnknown": false,
+    "includes": [
+      "**",
+      "!.out/**/*",
+      "!node_modules/**/*",
+      "!public/**/*",
+      "!.next/**/*"
+    ]
+  },
+  "formatter": {
+    "enabled": true,
+    "useEditorconfig": true,
+    "formatWithErrors": false,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineEnding": "lf",
+    "lineWidth": 80,
+    "attributePosition": "auto",
+    "bracketSpacing": true,
+    "includes": [
+      "**",
+      "!**/package.json",
+      "!**/out/**/*",
+      "!**/.netlify/**/*",
+      "!.vscode/**/*",
+      "!**/dist/**/*",
+      "!**/.next/**/*",
+      "!**/.sanity/**/*",
+      "!**/coverage/**/*",
+      "!**/coverage-ts/**/*",
+      "!**/node_modules/**/*",
+      "!**/public/**/*",
+      "!**/.cache/**/*",
+      "!**/.turbo/**/*",
+      "!**/.vercel/**/*",
+      "!**/*.d.ts"
+    ]
+  },
+
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "correctness": {
+        "useUniqueElementIds": "off"
+      },
+      "suspicious": {
+        "noUnknownAtRules": "off"
+      }
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "jsxQuoteStyle": "single",
+      "quoteProperties": "asNeeded",
+      "trailingCommas": "es5",
+      "semicolons": "asNeeded",
+      "arrowParentheses": "always",
+      "bracketSameLine": false,
+      "quoteStyle": "single",
+      "attributePosition": "auto",
+      "bracketSpacing": true
+    }
+  },
+  "assist": {
+    "enabled": true,
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
+  }
 }

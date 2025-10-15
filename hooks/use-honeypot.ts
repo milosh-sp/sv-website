@@ -6,18 +6,18 @@
  * - Mouse movement detection
  */
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react'
 
 interface HoneypotState {
-  honeypotValue: string;
-  isBot: boolean;
-  startTime: number;
-  hasMouseMovement: boolean;
+  honeypotValue: string
+  isBot: boolean
+  startTime: number
+  hasMouseMovement: boolean
 }
 
 interface HoneypotValidation {
-  isValid: boolean;
-  reason?: string;
+  isValid: boolean
+  reason?: string
 }
 
 export function useHoneypot() {
@@ -26,46 +26,46 @@ export function useHoneypot() {
     isBot: false,
     startTime: Date.now(),
     hasMouseMovement: false,
-  });
+  })
 
-  const mouseMovementRef = useRef(false);
+  const mouseMovementRef = useRef(false)
 
   // Track mouse movement to detect human interaction
   useEffect(() => {
     const handleMouseMove = () => {
       if (!mouseMovementRef.current) {
-        mouseMovementRef.current = true;
-        setState(prev => ({ ...prev, hasMouseMovement: true }));
+        mouseMovementRef.current = true
+        setState((prev) => ({ ...prev, hasMouseMovement: true }))
       }
-    };
+    }
 
-    document.addEventListener('mousemove', handleMouseMove, { passive: true });
-    
+    document.addEventListener('mousemove', handleMouseMove, { passive: true })
+
     return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, []);
+      document.removeEventListener('mousemove', handleMouseMove)
+    }
+  }, [])
 
   // Update honeypot value
   const setHoneypotValue = useCallback((value: string) => {
-    setState(prev => ({
+    setState((prev) => ({
       ...prev,
       honeypotValue: value,
       isBot: value.trim() !== '', // If honeypot is filled, mark as bot
-    }));
-  }, []);
+    }))
+  }, [])
 
   // Validate form submission against bot indicators
   const validateSubmission = useCallback((): HoneypotValidation => {
-    const currentTime = Date.now();
-    const timeTaken = currentTime - state.startTime;
+    const currentTime = Date.now()
+    const timeTaken = currentTime - state.startTime
 
     // Check honeypot field
     if (state.honeypotValue.trim() !== '') {
       return {
         isValid: false,
         reason: 'Honeypot field filled',
-      };
+      }
     }
 
     // Check if form was submitted too quickly (less than 2 seconds)
@@ -73,7 +73,7 @@ export function useHoneypot() {
       return {
         isValid: false,
         reason: 'Form submitted too quickly',
-      };
+      }
     }
 
     // Check if form was submitted too slowly (more than 30 minutes)
@@ -81,14 +81,14 @@ export function useHoneypot() {
       return {
         isValid: false,
         reason: 'Form session expired',
-      };
+      }
     }
 
     // All checks passed
     return {
       isValid: true,
-    };
-  }, [state.honeypotValue, state.startTime]);
+    }
+  }, [state.honeypotValue, state.startTime])
 
   // Reset honeypot state (useful for form reset)
   const resetHoneypot = useCallback(() => {
@@ -97,9 +97,9 @@ export function useHoneypot() {
       isBot: false,
       startTime: Date.now(),
       hasMouseMovement: false,
-    });
-    mouseMovementRef.current = false;
-  }, []);
+    })
+    mouseMovementRef.current = false
+  }, [])
 
   return {
     honeypotValue: state.honeypotValue,
@@ -110,17 +110,17 @@ export function useHoneypot() {
     resetHoneypot,
     // Expose timing info for debugging
     timeTaken: Date.now() - state.startTime,
-  };
+  }
 }
 
 /**
  * Honeypot field component props
  */
 export interface HoneypotFieldProps {
-  value: string;
-  onChange: (value: string) => void;
-  fieldName?: string;
-  label?: string;
+  value: string
+  onChange: (value: string) => void
+  fieldName?: string
+  label?: string
 }
 
 /**
@@ -131,10 +131,10 @@ export function getHoneypotFieldProps(
   onChange: (value: string) => void,
   fieldName: string = 'website'
 ): HoneypotFieldProps & {
-  style: React.CSSProperties;
-  'aria-hidden': boolean;
-  tabIndex: number;
-  autoComplete: string;
+  style: React.CSSProperties
+  'aria-hidden': boolean
+  tabIndex: number
+  autoComplete: string
 } {
   return {
     value,
@@ -150,5 +150,5 @@ export function getHoneypotFieldProps(
     'aria-hidden': true,
     tabIndex: -1,
     autoComplete: 'off',
-  };
+  }
 }

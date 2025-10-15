@@ -1,8 +1,8 @@
-"use client"
+'use client'
 
-import type React from "react"
-import { createContext, useContext, useState, useCallback } from "react"
-import type { UserType } from "@/types/form-data"
+import type React from 'react'
+import { createContext, useContext, useState, useCallback } from 'react'
+import type { UserType } from '@/types/form-data'
 
 interface SignupModalContextType {
   isOpen: boolean
@@ -17,7 +17,7 @@ const SignupModalContext = createContext<SignupModalContextType | null>(null)
 export function useSignupModal() {
   const context = useContext(SignupModalContext)
   if (!context) {
-    throw new Error("useSignupModal must be used within a SignupModalProvider")
+    throw new Error('useSignupModal must be used within a SignupModalProvider')
   }
   return context
 }
@@ -42,7 +42,7 @@ export function SignupModalProvider({ children }: SignupModalProviderProps) {
   }, [])
 
   const toggleModal = useCallback(() => {
-    setIsOpen(prev => !prev)
+    setIsOpen((prev) => !prev)
   }, [])
 
   const value: SignupModalContextType = {

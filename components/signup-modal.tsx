@@ -1,7 +1,7 @@
 "use client";
 
 import type React from "react";
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { X } from "lucide-react";
@@ -99,27 +99,27 @@ export function SignupModal() {
 	}, [isOpen, closeModal]);
 
 	// Validate individual field and update errors (non-debounced version for immediate use)
-	const validateFieldImmediate = useCallback(
-		(fieldName: "email" | "linkedin", value: string) => {
-			let validation: ReturnType<typeof validateEmail>;
+	const validateFieldImmediate = (
+		fieldName: "email" | "linkedin",
+		value: string,
+	) => {
+		let validation:
+			| ReturnType<typeof validateEmail>
+			| ReturnType<typeof validateLinkedIn>;
 
-			if (fieldName === "email") {
-				validation = validateEmail(value);
-			} else if (fieldName === "linkedin") {
-				validation = validateLinkedIn(value);
-			} else {
-				return;
-			}
+		if (fieldName === "email") {
+			validation = validateEmail(value);
+		} else {
+			validation = validateLinkedIn(value);
+		}
 
-			setErrors((prev) => ({
-				...prev,
-				[fieldName]: validation.isValid
-					? ""
-					: validation.message || "Invalid input",
-			}));
-		},
-		[],
-	);
+		setErrors((prev) => ({
+			...prev,
+			[fieldName]: validation.isValid
+				? ""
+				: validation.message || "Invalid input",
+		}));
+	};
 
 	// Debounced version for real-time validation during typing
 	const debouncedValidateField = useDebouncedCallback(
@@ -127,7 +127,7 @@ export function SignupModal() {
 		600,
 	);
 
-	const validateForm = useCallback(() => {
+	const validateForm = () => {
 		const newErrors: FormErrors = {};
 
 		// Honeypot validation using the hook
@@ -148,127 +148,107 @@ export function SignupModal() {
 
 		setErrors(newErrors);
 		return Object.keys(newErrors).length === 0;
-	}, [formData, validateSubmission]);
+	};
 
-	const handleSubmit = useCallback(
-		async (e: React.FormEvent) => {
-			e.preventDefault();
-			setSubmitStatus("idle");
+	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		setSubmitStatus("idle");
 
-			if (!validateForm()) {
-				return;
-			}
+		if (!validateForm()) {
+			return;
+		}
 
-			setIsSubmitting(true);
-			setErrors({});
+		setIsSubmitting(true);
+		setErrors({});
 
-			try {
-				// Submit to Netlify function
-				const result = await submitForm({
-					email: formData.email,
-					fields: {
-						linkedin: formData.linkedin,
-						user_type: mapUserTypeToApiFormat(userType),
-						source: "signup-modal",
-						website: honeypotValue, // Include honeypot field
-						form_start_time: formStartTime, // Include timing for server validation
-					},
+		try {
+			// Submit to Netlify function
+			const result = await submitForm({
+				email: formData.email,
+				fields: {
+					linkedin: formData.linkedin,
+					user_type: mapUserTypeToApiFormat(userType),
+					source: "signup-modal",
+					website: honeypotValue, // Include honeypot field
+					form_start_time: formStartTime, // Include timing for server validation
+				},
+			});
+
+			if (result.success) {
+				setSubmitStatus("success");
+				setFormData({ email: "", linkedin: "" });
+				resetHoneypot(); // Reset honeypot state
+
+				// Store in localStorage as backup
+				const submissions = JSON.parse(
+					localStorage.getItem("waitlist-submissions") || "[]",
+				) as unknown[];
+				submissions.push({
+					...formData,
+					userType,
+					timestamp: new Date().toISOString(),
+					source: "signup-modal",
 				});
+				localStorage.setItem(
+					"waitlist-submissions",
+					JSON.stringify(submissions),
+				);
 
-				if (result.success) {
-					setSubmitStatus("success");
-					setFormData({ email: "", linkedin: "" });
-					resetHoneypot(); // Reset honeypot state
-
-					// Store in localStorage as backup
-					const submissions = JSON.parse(
-						localStorage.getItem("waitlist-submissions") || "[]",
-					);
-					submissions.push({
-						...formData,
-						userType,
-						timestamp: new Date().toISOString(),
-						source: "signup-modal",
-					});
-					localStorage.setItem(
-						"waitlist-submissions",
-						JSON.stringify(submissions),
-					);
-
-					// Close modal after successful submission
-					setTimeout(() => {
-						closeModal();
-						setSubmitStatus("idle");
-					}, 2000);
-				} else {
-					// eslint-disable-next-line no-console
-					console.error("Form submission failed:", result.error);
-					setSubmitStatus("error");
-					// Set specific error message if available
-					if (result.error) {
-						setErrors({ submit: result.error });
-					}
-				}
-			} catch (error) {
+				// Close modal after successful submission
+				setTimeout(() => {
+					closeModal();
+					setSubmitStatus("idle");
+				}, 2000);
+			} else {
 				// eslint-disable-next-line no-console
-				console.error("Form submission error:", error);
+				console.error("Form submission failed:", result.error);
 				setSubmitStatus("error");
-				setErrors({
-					submit: "An unexpected error occurred. Please try again.",
-				});
-			} finally {
-				setIsSubmitting(false);
+				// Set specific error message if available
+				if (result.error) {
+					setErrors({ submit: result.error });
+				}
 			}
-		},
-		[
-			validateForm,
-			formData,
-			userType,
-			honeypotValue,
-			formStartTime,
-			resetHoneypot,
-			closeModal,
-		],
-	);
+		} catch (error) {
+			// eslint-disable-next-line no-console
+			console.error("Form submission error:", error);
+			setSubmitStatus("error");
+			setErrors({
+				submit: "An unexpected error occurred. Please try again.",
+			});
+		} finally {
+			setIsSubmitting(false);
+		}
+	};
 
-	const handleEmailChange = useCallback(
-		(e: React.ChangeEvent<HTMLInputElement>) => {
-			const value = e.target.value;
-			setFormData((prev) => ({ ...prev, email: value }));
+	const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const value = e.target.value;
+		setFormData((prev) => ({ ...prev, email: value }));
 
-			// Clear error immediately when user starts typing
-			if (errors.email) {
-				setErrors((prev) => ({ ...prev, email: "" }));
-			}
+		// Clear error immediately when user starts typing
+		if (errors.email) {
+			setErrors((prev) => ({ ...prev, email: "" }));
+		}
 
-			// Trigger debounced validation
-			debouncedValidateField("email", value);
-		},
-		[errors.email, debouncedValidateField],
-	);
+		// Trigger debounced validation
+		debouncedValidateField("email", value);
+	};
 
-	const handleLinkedInChange = useCallback(
-		(e: React.ChangeEvent<HTMLInputElement>) => {
-			const value = e.target.value;
-			setFormData((prev) => ({ ...prev, linkedin: value }));
+	const handleLinkedInChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const value = e.target.value;
+		setFormData((prev) => ({ ...prev, linkedin: value }));
 
-			// Clear error immediately when user starts typing
-			if (errors.linkedin) {
-				setErrors((prev) => ({ ...prev, linkedin: "" }));
-			}
+		// Clear error immediately when user starts typing
+		if (errors.linkedin) {
+			setErrors((prev) => ({ ...prev, linkedin: "" }));
+		}
 
-			// Trigger debounced validation
-			debouncedValidateField("linkedin", value);
-		},
-		[errors.linkedin, debouncedValidateField],
-	);
+		// Trigger debounced validation
+		debouncedValidateField("linkedin", value);
+	};
 
-	const handleHoneypotChange = useCallback(
-		(e: React.ChangeEvent<HTMLInputElement>) => {
-			setHoneypotValue(e.target.value);
-		},
-		[setHoneypotValue],
-	);
+	const handleHoneypotChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setHoneypotValue(e.target.value);
+	};
 
 	return (
 		<Dialog open={isOpen} onOpenChange={(open) => !open && closeModal()}>

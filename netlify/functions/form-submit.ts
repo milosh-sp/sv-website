@@ -25,7 +25,7 @@ const corsHeaders = {
 // Main handler function
 export const handler: Handler = async (
 	event: HandlerEvent,
-	context: HandlerContext,
+	_context: HandlerContext,
 ) => {
 	console.log("Form submit function called:", {
 		method: event.httpMethod,
@@ -77,7 +77,7 @@ export const handler: Handler = async (
 		let requestData: FormSubmissionData;
 		try {
 			requestData = JSON.parse(event.body);
-		} catch (parseError) {
+		} catch (_parseError) {
 			return {
 				statusCode: 400,
 				headers: {

@@ -3,12 +3,14 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"build": "next build",
+		"build": "npm run lint &&next build",
 		"typecheck": "tsc --noEmit",
 		"dev": "next dev --turbo",
 		"lint": "biome lint",
 		"start": "next start",
-		"lint:fix": "biome lint --write"
+		"lint:fix": "biome lint --write",
+		"format": "biome format",
+		"format:write": "biome format"
 	},
 	"dependencies": {
 		"@hookform/resolvers": "^5.2.2",

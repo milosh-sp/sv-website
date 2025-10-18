@@ -116,20 +116,6 @@ export function PrivacyPolicyBreadcrumb() {
   )
 }
 
-export function TermsBreadcrumb() {
-  return (
-    <Breadcrumb
-      items={[
-        {
-          name: strings.footer.links.termsOfService,
-          url: '/terms-of-service',
-          current: true,
-        },
-      ]}
-    />
-  )
-}
-
 // Hook to generate breadcrumbs from pathname
 export function useBreadcrumbs(pathname: string): BreadcrumbItem[] {
   const segments = pathname.split('/').filter(Boolean)

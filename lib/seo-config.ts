@@ -109,13 +109,6 @@ export const seoKeywords = {
       'CV2.0 generation',
       'verified developer skills',
     ] as string[],
-    terms: [
-      'terms of service',
-      'user agreement',
-      'platform rules',
-      'community guidelines',
-      'legal terms',
-    ] as string[],
     privacy: [
       'privacy policy',
       'data protection',
@@ -136,14 +129,6 @@ export const pageSeoConfig = {
     description: siteConfig.description,
     keywords: seoKeywords.pages.home,
     canonical: siteConfig.url,
-    ogImage: siteConfig.ogImage,
-  },
-
-  terms: {
-    title: `${strings.footer.links.termsOfService} | ${strings.branding.companyName}`,
-    description: `Read ${strings.branding.companyName}'s terms of service, user agreements, and platform guidelines for our skill verification community.`,
-    keywords: seoKeywords.pages.terms,
-    canonical: `${siteConfig.url}/terms-of-service`,
     ogImage: siteConfig.ogImage,
   },
 
@@ -288,20 +273,6 @@ export const sitemapConfig = {
         '/placeholder-user.jpg',
         '/placeholder.jpg',
       ],
-    },
-    {
-      url: '/privacy-policy',
-      lastModified: new Date('2024-12-01'),
-      changeFrequency: 'yearly' as const,
-      priority: 0.3,
-      images: ['/og-image.jpg', '/og-image.svg'],
-    },
-    {
-      url: '/terms-of-service',
-      lastModified: new Date('2024-12-01'),
-      changeFrequency: 'yearly' as const,
-      priority: 0.3,
-      images: ['/og-image.jpg', '/og-image.svg'],
     },
   ],
 } as const

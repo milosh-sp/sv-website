@@ -1,7 +1,5 @@
 'use client'
 
-import type React from 'react'
-import { useState, useEffect, useRef } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import {
@@ -18,37 +16,11 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
-import { useSignupModal } from '@/contexts/signup-modal-context'
 import { getUserSegmentLabel } from '@/types/form-data'
-import { submitForm, mapUserTypeToApiFormat } from '@/lib/api'
-import { useHoneypot } from '@/hooks/use-honeypot'
-import {
-  validateEmail,
-  validateLinkedIn,
-  validateGitHub,
-  validateSignupForm,
-} from '@/lib/validation'
 import { cn } from '@/lib/utils'
-import { useDebouncedCallback } from '@/hooks/use-debounce'
 import { strings } from '@/lib/strings'
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
-
-/**
- * Interface for form field errors
- */
-interface FormErrors {
-  [key: string]: string
-}
-
-/**
- * Type for submit status states
- */
-type SubmitStatus = 'idle' | 'success' | 'error'
-
-/**
- * Form field names for validation
- */
-type FormFieldName = 'email' | 'linkedin' | 'github'
+import { useSignupForm } from '@/hooks/use-signup-form'
 
 /**
  * SignupModal Component
@@ -57,212 +29,21 @@ type FormFieldName = 'email' | 'linkedin' | 'github'
  * Implements honeypot bot detection and accessibility features.
  */
 export function SignupModal() {
-  const { isOpen, userType, closeModal } = useSignupModal()
-  const [formData, setFormData] = useState({
-    email: '',
-    linkedin: '',
-    github: '',
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [errors, setErrors] = useState<FormErrors>({})
-  const [submitStatus, setSubmitStatus] = useState<SubmitStatus>('idle')
-  const firstInputRef = useRef<HTMLInputElement>(null)
-
-  // Honeypot bot detection
-  const { honeypotValue, setHoneypotValue, validateSubmission, resetHoneypot } =
-    useHoneypot()
-
-  // Track form start time for server-side validation
-  const [formStartTime] = useState(() => new Date().toISOString())
-
-  // Focus management for accessibility and honeypot reset
-  useEffect(() => {
-    if (isOpen && firstInputRef.current) {
-      // Small delay to ensure modal is fully rendered
-      const timer = setTimeout(() => {
-        firstInputRef.current?.focus()
-      }, 100)
-      return () => clearTimeout(timer)
-    }
-
-    if (!isOpen) {
-      // Reset honeypot when modal closes
-      resetHoneypot()
-    }
-
-    return undefined
-  }, [isOpen, resetHoneypot])
-
-  // Keyboard event handling for accessibility
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && isOpen) {
-        closeModal()
-      }
-    }
-
-    if (isOpen) {
-      document.addEventListener('keydown', handleKeyDown)
-      // Prevent body scroll when modal is open
-      document.body.style.overflow = 'hidden'
-    }
-
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown)
-      document.body.style.overflow = 'unset'
-    }
-  }, [isOpen, closeModal])
-
-  // Validate individual field and update errors (non-debounced version for immediate use)
-  const validateFieldImmediate = (fieldName: FormFieldName, value: string) => {
-    let validation:
-      | ReturnType<typeof validateEmail>
-      | ReturnType<typeof validateLinkedIn>
-      | ReturnType<typeof validateGitHub>
-
-    if (fieldName === 'email') {
-      validation = validateEmail(value)
-    } else if (fieldName === 'linkedin') {
-      validation = validateLinkedIn(value)
-    } else {
-      validation = validateGitHub(value)
-    }
-
-    setErrors((prev) => ({
-      ...prev,
-      [fieldName]: validation.isValid
-        ? ''
-        : validation.message || 'Invalid input',
-    }))
-  }
-
-  // Debounced version for real-time validation during typing
-  const debouncedValidateField = useDebouncedCallback(
-    validateFieldImmediate,
-    600
-  )
-
-  const validateForm = () => {
-    const newErrors: FormErrors = {}
-
-    // Honeypot validation using the hook
-    const honeypotValidation = validateSubmission()
-    if (!honeypotValidation.isValid) {
-      // eslint-disable-next-line no-console
-      console.log('Bot detected:', honeypotValidation.reason)
-      newErrors.honeypot = 'Invalid submission detected'
-      setErrors(newErrors)
-      return false
-    }
-
-    // Use centralized validation
-    const formValidation = validateSignupForm(formData)
-    if (!formValidation.isValid) {
-      Object.assign(newErrors, formValidation.errors)
-    }
-
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setSubmitStatus('idle')
-
-    if (!validateForm()) {
-      return
-    }
-
-    setIsSubmitting(true)
-    setErrors({})
-
-    try {
-      // Submit to Netlify function
-      const result = await submitForm({
-        email: formData.email,
-        fields: {
-          linkedin: formData.linkedin,
-          github: formData.github,
-          user_type: mapUserTypeToApiFormat(userType),
-          source: 'signup-modal',
-          website: honeypotValue, // Include honeypot field
-          form_start_time: formStartTime, // Include timing for server validation
-        },
-      })
-
-      if (result.success) {
-        setSubmitStatus('success')
-        setFormData({ email: '', linkedin: '', github: '' })
-        resetHoneypot() // Reset honeypot state
-
-        // Close modal after successful submission
-        setTimeout(() => {
-          closeModal()
-          setSubmitStatus('idle')
-        }, 2000)
-      } else {
-        // eslint-disable-next-line no-console
-        console.error('Form submission failed:', result.error)
-        setSubmitStatus('error')
-        // Set specific error message if available
-        if (result.error) {
-          setErrors({ submit: result.error })
-        }
-      }
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error('Form submission error:', error)
-      setSubmitStatus('error')
-      setErrors({
-        submit: 'An unexpected error occurred. Please try again.',
-      })
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
-
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value
-    setFormData((prev) => ({ ...prev, email: value }))
-
-    // Clear error immediately when user starts typing
-    if (errors.email) {
-      setErrors((prev) => ({ ...prev, email: '' }))
-    }
-
-    // Trigger debounced validation
-    debouncedValidateField('email', value)
-  }
-
-  const handleLinkedInChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value
-    setFormData((prev) => ({ ...prev, linkedin: value }))
-
-    // Clear error immediately when user starts typing
-    if (errors.linkedin) {
-      setErrors((prev) => ({ ...prev, linkedin: '' }))
-    }
-
-    // Trigger debounced validation
-    debouncedValidateField('linkedin', value)
-  }
-
-  const handleGitHubChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value
-    setFormData((prev) => ({ ...prev, github: value }))
-
-    // Clear error immediately when user starts typing
-    if (errors.github) {
-      setErrors((prev) => ({ ...prev, github: '' }))
-    }
-
-    // Trigger debounced validation
-    debouncedValidateField('github', value)
-  }
-
-  const handleHoneypotChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setHoneypotValue(e.target.value)
-  }
+  const {
+    formData,
+    isSubmitting,
+    errors,
+    submitStatus,
+    honeypotValue,
+    handleEmailChange,
+    handleLinkedInChange,
+    handleGitHubChange,
+    handleHoneypotChange,
+    handleSubmit,
+    closeModal,
+    isOpen,
+    userType,
+  } = useSignupForm()
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && closeModal()}>
@@ -335,7 +116,6 @@ export function SignupModal() {
                 aria-hidden='true'
               />
               <Input
-                ref={firstInputRef}
                 id='email'
                 type='email'
                 placeholder={strings.signupModal.form.email.placeholder}

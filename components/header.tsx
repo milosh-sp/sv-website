@@ -1,28 +1,13 @@
 'use client'
 
-import { useState } from 'react'
-import { Menu, X, Shield } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import Link from 'next/link'
 import { strings } from '@/lib/strings'
+import { Menu, Shield, X } from 'lucide-react'
+import Link from 'next/link'
+import { useState } from 'react'
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      const headerOffset = 80 // Height of fixed header (h-20 = 5rem = 80px)
-      const elementPosition = element.getBoundingClientRect().top
-      const offsetPosition = elementPosition + window.scrollY - headerOffset
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth',
-      })
-    }
-    setIsMenuOpen(false)
-  }
 
   return (
     <header className='fixed top-0 w-full bg-white/95 backdrop-blur-md border-b border-slate-200/50 z-50 shadow-sm'>
@@ -45,57 +30,52 @@ export function Header() {
           </Link>
 
           <div className='hidden md:flex items-center gap-8'>
-            <button
-              type='button'
-              onClick={() => scrollToSection('how-it-works')}
+            <Link
+              href='/#how-it-works'
               className='text-slate-700 hover:text-blue-600 transition-colors duration-200 font-medium py-2 px-1 relative group cursor-pointer'
               aria-label={strings.navigation.accessibility.goToHowItWorks}
             >
               {strings.navigation.menu.howItWorks}
               <span className='absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full' />
-            </button>
-            <button
-              type='button'
-              onClick={() => scrollToSection('cv-preview')}
+            </Link>
+            <Link
+              href='/#cv-preview'
               className='text-slate-700 hover:text-blue-600 transition-colors duration-200 font-medium py-2 px-1 relative group cursor-pointer'
               aria-label={strings.navigation.accessibility.goToCvPreview}
             >
               {strings.navigation.menu.cvPreview}
               <span className='absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full' />
-            </button>
-            <button
-              type='button'
-              onClick={() => scrollToSection('company-discovery')}
+            </Link>
+            <Link
+              href='/#company-discovery'
               className='text-slate-700 hover:text-blue-600 transition-colors duration-200 font-medium py-2 px-1 relative group cursor-pointer'
               aria-label={strings.navigation.accessibility.goToCompanyDiscovery}
             >
               {strings.navigation.menu.companies}
               <span className='absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full' />
-            </button>
-            <button
-              type='button'
-              onClick={() => scrollToSection('process')}
+            </Link>
+            <Link
+              href='/#process'
               className='text-slate-700 hover:text-blue-600 transition-colors duration-200 font-medium py-2 px-1 relative group cursor-pointer'
               aria-label={strings.navigation.accessibility.goToProcess}
             >
               {strings.navigation.menu.howToJoin}
               <span className='absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full' />
-            </button>
-            <button
-              type='button'
-              onClick={() => scrollToSection('faq')}
+            </Link>
+            <Link
+              href='/#faq'
               className='text-slate-700 hover:text-blue-600 transition-colors duration-200 font-medium py-2 px-1 relative group'
               aria-label={strings.navigation.accessibility.goToFaq}
             >
               {strings.navigation.menu.faqs}
               <span className='absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full' />
-            </button>
+            </Link>
             <Button
-              onClick={() => scrollToSection('home')}
+              asChild
               className='btn-primary h-11 px-6 text-base'
               aria-label={strings.navigation.accessibility.scrollToHero}
             >
-              {strings.navigation.menu.joinCommunity}
+              <Link href='/#home'>{strings.navigation.menu.joinCommunity}</Link>
             </Button>
           </div>
 
@@ -126,61 +106,57 @@ export function Header() {
             role='menu'
           >
             <div className='flex flex-col gap-2'>
-              <button
-                type='button'
-                onClick={() => scrollToSection('home')}
+              <Link
+                href='/#home'
                 className='text-left text-slate-700 hover:text-blue-600 hover:bg-slate-50 transition-all duration-200 font-medium py-3 px-4 rounded-lg cursor-pointer'
                 role='menuitem'
               >
                 {strings.navigation.menu.home}
-              </button>
-              <button
-                type='button'
-                onClick={() => scrollToSection('how-it-works')}
+              </Link>
+              <Link
+                href='/#how-it-works'
                 className='text-left text-slate-700 hover:text-blue-600 hover:bg-slate-50 transition-all duration-200 font-medium py-3 px-4 rounded-lg cursor-pointer'
                 role='menuitem'
               >
                 {strings.navigation.menu.howItWorks}
-              </button>
-              <button
-                type='button'
-                onClick={() => scrollToSection('cv-preview')}
+              </Link>
+              <Link
+                href='/#cv-preview'
                 className='text-left text-slate-700 hover:text-blue-600 hover:bg-slate-50 transition-all duration-200 font-medium py-3 px-4 rounded-lg cursor-pointer'
                 role='menuitem'
               >
                 {strings.navigation.mobile.cvPreview}
-              </button>
-              <button
-                type='button'
-                onClick={() => scrollToSection('company-discovery')}
+              </Link>
+              <Link
+                href='/#company-discovery'
                 className='text-left text-slate-700 hover:text-blue-600 hover:bg-slate-50 transition-all duration-200 font-medium py-3 px-4 rounded-lg cursor-pointer'
                 role='menuitem'
               >
                 {strings.navigation.mobile.forCompanies}
-              </button>
-              <button
-                type='button'
-                onClick={() => scrollToSection('process')}
+              </Link>
+              <Link
+                href='/#process'
                 className='text-left text-slate-700 hover:text-blue-600 hover:bg-slate-50 transition-all duration-200 font-medium py-3 px-4 rounded-lg cursor-pointer'
                 role='menuitem'
               >
                 {strings.navigation.mobile.process}
-              </button>
-              <button
-                type='button'
-                onClick={() => scrollToSection('faq')}
+              </Link>
+              <Link
+                href='/#faq'
                 className='text-left text-slate-700 hover:text-blue-600 hover:bg-slate-50 transition-all duration-200 font-medium py-3 px-4 rounded-lg cursor-pointer'
                 role='menuitem'
               >
                 {strings.navigation.mobile.faq}
-              </button>
+              </Link>
               <div className='pt-2 mt-2 border-t border-slate-200'>
                 <Button
-                  onClick={() => scrollToSection('home')}
+                  asChild
                   className='w-full btn-primary h-12 text-base'
                   role='menuitem'
                 >
-                  {strings.navigation.menu.joinCommunity}
+                  <Link href='/#home'>
+                    {strings.navigation.menu.joinCommunity}
+                  </Link>
                 </Button>
               </div>
             </div>

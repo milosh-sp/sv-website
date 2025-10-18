@@ -102,6 +102,48 @@ export function validateLinkedIn(url: string): ValidationResult {
 }
 
 /**
+ * Validate GitHub profile URL format
+ */
+export function validateGitHub(url: string): ValidationResult {
+  if (!url) {
+    return {
+      isValid: false,
+      message: 'GitHub profile URL is required',
+    }
+  }
+
+  if (typeof url !== 'string') {
+    return {
+      isValid: false,
+      message: 'GitHub URL must be a string',
+    }
+  }
+
+  const trimmedUrl = url.trim()
+  if (!trimmedUrl) {
+    return {
+      isValid: false,
+      message: 'GitHub profile URL is required',
+    }
+  }
+
+  // GitHub profile URL regex - supports various formats
+  const githubRegex = /^https?:\/\/(www\.)?github\.com\/[a-zA-Z0-9-]+\/?$/
+
+  if (!githubRegex.test(trimmedUrl)) {
+    return {
+      isValid: false,
+      message:
+        'Please enter a valid GitHub profile URL (e.g., https://github.com/username)',
+    }
+  }
+
+  return {
+    isValid: true,
+  }
+}
+
+/**
  * Validate form data for signup
  */
 export interface SignupFormData {
@@ -145,4 +187,8 @@ export function isValidEmail(email: string): boolean {
 
 export function isValidLinkedIn(url: string): boolean {
   return validateLinkedIn(url).isValid
+}
+
+export function isValidGitHub(url: string): boolean {
+  return validateGitHub(url).isValid
 }

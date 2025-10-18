@@ -18,6 +18,7 @@ import { useHoneypot } from '@/hooks/use-honeypot'
 import {
   validateEmail,
   validateLinkedIn,
+  validateGitHub,
   validateSignupForm,
 } from '@/lib/validation'
 import { cn } from '@/lib/utils'
@@ -38,9 +39,14 @@ interface FormErrors {
 type SubmitStatus = 'idle' | 'success' | 'error'
 
 /**
+ * Form field names for validation
+ */
+type FormFieldName = 'email' | 'linkedin' | 'github'
+
+/**
  * SignupModal Component
  *
- * Handles user signup with email and LinkedIn validation.
+ * Handles user signup with email, LinkedIn, and GitHub validation.
  * Implements honeypot bot detection and accessibility features.
  */
 export function SignupModal() {
@@ -48,6 +54,7 @@ export function SignupModal() {
   const [formData, setFormData] = useState({
     email: '',
     linkedin: '',
+    github: '',
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [errors, setErrors] = useState<FormErrors>({})
@@ -100,18 +107,18 @@ export function SignupModal() {
   }, [isOpen, closeModal])
 
   // Validate individual field and update errors (non-debounced version for immediate use)
-  const validateFieldImmediate = (
-    fieldName: 'email' | 'linkedin',
-    value: string
-  ) => {
+  const validateFieldImmediate = (fieldName: FormFieldName, value: string) => {
     let validation:
       | ReturnType<typeof validateEmail>
       | ReturnType<typeof validateLinkedIn>
+      | ReturnType<typeof validateGitHub>
 
     if (fieldName === 'email') {
       validation = validateEmail(value)
-    } else {
+    } else if (fieldName === 'linkedin') {
       validation = validateLinkedIn(value)
+    } else {
+      validation = validateGitHub(value)
     }
 
     setErrors((prev) => ({
@@ -168,6 +175,7 @@ export function SignupModal() {
         email: formData.email,
         fields: {
           linkedin: formData.linkedin,
+          github: formData.github,
           user_type: mapUserTypeToApiFormat(userType),
           source: 'signup-modal',
           website: honeypotValue, // Include honeypot field
@@ -177,7 +185,7 @@ export function SignupModal() {
 
       if (result.success) {
         setSubmitStatus('success')
-        setFormData({ email: '', linkedin: '' })
+        setFormData({ email: '', linkedin: '', github: '' })
         resetHoneypot() // Reset honeypot state
 
         // Store in localStorage as backup
@@ -245,6 +253,19 @@ export function SignupModal() {
 
     // Trigger debounced validation
     debouncedValidateField('linkedin', value)
+  }
+
+  const handleGitHubChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    setFormData((prev) => ({ ...prev, github: value }))
+
+    // Clear error immediately when user starts typing
+    if (errors.github) {
+      setErrors((prev) => ({ ...prev, github: '' }))
+    }
+
+    // Trigger debounced validation
+    debouncedValidateField('github', value)
   }
 
   const handleHoneypotChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -409,9 +430,52 @@ export function SignupModal() {
             )}
           </div>
 
+          <div className='space-y-2'>
+            <label htmlFor='github' className='sr-only'>
+              {strings.signupModal.form.github.label}
+            </label>
+            <Input
+              id='github'
+              type='url'
+              placeholder={strings.signupModal.form.github.placeholder}
+              value={formData.github}
+              onChange={handleGitHubChange}
+              required
+              disabled={isSubmitting}
+              className={cn(
+                'h-12 text-base border-slate-300 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50',
+                errors.github &&
+                  'border-destructive focus:border-destructive focus:ring-destructive/20'
+              )}
+              aria-describedby={strings.signupModal.accessibility.githubError}
+              aria-invalid={!!errors.github}
+            />
+            {errors.github && (
+              <p
+                id='github-error'
+                className='text-destructive text-sm mt-2 flex items-start gap-2 px-1'
+                role='alert'
+                aria-live='polite'
+              >
+                <span
+                  className='text-destructive font-medium text-xs mt-0.5'
+                  aria-hidden='true'
+                >
+                  ⚠
+                </span>
+                <span className='leading-relaxed'>{errors.github}</span>
+              </p>
+            )}
+          </div>
+
           <Button
             type='submit'
-            disabled={isSubmitting || !formData.email || !formData.linkedin}
+            disabled={
+              isSubmitting ||
+              !formData.email ||
+              !formData.linkedin ||
+              !formData.github
+            }
             className='w-full h-12 text-base btn-primary disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer'
             aria-label={
               isSubmitting

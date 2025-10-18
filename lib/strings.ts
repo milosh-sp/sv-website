@@ -418,6 +418,11 @@ export const signupModal = {
       placeholder: 'Your website',
       ariaLabel: 'Website field (honeypot)',
     },
+    github: {
+      label: 'GitHub profile URL',
+      placeholder: 'Your GitHub profile URL *',
+      ariaLabel: 'GitHub profile URL field',
+    },
   },
 
   // Submit button
@@ -451,6 +456,7 @@ export const signupModal = {
     signupForm: 'Signup form',
     emailError: 'Email validation error',
     linkedinError: 'LinkedIn validation error',
+    githubError: 'GitHub validation error',
   },
 } as const
 
@@ -946,22 +952,3 @@ export const strings = {
   layout,
   cvSampleData,
 } as const
-
-// Type exports for TypeScript support
-export type Strings = typeof strings
-export type Branding = typeof branding
-export type Navigation = typeof navigation
-export type Hero = typeof hero
-export type HowItWorks = typeof howItWorks
-export type CvPreview = typeof cvPreview
-export type CompanyDiscovery = typeof companyDiscovery
-export type Process = typeof process
-export type FAQ = typeof faq
-export type SignupModal = typeof signupModal
-export type FloatingSignupButton = typeof floatingSignupButton
-export type Footer = typeof footer
-export type LegalPages = typeof legalPages
-export type ErrorPages = typeof errorPages
-export type Common = typeof common
-export type Layout = typeof layout
-export type CvSampleData = typeof cvSampleData

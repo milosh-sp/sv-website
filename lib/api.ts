@@ -7,6 +7,7 @@ export interface FormSubmissionData {
   email: string
   fields?: {
     linkedin?: string
+    github?: string
     user_type?: string
     pain_point?: string
     source?: string

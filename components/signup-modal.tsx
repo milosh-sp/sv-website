@@ -54,6 +54,7 @@ export function SignupModal() {
             onClick={closeModal}
             className='absolute right-[-20] top-[-20] p-2 rounded-full bg-slate-100 hover:bg-slate-200 transition-colors z-10 cursorpointer'
             aria-label={strings.signupModal.accessibility.closeModal}
+            tabIndex={-1}
           >
             <X className='h-4 w-4' />
           </button>
@@ -105,6 +106,7 @@ export function SignupModal() {
           onSubmit={handleSubmit}
           className='space-y-4'
           aria-label='Signup form'
+          aria-describedby='signup-form-description'
         >
           <div className='space-y-2'>
             <label htmlFor='email' className='sr-only'>
@@ -130,6 +132,7 @@ export function SignupModal() {
                 )}
                 aria-describedby={strings.signupModal.accessibility.emailError}
                 aria-invalid={!!errors.email}
+                tabIndex={0}
               />
             </div>
             {errors.email && (
@@ -167,6 +170,7 @@ export function SignupModal() {
               onChange={handleHoneypotChange}
               tabIndex={-1}
               autoComplete='off'
+              aria-hidden='true'
             />
           </div>
 
@@ -196,6 +200,7 @@ export function SignupModal() {
                   strings.signupModal.accessibility.linkedinError
                 }
                 aria-invalid={!!errors.linkedin}
+                tabIndex={0}
               />
             </div>
             {errors.linkedin && (
@@ -240,6 +245,7 @@ export function SignupModal() {
                 )}
                 aria-describedby={strings.signupModal.accessibility.githubError}
                 aria-invalid={!!errors.github}
+                tabIndex={0}
               />
             </div>
             {errors.github && (
@@ -274,6 +280,7 @@ export function SignupModal() {
                 ? strings.signupModal.submitButton.ariaLabel.submitting
                 : strings.signupModal.submitButton.ariaLabel.idle
             }
+            tabIndex={0}
           >
             {isSubmitting ? (
               <>

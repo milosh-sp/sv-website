@@ -124,7 +124,7 @@ export const useSignupForm = () => {
           setTimeout(() => {
             closeModal()
             setSubmitStatus('idle')
-          }, 2000)
+          }, 6_000)
         } else {
           // eslint-disable-next-line no-console
           console.error('Form submission failed:', result.error)

@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { UserPlus, Sparkles } from 'lucide-react'
+import { UserPlus } from 'lucide-react'
 import { strings } from '@/lib/strings'
 
 export function FloatingSignupButton() {
@@ -23,7 +23,6 @@ export function FloatingSignupButton() {
         <div className='flex items-center gap-3'>
           <div className='flex items-center gap-1'>
             <UserPlus className='h-5 w-5 transition-transform group-hover:scale-110' />
-            <Sparkles className='h-3 w-3 text-yellow-300 animate-pulse' />
           </div>
           <span className='font-semibold text-base'>
             {strings.floatingSignupButton.text}

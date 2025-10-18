@@ -1,14 +1,17 @@
 import type { Handler, HandlerEvent, HandlerContext } from '@netlify/functions'
-import { validateEmail, validateLinkedIn } from '../../lib/validation'
+import {
+  validateEmail,
+  validateLinkedIn,
+  validateGitHub,
+} from '../../lib/validation'
 
 // Types for the request body
 interface FormSubmissionData {
   email: string
   fields?: {
     linkedin?: string
+    github?: string
     user_type?: string
-    pain_point?: string
-    source?: string
     website?: string // Honeypot field
     form_start_time?: string // For timing validation
   }
@@ -193,6 +196,25 @@ export const handler: Handler = async (
             error:
               linkedinValidation.message ||
               'Please provide a valid LinkedIn profile URL.',
+          }),
+        }
+      }
+    }
+
+    if (fields.github) {
+      const githubValidation = validateGitHub(fields.github)
+      if (!githubValidation.isValid) {
+        return {
+          statusCode: 400,
+          headers: {
+            ...corsHeaders,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            success: false,
+            error:
+              githubValidation.message ||
+              'Please provide a valid GitHub profile URL.',
           }),
         }
       }

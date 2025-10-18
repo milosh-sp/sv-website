@@ -4,7 +4,14 @@ import type React from 'react'
 import { useState, useEffect, useRef } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { CheckCircle2, DollarSign, X } from 'lucide-react'
+import {
+  CheckCircle2,
+  DollarSign,
+  X,
+  Mail,
+  Linkedin,
+  Github,
+} from 'lucide-react'
 import {
   Dialog,
   DialogContent,
@@ -188,21 +195,6 @@ export function SignupModal() {
         setFormData({ email: '', linkedin: '', github: '' })
         resetHoneypot() // Reset honeypot state
 
-        // Store in localStorage as backup
-        const submissions = JSON.parse(
-          localStorage.getItem('waitlist-submissions') || '[]'
-        ) as unknown[]
-        submissions.push({
-          ...formData,
-          userType,
-          timestamp: new Date().toISOString(),
-          source: 'signup-modal',
-        })
-        localStorage.setItem(
-          'waitlist-submissions',
-          JSON.stringify(submissions)
-        )
-
         // Close modal after successful submission
         setTimeout(() => {
           closeModal()
@@ -337,23 +329,29 @@ export function SignupModal() {
             <label htmlFor='email' className='sr-only'>
               {strings.signupModal.form.email.label}
             </label>
-            <Input
-              ref={firstInputRef}
-              id='email'
-              type='email'
-              placeholder={strings.signupModal.form.email.placeholder}
-              value={formData.email}
-              onChange={handleEmailChange}
-              required
-              disabled={isSubmitting}
-              className={cn(
-                'h-12 text-base border-slate-300 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50',
-                errors.email &&
-                  'border-destructive focus:border-destructive focus:ring-destructive/20'
-              )}
-              aria-describedby={strings.signupModal.accessibility.emailError}
-              aria-invalid={!!errors.email}
-            />
+            <div className='relative'>
+              <Mail
+                className='absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400'
+                aria-hidden='true'
+              />
+              <Input
+                ref={firstInputRef}
+                id='email'
+                type='email'
+                placeholder={strings.signupModal.form.email.placeholder}
+                value={formData.email}
+                onChange={handleEmailChange}
+                required
+                disabled={isSubmitting}
+                className={cn(
+                  'h-12 text-base border-slate-300 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 pl-10',
+                  errors.email &&
+                    'border-destructive focus:border-destructive focus:ring-destructive/20'
+                )}
+                aria-describedby={strings.signupModal.accessibility.emailError}
+                aria-invalid={!!errors.email}
+              />
+            </div>
             {errors.email && (
               <p
                 id='email-error'
@@ -396,22 +394,30 @@ export function SignupModal() {
             <label htmlFor='linkedin' className='sr-only'>
               {strings.signupModal.form.linkedin.label}
             </label>
-            <Input
-              id='linkedin'
-              type='url'
-              placeholder={strings.signupModal.form.linkedin.placeholder}
-              value={formData.linkedin}
-              onChange={handleLinkedInChange}
-              required
-              disabled={isSubmitting}
-              className={cn(
-                'h-12 text-base border-slate-300 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50',
-                errors.linkedin &&
-                  'border-destructive focus:border-destructive focus:ring-destructive/20'
-              )}
-              aria-describedby={strings.signupModal.accessibility.linkedinError}
-              aria-invalid={!!errors.linkedin}
-            />
+            <div className='relative'>
+              <Linkedin
+                className='absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400'
+                aria-hidden='true'
+              />
+              <Input
+                id='linkedin'
+                type='url'
+                placeholder={strings.signupModal.form.linkedin.placeholder}
+                value={formData.linkedin}
+                onChange={handleLinkedInChange}
+                required
+                disabled={isSubmitting}
+                className={cn(
+                  'h-12 text-base border-slate-300 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 pl-10',
+                  errors.linkedin &&
+                    'border-destructive focus:border-destructive focus:ring-destructive/20'
+                )}
+                aria-describedby={
+                  strings.signupModal.accessibility.linkedinError
+                }
+                aria-invalid={!!errors.linkedin}
+              />
+            </div>
             {errors.linkedin && (
               <p
                 id='linkedin-error'
@@ -434,22 +440,28 @@ export function SignupModal() {
             <label htmlFor='github' className='sr-only'>
               {strings.signupModal.form.github.label}
             </label>
-            <Input
-              id='github'
-              type='url'
-              placeholder={strings.signupModal.form.github.placeholder}
-              value={formData.github}
-              onChange={handleGitHubChange}
-              required
-              disabled={isSubmitting}
-              className={cn(
-                'h-12 text-base border-slate-300 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50',
-                errors.github &&
-                  'border-destructive focus:border-destructive focus:ring-destructive/20'
-              )}
-              aria-describedby={strings.signupModal.accessibility.githubError}
-              aria-invalid={!!errors.github}
-            />
+            <div className='relative'>
+              <Github
+                className='absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400'
+                aria-hidden='true'
+              />
+              <Input
+                id='github'
+                type='url'
+                placeholder={strings.signupModal.form.github.placeholder}
+                value={formData.github}
+                onChange={handleGitHubChange}
+                required
+                disabled={isSubmitting}
+                className={cn(
+                  'h-12 text-base border-slate-300 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 pl-10',
+                  errors.github &&
+                    'border-destructive focus:border-destructive focus:ring-destructive/20'
+                )}
+                aria-describedby={strings.signupModal.accessibility.githubError}
+                aria-invalid={!!errors.github}
+              />
+            </div>
             {errors.github && (
               <p
                 id='github-error'

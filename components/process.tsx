@@ -67,21 +67,41 @@ export function Process() {
         </div>
 
         <div className='max-w-4xl mx-auto'>
-          <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-8'>
-            {(activeTab === 'vetter' ? vetterSteps : candidateSteps).map(
-              (step, _index) => (
-                <div key={step.title} className='text-center p-6'>
-                  <div className='w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4'>
-                    <step.icon className='h-8 w-8 text-primary' />
+          {activeTab === 'vetter' && (
+            <div className='animate-fade-in-scale'>
+              <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-8'>
+                {vetterSteps.map((step, _index) => (
+                  <div key={step.title} className='text-center p-6'>
+                    <div className='w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4'>
+                      <step.icon className='h-8 w-8 text-primary' />
+                    </div>
+                    <h3 className='font-semibold text-gray-900 mb-3'>
+                      {step.title}
+                    </h3>
+                    <p className='text-gray-600 text-sm'>{step.description}</p>
                   </div>
-                  <h3 className='font-semibold text-gray-900 mb-3'>
-                    {step.title}
-                  </h3>
-                  <p className='text-gray-600 text-sm'>{step.description}</p>
-                </div>
-              )
-            )}
-          </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'candidate' && (
+            <div className='animate-fade-in-scale'>
+              <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-8'>
+                {candidateSteps.map((step, _index) => (
+                  <div key={step.title} className='text-center p-6'>
+                    <div className='w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4'>
+                      <step.icon className='h-8 w-8 text-primary' />
+                    </div>
+                    <h3 className='font-semibold text-gray-900 mb-3'>
+                      {step.title}
+                    </h3>
+                    <p className='text-gray-600 text-sm'>{step.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>

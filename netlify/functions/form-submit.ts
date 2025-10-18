@@ -46,6 +46,28 @@ export const handler: Handler = async (
     }
   }
 
+  // Extract client IP address
+  const getClientIP = (): string | undefined => {
+    // Check for forwarded IP in headers
+    const forwardedFor = event.headers['x-forwarded-for']
+    if (forwardedFor) {
+      // x-forwarded-for can contain multiple IPs, get the first one
+      return forwardedFor.split(',')[0].trim()
+    }
+
+    // Check for real IP header
+    const realIP = event.headers['x-real-ip']
+    if (realIP) {
+      return realIP
+    }
+
+    // Fallback to remote address if available
+    return event.headers['x-forwarded-for'] || event.headers['x-real-ip']
+  }
+
+  // Get client IP
+  const clientIP = getClientIP()
+
   // Only allow POST requests
   if (event.httpMethod !== 'POST') {
     return {
@@ -245,6 +267,8 @@ export const handler: Handler = async (
         ...cleanFields,
         // Add timestamp for tracking
         signup_timestamp: new Date().toISOString(),
+        // Add IP address if available
+        client_ip: clientIP,
       },
     }
 

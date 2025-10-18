@@ -2,9 +2,11 @@
 
 import { Button } from '@/components/ui/button'
 import { strings } from '@/lib/strings'
-import { Menu, Shield, X } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
+import logo from '../assets/logo-sv.svg'
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -21,9 +23,13 @@ export function Header() {
             className='flex items-center gap-3 hover:opacity-80 transition-opacity duration-200'
             aria-label={strings.navigation.accessibility.goToHomepage}
           >
-            <div className='p-2 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg shadow-md'>
-              <Shield className='h-6 w-6 text-white' aria-hidden='true' />
-            </div>
+            <Image
+              src={logo}
+              alt={strings.branding.logo.alt}
+              width={40}
+              height={40}
+            />
+
             <span className='text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent'>
               {strings.branding.companyName}
             </span>

@@ -85,12 +85,12 @@ export const handler: Handler = async (
       return {}
     }
 
+    console.log('did I get country?', event.headers['x-country'])
+
     try {
       // Using ipapi.co for geolocation (free tier available)
       // Note: This is a free service with rate limits
       const response = await fetch(`https://ipapi.co/${ipAddress}/json/`)
-
-      console.log('Location data response:', response)
 
       if (!response.ok) {
         console.warn('Failed to fetch location data for IP:', ipAddress)
@@ -101,10 +101,11 @@ export const handler: Handler = async (
 
       return {
         ip: ipAddress,
-        country: locationData.country_name,
+        country: locationData.country,
         region: locationData.region,
         city: locationData.city,
         timezone: locationData.timezone,
+        country_name: locationData.country_name,
       }
     } catch (error) {
       console.warn('Error fetching location data:', error)

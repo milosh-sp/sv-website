@@ -1,6 +1,5 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
 import { strings } from '@/lib/strings'
 import { Menu, X } from 'lucide-react'
 import Image from 'next/image'

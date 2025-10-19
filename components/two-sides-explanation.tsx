@@ -61,6 +61,7 @@ export function TwoSidesExplanation() {
 
   return (
     <HeaderAndButtons
+      sectionId='how-it-works'
       activeTab={activeTab}
       onTabChange={setActiveTab}
       heading={strings.howItWorks.heading}

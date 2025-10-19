@@ -2,15 +2,7 @@
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import {
-  DollarSign,
-  X,
-  Mail,
-  Linkedin,
-  Github,
-  Award,
-  CircleStar,
-} from 'lucide-react'
+import { X, Mail, Linkedin, Github, Award, CircleStar } from 'lucide-react'
 import {
   Dialog,
   DialogContent,

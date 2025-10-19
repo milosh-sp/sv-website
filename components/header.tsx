@@ -4,11 +4,33 @@ import { strings } from '@/lib/strings'
 import { Menu, X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import logo from '../assets/logo-sv.svg'
+import { HeaderLink } from './header-link'
+
+/**
+ * Scroll margin offset to account for fixed header height
+ * Ensures content is not hidden behind the header when scrolling
+ */
+const SCROLL_MARGIN_TOP = 96 // 80px header height + 16px padding
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      const elementPosition = element.getBoundingClientRect().top
+      const offsetPosition =
+        elementPosition + window.scrollY - SCROLL_MARGIN_TOP
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      })
+    }
+    setIsMenuOpen(false)
+  }
 
   return (
     <header className='fixed top-0 w-full bg-white/95 backdrop-blur-md border-b border-slate-200/50 z-50 shadow-sm'>
@@ -35,46 +57,46 @@ export function Header() {
           </Link>
 
           <div className='hidden md:flex items-center gap-8'>
-            <Link
-              href='/#how-it-works'
-              className='text-slate-700 hover:text-blue-600 transition-colors duration-200 font-medium py-2 px-1 relative group cursor-pointer'
-              aria-label={strings.navigation.accessibility.goToHowItWorks}
+            <HeaderLink
+              scroll={false}
+              href='#how-it-works'
+              onClick={() => scrollToSection('how-it-works')}
+              variant='desktop'
             >
               {strings.navigation.menu.howItWorks}
-              <span className='absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full' />
-            </Link>
-            <Link
-              href='/#cv-preview'
-              className='text-slate-700 hover:text-blue-600 transition-colors duration-200 font-medium py-2 px-1 relative group cursor-pointer'
-              aria-label={strings.navigation.accessibility.goToCvPreview}
+            </HeaderLink>
+            <HeaderLink
+              scroll={false}
+              href='#cv-preview'
+              onClick={() => scrollToSection('cv-preview')}
+              variant='desktop'
             >
               {strings.navigation.menu.cvPreview}
-              <span className='absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full' />
-            </Link>
-            <Link
-              href='/#company-discovery'
-              className='text-slate-700 hover:text-blue-600 transition-colors duration-200 font-medium py-2 px-1 relative group cursor-pointer'
-              aria-label={strings.navigation.accessibility.goToCompanyDiscovery}
+            </HeaderLink>
+            <HeaderLink
+              scroll={false}
+              href='#company-discovery'
+              onClick={() => scrollToSection('company-discovery')}
+              variant='desktop'
             >
               {strings.navigation.menu.companies}
-              <span className='absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full' />
-            </Link>
-            <Link
-              href='/#process'
-              className='text-slate-700 hover:text-blue-600 transition-colors duration-200 font-medium py-2 px-1 relative group cursor-pointer'
-              aria-label={strings.navigation.accessibility.goToProcess}
+            </HeaderLink>
+            <HeaderLink
+              scroll={false}
+              href='#process'
+              onClick={() => scrollToSection('process')}
+              variant='desktop'
             >
               {strings.navigation.menu.howToJoin}
-              <span className='absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full' />
-            </Link>
-            <Link
-              href='/#faq'
-              className='text-slate-700 hover:text-blue-600 transition-colors duration-200 font-medium py-2 px-1 relative group'
-              aria-label={strings.navigation.accessibility.goToFaq}
+            </HeaderLink>
+            <HeaderLink
+              scroll={false}
+              href='#faq'
+              onClick={() => scrollToSection('faq')}
+              variant='desktop'
             >
               {strings.navigation.menu.faqs}
-              <span className='absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full' />
-            </Link>
+            </HeaderLink>
           </div>
 
           <button
@@ -104,48 +126,48 @@ export function Header() {
             role='menu'
           >
             <div className='flex flex-col gap-2'>
-              <Link
-                href='/#home'
-                className='text-left text-slate-700 hover:text-blue-600 hover:bg-slate-50 transition-all duration-200 font-medium py-3 px-4 rounded-lg cursor-pointer'
-                role='menuitem'
+              <HeaderLink
+                href='#home'
+                onClick={() => scrollToSection('home')}
+                variant='mobile'
               >
                 {strings.navigation.menu.home}
-              </Link>
-              <Link
-                href='/#how-it-works'
-                className='text-left text-slate-700 hover:text-blue-600 hover:bg-slate-50 transition-all duration-200 font-medium py-3 px-4 rounded-lg cursor-pointer'
-                role='menuitem'
+              </HeaderLink>
+              <HeaderLink
+                href='#how-it-works'
+                onClick={() => scrollToSection('how-it-works')}
+                variant='mobile'
               >
                 {strings.navigation.menu.howItWorks}
-              </Link>
-              <Link
-                href='/#cv-preview'
-                className='text-left text-slate-700 hover:text-blue-600 hover:bg-slate-50 transition-all duration-200 font-medium py-3 px-4 rounded-lg cursor-pointer'
-                role='menuitem'
+              </HeaderLink>
+              <HeaderLink
+                href='#cv-preview'
+                onClick={() => scrollToSection('cv-preview')}
+                variant='mobile'
               >
                 {strings.navigation.mobile.cvPreview}
-              </Link>
-              <Link
-                href='/#company-discovery'
-                className='text-left text-slate-700 hover:text-blue-600 hover:bg-slate-50 transition-all duration-200 font-medium py-3 px-4 rounded-lg cursor-pointer'
-                role='menuitem'
+              </HeaderLink>
+              <HeaderLink
+                href='#company-discovery'
+                onClick={() => scrollToSection('company-discovery')}
+                variant='mobile'
               >
                 {strings.navigation.mobile.forCompanies}
-              </Link>
-              <Link
-                href='/#process'
-                className='text-left text-slate-700 hover:text-blue-600 hover:bg-slate-50 transition-all duration-200 font-medium py-3 px-4 rounded-lg cursor-pointer'
-                role='menuitem'
+              </HeaderLink>
+              <HeaderLink
+                href='#process'
+                onClick={() => scrollToSection('process')}
+                variant='mobile'
               >
                 {strings.navigation.mobile.process}
-              </Link>
-              <Link
-                href='/#faq'
-                className='text-left text-slate-700 hover:text-blue-600 hover:bg-slate-50 transition-all duration-200 font-medium py-3 px-4 rounded-lg cursor-pointer'
-                role='menuitem'
+              </HeaderLink>
+              <HeaderLink
+                href='#faq'
+                onClick={() => scrollToSection('faq')}
+                variant='mobile'
               >
                 {strings.navigation.mobile.faq}
-              </Link>
+              </HeaderLink>
             </div>
           </div>
         )}

@@ -16,6 +16,7 @@ import {
 } from 'lucide-react'
 import { strings } from '@/lib/strings'
 import { BenefitGrid } from './ui/grid-cards'
+import { TwoSidesButtons } from './ui/two-sides-buttons'
 
 /**
  * Icon mapping configuration for benefits
@@ -77,44 +78,7 @@ export function TwoSidesExplanation() {
           </p>
         </div>
 
-        <div className='flex justify-center mb-12'>
-          <div
-            className='flex bg-slate-100/80 backdrop-blur-sm rounded-xl p-1.5 shadow-sm border border-slate-200/50'
-            role='tablist'
-            aria-label={strings.howItWorks.tabAccessibility.chooseUserType}
-          >
-            <button
-              type='button'
-              onClick={() => setActiveTab('candidate')}
-              className={`flex items-center gap-3 px-8 py-4 rounded-lg font-semibold transition-all duration-300 cursor-pointer ${
-                activeTab === 'candidate'
-                  ? 'bg-white text-blue-600 shadow-md border border-blue-100'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-white/50'
-              }`}
-              role='tab'
-              aria-selected={activeTab === 'candidate'}
-              aria-controls='candidate-panel'
-            >
-              <CircleStar className='h-5 w-5' aria-hidden='true' />
-              {strings.howItWorks.tabs.members}
-            </button>
-            <button
-              type='button'
-              onClick={() => setActiveTab('vetter')}
-              className={`flex items-center gap-3 px-8 py-4 rounded-lg font-semibold transition-all duration-300 cursor-pointer ${
-                activeTab === 'vetter'
-                  ? 'bg-white text-blue-600 shadow-md border border-blue-100'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-white/50'
-              }`}
-              role='tab'
-              aria-selected={activeTab === 'vetter'}
-              aria-controls='vetter-panel'
-            >
-              <Award className='h-5 w-5' aria-hidden='true' />
-              {strings.howItWorks.tabs.techProfessionals}
-            </button>
-          </div>
-        </div>
+        <TwoSidesButtons activeTab={activeTab} onTabChange={setActiveTab} />
 
         <div className='max-w-6xl mx-auto'>
           {activeTab === 'vetter' && (

@@ -56,27 +56,31 @@ export const handler: Handler = async (
     }
   }
 
-  // Extract client IP address
-  const getClientIP = (): string | undefined => {
+  // Extract client IP and country
+  const getClientIPandCountry = (): { clientIp: string; country: string } => {
     // Check for forwarded IP in headers
-    const forwardedFor = event.headers['x-forwarded-for']
+    const forwardedFor = event.headers['x-forwarded-for'] ?? ''
+    const country = event.headers['x-country'] ?? ''
     if (forwardedFor) {
       // x-forwarded-for can contain multiple IPs, get the first one
-      return forwardedFor.split(',')[0].trim()
+      return { clientIp: forwardedFor.split(',')[0].trim(), country: country }
     }
 
     // Check for real IP header
-    const realIP = event.headers['x-real-ip']
+    const realIP = event.headers['x-real-ip'] ?? ''
     if (realIP) {
-      return realIP
+      return { clientIp: realIP, country: country }
     }
 
     // Fallback to remote address if available
-    return event.headers['x-forwarded-for'] || event.headers['x-real-ip']
+    return {
+      clientIp: forwardedFor?.split(',')[0].trim() ?? realIP,
+      country,
+    }
   }
 
-  // Get client IP
-  const clientIP = getClientIP()
+  // Get client IP and country
+  const clientIP = getClientIPandCountry()
 
   // Get location data from IP address (country, region, city)
   const getLocationData = async (ipAddress?: string): Promise<LocationData> => {
@@ -84,8 +88,6 @@ export const handler: Handler = async (
     if (!ipAddress) {
       return {}
     }
-
-    console.log('did I get country?', event.headers['x-country'])
 
     try {
       // Using ipapi.co for geolocation (free tier available)
@@ -306,8 +308,8 @@ export const handler: Handler = async (
 
     // Get location data if IP is available
     let locationData: LocationData = {}
-    if (clientIP) {
-      locationData = await getLocationData(clientIP)
+    if (clientIP.clientIp) {
+      locationData = await getLocationData(clientIP.clientIp)
     }
 
     // Prepare data for Sender.net API (exclude honeypot and timing fields)
@@ -319,9 +321,9 @@ export const handler: Handler = async (
         // Add timestamp for tracking
         signup_timestamp: new Date().toISOString(),
         // Add IP address if available
-        client_ip: clientIP,
+        client_ip: clientIP.clientIp,
         // Add location data if available
-        country: locationData.country,
+        country: locationData.country ?? clientIP.country,
         country_name: locationData.country_name,
         city: locationData.city,
       },

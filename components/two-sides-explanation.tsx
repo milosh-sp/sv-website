@@ -15,9 +15,8 @@ import {
   CircleStar,
 } from 'lucide-react'
 import { strings } from '@/lib/strings'
-import { TwoSidesButtons } from './ui/two-sides-buttons'
-import { HeaderAndDescription } from './ui/header-and-description'
 import { BenefitCards } from './benefit-cards'
+import { HeaderAndButtons } from './ui/header-and-buttons'
 
 /**
  * Icon mapping configuration for benefits
@@ -61,52 +60,38 @@ export function TwoSidesExplanation() {
     }))
 
   return (
-    <section
-      className='p-15 bg-gradient-to-b from-white to-slate-50/50'
-      id='how-it-works'
-      aria-label={strings.howItWorks.accessibility.howItWorksSection}
+    <HeaderAndButtons
+      activeTab={activeTab}
+      onTabChange={setActiveTab}
+      heading={strings.howItWorks.heading}
+      headingHighlight={strings.howItWorks.headingHighlight}
+      description={strings.howItWorks.description}
+      ariaLabel={strings.howItWorks.accessibility.howItWorksSection}
     >
-      <div className='container-wide'>
-        <HeaderAndDescription
-          heading={strings.howItWorks.heading}
-          headingHighlight={strings.howItWorks.headingHighlight}
-          description={strings.howItWorks.description}
+      {activeTab === 'candidate' && (
+        <BenefitCards
+          icon={
+            <CircleStar className='h-14 w-14 text-white' aria-hidden='true' />
+          }
+          description={strings.howItWorks.members.description}
+          benefits={candidateBenefits}
+          colorScheme='emerald'
         />
-
-        <TwoSidesButtons activeTab={activeTab} onTabChange={setActiveTab} />
-
-        <div className='max-w-6xl mx-auto'>
-          {activeTab === 'candidate' && (
-            <BenefitCards
-              icon={
-                <CircleStar
-                  className='h-14 w-14 text-white'
-                  aria-hidden='true'
-                />
-              }
-              description={strings.howItWorks.members.description}
-              benefits={candidateBenefits}
-              colorScheme='emerald'
+      )}
+      {activeTab === 'vetter' && (
+        <BenefitCards
+          icon={
+            <Award
+              className='h-14 w-14 text-white'
+              aria-hidden='true'
+              aria-label={strings.howItWorks.techProfessionals.iconAriaLabel}
             />
-          )}
-          {activeTab === 'vetter' && (
-            <BenefitCards
-              icon={
-                <Award
-                  className='h-14 w-14 text-white'
-                  aria-hidden='true'
-                  aria-label={
-                    strings.howItWorks.techProfessionals.iconAriaLabel
-                  }
-                />
-              }
-              description={strings.howItWorks.techProfessionals.description}
-              benefits={vetterBenefits}
-              colorScheme='blue'
-            />
-          )}
-        </div>
-      </div>
-    </section>
+          }
+          description={strings.howItWorks.techProfessionals.description}
+          benefits={vetterBenefits}
+          colorScheme='blue'
+        />
+      )}
+    </HeaderAndButtons>
   )
 }

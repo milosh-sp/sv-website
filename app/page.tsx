@@ -12,8 +12,8 @@ export default function Home() {
     <>
       <HeroSection />
       <TwoSidesExplanation />
-      <Process />
       <CompanyDiscovery />
+      <Process />
       <CVPreview />
       <FAQ />
       <SignupModal />

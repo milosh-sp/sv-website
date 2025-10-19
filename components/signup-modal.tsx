@@ -2,14 +2,7 @@
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import {
-  CheckCircle2,
-  DollarSign,
-  X,
-  Mail,
-  Linkedin,
-  Github,
-} from 'lucide-react'
+import { DollarSign, X, Mail, Linkedin, Github, Award } from 'lucide-react'
 import {
   Dialog,
   DialogContent,
@@ -74,10 +67,7 @@ export function SignupModal() {
                   )}
                 >
                   {userType === 'member' ? (
-                    <CheckCircle2
-                      className='h-5 w-5 text-white'
-                      aria-hidden='true'
-                    />
+                    <Award className='h-5 w-5' aria-hidden='true' />
                   ) : (
                     <DollarSign
                       className='h-5 w-5 text-white'

@@ -26,8 +26,8 @@ export function Header() {
             <Image
               src={logo}
               alt={strings.branding.logo.alt}
-              width={40}
-              height={40}
+              width={25}
+              height={25}
             />
 
             <span className='text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent'>

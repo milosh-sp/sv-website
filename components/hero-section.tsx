@@ -1,13 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import {
-  Shield,
-  Clock,
-  UserCheck,
-  CheckCircle2,
-  DollarSign,
-} from 'lucide-react'
+import { Shield, Clock, UserCheck, DollarSign, Award } from 'lucide-react'
 import { useSignupModal } from '@/contexts/signup-modal-context'
 import { strings } from '@/lib/strings'
 
@@ -17,7 +11,7 @@ export function HeroSection() {
   return (
     <section
       id='home'
-      className='section-padding gradient-hero flex items-center'
+      className='section-padding gradient-hero flex items-center pb-15'
       aria-label={strings.hero.accessibility.heroSection}
     >
       <div className='container-narrow'>
@@ -44,7 +38,8 @@ export function HeroSection() {
               className='h-16 px-12 text-xl bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 rounded-lg font-medium cursor-pointer'
               aria-label={strings.hero.accessibility.openSignupModal}
             >
-              <CheckCircle2 className='mr-1' aria-hidden='true' />
+              <Award className='h-5 w-5' aria-hidden='true' />
+
               {strings.hero.buttons.verifySkills}
             </Button>
             <Button

@@ -58,7 +58,7 @@ export function TwoSides() {
 
   return (
     <section
-      className='section-padding bg-gradient-to-b from-white to-slate-50/50'
+      className='p-15 bg-gradient-to-b from-white to-slate-50/50'
       id='how-it-works'
       aria-label={strings.howItWorks.accessibility.howItWorksSection}
     >

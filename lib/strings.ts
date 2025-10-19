@@ -580,7 +580,7 @@ export const legalPages = {
           'Portability: Request transfer of your data to another service provider',
           'Restriction: Request limitation of how we process your information',
           'Objection: Object to certain types of processing',
-          'To exercise these rights, please contact us at privacy@skillverdict.com. We will respond to your request within 30 days.',
+          'To exercise these rights, please contact us at contact@skillverdict.com. We will respond to your request within 30 days.',
         ],
       },
       dataRetention: {
@@ -618,7 +618,7 @@ export const legalPages = {
         title: 'Contact Us',
         content:
           'If you have any questions about this Privacy Policy or our privacy practices, please contact us:',
-        email: 'privacy@skillverdict.com',
+        email: 'contact@skillverdict.com',
         address: 'SkillVerdict Privacy Team',
         responseTime: 'We aim to respond within 48 hours',
       },
@@ -667,7 +667,7 @@ export const layout = {
 
 export const cvSampleData = {
   profile: {
-    name: 'Alex Johnson',
+    name: 'Alex Smith',
     title: 'Senior Full Stack Developer',
     bio: 'Full stack developer with 8+ years of experience building scalable web applications. Passionate about clean code and innovative solutions.',
   },

@@ -4,7 +4,7 @@ import { strings } from '@/lib/strings'
 import { Menu, X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState, useCallback } from 'react'
+import { useState } from 'react'
 import logo from '../assets/logo-sv.svg'
 import { HeaderLink } from './header-link'
 

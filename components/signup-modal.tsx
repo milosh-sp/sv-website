@@ -2,7 +2,15 @@
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { DollarSign, X, Mail, Linkedin, Github, Award } from 'lucide-react'
+import {
+  DollarSign,
+  X,
+  Mail,
+  Linkedin,
+  Github,
+  Award,
+  CircleStar,
+} from 'lucide-react'
 import {
   Dialog,
   DialogContent,
@@ -67,12 +75,12 @@ export function SignupModal() {
                   )}
                 >
                   {userType === 'member' ? (
-                    <Award className='h-5 w-5' aria-hidden='true' />
-                  ) : (
-                    <DollarSign
+                    <CircleStar
                       className='h-5 w-5 text-white'
                       aria-hidden='true'
                     />
+                  ) : (
+                    <Award className='h-5 w-5 text-white' aria-hidden='true' />
                   )}
                 </div>
               </div>

@@ -23,7 +23,7 @@ export function HeaderAndDescription({
     <div className={cn('text-center mb-16 animate-fade-in-up', className)}>
       <h2
         className={cn(
-          'text-heading-1 text-slate-900 mb-6 text-balance',
+          'text-3xl md:text-4xl font-bold text-gray-800 mb-6',
           headingClassName
         )}
       >

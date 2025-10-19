@@ -3,6 +3,17 @@ import type { BenefitItem } from '@/types/grid-cards.types'
 import type { ReactNode } from 'react'
 import { BenefitGrid } from './ui/grid-cards'
 
+/**
+ * Color scheme mapping configuration for benefit cards
+ * Ensures consistent theming across different card variants
+ */
+const COLOR_SCHEME_GRADIENTS = {
+  blue: 'from-blue-500 to-blue-600',
+  emerald: 'from-emerald-500 to-emerald-600',
+  purple: 'from-purple-500 to-purple-600',
+  orange: 'from-orange-500 to-orange-600',
+} as const
+
 interface BenefitCardsProps {
   benefits: BenefitItem[]
   description?: string
@@ -34,7 +45,9 @@ export function BenefitCards({
       id='candidate-panel'
       aria-labelledby='candidate-tab'
     >
-      <div className='w-28 h-28 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-lg'>
+      <div
+        className={`w-28 h-28 bg-gradient-to-br ${COLOR_SCHEME_GRADIENTS[colorScheme]} rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-lg`}
+      >
         {icon}
       </div>
       <p className='text-body-large text-slate-600 mb-12 max-w-3xl mx-auto text-pretty'>

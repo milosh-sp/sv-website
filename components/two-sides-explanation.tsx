@@ -12,6 +12,7 @@ import {
   FastForward,
   Rocket,
   QrCode,
+  CircleStar,
 } from 'lucide-react'
 import { strings } from '@/lib/strings'
 import { TwoSidesButtons } from './ui/two-sides-buttons'
@@ -75,27 +76,32 @@ export function TwoSidesExplanation() {
         <TwoSidesButtons activeTab={activeTab} onTabChange={setActiveTab} />
 
         <div className='max-w-6xl mx-auto'>
-          {activeTab === 'vetter' && (
+          {activeTab === 'candidate' && (
             <BenefitCards
               icon={
-                <DollarSign
+                <CircleStar
                   className='h-14 w-14 text-white'
                   aria-hidden='true'
                 />
               }
-              description={strings.howItWorks.techProfessionals.description}
-              benefits={vetterBenefits}
+              description={strings.howItWorks.members.description}
+              benefits={candidateBenefits}
               colorScheme='emerald'
             />
           )}
-
-          {activeTab === 'candidate' && (
+          {activeTab === 'vetter' && (
             <BenefitCards
               icon={
-                <Award className='h-14 w-14 text-white' aria-hidden='true' />
+                <Award
+                  className='h-14 w-14 text-white'
+                  aria-hidden='true'
+                  aria-label={
+                    strings.howItWorks.techProfessionals.iconAriaLabel
+                  }
+                />
               }
-              description={strings.howItWorks.members.description}
-              benefits={candidateBenefits}
+              description={strings.howItWorks.techProfessionals.description}
+              benefits={vetterBenefits}
               colorScheme='blue'
             />
           )}

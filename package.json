@@ -69,6 +69,7 @@
 	"devDependencies": {
 		"@biomejs/biome": "2.2.6",
 		"@netlify/functions": "^4.2.7",
+		"@netlify/plugin-nextjs": "^5.14.0",
 		"@tailwindcss/postcss": "^4.1.13",
 		"@types/node": "^24.5.1",
 		"@types/react": "^19.1.13",

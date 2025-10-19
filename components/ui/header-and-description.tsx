@@ -1,0 +1,52 @@
+import { cn } from '@/lib/utils'
+
+interface SectionHeaderProps {
+  heading: string
+  headingHighlight?: string
+  description: string
+  className?: string
+  headingClassName?: string
+  descriptionClassName?: string
+  highlightClassName?: string
+}
+
+export function HeaderAndDescription({
+  heading,
+  headingHighlight,
+  description,
+  className,
+  headingClassName,
+  descriptionClassName,
+  highlightClassName,
+}: SectionHeaderProps) {
+  return (
+    <div className={cn('text-center mb-16 animate-fade-in-up', className)}>
+      <h2
+        className={cn(
+          'text-heading-1 text-slate-900 mb-6 text-balance',
+          headingClassName
+        )}
+      >
+        {heading}
+        {headingHighlight && (
+          <span
+            className={cn(
+              'ml-1.5 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent',
+              highlightClassName
+            )}
+          >
+            {headingHighlight}
+          </span>
+        )}
+      </h2>
+      <p
+        className={cn(
+          'text-body-large text-slate-600 mx-auto text-pretty leading-relaxed max-w-4xl',
+          descriptionClassName
+        )}
+      >
+        {description}
+      </p>
+    </div>
+  )
+}

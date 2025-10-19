@@ -12,11 +12,11 @@ import {
   FastForward,
   Rocket,
   QrCode,
-  CircleStar,
 } from 'lucide-react'
 import { strings } from '@/lib/strings'
 import { BenefitGrid } from './ui/grid-cards'
 import { TwoSidesButtons } from './ui/two-sides-buttons'
+import { HeaderAndDescription } from './ui/header-and-description'
 
 /**
  * Icon mapping configuration for benefits
@@ -66,17 +66,11 @@ export function TwoSidesExplanation() {
       aria-label={strings.howItWorks.accessibility.howItWorksSection}
     >
       <div className='container-wide'>
-        <div className='text-center mb-16 animate-fade-in-up'>
-          <h2 className='text-heading-1 text-slate-900 mb-6 text-balance'>
-            {strings.howItWorks.heading}
-            <span className='ml-1.5 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent'>
-              {strings.howItWorks.headingHighlight}
-            </span>
-          </h2>
-          <p className='text-body-large text-slate-600 max-w-4xl mx-auto text-pretty leading-relaxed'>
-            {strings.howItWorks.description}
-          </p>
-        </div>
+        <HeaderAndDescription
+          heading={strings.howItWorks.heading}
+          headingHighlight={strings.howItWorks.headingHighlight}
+          description={strings.howItWorks.description}
+        />
 
         <TwoSidesButtons activeTab={activeTab} onTabChange={setActiveTab} />
 

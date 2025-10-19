@@ -3,20 +3,8 @@
  * Follows Single Responsibility Principle - handles only benefit card rendering
  */
 
-import type { LucideIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
-
-interface BenefitItem {
-  title: string
-  description: string
-  icon: LucideIcon
-}
-
-interface BenefitCardProps {
-  benefit: BenefitItem
-  colorScheme?: 'blue' | 'emerald' | 'purple' | 'orange'
-  className?: string
-}
+import type { BenefitCardProps, BenefitItem } from '@/types/grid-cards.types'
 
 /**
  * Color scheme configuration for benefit cards

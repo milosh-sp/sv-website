@@ -14,9 +14,9 @@ import {
   QrCode,
 } from 'lucide-react'
 import { strings } from '@/lib/strings'
-import { BenefitGrid } from './ui/grid-cards'
 import { TwoSidesButtons } from './ui/two-sides-buttons'
 import { HeaderAndDescription } from './ui/header-and-description'
+import { BenefitCards } from './benefit-cards'
 
 /**
  * Icon mapping configuration for benefits
@@ -76,40 +76,28 @@ export function TwoSidesExplanation() {
 
         <div className='max-w-6xl mx-auto'>
           {activeTab === 'vetter' && (
-            <div
-              className='text-center animate-fade-in-scale'
-              role='tabpanel'
-              id='vetter-panel'
-              aria-labelledby='vetter-tab'
-            >
-              <div className='w-28 h-28 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-lg'>
+            <BenefitCards
+              icon={
                 <DollarSign
                   className='h-14 w-14 text-white'
                   aria-hidden='true'
                 />
-              </div>
-              <p className='text-body-large text-slate-600 mb-12 max-w-3xl mx-auto text-pretty'>
-                {strings.howItWorks.techProfessionals.description}
-              </p>
-              <BenefitGrid benefits={vetterBenefits} colorScheme='emerald' />
-            </div>
+              }
+              description={strings.howItWorks.techProfessionals.description}
+              benefits={vetterBenefits}
+              colorScheme='emerald'
+            />
           )}
 
           {activeTab === 'candidate' && (
-            <div
-              className='text-center animate-fade-in-scale'
-              role='tabpanel'
-              id='candidate-panel'
-              aria-labelledby='candidate-tab'
-            >
-              <div className='w-28 h-28 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-lg'>
+            <BenefitCards
+              icon={
                 <Award className='h-14 w-14 text-white' aria-hidden='true' />
-              </div>
-              <p className='text-body-large text-slate-600 mb-12 max-w-3xl mx-auto text-pretty'>
-                {strings.howItWorks.members.description}
-              </p>
-              <BenefitGrid benefits={candidateBenefits} colorScheme='blue' />
-            </div>
+              }
+              description={strings.howItWorks.members.description}
+              benefits={candidateBenefits}
+              colorScheme='blue'
+            />
           )}
         </div>
       </div>

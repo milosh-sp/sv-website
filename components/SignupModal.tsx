@@ -1,19 +1,15 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
 import { X, Mail, Linkedin, Github, Award, CircleStar } from 'lucide-react'
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog'
 import { getUserSegmentLabel } from '@/types/form-data'
 import { cn } from '@/lib/utils'
 import { strings } from '@/lib/strings'
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 import { useSignupForm } from '@/hooks/use-signup-form'
+import { Button } from './ui/Button'
+import { Input } from './ui/Input'
+import { Dialog, DialogContent, DialogTitle } from '@radix-ui/react-dialog'
+import { DialogHeader } from './ui/Dialog'
 
 /**
  * SignupModal Component
@@ -40,7 +36,7 @@ export function SignupModal() {
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && closeModal()}>
-      <DialogContent className='max-w-md' showCloseButton={false}>
+      <DialogContent className='max-w-md'>
         <DialogHeader className='relative'>
           <button
             type='button'

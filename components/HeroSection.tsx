@@ -1,8 +1,8 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/ui/Button'
 import { Shield, Clock, UserCheck, Award, CircleStar } from 'lucide-react'
-import { useSignupModal } from '@/contexts/signup-modal-context'
+import { useSignupModal } from '@/contexts/SignupModalContext'
 import { strings } from '@/lib/strings'
 
 export function HeroSection() {

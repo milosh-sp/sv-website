@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Shield, Lock, Eye, UserCheck, Database, Globe } from 'lucide-react'
 import { generateMetadata } from '@/lib/seo'
 import { pageSeoConfig } from '@/lib/seo-config'
-import { PrivacyPolicyBreadcrumb } from '@/components/ui/breadcrumb'
+import { PrivacyPolicyBreadcrumb } from '@/components/ui/Breadcrumb'
 import { strings } from '@/lib/strings'
 
 export const metadata: Metadata = generateMetadata(pageSeoConfig.privacy)

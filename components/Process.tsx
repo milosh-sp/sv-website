@@ -11,8 +11,8 @@ import {
   CheckCircle,
 } from 'lucide-react'
 import { strings } from '@/lib/strings'
-import { StepsGrid } from './ui/steps'
-import { HeaderAndButtons } from './ui/header-and-buttons'
+import { StepsGrid } from './ui/Steps'
+import { HeaderAndButtons } from './ui/HeaderAndButtons'
 
 export function Process() {
   const [activeTab, setActiveTab] = useState<'candidate' | 'vetter'>(

@@ -1,10 +1,10 @@
 'use client'
 
 import Link from 'next/link'
-import { Button } from '@/components/ui/button'
 import { Home, Search, ArrowLeft } from 'lucide-react'
 import { useEffect } from 'react'
 import { strings } from '@/lib/strings'
+import { Button } from '@/components/ui/Button'
 
 export default function NotFound() {
   // Set page title for SEO

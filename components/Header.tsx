@@ -6,7 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import logo from '../assets/logo-sv.svg'
-import { HeaderLink } from './header-link'
+import { HeaderLink } from './HeaderLink'
 
 /**
  * Scroll margin offset to account for fixed header height

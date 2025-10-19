@@ -15,8 +15,8 @@ import {
   CircleStar,
 } from 'lucide-react'
 import { strings } from '@/lib/strings'
-import { BenefitCards } from './benefit-cards'
-import { HeaderAndButtons } from './ui/header-and-buttons'
+import { BenefitCards } from './BenefitCards'
+import { HeaderAndButtons } from './ui/HeaderAndButtons'
 
 /**
  * Icon mapping configuration for benefits

@@ -1,7 +1,7 @@
 import { strings } from '@/lib/strings'
 import type { BenefitItem } from '@/types/grid-cards.types'
 import type { ReactNode } from 'react'
-import { BenefitGrid } from './ui/grid-cards'
+import { BenefitGrid } from './ui/GridCards'
 
 /**
  * Color scheme mapping configuration for benefit cards

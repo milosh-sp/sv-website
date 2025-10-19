@@ -2,8 +2,8 @@
 
 import type { ReactNode } from 'react'
 import { cn } from '@/lib/utils'
-import { HeaderAndDescription } from './header-and-description'
-import { TwoSidesButtons } from './two-sides-buttons'
+import { HeaderAndDescription } from './HeaderAndDescription'
+import { TwoSidesButtons } from './TwoSidesButtons'
 
 /**
  * Tab type for user role selection

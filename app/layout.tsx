@@ -2,16 +2,16 @@ import type React from 'react'
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { Header } from '@/components/header'
-import { Footer } from '@/components/footer'
-import { SignupModalProvider } from '@/contexts/signup-modal-context'
+import { Header } from '@/components/Header'
+import { Footer } from '@/components/Footer'
+import { SignupModalProvider } from '@/contexts/SignupModalContext'
 import {
   defaultMetadata,
   generateOrganizationSchema,
   generateWebsiteSchema,
 } from '@/lib/seo'
 import { strings } from '@/lib/strings'
-import { GoogleAnalytics } from '@/components/google-analytics'
+import { GoogleAnalytics } from '@/components/GoogleAnalytics'
 
 const inter = Inter({
   subsets: ['latin'],

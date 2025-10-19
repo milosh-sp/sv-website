@@ -1,6 +1,6 @@
 import { strings } from '@/lib/strings'
 import { CircleStar, Award } from 'lucide-react'
-import { SideTabButton } from './side-button'
+import { SideTabButton } from './SideButton'
 
 /**
  * Tab type for user role selection

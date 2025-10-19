@@ -29,9 +29,9 @@ export const USER_SEGMENTS = {
 export function getUserSegmentLabel(userType: UserType): string {
   switch (userType) {
     case 'member':
-      return 'Skill Verification Candidate'
+      return 'Member'
     case 'tech-pro':
-      return 'Tech Professional Verifier'
+      return 'Guru Member'
     default:
       return 'Unknown'
   }

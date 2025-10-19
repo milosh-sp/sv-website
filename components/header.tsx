@@ -76,13 +76,6 @@ export function Header() {
               {strings.navigation.menu.faqs}
               <span className='absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full' />
             </Link>
-            <Button
-              asChild
-              className='btn-primary h-11 px-6 text-base'
-              aria-label={strings.navigation.accessibility.scrollToHero}
-            >
-              <Link href='/#home'>{strings.navigation.menu.joinCommunity}</Link>
-            </Button>
           </div>
 
           <button
@@ -154,17 +147,6 @@ export function Header() {
               >
                 {strings.navigation.mobile.faq}
               </Link>
-              <div className='pt-2 mt-2 border-t border-slate-200'>
-                <Button
-                  asChild
-                  className='w-full btn-primary h-12 text-base'
-                  role='menuitem'
-                >
-                  <Link href='/#home'>
-                    {strings.navigation.menu.joinCommunity}
-                  </Link>
-                </Button>
-              </div>
             </div>
           </div>
         )}

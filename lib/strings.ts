@@ -17,17 +17,17 @@
 
 export const branding = {
   // Company name and tagline
-  companyName: 'SkillVerdict',
+  companyName: 'Skill Verdict',
   tagline: "Don't chase, attract!",
 
   // Logo and visual elements
   logo: {
-    alt: 'SkillVerdict Logo',
+    alt: 'Skill Verdict Logo',
     ariaLabel: 'Go to homepage',
   },
 
   // Copyright and legal
-  copyright: '© 2025 SkillVerdict. All rights reserved.',
+  copyright: '© 2025 Skill Verdict. All rights reserved.',
 } as const
 
 // ============================================================================
@@ -43,7 +43,6 @@ export const navigation = {
     companies: 'Companies',
     howToJoin: 'How to join',
     faqs: 'FAQs',
-    joinCommunity: 'Join community',
   },
 
   // Mobile menu specific items
@@ -80,7 +79,7 @@ export const hero = {
    */
   mainHeadingHighlight: ' CV2.0!',
   subHeading:
-    'SkillVerdict is a decentralized, unbiased and respected community where global tech professionals from leading companies verify your skills. Replace empty resume claims with proven endorsements, build your CV2.0 and get hired faster, or earn income by selling your own credibility as a tech professional',
+    'Skill Verdict is a decentralized, unbiased and respected community where global tech professionals from leading companies verify your skills. Replace empty resume claims with proven endorsements, build your CV2.0 and get hired faster, or earn income by selling your own credibility as a tech professional',
   callToAction: 'Choose your path to get started:',
 
   // Action buttons
@@ -113,19 +112,19 @@ export const howItWorks = {
   heading: 'Twitter Community Notes, but for your',
   headingHighlight: 'skills',
   description:
-    "Inspired by models like Twitter's Community Notes, SkillVerdict brings transparent, community-driven verification to member's skills. It's unbiased assessment, powered by the community.",
+    "Inspired by models like Twitter's Community Notes, Skill Verdict brings transparent, community-driven verification to member's skills. It's unbiased assessment, powered by the community.",
 
   // Tab labels
   tabs: {
     members: 'Members',
-    techProfessionals: 'Tech professionals',
+    techProfessionals: 'Guru members',
   },
 
   // Tab accessibility
   tabAccessibility: {
     chooseUserType: 'Choose user type',
     membersTab: 'Members tab',
-    techProfessionalsTab: 'Tech professionals tab',
+    techProfessionalsTab: 'Guru member',
   },
 
   // Members section
@@ -156,11 +155,11 @@ export const howItWorks = {
     ],
   },
 
-  // Tech professionals section
+  // Guru membersection
   techProfessionals: {
     iconAriaLabel: 'Dollar sign icon for tech professionals',
     description:
-      'Top talent is valued in the SkillVerdict community. Monetize your expertise by verifying the skills of other members.',
+      'Top talent is valued in the Skill Verdict community. Monetize your expertise by verifying the skills of other members.',
     benefits: [
       {
         title: 'Earn extra income',
@@ -186,9 +185,9 @@ export const howItWorks = {
 
   // Section accessibility
   accessibility: {
-    howItWorksSection: 'How SkillVerdict works for different users',
+    howItWorksSection: 'How Skill Verdict works for different users',
     membersPanel: 'Members panel',
-    techProfessionalsPanel: 'Tech professionals panel',
+    techProfessionalsPanel: 'Guru memberpanel',
   },
 } as const
 
@@ -237,7 +236,7 @@ export const companyDiscovery = {
   iconAriaLabel: 'Building icon for company discovery',
   heading: 'Your CV2.0 attracts companies!',
   description:
-    'With passive discovery, companies on SkillVerdict discover and contact you directly with opportunities that match your verified skills.',
+    'With passive discovery, companies on Skill Verdict discover and contact you directly with opportunities that match your verified skills.',
 
   // Benefits list
   benefits: [
@@ -259,9 +258,9 @@ export const companyDiscovery = {
 
 export const process = {
   // Section header
-  heading: 'How SkillVerdict Works',
+  heading: 'How Skill Verdict Works',
   description:
-    'Our process ensures rigorous verification while maintaining flexibility for both tech professionals and members. We hand pick our verifiers, you will be assured that your skills are going to be verified in the upmost professional manner, unbiased, professional, fast and transparent.',
+    'Our process ensures rigorous verification while maintaining flexibility for both guru memberand members. We hand pick our verifiers, you will be assured that your skills are going to be verified in the upmost professional manner, unbiased, professional, fast and transparent.',
 
   // Tab labels
   tabs: {
@@ -333,7 +332,7 @@ export const faq = {
     {
       question: 'How does the verification process work?',
       answer:
-        'Our verification process involves a multi-step evaluation where your skills are assessed by experienced tech professionals in the field. Our tech professionals come from different backgrounds and companies like Google, Netflix, Airbnb, Amazon, Meta and many more. Once verified, your skills are permanently recorded and can be easily validated by employers through QR codes or direct links.',
+        'Our verification process involves a multi-step evaluation where your skills are assessed by experienced guru member in the field. Our guru member come from different backgrounds and companies like Google, Netflix, Airbnb, Amazon, Meta and many more. Once verified, your skills are permanently recorded and can be easily validated by employers through QR codes or direct links.',
     },
     {
       question: 'How long does it take to get verified?',
@@ -399,7 +398,7 @@ export const faq = {
 
 export const signupModal = {
   // Modal header
-  title: 'Join SkillVerdict',
+  title: 'Join Skill Verdict',
 
   // Form fields
   form: {
@@ -503,8 +502,8 @@ export const legalPages = {
       introduction: {
         title: 'Introduction',
         content: [
-          'SkillVerdict ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our skill verification platform.',
-          'By using SkillVerdict, you agree to the collection and use of information in accordance with this policy. If you do not agree with our policies and practices, do not use our service.',
+          'Skill Verdict ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our skill verification platform.',
+          'By using Skill Verdict, you agree to the collection and use of information in accordance with this policy. If you do not agree with our policies and practices, do not use our service.',
         ],
       },
       informationWeCollect: {
@@ -596,7 +595,7 @@ export const legalPages = {
       internationalTransfers: {
         title: 'International Data Transfers',
         content: [
-          'SkillVerdict operates globally, and your information may be transferred to and processed in countries other than your own. We ensure appropriate safeguards are in place for international transfers, including:',
+          'Skill Verdict operates globally, and your information may be transferred to and processed in countries other than your own. We ensure appropriate safeguards are in place for international transfers, including:',
           'Standard contractual clauses approved by relevant authorities',
           'Adequacy decisions for transfers to certain countries',
           'Certification schemes and codes of conduct',
@@ -605,7 +604,7 @@ export const legalPages = {
       childrensPrivacy: {
         title: "Children's Privacy",
         content:
-          'SkillVerdict is not intended for use by children under 16 years of age. We do not knowingly collect personal information from children under 16. If we become aware that we have collected personal information from a child under 16, we will take steps to delete such information.',
+          'Skill Verdict is not intended for use by children under 16 years of age. We do not knowingly collect personal information from children under 16. If we become aware that we have collected personal information from a child under 16, we will take steps to delete such information.',
       },
       changesToPolicy: {
         title: 'Changes to This Privacy Policy',
@@ -619,7 +618,7 @@ export const legalPages = {
         content:
           'If you have any questions about this Privacy Policy or our privacy practices, please contact us:',
         email: 'contact@skillverdict.com',
-        address: 'SkillVerdict Privacy Team',
+        address: 'Skill Verdict Privacy Team',
         responseTime: 'We aim to respond within 48 hours',
       },
     },
@@ -632,7 +631,7 @@ export const legalPages = {
 
 export const errorPages = {
   notFound: {
-    title: 'Page Not Found | SkillVerdict',
+    title: 'Page Not Found | Skill Verdict',
     errorCode: '404',
     heading: 'Page Not Found',
     description:

@@ -12,6 +12,7 @@ import {
   FastForward,
   Rocket,
   QrCode,
+  CircleStar,
 } from 'lucide-react'
 import { strings } from '@/lib/strings'
 
@@ -93,7 +94,7 @@ export function TwoSides() {
               aria-selected={activeTab === 'candidate'}
               aria-controls='candidate-panel'
             >
-              <Award className='h-5 w-5' aria-hidden='true' />
+              <CircleStar className='h-5 w-5' aria-hidden='true' />
               {strings.howItWorks.tabs.members}
             </button>
             <button
@@ -108,7 +109,7 @@ export function TwoSides() {
               aria-selected={activeTab === 'vetter'}
               aria-controls='vetter-panel'
             >
-              <DollarSign className='h-5 w-5' aria-hidden='true' />
+              <Award className='h-5 w-5' aria-hidden='true' />
               {strings.howItWorks.tabs.techProfessionals}
             </button>
           </div>

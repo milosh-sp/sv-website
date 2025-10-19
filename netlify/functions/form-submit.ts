@@ -1,8 +1,8 @@
 import type { Handler, HandlerEvent, HandlerContext } from '@netlify/functions'
 import {
   validateEmail,
-  validateLinkedIn,
   validateGitHub,
+  validateLinkedIn,
 } from '../../lib/validation'
 
 // Types for the request body
@@ -17,14 +17,10 @@ interface FormSubmissionData {
   }
 }
 
-// Type for location data
-interface LocationData {
-  ip?: string
-  country?: string
-  country_name?: string
-  region?: string
-  city?: string
-  timezone?: string
+// Type for client IP and country
+interface ClientIPAndCountry {
+  country: string
+  clientIp: string
 }
 
 // CORS headers for static site compatibility
@@ -57,9 +53,10 @@ export const handler: Handler = async (
   }
 
   // Extract client IP and country
-  const getClientIPandCountry = (): { clientIp: string; country: string } => {
+  const getClientIPandCountry = (): ClientIPAndCountry => {
     // Check for forwarded IP in headers
     const forwardedFor = event.headers['x-forwarded-for'] ?? ''
+    // Prioritize x-country header for country information
     const country = event.headers['x-country'] ?? ''
     if (forwardedFor) {
       // x-forwarded-for can contain multiple IPs, get the first one
@@ -81,39 +78,6 @@ export const handler: Handler = async (
 
   // Get client IP and country
   const clientIP = getClientIPandCountry()
-
-  // Get location data from IP address (country, region, city)
-  const getLocationData = async (ipAddress?: string): Promise<LocationData> => {
-    // If no IP address, return empty location data
-    if (!ipAddress) {
-      return {}
-    }
-
-    try {
-      // Using ipapi.co for geolocation (free tier available)
-      // Note: This is a free service with rate limits
-      const response = await fetch(`https://ipapi.co/${ipAddress}/json/`)
-
-      if (!response.ok) {
-        console.warn('Failed to fetch location data for IP:', ipAddress)
-        return { ip: ipAddress }
-      }
-
-      const locationData = await response.json()
-
-      return {
-        ip: ipAddress,
-        country: locationData.country,
-        region: locationData.region,
-        city: locationData.city,
-        timezone: locationData.timezone,
-        country_name: locationData.country_name,
-      }
-    } catch (error) {
-      console.warn('Error fetching location data:', error)
-      return { ip: ipAddress }
-    }
-  }
 
   // Only allow POST requests
   if (event.httpMethod !== 'POST') {
@@ -306,12 +270,6 @@ export const handler: Handler = async (
       }
     }
 
-    // Get location data if IP is available
-    let locationData: LocationData = {}
-    if (clientIP.clientIp) {
-      locationData = await getLocationData(clientIP.clientIp)
-    }
-
     // Prepare data for Sender.net API (exclude honeypot and timing fields)
     const { ...cleanFields } = fields
     const senderData = {
@@ -322,10 +280,8 @@ export const handler: Handler = async (
         signup_timestamp: new Date().toISOString(),
         // Add IP address if available
         client_ip: clientIP.clientIp,
-        // Add location data if available
-        country: locationData.country ?? clientIP.country,
-        country_name: locationData.country_name,
-        city: locationData.city,
+        // Add country from headers if available
+        country: clientIP.country,
       },
     }
 

@@ -90,6 +90,8 @@ export const handler: Handler = async (
       // Note: This is a free service with rate limits
       const response = await fetch(`https://ipapi.co/${ipAddress}/json/`)
 
+      console.log('Location data response:', response)
+
       if (!response.ok) {
         console.warn('Failed to fetch location data for IP:', ipAddress)
         return { ip: ipAddress }

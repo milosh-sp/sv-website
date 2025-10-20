@@ -1,27 +1,4 @@
-/**
- * API utilities for form submissions
- */
-
-// Types for form submission
-export interface FormSubmissionData {
-  email: string
-  fields?: {
-    linkedin?: string
-    github?: string
-    user_type?: string
-    pain_point?: string
-    source?: string
-    website?: string // Honeypot field
-    form_start_time?: string // For timing validation
-  }
-}
-
-export interface ApiResponse {
-  success: boolean
-  message?: string
-  error?: string
-  data?: Record<string, unknown> | null
-}
+import type { FormSubmissionData, ApiResponse } from '@/types/api.types'
 
 /**
  * Type guard to validate ApiResponse structure

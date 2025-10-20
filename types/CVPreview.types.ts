@@ -13,9 +13,15 @@ interface SkillItem extends VerificationStatus {
 }
 
 interface EducationItem extends VerificationStatus {
+  name: string
   degree: string
   institution: string
   year: string
+  verified: boolean | 'pending'
+}
+
+interface EducationSectionItem extends EducationItem {
+  verified: boolean
 }
 
 interface ExperienceItem extends VerificationStatus {
@@ -69,4 +75,5 @@ export type {
   CVSectionProps,
   VerificationBadgeProps,
   VerifierTooltipProps,
+  EducationSectionItem,
 }

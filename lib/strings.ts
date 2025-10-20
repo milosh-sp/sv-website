@@ -705,12 +705,14 @@ export const cvSampleData = {
   ],
   education: [
     {
+      name: 'MSc Computer Science',
       degree: 'MSc Computer Science',
       institution: 'Stanford University',
       year: '2016',
       verified: false,
     },
     {
+      name: 'BSc Software Engineering',
       degree: 'BSc Software Engineering',
       institution: 'UC Berkeley',
       year: '2014',

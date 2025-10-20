@@ -1,3 +1,5 @@
+import type { UserType } from './FormData.types'
+
 /**
  * Interface for form field errors
  */
@@ -29,8 +31,10 @@ interface FormData {
  */
 interface SignupModalContextType {
   isOpen: boolean
-  userType: 'member' | 'contributor' | null
+  userType: UserType
+  openModal: (userType?: UserType) => void
   closeModal: () => void
+  toggleModal: () => void
 }
 
 /**

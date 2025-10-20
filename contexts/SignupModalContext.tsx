@@ -1,16 +1,9 @@
 'use client'
 
-import { UserType } from '@/types/FormData.types'
+import type { UserType } from '@/types/FormData.types'
+import type { SignupModalContextType } from '@/types/SignUpModal.types'
 import type React from 'react'
 import { createContext, useContext, useState, useCallback } from 'react'
-
-interface SignupModalContextType {
-  isOpen: boolean
-  userType: UserType
-  openModal: (userType?: UserType) => void
-  closeModal: () => void
-  toggleModal: () => void
-}
 
 const SignupModalContext = createContext<SignupModalContextType | null>(null)
 

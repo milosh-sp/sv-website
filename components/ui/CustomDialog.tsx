@@ -1,4 +1,4 @@
-import { CustomDialogProps } from '@/types/CustomDialogProps.types'
+import type { CustomDialogProps } from '@/types/CustomDialogProps.types'
 import type { MouseEvent } from 'react'
 
 const CustomDialog = ({ isOpen, onClose, children }: CustomDialogProps) => {

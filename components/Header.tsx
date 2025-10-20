@@ -1,6 +1,7 @@
 'use client'
 
 import { strings } from '@/lib/strings'
+import { navigationData } from '@/lib/navigationData'
 import { Menu, X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -57,46 +58,17 @@ export function Header() {
           </Link>
 
           <div className='hidden md:flex items-center gap-8'>
-            <HeaderLink
-              scroll={false}
-              href='#how-it-works'
-              onClick={() => scrollToSection('how-it-works')}
-              variant='desktop'
-            >
-              {strings.navigation.menu.howItWorks}
-            </HeaderLink>
-            <HeaderLink
-              scroll={false}
-              href='#cv-preview'
-              onClick={() => scrollToSection('cv-preview')}
-              variant='desktop'
-            >
-              {strings.navigation.menu.cvPreview}
-            </HeaderLink>
-            <HeaderLink
-              scroll={false}
-              href='#company-discovery'
-              onClick={() => scrollToSection('company-discovery')}
-              variant='desktop'
-            >
-              {strings.navigation.menu.companies}
-            </HeaderLink>
-            <HeaderLink
-              scroll={false}
-              href='#process'
-              onClick={() => scrollToSection('process')}
-              variant='desktop'
-            >
-              {strings.navigation.menu.howToJoin}
-            </HeaderLink>
-            <HeaderLink
-              scroll={false}
-              href='#faq'
-              onClick={() => scrollToSection('faq')}
-              variant='desktop'
-            >
-              {strings.navigation.menu.faqs}
-            </HeaderLink>
+            {navigationData.map((link) => (
+              <HeaderLink
+                key={link.id}
+                scroll={false}
+                href={link.href}
+                onClick={() => scrollToSection(link.id)}
+                variant='desktop'
+              >
+                {link.label}
+              </HeaderLink>
+            ))}
           </div>
 
           <button
@@ -126,48 +98,16 @@ export function Header() {
             role='menu'
           >
             <div className='flex flex-col gap-2'>
-              <HeaderLink
-                href='#home'
-                onClick={() => scrollToSection('home')}
-                variant='mobile'
-              >
-                {strings.navigation.menu.home}
-              </HeaderLink>
-              <HeaderLink
-                href='#how-it-works'
-                onClick={() => scrollToSection('how-it-works')}
-                variant='mobile'
-              >
-                {strings.navigation.menu.howItWorks}
-              </HeaderLink>
-              <HeaderLink
-                href='#cv-preview'
-                onClick={() => scrollToSection('cv-preview')}
-                variant='mobile'
-              >
-                {strings.navigation.mobile.cvPreview}
-              </HeaderLink>
-              <HeaderLink
-                href='#company-discovery'
-                onClick={() => scrollToSection('company-discovery')}
-                variant='mobile'
-              >
-                {strings.navigation.mobile.forCompanies}
-              </HeaderLink>
-              <HeaderLink
-                href='#process'
-                onClick={() => scrollToSection('process')}
-                variant='mobile'
-              >
-                {strings.navigation.mobile.process}
-              </HeaderLink>
-              <HeaderLink
-                href='#faq'
-                onClick={() => scrollToSection('faq')}
-                variant='mobile'
-              >
-                {strings.navigation.mobile.faq}
-              </HeaderLink>
+              {navigationData.map((link) => (
+                <HeaderLink
+                  key={link.id}
+                  href={link.href}
+                  onClick={() => scrollToSection(link.id)}
+                  variant='mobile'
+                >
+                  {link.label}
+                </HeaderLink>
+              ))}
             </div>
           </div>
         )}

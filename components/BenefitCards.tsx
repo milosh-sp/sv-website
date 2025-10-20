@@ -1,7 +1,6 @@
 import { strings } from '@/lib/strings'
-import type { BenefitItem } from '@/types/GridCards.types'
-import type { ReactNode } from 'react'
 import { BenefitGrid } from './ui/GridCards'
+import type { BenefitCardsProps } from '@/types/BenefitCards.types'
 
 /**
  * Color scheme mapping configuration for benefit cards
@@ -13,14 +12,6 @@ const COLOR_SCHEME_GRADIENTS = {
   purple: 'from-purple-500 to-purple-600',
   orange: 'from-orange-500 to-orange-600',
 } as const
-
-interface BenefitCardsProps {
-  benefits: BenefitItem[]
-  description?: string
-  icon?: ReactNode
-  colorScheme?: 'blue' | 'emerald' | 'purple' | 'orange'
-  className?: string
-}
 
 /**
  * Reusable benefit cards component that follows SOLID principles

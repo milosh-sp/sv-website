@@ -17,6 +17,7 @@ import {
 import { strings } from '@/lib/strings'
 import { BenefitCards } from './BenefitCards'
 import { HeaderAndButtons } from './ui/HeaderAndButtons'
+import type { BenefitWithIcon } from '@/types/TwoSidesExplanation.types'
 
 /**
  * Icon mapping configuration for benefits
@@ -35,12 +36,6 @@ const CANDIDATE_BENEFIT_ICONS: readonly LucideIcon[] = [
   Rocket,
   QrCode,
 ] as const
-
-interface BenefitWithIcon {
-  title: string
-  description: string
-  icon: LucideIcon
-}
 
 export function TwoSidesExplanation() {
   const [activeTab, setActiveTab] = useState<'candidate' | 'vetter'>(

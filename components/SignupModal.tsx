@@ -1,8 +1,7 @@
 'use client'
 
 import { X, Mail, Linkedin, Github, Award, CircleStar } from 'lucide-react'
-import { getUserSegmentLabel } from '@/utils/utils'
-import { cn } from '@/lib/utils'
+import { cn, getUserSegmentLabel } from '@/lib/utils'
 import { strings } from '@/lib/strings'
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 import { useSignupForm } from '@/hooks/useSignUpForm'

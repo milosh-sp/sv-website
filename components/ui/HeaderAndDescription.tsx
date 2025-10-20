@@ -1,14 +1,6 @@
 import { cn } from '@/lib/utils'
 
-interface SectionHeaderProps {
-  heading: string
-  headingHighlight?: string
-  description: string
-  className?: string
-  headingClassName?: string
-  descriptionClassName?: string
-  highlightClassName?: string
-}
+import type { SectionHeaderProps } from '@/types/HeaderAndDescription.types'
 
 export function HeaderAndDescription({
   heading,

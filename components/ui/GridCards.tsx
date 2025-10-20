@@ -4,7 +4,10 @@
  */
 
 import { cn } from '@/lib/utils'
-import type { BenefitCardProps, BenefitItem } from '@/types/GridCards.types'
+import type {
+  BenefitCardProps,
+  BenefitGridProps,
+} from '@/types/GridCards.types'
 
 /**
  * Color scheme configuration for benefit cards
@@ -64,13 +67,6 @@ export function BenefitCard({
       <p className='text-slate-600 leading-relaxed'>{benefit.description}</p>
     </div>
   )
-}
-
-interface BenefitGridProps {
-  benefits: BenefitItem[]
-  colorScheme?: 'blue' | 'emerald' | 'purple' | 'orange'
-  columns?: 1 | 2 | 3 | 4
-  className?: string
 }
 
 /**

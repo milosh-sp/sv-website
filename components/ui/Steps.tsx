@@ -1,29 +1,5 @@
-import type { LucideIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
-
-/**
- * Step item interface for process steps
- * Follows Interface Segregation Principle - minimal, focused interface
- */
-export interface StepItem {
-  title: string
-  description: string
-  icon: LucideIcon
-}
-
-/**
- * Props interface for StepsGrid component
- */
-interface StepsGridProps {
-  /** Array of step items to display */
-  steps: StepItem[]
-  /** Optional CSS class name for container */
-  className?: string
-  /** Number of columns for grid layout */
-  columns?: 2 | 3 | 4
-  /** Color scheme for icon background and color */
-  colorScheme?: 'blue' | 'emerald' | 'purple' | 'orange'
-}
+import type { StepsGridProps } from '@/types/Steps.types'
 
 /**
  * Color scheme mapping for icon backgrounds and colors

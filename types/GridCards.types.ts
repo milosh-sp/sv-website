@@ -1,20 +1,24 @@
-import type { LucideIcon } from 'lucide-react'
+/**
+ * Types for GridCards component
+ */
 
-export interface BenefitCardProps {
+interface BenefitItem {
+  icon: React.ComponentType<{ className?: string }>
+  title: string
+  description: string
+}
+
+interface BenefitCardProps {
   benefit: BenefitItem
   colorScheme?: 'blue' | 'emerald' | 'purple' | 'orange'
   className?: string
 }
 
-export interface BenefitItem {
-  title: string
-  description: string
-  icon: LucideIcon
-}
-
-export interface BenefitGridProps {
+interface BenefitGridProps {
   benefits: BenefitItem[]
   colorScheme?: 'blue' | 'emerald' | 'purple' | 'orange'
   columns?: 1 | 2 | 3 | 4
   className?: string
 }
+
+export type { BenefitItem, BenefitCardProps, BenefitGridProps }

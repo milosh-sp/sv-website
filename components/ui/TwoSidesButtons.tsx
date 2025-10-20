@@ -1,22 +1,7 @@
 import { strings } from '@/lib/strings'
-import { CircleStar, Award } from 'lucide-react'
+import type { TwoSidesButtonsProps } from '@/types/TwoSidesButtons.types'
+import { Award, CircleStar } from 'lucide-react'
 import { SideTabButton } from './SideButton'
-
-/**
- * Tab type for user role selection
- */
-type TabType = 'candidate' | 'vetter'
-
-/**
- * Props interface for TwoSidesButtons component
- * Follows Interface Segregation Principle - minimal, focused interface
- */
-interface TwoSidesButtonsProps {
-  /** Currently active tab */
-  activeTab: TabType
-  /** Callback when tab changes */
-  onTabChange: (tab: TabType) => void
-}
 
 export function TwoSidesButtons({
   activeTab,

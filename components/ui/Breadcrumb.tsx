@@ -10,18 +10,7 @@ import { ChevronRight, Home } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { generateBreadcrumbSchema } from '@/lib/seo'
 import { strings } from '@/lib/strings'
-
-export interface BreadcrumbItem {
-  name: string
-  url: string
-  current?: boolean
-}
-
-interface BreadcrumbProps {
-  items: BreadcrumbItem[]
-  className?: string
-  showHome?: boolean
-}
+import type { BreadcrumbItem, BreadcrumbProps } from '@/types/Breadcrumb.types'
 
 export function Breadcrumb({
   items,

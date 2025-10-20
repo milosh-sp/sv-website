@@ -1,11 +1,7 @@
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 
-interface HeaderLinkProps extends React.ComponentPropsWithoutRef<typeof Link> {
-  href: string
-  children: ReactNode
-  variant?: 'desktop' | 'mobile'
-}
+import type { HeaderLinkProps } from '@/types/HeaderLink.types'
 
 export function HeaderLink({
   href,

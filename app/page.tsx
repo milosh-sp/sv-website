@@ -6,10 +6,11 @@ import { SignupModal } from '@/components/SignupModal'
 import { FloatingSignupButton } from '@/components/FloatingSignupButton'
 import { CompanyDiscovery } from '@/components/CompanyDiscovery'
 import { TwoSidesExplanation } from '@/components/TwoSidesExplanation'
+import { SignupModalProvider } from '@/contexts/SignupModalContext'
 
 export default function Home() {
   return (
-    <>
+    <SignupModalProvider>
       <HeroSection />
       <TwoSidesExplanation />
       <CompanyDiscovery />
@@ -18,6 +19,6 @@ export default function Home() {
       <FAQ />
       <SignupModal />
       <FloatingSignupButton />
-    </>
+    </SignupModalProvider>
   )
 }

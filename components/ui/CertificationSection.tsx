@@ -3,10 +3,6 @@ import type { CertificationItem } from '@/types/CVPreview.types'
 import { Award } from 'lucide-react'
 import { SectionList } from './SectionList'
 
-/**
- * Certifications Section Component
- * Single Responsibility: Displays professional certifications
- */
 export function CertificationsSection() {
   return (
     <SectionList

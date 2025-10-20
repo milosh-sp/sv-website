@@ -1,5 +1,4 @@
 import { cn } from '@/lib/utils'
-
 import type { SectionHeaderProps } from '@/types/HeaderAndDescription.types'
 
 export function HeaderAndDescription({

@@ -2,8 +2,8 @@ import type React from 'react'
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import '../styles/globals.css'
-import { Header } from '@/components/Header'
-import { Footer } from '@/components/Footer'
+import { Header } from '@/components/sections/Header'
+import { Footer } from '@/components/sections/Footer'
 import { SignupModalProvider } from '@/contexts/SignupModalContext'
 import {
   defaultMetadata,

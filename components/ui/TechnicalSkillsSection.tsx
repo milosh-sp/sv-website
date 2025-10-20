@@ -3,10 +3,6 @@ import type { SkillItem } from '@/types/CVPreview.types'
 import { Code } from 'lucide-react'
 import { SectionList } from './SectionList'
 
-/**
- * Technical Skills Section Component
- * Single Responsibility: Displays technical skills with verification status
- */
 export function TechnicalSkillsSection() {
   return (
     <SectionList

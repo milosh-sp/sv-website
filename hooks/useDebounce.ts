@@ -1,7 +1,3 @@
-/**
- * Custom hook for debouncing values and callbacks
- */
-
 import { useState, useEffect, useCallback, useRef } from 'react'
 
 /**

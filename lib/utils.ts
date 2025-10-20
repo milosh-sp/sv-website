@@ -2,12 +2,12 @@ import { clsx, type ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 import type { UserType } from '@/types/FormData.types'
 
-export function cn(...inputs: ClassValue[]) {
+function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
 // Helper function to get user segment label
-export function getUserSegmentLabel(userType: UserType): string {
+function getUserSegmentLabel(userType: UserType): string {
   switch (userType) {
     case 'member':
       return 'Member'
@@ -17,3 +17,12 @@ export function getUserSegmentLabel(userType: UserType): string {
       return 'Unknown'
   }
 }
+
+const scrollToSection = (sectionId: string) => {
+  const element = document.getElementById(sectionId)
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+}
+
+export { cn, getUserSegmentLabel, scrollToSection }

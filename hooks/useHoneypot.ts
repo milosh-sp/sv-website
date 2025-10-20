@@ -1,24 +1,9 @@
-/**
- * Custom hook for honeypot bot detection
- * Provides multiple layers of bot detection including:
- * - Hidden honeypot field
- * - Form submission timing validation
- * - Mouse movement detection
- */
-
+import type {
+  HoneypotFieldProps,
+  HoneypotState,
+  HoneypotValidation,
+} from '@/types/UseHoneyPot.types'
 import { useState, useEffect, useRef, useCallback } from 'react'
-
-interface HoneypotState {
-  honeypotValue: string
-  isBot: boolean
-  startTime: number
-  hasMouseMovement: boolean
-}
-
-interface HoneypotValidation {
-  isValid: boolean
-  reason?: string
-}
 
 export function useHoneypot() {
   const [state, setState] = useState<HoneypotState>({
@@ -111,16 +96,6 @@ export function useHoneypot() {
     // Expose timing info for debugging
     timeTaken: Date.now() - state.startTime,
   }
-}
-
-/**
- * Honeypot field component props
- */
-export interface HoneypotFieldProps {
-  value: string
-  onChange: (value: string) => void
-  fieldName?: string
-  label?: string
 }
 
 /**

@@ -3,10 +3,6 @@ import type { ProjectItem } from '@/types/CVPreview.types'
 import { FolderOpen } from 'lucide-react'
 import { SectionList } from './SectionList'
 
-/**
- * Projects Section Component
- * Single Responsibility: Displays project portfolio
- */
 export function ProjectsSection() {
   return (
     <SectionList

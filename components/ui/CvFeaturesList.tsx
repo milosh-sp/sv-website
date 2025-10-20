@@ -1,11 +1,7 @@
 import { strings } from '@/lib/strings'
 import { type LucideIcon, QrCode, Shield, Database, Link } from 'lucide-react'
 
-/**
- * CV Features Grid Component
- * Single Responsibility: Displays CV platform features
- */
-export function CVFeaturesGrid() {
+export function CvFeaturesList() {
   const FEATURE_ICONS: readonly LucideIcon[] = [
     QrCode,
     Shield,

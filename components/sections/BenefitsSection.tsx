@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import type { LucideIcon } from 'lucide-react'
 import {
   DollarSign,
   Award,
@@ -15,43 +14,25 @@ import {
   CircleStar,
 } from 'lucide-react'
 import { strings } from '@/lib/strings'
-import { BenefitCards } from './BenefitCards'
-import { HeaderAndButtons } from './ui/HeaderAndButtons'
 import type { BenefitWithIcon } from '@/types/TwoSidesExplanation.types'
 import type { UserType } from '@/types/FormData.types'
+import { BenefitCards } from '../ui/BenefitCards'
+import { HeaderAndButtons } from '../ui/HeaderAndButtons'
 
-/**
- * Icon mapping configuration for benefits
- * Ensures type safety and prevents index-based icon assignment issues
- */
-const VETTER_BENEFIT_ICONS: readonly LucideIcon[] = [
-  DollarSign,
-  Calendar,
-  TrendingUp,
-  Network,
-] as const
+const vetterBenefits: BenefitWithIcon[] =
+  strings.howItWorks.techProfessionals.benefits.map((benefit, index) => ({
+    ...benefit,
+    icon: [DollarSign, Calendar, TrendingUp, Network][index] ?? DollarSign,
+  }))
 
-const CANDIDATE_BENEFIT_ICONS: readonly LucideIcon[] = [
-  Medal,
-  FastForward,
-  Rocket,
-  QrCode,
-] as const
+const candidateBenefits: BenefitWithIcon[] =
+  strings.howItWorks.members.benefits.map((benefit, index) => ({
+    ...benefit,
+    icon: [Medal, FastForward, Rocket, QrCode][index] ?? Medal,
+  }))
 
-export function TwoSidesExplanation() {
+export function BenefitsSection() {
   const [activeTab, setActiveTab] = useState<UserType>('member')
-
-  const vetterBenefits: BenefitWithIcon[] =
-    strings.howItWorks.techProfessionals.benefits.map((benefit, index) => ({
-      ...benefit,
-      icon: VETTER_BENEFIT_ICONS[index] ?? DollarSign,
-    }))
-
-  const candidateBenefits: BenefitWithIcon[] =
-    strings.howItWorks.members.benefits.map((benefit, index) => ({
-      ...benefit,
-      icon: CANDIDATE_BENEFIT_ICONS[index] ?? Medal,
-    }))
 
   return (
     <HeaderAndButtons

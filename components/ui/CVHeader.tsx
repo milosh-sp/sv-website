@@ -1,10 +1,6 @@
 import { strings } from '@/lib/strings'
 import { User } from 'lucide-react'
 
-/**
- * CV Header Component
- * Single Responsibility: Displays user profile header
- */
 export function CVHeader() {
   return (
     <div className='bg-slate-800 text-white p-8'>

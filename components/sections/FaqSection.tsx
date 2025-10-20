@@ -5,12 +5,7 @@ import { ChevronDown } from 'lucide-react'
 import { generateFAQSchema } from '@/lib/seo'
 import { strings } from '@/lib/strings'
 
-/**
- * FAQ Component
- * Displays frequently asked questions for both members and verifiers
- * with collapsible sections and structured data for SEO
- */
-export function FAQ() {
+export function FaqSection() {
   const [openItems, setOpenItems] = useState<number[]>([])
 
   const toggleItem = useCallback((index: number) => {

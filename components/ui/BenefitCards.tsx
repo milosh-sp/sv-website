@@ -1,11 +1,7 @@
 import { strings } from '@/lib/strings'
-import { BenefitGrid } from './ui/GridCards'
+import { BenefitGrid } from './BenefitGrid'
 import type { BenefitCardsProps } from '@/types/BenefitCards.types'
 
-/**
- * Color scheme mapping configuration for benefit cards
- * Ensures consistent theming across different card variants
- */
 const COLOR_SCHEME_GRADIENTS = {
   blue: 'from-blue-500 to-blue-600',
   emerald: 'from-emerald-500 to-emerald-600',
@@ -13,15 +9,6 @@ const COLOR_SCHEME_GRADIENTS = {
   orange: 'from-orange-500 to-orange-600',
 } as const
 
-/**
- * Reusable benefit cards component that follows SOLID principles
- *
- * Single Responsibility: This component only handles rendering benefit cards
- * Open/Closed: Can be extended with new props without modifying existing code
- * Liskov Substitution: Compatible with any benefit item structure
- * Interface Segregation: Minimal props interface
- * Dependency Inversion: Uses dependency injection for icons and data
- */
 export function BenefitCards({
   benefits,
   description = strings.howItWorks.members.description,

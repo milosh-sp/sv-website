@@ -1,17 +1,17 @@
 import { strings } from '@/lib/strings'
-import { CertificationsSection } from './ui/CertificationSection'
-import { CVFeaturesGrid } from './ui/CvFeaturesList'
-import { CVHeader } from './ui/CVHeader'
-import { EducationSection } from './ui/EducationSection'
-import { ExperienceSection } from './ui/ExperianceSection'
-import { HeaderAndDescription } from './ui/HeaderAndDescription'
-import { LanguagesSection } from './ui/LanguagesSection'
-import { ProfileSection } from './ui/ProfileSection'
-import { ProjectsSection } from './ui/ProjectSection'
-import { QrCodeSection } from './ui/QrCodeSection'
-import { TechnicalSkillsSection } from './ui/TechnicalSkillsSection'
+import { CertificationsSection } from '../ui/CertificationSection'
+import { CVHeader } from '../ui/CVHeader'
+import { EducationSection } from '../ui/EducationSection'
+import { ExperienceSection } from '../ui/ExperianceSection'
+import { HeaderAndDescription } from '../ui/HeaderAndDescription'
+import { LanguagesSection } from '../ui/LanguagesSection'
+import { ProfileSection } from '../ui/ProfileSection'
+import { ProjectsSection } from '../ui/ProjectSection'
+import { QrCodeSection } from '../ui/QrCodeSection'
+import { TechnicalSkillsSection } from '../ui/TechnicalSkillsSection'
+import { CvFeaturesList } from '../ui/CvFeaturesList'
 
-export function CVPreview() {
+export function CvPreviewSection() {
   return (
     <section
       id='cv-preview'
@@ -51,7 +51,7 @@ export function CVPreview() {
           <QrCodeSection />
         </div>
 
-        <CVFeaturesGrid />
+        <CvFeaturesList />
       </div>
     </section>
   )

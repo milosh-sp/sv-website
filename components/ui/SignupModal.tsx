@@ -5,8 +5,8 @@ import { cn, getUserSegmentLabel } from '@/lib/utils'
 import { strings } from '@/lib/strings'
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 import { useSignupForm } from '@/hooks/useSignUpForm'
-import { Button } from './ui/Button'
-import { Input } from './ui/Input'
+import { Button } from './Button'
+import { Input } from './Input'
 import {
   Dialog,
   DialogContent,
@@ -14,17 +14,8 @@ import {
   DialogOverlay,
   DialogPortal,
 } from '@radix-ui/react-dialog'
-import { DialogHeader } from './ui/Dialog'
+import { DialogHeader } from './Dialog'
 
-/**
- * SignupModal Component
- *
- * Handles user signup with email, LinkedIn, and GitHub validation.
- * Implements honeypot bot detection and accessibility features.
- *
- * @performance Memoized to prevent unnecessary re-renders
- * @a11y WCAG 2.1 AA compliant with ARIA labels and keyboard navigation
- */
 export function SignupModal() {
   const {
     formData,

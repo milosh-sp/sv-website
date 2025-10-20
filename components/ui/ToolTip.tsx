@@ -1,9 +1,5 @@
 import type { VerifierTooltipProps } from '@/types/CVPreview.types'
 
-/**
- * Reusable Verifier Tooltip Component
- * Single Responsibility: Displays verifier information on hover
- */
 export function VerifierTooltip({ verifier }: VerifierTooltipProps) {
   const [verifierName, verifierRole] = verifier.split(' - ')
 

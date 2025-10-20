@@ -3,10 +3,6 @@ import type { ExperienceItem } from '@/types/CVPreview.types'
 import { Briefcase } from 'lucide-react'
 import { SectionList } from './SectionList'
 
-/**
- * Experience Section Component
- * Single Responsibility: Displays work experience
- */
 export function ExperienceSection() {
   return (
     <SectionList

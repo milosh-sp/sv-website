@@ -6,8 +6,8 @@ import { Menu, X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
-import logo from '../assets/logo-sv.svg'
-import { HeaderLink } from './HeaderLink'
+import logo from '../../assets/logo-sv.svg'
+import { HeaderLink } from '../ui/HeaderLink'
 
 /**
  * Scroll margin offset to account for fixed header height

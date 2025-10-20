@@ -1,11 +1,6 @@
 import { cn } from '@/lib/utils'
-
 import type { SideTabButtonProps } from '@/types/SideButton.types'
 
-/**
- * Reusable side tab button with icon and label
- * Implements WCAG 2.1 AA accessibility standards
- */
 export function SideTabButton({
   isActive,
   onClick,

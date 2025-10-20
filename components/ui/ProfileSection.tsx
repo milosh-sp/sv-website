@@ -2,10 +2,6 @@ import { strings } from '@/lib/strings'
 import { User } from 'lucide-react'
 import { CVSectionHeader } from './CVSectionHeader'
 
-/**
- * Profile Section Component
- * Single Responsibility: Displays user bio
- */
 export function ProfileSection() {
   return (
     <div>

@@ -3,10 +3,6 @@ import type { LanguageItem } from '@/types/CVPreview.types'
 import { Globe } from 'lucide-react'
 import { SectionList } from './SectionList'
 
-/**
- * Languages Section Component
- * Single Responsibility: Displays language proficiency
- */
 export function LanguagesSection() {
   return (
     <SectionList

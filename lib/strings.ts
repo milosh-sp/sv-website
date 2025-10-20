@@ -478,7 +478,8 @@ export const footer = {
   links: {
     privacyPolicy: 'Privacy Policy',
   },
-
+  contactUs: 'Contact us',
+  email: 'contact@skillverdict.com',
   // Social media
   social: {
     twitter: 'Twitter profile',

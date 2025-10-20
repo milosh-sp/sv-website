@@ -3,15 +3,9 @@
 import { Button } from '@/components/ui/Button'
 import { UserPlus } from 'lucide-react'
 import { strings } from '@/lib/strings'
+import { scrollToSection } from '@/lib/utils'
 
 export function FloatingSignupButton() {
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }
-  }
-
   return (
     <div className='fixed bottom-6 right-6 z-40'>
       <Button

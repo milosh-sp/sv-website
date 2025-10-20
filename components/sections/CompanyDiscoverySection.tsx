@@ -1,9 +1,7 @@
-'use client'
-
 import { Building2, CheckCircle } from 'lucide-react'
 import { strings } from '@/lib/strings'
 
-export function CompanyDiscovery() {
+export function CompanyDiscoverySection() {
   return (
     <section
       className='py-16 bg-slate-50'

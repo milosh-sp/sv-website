@@ -3,10 +3,6 @@ import { GraduationCap } from 'lucide-react'
 import { SectionList } from './SectionList'
 import type { EducationSectionItem } from '@/types/CVPreview.types'
 
-/**
- * Education Section Component
- * Single Responsibility: Displays education history
- */
 export function EducationSection() {
   return (
     <SectionList

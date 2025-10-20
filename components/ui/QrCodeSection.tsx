@@ -1,10 +1,9 @@
+'use client'
+
 import { strings } from '@/lib/strings'
+import { scrollToSection } from '@/lib/utils'
 import { QrCode } from 'lucide-react'
 
-/**
- * QR Code Section Component
- * Single Responsibility: Displays QR code for CV verification
- */
 export function QrCodeSection() {
   return (
     <div className='bg-gray-50 p-6 text-center border-t'>
@@ -18,6 +17,7 @@ export function QrCodeSection() {
         type='button'
         className='text-slate-800 text-sm hover:underline bg-transparent border-none cursor-pointer'
         aria-label='View verification history'
+        onClick={() => scrollToSection('home')}
       >
         {strings.cvSampleData.qrSection.viewHistoryLink}
       </button>

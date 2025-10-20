@@ -11,23 +11,23 @@ import {
   CheckCircle,
 } from 'lucide-react'
 import { strings } from '@/lib/strings'
-import { StepsGrid } from './ui/Steps'
-import { HeaderAndButtons } from './ui/HeaderAndButtons'
 import type { UserType } from '@/types/FormData.types'
+import { HeaderAndButtons } from '../ui/HeaderAndButtons'
+import { StepsGrid } from '../ui/Steps'
 
-const vetterSteps = strings.process.techProfessionalSteps.map(
+const guruMemberSteps = strings.process.techProfessionalSteps.map(
   (step, index) => ({
     ...step,
     icon: [ClipboardList, Video, MessageCircle, DollarSign][index],
   })
 )
 
-const candidateSteps = strings.process.memberSteps.map((step, index) => ({
+const memberSteps = strings.process.memberSteps.map((step, index) => ({
   ...step,
   icon: [FileText, Brain, Video, CheckCircle][index],
 }))
 
-export function Process() {
+export function ProcessSection() {
   const [activeTab, setActiveTab] = useState<UserType>('member')
 
   return (
@@ -41,10 +41,10 @@ export function Process() {
       contentClassName='max-w-4xl'
     >
       {activeTab === 'member' && (
-        <StepsGrid steps={candidateSteps} columns={4} colorScheme='emerald' />
+        <StepsGrid steps={memberSteps} columns={4} colorScheme='emerald' />
       )}
       {activeTab === 'guru' && (
-        <StepsGrid steps={vetterSteps} columns={4} colorScheme='blue' />
+        <StepsGrid steps={guruMemberSteps} columns={4} colorScheme='blue' />
       )}
     </HeaderAndButtons>
   )

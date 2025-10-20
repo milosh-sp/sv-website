@@ -2,9 +2,9 @@ import { strings } from '@/lib/strings'
 
 export const navigationData = [
   {
-    id: 'how-it-works-updated',
+    id: 'how-it-works',
     label: strings.navigation.menu.howItWorks,
-    href: '#how-it-works-updated',
+    href: '#how-it-works',
   },
   {
     id: 'cv-preview',

@@ -1,6 +1,7 @@
 import { strings } from '@/lib/strings'
 import { GraduationCap } from 'lucide-react'
 import { SectionList } from './SectionList'
+import type { EducationSectionItem } from '@/types/CVPreview.types'
 
 /**
  * Education Section Component
@@ -12,8 +13,8 @@ export function EducationSection() {
       title={strings.cvSampleData.sections.education}
       icon={GraduationCap}
       items={strings.cvSampleData.education}
-      itemRenderer={(edu) => (
-        <div className='relative'>
+      itemRenderer={(edu: EducationSectionItem) => (
+        <div>
           <div className='flex justify-between items-start mb-1'>
             <span className='font-medium text-sm'>{edu.degree}</span>
             <span className='text-xs text-gray-500'>{edu.year}</span>

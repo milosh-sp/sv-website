@@ -8,7 +8,7 @@ export function VerificationBadge({
 }: VerificationBadgeProps) {
   let statusConfig: { label: string; className: string }
 
-  if (verified === true) {
+  if (verified === 'verified') {
     statusConfig = {
       label: strings.cvSampleData.statusLabels.verified,
       className: 'bg-green-100 text-green-800',

@@ -1,51 +1,45 @@
 import type { LucideIcon } from 'lucide-react'
 
-/**
- * Type definitions for CV data structures
- */
-interface VerificationStatus {
-  verified: boolean | 'pending'
+type VerificationStatus = 'pending' | 'verified' | 'unverified'
+
+type BaseSectionItem = {
+  name?: string
+  verified?: VerificationStatus
   verifier?: string
 }
 
-interface SkillItem extends VerificationStatus {
-  name: string
-}
+/**
+ * Type definitions for CV data structures
+ */
+interface SkillItem extends BaseSectionItem {}
 
-interface EducationItem extends VerificationStatus {
-  name: string
+interface EducationItem extends BaseSectionItem {
   degree: string
   institution: string
   year: string
-  verified: boolean | 'pending'
 }
 
-interface EducationSectionItem extends EducationItem {
-  verified: boolean
+interface EducationSectionItem extends BaseSectionItem {
+  degree: string
+  institution: string
+  year: string
 }
 
-interface ExperienceItem extends VerificationStatus {
+interface ExperienceItem extends BaseSectionItem {
   title: string
   company: string
   period: string
   description: string
 }
 
-interface ProjectItem extends VerificationStatus {
-  name: string
+interface ProjectItem extends BaseSectionItem {
   description: string
 }
 
-interface CertificationItem {
-  name: string
-  verifier: string
-}
+interface CertificationItem extends BaseSectionItem {}
 
-interface LanguageItem {
-  name: string
+interface LanguageItem extends BaseSectionItem {
   level: string
-  verified: boolean | 'pending'
-  verifier?: string
 }
 
 interface CVSectionProps {
@@ -56,7 +50,7 @@ interface CVSectionProps {
 }
 
 interface VerificationBadgeProps {
-  verified: boolean | 'pending'
+  verified: VerificationStatus
   className?: string
 }
 
@@ -65,7 +59,6 @@ interface VerifierTooltipProps {
 }
 
 export type {
-  VerificationStatus,
   SkillItem,
   EducationItem,
   ExperienceItem,
@@ -76,4 +69,6 @@ export type {
   VerificationBadgeProps,
   VerifierTooltipProps,
   EducationSectionItem,
+  BaseSectionItem,
+  VerificationStatus,
 }

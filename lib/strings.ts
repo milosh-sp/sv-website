@@ -682,26 +682,26 @@ export const cvSampleData = {
   skills: [
     {
       name: 'JavaScript',
-      verified: true,
+      verified: 'verified',
       verifier: 'Sarah Chen - Senior Developer at Google',
     },
     {
       name: 'React',
-      verified: true,
+      verified: 'verified',
       verifier: 'Michael Rodriguez - Engineering Lead at Meta',
     },
-    { name: 'Node.js', verified: false },
+    { name: 'Node.js', verified: 'pending' },
     {
       name: 'Python',
-      verified: true,
+      verified: 'verified',
       verifier: 'James Wilson - Principal Engineer at Netflix',
     },
     {
       name: 'AWS',
-      verified: true,
+      verified: 'verified',
       verifier: 'Emily Zhang - Cloud Architect at Amazon',
     },
-    { name: 'Docker', verified: false },
+    { name: 'Docker', verified: 'unverified' },
   ],
   education: [
     {
@@ -709,14 +709,15 @@ export const cvSampleData = {
       degree: 'MSc Computer Science',
       institution: 'Stanford University',
       year: '2016',
-      verified: false,
+      verified: 'unverified',
     },
     {
       name: 'BSc Software Engineering',
       degree: 'BSc Software Engineering',
       institution: 'UC Berkeley',
       year: '2014',
-      verified: true,
+      verified: 'verified',
+      verifier: 'John Doe - Professor at UC Berkeley',
     },
   ],
   experience: [
@@ -726,7 +727,7 @@ export const cvSampleData = {
       period: '2020 - Present',
       description:
         'Lead development of customer-facing web applications using React and Node.js. Mentored junior developers and implemented CI/CD pipelines.',
-      verified: false,
+      verified: 'unverified',
     },
     {
       title: 'Full Stack Developer',
@@ -734,7 +735,8 @@ export const cvSampleData = {
       period: '2017 - 2020',
       description:
         'Developed and maintained multiple web applications for clients across various industries. Implemented responsive designs and optimized performance.',
-      verified: true,
+      verified: 'verified',
+      verifier: 'Jane Smith - CTO at WebSolutions LLC',
     },
     {
       title: 'Junior Developer',
@@ -742,7 +744,7 @@ export const cvSampleData = {
       period: '2015 - 2017',
       description:
         'Assisted in development of front-end interfaces and backend APIs. Participated in code reviews and agile development processes.',
-      verified: false,
+      verified: 'unverified',
     },
   ],
   projects: [
@@ -750,18 +752,18 @@ export const cvSampleData = {
       name: 'E-commerce Platform',
       description:
         'Full-stack React/Node.js application with payment integration',
-      verified: true,
+      verified: 'verified',
       verifier: 'Lisa Chen - Product Manager at Shopify',
     },
     {
       name: 'Task Management App',
       description: 'React Native mobile app with real-time synchronization',
-      verified: false,
+      verified: 'unverified',
     },
     {
       name: 'Data Analytics Dashboard',
       description: 'Python/Django dashboard with interactive visualizations',
-      verified: true,
+      verified: 'verified',
       verifier: 'Mark Thompson - Data Engineer at Airbnb',
     },
   ],
@@ -783,7 +785,7 @@ export const cvSampleData = {
     {
       name: 'English',
       level: 'C2',
-      verified: true,
+      verified: 'verified',
       verifier: 'Sarah Mitchell - Language Specialist at Cambridge Assessment',
     },
     {

@@ -5,6 +5,7 @@ import { VerificationBadge } from './VerificationBadge'
 import { VerifierTooltip } from './ToolTip'
 import { cn } from '@/lib/utils'
 import type { LucideIcon } from 'lucide-react'
+import type { BaseSectionItem } from '@/types/CVPreview.types'
 
 type SectionListProps<T> = {
   title: string
@@ -23,9 +24,12 @@ type SectionListProps<T> = {
  * - Memoizes layout calculation to prevent unnecessary re-renders
  * - Tooltip renders conditionally based on verifier presence
  */
-export function SectionList<
-  T extends { name: string; verified: boolean; verifier?: string },
->({ title, icon, items, itemRenderer }: SectionListProps<T>) {
+export function SectionList<T extends BaseSectionItem>({
+  title,
+  icon,
+  items,
+  itemRenderer,
+}: SectionListProps<T>) {
   // Memoize layout decision to prevent recalculation on every render
   const useGridLayout = useMemo(() => items.length >= 4, [items.length])
 
@@ -43,8 +47,8 @@ export function SectionList<
             <div key={`${item.name}-${index}`} className='relative group'>
               {itemRenderer(item)}
               <div className='absolute top-0 right-0 flex items-center gap-1'>
-                <VerificationBadge verified={item.verified} />
-                {item.verifier && item.verified && (
+                <VerificationBadge verified={item.verified ?? 'unverified'} />
+                {item.verifier && item.verified === 'verified' && (
                   <VerifierTooltip verifier={item.verifier} />
                 )}
               </div>

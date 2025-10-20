@@ -1,6 +1,6 @@
 import { useSignupModal } from '@/contexts/SignupModalContext'
-import { useDebouncedCallback } from '@/hooks/use-debounce'
-import { useHoneypot } from '@/hooks/use-honeypot'
+import { useDebouncedCallback } from '@/hooks/useDebounce'
+import { useHoneypot } from '@/hooks/useHoneypot'
 import { mapUserTypeToApiFormat, submitForm } from '@/lib/api'
 import {
   validateEmail,

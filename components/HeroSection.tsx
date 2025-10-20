@@ -43,7 +43,7 @@ export function HeroSection() {
               {strings.hero.buttons.verifySkills}
             </Button>
             <Button
-              onClick={() => openModal('tech-pro')}
+              onClick={() => openModal('guru')}
               size='lg'
               className='h-16 px-12 text-xl bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 rounded-lg font-medium cursor-pointer'
               aria-label={strings.hero.accessibility.openEarnModal}

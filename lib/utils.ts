@@ -11,7 +11,7 @@ export function getUserSegmentLabel(userType: UserType): string {
   switch (userType) {
     case 'member':
       return 'Member'
-    case 'tech-pro':
+    case 'guru':
       return 'Guru Member'
     default:
       return 'Unknown'

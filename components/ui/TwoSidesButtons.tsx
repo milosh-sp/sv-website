@@ -15,18 +15,18 @@ export function TwoSidesButtons({
         aria-label={strings.howItWorks.tabAccessibility.chooseUserType}
       >
         <SideTabButton
-          isActive={activeTab === 'candidate'}
-          onClick={() => onTabChange('candidate')}
+          isActive={activeTab === 'member'}
+          onClick={() => onTabChange('member')}
           icon={CircleStar}
           label={strings.howItWorks.tabs.members}
-          ariaControls='candidate-panel'
+          ariaControls='member-panel'
         />
         <SideTabButton
-          isActive={activeTab === 'vetter'}
-          onClick={() => onTabChange('vetter')}
+          isActive={activeTab === 'guru'}
+          onClick={() => onTabChange('guru')}
           icon={Award}
           label={strings.howItWorks.tabs.techProfessionals}
-          ariaControls='vetter-panel'
+          ariaControls='guru-panel'
         />
       </div>
     </div>

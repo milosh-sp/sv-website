@@ -1,7 +1,7 @@
 import { useSignupModal } from '@/contexts/SignupModalContext'
 import { useDebouncedCallback } from '@/hooks/useDebounce'
 import { useHoneypot } from '@/hooks/useHoneypot'
-import { mapUserTypeToApiFormat, submitForm } from '@/lib/api'
+import { submitForm } from '@/lib/api'
 import {
   validateEmail,
   validateGitHub,
@@ -108,7 +108,7 @@ export const useSignupForm = () => {
           fields: {
             linkedin: formData.linkedin,
             github: formData.github,
-            user_type: mapUserTypeToApiFormat(userType),
+            user_type: userType,
             source: 'signup-modal',
             website: honeypotValue, // Include honeypot field
             form_start_time: formStartTime, // Include timing for server validation

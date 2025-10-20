@@ -1,6 +1,4 @@
 import Link from 'next/link'
-import type { ReactNode } from 'react'
-
 import type { HeaderLinkProps } from '@/types/HeaderLink.types'
 
 export function HeaderLink({

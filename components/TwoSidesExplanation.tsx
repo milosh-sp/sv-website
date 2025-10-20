@@ -18,6 +18,7 @@ import { strings } from '@/lib/strings'
 import { BenefitCards } from './BenefitCards'
 import { HeaderAndButtons } from './ui/HeaderAndButtons'
 import type { BenefitWithIcon } from '@/types/TwoSidesExplanation.types'
+import { UserType } from '@/types/FormData.types'
 
 /**
  * Icon mapping configuration for benefits
@@ -38,9 +39,7 @@ const CANDIDATE_BENEFIT_ICONS: readonly LucideIcon[] = [
 ] as const
 
 export function TwoSidesExplanation() {
-  const [activeTab, setActiveTab] = useState<'candidate' | 'vetter'>(
-    'candidate'
-  )
+  const [activeTab, setActiveTab] = useState<UserType>('member')
 
   const vetterBenefits: BenefitWithIcon[] =
     strings.howItWorks.techProfessionals.benefits.map((benefit, index) => ({
@@ -64,7 +63,7 @@ export function TwoSidesExplanation() {
       description={strings.howItWorks.description}
       ariaLabel={strings.howItWorks.accessibility.howItWorksSection}
     >
-      {activeTab === 'candidate' && (
+      {activeTab === 'member' && (
         <BenefitCards
           icon={
             <CircleStar className='h-14 w-14 text-white' aria-hidden='true' />
@@ -74,7 +73,7 @@ export function TwoSidesExplanation() {
           colorScheme='emerald'
         />
       )}
-      {activeTab === 'vetter' && (
+      {activeTab === 'guru' && (
         <BenefitCards
           icon={
             <Award

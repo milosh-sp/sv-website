@@ -21,24 +21,24 @@ interface SignupModalProviderProps {
 
 export function SignupModalProvider({ children }: SignupModalProviderProps) {
   const [isOpen, setIsOpen] = useState(false)
-  const [userType, setUserType] = useState<UserType>(null)
+  const [userType, setUserType] = useState<UserType>('member')
 
-  const openModal = useCallback((selectedUserType?: UserType) => {
-    setUserType(selectedUserType || null)
+  const openModal = useCallback((selectedUserType: UserType) => {
+    setUserType(selectedUserType)
     setIsOpen(true)
   }, [])
 
   const closeModal = useCallback(() => {
     setIsOpen(false)
     // Reset user type when modal closes
-    setTimeout(() => setUserType(null), 300)
+    setTimeout(() => setUserType('member'), 300)
   }, [])
 
   const toggleModal = useCallback(() => {
     setIsOpen((prev) => !prev)
   }, [])
 
-  const value: SignupModalContextType = {
+  const value = {
     isOpen,
     userType,
     openModal,

@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react'
-
-export type TabType = 'candidate' | 'vetter'
+import { UserType } from './FormData.types'
 
 export interface HeaderAndButtonsProps {
   heading: string
@@ -11,6 +10,6 @@ export interface HeaderAndButtonsProps {
   ariaLabel?: string
   className?: string
   contentClassName?: string
-  activeTab: TabType
-  onTabChange: (tab: TabType) => void
+  activeTab: UserType
+  onTabChange: (tab: UserType) => void
 }

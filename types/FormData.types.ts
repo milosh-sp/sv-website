@@ -1,4 +1,4 @@
-type UserType = 'candidate' | 'company' | null | 'member' | 'tech-pro'
+type UserType = 'member' | 'guru'
 
 interface FormData {
   name: string

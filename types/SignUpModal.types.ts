@@ -32,7 +32,7 @@ interface FormData {
 interface SignupModalContextType {
   isOpen: boolean
   userType: UserType
-  openModal: (userType?: UserType) => void
+  openModal: (userType: UserType) => void
   closeModal: () => void
   toggleModal: () => void
 }

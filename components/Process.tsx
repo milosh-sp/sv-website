@@ -13,23 +13,22 @@ import {
 import { strings } from '@/lib/strings'
 import { StepsGrid } from './ui/Steps'
 import { HeaderAndButtons } from './ui/HeaderAndButtons'
+import { UserType } from '@/types/FormData.types'
+
+const vetterSteps = strings.process.techProfessionalSteps.map(
+  (step, index) => ({
+    ...step,
+    icon: [ClipboardList, Video, MessageCircle, DollarSign][index],
+  })
+)
+
+const candidateSteps = strings.process.memberSteps.map((step, index) => ({
+  ...step,
+  icon: [FileText, Brain, Video, CheckCircle][index],
+}))
 
 export function Process() {
-  const [activeTab, setActiveTab] = useState<'candidate' | 'vetter'>(
-    'candidate'
-  )
-
-  const vetterSteps = strings.process.techProfessionalSteps.map(
-    (step, index) => ({
-      ...step,
-      icon: [ClipboardList, Video, MessageCircle, DollarSign][index],
-    })
-  )
-
-  const candidateSteps = strings.process.memberSteps.map((step, index) => ({
-    ...step,
-    icon: [FileText, Brain, Video, CheckCircle][index],
-  }))
+  const [activeTab, setActiveTab] = useState<UserType>('member')
 
   return (
     <HeaderAndButtons
@@ -41,10 +40,10 @@ export function Process() {
       className='py-20 bg-white'
       contentClassName='max-w-4xl'
     >
-      {activeTab === 'candidate' && (
+      {activeTab === 'member' && (
         <StepsGrid steps={candidateSteps} columns={4} colorScheme='emerald' />
       )}
-      {activeTab === 'vetter' && (
+      {activeTab === 'guru' && (
         <StepsGrid steps={vetterSteps} columns={4} colorScheme='blue' />
       )}
     </HeaderAndButtons>

@@ -116,17 +116,3 @@ export async function submitForm(
     }
   }
 }
-
-/**
- * Convert user type to API format
- */
-export function mapUserTypeToApiFormat(userType: string | null): string {
-  switch (userType) {
-    case 'member':
-      return 'member'
-    case 'tech-pro':
-      return 'verifier'
-    default:
-      return 'unknown'
-  }
-}

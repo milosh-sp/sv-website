@@ -1,5 +1,5 @@
 import { strings } from '@/lib/strings'
-import type { BenefitItem } from '@/types/grid-cards.types'
+import type { BenefitItem } from '@/types/GridCards.types'
 import type { ReactNode } from 'react'
 import { BenefitGrid } from './ui/GridCards'
 

@@ -1,7 +1,7 @@
 import type React from 'react'
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
-import './globals.css'
+import '../styles/globals.css'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { SignupModalProvider } from '@/contexts/SignupModalContext'

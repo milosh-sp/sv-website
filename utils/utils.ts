@@ -1,23 +1,4 @@
-/**
- * Type definitions for form data and user segmentation
- */
-
-// User type selection for waitlist segmentation
-export type UserType = 'member' | 'tech-pro' | null
-
-// Form data interface for waitlist signup
-export interface WaitlistFormData {
-  email: string
-  linkedin: string
-  painPoint: string
-  userType: UserType
-}
-
-// Extended form data with metadata for submission
-export interface WaitlistSubmission extends WaitlistFormData {
-  timestamp: string
-  source: string
-}
+import { UserType, WaitlistFormData } from '@/types/FormData.types'
 
 // User segmentation categories for analytics and targeting
 export const USER_SEGMENTS = {

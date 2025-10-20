@@ -4,7 +4,7 @@
  */
 
 import { cn } from '@/lib/utils'
-import type { BenefitCardProps, BenefitItem } from '@/types/grid-cards.types'
+import type { BenefitCardProps, BenefitItem } from '@/types/GridCards.types'
 
 /**
  * Color scheme configuration for benefit cards

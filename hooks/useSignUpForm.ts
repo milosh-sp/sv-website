@@ -14,7 +14,7 @@ import type {
   FormFieldName,
   FormSubmissionData,
   SubmitStatus,
-} from '@/types/signup-modal'
+} from '@/types/SignUpModal.types'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
 export const useSignupForm = () => {

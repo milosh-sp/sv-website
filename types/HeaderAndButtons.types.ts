@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { UserType } from './FormData.types'
+import type { UserType } from './FormData.types'
 
 export interface HeaderAndButtonsProps {
   heading: string

@@ -18,7 +18,7 @@ import { strings } from '@/lib/strings'
 import { BenefitCards } from './BenefitCards'
 import { HeaderAndButtons } from './ui/HeaderAndButtons'
 import type { BenefitWithIcon } from '@/types/TwoSidesExplanation.types'
-import { UserType } from '@/types/FormData.types'
+import type { UserType } from '@/types/FormData.types'
 
 /**
  * Icon mapping configuration for benefits

@@ -13,7 +13,7 @@ import {
 import { strings } from '@/lib/strings'
 import { StepsGrid } from './ui/Steps'
 import { HeaderAndButtons } from './ui/HeaderAndButtons'
-import { UserType } from '@/types/FormData.types'
+import type { UserType } from '@/types/FormData.types'
 
 const vetterSteps = strings.process.techProfessionalSteps.map(
   (step, index) => ({

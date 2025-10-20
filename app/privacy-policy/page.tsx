@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Shield, Lock, Eye, UserCheck, Database, Globe } from 'lucide-react'
+import { Database, Eye, Globe, Lock, Shield, UserCheck } from 'lucide-react'
 import { generateMetadata } from '@/lib/seo'
 import { pageSeoConfig } from '@/lib/seo-config'
 import { PrivacyPolicyBreadcrumb } from '@/components/ui/Breadcrumb'

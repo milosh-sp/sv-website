@@ -2,7 +2,7 @@
  * Types for SideButton component
  */
 
-import { LucideIcon } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 
 export interface SideTabButtonProps {
   /** Whether the tab is currently active */

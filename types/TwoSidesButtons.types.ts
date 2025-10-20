@@ -1,4 +1,4 @@
-import { UserType } from './FormData.types'
+import type { UserType } from './FormData.types'
 
 export interface TwoSidesButtonsProps {
   /** Currently active tab */

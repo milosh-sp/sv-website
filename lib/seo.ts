@@ -175,7 +175,7 @@ export function generateBreadcrumbSchema(
   }
 }
 
-export function generateFAQSchema(
+export function generateFaqSchema(
   faqs: Array<{ question: string; answer: string }>
 ) {
   return {

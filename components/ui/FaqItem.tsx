@@ -15,7 +15,10 @@ export const FaqItem = ({
 
   return (
     <div
-      className='bg-white rounded-lg border border-gray-200 overflow-hidden'
+      className={cn(
+        'bg-white rounded-lg border overflow-hidden transition-colors hover:border-blue-500',
+        isOpen ? 'border-blue-500' : 'border-gray-450'
+      )}
       {...props}
     >
       <dt>
@@ -23,7 +26,7 @@ export const FaqItem = ({
           id={buttonId}
           type='button'
           onClick={() => onToggle(index)}
-          className='w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset'
+          className='w-full px-6 py-4 text-left flex items-center justify-between hover:border-blue-500 transition-colors cursor-pointer'
           aria-expanded={isOpen}
           aria-controls={panelId}
         >

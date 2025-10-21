@@ -12,13 +12,13 @@ export function FloatingSignupButton() {
 
   return (
     <aside
-      className='fixed bottom-6 right-6 z-40'
+      className='fixed bottom-6 right-6 z-40 cursor-pointer'
       aria-label={strings.floatingSignupButton.ariaLabel}
     >
       <Button
         onClick={handleSignupClick}
         size='lg'
-        className='h-14 px-6 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 rounded-full group'
+        className='h-14 px-6 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 rounded-full group cursor-pointer'
       >
         <span className='flex items-center gap-3'>
           <UserPlus

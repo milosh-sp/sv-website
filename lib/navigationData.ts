@@ -7,11 +7,6 @@ export const navigationData = [
     href: '#how-it-works',
   },
   {
-    id: 'cv-preview',
-    label: strings.navigation.menu.cvPreview,
-    href: '#cv-preview',
-  },
-  {
     id: 'company-discovery',
     label: strings.navigation.menu.companies,
     href: '#company-discovery',
@@ -21,6 +16,12 @@ export const navigationData = [
     label: strings.navigation.menu.howToJoin,
     href: '#process',
   },
+  {
+    id: 'cv-preview',
+    label: strings.navigation.menu.cvPreview,
+    href: '#cv-preview',
+  },
+
   {
     id: 'faq',
     label: strings.navigation.menu.faqs,

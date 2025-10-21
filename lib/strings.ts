@@ -41,7 +41,7 @@ export const navigation = {
     howItWorks: 'How It Works',
     cvPreview: 'CV2.0 Preview',
     companies: 'Companies',
-    howToJoin: 'How to join',
+    howToJoin: 'How it works',
     faqs: 'FAQs',
   },
 
@@ -322,10 +322,8 @@ export const process = {
 // ============================================================================
 
 export const faq = {
-  // Section headers
-  mainHeading: 'Frequently Asked Questions',
-  membersHeading: 'Frequently asked questions for members',
-  verifiersHeading: 'Frequently asked questions for verifiers',
+  membersHeading: 'Frequently asked questions for Members',
+  verifiersHeading: 'Frequently asked questions for Guru members',
 
   // Members FAQ
   members: [
@@ -345,19 +343,14 @@ export const faq = {
         'Yes, you can always add new skills or request re-verification of existing skills as you continue to develop your expertise. The platform is designed to grow with your career.',
     },
     {
-      question: 'How do employers verify my skills?',
-      answer:
-        "Employers can verify your skills by scanning the QR code on your digital CV or by visiting your unique profile URL. They'll see a complete verification history with timestamps and reviewer credentials.",
-    },
-    {
       question: 'I am not happy with my verification outcome, what can I do?',
       answer:
-        'You can always submit a complaint if you think you have not been treated fairly. We will investigate your complaint, if your claim turns out to be true, we will assign a new verifier to your case.',
+        'You can always submit a complaint if you think you have not been treated fairly. We will investigate your complaint, if your claim turns out to be true, we will assign a new guru member to your case.',
     },
     {
-      question: 'Can I become a verifier as well and earn?',
+      question: 'Can I become a guru member and earn?',
       answer:
-        'Of course you can, after you have verified the skills you want to verify other members skills with, you can apply and go through the become a verifier process.',
+        'Of course you can, after you have verified the skills you want to verify other members skills with, you can apply and go through the become a guru member process.',
     },
     {
       question:
@@ -370,12 +363,12 @@ export const faq = {
   // Verifiers FAQ
   verifiers: [
     {
-      question: 'How much can I earn as a verifier?',
+      question: 'How much can I earn as a guru member?',
       answer:
         'Earnings are based on a share of the verification fee for each assessment you complete. The more complex the skill, the higher the fee and your potential earnings. We provide a clear breakdown of potential earnings in your verifier dashboard.',
     },
     {
-      question: "What's the time commitment for being a verifier?",
+      question: "What's the time commitment for being a guru member?",
       answer:
         'There is no minimum time commitment. You can choose to take on as many or as few verification tasks as your schedule allows. The platform is designed for flexibility.',
     },
@@ -387,7 +380,7 @@ export const faq = {
     {
       question: 'What happens if a candidate disputes my assessment?',
       answer:
-        'Our admin team will review the dispute neutrally. If your feedback is found to be constructive, professional, and accurate, your rating and standing will be unaffected. This system protects verifiers from frivolous disputes while ensuring fairness for candidates.',
+        'Our admin team will review the dispute neutrally. If your feedback is found to be constructive, professional, and accurate, your rating and standing will be unaffected. This system protects verifiers from frivolous disputes while ensuring fairness for members.',
     },
   ],
 } as const

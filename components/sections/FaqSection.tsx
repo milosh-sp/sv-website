@@ -35,17 +35,9 @@ export function FaqSection() {
   }, [faqSchema])
 
   return (
-    <section
-      id='faq'
-      className='py-20 bg-gray-50'
-      aria-labelledby='faq-heading'
-    >
+    <section id='faq' className='py-20 bg-gray-50'>
       <div className='container mx-auto px-4'>
         <div className='max-w-3xl mx-auto'>
-          <h1 id='faq-heading' className='sr-only'>
-            {strings.faq.mainHeading}
-          </h1>
-
           <FaqList
             faqs={memberFaqs}
             heading={strings.faq.membersHeading}

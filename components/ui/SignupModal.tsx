@@ -71,7 +71,7 @@ export function SignupModal() {
 
       <form
         onSubmit={handleSubmit}
-        className='space-y-4'
+        className='space-y-4 w-80'
         aria-label='Signup form'
         aria-describedby='signup-form-description'
       >

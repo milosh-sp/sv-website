@@ -1,21 +1,5 @@
 import Script from 'next/script'
 
-/**
- * Google Analytics 4 Component
- *
- * This component implements Google Analytics 4 (GA4) tracking for Next.js 15
- * using the next/script component with afterInteractive strategy for optimal performance.
- *
- * Setup Instructions:
- * 1. Create a .env.local file in the project root
- * 2. Add your GA4 measurement ID: NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
- * 3. Replace G-XXXXXXXXXX with your actual Google Analytics measurement ID
- *
- * The NEXT_PUBLIC prefix makes the environment variable accessible on the client side.
- * The .env.local file is already included in .gitignore to keep your credentials safe.
- */
-
-// Extend the Window interface to include gtag types
 declare global {
   interface Window {
     gtag: (

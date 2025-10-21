@@ -10,14 +10,17 @@ export function ProjectsSection() {
       icon={FolderOpen}
       items={strings.cvSampleData.projects}
       itemRenderer={(project: ProjectItem) => (
-        <div className='bg-slate-50 p-3 rounded-lg border-l-4 border-slate-700 group relative'>
-          <div className='flex items-center justify-between mb-2'>
-            <span className='font-medium text-sm text-slate-800'>
+        <article
+          className='bg-slate-50 p-3 rounded-lg border-l-4 border-slate-700 group relative'
+          aria-label={`Project: ${project.name}`}
+        >
+          <header className='flex items-center justify-between mb-2'>
+            <h4 className='font-medium text-sm text-slate-800'>
               {project.name}
-            </span>
-          </div>
+            </h4>
+          </header>
           <p className='text-slate-600 text-xs'>{project.description}</p>
-        </div>
+        </article>
       )}
     />
   )

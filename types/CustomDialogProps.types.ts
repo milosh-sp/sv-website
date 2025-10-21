@@ -1,6 +1,6 @@
-import type { ReactNode } from 'react'
+import type { ComponentProps, ReactNode } from 'react'
 
-interface CustomDialogProps {
+interface CustomDialogProps extends ComponentProps<'div'> {
   isOpen: boolean
   onClose: () => void
   children: ReactNode

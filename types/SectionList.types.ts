@@ -1,4 +1,5 @@
 import type { LucideIcon } from 'lucide-react'
+import type { ComponentProps } from 'react'
 
 interface VerifiableItem {
   name: string
@@ -10,7 +11,7 @@ interface BaseItem {
   [key: string]: unknown
 }
 
-type SectionListProps<T> = {
+type SectionListProps<T> = ComponentProps<'section'> & {
   title: string
   icon: LucideIcon
   items: readonly T[]

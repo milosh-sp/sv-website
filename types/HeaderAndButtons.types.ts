@@ -1,7 +1,7 @@
-import type { ReactNode } from 'react'
+import type { ComponentProps, ReactNode } from 'react'
 import type { UserType } from './FormData.types'
 
-export interface HeaderAndButtonsProps {
+export interface HeaderAndButtonsProps extends ComponentProps<'section'> {
   heading: string
   headingHighlight?: string
   description: string
@@ -9,7 +9,6 @@ export interface HeaderAndButtonsProps {
   sectionId?: string
   ariaLabel?: string
   className?: string
-  contentClassName?: string
   activeTab: UserType
   onTabChange: (tab: UserType) => void
 }

@@ -1,4 +1,5 @@
 import type { LucideIcon } from 'lucide-react'
+import type { ComponentProps } from 'react'
 
 type VerificationStatus = 'pending' | 'verified' | 'unverified'
 
@@ -42,7 +43,7 @@ interface LanguageItem extends BaseSectionItem {
   level: string
 }
 
-interface CVSectionProps {
+interface CVSectionProps extends ComponentProps<'section'> {
   title: string
   icon: LucideIcon
   children?: React.ReactNode
@@ -54,7 +55,7 @@ interface VerificationBadgeProps {
   className?: string
 }
 
-interface VerifierTooltipProps {
+interface VerifierTooltipProps extends ComponentProps<'aside'> {
   verifier: string
 }
 

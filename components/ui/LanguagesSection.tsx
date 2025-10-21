@@ -10,14 +10,17 @@ export function LanguagesSection() {
       icon={Globe}
       items={strings.cvSampleData.languages}
       itemRenderer={(language: LanguageItem) => (
-        <div className='bg-slate-50 p-3 rounded-lg border-l-4 border-slate-700 group relative'>
-          <div className='flex items-center justify-between mb-1'>
-            <span className='font-medium text-sm text-slate-800'>
+        <article
+          className='bg-slate-50 p-3 rounded-lg border-l-4 border-slate-700 group relative'
+          aria-label={`${language.name}: ${language.level}`}
+        >
+          <header className='flex items-center justify-between mb-1'>
+            <h4 className='font-medium text-sm text-slate-800'>
               {language.name}
-            </span>
-          </div>
-          <div className='text-slate-600 text-xs'>{language.level}</div>
-        </div>
+            </h4>
+          </header>
+          <p className='text-slate-600 text-xs'>{language.level}</p>
+        </article>
       )}
     />
   )

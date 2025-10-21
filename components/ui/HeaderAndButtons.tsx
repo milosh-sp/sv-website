@@ -13,6 +13,7 @@ export function HeaderAndButtons({
   className,
   activeTab,
   onTabChange,
+  ...props
 }: HeaderAndButtonsProps) {
   return (
     <section
@@ -22,6 +23,7 @@ export function HeaderAndButtons({
       )}
       id={sectionId}
       aria-label={ariaLabel}
+      {...props}
     >
       <div className='container-wide'>
         <HeaderAndDescription

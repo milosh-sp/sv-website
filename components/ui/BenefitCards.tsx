@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils'
 import { strings } from '@/lib/strings'
 import { BenefitGrid } from './BenefitGrid'
 import type { BenefitCardsProps } from '@/types/BenefitCards.types'
@@ -15,23 +16,31 @@ export function BenefitCards({
   icon,
   colorScheme = 'blue',
   className = '',
+  ...props
 }: BenefitCardsProps) {
   return (
-    <div
-      className={`text-center animate-fade-in-scale ${className}`}
+    <section
+      className={cn('text-center animate-fade-in-scale', className)}
       role='tabpanel'
       id='candidate-panel'
       aria-labelledby='candidate-tab'
+      {...props}
     >
-      <div
-        className={`w-28 h-28 bg-gradient-to-br ${COLOR_SCHEME_GRADIENTS[colorScheme]} rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-lg`}
-      >
-        {icon}
-      </div>
-      <p className='text-body-large text-slate-600 mb-12 max-w-3xl mx-auto text-pretty'>
-        {description}
-      </p>
+      <header className='mb-12'>
+        <figure
+          className={cn(
+            'w-28 h-28 bg-gradient-to-br rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-lg',
+            COLOR_SCHEME_GRADIENTS[colorScheme]
+          )}
+          aria-hidden='true'
+        >
+          {icon}
+        </figure>
+        <p className='text-body-large text-slate-600 max-w-3xl mx-auto text-pretty'>
+          {description}
+        </p>
+      </header>
       <BenefitGrid benefits={benefits} colorScheme={colorScheme} />
-    </div>
+    </section>
   )
 }

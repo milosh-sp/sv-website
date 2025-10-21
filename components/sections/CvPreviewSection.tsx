@@ -16,23 +16,31 @@ export function CvPreviewSection() {
     <section
       id='cv-preview'
       className='py-20 bg-white'
-      aria-label='CV Preview Section'
+      aria-labelledby='cv-preview-heading'
     >
       <div className='container mx-auto px-4'>
         <HeaderAndDescription
           heading={strings.cvPreview.heading}
           description={strings.cvPreview.description}
           className='mb-12'
+          id='cv-preview-heading'
         />
-        <p className='text-sm text-gray-500 max-w-3xl mx-auto text-center mb-12'>
+        <p
+          className='text-sm text-gray-500 max-w-3xl mx-auto text-center mb-12'
+          role='note'
+          aria-label='CV preview disclaimer'
+        >
           {strings.cvPreview.note}
         </p>
 
-        <div className='max-w-5xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden'>
+        <article
+          className='max-w-5xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden'
+          aria-label='Sample curriculum vitae document'
+        >
           <CVHeader />
 
           <div className='grid md:grid-cols-2 gap-8 p-8'>
-            {/* Left Column */}
+            {/* Left Column - Primary Information */}
             <div className='space-y-8'>
               <ProfileSection />
               <TechnicalSkillsSection />
@@ -40,7 +48,7 @@ export function CvPreviewSection() {
               <ExperienceSection />
             </div>
 
-            {/* Right Column */}
+            {/* Right Column - Supplementary Information */}
             <div className='space-y-8'>
               <ProjectsSection />
               <CertificationsSection />
@@ -49,7 +57,7 @@ export function CvPreviewSection() {
           </div>
 
           <QrCodeSection />
-        </div>
+        </article>
 
         <CvFeaturesList />
       </div>

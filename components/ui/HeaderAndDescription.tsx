@@ -10,9 +10,12 @@ export function HeaderAndDescription({
   descriptionClassName,
   highlightClassName,
 }: SectionHeaderProps) {
+  const headingId = `heading-${heading.toLowerCase().replace(/\s+/g, '-')}`
+
   return (
-    <div className={cn('text-center mb-16 animate-fade-in-up', className)}>
+    <header className={cn('text-center mb-16 animate-fade-in-up', className)}>
       <h2
+        id={headingId}
         className={cn(
           'text-3xl md:text-4xl font-bold text-gray-800 mb-6',
           headingClassName
@@ -35,9 +38,10 @@ export function HeaderAndDescription({
           'text-body-large text-slate-600 mx-auto text-pretty leading-relaxed max-w-4xl',
           descriptionClassName
         )}
+        aria-describedby={headingId}
       >
         {description}
       </p>
-    </div>
+    </header>
   )
 }

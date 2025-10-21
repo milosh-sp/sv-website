@@ -1,10 +1,6 @@
 import { cn } from '@/lib/utils'
 import type { StepsGridProps } from '@/types/Steps.types'
 
-/**
- * Color scheme mapping for icon backgrounds and colors
- * Ensures consistent theming across different color variants
- */
 const ICON_BG_COLORS = {
   blue: 'bg-blue-100',
   emerald: 'bg-emerald-100',
@@ -35,26 +31,43 @@ export function StepsGrid({
   const iconColor = ICON_COLORS[colorScheme]
 
   return (
-    <div className={cn('animate-fade-in-scale', className)}>
-      <div className={cn('grid gap-8', gridCols[columns])}>
-        {steps.map((step) => (
-          <div key={step.title} className='text-center p-6'>
-            <div
-              className={cn(
-                'w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4',
-                iconBgColor
-              )}
+    <section
+      className={cn('animate-fade-in-scale', className)}
+      aria-label='Process steps'
+    >
+      <ol className={cn('grid gap-8 list-none', gridCols[columns])}>
+        {steps.map((step, index) => {
+          const StepIcon = step.icon
+          const stepId = `step-${step.title.toLowerCase().replace(/\s+/g, '-')}`
+
+          return (
+            <li
+              key={stepId}
+              className='text-center p-6'
+              aria-posinset={index + 1}
+              aria-setsize={steps.length}
             >
-              <step.icon
-                className={cn('h-8 w-8', iconColor)}
-                aria-hidden='true'
-              />
-            </div>
-            <h3 className='font-semibold text-gray-900 mb-3'>{step.title}</h3>
-            <p className='text-gray-600 text-sm'>{step.description}</p>
-          </div>
-        ))}
-      </div>
-    </div>
+              <article className='flex flex-col items-center'>
+                <div
+                  className={cn(
+                    'w-16 h-16 rounded-full flex items-center justify-center mb-4',
+                    iconBgColor
+                  )}
+                  aria-hidden='true'
+                >
+                  <StepIcon className={cn('h-8 w-8', iconColor)} />
+                </div>
+                <h3 id={stepId} className='font-semibold text-gray-900 mb-3'>
+                  {step.title}
+                </h3>
+                <p className='text-gray-600 text-sm' aria-describedby={stepId}>
+                  {step.description}
+                </p>
+              </article>
+            </li>
+          )
+        })}
+      </ol>
+    </section>
   )
 }

@@ -2,7 +2,9 @@
  * Types for HeaderAndDescription component
  */
 
-export interface SectionHeaderProps {
+import type { ComponentProps } from 'react'
+
+export interface SectionHeaderProps extends ComponentProps<'header'> {
   heading: string
   headingHighlight?: string
   description: string

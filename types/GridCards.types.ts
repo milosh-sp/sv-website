@@ -1,6 +1,4 @@
-/**
- * Types for GridCards component
- */
+import type { ComponentProps } from 'react'
 
 interface BenefitItem {
   icon: React.ComponentType<{ className?: string }>
@@ -8,13 +6,13 @@ interface BenefitItem {
   description: string
 }
 
-interface BenefitCardProps {
+interface BenefitCardProps extends ComponentProps<'article'> {
   benefit: BenefitItem
   colorScheme?: 'blue' | 'emerald' | 'purple' | 'orange'
   className?: string
 }
 
-interface BenefitGridProps {
+interface BenefitGridProps extends ComponentProps<'ul'> {
   benefits: BenefitItem[]
   colorScheme?: 'blue' | 'emerald' | 'purple' | 'orange'
   columns?: 1 | 2 | 3 | 4

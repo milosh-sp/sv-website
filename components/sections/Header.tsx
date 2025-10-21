@@ -9,10 +9,6 @@ import { useState } from 'react'
 import logo from '../../assets/logo-sv.svg'
 import { HeaderLink } from '../ui/HeaderLink'
 
-/**
- * Scroll margin offset to account for fixed header height
- * Ensures content is not hidden behind the header when scrolling
- */
 const SCROLL_MARGIN_TOP = 96 // 80px header height + 16px padding
 
 export function Header() {
@@ -33,23 +29,31 @@ export function Header() {
     setIsMenuOpen(false)
   }
 
+  const toggleMenu = () => {
+    setIsMenuOpen((prev) => !prev)
+  }
+
   return (
     <header className='fixed top-0 w-full bg-white/95 backdrop-blur-md border-b border-slate-200/50 z-50 shadow-sm'>
       <div className='max-w-full mx-auto px-6 sm:px-8 lg:px-12 xl:px-16'>
         <nav
           className='flex items-center justify-between h-20'
-          aria-label='Main navigation'
+          aria-label={
+            strings.navigation.accessibility.goToHomepage || 'Main navigation'
+          }
         >
+          {/* Logo and Brand */}
           <Link
             href='/'
-            className='flex items-center gap-3 hover:opacity-80 transition-opacity duration-200'
+            className='flex items-center gap-3 hover:opacity-80 transition-opacity duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg'
             aria-label={strings.navigation.accessibility.goToHomepage}
           >
             <Image
               src={logo}
-              alt={strings.branding.logo.alt}
+              alt=''
               width={25}
               height={25}
+              aria-hidden='true'
             />
 
             <span className='text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent'>
@@ -57,24 +61,30 @@ export function Header() {
             </span>
           </Link>
 
-          <div className='hidden md:flex items-center gap-8'>
+          {/* Desktop Navigation */}
+          <ul
+            className='hidden md:flex items-center gap-8 list-none m-0 p-0'
+            aria-label='Primary navigation'
+          >
             {navigationData.map((link) => (
-              <HeaderLink
-                key={link.id}
-                scroll={false}
-                href={link.href}
-                onClick={() => scrollToSection(link.id)}
-                variant='desktop'
-              >
-                {link.label}
-              </HeaderLink>
+              <li key={link.id} role='none'>
+                <HeaderLink
+                  scroll={false}
+                  href={link.href}
+                  onClick={() => scrollToSection(link.id)}
+                  variant='desktop'
+                >
+                  {link.label}
+                </HeaderLink>
+              </li>
             ))}
-          </div>
+          </ul>
 
+          {/* Mobile Menu Toggle */}
           <button
             type='button'
-            className='md:hidden p-3 text-slate-700 hover:text-blue-600 hover:bg-slate-100 rounded-lg transition-all duration-200 cursor-pointer'
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className='md:hidden p-3 text-slate-700 hover:text-blue-600 hover:bg-slate-100 rounded-lg transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
+            onClick={toggleMenu}
             aria-expanded={isMenuOpen}
             aria-controls='mobile-menu'
             aria-label={
@@ -84,32 +94,34 @@ export function Header() {
             }
           >
             {isMenuOpen ? (
-              <X className='h-6 w-6' />
+              <X className='h-6 w-6' aria-hidden='true' />
             ) : (
-              <Menu className='h-6 w-6' />
+              <Menu className='h-6 w-6' aria-hidden='true' />
             )}
           </button>
         </nav>
 
+        {/* Mobile Navigation Menu */}
         {isMenuOpen && (
-          <div
+          <nav
             id='mobile-menu'
             className='md:hidden py-6 border-t border-slate-200/50 bg-white/98 backdrop-blur-md animate-fade-in-scale'
-            role='menu'
+            aria-label='Mobile navigation'
           >
-            <div className='flex flex-col gap-2'>
+            <ul className='flex flex-col gap-2 list-none m-0 p-0'>
               {navigationData.map((link) => (
-                <HeaderLink
-                  key={link.id}
-                  href={link.href}
-                  onClick={() => scrollToSection(link.id)}
-                  variant='mobile'
-                >
-                  {link.label}
-                </HeaderLink>
+                <li key={link.id} role='none'>
+                  <HeaderLink
+                    href={link.href}
+                    onClick={() => scrollToSection(link.id)}
+                    variant='mobile'
+                  >
+                    {link.label}
+                  </HeaderLink>
+                </li>
               ))}
-            </div>
-          </div>
+            </ul>
+          </nav>
         )}
       </div>
     </header>

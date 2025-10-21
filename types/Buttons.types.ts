@@ -1,3 +1,5 @@
+import type { ComponentProps } from 'react'
+
 type ButtonVariant =
   | 'default'
   | 'destructive'
@@ -7,7 +9,7 @@ type ButtonVariant =
   | 'link'
 type ButtonSize = 'default' | 'sm' | 'lg' | 'icon'
 
-interface ButtonProps extends React.ComponentProps<'button'> {
+interface ButtonProps extends ComponentProps<'button'> {
   variant?: ButtonVariant
   size?: ButtonSize
 }

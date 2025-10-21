@@ -1,7 +1,7 @@
 import type { BenefitItem } from './GridCards.types'
-import type { ReactNode } from 'react'
+import type { ComponentProps, ReactNode } from 'react'
 
-export interface BenefitCardsProps {
+export interface BenefitCardsProps extends ComponentProps<'section'> {
   benefits: BenefitItem[]
   description?: string
   icon?: ReactNode

@@ -38,7 +38,6 @@ export function ProcessSection() {
       description={strings.process.description}
       sectionId='process'
       className='py-20 bg-white'
-      contentClassName='max-w-4xl'
     >
       {activeTab === 'member' && (
         <StepsGrid steps={memberSteps} columns={4} colorScheme='emerald' />

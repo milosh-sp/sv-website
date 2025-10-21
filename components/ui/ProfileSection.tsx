@@ -4,7 +4,7 @@ import { CVSectionHeader } from './CVSectionHeader'
 
 export function ProfileSection() {
   return (
-    <div>
+    <article aria-labelledby='profile-section-heading'>
       <CVSectionHeader
         title={strings.cvSampleData.sections.profile}
         icon={User}
@@ -13,6 +13,6 @@ export function ProfileSection() {
           {strings.cvSampleData.profile.bio}
         </p>
       </CVSectionHeader>
-    </div>
+    </article>
   )
 }

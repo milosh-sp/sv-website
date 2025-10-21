@@ -1,4 +1,4 @@
-// Define types for Breadcrumb component here
+import type { ComponentProps } from 'react'
 
 interface BreadcrumbItem {
   name: string
@@ -6,7 +6,7 @@ interface BreadcrumbItem {
   current?: boolean
 }
 
-interface BreadcrumbProps {
+interface BreadcrumbProps extends ComponentProps<'nav'> {
   items: BreadcrumbItem[]
   className?: string
   showHome?: boolean

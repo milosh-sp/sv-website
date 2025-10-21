@@ -1,6 +1,6 @@
 'use client'
 
-import { X, Mail, Linkedin, Github, Award, CircleStar } from 'lucide-react'
+import { Mail, Linkedin, Github, Award, CircleStar } from 'lucide-react'
 import { cn, getUserSegmentLabel } from '@/lib/utils'
 import { strings } from '@/lib/strings'
 import VisuallyHidden from './VisuallyHidden'
@@ -29,16 +29,6 @@ export function SignupModal() {
   return (
     <CustomDialog isOpen={isOpen} onClose={closeModal}>
       <div className='relative mb-6'>
-        <button
-          type='button'
-          onClick={closeModal}
-          className='absolute right-[-8px] top-[-8px] p-2 rounded-full bg-slate-100 hover:bg-slate-200 transition-colors z-10 cursor-pointer'
-          aria-label={strings.signupModal.accessibility.closeModal}
-          tabIndex={0}
-        >
-          <X className='h-4 w-4' />
-        </button>
-
         <VisuallyHidden>
           <h2 className='text-2xl font-bold text-slate-900 text-center mb-2 pr-12'>
             {strings.signupModal.title}

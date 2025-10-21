@@ -1,24 +1,38 @@
 import { Shield, Clock, UserCheck } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 import { strings } from '@/lib/strings'
 import { HeroButtons } from '../ui/HeroButtons'
+
+const TRUST_INDICATOR_ICONS: readonly LucideIcon[] = [
+  Shield,
+  Clock,
+  UserCheck,
+] as const
 
 export function HeroSection() {
   return (
     <section
       id='home'
       className='section-padding gradient-hero flex items-center pb-15'
-      aria-label={strings.hero.accessibility.heroSection}
+      aria-labelledby='hero-heading'
+      aria-describedby='hero-description'
     >
       <div className='container-narrow'>
-        <div className='text-center animate-fade-in-up'>
-          <h1 className='text-display-1 text-slate-900 mb-6 text-balance text-center'>
+        <header className='text-center animate-fade-in-up'>
+          <h1
+            id='hero-heading'
+            className='text-display-1 text-slate-900 mb-6 text-balance'
+          >
             {strings.hero.mainHeading}
             <span className='bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent'>
               {strings.hero.mainHeadingHighlight}
             </span>
           </h1>
 
-          <p className='text-body-large text-slate-600 mb-8 max-w-4xl mx-auto text-pretty text-center'>
+          <p
+            id='hero-description'
+            className='text-body-large text-slate-600 mb-8 max-w-4xl mx-auto text-pretty text-center'
+          >
             {strings.hero.subHeading}
           </p>
 
@@ -28,12 +42,14 @@ export function HeroSection() {
 
           <HeroButtons />
 
-          <div className='flex flex-col sm:flex-row items-center justify-center gap-6 text-sm'>
+          <ul
+            className='flex flex-col sm:flex-row items-center justify-center gap-6 text-sm list-none'
+            aria-label='Trust indicators'
+          >
             {strings.hero.trustIndicators.map((indicator, index) => {
-              const icons = [Shield, Clock, UserCheck]
-              const Icon = icons[index]
+              const Icon = TRUST_INDICATOR_ICONS[index] ?? Shield
               return (
-                <div
+                <li
                   key={indicator}
                   className='flex items-center gap-3 bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full shadow-sm border border-white/20'
                 >
@@ -44,11 +60,11 @@ export function HeroSection() {
                   <span className='font-medium text-slate-700'>
                     {indicator}
                   </span>
-                </div>
+                </li>
               )
             })}
-          </div>
-        </div>
+          </ul>
+        </header>
       </div>
     </section>
   )

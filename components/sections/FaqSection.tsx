@@ -14,28 +14,23 @@ export function FaqSection() {
     )
   }, [])
 
-  // Use centralized FAQ content
   const memberFAQs = strings.faq.members
   const verifierFAQs = strings.faq.verifiers
 
-  // Combine all FAQs for structured data - memoized to prevent recalculation
   const allFAQs = useMemo(
     () => [...memberFAQs, ...verifierFAQs],
     [memberFAQs, verifierFAQs]
   )
 
-  // Generate FAQ schema once
   const faqSchema = useMemo(() => generateFAQSchema(allFAQs), [allFAQs])
 
   useEffect(() => {
-    // Add FAQ structured data to the page
     const script = document.createElement('script')
     script.type = 'application/ld+json'
     script.textContent = JSON.stringify(faqSchema)
     document.head.appendChild(script)
 
     return () => {
-      // Cleanup: remove the script when component unmounts
       if (document.head.contains(script)) {
         document.head.removeChild(script)
       }
@@ -50,29 +45,30 @@ export function FaqSection() {
     >
       <div className='container mx-auto px-4'>
         <div className='max-w-3xl mx-auto'>
-          {/* Page heading for accessibility */}
           <h1 id='faq-heading' className='sr-only'>
             {strings.faq.mainHeading}
           </h1>
 
-          {/* Members FAQ */}
-          <div className='mb-16'>
-            <h2 className='text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12'>
+          <article className='mb-16' aria-labelledby='members-faq-heading'>
+            <h2
+              id='members-faq-heading'
+              className='text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12'
+            >
               {strings.faq.membersHeading}
             </h2>
 
-            <ul className='space-y-4'>
+            <dl className='space-y-4'>
               {memberFAQs.map((faq, index) => {
                 const isOpen = openItems.includes(index)
                 const buttonId = `faq-button-member-${index}`
                 const panelId = `faq-panel-member-${index}`
 
                 return (
-                  <li
+                  <div
                     key={`member-faq-${faq.question.slice(0, 20)}`}
                     className='bg-white rounded-lg border border-gray-200 overflow-hidden'
                   >
-                    <h3>
+                    <dt>
                       <button
                         id={buttonId}
                         onClick={() => toggleItem(index)}
@@ -91,29 +87,30 @@ export function FaqSection() {
                           aria-hidden='true'
                         />
                       </button>
-                    </h3>
-                    {isOpen && (
-                      <section
-                        id={panelId}
-                        className='px-6 pb-4 border-t border-gray-100'
-                        aria-labelledby={buttonId}
-                      >
-                        <p className='text-gray-600 pt-4'>{faq.answer}</p>
-                      </section>
-                    )}
-                  </li>
+                    </dt>
+                    <dd
+                      id={panelId}
+                      className={`px-6 pb-4 border-t border-gray-100 ${
+                        isOpen ? 'block' : 'hidden'
+                      }`}
+                    >
+                      <p className='text-gray-600 pt-4'>{faq.answer}</p>
+                    </dd>
+                  </div>
                 )
               })}
-            </ul>
-          </div>
+            </dl>
+          </article>
 
-          {/* Verifiers FAQ */}
-          <div>
-            <h2 className='text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12'>
+          <article aria-labelledby='verifiers-faq-heading'>
+            <h2
+              id='verifiers-faq-heading'
+              className='text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12'
+            >
               {strings.faq.verifiersHeading}
             </h2>
 
-            <ul className='space-y-4'>
+            <dl className='space-y-4'>
               {verifierFAQs.map((faq, index) => {
                 const adjustedIndex = index + memberFAQs.length
                 const isOpen = openItems.includes(adjustedIndex)
@@ -121,11 +118,11 @@ export function FaqSection() {
                 const panelId = `faq-panel-verifier-${index}`
 
                 return (
-                  <li
+                  <div
                     key={`verifier-faq-${faq.question.slice(0, 20)}`}
                     className='bg-white rounded-lg border border-gray-200 overflow-hidden'
                   >
-                    <h3>
+                    <dt>
                       <button
                         id={buttonId}
                         type='button'
@@ -144,21 +141,20 @@ export function FaqSection() {
                           aria-hidden='true'
                         />
                       </button>
-                    </h3>
-                    {isOpen && (
-                      <section
-                        id={panelId}
-                        className='px-6 pb-4 border-t border-gray-100'
-                        aria-labelledby={buttonId}
-                      >
-                        <p className='text-gray-600 pt-4'>{faq.answer}</p>
-                      </section>
-                    )}
-                  </li>
+                    </dt>
+                    <dd
+                      id={panelId}
+                      className={`px-6 pb-4 border-t border-gray-100 ${
+                        isOpen ? 'block' : 'hidden'
+                      }`}
+                    >
+                      <p className='text-gray-600 pt-4'>{faq.answer}</p>
+                    </dd>
+                  </div>
                 )
               })}
-            </ul>
-          </div>
+            </dl>
+          </article>
         </div>
       </div>
     </section>

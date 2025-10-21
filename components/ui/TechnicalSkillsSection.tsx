@@ -10,11 +10,12 @@ export function TechnicalSkillsSection() {
       icon={Code}
       items={strings.cvSampleData.skills}
       itemRenderer={(skill: SkillItem) => (
-        <div className='bg-slate-50 p-3 rounded-lg border-l-4 border-slate-700 flex items-center justify-between group relative'>
-          <span className='font-medium text-sm text-slate-800'>
-            {skill.name}
-          </span>
-        </div>
+        <article
+          className='bg-slate-50 p-3 rounded-lg border-l-4 border-slate-700 flex items-center justify-between group relative'
+          aria-label={`Technical skill: ${skill.name}`}
+        >
+          <h4 className='font-medium text-sm text-slate-800'>{skill.name}</h4>
+        </article>
       )}
     />
   )

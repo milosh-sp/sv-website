@@ -6,8 +6,8 @@ import { Menu, X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
-import logo from '../../assets/logo-sv.svg'
 import { HeaderLink } from '../ui/HeaderLink'
+import logo from '@/public/logo-sv.svg'
 
 const SCROLL_MARGIN_TOP = 96 // 80px header height + 16px padding
 

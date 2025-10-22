@@ -26,10 +26,8 @@ export const siteConfig = {
   twitterHandle: '@skillverdict',
 
   // Images and assets
-  ogImage: '/og-image.jpg',
-  ogImageSvg: '/og-image.svg',
-  logo: '/placeholder-logo.png',
-  logoSvg: '/placeholder-logo.svg',
+  ogImage: '/og-image.min.png',
+  logo: '/logo-sv.svg',
   favicon: '/favicon.ico',
 
   // Contact information
@@ -213,17 +211,16 @@ export const technicalSeo = {
   },
 
   // Icons configuration
+  // Favicon files are located in /public directory
   icons: {
     icon: [
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
       { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon.ico', sizes: 'any', type: 'image/x-icon' },
     ] as Array<{ url: string; sizes: string; type: string }>,
     apple: [
       { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
     ] as Array<{ url: string; sizes: string; type: string }>,
-    other: [
-      { rel: 'mask-icon', url: '/safari-pinned-tab.svg', color: '#3b82f6' },
-    ] as Array<{ rel: string; url: string; color?: string }>,
   },
 
   // Manifest configuration
@@ -267,7 +264,7 @@ export const sitemapConfig = {
       changeFrequency: 'daily' as const,
       priority: 1.0,
       images: [
-        '/og-image.jpg',
+        '/og-image.min.png',
         '/og-image.svg',
         '/placeholder-logo.png',
         '/placeholder-user.jpg',

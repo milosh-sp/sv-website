@@ -1,16 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-
-  // Note: headers() and redirects() are not compatible with static export
-  // For production, implement these at the hosting level:
-  // - Netlify: _headers and _redirects files
-  // - Vercel: vercel.json configuration
-  // - Cloudflare Pages: _headers and _redirects files
-  // - Apache: .htaccess file
-  // - Nginx: server configuration
-
-  // SEO and Performance Optimizations
   trailingSlash: false, // Clean URLs without trailing slashes
 
   // Image optimization for static export
@@ -30,7 +20,7 @@ const nextConfig = {
 
   // Experimental features for better performance
   experimental: {
-    optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
+    optimizePackageImports: ['lucide-react'],
   },
 }
 

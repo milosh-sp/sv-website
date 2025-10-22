@@ -5,7 +5,6 @@
  * Content is imported from strings.ts to maintain single source of truth
  */
 
-import type { Metadata } from 'next'
 import { strings } from './strings'
 
 // ============================================================================
@@ -27,10 +26,8 @@ export const siteConfig = {
   twitterHandle: '@skillverdict',
 
   // Images and assets
-  ogImage: '/og-image.jpg',
-  ogImageSvg: '/og-image.svg',
-  logo: '/placeholder-logo.png',
-  logoSvg: '/placeholder-logo.svg',
+  ogImage: '/og-image.min.png',
+  logo: '/logo-sv.svg',
   favicon: '/favicon.ico',
 
   // Contact information
@@ -110,13 +107,6 @@ export const seoKeywords = {
       'CV2.0 generation',
       'verified developer skills',
     ] as string[],
-    terms: [
-      'terms of service',
-      'user agreement',
-      'platform rules',
-      'community guidelines',
-      'legal terms',
-    ] as string[],
     privacy: [
       'privacy policy',
       'data protection',
@@ -137,14 +127,6 @@ export const pageSeoConfig = {
     description: siteConfig.description,
     keywords: seoKeywords.pages.home,
     canonical: siteConfig.url,
-    ogImage: siteConfig.ogImage,
-  },
-
-  terms: {
-    title: `${strings.footer.links.termsOfService} | ${strings.branding.companyName}`,
-    description: `Read ${strings.branding.companyName}'s terms of service, user agreements, and platform guidelines for our skill verification community.`,
-    keywords: seoKeywords.pages.terms,
-    canonical: `${siteConfig.url}/terms-of-service`,
     ogImage: siteConfig.ogImage,
   },
 
@@ -174,13 +156,13 @@ export const structuredData = {
   },
 
   // Benefits for verifiers
-  verifierBenefits: strings.howItWorks.techProfessionals.benefits,
+  verifierBenefits: strings.benefits.guruMembers.benefits,
 
   // Benefits for members
-  memberBenefits: strings.howItWorks.members.benefits,
+  memberBenefits: strings.benefits.members.benefits,
 
   // Process steps
-  verifierProcess: strings.process.techProfessionalSteps,
+  verifierProcess: strings.process.guruMembersteps,
 
   memberProcess: strings.process.memberSteps,
 
@@ -229,17 +211,16 @@ export const technicalSeo = {
   },
 
   // Icons configuration
+  // Favicon files are located in /public directory
   icons: {
     icon: [
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
       { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-    ] as any[],
+      { url: '/favicon.ico', sizes: 'any', type: 'image/x-icon' },
+    ] as Array<{ url: string; sizes: string; type: string }>,
     apple: [
       { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
-    ] as any[],
-    other: [
-      { rel: 'mask-icon', url: '/safari-pinned-tab.svg', color: '#3b82f6' },
-    ] as any[],
+    ] as Array<{ url: string; sizes: string; type: string }>,
   },
 
   // Manifest configuration
@@ -283,24 +264,12 @@ export const sitemapConfig = {
       changeFrequency: 'daily' as const,
       priority: 1.0,
       images: [
-        '/og-image.jpg',
+        '/og-image.min.png',
         '/og-image.svg',
         '/placeholder-logo.png',
         '/placeholder-user.jpg',
         '/placeholder.jpg',
       ],
-    },
-    {
-      url: '/privacy-policy',
-      lastModified: new Date('2024-12-01'),
-      changeFrequency: 'yearly' as const,
-      priority: 0.3,
-    },
-    {
-      url: '/terms-of-service',
-      lastModified: new Date('2024-12-01'),
-      changeFrequency: 'yearly' as const,
-      priority: 0.3,
     },
   ],
 } as const
@@ -308,9 +277,3 @@ export const sitemapConfig = {
 // ============================================================================
 // EXPORT TYPES
 // ============================================================================
-
-export type PageSeoConfig = typeof pageSeoConfig
-export type StructuredData = typeof structuredData
-export type FAQContent = typeof faqContent
-export type TechnicalSeo = typeof technicalSeo
-export type SitemapConfig = typeof sitemapConfig

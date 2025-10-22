@@ -1,23 +1,17 @@
-import { CVPreview } from "@/components/cv-preview";
-import { FAQ } from "@/components/faq";
-import { Process } from "@/components/process";
-import { TwoSides } from "@/components/two-sides";
-import { HeroSection } from "@/components/hero-section";
-import { SignupModal } from "@/components/signup-modal";
-import { FloatingSignupButton } from "@/components/floating-signup-button";
-import { CompanyDiscovery } from "@/components/company-discovery";
+import { navigationData } from '@/lib/navigationData'
+import { FloatingSignupButton } from '@/components/ui/FloatingSignupButton'
+import { SignupModal } from '@/components/ui/SignupModal'
+import { SignupModalProvider } from '@/contexts/SignupModalContext'
 
 export default function Home() {
   return (
-    <>
-      <HeroSection />
-      <TwoSides />
-      <Process />
-      <CompanyDiscovery />
-      <CVPreview />
-      <FAQ />
+    <SignupModalProvider>
+      {navigationData.map(({ id, Component }) => {
+        // Renders each section based on the navigation data order
+        return <Component key={id} id={id} />
+      })}
       <SignupModal />
       <FloatingSignupButton />
-    </>
+    </SignupModalProvider>
   )
 }

@@ -1,11 +1,6 @@
-/**
- * Centralized validation utilities for form inputs
- * Shared between client and server to ensure consistency
- */
-
 export interface ValidationResult {
-  isValid: boolean;
-  message?: string;
+  isValid: boolean
+  message?: string
 }
 
 /**
@@ -15,46 +10,47 @@ export function validateEmail(email: string): ValidationResult {
   if (!email) {
     return {
       isValid: false,
-      message: "Email is required"
-    };
+      message: 'Email is required',
+    }
   }
 
   if (typeof email !== 'string') {
     return {
       isValid: false,
-      message: "Email must be a string"
-    };
+      message: 'Email must be a string',
+    }
   }
 
-  const trimmedEmail = email.trim();
+  const trimmedEmail = email.trim()
   if (!trimmedEmail) {
     return {
       isValid: false,
-      message: "Email is required"
-    };
+      message: 'Email is required',
+    }
   }
 
   // More comprehensive email regex that handles edge cases
-  const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-  
+  const emailRegex =
+    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
+
   if (!emailRegex.test(trimmedEmail)) {
     return {
       isValid: false,
-      message: "Please enter a valid email address"
-    };
+      message: 'Please enter a valid email address',
+    }
   }
 
   // Check for reasonable length limits
   if (trimmedEmail.length > 254) {
     return {
       isValid: false,
-      message: "Email address is too long"
-    };
+      message: 'Email address is too long',
+    }
   }
 
   return {
-    isValid: true
-  };
+    isValid: true,
+  }
 }
 
 /**
@@ -64,82 +60,168 @@ export function validateLinkedIn(url: string): ValidationResult {
   if (!url) {
     return {
       isValid: false,
-      message: "LinkedIn profile URL is required"
-    };
+      message: 'LinkedIn profile URL is required',
+    }
   }
 
   if (typeof url !== 'string') {
     return {
       isValid: false,
-      message: "LinkedIn URL must be a string"
-    };
+      message: 'LinkedIn URL must be a string',
+    }
   }
 
-  const trimmedUrl = url.trim();
+  const trimmedUrl = url.trim()
   if (!trimmedUrl) {
     return {
       isValid: false,
-      message: "LinkedIn profile URL is required"
-    };
+      message: 'LinkedIn profile URL is required',
+    }
   }
 
   // LinkedIn profile URL regex - supports various formats
-  const linkedinRegex = /^https?:\/\/(www\.)?linkedin\.com\/in\/[a-zA-Z0-9-]+\/?$/;
-  
+  const linkedinRegex =
+    /^https?:\/\/(www\.)?linkedin\.com\/in\/[a-zA-Z0-9-]+\/?$/
+
   if (!linkedinRegex.test(trimmedUrl)) {
     return {
       isValid: false,
-      message: "Please enter a valid LinkedIn profile URL (e.g., https://linkedin.com/in/yourname)"
-    };
+      message:
+        'Please enter a valid LinkedIn profile URL (e.g., https://linkedin.com/in/yourname)',
+    }
   }
 
   return {
-    isValid: true
-  };
+    isValid: true,
+  }
+}
+
+/**
+ * Validate GitHub profile URL format
+ */
+export function validateGitHub(url: string): ValidationResult {
+  if (!url) {
+    return {
+      isValid: false,
+      message: 'GitHub profile URL is required',
+    }
+  }
+
+  if (typeof url !== 'string') {
+    return {
+      isValid: false,
+      message: 'GitHub URL must be a string',
+    }
+  }
+
+  const trimmedUrl = url.trim()
+  if (!trimmedUrl) {
+    return {
+      isValid: false,
+      message: 'GitHub profile URL is required',
+    }
+  }
+
+  // GitHub profile URL regex - supports various formats
+  const githubRegex = /^https?:\/\/(www\.)?github\.com\/[a-zA-Z0-9-]+\/?$/
+
+  if (!githubRegex.test(trimmedUrl)) {
+    return {
+      isValid: false,
+      message:
+        'Please enter a valid GitHub profile URL (e.g., https://github.com/username)',
+    }
+  }
+
+  return {
+    isValid: true,
+  }
 }
 
 /**
  * Validate form data for signup
  */
 export interface SignupFormData {
-  email: string;
-  linkedin: string;
+  email: string
+  linkedin: string
+  github?: string
 }
 
 export interface FormValidationResult {
-  isValid: boolean;
-  errors: Record<string, string>;
+  isValid: boolean
+  errors: Record<string, string>
 }
 
 export function validateSignupForm(data: SignupFormData): FormValidationResult {
-  const errors: Record<string, string> = {};
+  const errors: Record<string, string> = {}
 
   // Validate email
-  const emailValidation = validateEmail(data.email);
+  const emailValidation = validateEmail(data.email)
   if (!emailValidation.isValid) {
-    errors.email = emailValidation.message || "Invalid email";
+    errors.email = emailValidation.message || 'Invalid email'
   }
 
   // Validate LinkedIn
-  const linkedinValidation = validateLinkedIn(data.linkedin);
+  const linkedinValidation = validateLinkedIn(data.linkedin)
   if (!linkedinValidation.isValid) {
-    errors.linkedin = linkedinValidation.message || "Invalid LinkedIn URL";
+    errors.linkedin = linkedinValidation.message || 'Invalid LinkedIn URL'
+  }
+
+  // Validate GitHub if provided
+  if (data.github) {
+    const githubValidation = validateGitHub(data.github)
+    if (!githubValidation.isValid) {
+      errors.github = githubValidation.message || 'Invalid GitHub URL'
+    }
   }
 
   return {
     isValid: Object.keys(errors).length === 0,
-    errors
-  };
+    errors,
+  }
 }
 
 /**
  * Legacy validation functions for backward compatibility
  * These return boolean values like the original functions
  */
-export function isValidEmail(email: string): boolean {
-  return validateEmail(email).isValid;
+function isValidEmail(email: string): boolean {
+  return validateEmail(email).isValid
 }
 
-export function isValidLinkedIn(url: string): boolean {
-  return validateLinkedIn(url).isValid;
+function isValidLinkedIn(url: string): boolean {
+  return validateLinkedIn(url).isValid
 }
+
+function isValidGitHub(url: string): boolean {
+  return validateGitHub(url).isValid
+}
+
+function isFormValid(formData: {
+  email: string
+  linkedin: string
+  github: string
+}): boolean {
+  if (!formData.email || !formData.linkedin || !formData.github) {
+    return false
+  }
+
+  const emailValidation = validateEmail(formData.email)
+  if (!emailValidation.isValid) {
+    return false
+  }
+
+  const linkedinValidation = validateLinkedIn(formData.linkedin)
+  if (!linkedinValidation.isValid) {
+    return false
+  }
+
+  const githubValidation = validateGitHub(formData.github)
+  if (!githubValidation.isValid) {
+    return false
+  }
+
+  return true
+}
+
+export { isValidEmail, isValidLinkedIn, isValidGitHub, isFormValid }

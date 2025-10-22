@@ -74,4 +74,3 @@ export type {
   BotDetectionResult,
   Handler,
 }
-

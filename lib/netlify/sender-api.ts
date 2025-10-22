@@ -88,4 +88,3 @@ export {
   logSenderNetError,
   SENDER_API_URL,
 }
-

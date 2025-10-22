@@ -27,4 +27,3 @@ function extractClientIPAndCountry(event: HandlerEvent): ClientIPAndCountry {
 }
 
 export { extractClientIPAndCountry }
-

@@ -1,8 +1,4 @@
-import {
-  validateEmail,
-  validateGitHub,
-  validateLinkedIn,
-} from '../validation'
+import { validateEmail, validateGitHub, validateLinkedIn } from '../validation'
 import type {
   BotDetectionResult,
   FormFields,
@@ -165,4 +161,3 @@ export {
   validateLinkedInIfProvided,
   validateGitHubIfProvided,
 }
-

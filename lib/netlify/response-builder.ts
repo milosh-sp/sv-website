@@ -140,4 +140,3 @@ export {
   CORS_HEADERS,
   JSON_HEADERS,
 }
-

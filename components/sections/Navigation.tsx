@@ -8,8 +8,10 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { HeaderLink } from '../ui/HeaderLink'
 import logo from '@/public/logo-sv.svg'
+import { cn } from '@/lib/utils'
 
-const SCROLL_MARGIN_TOP = 80 // 80px header height + 16px padding
+const SCROLL_MARGIN_TOP_DESKTOP = 80 // 80px header height + 16px padding
+const SCROLL_MARGIN_TOP_MOBILE = 100 // Reduced margin for mobile devices
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -17,9 +19,13 @@ export function Header() {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
+      const isMobile = window.innerWidth < 768 // md breakpoint
+      const scrollMargin = isMobile
+        ? SCROLL_MARGIN_TOP_MOBILE
+        : SCROLL_MARGIN_TOP_DESKTOP
+
       const elementPosition = element.getBoundingClientRect().top
-      const offsetPosition =
-        elementPosition + window.scrollY - SCROLL_MARGIN_TOP
+      const offsetPosition = elementPosition + window.scrollY - scrollMargin
 
       window.scrollTo({
         top: offsetPosition,
@@ -34,10 +40,17 @@ export function Header() {
   }
 
   return (
-    <header className='fixed top-0 w-full bg-white/95 backdrop-blur-md border-b border-slate-200/50 z-50 shadow-sm'>
-      <div className='max-w-full mx-auto px-6 sm:px-8 lg:px-12 xl:px-16'>
+    <header
+      className={cn(
+        'fixed top-0 w-full bg-white/95 backdrop-blur-md',
+        'border-b border-slate-200/50 z-50 shadow-sm'
+      )}
+    >
+      <div
+        className={cn('max-w-full mx-auto', 'px-6 sm:px-8 lg:px-12 xl:px-16')}
+      >
         <nav
-          className='flex items-center justify-between h-20'
+          className={cn('flex items-center justify-between h-20')}
           aria-label={
             strings.navigation.accessibility.goToHomepage || 'Main navigation'
           }
@@ -45,7 +58,11 @@ export function Header() {
           {/* Logo and Brand */}
           <Link
             href='/'
-            className='flex items-center gap-3 hover:opacity-80 transition-opacity duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg'
+            className={cn(
+              'flex items-center gap-3',
+              'hover:opacity-80 transition-opacity duration-200',
+              'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg'
+            )}
             aria-label={strings.navigation.accessibility.goToHomepage}
           >
             <Image
@@ -56,14 +73,23 @@ export function Header() {
               aria-hidden='true'
             />
 
-            <span className='text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent'>
+            <span
+              className={cn(
+                'text-2xl font-bold',
+                'bg-gradient-to-r from-blue-600 to-blue-800',
+                'bg-clip-text text-transparent'
+              )}
+            >
               {strings.branding.companyName}
             </span>
           </Link>
 
           {/* Desktop Navigation */}
           <ul
-            className='hidden md:flex items-center gap-8 list-none m-0 p-0'
+            className={cn(
+              'hidden md:flex items-center gap-8',
+              'list-none m-0 p-0'
+            )}
             aria-label='Primary navigation'
           >
             {navigationData.map((link) => (
@@ -83,7 +109,12 @@ export function Header() {
           {/* Mobile Menu Toggle */}
           <button
             type='button'
-            className='md:hidden p-3 text-slate-700 hover:text-blue-600 hover:bg-slate-100 rounded-lg transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
+            className={cn(
+              'md:hidden p-3',
+              'text-slate-700 hover:text-blue-600 hover:bg-slate-100',
+              'rounded-lg transition-all duration-200 cursor-pointer',
+              'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
+            )}
             onClick={toggleMenu}
             aria-expanded={isMenuOpen}
             aria-controls='mobile-menu'
@@ -94,9 +125,9 @@ export function Header() {
             }
           >
             {isMenuOpen ? (
-              <X className='h-6 w-6' aria-hidden='true' />
+              <X className={cn('h-6 w-6')} aria-hidden='true' />
             ) : (
-              <Menu className='h-6 w-6' aria-hidden='true' />
+              <Menu className={cn('h-6 w-6')} aria-hidden='true' />
             )}
           </button>
         </nav>
@@ -105,10 +136,15 @@ export function Header() {
         {isMenuOpen && (
           <nav
             id='mobile-menu'
-            className='md:hidden py-6 border-t border-slate-200/50 bg-white/98 backdrop-blur-md animate-fade-in-scale'
+            className={cn(
+              'md:hidden py-6',
+              'border-t border-slate-200/50',
+              'bg-white/98 backdrop-blur-md',
+              'animate-fade-in-scale'
+            )}
             aria-label='Mobile navigation'
           >
-            <ul className='flex flex-col gap-2 list-none m-0 p-0'>
+            <ul className={cn('flex flex-col gap-2', 'list-none m-0 p-0')}>
               {navigationData.map((link) => (
                 <li key={link.id} role='none'>
                   <HeaderLink

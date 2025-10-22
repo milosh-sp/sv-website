@@ -18,7 +18,7 @@ export function HeaderAndButtons({
   return (
     <section
       className={cn(
-        'p-15 bg-gradient-to-b from-white to-slate-50/50',
+        'p-5 md:p-15 bg-gradient-to-b from-white to-slate-50/50',
         className
       )}
       id={sectionId}

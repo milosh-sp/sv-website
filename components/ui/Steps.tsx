@@ -43,7 +43,7 @@ export function StepsGrid({
           return (
             <li
               key={stepId}
-              className='text-center p-6'
+              className='text-center p-1'
               aria-posinset={index + 1}
               aria-setsize={steps.length}
             >

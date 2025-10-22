@@ -11,7 +11,7 @@ export function CvFeaturesList() {
       {featuresWithIcons.map((feature) => {
         const FeatureIcon = feature.icon
         return (
-          <article key={`feature-${feature.title}`} className='text-center p-6'>
+          <article key={`feature-${feature.title}`} className='text-center p-1'>
             <div
               className='w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4'
               role='img'

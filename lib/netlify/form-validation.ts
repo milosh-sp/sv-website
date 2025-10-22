@@ -2,13 +2,13 @@ import {
   validateEmail,
   validateGitHub,
   validateLinkedIn,
-} from '../../lib/validation'
+} from '../validation'
 import type {
   BotDetectionResult,
   FormFields,
   FormSubmissionData,
   ValidationError,
-} from './form-submit.types'
+} from '../../types/netlify.types'
 
 const FORM_SUBMISSION_MIN_TIME_MS = 2000
 const FORM_SUBMISSION_MAX_TIME_MS = 30 * 60 * 1000
@@ -165,3 +165,4 @@ export {
   validateLinkedInIfProvided,
   validateGitHubIfProvided,
 }
+

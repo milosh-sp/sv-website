@@ -3,7 +3,7 @@ import type {
   FormFields,
   SenderNetErrorResponse,
   SenderNetSubscriber,
-} from './form-submit.types'
+} from '../../types/netlify.types'
 
 const SENDER_API_URL = 'https://api.sender.net/v2/subscribers'
 const SENDER_API_TIMEOUT_MS = 10000
@@ -88,3 +88,4 @@ export {
   logSenderNetError,
   SENDER_API_URL,
 }
+

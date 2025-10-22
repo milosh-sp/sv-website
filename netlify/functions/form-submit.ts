@@ -4,7 +4,7 @@ import {
   getApiToken,
   logSenderNetError,
   submitToSenderNet,
-} from './sender-api'
+} from '../../lib/netlify/sender-api'
 import {
   createBotDetectedResponse,
   createEmailAlreadySubscribedResponse,
@@ -19,10 +19,13 @@ import {
   createSuccessResponse,
   createUnexpectedErrorResponse,
   createValidationErrorResponse,
-} from './response-builder'
-import { extractClientIPAndCountry } from './client-info'
-import type { FormSubmissionData, HttpResponse } from './form-submit.types'
-import { detectBot, validateFormData } from './form-validation'
+} from '../../lib/netlify/response-builder'
+import { extractClientIPAndCountry } from '../../lib/netlify/client-info'
+import type {
+  FormSubmissionData,
+  HttpResponse,
+} from '../../types/netlify.types'
+import { detectBot, validateFormData } from '../../lib/netlify/form-validation'
 
 export const handler: Handler = async (
   event: HandlerEvent,

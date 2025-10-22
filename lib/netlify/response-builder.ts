@@ -2,7 +2,7 @@ import type {
   ApiErrorResponse,
   ApiSuccessResponse,
   HttpResponse,
-} from './form-submit.types'
+} from '../../types/netlify.types'
 
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': '*',
@@ -140,3 +140,4 @@ export {
   CORS_HEADERS,
   JSON_HEADERS,
 }
+

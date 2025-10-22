@@ -7,7 +7,7 @@ import { HeaderAndButtons } from '../ui/HeaderAndButtons'
 import { StepsGrid } from '../ui/Steps'
 
 // Steps already have icons embedded in strings
-const guruMemberSteps = strings.process.techProfessionalSteps
+const guruMemberSteps = strings.process.guruMembersteps
 const memberSteps = strings.process.memberSteps
 
 interface ProcessSectionProps {

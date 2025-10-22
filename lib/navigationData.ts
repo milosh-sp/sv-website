@@ -12,7 +12,7 @@ import { HeroSection } from '@/components/sections/HeroSection'
 export const navigationData = [
   {
     id: 'how-it-works',
-    label: strings.navigation.menu.howItWorks,
+    label: strings.navigation.menu.benefits,
     href: '#how-it-works',
     Component: HeroSection,
   },

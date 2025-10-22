@@ -156,13 +156,13 @@ export const structuredData = {
   },
 
   // Benefits for verifiers
-  verifierBenefits: strings.howItWorks.techProfessionals.benefits,
+  verifierBenefits: strings.benefits.guruMembers.benefits,
 
   // Benefits for members
-  memberBenefits: strings.howItWorks.members.benefits,
+  memberBenefits: strings.benefits.members.benefits,
 
   // Process steps
-  verifierProcess: strings.process.techProfessionalSteps,
+  verifierProcess: strings.process.guruMembersteps,
 
   memberProcess: strings.process.memberSteps,
 

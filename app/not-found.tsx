@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/Button'
 export default function NotFound() {
   // Icons are embedded in strings
   const HomeIcon = strings.errorPages.notFound.actions.backToHome.icon
-  const SearchIcon = strings.errorPages.notFound.actions.howItWorks.icon
+  const SearchIcon = strings.errorPages.notFound.actions.benefits.icon
   const ArrowLeftIcon = strings.errorPages.notFound.actions.goBack.icon
 
   // Set page title for SEO
@@ -49,7 +49,7 @@ export default function NotFound() {
             <Link href='/#how-it-works' className='flex-1'>
               <Button variant='outline' className='w-full'>
                 <SearchIcon className='h-4 w-4 mr-2' />
-                {strings.errorPages.notFound.actions.howItWorks.label}
+                {strings.errorPages.notFound.actions.benefits.label}
               </Button>
             </Link>
 

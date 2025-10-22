@@ -9,8 +9,8 @@ import { HeaderAndButtons } from '../ui/HeaderAndButtons'
 import type { SectionProps } from '@/types/Sections.types'
 
 // Benefits already have icons embedded in strings
-const vetterBenefits = strings.howItWorks.techProfessionals.benefits
-const candidateBenefits = strings.howItWorks.members.benefits
+const vetterBenefits = strings.benefits.guruMembers.benefits
+const candidateBenefits = strings.benefits.members.benefits
 
 export function BenefitsSection({ id }: SectionProps) {
   const [activeTab, setActiveTab] = useState<UserType>('member')
@@ -20,17 +20,17 @@ export function BenefitsSection({ id }: SectionProps) {
       sectionId={id}
       activeTab={activeTab}
       onTabChange={setActiveTab}
-      heading={strings.howItWorks.heading}
-      headingHighlight={strings.howItWorks.headingHighlight}
-      description={strings.howItWorks.description}
-      ariaLabel={strings.howItWorks.accessibility.howItWorksSection}
+      heading={strings.benefits.heading}
+      headingHighlight={strings.benefits.headingHighlight}
+      description={strings.benefits.description}
+      ariaLabel={strings.benefits.accessibility.benefitsSection}
     >
       {activeTab === 'member' && (
         <BenefitCards
           icon={
             <CircleStar className='h-14 w-14 text-white' aria-hidden='true' />
           }
-          description={strings.howItWorks.members.description}
+          description={strings.benefits.members.description}
           benefits={candidateBenefits}
           colorScheme='emerald'
         />
@@ -41,10 +41,10 @@ export function BenefitsSection({ id }: SectionProps) {
             <Award
               className='h-14 w-14 text-white'
               aria-hidden='true'
-              aria-label={strings.howItWorks.techProfessionals.iconAriaLabel}
+              aria-label={strings.benefits.guruMembers.iconAriaLabel}
             />
           }
-          description={strings.howItWorks.techProfessionals.description}
+          description={strings.benefits.guruMembers.description}
           benefits={vetterBenefits}
           colorScheme='blue'
         />

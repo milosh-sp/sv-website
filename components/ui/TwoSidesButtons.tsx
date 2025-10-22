@@ -12,20 +12,20 @@ export function TwoSidesButtons({
       <div
         className='flex p-2.5 bg-slate-100/80 backdrop-blur-sm rounded-xl shadow-sm border border-slate-200/50'
         role='tablist'
-        aria-label={strings.howItWorks.tabAccessibility.chooseUserType}
+        aria-label={strings.benefits.tabAccessibility.chooseUserType}
       >
         <SideTabButton
           isActive={activeTab === 'member'}
           onClick={() => onTabChange('member')}
           icon={CircleStar}
-          label={strings.howItWorks.tabs.members}
+          label={strings.benefits.tabs.members}
           ariaControls='member-panel'
         />
         <SideTabButton
           isActive={activeTab === 'guru'}
           onClick={() => onTabChange('guru')}
           icon={Award}
-          label={strings.howItWorks.tabs.techProfessionals}
+          label={strings.benefits.tabs.guruMembers}
           ariaControls='guru-panel'
         />
       </div>

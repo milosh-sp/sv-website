@@ -12,7 +12,7 @@ const COLOR_SCHEME_GRADIENTS = {
 
 export function BenefitCards({
   benefits,
-  description = strings.howItWorks.members.description,
+  description = strings.benefits.members.description,
   icon,
   colorScheme = 'blue',
   className = '',

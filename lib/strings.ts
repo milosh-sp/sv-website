@@ -74,7 +74,7 @@ export const navigation = {
   // Main navigation items
   menu: {
     home: `Home`,
-    howItWorks: `Benefits`,
+    benefits: `Benefits`,
     cvPreview: `CV2.0 Preview`,
     companies: `Companies`,
     howToJoin: `How it works`,
@@ -94,7 +94,7 @@ export const navigation = {
     openMenu: `Open menu`,
     closeMenu: `Close menu`,
     goToHomepage: `Go to homepage`,
-    goToHowItWorks: `Go to how it works section`,
+    goToBenefits: `Go to benefits section`,
     goToCvPreview: `Go to CV2.0 preview section`,
     goToCompanyDiscovery: `Go to company discovery section`,
     goToProcess: `Go to process section`,
@@ -152,10 +152,10 @@ export const hero = {
 } as const
 
 // ============================================================================
-// HOW IT WORKS SECTION (Two Sides)
+// BENEFITS SECTION
 // ============================================================================
 
-export const howItWorks = {
+export const benefits = {
   // Section header
   heading: `Twitter Community Notes, but for your`,
   headingHighlight: `skills`,
@@ -166,14 +166,14 @@ export const howItWorks = {
   // Tab labels
   tabs: {
     members: `Members`,
-    techProfessionals: `Guru members`,
+    guruMembers: `Guru members`,
   },
 
   // Tab accessibility
   tabAccessibility: {
     chooseUserType: `Choose user type`,
     membersTab: `Members tab`,
-    techProfessionalsTab: `Guru member`,
+    guruMembersTab: `Guru member`,
   },
 
   // Members section
@@ -209,7 +209,7 @@ export const howItWorks = {
   },
 
   // Guru membersection
-  techProfessionals: {
+  guruMembers: {
     iconAriaLabel: `Dollar sign icon for tech professionals`,
     description: `Top talent is valued in the Skill Verdict community. Monetize your
       expertise by verifying the skills of other members.`,
@@ -239,9 +239,9 @@ export const howItWorks = {
 
   // Section accessibility
   accessibility: {
-    howItWorksSection: `How Skill Verdict works for different users`,
+    benefitsSection: `How Skill Verdict works for different users`,
     membersPanel: `Members panel`,
-    techProfessionalsPanel: `Guru memberpanel`,
+    guruMembersPanel: `Guru memberpanel`,
   },
 } as const
 
@@ -341,7 +341,7 @@ export const process = {
   // Tab labels
   tabs: {
     members: `Members`,
-    techProfessionals: `Tech professionals`,
+    guruMembers: `Tech professionals`,
   },
 
   // Process steps for members
@@ -373,7 +373,7 @@ export const process = {
   ],
 
   // Process steps for tech professionals
-  techProfessionalSteps: [
+  guruMembersteps: [
     {
       title: `1. Create your profile`,
       description: `Connect your github profile and linkedin, and modify your new CV2.0 to
@@ -776,7 +776,7 @@ export const errorPages = {
         label: `Back to Homepage`,
         icon: Home,
       },
-      howItWorks: {
+      benefits: {
         label: `How It Works`,
         icon: Search,
       },
@@ -1008,7 +1008,7 @@ export const strings = {
   branding,
   navigation,
   hero,
-  howItWorks,
+  benefits,
   cvPreview,
   companyDiscovery,
   process,

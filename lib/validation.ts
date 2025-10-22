@@ -149,6 +149,7 @@ export function validateGitHub(url: string): ValidationResult {
 export interface SignupFormData {
   email: string
   linkedin: string
+  github?: string
 }
 
 export interface FormValidationResult {
@@ -169,6 +170,14 @@ export function validateSignupForm(data: SignupFormData): FormValidationResult {
   const linkedinValidation = validateLinkedIn(data.linkedin)
   if (!linkedinValidation.isValid) {
     errors.linkedin = linkedinValidation.message || 'Invalid LinkedIn URL'
+  }
+
+  // Validate GitHub if provided
+  if (data.github) {
+    const githubValidation = validateGitHub(data.github)
+    if (!githubValidation.isValid) {
+      errors.github = githubValidation.message || 'Invalid GitHub URL'
+    }
   }
 
   return {

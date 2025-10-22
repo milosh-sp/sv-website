@@ -6,17 +6,18 @@ import { strings } from '@/lib/strings'
 import type { UserType } from '@/types/FormData.types'
 import { BenefitCards } from '../ui/BenefitCards'
 import { HeaderAndButtons } from '../ui/HeaderAndButtons'
+import type { SectionProps } from '@/types/Sections.types'
 
 // Benefits already have icons embedded in strings
 const vetterBenefits = strings.howItWorks.techProfessionals.benefits
 const candidateBenefits = strings.howItWorks.members.benefits
 
-export function BenefitsSection() {
+export function BenefitsSection({ id }: SectionProps) {
   const [activeTab, setActiveTab] = useState<UserType>('member')
 
   return (
     <HeaderAndButtons
-      sectionId='how-it-works'
+      sectionId={id}
       activeTab={activeTab}
       onTabChange={setActiveTab}
       heading={strings.howItWorks.heading}

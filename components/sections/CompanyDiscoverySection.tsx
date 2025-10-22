@@ -1,13 +1,14 @@
 import { strings } from '@/lib/strings'
 import { HeaderAndDescription } from '../ui/HeaderAndDescription'
+import type { SectionProps } from '@/types/Sections.types'
 
 const BuildingIcon = strings.companyDiscovery.icon
 
-export function CompanyDiscoverySection() {
+export function CompanyDiscoverySection({ id }: SectionProps) {
   return (
     <section
       className='py-16 bg-slate-50'
-      id='company-discovery'
+      id={id}
       aria-labelledby='company-discovery-heading'
       aria-describedby='company-discovery-description'
     >

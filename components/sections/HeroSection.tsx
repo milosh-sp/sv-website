@@ -1,10 +1,11 @@
 import { strings } from '@/lib/strings'
 import { HeroButtons } from '../ui/HeroButtons'
+import type { SectionProps } from '@/types/Sections.types'
 
-export function HeroSection() {
+export function HeroSection({ id }: SectionProps) {
   return (
     <section
-      id='home'
+      id={id}
       className='section-padding gradient-hero flex items-center pb-15'
       aria-labelledby='hero-heading'
       aria-describedby='hero-description'

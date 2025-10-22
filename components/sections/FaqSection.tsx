@@ -4,8 +4,9 @@ import { strings } from '@/lib/strings'
 import { useEffect, useState } from 'react'
 import { FaqList } from '../ui/FaqList'
 import { generateFaqSchema } from '@/lib/seo'
+import type { SectionProps } from '@/types/Sections.types'
 
-export function FaqSection() {
+export function FaqSection({ id }: SectionProps) {
   const [openItems, setOpenItems] = useState<number[]>([])
 
   const toggleItem = (index: number) => {
@@ -35,7 +36,7 @@ export function FaqSection() {
   }, [faqSchema])
 
   return (
-    <section id='faq' className='py-10 bg-gray-50'>
+    <section id={id} className='py-10 bg-gray-50'>
       <div className='container mx-auto px-4'>
         <div className='max-w-3xl mx-auto'>
           <FaqList

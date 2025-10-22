@@ -10,11 +10,12 @@ import { ProjectsSection } from '../ui/ProjectSection'
 import { QrCodeSection } from '../ui/QrCodeSection'
 import { TechnicalSkillsSection } from '../ui/TechnicalSkillsSection'
 import { CvFeaturesList } from '../ui/CvFeaturesList'
+import type { SectionProps } from '@/types/Sections.types'
 
-export function CvPreviewSection() {
+export function CvPreviewSection({ id }: SectionProps) {
   return (
     <section
-      id='cv-preview'
+      id={id}
       className='py-20 bg-white'
       aria-labelledby='cv-preview-heading'
     >

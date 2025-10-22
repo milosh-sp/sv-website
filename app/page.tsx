@@ -1,9 +1,4 @@
-import { BenefitsSection } from '@/components/sections/BenefitsSection'
-import { CompanyDiscoverySection } from '@/components/sections/CompanyDiscoverySection'
-import { FaqSection } from '@/components/sections/FaqSection'
-import { HeroSection } from '@/components/sections/HeroSection'
-import { ProcessSection } from '@/components/sections/ProcessSection'
-import { CvPreviewSection } from '@/components/sections/CvPreviewSection'
+import { navigationData } from '@/lib/navigationData'
 import { FloatingSignupButton } from '@/components/ui/FloatingSignupButton'
 import { SignupModal } from '@/components/ui/SignupModal'
 import { SignupModalProvider } from '@/contexts/SignupModalContext'
@@ -11,12 +6,10 @@ import { SignupModalProvider } from '@/contexts/SignupModalContext'
 export default function Home() {
   return (
     <SignupModalProvider>
-      <HeroSection />
-      <BenefitsSection />
-      <CompanyDiscoverySection />
-      <ProcessSection />
-      <CvPreviewSection />
-      <FaqSection />
+      {navigationData.map(({ id, Component }) => {
+        // Renders each section based on the navigation data order
+        return <Component key={id} id={id} />
+      })}
       <SignupModal />
       <FloatingSignupButton />
     </SignupModalProvider>

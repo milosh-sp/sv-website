@@ -10,7 +10,12 @@ import { StepsGrid } from '../ui/Steps'
 const guruMemberSteps = strings.process.techProfessionalSteps
 const memberSteps = strings.process.memberSteps
 
-export function ProcessSection() {
+interface ProcessSectionProps {
+  /** Section ID for scroll targeting */
+  id: string
+}
+
+export function ProcessSection({ id }: ProcessSectionProps) {
   const [activeTab, setActiveTab] = useState<UserType>('member')
 
   return (
@@ -24,7 +29,7 @@ export function ProcessSection() {
           guru: strings.process.description.guruMembers,
         }[activeTab]
       }
-      sectionId='process'
+      sectionId={id}
       className='py-20 bg-white'
     >
       {activeTab === 'member' && (

@@ -1,42 +1,11 @@
 import { Github, Linkedin, Mail } from 'lucide-react'
 import type { SignupFormProps } from '@/types/SignupModalComponents.types'
 import { strings } from '@/lib/strings'
-import {
-  validateEmail,
-  validateGitHub,
-  validateLinkedIn,
-} from '@/lib/validation'
+import { isFormValid } from '@/lib/validation'
 import { FormField } from './FormField'
 import { HoneypotField } from './HoneypotField'
 import { StatusMessage } from './StatusMessage'
 import { SubmitButton } from './SubmitButton'
-
-function isFormValid(formData: {
-  email: string
-  linkedin: string
-  github: string
-}): boolean {
-  if (!formData.email || !formData.linkedin || !formData.github) {
-    return false
-  }
-
-  const emailValidation = validateEmail(formData.email)
-  if (!emailValidation.isValid) {
-    return false
-  }
-
-  const linkedinValidation = validateLinkedIn(formData.linkedin)
-  if (!linkedinValidation.isValid) {
-    return false
-  }
-
-  const githubValidation = validateGitHub(formData.github)
-  if (!githubValidation.isValid) {
-    return false
-  }
-
-  return true
-}
 
 export function SignupForm({
   formData,

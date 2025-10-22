@@ -5,18 +5,6 @@ import CustomDialog from './CustomDialog'
 import { SignupForm } from './SignupForm'
 import { UserTypeHeader } from './UserTypeHeader'
 
-/**
- * SignupModal Component
- * Main modal component that orchestrates the signup flow
- * Single Responsibility: Manages modal state and composition of sub-components
- *
- * SOLID Principles Applied:
- * - Single Responsibility: Only handles modal container and state orchestration
- * - Open/Closed: Extensible through component composition
- * - Liskov Substitution: Consistent component interface
- * - Interface Segregation: Minimal props interface
- * - Dependency Inversion: Uses custom hooks for business logic
- */
 export function SignupModal() {
   const {
     formData,

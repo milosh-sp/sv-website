@@ -1,8 +1,3 @@
-/**
- * Centralized validation utilities for form inputs
- * Shared between client and server to ensure consistency
- */
-
 export interface ValidationResult {
   isValid: boolean
   message?: string
@@ -190,14 +185,43 @@ export function validateSignupForm(data: SignupFormData): FormValidationResult {
  * Legacy validation functions for backward compatibility
  * These return boolean values like the original functions
  */
-export function isValidEmail(email: string): boolean {
+function isValidEmail(email: string): boolean {
   return validateEmail(email).isValid
 }
 
-export function isValidLinkedIn(url: string): boolean {
+function isValidLinkedIn(url: string): boolean {
   return validateLinkedIn(url).isValid
 }
 
-export function isValidGitHub(url: string): boolean {
+function isValidGitHub(url: string): boolean {
   return validateGitHub(url).isValid
 }
+
+function isFormValid(formData: {
+  email: string
+  linkedin: string
+  github: string
+}): boolean {
+  if (!formData.email || !formData.linkedin || !formData.github) {
+    return false
+  }
+
+  const emailValidation = validateEmail(formData.email)
+  if (!emailValidation.isValid) {
+    return false
+  }
+
+  const linkedinValidation = validateLinkedIn(formData.linkedin)
+  if (!linkedinValidation.isValid) {
+    return false
+  }
+
+  const githubValidation = validateGitHub(formData.github)
+  if (!githubValidation.isValid) {
+    return false
+  }
+
+  return true
+}
+
+export { isValidEmail, isValidLinkedIn, isValidGitHub, isFormValid }

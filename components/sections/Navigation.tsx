@@ -9,7 +9,7 @@ import { useState } from 'react'
 import { HeaderLink } from '../ui/HeaderLink'
 import logo from '@/public/logo-sv.svg'
 
-const SCROLL_MARGIN_TOP = 96 // 80px header height + 16px padding
+const SCROLL_MARGIN_TOP = 80 // 80px header height + 16px padding
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)

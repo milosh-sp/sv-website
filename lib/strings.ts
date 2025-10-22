@@ -38,7 +38,7 @@ export const navigation = {
   // Main navigation items
   menu: {
     home: 'Home',
-    howItWorks: 'How It Works',
+    howItWorks: 'Benefits',
     cvPreview: 'CV2.0 Preview',
     companies: 'Companies',
     howToJoin: 'How it works',
@@ -440,6 +440,14 @@ export const signupModal = {
       message: 'Something went wrong. Please try again or contact support.',
       icon: '❌',
     },
+  },
+
+  // Privacy Policy Consent
+  privacyPolicyConsent: {
+    prefix: 'By signing up, you agree to our',
+    linkText: 'Privacy Policy',
+    href: '/privacy-policy',
+    ariaLabel: 'Read our privacy policy',
   },
 
   // Accessibility

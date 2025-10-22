@@ -4,6 +4,7 @@ import { strings } from '@/lib/strings'
 import { isFormValid } from '@/lib/validation'
 import { FormField } from './FormField'
 import { HoneypotField } from './HoneypotField'
+import { PrivacyPolicyConsent } from './PrivacyPolicyConsent'
 import { StatusMessage } from './StatusMessage'
 import { SubmitButton } from './SubmitButton'
 
@@ -79,6 +80,13 @@ export function SignupForm({
         icon={<Github className='h-5 w-5' aria-hidden='true' />}
         label={strings.signupModal.form.github.label}
         ariaDescribedBy={strings.signupModal.accessibility.githubError}
+      />
+
+      <PrivacyPolicyConsent
+        prefix={strings.signupModal.privacyPolicyConsent.prefix}
+        linkText={strings.signupModal.privacyPolicyConsent.linkText}
+        href={strings.signupModal.privacyPolicyConsent.href}
+        ariaLabel={strings.signupModal.privacyPolicyConsent.ariaLabel}
       />
 
       <SubmitButton

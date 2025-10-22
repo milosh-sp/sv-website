@@ -47,7 +47,7 @@ export const navigation = {
 
   // Mobile menu specific items
   mobile: {
-    cvPreview: 'CV Preview',
+    cvPreview: 'CV2.0 Preview',
     forCompanies: 'For Companies',
     process: 'Process',
     faq: 'FAQ',
@@ -59,7 +59,7 @@ export const navigation = {
     closeMenu: 'Close menu',
     goToHomepage: 'Go to homepage',
     goToHowItWorks: 'Go to how it works section',
-    goToCvPreview: 'Go to CV preview section',
+    goToCvPreview: 'Go to CV2.0 preview section',
     goToCompanyDiscovery: 'Go to company discovery section',
     goToProcess: 'Go to process section',
     goToFaq: 'Go to FAQ section',
@@ -197,17 +197,18 @@ export const howItWorks = {
 
 export const cvPreview = {
   // Section header
-  heading: 'Your Digital CV2.0 - The only CV that grows with you',
-  description:
-    'See what makes our verified CV different from traditional resumes. Our flexible CV2.0 platform lets you showcase your verified skills in a format that best represents your expertise and achievements. You can hide your community status or display it proudly, you can hide skills badges and other tons of customizations. This is just one of many CV2.0 templates used to display your verified skills',
-  note: 'Note: This is not going to be the final version, our CV2.0 platform is heavily in development and is going to be much more advanced and customizable.',
+  heading: 'Your CV2.0 - The only CV that grows with you',
+  description: `See what makes your CV2.0 different from traditional resumes. 
+  Our flexible CV2.0 platform lets you showcase your verified skills in a format that best represents your expertise and achievements. 
+  Your CV2.0 updates automatically if you update you linkedin or github, or yourself.`,
+  note: `Note: This is a simplified demo version, our CV2.0 platform is heavily in development and is going to be much more advanced and customizable with your feedback.`,
 
   // CV features
   features: [
     {
-      title: 'QR Verification',
+      title: 'QR Code live links',
       description:
-        'Employers can scan QR codes to verify credential authenticity instantly',
+        'Anyone can access your CV2.0 by scanning your unique QR code',
     },
     {
       title: 'Skill Badges',
@@ -217,12 +218,12 @@ export const cvPreview = {
     {
       title: 'Optimized metadata',
       description:
-        'Every exported CV2.0 is optimized for HR AIs to read and understand your skills',
+        'Your live CV2.0 page and exported PDF file contain optimized metadata',
     },
     {
-      title: 'Live Links',
+      title: 'Your personal business card',
       description:
-        'Direct links to your verified projects and code repositories',
+        'Your CV2.0 can be added to your Apple or Google wallet to be used as your personal business card',
     },
   ],
 } as const
@@ -259,8 +260,14 @@ export const companyDiscovery = {
 export const process = {
   // Section header
   heading: 'How Skill Verdict Works',
-  description:
-    'Our process ensures rigorous verification while maintaining flexibility for both guru memberand members. We hand pick our verifiers, you will be assured that your skills are going to be verified in the upmost professional manner, unbiased, professional, fast and transparent.',
+  description: {
+    members: `As a Member, your skills can be evaluated by a Guru using their own preferred technique. 
+    This means each review is shaped by the Guru’s personal expertise and unique approach, giving you a more authentic and practical assessment of your abilities. 
+    It’s an opportunity to learn from real experience, not just a standardized test. 
+    You can verify as many skills as you want, and you can always add new skills to your profile.`,
+    guruMembers: `As a Guru, you have the freedom to evaluate a Member’s skills using your own preferred technique. 
+      This allows you to leverage your personal expertise and unique approach, ensuring a more authentic and practical skill review.`,
+  },
 
   // Tab labels
   tabs: {
@@ -271,43 +278,43 @@ export const process = {
   // Process steps for members
   memberSteps: [
     {
-      title: '1. Create profile',
+      title: '1. Create your profile',
       description:
-        'Sign up to the community, upload your traditional CV and select the skills you want to verify',
+        'Connect your github profile and linkedin, and modify your new CV2.0 to your perfection',
     },
     {
-      title: '2. Complete assignment',
+      title: '2. Prepare for verification',
       description:
-        'Complete a short take at home assignment that demonstrates your skills. Our take at home assignment are designed to surface your true skills',
+        'Choose the skills you want to verify and pick your guru member to verify your skills',
     },
     {
-      title: '3. Technical discussion',
+      title: '3. Verification process',
       description:
-        'If your solution is picked by a verifier, you will have a technical discussion with the verifier to validate your skills and knowledge',
+        'The guru member sends you an assignment for you to complete and then your solution is discussed with them',
     },
     {
-      title: '4. Final conclusion',
+      title: '4. Final verdict',
       description:
-        'If you pass the technical discussion, you will receive your verified skill badge and get a chance to rate the verifier',
+        'If you pass the technical discussion, you will receive your verified skill badge and get a chance to rate the guru member',
     },
   ],
 
   // Process steps for tech professionals
   techProfessionalSteps: [
     {
-      title: '1. Apply as a verifier',
+      title: '1. Create your profile',
       description:
-        'Sign up to the community, submit your traditional CV and areas of expertise for review',
+        'Connect your github profile and linkedin, and modify your new CV2.0 to your perfection',
     },
     {
-      title: '2. Interview',
+      title: '2. Guru interview',
       description:
-        'Demonstrate your expertise and pass the interview to become a verifier',
+        'You will be interviewed by other gurus to determine if you are a fit to become a guru member',
     },
     {
       title: '3. Start verifying',
       description:
-        'Access our AI-assisted dashboard to easily review candidate submissions',
+        'Access our AI-assisted dashboard to easily review member candidate submissions',
     },
     {
       title: '4. Earn',
@@ -333,9 +340,9 @@ export const faq = {
         'Our verification process involves a multi-step evaluation where your skills are assessed by experienced guru member in the field. Our guru member come from different backgrounds and companies like Google, Netflix, Airbnb, Amazon, Meta and many more. Once verified, your skills are permanently recorded and can be easily validated by employers through QR codes or direct links.',
     },
     {
-      question: 'How long does it take to get verified?',
+      question: 'How long does it take to get a skill or skills verified?',
       answer:
-        'The verification process typically takes 3-5 business days, depending on the complexity of the skills being assessed and the availability of our verifiers.',
+        'The verification process typically takes 1-3 business days, depending on the complexity of the skills being assessed and the availability of our verifiers.',
     },
     {
       question: 'Can I update my skills after verification?',

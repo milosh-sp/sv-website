@@ -1,11 +1,11 @@
 import { strings } from '@/lib/strings'
-import { Database, Link, type LucideIcon, QrCode, Shield } from 'lucide-react'
+import { Database, IdCard, type LucideIcon, QrCode, Shield } from 'lucide-react'
 
 const FEATURE_ICONS: readonly LucideIcon[] = [
   QrCode,
   Shield,
   Database,
-  Link,
+  IdCard,
 ] as const
 
 const featuresWithIcons = strings.cvPreview.features.map((feature, index) => ({
@@ -17,7 +17,7 @@ export function CvFeaturesList() {
   return (
     <section
       className='grid md:grid-cols-4 gap-8 mt-12'
-      aria-label='CV Features'
+      aria-label='CV2.0 Features'
     >
       {featuresWithIcons.map((feature) => (
         <article key={`feature-${feature.title}`} className='text-center p-6'>

@@ -35,7 +35,12 @@ export function ProcessSection() {
       activeTab={activeTab}
       onTabChange={setActiveTab}
       heading={strings.process.heading}
-      description={strings.process.description}
+      description={
+        {
+          member: strings.process.description.members,
+          guru: strings.process.description.guruMembers,
+        }[activeTab]
+      }
       sectionId='process'
       className='py-20 bg-white'
     >

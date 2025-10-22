@@ -16,7 +16,7 @@ export function QrCodeSection() {
       <button
         type='button'
         className='text-slate-800 text-sm hover:underline bg-transparent border-none cursor-pointer'
-        aria-label={`${strings.cvSampleData.qrSection.viewHistoryLink} - Navigate to home section`}
+        aria-label={`${strings.cvSampleData.qrSection.viewHistoryLink}`}
       >
         {strings.cvSampleData.qrSection.viewHistoryLink}
       </button>

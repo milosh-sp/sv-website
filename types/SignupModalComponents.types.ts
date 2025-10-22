@@ -1,11 +1,12 @@
+import type { ComponentProps } from 'react'
 import type { UserType } from './FormData.types'
 import type { FormData, FormErrors, SubmitStatus } from './SignUpModal.types'
 
-interface UserTypeHeaderProps {
+interface UserTypeHeaderProps extends ComponentProps<'header'> {
   userType: UserType | null
 }
 
-interface FormFieldProps {
+interface FormFieldProps extends ComponentProps<'div'> {
   id: string
   type: 'email' | 'url'
   placeholder: string
@@ -18,7 +19,7 @@ interface FormFieldProps {
   ariaDescribedBy?: string
 }
 
-interface HoneypotFieldProps {
+interface HoneypotFieldProps extends ComponentProps<'div'> {
   id: string
   name: string
   type: string
@@ -28,7 +29,7 @@ interface HoneypotFieldProps {
   label: string
 }
 
-interface SubmitButtonProps {
+interface SubmitButtonProps extends ComponentProps<'button'> {
   isSubmitting: boolean
   isDisabled: boolean
   ariaLabel: string
@@ -36,7 +37,7 @@ interface SubmitButtonProps {
   idleText: string
 }
 
-interface StatusMessageProps {
+interface StatusMessageProps extends ComponentProps<'section'> {
   status: SubmitStatus
   errorMessage?: string
   successIcon: string
@@ -45,7 +46,7 @@ interface StatusMessageProps {
   defaultErrorMessage: string
 }
 
-interface SignupFormProps {
+interface SignupFormProps extends ComponentProps<'form'> {
   formData: FormData
   isSubmitting: boolean
   errors: FormErrors

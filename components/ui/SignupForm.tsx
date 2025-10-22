@@ -1,9 +1,9 @@
-import { Mail, Linkedin, Github } from 'lucide-react'
+import { Github, Linkedin, Mail } from 'lucide-react'
 import { strings } from '@/lib/strings'
 import { FormField } from './FormField'
 import { HoneypotField } from './HoneypotField'
-import { SubmitButton } from './SubmitButton'
 import { StatusMessage } from './StatusMessage'
+import { SubmitButton } from './SubmitButton'
 import type { SignupFormProps } from '@/types/SignupModalComponents.types'
 
 export function SignupForm({
@@ -17,6 +17,8 @@ export function SignupForm({
   onGitHubChange,
   onHoneypotChange,
   onSubmit,
+  className,
+  ...props
 }: SignupFormProps) {
   const isFormDisabled =
     isSubmitting || !formData.email || !formData.linkedin || !formData.github
@@ -27,6 +29,8 @@ export function SignupForm({
       className='space-y-4 w-80'
       aria-label='Signup form'
       aria-describedby='signup-form-description'
+      noValidate
+      {...props}
     >
       <FormField
         id='email'

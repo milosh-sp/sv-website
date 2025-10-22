@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils'
-import { Input } from '../Input'
+import { Input } from './Input'
 import type { FormFieldProps } from '@/types/SignupModalComponents.types'
 
 export function FormField({
@@ -13,14 +13,21 @@ export function FormField({
   icon,
   label,
   ariaDescribedBy,
+  className,
+  ...props
 }: FormFieldProps) {
   return (
-    <div className='space-y-2'>
+    <div className={cn('space-y-2', className)} {...props}>
       <label htmlFor={id} className='sr-only'>
         {label}
       </label>
       <div className='relative'>
-        <div className='absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400'>
+        <div
+          className='absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400'
+          role='img'
+          aria-label={`${label} icon`}
+          aria-hidden='true'
+        >
           {icon}
         </div>
         <Input

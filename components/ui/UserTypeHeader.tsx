@@ -1,12 +1,16 @@
 'use client'
 
 import { Award, CircleStar } from 'lucide-react'
-import { strings } from '@/lib/strings'
 import { cn, getUserSegmentLabel } from '@/lib/utils'
-import VisuallyHidden from '../VisuallyHidden'
+import { strings } from '@/lib/strings'
+import VisuallyHidden from './VisuallyHidden'
 import type { UserTypeHeaderProps } from '@/types/SignupModalComponents.types'
 
-export function UserTypeHeader({ userType }: UserTypeHeaderProps) {
+export function UserTypeHeader({
+  userType,
+  className,
+  ...props
+}: UserTypeHeaderProps) {
   if (!userType) {
     return null
   }
@@ -18,7 +22,7 @@ export function UserTypeHeader({ userType }: UserTypeHeaderProps) {
     : 'text-blue-600 border-blue-100'
 
   return (
-    <div className='relative mb-6'>
+    <header className={cn('relative mb-6', className)} {...props}>
       <VisuallyHidden>
         <h2 className='text-2xl font-bold text-slate-900 text-center mb-2 pr-12'>
           {strings.signupModal.title}
@@ -26,7 +30,11 @@ export function UserTypeHeader({ userType }: UserTypeHeaderProps) {
       </VisuallyHidden>
       <div>
         <div className='flex items-center justify-center gap-3 mb-3'>
-          <div className={cn('p-2 rounded-lg shadow-sm', iconColor)}>
+          <div
+            className={cn('p-2 rounded-lg shadow-sm', iconColor)}
+            role='img'
+            aria-label={`${getUserSegmentLabel(userType)} icon`}
+          >
             {isMember ? (
               <CircleStar className='h-5 w-5 text-white' aria-hidden='true' />
             ) : (
@@ -45,6 +53,6 @@ export function UserTypeHeader({ userType }: UserTypeHeaderProps) {
           </p>
         </div>
       </div>
-    </div>
+    </header>
   )
 }

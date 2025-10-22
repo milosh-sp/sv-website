@@ -2,8 +2,8 @@
 
 import { useSignupForm } from '@/hooks/useSignUpForm'
 import CustomDialog from './CustomDialog'
-import { SignupForm } from './SignupModal/SignupForm'
-import { UserTypeHeader } from './SignupModal/UserTypeHeader'
+import { SignupForm } from './SignupForm'
+import { UserTypeHeader } from './UserTypeHeader'
 
 /**
  * SignupModal Component

@@ -1,11 +1,6 @@
-import { Input } from '../Input'
 import type { HoneypotFieldProps } from '@/types/SignupModalComponents.types'
+import { Input } from './Input'
 
-/**
- * HoneypotField Component
- * Hidden field for bot detection - not visible to users
- * Single Responsibility: Renders honeypot field for spam prevention
- */
 export function HoneypotField({
   id,
   name,
@@ -14,11 +9,14 @@ export function HoneypotField({
   value,
   onChange,
   label,
+  className,
+  ...props
 }: HoneypotFieldProps) {
   return (
     <div
       className='absolute left-[-9999px] opacity-0 pointer-events-none'
       aria-hidden='true'
+      {...props}
     >
       <label htmlFor={id}>{label}</label>
       <Input

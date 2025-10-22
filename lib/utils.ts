@@ -18,11 +18,31 @@ function getUserSegmentLabel(userType: UserType): string {
   }
 }
 
+/**
+ * Scrolls to a section with smooth animation
+ * Uses scrollIntoView with scroll-padding-top CSS for proper offset
+ * Respects prefers-reduced-motion for accessibility
+ *
+ * @param sectionId - The ID of the element to scroll to
+ */
 const scrollToSection = (sectionId: string) => {
   const element = document.getElementById(sectionId)
-  if (element) {
-    element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  if (!element) {
+    console.warn(`Section with id "${sectionId}" not found`)
+    return
   }
+
+  // Check if user prefers reduced motion
+  const prefersReducedMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  ).matches
+
+  // Use scrollIntoView with smooth behavior
+  // The scroll-padding-top CSS handles the fixed header offset
+  element.scrollIntoView({
+    behavior: prefersReducedMotion ? 'auto' : 'smooth',
+    block: 'start',
+  })
 }
 
-export { cn, getUserSegmentLabel, scrollToSection }
+export { cn, scrollToSection, getUserSegmentLabel }

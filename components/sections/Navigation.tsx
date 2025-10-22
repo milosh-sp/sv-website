@@ -10,29 +10,43 @@ import { HeaderLink } from '../ui/HeaderLink'
 import logo from '@/public/logo-sv.svg'
 import { cn } from '@/lib/utils'
 
-const SCROLL_MARGIN_TOP_DESKTOP = 80 // 80px header height + 16px padding
-const SCROLL_MARGIN_TOP_MOBILE = 100 // Reduced margin for mobile devices
+const SCROLL_MARGIN_TOP_DESKTOP = 80
+const SCROLL_MARGIN_TOP_MOBILE = 96
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
-    if (element) {
-      const isMobile = window.innerWidth < 768 // md breakpoint
-      const scrollMargin = isMobile
-        ? SCROLL_MARGIN_TOP_MOBILE
-        : SCROLL_MARGIN_TOP_DESKTOP
-
-      const elementPosition = element.getBoundingClientRect().top
-      const offsetPosition = elementPosition + window.scrollY - scrollMargin
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth',
-      })
+    if (!element) {
+      console.warn(`Section with id "${sectionId}" not found`)
+      return
     }
+
+    // Close mobile menu before scrolling
     setIsMenuOpen(false)
+
+    // Check if user prefers reduced motion
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches
+
+    // Get scroll margin based on viewport
+    const isMobile = window.innerWidth < 768 // md breakpoint
+    const scrollMargin = isMobile
+      ? SCROLL_MARGIN_TOP_MOBILE
+      : SCROLL_MARGIN_TOP_DESKTOP
+
+    // Calculate target scroll position
+    const elementPosition = element.getBoundingClientRect().top
+    const offsetPosition = elementPosition + window.scrollY - scrollMargin
+
+    // Scroll with smooth behavior (respects prefers-reduced-motion)
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: prefersReducedMotion ? 'auto' : 'smooth',
+      left: 0,
+    })
   }
 
   const toggleMenu = () => {

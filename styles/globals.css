@@ -176,6 +176,17 @@
 /* Smooth scrolling with reduced motion support */
 html {
   scroll-behavior: smooth;
+  /* Scroll padding to account for fixed header */
+  /* Desktop: 80px header + 16px padding = 96px */
+  scroll-padding-top: 96px;
+}
+
+/* Mobile: Reduced scroll padding for smaller screens */
+@media (max-width: 767px) {
+  html {
+    /* Mobile: 80px header + 16px padding = 96px */
+    scroll-padding-top: 96px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

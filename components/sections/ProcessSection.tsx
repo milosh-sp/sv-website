@@ -1,31 +1,14 @@
 'use client'
 
 import { useState } from 'react'
-import {
-  ClipboardList,
-  Video,
-  MessageCircle,
-  DollarSign,
-  FileText,
-  Brain,
-  CheckCircle,
-} from 'lucide-react'
 import { strings } from '@/lib/strings'
 import type { UserType } from '@/types/FormData.types'
 import { HeaderAndButtons } from '../ui/HeaderAndButtons'
 import { StepsGrid } from '../ui/Steps'
 
-const guruMemberSteps = strings.process.techProfessionalSteps.map(
-  (step, index) => ({
-    ...step,
-    icon: [ClipboardList, Video, MessageCircle, DollarSign][index],
-  })
-)
-
-const memberSteps = strings.process.memberSteps.map((step, index) => ({
-  ...step,
-  icon: [FileText, Brain, Video, CheckCircle][index],
-}))
+// Steps already have icons embedded in strings
+const guruMemberSteps = strings.process.techProfessionalSteps
+const memberSteps = strings.process.memberSteps
 
 export function ProcessSection() {
   const [activeTab, setActiveTab] = useState<UserType>('member')

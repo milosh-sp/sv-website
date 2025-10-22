@@ -1,13 +1,14 @@
 import { strings } from '@/lib/strings'
 import type { ProjectItem } from '@/types/CVPreview.types'
-import { FolderOpen } from 'lucide-react'
 import { SectionList } from './SectionList'
+
+const ProjectIcon = strings.cvSampleData.projects[0].icon
 
 export function ProjectsSection() {
   return (
     <SectionList
       title={strings.cvSampleData.sections.projects}
-      icon={FolderOpen}
+      icon={ProjectIcon}
       items={strings.cvSampleData.projects}
       itemRenderer={(project: ProjectItem) => (
         <article

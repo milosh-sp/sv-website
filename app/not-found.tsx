@@ -1,12 +1,16 @@
 'use client'
 
 import Link from 'next/link'
-import { Home, Search, ArrowLeft } from 'lucide-react'
 import { useEffect } from 'react'
 import { strings } from '@/lib/strings'
 import { Button } from '@/components/ui/Button'
 
 export default function NotFound() {
+  // Icons are embedded in strings
+  const HomeIcon = strings.errorPages.notFound.actions.backToHome.icon
+  const SearchIcon = strings.errorPages.notFound.actions.howItWorks.icon
+  const ArrowLeftIcon = strings.errorPages.notFound.actions.goBack.icon
+
   // Set page title for SEO
   useEffect(() => {
     document.title = strings.errorPages.notFound.title
@@ -36,16 +40,16 @@ export default function NotFound() {
         <div className='space-y-4'>
           <Link href='/' className='block'>
             <Button className='w-full' size='lg'>
-              <Home className='h-4 w-4 mr-2' />
-              {strings.errorPages.notFound.actions.backToHome}
+              <HomeIcon className='h-4 w-4 mr-2' />
+              {strings.errorPages.notFound.actions.backToHome.label}
             </Button>
           </Link>
 
           <div className='flex gap-3'>
             <Link href='/#how-it-works' className='flex-1'>
               <Button variant='outline' className='w-full'>
-                <Search className='h-4 w-4 mr-2' />
-                {strings.errorPages.notFound.actions.howItWorks}
+                <SearchIcon className='h-4 w-4 mr-2' />
+                {strings.errorPages.notFound.actions.howItWorks.label}
               </Button>
             </Link>
 
@@ -54,8 +58,8 @@ export default function NotFound() {
               onClick={() => window.history.back()}
               className='flex-1'
             >
-              <ArrowLeft className='h-4 w-4 mr-2' />
-              {strings.errorPages.notFound.actions.goBack}
+              <ArrowLeftIcon className='h-4 w-4 mr-2' />
+              {strings.errorPages.notFound.actions.goBack.label}
             </Button>
           </div>
         </div>

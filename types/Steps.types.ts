@@ -1,7 +1,3 @@
-/**
- * Types for Steps component
- */
-
 import type { LucideIcon } from 'lucide-react'
 
 interface StepItem {
@@ -12,7 +8,7 @@ interface StepItem {
 
 interface StepsGridProps {
   /** Array of step items to display */
-  steps: StepItem[]
+  steps: readonly StepItem[]
   /** Optional CSS class name for container */
   className?: string
   /** Number of columns for grid layout */

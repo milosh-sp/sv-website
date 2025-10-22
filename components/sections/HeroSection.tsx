@@ -1,13 +1,5 @@
-import { Shield, Clock, UserCheck } from 'lucide-react'
-import type { LucideIcon } from 'lucide-react'
 import { strings } from '@/lib/strings'
 import { HeroButtons } from '../ui/HeroButtons'
-
-const TRUST_INDICATOR_ICONS: readonly LucideIcon[] = [
-  Shield,
-  Clock,
-  UserCheck,
-] as const
 
 export function HeroSection() {
   return (
@@ -46,11 +38,11 @@ export function HeroSection() {
             className='flex flex-col sm:flex-row items-center justify-center gap-6 text-sm list-none'
             aria-label='Trust indicators'
           >
-            {strings.hero.trustIndicators.map((indicator, index) => {
-              const Icon = TRUST_INDICATOR_ICONS[index] ?? Shield
+            {strings.hero.trustIndicators.map((indicator) => {
+              const Icon = indicator.icon
               return (
                 <li
-                  key={indicator}
+                  key={indicator.text}
                   className='flex items-center gap-3 bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full shadow-sm border border-white/20'
                 >
                   <Icon
@@ -58,7 +50,7 @@ export function HeroSection() {
                     aria-hidden='true'
                   />
                   <span className='font-medium text-slate-700'>
-                    {indicator}
+                    {indicator.text}
                   </span>
                 </li>
               )

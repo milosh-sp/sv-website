@@ -1,13 +1,14 @@
 import { strings } from '@/lib/strings'
 import type { LanguageItem } from '@/types/CVPreview.types'
-import { Globe } from 'lucide-react'
 import { SectionList } from './SectionList'
+
+const LanguageIcon = strings.cvSampleData.languages[0].icon
 
 export function LanguagesSection() {
   return (
     <SectionList
       title={strings.cvSampleData.sections.languages}
-      icon={Globe}
+      icon={LanguageIcon}
       items={strings.cvSampleData.languages}
       itemRenderer={(language: LanguageItem) => (
         <article

@@ -1,4 +1,3 @@
-import { Github, Linkedin, Mail } from 'lucide-react'
 import type { SignupFormProps } from '@/types/SignupModalComponents.types'
 import { strings } from '@/lib/strings'
 import { isFormValid } from '@/lib/validation'
@@ -7,6 +6,11 @@ import { HoneypotField } from './HoneypotField'
 import { PrivacyPolicyConsent } from './PrivacyPolicyConsent'
 import { StatusMessage } from './StatusMessage'
 import { SubmitButton } from './SubmitButton'
+
+// Icons are embedded in strings
+const MailIcon = strings.signupModal.form.email.icon
+const LinkedinIcon = strings.signupModal.form.linkedin.icon
+const GithubIcon = strings.signupModal.form.github.icon
 
 export function SignupForm({
   formData,
@@ -41,7 +45,7 @@ export function SignupForm({
         onChange={onEmailChange}
         error={errors.email}
         disabled={isSubmitting}
-        icon={<Mail className='h-5 w-5' aria-hidden='true' />}
+        icon={<MailIcon className='h-5 w-5' aria-hidden='true' />}
         label={strings.signupModal.form.email.label}
         ariaDescribedBy={strings.signupModal.accessibility.emailError}
       />
@@ -64,7 +68,7 @@ export function SignupForm({
         onChange={onLinkedInChange}
         error={errors.linkedin}
         disabled={isSubmitting}
-        icon={<Linkedin className='h-5 w-5' aria-hidden='true' />}
+        icon={<LinkedinIcon className='h-5 w-5' aria-hidden='true' />}
         label={strings.signupModal.form.linkedin.label}
         ariaDescribedBy={strings.signupModal.accessibility.linkedinError}
       />
@@ -77,7 +81,7 @@ export function SignupForm({
         onChange={onGitHubChange}
         error={errors.github}
         disabled={isSubmitting}
-        icon={<Github className='h-5 w-5' aria-hidden='true' />}
+        icon={<GithubIcon className='h-5 w-5' aria-hidden='true' />}
         label={strings.signupModal.form.github.label}
         ariaDescribedBy={strings.signupModal.accessibility.githubError}
       />

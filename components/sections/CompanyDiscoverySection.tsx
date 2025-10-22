@@ -1,6 +1,7 @@
-import { Building2, CheckCircle } from 'lucide-react'
 import { strings } from '@/lib/strings'
 import { HeaderAndDescription } from '../ui/HeaderAndDescription'
+
+const BuildingIcon = strings.companyDiscovery.icon
 
 export function CompanyDiscoverySection() {
   return (
@@ -18,7 +19,7 @@ export function CompanyDiscoverySection() {
               className='inline-flex items-center justify-center w-12 h-12 bg-blue-500 rounded-lg mb-4'
               aria-hidden='true'
             >
-              <Building2 className='h-6 w-6 text-white' aria-hidden='true' />
+              <BuildingIcon className='h-6 w-6 text-white' aria-hidden='true' />
             </div>
             <HeaderAndDescription
               heading={strings.companyDiscovery.heading}
@@ -30,18 +31,21 @@ export function CompanyDiscoverySection() {
             className='flex flex-wrap justify-center gap-6 text-sm list-none'
             aria-label='Company discovery benefits'
           >
-            {strings.companyDiscovery.benefits.map((benefit) => (
-              <li
-                key={benefit}
-                className='flex items-center gap-2 text-slate-600'
-              >
-                <CheckCircle
-                  className='h-4 w-4 text-blue-600'
-                  aria-hidden='true'
-                />
-                <span>{benefit}</span>
-              </li>
-            ))}
+            {strings.companyDiscovery.benefits.map((benefit) => {
+              const BenefitIcon = benefit.icon
+              return (
+                <li
+                  key={benefit.text}
+                  className='flex items-center gap-2 text-slate-600'
+                >
+                  <BenefitIcon
+                    className='h-4 w-4 text-blue-600'
+                    aria-hidden='true'
+                  />
+                  <span>{benefit.text}</span>
+                </li>
+              )
+            })}
           </ul>
         </div>
       </div>

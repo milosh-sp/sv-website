@@ -1,35 +1,15 @@
 'use client'
 
 import { useState } from 'react'
-import {
-  DollarSign,
-  Award,
-  Calendar,
-  TrendingUp,
-  Network,
-  Medal,
-  FastForward,
-  Rocket,
-  QrCode,
-  CircleStar,
-} from 'lucide-react'
+import { Award, CircleStar } from 'lucide-react'
 import { strings } from '@/lib/strings'
-import type { BenefitWithIcon } from '@/types/TwoSidesExplanation.types'
 import type { UserType } from '@/types/FormData.types'
 import { BenefitCards } from '../ui/BenefitCards'
 import { HeaderAndButtons } from '../ui/HeaderAndButtons'
 
-const vetterBenefits: BenefitWithIcon[] =
-  strings.howItWorks.techProfessionals.benefits.map((benefit, index) => ({
-    ...benefit,
-    icon: [DollarSign, Calendar, TrendingUp, Network][index] ?? DollarSign,
-  }))
-
-const candidateBenefits: BenefitWithIcon[] =
-  strings.howItWorks.members.benefits.map((benefit, index) => ({
-    ...benefit,
-    icon: [Medal, FastForward, Rocket, QrCode][index] ?? Medal,
-  }))
+// Benefits already have icons embedded in strings
+const vetterBenefits = strings.howItWorks.techProfessionals.benefits
+const candidateBenefits = strings.howItWorks.members.benefits
 
 export function BenefitsSection() {
   const [activeTab, setActiveTab] = useState<UserType>('member')

@@ -1,7 +1,8 @@
+import type { LucideIcon } from 'lucide-react'
 import type { ComponentProps } from 'react'
 
 interface BenefitItem {
-  icon: React.ComponentType<{ className?: string }>
+  icon: LucideIcon
   title: string
   description: string
 }
@@ -13,7 +14,7 @@ interface BenefitCardProps extends ComponentProps<'article'> {
 }
 
 interface BenefitGridProps extends ComponentProps<'ul'> {
-  benefits: BenefitItem[]
+  benefits: readonly BenefitItem[]
   colorScheme?: 'blue' | 'emerald' | 'purple' | 'orange'
   columns?: 1 | 2 | 3 | 4
   className?: string

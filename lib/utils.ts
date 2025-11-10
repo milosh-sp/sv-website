@@ -45,4 +45,16 @@ const scrollToSection = (sectionId: string) => {
   })
 }
 
-export { cn, scrollToSection, getUserSegmentLabel }
+function defaultDropdownFilter<T>(
+  option: { label: string; description?: string; value: T },
+  query: string
+): boolean {
+  const searchLower = query.toLowerCase()
+  return (
+    option.label.toLowerCase().includes(searchLower) ||
+    option.description?.toLowerCase().includes(searchLower) ||
+    false
+  )
+}
+
+export { cn, scrollToSection, getUserSegmentLabel, defaultDropdownFilter }

@@ -87,6 +87,7 @@ export const useSignupForm = () => {
   }, [isOpen, form])
 
   // Keyboard event handling for accessibility
+  // biome-ignore lint/correctness/useExhaustiveDependencies: Waiting for react 19.2
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape' && isOpen) {
@@ -104,7 +105,7 @@ export const useSignupForm = () => {
       document.removeEventListener('keydown', handleKeyDown)
       document.body.style.overflow = 'unset'
     }
-  }, [isOpen, closeModal])
+  }, [isOpen])
 
   return {
     formData: form.formData,

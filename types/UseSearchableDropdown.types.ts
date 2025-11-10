@@ -17,10 +17,10 @@ interface UseSearchableDropdownReturn<T = string> {
   currentValue: T | null
   selectedOption: DropdownOption<T> | null
   filteredOptions: readonly DropdownOption<T>[]
-  containerRef: React.RefObject<HTMLDivElement>
-  triggerRef: React.RefObject<HTMLButtonElement>
-  searchInputRef: React.RefObject<HTMLInputElement>
-  listboxRef: React.RefObject<HTMLDivElement>
+  containerRef: React.RefObject<HTMLDivElement | null>
+  triggerRef: React.RefObject<HTMLButtonElement | null>
+  searchInputRef: React.RefObject<HTMLInputElement | null>
+  listboxRef: React.RefObject<HTMLDivElement | null>
   setIsOpen: (isOpen: boolean) => void
   setSearchQuery: (query: string) => void
   setHighlightedIndex: (index: number) => void

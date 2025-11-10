@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import type { DropdownOption, DropdownSize } from './SearchableDropdown.types'
 
 interface SearchableDropdownListProps<T = string> {
-  listboxRef: React.RefObject<HTMLDivElement>
+  listboxRef: React.RefObject<HTMLDivElement | null>
   listboxId: string
   labelId?: string
   filteredOptions: readonly DropdownOption<T>[]

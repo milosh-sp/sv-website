@@ -1,7 +1,7 @@
 import type { DropdownOption, DropdownSize } from './SearchableDropdown.types'
 
 interface SearchableDropdownTriggerProps<T = string> {
-  triggerRef: React.RefObject<HTMLButtonElement>
+  triggerRef: React.RefObject<HTMLButtonElement | null>
   dropdownId: string
   isOpen: boolean
   disabled: boolean

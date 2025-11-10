@@ -1,88 +1,10 @@
 import { useState } from 'react'
+
 import { useDebouncedCallback } from '@/hooks/useDebounce'
 import { useHoneypot } from '@/hooks/useHoneypot'
 import type { ValidationResult } from '@/lib/validation'
+import type { UseFormConfig, UseFormReturn } from '@/types/UseForm.types'
 
-/**
- * Configuration for a single form field
- */
-export interface FormFieldConfig<TFieldName extends string> {
-  name: TFieldName
-  validator: (value: string) => ValidationResult
-}
-
-/**
- * Configuration for the entire form
- */
-export interface UseFormConfig<TFormData extends Record<string, string>> {
-  /** Initial form data */
-  initialData: TFormData
-  /** Field configurations with validators */
-  fields: FormFieldConfig<keyof TFormData & string>[]
-  /** Form-level validation function */
-  validateForm: (data: TFormData) => {
-    isValid: boolean
-    errors: Record<string, string>
-  }
-  /** API submission function */
-  onSubmit: (
-    data: TFormData,
-    honeypotValue: string,
-    formStartTime: string
-  ) => Promise<{ success: boolean; error?: string }>
-  /** Optional callback after successful submission */
-  onSuccess?: () => void
-  /** Debounce delay for field validation in ms */
-  debounceDelay?: number
-}
-
-/**
- * Return type for the useForm hook
- */
-export interface UseFormReturn<TFormData extends Record<string, string>> {
-  formData: TFormData
-  errors: Record<string, string>
-  isSubmitting: boolean
-  submitStatus: 'idle' | 'success' | 'error'
-  honeypotValue: string
-  formStartTime: string
-  handleFieldChange: (fieldName: keyof TFormData, value: string) => void
-  handleHoneypotChange: (value: string) => void
-  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>
-  validateForm: () => boolean
-  setFormData: (data: TFormData | ((prev: TFormData) => TFormData)) => void
-  setErrors: (
-    errors:
-      | Record<string, string>
-      | ((prev: Record<string, string>) => Record<string, string>)
-  ) => void
-  setSubmitStatus: (status: 'idle' | 'success' | 'error') => void
-  setIsSubmitting: (isSubmitting: boolean) => void
-  setHoneypotValue: (value: string) => void
-  resetHoneypot: () => void
-}
-
-/**
- * Generic form hook that handles common form logic with dependency injection
- * Implements Dependency Inversion and Single Responsibility principles
- *
- * @template TFormData - The shape of the form data (must have string values)
- * @param config - Configuration object with validators, initial data, and submission handler
- * @returns Form state and handlers
- *
- * @example
- * ```ts
- * const form = useForm({
- *   initialData: { email: '', name: '' },
- *   fields: [
- *     { name: 'email', validator: validateEmail },
- *     { name: 'name', validator: validateName },
- *   ],
- *   validateForm: validateContactForm,
- *   onSubmit: submitContactForm,
- * })
- * ```
- */
 export function useForm<TFormData extends Record<string, string>>(
   config: UseFormConfig<TFormData>
 ): UseFormReturn<TFormData> {

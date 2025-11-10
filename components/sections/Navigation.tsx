@@ -10,7 +10,7 @@ import { HeaderLink } from '../ui/HeaderLink'
 import logo from '@/public/logo-sv.svg'
 import { cn } from '@/lib/utils'
 
-const SCROLL_MARGIN_TOP_DESKTOP = 80
+const SCROLL_MARGIN_TOP_DESKTOP = 96
 const SCROLL_MARGIN_TOP_MOBILE = 96
 
 export function Header() {
@@ -109,7 +109,7 @@ export function Header() {
             {navigationData.map((link) => (
               <li key={link.id} role='none'>
                 <HeaderLink
-                  scroll={false}
+                  scroll
                   href={link.href}
                   onClick={() => scrollToSection(link.id)}
                   variant='desktop'

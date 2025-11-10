@@ -17,6 +17,7 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const scrollToSection = (sectionId: string) => {
+    setIsMenuOpen(false)
     const element = document.getElementById(sectionId)
     if (!element) {
       console.warn(`Section with id "${sectionId}" not found`)

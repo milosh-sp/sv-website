@@ -1,8 +1,9 @@
 'use client'
+import { createContext, useContext, useState } from 'react'
+
 import type { UserType } from '@/types/FormData.types'
 import type { SignupModalContextType } from '@/types/SignUpModal.types'
 import type { SignupModalProviderProps } from '@/types/SignUpModalProvider.types'
-import { createContext, useContext, useState, useCallback } from 'react'
 
 const SignupModalContext = createContext<SignupModalContextType | null>(null)
 
@@ -18,20 +19,20 @@ export function SignupModalProvider({ children }: SignupModalProviderProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [userType, setUserType] = useState<UserType>('member')
 
-  const openModal = useCallback((selectedUserType: UserType) => {
+  const openModal = (selectedUserType: UserType) => {
     setUserType(selectedUserType)
     setIsOpen(true)
-  }, [])
+  }
 
-  const closeModal = useCallback(() => {
+  const closeModal = () => {
     setIsOpen(false)
     // Reset user type when modal closes
     setTimeout(() => setUserType('member'), 300)
-  }, [])
+  }
 
-  const toggleModal = useCallback(() => {
+  const toggleModal = () => {
     setIsOpen((prev) => !prev)
-  }, [])
+  }
 
   const value = {
     isOpen,

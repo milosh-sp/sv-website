@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 import { useDebouncedCallback } from '@/hooks/useDebounce'
 import { useHoneypot } from '@/hooks/useHoneypot'
 import type { ValidationResult } from '@/lib/validation'
@@ -109,30 +109,27 @@ export function useForm<TFormData extends Record<string, string>>(
     useHoneypot()
 
   // Create a map of field validators for quick lookup
-  const validatorMap = useCallback(() => {
+  const validatorMap = () => {
     const map = new Map<string, (value: string) => ValidationResult>()
     fields.forEach((field) => {
       map.set(field.name, field.validator)
     })
     return map
-  }, [fields])
+  }
 
   // Validate individual field (non-debounced for immediate use)
-  const validateFieldImmediate = useCallback(
-    (fieldName: string, value: string) => {
-      const validator = validatorMap().get(fieldName)
-      if (!validator) return
+  const validateFieldImmediate = (fieldName: string, value: string) => {
+    const validator = validatorMap().get(fieldName)
+    if (!validator) return
 
-      const validation = validator(value)
-      setErrors((prev) => ({
-        ...prev,
-        [fieldName]: validation.isValid
-          ? ''
-          : validation.message || 'Invalid input',
-      }))
-    },
-    [validatorMap]
-  )
+    const validation = validator(value)
+    setErrors((prev) => ({
+      ...prev,
+      [fieldName]: validation.isValid
+        ? ''
+        : validation.message || 'Invalid input',
+    }))
+  }
 
   // Debounced version for real-time validation during typing
   const debouncedValidateField = useDebouncedCallback(
@@ -141,7 +138,7 @@ export function useForm<TFormData extends Record<string, string>>(
   )
 
   // Form-level validation with honeypot check
-  const validateForm = useCallback(() => {
+  const validateForm = () => {
     const newErrors: Record<string, string> = {}
 
     // Honeypot validation
@@ -162,83 +159,65 @@ export function useForm<TFormData extends Record<string, string>>(
 
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
-  }, [formData, validateFormFn, validateSubmission])
+  }
 
   // Generic field change handler
-  const handleFieldChange = useCallback(
-    (fieldName: keyof TFormData, value: string) => {
-      setFormData((prev) => ({ ...prev, [fieldName]: value }))
+  const handleFieldChange = (fieldName: keyof TFormData, value: string) => {
+    setFormData((prev) => ({ ...prev, [fieldName]: value }))
 
-      // Clear error immediately when user starts typing
-      if (errors[fieldName as string]) {
-        setErrors((prev) => ({ ...prev, [fieldName as string]: '' }))
-      }
+    // Clear error immediately when user starts typing
+    if (errors[fieldName as string]) {
+      setErrors((prev) => ({ ...prev, [fieldName as string]: '' }))
+    }
 
-      // Trigger debounced validation
-      debouncedValidateField(fieldName as string, value)
-    },
-    [errors, debouncedValidateField]
-  )
+    // Trigger debounced validation
+    debouncedValidateField(fieldName as string, value)
+  }
 
   // Honeypot change handler
-  const handleHoneypotChange = useCallback(
-    (value: string) => {
-      setHoneypotValue(value)
-    },
-    [setHoneypotValue]
-  )
+  const handleHoneypotChange = (value: string) => {
+    setHoneypotValue(value)
+  }
 
   // Form submission handler
-  const handleSubmit = useCallback(
-    async (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault()
-      setSubmitStatus('idle')
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setSubmitStatus('idle')
 
-      if (!validateForm()) {
-        return
-      }
+    if (!validateForm()) {
+      return
+    }
 
-      setIsSubmitting(true)
-      setErrors({})
+    setIsSubmitting(true)
+    setErrors({})
 
-      try {
-        const result = await onSubmit(formData, honeypotValue, formStartTime)
+    try {
+      const result = await onSubmit(formData, honeypotValue, formStartTime)
 
-        if (result.success) {
-          setSubmitStatus('success')
-          setFormData(initialData)
-          resetHoneypot()
-          onSuccess?.()
-        } else {
-          // eslint-disable-next-line no-console
-          console.error('Form submission failed:', result.error)
-          setSubmitStatus('error')
-          if (result.error) {
-            setErrors({ submit: result.error })
-          }
-        }
-      } catch (error) {
+      if (result.success) {
+        setSubmitStatus('success')
+        setFormData(initialData)
+        resetHoneypot()
+        onSuccess?.()
+      } else {
         // eslint-disable-next-line no-console
-        console.error('Form submission error:', error)
+        console.error('Form submission failed:', result.error)
         setSubmitStatus('error')
-        setErrors({
-          submit: 'An unexpected error occurred. Please try again.',
-        })
-      } finally {
-        setIsSubmitting(false)
+        if (result.error) {
+          setErrors({ submit: result.error })
+        }
       }
-    },
-    [
-      formData,
-      honeypotValue,
-      formStartTime,
-      validateForm,
-      initialData,
-      resetHoneypot,
-      onSubmit,
-      onSuccess,
-    ]
-  )
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('Form submission error:', error)
+      setSubmitStatus('error')
+      setErrors({
+        submit: 'An unexpected error occurred. Please try again.',
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   return {
     formData,

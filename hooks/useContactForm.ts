@@ -1,4 +1,3 @@
-import { useCallback } from 'react'
 import { useForm } from '@/hooks/useForm'
 import { submitContactForm } from '@/lib/api'
 import {
@@ -51,33 +50,21 @@ export function useContactForm() {
   })
 
   // Create field-specific change handlers for backward compatibility
-  const handleEmailChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      form.handleFieldChange('email', e.target.value)
-    },
-    [form]
-  )
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    form.handleFieldChange('email', e.target.value)
+  }
 
-  const handleNameChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      form.handleFieldChange('name', e.target.value)
-    },
-    [form]
-  )
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    form.handleFieldChange('name', e.target.value)
+  }
 
-  const handleMessageChange = useCallback(
-    (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-      form.handleFieldChange('message', e.target.value)
-    },
-    [form]
-  )
+  const handleMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    form.handleFieldChange('message', e.target.value)
+  }
 
-  const handleHoneypotChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      form.handleHoneypotChange(e.target.value)
-    },
-    [form]
-  )
+  const handleHoneypotChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    form.handleHoneypotChange(e.target.value)
+  }
 
   return {
     formData: form.formData,

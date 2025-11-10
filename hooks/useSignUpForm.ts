@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
 import { useSignupModal } from '@/contexts/SignupModalContext'
 import { useForm } from '@/hooks/useForm'
@@ -52,33 +52,21 @@ export const useSignupForm = () => {
   })
 
   // Create field-specific change handlers for backward compatibility
-  const handleEmailChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      form.handleFieldChange('email', e.target.value)
-    },
-    [form]
-  )
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    form.handleFieldChange('email', e.target.value)
+  }
 
-  const handleLinkedInChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      form.handleFieldChange('linkedin', e.target.value)
-    },
-    [form]
-  )
+  const handleLinkedInChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    form.handleFieldChange('linkedin', e.target.value)
+  }
 
-  const handleGitHubChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      form.handleFieldChange('github', e.target.value)
-    },
-    [form]
-  )
+  const handleGitHubChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    form.handleFieldChange('github', e.target.value)
+  }
 
-  const handleHoneypotChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      form.handleHoneypotChange(e.target.value)
-    },
-    [form]
-  )
+  const handleHoneypotChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    form.handleHoneypotChange(e.target.value)
+  }
 
   // Focus management for accessibility and honeypot reset
   useEffect(() => {

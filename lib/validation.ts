@@ -54,20 +54,22 @@ export function validateEmail(email: string): ValidationResult {
 }
 
 /**
- * Validate LinkedIn profile URL format
+ * Generic URL validator
+ * Validates that a string is a properly formatted URL with https:// protocol
+ * and valid domain structure
  */
-export function validateLinkedIn(url: string): ValidationResult {
+export function validateUrl(url: string, fieldName = 'URL'): ValidationResult {
   if (!url) {
     return {
       isValid: false,
-      message: 'LinkedIn profile URL is required',
+      message: `${fieldName} is required`,
     }
   }
 
   if (typeof url !== 'string') {
     return {
       isValid: false,
-      message: 'LinkedIn URL must be a string',
+      message: `${fieldName} must be a string`,
     }
   }
 
@@ -75,19 +77,59 @@ export function validateLinkedIn(url: string): ValidationResult {
   if (!trimmedUrl) {
     return {
       isValid: false,
-      message: 'LinkedIn profile URL is required',
+      message: `${fieldName} is required`,
     }
   }
 
-  // LinkedIn profile URL regex - supports various formats
-  const linkedinRegex =
-    /^https?:\/\/(www\.)?linkedin\.com\/in\/[a-zA-Z0-9-]+\/?$/
-
-  if (!linkedinRegex.test(trimmedUrl)) {
+  // Check for reasonable length limits
+  if (trimmedUrl.length > 2048) {
     return {
       isValid: false,
-      message:
-        'Please enter a valid LinkedIn profile URL (e.g., https://linkedin.com/in/yourname)',
+      message: `${fieldName} is too long`,
+    }
+  }
+
+  // Try to parse as URL using the URL constructor
+  let parsedUrl: URL
+  try {
+    parsedUrl = new URL(trimmedUrl)
+  } catch (_error) {
+    return {
+      isValid: false,
+      message: `Please enter a valid URL (e.g., https://example.com)`,
+    }
+  }
+
+  // Validate protocol - only allow https
+  if (parsedUrl.protocol !== 'https:') {
+    return {
+      isValid: false,
+      message: `${fieldName} must use HTTPS protocol`,
+    }
+  }
+
+  // Validate hostname exists and has proper structure
+  if (!parsedUrl.hostname || parsedUrl.hostname.length === 0) {
+    return {
+      isValid: false,
+      message: `${fieldName} must have a valid domain`,
+    }
+  }
+
+  // Check for valid domain structure (at least one dot for TLD)
+  const domainParts = parsedUrl.hostname.split('.')
+  if (domainParts.length < 2) {
+    return {
+      isValid: false,
+      message: `${fieldName} must have a valid domain with a top-level domain`,
+    }
+  }
+
+  // Validate each domain part is not empty
+  if (domainParts.some((part) => part.length === 0)) {
+    return {
+      isValid: false,
+      message: `${fieldName} has an invalid domain structure`,
     }
   }
 
@@ -97,45 +139,19 @@ export function validateLinkedIn(url: string): ValidationResult {
 }
 
 /**
+ * Validate LinkedIn profile URL format
+ * Now uses generic URL validation
+ */
+export function validateLinkedIn(url: string): ValidationResult {
+  return validateUrl(url, 'LinkedIn profile URL')
+}
+
+/**
  * Validate GitHub profile URL format
+ * Now uses generic URL validation
  */
 export function validateGitHub(url: string): ValidationResult {
-  if (!url) {
-    return {
-      isValid: false,
-      message: 'GitHub profile URL is required',
-    }
-  }
-
-  if (typeof url !== 'string') {
-    return {
-      isValid: false,
-      message: 'GitHub URL must be a string',
-    }
-  }
-
-  const trimmedUrl = url.trim()
-  if (!trimmedUrl) {
-    return {
-      isValid: false,
-      message: 'GitHub profile URL is required',
-    }
-  }
-
-  // GitHub profile URL regex - supports various formats
-  const githubRegex = /^https?:\/\/(www\.)?github\.com\/[a-zA-Z0-9-]+\/?$/
-
-  if (!githubRegex.test(trimmedUrl)) {
-    return {
-      isValid: false,
-      message:
-        'Please enter a valid GitHub profile URL (e.g., https://github.com/username)',
-    }
-  }
-
-  return {
-    isValid: true,
-  }
+  return validateUrl(url, 'GitHub profile URL')
 }
 
 /**
@@ -187,6 +203,10 @@ export function validateSignupForm(data: SignupFormData): FormValidationResult {
  */
 function isValidEmail(email: string): boolean {
   return validateEmail(email).isValid
+}
+
+function isValidUrl(url: string): boolean {
+  return validateUrl(url).isValid
 }
 
 function isValidLinkedIn(url: string): boolean {
@@ -381,4 +401,4 @@ export function isContactFormValid(formData: ContactFormData): boolean {
   return true
 }
 
-export { isValidEmail, isValidLinkedIn, isValidGitHub, isFormValid }
+export { isValidEmail, isValidUrl, isValidLinkedIn, isValidGitHub, isFormValid }

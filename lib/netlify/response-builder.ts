@@ -3,6 +3,7 @@ import type {
   ApiSuccessResponse,
   HttpResponse,
 } from '../../types/netlify.types'
+import { strings } from '../strings'
 
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': '*',
@@ -32,7 +33,7 @@ function createErrorResponse(statusCode: number, error: string): HttpResponse {
 function createSuccessResponse(email: string, timestamp: string): HttpResponse {
   const body: ApiSuccessResponse = {
     success: true,
-    message: 'Successfully subscribed!',
+    message: strings.apiResponses.success.subscribed,
     data: {
       email,
       timestamp,
@@ -55,28 +56,25 @@ function createOptionsResponse(): HttpResponse {
 }
 
 function createMethodNotAllowedResponse(): HttpResponse {
-  return createErrorResponse(
-    405,
-    'Method not allowed. Only POST requests are accepted.'
-  )
+  return createErrorResponse(405, strings.apiResponses.errors.methodNotAllowed)
 }
 
 function createMissingBodyResponse(): HttpResponse {
-  return createErrorResponse(400, 'Request body is required.')
+  return createErrorResponse(400, strings.apiResponses.errors.missingBody)
 }
 
 function createInvalidJsonResponse(): HttpResponse {
-  return createErrorResponse(400, 'Invalid JSON in request body.')
+  return createErrorResponse(400, strings.apiResponses.errors.invalidJson)
 }
 
 function createBotDetectedResponse(): HttpResponse {
-  return createErrorResponse(400, 'Invalid submission detected.')
+  return createErrorResponse(400, strings.apiResponses.errors.botDetected)
 }
 
 function createFormSessionExpiredResponse(): HttpResponse {
   return createErrorResponse(
     400,
-    'Form session expired. Please refresh and try again.'
+    strings.apiResponses.errors.formSessionExpired
   )
 }
 
@@ -85,16 +83,16 @@ function createValidationErrorResponse(message: string): HttpResponse {
 }
 
 function createMissingApiTokenResponse(): HttpResponse {
-  return createErrorResponse(
-    500,
-    'Server configuration error. Please try again later.'
-  )
+  return createErrorResponse(500, strings.apiResponses.errors.serverConfigError)
 }
 
 function createSenderNetValidationErrorResponse(
   message: string | undefined
 ): HttpResponse {
-  return createErrorResponse(400, message || 'Validation error occurred.')
+  return createErrorResponse(
+    400,
+    message || strings.apiResponses.errors.validationError
+  )
 }
 
 function createEmailAlreadySubscribedResponse(): HttpResponse {
@@ -103,7 +101,7 @@ function createEmailAlreadySubscribedResponse(): HttpResponse {
     headers: JSON_HEADERS,
     body: JSON.stringify({
       success: false,
-      error: 'This email is already subscribed.',
+      error: strings.apiResponses.errors.emailAlreadySubscribed,
     }),
   }
 }
@@ -111,15 +109,12 @@ function createEmailAlreadySubscribedResponse(): HttpResponse {
 function createSenderNetErrorResponse(): HttpResponse {
   return createErrorResponse(
     500,
-    'Failed to subscribe. Please try again later.'
+    strings.apiResponses.errors.subscriptionFailed
   )
 }
 
 function createUnexpectedErrorResponse(): HttpResponse {
-  return createErrorResponse(
-    500,
-    'An unexpected error occurred. Please try again later.'
-  )
+  return createErrorResponse(500, strings.apiResponses.errors.unexpectedError)
 }
 
 export {

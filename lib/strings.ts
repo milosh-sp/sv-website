@@ -506,7 +506,7 @@ export const signupModal = {
     },
     linkedin: {
       label: `LinkedIn profile URL`,
-      placeholder: `Your LinkedIn profile URL *`,
+      placeholder: `https://linkedin.com/in/yourname *`,
       ariaLabel: `LinkedIn profile URL field`,
       icon: Linkedin,
     },
@@ -517,7 +517,7 @@ export const signupModal = {
     },
     github: {
       label: `GitHub profile URL`,
-      placeholder: `Your GitHub profile URL *`,
+      placeholder: `https://github.com/username *`,
       ariaLabel: `GitHub profile URL field`,
       icon: Github,
     },
@@ -983,6 +983,37 @@ export const cvSampleData = {
 } as const
 
 // ============================================================================
+// API & FORM SUBMISSION RESPONSES
+// ============================================================================
+
+export const apiResponses = {
+  // Success messages
+  success: {
+    subscribed: `Successfully subscribed!`,
+    messageSent: `Message sent successfully!`,
+  },
+
+  // Error messages
+  errors: {
+    // Client errors (400)
+    methodNotAllowed: `Method not allowed. Only POST requests are accepted.`,
+    missingBody: `Request body is required.`,
+    invalidJson: `Invalid JSON in request body.`,
+    botDetected: `Invalid submission detected.`,
+    formSessionExpired: `Form session expired. Please refresh and try again.`,
+    validationError: `Validation error occurred.`,
+
+    // Conflict errors (409)
+    emailAlreadySubscribed: `This email is already subscribed.`,
+
+    // Server errors (500)
+    serverConfigError: `Server configuration error. Please try again later.`,
+    subscriptionFailed: `Failed to subscribe. Please try again later.`,
+    unexpectedError: `An unexpected error occurred. Please try again later.`,
+  },
+} as const
+
+// ============================================================================
 // COMMON UI ELEMENTS
 // ============================================================================
 
@@ -1040,6 +1071,7 @@ export const strings = {
   contactPage,
   legalPages,
   errorPages,
+  apiResponses,
   common,
   layout,
   cvSampleData,

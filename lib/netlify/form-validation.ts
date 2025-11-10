@@ -1,7 +1,6 @@
 import {
   validateEmail,
-  validateGitHub,
-  validateLinkedIn,
+  validateUrl,
   validateName,
   validateMessage,
 } from '../validation'
@@ -74,46 +73,48 @@ function validateEmailFormat(email: string): ValidationError | null {
   return null
 }
 
-function validateLinkedInIfProvided(
-  linkedinUrl: string | undefined
+/**
+ * Generic URL validation for any field
+ */
+function validateUrlIfProvided(
+  url: string | undefined,
+  fieldName: string,
+  fieldLabel: string
 ): ValidationError | null {
-  if (!linkedinUrl) {
+  if (!url) {
     return null
   }
 
-  const linkedinValidation = validateLinkedIn(linkedinUrl)
+  const urlValidation = validateUrl(url, fieldLabel)
 
-  if (!linkedinValidation.isValid) {
+  if (!urlValidation.isValid) {
     return {
-      field: 'linkedin',
-      message:
-        linkedinValidation.message ||
-        'Please provide a valid LinkedIn profile URL.',
+      field: fieldName,
+      message: urlValidation.message || `Please provide a valid ${fieldLabel}.`,
     }
   }
 
   return null
 }
 
+/**
+ * Validate LinkedIn URL if provided
+ * Uses generic URL validation
+ */
+function validateLinkedInIfProvided(
+  linkedinUrl: string | undefined
+): ValidationError | null {
+  return validateUrlIfProvided(linkedinUrl, 'linkedin', 'LinkedIn profile URL')
+}
+
+/**
+ * Validate GitHub URL if provided
+ * Uses generic URL validation
+ */
 function validateGitHubIfProvided(
   githubUrl: string | undefined
 ): ValidationError | null {
-  if (!githubUrl) {
-    return null
-  }
-
-  const githubValidation = validateGitHub(githubUrl)
-
-  if (!githubValidation.isValid) {
-    return {
-      field: 'github',
-      message:
-        githubValidation.message ||
-        'Please provide a valid GitHub profile URL.',
-    }
-  }
-
-  return null
+  return validateUrlIfProvided(githubUrl, 'github', 'GitHub profile URL')
 }
 
 function validateFormData(data: FormSubmissionData): ValidationError | null {
@@ -219,6 +220,7 @@ export {
   validateFormTiming,
   validateRequiredEmail,
   validateEmailFormat,
+  validateUrlIfProvided,
   validateLinkedInIfProvided,
   validateGitHubIfProvided,
 }

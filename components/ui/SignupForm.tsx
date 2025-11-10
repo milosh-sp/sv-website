@@ -38,7 +38,6 @@ export function SignupForm({
       noValidate
       {...props}
     >
-      <Checkbox label='mips' />
       <FormField
         id='email'
         type='email'

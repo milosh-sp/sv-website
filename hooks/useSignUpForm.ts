@@ -84,7 +84,7 @@ export const useSignupForm = () => {
     }
 
     return undefined
-  }, [isOpen, form])
+  }, [isOpen, form.resetHoneypot])
 
   // Keyboard event handling for accessibility
   // biome-ignore lint/correctness/useExhaustiveDependencies: Waiting for react 19.2

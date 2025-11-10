@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 import type {
   HoneypotFieldProps,
@@ -77,7 +77,7 @@ export function useHoneypot() {
   }
 
   // Reset honeypot state (useful for form reset)
-  const resetHoneypot = () => {
+  const resetHoneypot = useCallback(() => {
     setState({
       honeypotValue: '',
       isBot: false,
@@ -85,7 +85,7 @@ export function useHoneypot() {
       hasMouseMovement: false,
     })
     mouseMovementRef.current = false
-  }
+  }, [])
 
   return {
     honeypotValue: state.honeypotValue,

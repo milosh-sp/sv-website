@@ -14,37 +14,42 @@ export const navigationData = [
   {
     id: 'home',
     label: strings.navigation.menu.home,
-    href: '#home',
+    href: '/#home',
     Component: HeroSection,
   },
   {
     id: 'benefits',
     label: strings.navigation.menu.benefits,
-    href: '#benefits',
+    href: '/#benefits',
     Component: BenefitsSection,
   },
   {
     id: 'company-discovery',
     label: strings.navigation.menu.companies,
-    href: '#company-discovery',
+    href: '/#company-discovery',
     Component: CompanyDiscoverySection,
   },
   {
     id: 'process',
     label: strings.navigation.menu.howToJoin,
-    href: '#process',
+    href: '/#process',
     Component: ProcessSection,
   },
   {
     id: 'cv-preview',
     label: strings.navigation.menu.cvPreview,
-    href: '#cv-preview',
+    href: '/#cv-preview',
     Component: CvPreviewSection,
   },
   {
     id: 'faq',
     label: strings.navigation.menu.faqs,
-    href: '#faq',
+    href: '/#faq',
     Component: FaqSection,
   },
-] as const
+  {
+    id: 'contact',
+    label: strings.footer.links.contactUs,
+    href: '/contact',
+  },
+]

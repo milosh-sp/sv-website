@@ -6,6 +6,7 @@ import { HoneypotField } from './HoneypotField'
 import { PrivacyPolicyConsent } from './PrivacyPolicyConsent'
 import { StatusMessage } from './StatusMessage'
 import { SubmitButton } from './SubmitButton'
+import { Checkbox } from './Checkbox'
 
 // Icons are embedded in strings
 const MailIcon = strings.signupModal.form.email.icon
@@ -37,6 +38,7 @@ export function SignupForm({
       noValidate
       {...props}
     >
+      <Checkbox label='mips' />
       <FormField
         id='email'
         type='email'

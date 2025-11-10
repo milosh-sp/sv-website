@@ -154,7 +154,8 @@ export function Header() {
               'md:hidden py-6',
               'border-t border-slate-200/50',
               'bg-white/98 backdrop-blur-md',
-              'animate-fade-in-scale'
+              'animate-fade-in-scale',
+              'sticky top-20 z-40'
             )}
             aria-label='Mobile navigation'
           >

@@ -114,6 +114,13 @@ export const seoKeywords = {
       'privacy rights',
       'data security',
     ] as string[],
+    contact: [
+      'contact skill verdict',
+      'get in touch',
+      'support',
+      'customer service',
+      'help',
+    ] as string[],
   },
 } as const
 
@@ -135,6 +142,14 @@ export const pageSeoConfig = {
     description: `Learn how ${strings.branding.companyName} protects your privacy and handles your personal data in our skill verification platform.`,
     keywords: seoKeywords.pages.privacy,
     canonical: `${siteConfig.url}/privacy-policy`,
+    ogImage: siteConfig.ogImage,
+  },
+
+  contact: {
+    title: `${strings.contactPage.title} | ${strings.branding.companyName}`,
+    description: strings.contactPage.description,
+    keywords: seoKeywords.pages.contact,
+    canonical: `${siteConfig.url}/contact`,
     ogImage: siteConfig.ogImage,
   },
 } as const
@@ -270,6 +285,12 @@ export const sitemapConfig = {
         '/placeholder-user.jpg',
         '/placeholder.jpg',
       ],
+    },
+    {
+      url: '/contact',
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
     },
   ],
 } as const

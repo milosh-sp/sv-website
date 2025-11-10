@@ -1,4 +1,5 @@
 import type { FormSubmissionData, ApiResponse } from '@/types/api.types'
+import type { ContactFormSubmissionData } from '@/types/ContactForm.types'
 
 /**
  * Type guard to validate ApiResponse structure
@@ -16,10 +17,11 @@ function isApiResponse(value: unknown): value is ApiResponse {
  * Submit form data to Netlify function
  */
 export async function submitForm(
-  data: FormSubmissionData
+  data: FormSubmissionData | ContactFormSubmissionData,
+  endpoint: string = '/.netlify/functions/form-submit'
 ): Promise<ApiResponse> {
   try {
-    const response = await fetch('/.netlify/functions/form-submit', {
+    const response = await fetch(endpoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -92,4 +94,13 @@ export async function submitForm(
       error: 'Network error. Please check your connection and try again.',
     }
   }
+}
+
+/**
+ * Submit contact form data to Netlify function
+ */
+export async function submitContactForm(
+  data: ContactFormSubmissionData
+): Promise<ApiResponse> {
+  return submitForm(data, '/.netlify/functions/contact-submit')
 }

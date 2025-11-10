@@ -4,6 +4,7 @@ import { CompanyDiscoverySection } from '@/components/sections/CompanyDiscoveryS
 import { CvPreviewSection } from '@/components/sections/CvPreviewSection'
 import { FaqSection } from '@/components/sections/FaqSection'
 import { HeroSection } from '@/components/sections/HeroSection'
+import { ProcessSection } from '@/components/sections/ProcessSection'
 
 /**
  * Navigation data for the application,
@@ -11,22 +12,28 @@ import { HeroSection } from '@/components/sections/HeroSection'
  */
 export const navigationData = [
   {
-    id: 'how-it-works',
-    label: strings.navigation.menu.benefits,
-    href: '#how-it-works',
+    id: 'home',
+    label: strings.navigation.menu.home,
+    href: '#home',
     Component: HeroSection,
+  },
+  {
+    id: 'benefits',
+    label: strings.navigation.menu.benefits,
+    href: '#benefits',
+    Component: BenefitsSection,
   },
   {
     id: 'company-discovery',
     label: strings.navigation.menu.companies,
     href: '#company-discovery',
-    Component: BenefitsSection,
+    Component: CompanyDiscoverySection,
   },
   {
     id: 'process',
     label: strings.navigation.menu.howToJoin,
     href: '#process',
-    Component: CompanyDiscoverySection,
+    Component: ProcessSection,
   },
   {
     id: 'cv-preview',

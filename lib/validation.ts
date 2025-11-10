@@ -224,4 +224,161 @@ function isFormValid(formData: {
   return true
 }
 
+/**
+ * Validate name field for contact form
+ */
+export function validateName(name: string): ValidationResult {
+  if (!name) {
+    return {
+      isValid: false,
+      message: 'Name is required',
+    }
+  }
+
+  if (typeof name !== 'string') {
+    return {
+      isValid: false,
+      message: 'Name must be a string',
+    }
+  }
+
+  const trimmedName = name.trim()
+  if (!trimmedName) {
+    return {
+      isValid: false,
+      message: 'Name is required',
+    }
+  }
+
+  if (trimmedName.length < 2) {
+    return {
+      isValid: false,
+      message: 'Name must be at least 2 characters',
+    }
+  }
+
+  if (trimmedName.length > 100) {
+    return {
+      isValid: false,
+      message: 'Name must be less than 100 characters',
+    }
+  }
+
+  return {
+    isValid: true,
+  }
+}
+
+/**
+ * Validate message field for contact form
+ */
+export function validateMessage(message: string): ValidationResult {
+  if (!message) {
+    return {
+      isValid: false,
+      message: 'Message is required',
+    }
+  }
+
+  if (typeof message !== 'string') {
+    return {
+      isValid: false,
+      message: 'Message must be a string',
+    }
+  }
+
+  const trimmedMessage = message.trim()
+  if (!trimmedMessage) {
+    return {
+      isValid: false,
+      message: 'Message is required',
+    }
+  }
+
+  if (trimmedMessage.length < 10) {
+    return {
+      isValid: false,
+      message: 'Message must be at least 10 characters',
+    }
+  }
+
+  if (trimmedMessage.length > 1000) {
+    return {
+      isValid: false,
+      message: 'Message must be less than 1000 characters',
+    }
+  }
+
+  return {
+    isValid: true,
+  }
+}
+
+/**
+ * Contact form data interface
+ */
+export interface ContactFormData {
+  email: string
+  name: string
+  message: string
+}
+
+/**
+ * Validate contact form data
+ */
+export function validateContactForm(
+  data: ContactFormData
+): FormValidationResult {
+  const errors: Record<string, string> = {}
+
+  // Validate email
+  const emailValidation = validateEmail(data.email)
+  if (!emailValidation.isValid) {
+    errors.email = emailValidation.message || 'Invalid email'
+  }
+
+  // Validate name
+  const nameValidation = validateName(data.name)
+  if (!nameValidation.isValid) {
+    errors.name = nameValidation.message || 'Invalid name'
+  }
+
+  // Validate message
+  const messageValidation = validateMessage(data.message)
+  if (!messageValidation.isValid) {
+    errors.message = messageValidation.message || 'Invalid message'
+  }
+
+  return {
+    isValid: Object.keys(errors).length === 0,
+    errors,
+  }
+}
+
+/**
+ * Check if contact form is valid (all fields filled and valid)
+ */
+export function isContactFormValid(formData: ContactFormData): boolean {
+  if (!formData.email || !formData.name || !formData.message) {
+    return false
+  }
+
+  const emailValidation = validateEmail(formData.email)
+  if (!emailValidation.isValid) {
+    return false
+  }
+
+  const nameValidation = validateName(formData.name)
+  if (!nameValidation.isValid) {
+    return false
+  }
+
+  const messageValidation = validateMessage(formData.message)
+  if (!messageValidation.isValid) {
+    return false
+  }
+
+  return true
+}
+
 export { isValidEmail, isValidLinkedIn, isValidGitHub, isFormValid }

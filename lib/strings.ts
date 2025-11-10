@@ -45,6 +45,8 @@ import {
   Home,
   Search,
   ArrowLeft,
+  Send,
+  User,
 } from 'lucide-react'
 
 // ============================================================================
@@ -582,6 +584,7 @@ export const footer = {
   // Links
   links: {
     privacyPolicy: `Privacy Policy`,
+    contactUs: `Contact Us`,
   },
   contactUs: `Contact us`,
   email: `contact@skillverdict.com`,
@@ -590,6 +593,99 @@ export const footer = {
     twitter: `Twitter profile`,
     linkedin: `LinkedIn profile`,
     github: `GitHub profile`,
+  },
+} as const
+
+// ============================================================================
+// CONTACT PAGE
+// ============================================================================
+
+export const contactPage = {
+  // Page header
+  title: `Contact Us`,
+  heading: `Get in Touch`,
+  description: `Have a question or want to learn more about Skill Verdict? We'd love to hear from you. Fill out the form below and we'll get back to you as soon as possible.`,
+
+  // Form fields
+  form: {
+    email: {
+      label: `Email address`,
+      placeholder: `your.email@example.com *`,
+      ariaLabel: `Email address field`,
+      icon: Mail,
+    },
+    name: {
+      label: `Name (Company or Individual)`,
+      placeholder: `Your name or company name *`,
+      ariaLabel: `Name field`,
+      icon: User,
+    },
+    message: {
+      label: `Message`,
+      placeholder: `Tell us how we can help you... *`,
+      ariaLabel: `Message field`,
+      icon: MessageCircle,
+    },
+    website: {
+      label: `Website (leave this field empty)`,
+      placeholder: `Your website`,
+      ariaLabel: `Website field (honeypot)`,
+    },
+  },
+
+  // Submit button
+  submitButton: {
+    idle: `Send Message`,
+    submitting: `Sending...`,
+    ariaLabel: {
+      idle: `Submit contact form`,
+      submitting: `Submitting form`,
+    },
+    icon: Send,
+  },
+
+  // Status messages
+  status: {
+    success: {
+      title: `Message Sent!`,
+      message: `Thank you for contacting us. We'll get back to you within 24-48 hours.`,
+      icon: `✓`,
+    },
+    error: {
+      title: `Error`,
+      message: `Something went wrong. Please try again or email us directly at contact@skillverdict.com.`,
+      icon: `✕`,
+    },
+  },
+
+  // Validation messages
+  validation: {
+    emailRequired: `Email is required`,
+    emailInvalid: `Please enter a valid email address`,
+    nameRequired: `Name is required`,
+    nameMinLength: `Name must be at least 2 characters`,
+    nameMaxLength: `Name must be less than 100 characters`,
+    messageRequired: `Message is required`,
+    messageMinLength: `Message must be at least 10 characters`,
+    messageMaxLength: `Message must be less than 1000 characters`,
+  },
+
+  // Accessibility
+  accessibility: {
+    contactForm: `Contact form`,
+    emailError: `Email validation error`,
+    nameError: `Name validation error`,
+    messageError: `Message validation error`,
+  },
+
+  // Alternative contact methods
+  alternativeContact: {
+    heading: `Other Ways to Reach Us`,
+    email: {
+      label: `Email`,
+      value: `contact@skillverdict.com`,
+      ariaLabel: `Send us an email`,
+    },
   },
 } as const
 
@@ -1016,6 +1112,7 @@ export const strings = {
   signupModal,
   floatingSignupButton,
   footer,
+  contactPage,
   legalPages,
   errorPages,
   common,

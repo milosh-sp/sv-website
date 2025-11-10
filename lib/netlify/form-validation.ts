@@ -1,10 +1,17 @@
-import { validateEmail, validateGitHub, validateLinkedIn } from '../validation'
+import {
+  validateEmail,
+  validateGitHub,
+  validateLinkedIn,
+  validateName,
+  validateMessage,
+} from '../validation'
 import type {
   BotDetectionResult,
   FormFields,
   FormSubmissionData,
   ValidationError,
 } from '../../types/netlify.types'
+import type { ContactFormSubmissionData } from '../../types/ContactForm.types'
 
 const FORM_SUBMISSION_MIN_TIME_MS = 2000
 const FORM_SUBMISSION_MAX_TIME_MS = 30 * 60 * 1000
@@ -151,8 +158,62 @@ function detectBot(fields: FormFields): BotDetectionResult {
   return { isBot: false }
 }
 
+/**
+ * Validate contact form data
+ */
+function validateContactFormData(
+  data: ContactFormSubmissionData
+): ValidationError | null {
+  const { email, fields = {} } = data
+
+  const emailRequiredError = validateRequiredEmail(email)
+  if (emailRequiredError) {
+    return emailRequiredError
+  }
+
+  const emailFormatError = validateEmailFormat(email as string)
+  if (emailFormatError) {
+    return emailFormatError
+  }
+
+  // Validate name
+  if (!fields.name) {
+    return {
+      field: 'name',
+      message: 'Name is required.',
+    }
+  }
+
+  const nameValidation = validateName(fields.name)
+  if (!nameValidation.isValid) {
+    return {
+      field: 'name',
+      message: nameValidation.message || 'Please provide a valid name.',
+    }
+  }
+
+  // Validate message
+  if (!fields.message) {
+    return {
+      field: 'message',
+      message: 'Message is required.',
+    }
+  }
+
+  const messageValidation = validateMessage(fields.message)
+  if (!messageValidation.isValid) {
+    return {
+      field: 'message',
+      message: messageValidation.message || 'Please provide a valid message.',
+    }
+  }
+
+  return null
+}
+
 export {
   validateFormData,
+  validateContactFormData,
   detectBot,
   validateHoneypot,
   validateFormTiming,

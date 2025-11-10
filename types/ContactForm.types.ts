@@ -1,21 +1,23 @@
 import type { ComponentProps } from 'react'
 
 // Contact form data structure
-interface ContactFormData {
+interface ContactFormData extends Record<string, string> {
   email: string
   name: string
   message: string
 }
 
-// Contact form errors
+/**
+ * Interface for form field errors
+ */
 interface ContactFormErrors {
-  email?: string
-  name?: string
-  message?: string
+  [key: string]: string
 }
 
-// Submit status type
-type ContactSubmitStatus = 'idle' | 'submitting' | 'success' | 'error'
+/**
+ * Type for submit status states
+ */
+type ContactSubmitStatus = 'idle' | 'success' | 'error'
 
 // Form submission data for API
 interface ContactFormSubmissionData {

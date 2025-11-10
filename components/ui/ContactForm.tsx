@@ -1,11 +1,11 @@
-import type { ContactFormProps } from '@/types/ContactForm.types'
 import { strings } from '@/lib/strings'
 import { isContactFormValid } from '@/lib/validation'
+import type { ContactFormProps } from '@/types/ContactForm.types'
 import { FormField } from './FormField'
-import { TextAreaField } from './TextAreaField'
 import { HoneypotField } from './HoneypotField'
 import { StatusMessage } from './StatusMessage'
 import { SubmitButton } from './SubmitButton'
+import { TextAreaField } from './TextAreaField'
 
 // Icons are embedded in strings
 const MailIcon = strings.contactPage.form.email.icon
@@ -99,7 +99,7 @@ export function ContactForm({
 
       <StatusMessage
         status={submitStatus}
-        errorMessage={errors.email || errors.name || errors.message}
+        errorMessage={errors.submit}
         successIcon={strings.contactPage.status.success.icon}
         errorIcon={strings.contactPage.status.error.icon}
         successMessage={strings.contactPage.status.success.message}

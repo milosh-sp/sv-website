@@ -20,7 +20,7 @@ type FormFieldName = 'email' | 'linkedin' | 'github'
 /**
  * Form data interface
  */
-interface FormData {
+interface FormData extends Record<string, string> {
   email: string
   linkedin: string
   github: string

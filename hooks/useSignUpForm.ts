@@ -1,6 +1,7 @@
+import { useCallback, useEffect, useRef } from 'react'
+
 import { useSignupModal } from '@/contexts/SignupModalContext'
-import { useDebouncedCallback } from '@/hooks/useDebounce'
-import { useHoneypot } from '@/hooks/useHoneypot'
+import { useForm } from '@/hooks/useForm'
 import { submitForm } from '@/lib/api'
 import {
   validateEmail,
@@ -8,207 +9,75 @@ import {
   validateLinkedIn,
   validateSignupForm,
 } from '@/lib/validation'
-import type {
-  FormData,
-  FormErrors,
-  FormFieldName,
-  FormSubmissionData,
-  SubmitStatus,
-} from '@/types/SignUpModal.types'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import type { FormData, FormSubmissionData } from '@/types/SignUpModal.types'
 
 export const useSignupForm = () => {
   const { isOpen, userType, closeModal } = useSignupModal()
-  const [formData, setFormData] = useState<FormData>({
-    email: '',
-    linkedin: '',
-    github: '',
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [errors, setErrors] = useState<FormErrors>({})
-  const [submitStatus, setSubmitStatus] = useState<SubmitStatus>('idle')
-  const [formStartTime] = useState(() => new Date().toISOString())
   const firstInputRef = useRef<HTMLInputElement>(null)
 
-  // Honeypot bot detection
-  const { honeypotValue, setHoneypotValue, validateSubmission, resetHoneypot } =
-    useHoneypot()
-
-  // Validate individual field and update errors (non-debounced version for immediate use)
-  const validateFieldImmediate = useCallback(
-    (fieldName: FormFieldName, value: string) => {
-      let validation:
-        | ReturnType<typeof validateEmail>
-        | ReturnType<typeof validateLinkedIn>
-        | ReturnType<typeof validateGitHub>
-
-      if (fieldName === 'email') {
-        validation = validateEmail(value)
-      } else if (fieldName === 'linkedin') {
-        validation = validateLinkedIn(value)
-      } else {
-        validation = validateGitHub(value)
-      }
-
-      setErrors((prev) => ({
-        ...prev,
-        [fieldName]: validation.isValid
-          ? ''
-          : validation.message || 'Invalid input',
-      }))
+  // Use generic form hook with dependency injection
+  const form = useForm<FormData>({
+    initialData: {
+      email: '',
+      linkedin: '',
+      github: '',
     },
-    []
-  )
-
-  // Debounced version for real-time validation during typing
-  const debouncedValidateField = useDebouncedCallback(
-    validateFieldImmediate,
-    600
-  )
-
-  const validateForm = useCallback(() => {
-    const newErrors: FormErrors = {}
-
-    // Honeypot validation using the hook
-    const honeypotValidation = validateSubmission()
-    if (!honeypotValidation.isValid) {
-      // eslint-disable-next-line no-console
-      console.log('Bot detected:', honeypotValidation.reason)
-      newErrors.honeypot = 'Invalid submission detected'
-      setErrors(newErrors)
-      return false
-    }
-
-    // Use centralized validation
-    const formValidation = validateSignupForm(formData)
-    if (!formValidation.isValid) {
-      Object.assign(newErrors, formValidation.errors)
-    }
-
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }, [formData, validateSubmission])
-
-  const handleSubmit = useCallback(
-    async (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault()
-      setSubmitStatus('idle')
-
-      if (!validateForm()) {
-        return
-      }
-
-      setIsSubmitting(true)
-      setErrors({})
-
-      try {
-        // Submit to Netlify function
-        const result: { success: boolean; error?: string } = await submitForm({
-          email: formData.email,
-          fields: {
-            linkedin: formData.linkedin,
-            github: formData.github,
-            user_type: userType,
-            source: 'signup-modal',
-            website: honeypotValue, // Include honeypot field
-            form_start_time: formStartTime, // Include timing for server validation
-          },
-        } as FormSubmissionData)
-
-        if (result.success) {
-          setSubmitStatus('success')
-          setFormData({ email: '', linkedin: '', github: '' })
-          resetHoneypot() // Reset honeypot state
-
-          // Close modal after successful submission
-          setTimeout(() => {
-            closeModal()
-            setSubmitStatus('idle')
-          }, 6_000)
-        } else {
-          // eslint-disable-next-line no-console
-          console.error('Form submission failed:', result.error)
-          setSubmitStatus('error')
-          // Set specific error message if available
-          if (result.error) {
-            setErrors({ submit: result.error })
-          }
-        }
-      } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error('Form submission error:', error)
-        setSubmitStatus('error')
-        setErrors({
-          submit: 'An unexpected error occurred. Please try again.',
-        })
-      } finally {
-        setIsSubmitting(false)
-      }
+    fields: [
+      { name: 'email', validator: validateEmail },
+      { name: 'linkedin', validator: validateLinkedIn },
+      { name: 'github', validator: validateGitHub },
+    ],
+    validateForm: validateSignupForm,
+    onSubmit: async (formData, honeypotValue, formStartTime) => {
+      // Submit to Netlify function with signup-specific fields
+      return submitForm({
+        email: formData.email,
+        fields: {
+          linkedin: formData.linkedin,
+          github: formData.github,
+          user_type: userType,
+          source: 'signup-modal',
+          website: honeypotValue,
+          form_start_time: formStartTime,
+        },
+      } as FormSubmissionData)
     },
-    [
-      formData,
-      userType,
-      honeypotValue,
-      formStartTime,
-      validateForm,
-      closeModal,
-      resetHoneypot,
-    ]
-  )
+    onSuccess: () => {
+      // Close modal after successful submission
+      setTimeout(() => {
+        closeModal()
+        form.setSubmitStatus('idle')
+      }, 6_000)
+    },
+  })
 
+  // Create field-specific change handlers for backward compatibility
   const handleEmailChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      const value = e.target.value
-      setFormData((prev) => ({ ...prev, email: value }))
-
-      // Clear error immediately when user starts typing
-      if (errors.email) {
-        setErrors((prev) => ({ ...prev, email: '' }))
-      }
-
-      // Trigger debounced validation
-      debouncedValidateField('email', value)
+      form.handleFieldChange('email', e.target.value)
     },
-    [errors.email, debouncedValidateField]
+    [form]
   )
 
   const handleLinkedInChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      const value = e.target.value
-      setFormData((prev) => ({ ...prev, linkedin: value }))
-
-      // Clear error immediately when user starts typing
-      if (errors.linkedin) {
-        setErrors((prev) => ({ ...prev, linkedin: '' }))
-      }
-
-      // Trigger debounced validation
-      debouncedValidateField('linkedin', value)
+      form.handleFieldChange('linkedin', e.target.value)
     },
-    [errors.linkedin, debouncedValidateField]
+    [form]
   )
 
   const handleGitHubChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      const value = e.target.value
-      setFormData((prev) => ({ ...prev, github: value }))
-
-      // Clear error immediately when user starts typing
-      if (errors.github) {
-        setErrors((prev) => ({ ...prev, github: '' }))
-      }
-
-      // Trigger debounced validation
-      debouncedValidateField('github', value)
+      form.handleFieldChange('github', e.target.value)
     },
-    [errors.github, debouncedValidateField]
+    [form]
   )
 
   const handleHoneypotChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      setHoneypotValue(e.target.value)
+      form.handleHoneypotChange(e.target.value)
     },
-    [setHoneypotValue]
+    [form]
   )
 
   // Focus management for accessibility and honeypot reset
@@ -223,11 +92,11 @@ export const useSignupForm = () => {
 
     if (!isOpen) {
       // Reset honeypot when modal closes
-      resetHoneypot()
+      form.resetHoneypot()
     }
 
     return undefined
-  }, [isOpen, resetHoneypot])
+  }, [isOpen, form])
 
   // Keyboard event handling for accessibility
   useEffect(() => {
@@ -250,27 +119,27 @@ export const useSignupForm = () => {
   }, [isOpen, closeModal])
 
   return {
-    formData,
-    isSubmitting,
-    errors,
-    submitStatus,
-    honeypotValue,
+    formData: form.formData,
+    isSubmitting: form.isSubmitting,
+    errors: form.errors,
+    submitStatus: form.submitStatus,
+    honeypotValue: form.honeypotValue,
     handleEmailChange,
     handleLinkedInChange,
     handleGitHubChange,
     handleHoneypotChange,
-    handleSubmit,
+    handleSubmit: form.handleSubmit,
     closeModal,
     isOpen,
     userType,
-    validateForm,
-    setFormData,
-    setErrors,
-    setSubmitStatus,
-    setIsSubmitting,
-    setHoneypotValue,
-    resetHoneypot,
-    formStartTime,
+    validateForm: form.validateForm,
+    setFormData: form.setFormData,
+    setErrors: form.setErrors,
+    setSubmitStatus: form.setSubmitStatus,
+    setIsSubmitting: form.setIsSubmitting,
+    setHoneypotValue: form.setHoneypotValue,
+    resetHoneypot: form.resetHoneypot,
+    formStartTime: form.formStartTime,
     firstInputRef,
   }
 }

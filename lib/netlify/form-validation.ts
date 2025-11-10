@@ -1,10 +1,16 @@
-import { validateEmail, validateGitHub, validateLinkedIn } from '../validation'
+import {
+  validateEmail,
+  validateUrl,
+  validateName,
+  validateMessage,
+} from '../validation'
 import type {
   BotDetectionResult,
   FormFields,
   FormSubmissionData,
   ValidationError,
 } from '../../types/netlify.types'
+import type { ContactFormSubmissionData } from '../../types/ContactForm.types'
 
 const FORM_SUBMISSION_MIN_TIME_MS = 2000
 const FORM_SUBMISSION_MAX_TIME_MS = 30 * 60 * 1000
@@ -67,46 +73,48 @@ function validateEmailFormat(email: string): ValidationError | null {
   return null
 }
 
-function validateLinkedInIfProvided(
-  linkedinUrl: string | undefined
+/**
+ * Generic URL validation for any field
+ */
+function validateUrlIfProvided(
+  url: string | undefined,
+  fieldName: string,
+  fieldLabel: string
 ): ValidationError | null {
-  if (!linkedinUrl) {
+  if (!url) {
     return null
   }
 
-  const linkedinValidation = validateLinkedIn(linkedinUrl)
+  const urlValidation = validateUrl(url, fieldLabel)
 
-  if (!linkedinValidation.isValid) {
+  if (!urlValidation.isValid) {
     return {
-      field: 'linkedin',
-      message:
-        linkedinValidation.message ||
-        'Please provide a valid LinkedIn profile URL.',
+      field: fieldName,
+      message: urlValidation.message || `Please provide a valid ${fieldLabel}.`,
     }
   }
 
   return null
 }
 
+/**
+ * Validate LinkedIn URL if provided
+ * Uses generic URL validation
+ */
+function validateLinkedInIfProvided(
+  linkedinUrl: string | undefined
+): ValidationError | null {
+  return validateUrlIfProvided(linkedinUrl, 'linkedin', 'LinkedIn profile URL')
+}
+
+/**
+ * Validate GitHub URL if provided
+ * Uses generic URL validation
+ */
 function validateGitHubIfProvided(
   githubUrl: string | undefined
 ): ValidationError | null {
-  if (!githubUrl) {
-    return null
-  }
-
-  const githubValidation = validateGitHub(githubUrl)
-
-  if (!githubValidation.isValid) {
-    return {
-      field: 'github',
-      message:
-        githubValidation.message ||
-        'Please provide a valid GitHub profile URL.',
-    }
-  }
-
-  return null
+  return validateUrlIfProvided(githubUrl, 'github', 'GitHub profile URL')
 }
 
 function validateFormData(data: FormSubmissionData): ValidationError | null {
@@ -151,13 +159,68 @@ function detectBot(fields: FormFields): BotDetectionResult {
   return { isBot: false }
 }
 
+/**
+ * Validate contact form data
+ */
+function validateContactFormData(
+  data: ContactFormSubmissionData
+): ValidationError | null {
+  const { email, fields = {} } = data
+
+  const emailRequiredError = validateRequiredEmail(email)
+  if (emailRequiredError) {
+    return emailRequiredError
+  }
+
+  const emailFormatError = validateEmailFormat(email as string)
+  if (emailFormatError) {
+    return emailFormatError
+  }
+
+  // Validate name
+  if (!fields.name) {
+    return {
+      field: 'name',
+      message: 'Name is required.',
+    }
+  }
+
+  const nameValidation = validateName(fields.name)
+  if (!nameValidation.isValid) {
+    return {
+      field: 'name',
+      message: nameValidation.message || 'Please provide a valid name.',
+    }
+  }
+
+  // Validate message
+  if (!fields.message) {
+    return {
+      field: 'message',
+      message: 'Message is required.',
+    }
+  }
+
+  const messageValidation = validateMessage(fields.message)
+  if (!messageValidation.isValid) {
+    return {
+      field: 'message',
+      message: messageValidation.message || 'Please provide a valid message.',
+    }
+  }
+
+  return null
+}
+
 export {
   validateFormData,
+  validateContactFormData,
   detectBot,
   validateHoneypot,
   validateFormTiming,
   validateRequiredEmail,
   validateEmailFormat,
+  validateUrlIfProvided,
   validateLinkedInIfProvided,
   validateGitHubIfProvided,
 }

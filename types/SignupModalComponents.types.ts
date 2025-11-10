@@ -1,22 +1,19 @@
 import type { ComponentProps } from 'react'
 import type { UserType } from './FormData.types'
 import type { FormData, FormErrors, SubmitStatus } from './SignUpModal.types'
+import type { ContactSubmitStatus } from './ContactForm.types'
 
 interface UserTypeHeaderProps extends ComponentProps<'header'> {
   userType: UserType | null
 }
 
-interface FormFieldProps extends ComponentProps<'div'> {
-  id: string
-  type: 'email' | 'url'
-  placeholder: string
-  value: string
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+interface FormFieldProps extends ComponentProps<'input'> {
   error?: string
-  disabled?: boolean
   icon: React.ReactNode
   label: string
   ariaDescribedBy?: string
+  className?: string
+  status?: SubmitStatus
 }
 
 interface HoneypotFieldProps extends ComponentProps<'div'> {
@@ -38,7 +35,7 @@ interface SubmitButtonProps extends ComponentProps<'button'> {
 }
 
 interface StatusMessageProps extends ComponentProps<'section'> {
-  status: SubmitStatus
+  status: ContactSubmitStatus
   errorMessage?: string
   successIcon: string
   errorIcon: string

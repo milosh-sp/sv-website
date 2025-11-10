@@ -6,6 +6,7 @@ interface FormFields {
   user_type?: string
   website?: string
   form_start_time?: string
+  form_type?: 'signup' | 'contact'
 }
 
 interface FormSubmissionData {

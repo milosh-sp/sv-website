@@ -2,6 +2,7 @@
 const nextConfig = {
   output: 'export',
   trailingSlash: false, // Clean URLs without trailing slashes
+  reactCompiler: true,
 
   // Image optimization for static export
   images: {

@@ -10,13 +10,14 @@ import { HeaderLink } from '../ui/HeaderLink'
 import logo from '@/public/logo-sv.svg'
 import { cn } from '@/lib/utils'
 
-const SCROLL_MARGIN_TOP_DESKTOP = 80
+const SCROLL_MARGIN_TOP_DESKTOP = 96
 const SCROLL_MARGIN_TOP_MOBILE = 96
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const scrollToSection = (sectionId: string) => {
+    setIsMenuOpen(false)
     const element = document.getElementById(sectionId)
     if (!element) {
       console.warn(`Section with id "${sectionId}" not found`)
@@ -109,7 +110,7 @@ export function Header() {
             {navigationData.map((link) => (
               <li key={link.id} role='none'>
                 <HeaderLink
-                  scroll={false}
+                  scroll
                   href={link.href}
                   onClick={() => scrollToSection(link.id)}
                   variant='desktop'
@@ -154,7 +155,8 @@ export function Header() {
               'md:hidden py-6',
               'border-t border-slate-200/50',
               'bg-white/98 backdrop-blur-md',
-              'animate-fade-in-scale'
+              'animate-fade-in-scale',
+              'sticky top-20 z-40'
             )}
             aria-label='Mobile navigation'
           >

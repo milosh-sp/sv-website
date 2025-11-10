@@ -1,0 +1,110 @@
+import { strings } from '@/lib/strings'
+import { isContactFormValid } from '@/lib/validation'
+import type { ContactFormProps } from '@/types/ContactForm.types'
+import { FormField } from './FormField'
+import { HoneypotField } from './HoneypotField'
+import { StatusMessage } from './StatusMessage'
+import { SubmitButton } from './SubmitButton'
+import { TextAreaField } from './TextAreaField'
+
+// Icons are embedded in strings
+const MailIcon = strings.contactPage.form.email.icon
+const UserIcon = strings.contactPage.form.name.icon
+const MessageIcon = strings.contactPage.form.message.icon
+
+export function ContactForm({
+  formData,
+  isSubmitting,
+  errors,
+  submitStatus,
+  honeypotValue,
+  onEmailChange,
+  onNameChange,
+  onMessageChange,
+  onHoneypotChange,
+  onSubmit,
+  className,
+  ...props
+}: ContactFormProps) {
+  const isFormDisabled = isSubmitting || !isContactFormValid(formData)
+
+  return (
+    <form
+      onSubmit={onSubmit}
+      className='space-y-6 w-full max-w-2xl mx-auto'
+      aria-label={strings.contactPage.accessibility.contactForm}
+      noValidate
+      {...props}
+    >
+      <FormField
+        id='email'
+        type='email'
+        placeholder={strings.contactPage.form.email.placeholder}
+        value={formData.email}
+        onChange={onEmailChange}
+        error={errors.email}
+        disabled={isSubmitting}
+        icon={<MailIcon className='h-5 w-5' aria-hidden='true' />}
+        label={strings.contactPage.form.email.label}
+        ariaDescribedBy={strings.contactPage.accessibility.emailError}
+      />
+
+      <FormField
+        id='name'
+        type='text'
+        placeholder={strings.contactPage.form.name.placeholder}
+        value={formData.name}
+        onChange={onNameChange}
+        error={errors.name}
+        disabled={isSubmitting}
+        icon={<UserIcon className='h-5 w-5' aria-hidden='true' />}
+        label={strings.contactPage.form.name.label}
+        ariaDescribedBy={strings.contactPage.accessibility.nameError}
+      />
+
+      <TextAreaField
+        id='message'
+        placeholder={strings.contactPage.form.message.placeholder}
+        value={formData.message}
+        onChange={onMessageChange}
+        error={errors.message}
+        disabled={isSubmitting}
+        icon={<MessageIcon className='h-5 w-5' aria-hidden='true' />}
+        label={strings.contactPage.form.message.label}
+        ariaDescribedBy={strings.contactPage.accessibility.messageError}
+        rows={6}
+      />
+
+      <HoneypotField
+        id='website'
+        name='website'
+        type='text'
+        placeholder={strings.contactPage.form.website.placeholder}
+        value={honeypotValue}
+        onChange={onHoneypotChange}
+        label={strings.contactPage.form.website.label}
+      />
+
+      <SubmitButton
+        isSubmitting={isSubmitting}
+        isDisabled={isFormDisabled}
+        ariaLabel={
+          isSubmitting
+            ? strings.contactPage.submitButton.ariaLabel.submitting
+            : strings.contactPage.submitButton.ariaLabel.idle
+        }
+        loadingText={strings.contactPage.submitButton.submitting}
+        idleText={strings.contactPage.submitButton.idle}
+      />
+
+      <StatusMessage
+        status={submitStatus}
+        errorMessage={errors.submit}
+        successIcon={strings.contactPage.status.success.icon}
+        errorIcon={strings.contactPage.status.error.icon}
+        successMessage={strings.contactPage.status.success.message}
+        defaultErrorMessage={strings.contactPage.status.error.message}
+      />
+    </form>
+  )
+}

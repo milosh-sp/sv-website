@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 /**
  * Debounce a value - returns the debounced value after the specified delay
@@ -33,24 +33,24 @@ export function useDebouncedCallback<
 ): (...args: TArgs) => void {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
   const callbackRef = useRef(callback)
+  const delayRef = useRef(delay)
 
-  // Keep callback ref up to date
+  // Keep callback and delay refs up to date
   useEffect(() => {
     callbackRef.current = callback
-  }, [callback])
+    delayRef.current = delay
+  }, [callback, delay])
 
-  const debouncedCallback = useCallback(
-    (...args: TArgs) => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current)
-      }
+  // Create stable debounced function reference using useRef
+  const debouncedCallbackRef = useRef((...args: TArgs) => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current)
+    }
 
-      timeoutRef.current = setTimeout(() => {
-        callbackRef.current(...args)
-      }, delay)
-    },
-    [delay]
-  )
+    timeoutRef.current = setTimeout(() => {
+      callbackRef.current(...args)
+    }, delayRef.current)
+  })
 
   // Cleanup timeout on unmount
   useEffect(() => {
@@ -61,7 +61,7 @@ export function useDebouncedCallback<
     }
   }, [])
 
-  return debouncedCallback
+  return debouncedCallbackRef.current
 }
 
 /**

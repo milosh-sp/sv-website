@@ -45,6 +45,8 @@ import {
   Home,
   Search,
   ArrowLeft,
+  Send,
+  User,
 } from 'lucide-react'
 
 // ============================================================================
@@ -504,7 +506,7 @@ export const signupModal = {
     },
     linkedin: {
       label: `LinkedIn profile URL`,
-      placeholder: `Your LinkedIn profile URL *`,
+      placeholder: `https://linkedin.com/in/yourname *`,
       ariaLabel: `LinkedIn profile URL field`,
       icon: Linkedin,
     },
@@ -515,7 +517,7 @@ export const signupModal = {
     },
     github: {
       label: `GitHub profile URL`,
-      placeholder: `Your GitHub profile URL *`,
+      placeholder: `https://github.com/username *`,
       ariaLabel: `GitHub profile URL field`,
       icon: Github,
     },
@@ -582,6 +584,7 @@ export const footer = {
   // Links
   links: {
     privacyPolicy: `Privacy Policy`,
+    contactUs: `Contact Us`,
   },
   contactUs: `Contact us`,
   email: `contact@skillverdict.com`,
@@ -594,6 +597,99 @@ export const footer = {
 } as const
 
 // ============================================================================
+// CONTACT PAGE
+// ============================================================================
+
+export const contactPage = {
+  // Page header
+  title: `Contact Us`,
+  heading: `Get in Touch`,
+  description: `Have a question or want to learn more about Skill Verdict? We'd love to hear from you. Fill out the form below and we'll get back to you as soon as possible.`,
+
+  // Form fields
+  form: {
+    email: {
+      label: `Email address`,
+      placeholder: `your.email@example.com *`,
+      ariaLabel: `Email address field`,
+      icon: Mail,
+    },
+    name: {
+      label: `Name (Company or Individual)`,
+      placeholder: `Your name or company name *`,
+      ariaLabel: `Name field`,
+      icon: User,
+    },
+    message: {
+      label: `Message`,
+      placeholder: `Tell us how we can help you... *`,
+      ariaLabel: `Message field`,
+      icon: MessageCircle,
+    },
+    website: {
+      label: `Website (leave this field empty)`,
+      placeholder: `Your website`,
+      ariaLabel: `Website field (honeypot)`,
+    },
+  },
+
+  // Submit button
+  submitButton: {
+    idle: `Send Message`,
+    submitting: `Sending...`,
+    ariaLabel: {
+      idle: `Submit contact form`,
+      submitting: `Submitting form`,
+    },
+    icon: Send,
+  },
+
+  // Status messages
+  status: {
+    success: {
+      title: `Message Sent!`,
+      message: `Thank you for contacting us. We'll get back to you within 24-48 hours.`,
+      icon: `✓`,
+    },
+    error: {
+      title: `Error`,
+      message: `Something went wrong. Please try again or email us directly at contact@skillverdict.com.`,
+      icon: `✕`,
+    },
+  },
+
+  // Validation messages
+  validation: {
+    emailRequired: `Email is required`,
+    emailInvalid: `Please enter a valid email address`,
+    nameRequired: `Name is required`,
+    nameMinLength: `Name must be at least 2 characters`,
+    nameMaxLength: `Name must be less than 100 characters`,
+    messageRequired: `Message is required`,
+    messageMinLength: `Message must be at least 10 characters`,
+    messageMaxLength: `Message must be less than 1000 characters`,
+  },
+
+  // Accessibility
+  accessibility: {
+    contactForm: `Contact form`,
+    emailError: `Email validation error`,
+    nameError: `Name validation error`,
+    messageError: `Message validation error`,
+  },
+
+  // Alternative contact methods
+  alternativeContact: {
+    heading: `Other Ways to Reach Us`,
+    email: {
+      label: `Email`,
+      value: `contact@skillverdict.com`,
+      ariaLabel: `Send us an email`,
+    },
+  },
+} as const
+
+// ============================================================================
 // LEGAL PAGES CONTENT
 // ============================================================================
 
@@ -601,161 +697,86 @@ export const legalPages = {
   // Privacy Policy
   privacyPolicy: {
     title: `Privacy Policy`,
-    description: `Your privacy is fundamental to our mission. Learn how we protect and
-      handle your data.`,
-    lastUpdated: `December 2024`,
+    description: `Your privacy is fundamental to our mission. Learn how we protect and handle your data.`,
+    lastUpdated: `10-Nov-2025`,
+    effectiveDate: `10-Nov-2025`,
     sections: {
       introduction: {
         title: `Introduction`,
         content: [
-          `Skill Verdict ("we," "our," or "us") is committed to protecting your
-          privacy. This Privacy Policy explains how we collect, use, disclose,
-          and safeguard your information when you use our skill verification
-          platform.`,
-          `By using Skill Verdict, you agree to the collection and use of
-          information in accordance with this policy. If you do not agree with
-          our policies and practices, do not use our service.`,
+          `This Privacy Policy describes the policies of Skill Verdict, Dover, Delaware 19901, United States of America, email: contact@skillverdict.com, phone: +1123423523 on the collection, use and disclosure of your information that we collect when you use our website (https://skillverdict.com). (the "Service"). By accessing or using the Service, you are consenting to the collection, use and disclosure of your information in accordance with this Privacy Policy. If you do not consent to the same, please do not access or use the Service.`,
+          `We may modify this Privacy Policy at any time without any prior notice to you and will post the revised Privacy Policy on the Service. The revised Policy will be effective 180 days from when the revised Policy is posted in the Service and your continued access or use of the Service after such time will constitute your acceptance of the revised Privacy Policy. We therefore recommend that you periodically review this page.`,
         ],
       },
       informationWeCollect: {
         title: `Information We Collect`,
-        personalInformation: {
-          title: `Personal Information`,
-          items: [
-            `Name, email address, and contact information`,
-            `Professional background and work experience`,
-            `Skills, certifications, and educational background`,
-            `Profile information and professional achievements`,
-          ],
-        },
-        technicalInformation: {
-          title: `Technical Information`,
-          items: [
-            `Code submissions and technical assessments`,
-            `Verification results and skill ratings`,
-            `Platform usage data and interaction patterns`,
-            `Device information and IP addresses`,
-          ],
-        },
+        content: [
+          `We will collect and process the following personal information about you:`,
+        ],
+        items: [
+          `Email`,
+          `Social Media Profile`,
+          `Employment status`,
+          `IP address`,
+          `Country`,
+        ],
       },
       howWeUse: {
         title: `How We Use Your Information`,
         content: [
-          `We use the information we collect to:`,
-          `Provide and maintain our skill verification services`,
-          `Process verification requests and generate skill assessments`,
-          `Connect you with qualified verifiers and potential employers`,
-          `Improve our platform and develop new features`,
-          `Communicate with you about your account and our services`,
-          `Ensure platform security and prevent fraud`,
-          `Comply with legal obligations and resolve disputes`,
+          `We will use the information that we collect about you for the following purposes:`,
+          `Marketing/Promotional`,
+          `Creating user account`,
+          `Customer feedback collection`,
+          `If we want to use your information for any other purpose, we will ask you for consent and will use your information only on receiving your consent and then, only for the purpose(s) for which grant consent unless we are required to do otherwise by law.`,
         ],
       },
       informationSharing: {
-        title: `Information Sharing and Disclosure`,
-        withVerifiers: {
-          title: `With Verifiers`,
-          content: `Your code submissions and technical materials are shared only with
-            qualified verifiers assigned to assess your skills. Verifiers are
-            bound by confidentiality agreements.`,
-        },
-        withEmployers: {
-          title: `With Employers`,
-          content: `Your public profile and verified skills are visible to potential
-            employers. You control what information is publicly displayed
-            through your privacy settings.`,
-        },
-        legalRequirements: {
-          title: `Legal Requirements`,
-          content: `We may disclose your information if required by law, court order,
-            or to protect our rights, property, or safety.`,
-        },
-      },
-      dataSecurity: {
-        title: `Data Security`,
+        title: `How We Share Your Information`,
         content: [
-          `We implement appropriate technical and organizational security
-          measures to protect your personal information against unauthorized
-          access, alteration, disclosure, or destruction.`,
-          `End-to-end encryption for sensitive data transmission`,
-          `Secure data storage with regular security audits`,
-          `Access controls and authentication mechanisms`,
-          `Regular security training for our team members`,
-          `However, no method of transmission over the internet or electronic
-          storage is 100% secure. While we strive to protect your information,
-          we cannot guarantee absolute security.`,
-        ],
-      },
-      yourRights: {
-        title: `Your Rights and Choices`,
-        content: [
-          `You have the following rights regarding your personal information:`,
-          `Access: Request a copy of the personal information we hold about
-          you`,
-          `Correction: Request correction of inaccurate or incomplete
-          information`,
-          `Deletion: Request deletion of your personal information (subject to
-          legal requirements)`,
-          `Portability: Request transfer of your data to another service
-          provider`,
-          `Restriction: Request limitation of how we process your information`,
-          `Objection: Object to certain types of processing`,
-          `To exercise these rights, please contact us at
-          contact@skillverdict.com. We will respond to your request within 30
-          days.`,
+          `We will not transfer your personal information to any third party without seeking your consent, except in limited circumstances as described below:`,
+          `Analytics`,
+          `We require such third party's to use the personal information we transfer to them only for the purpose for which it was transferred and not to retain it for longer than is required for fulfilling the said purpose.`,
+          `We may also disclose your personal information for the following: (1) to comply with applicable law, regulation, court order or other legal process; (2) to enforce your agreements with us, including this Privacy Policy; or (3) to respond to claims that your use of the Service violates any third-party rights. If the Service or our company is merged or acquired with another company, your information will be one of the assets that is transferred to the new owner.`,
         ],
       },
       dataRetention: {
-        title: `Data Retention`,
+        title: `Retention Of Your Information`,
         content: [
-          `We retain your personal information for as long as necessary to
-          provide our services and fulfill the purposes outlined in this
-          policy. Specific retention periods include:`,
-          `Account information: Until account deletion or 7 years after last
-          activity`,
-          `Verification records: Permanently (to maintain credential integrity)`,
-          `Code submissions: 3 years after verification completion`,
-          `Communication records: 3 years for support purposes`,
+          `We will retain your personal information with us for Anonymous data is stored forever or for as long as we need it to fulfill the purposes for which it was collected as detailed in this Privacy Policy. We may need to retain certain information for longer periods such as record-keeping / reporting in accordance with applicable law or for other legitimate reasons like enforcement of legal rights, fraud prevention, etc. Residual anonymous information and aggregate information, neither of which identifies you (directly or indirectly), may be stored indefinitely.`,
         ],
       },
-      internationalTransfers: {
-        title: `International Data Transfers`,
+      yourRights: {
+        title: `Your Rights`,
         content: [
-          `Skill Verdict operates globally, and your information may be
-          transferred to and processed in countries other than your own. We
-          ensure appropriate safeguards are in place for international
-          transfers, including:`,
-          `Standard contractual clauses approved by relevant authorities`,
-          `Adequacy decisions for transfers to certain countries`,
-          `Certification schemes and codes of conduct`,
+          `Depending on the law that applies, you may have a right to access and rectify or erase your personal data or receive a copy of your personal data, restrict or object to the active processing of your data, ask us to share (port) your personal information to another entity, withdraw any consent you provided to us to process your data, a right to lodge a complaint with a statutory authority and such other rights as may be relevant under applicable laws. To exercise these rights, you can write to us at contact@skillverdict.com. We will respond to your request in accordance with applicable law.`,
+          `You may opt-out of direct marketing communications or the profiling we carry out for marketing purposes by writing to us at contact@skillverdict.com.`,
+          `Do note that if you do not allow us to collect or process the required personal information or withdraw the consent to process the same for the required purposes, you may not be able to access or use the services for which your information was sought.`,
         ],
       },
-      childrensPrivacy: {
-        title: `Children's Privacy`,
-        content: `Skill Verdict is not intended for use by children under 16 years of
-          age. We do not knowingly collect personal information from children
-          under 16. If we become aware that we have collected personal
-          information from a child under 16, we will take steps to delete such
-          information.`,
-      },
-      changesToPolicy: {
-        title: `Changes to This Privacy Policy`,
+      cookies: {
+        title: `Cookies Etc.`,
         content: [
-          `We may update this Privacy Policy from time to time. We will notify
-          you of any changes by posting the new Privacy Policy on this page
-          and updating the "Last updated" date.`,
-          `For significant changes, we will provide additional notice (such as
-          email notification) at least 30 days before the changes take effect.`,
+          `To learn more about how we use these and your choices in relation to these tracking technologies, please refer to our Cookie Policy.`,
         ],
       },
-      contact: {
-        title: `Contact Us`,
-        content: `If you have any questions about this Privacy Policy or our privacy
-          practices, please contact us:`,
-        email: `contact@skillverdict.com`,
-        address: `Skill Verdict Privacy Team`,
-        responseTime: `We aim to respond within 48 hours`,
+      dataSecurity: {
+        title: `Security`,
+        content: [
+          `The security of your information is important to us and we will use reasonable security measures to prevent the loss, misuse or unauthorized alteration of your information under our control. However, given the inherent risks, we cannot guarantee absolute security and consequently, we cannot ensure or warrant the security of any information you transmit to us and you do so at your own risk.`,
+        ],
       },
+      grievanceOfficer: {
+        title: `Grievance / Data Protection Officer`,
+        content: [
+          `If you have any queries or concerns about the processing of your information that is available with us, you may email our Grievance Officer at Skill Verdict, Dover, email: contact@skillverdict.com. We will address your concerns in accordance with applicable law.`,
+        ],
+      },
+    },
+    contact: {
+      email: `contact@skillverdict.com`,
+      phone: `+1123423523`,
+      address: `Skill Verdict, Dover, Delaware 19901, United States of America`,
     },
   },
 } as const
@@ -962,6 +983,37 @@ export const cvSampleData = {
 } as const
 
 // ============================================================================
+// API & FORM SUBMISSION RESPONSES
+// ============================================================================
+
+export const apiResponses = {
+  // Success messages
+  success: {
+    subscribed: `Successfully subscribed!`,
+    messageSent: `Message sent successfully!`,
+  },
+
+  // Error messages
+  errors: {
+    // Client errors (400)
+    methodNotAllowed: `Method not allowed. Only POST requests are accepted.`,
+    missingBody: `Request body is required.`,
+    invalidJson: `Invalid JSON in request body.`,
+    botDetected: `Invalid submission detected.`,
+    formSessionExpired: `Form session expired. Please refresh and try again.`,
+    validationError: `Validation error occurred.`,
+
+    // Conflict errors (409)
+    emailAlreadySubscribed: `This email is already subscribed.`,
+
+    // Server errors (500)
+    serverConfigError: `Server configuration error. Please try again later.`,
+    subscriptionFailed: `Failed to subscribe. Please try again later.`,
+    unexpectedError: `An unexpected error occurred. Please try again later.`,
+  },
+} as const
+
+// ============================================================================
 // COMMON UI ELEMENTS
 // ============================================================================
 
@@ -1016,8 +1068,10 @@ export const strings = {
   signupModal,
   floatingSignupButton,
   footer,
+  contactPage,
   legalPages,
   errorPages,
+  apiResponses,
   common,
   layout,
   cvSampleData,

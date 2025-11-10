@@ -29,7 +29,7 @@ export function BenefitCards({
       <header className='mb-12'>
         <figure
           className={cn(
-            'w-28 h-28 bg-gradient-to-br rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-lg',
+            'w-17 h-17 bg-gradient-to-br rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-lg',
             COLOR_SCHEME_GRADIENTS[colorScheme]
           )}
           aria-hidden='true'

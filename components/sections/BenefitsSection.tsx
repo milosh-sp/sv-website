@@ -28,7 +28,7 @@ export function BenefitsSection({ id }: SectionProps) {
       {activeTab === 'member' && (
         <BenefitCards
           icon={
-            <CircleStar className='h-14 w-14 text-white' aria-hidden='true' />
+            <CircleStar className='h-10 w-10 text-white' aria-hidden='true' />
           }
           description={strings.benefits.members.description}
           benefits={candidateBenefits}
@@ -39,7 +39,7 @@ export function BenefitsSection({ id }: SectionProps) {
         <BenefitCards
           icon={
             <Award
-              className='h-14 w-14 text-white'
+              className='h-10 w-10 text-white'
               aria-hidden='true'
               aria-label={strings.benefits.guruMembers.iconAriaLabel}
             />

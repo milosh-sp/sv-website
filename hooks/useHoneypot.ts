@@ -1,9 +1,10 @@
+import { useCallback, useEffect, useRef, useState } from 'react'
+
 import type {
   HoneypotFieldProps,
   HoneypotState,
   HoneypotValidation,
 } from '@/types/UseHoneyPot.types'
-import { useState, useEffect, useRef, useCallback } from 'react'
 
 export function useHoneypot() {
   const [state, setState] = useState<HoneypotState>({
@@ -32,16 +33,16 @@ export function useHoneypot() {
   }, [])
 
   // Update honeypot value
-  const setHoneypotValue = useCallback((value: string) => {
+  const setHoneypotValue = (value: string) => {
     setState((prev) => ({
       ...prev,
       honeypotValue: value,
       isBot: value.trim() !== '', // If honeypot is filled, mark as bot
     }))
-  }, [])
+  }
 
   // Validate form submission against bot indicators
-  const validateSubmission = useCallback((): HoneypotValidation => {
+  const validateSubmission = (): HoneypotValidation => {
     const currentTime = Date.now()
     const timeTaken = currentTime - state.startTime
 
@@ -73,7 +74,7 @@ export function useHoneypot() {
     return {
       isValid: true,
     }
-  }, [state.honeypotValue, state.startTime])
+  }
 
   // Reset honeypot state (useful for form reset)
   const resetHoneypot = useCallback(() => {

@@ -137,23 +137,26 @@ export function CandidateWaitlistForm() {
         return (
           <MotivationChallengesStep
             skillValidationConfidence={form.formData.skillValidationConfidence}
-            jobSearchChallenge={form.formData.jobSearchChallenge}
+            jobSearchChallenges={form.formData.jobSearchChallenges}
             jobSearchChallengeOther={form.formData.jobSearchChallengeOther}
-            valuableOutcome={form.formData.valuableOutcome}
+            valuableOutcomes={form.formData.valuableOutcomes}
             valuableOutcomeOther={form.formData.valuableOutcomeOther}
             errors={form.errors}
             isSubmitting={form.isSubmitting}
             onSkillValidationConfidenceChange={(value) =>
               form.handleFieldChange('skillValidationConfidence', value)
             }
-            onJobSearchChallengeChange={(value) =>
-              form.handleFieldChange('jobSearchChallenge', value)
+            onJobSearchChallengesChange={(values) =>
+              form.handleFieldChange(
+                'jobSearchChallenges',
+                JSON.stringify(values)
+              )
             }
             onJobSearchChallengeOtherChange={(value) =>
               form.handleFieldChange('jobSearchChallengeOther', value)
             }
-            onValuableOutcomeChange={(value) =>
-              form.handleFieldChange('valuableOutcome', value)
+            onValuableOutcomesChange={(values) =>
+              form.handleFieldChange('valuableOutcomes', JSON.stringify(values))
             }
             onValuableOutcomeOtherChange={(value) =>
               form.handleFieldChange('valuableOutcomeOther', value)

@@ -94,27 +94,41 @@ export function validateCandidateForm(
     errors.skillValidationConfidence = 'Please select your confidence level'
   }
 
-  if (!data.jobSearchChallenge || data.jobSearchChallenge.trim() === '') {
-    errors.jobSearchChallenge = 'Please select your biggest challenge'
-  }
-
-  if (data.jobSearchChallenge === 'other') {
+  // Validate job search challenges (array)
+  try {
+    const jobSearchChallenges = JSON.parse(data.jobSearchChallenges)
     if (
-      !data.jobSearchChallengeOther ||
-      data.jobSearchChallengeOther.trim() === ''
+      !Array.isArray(jobSearchChallenges) ||
+      jobSearchChallenges.length === 0
     ) {
-      errors.jobSearchChallengeOther = 'Please specify your challenge'
+      errors.jobSearchChallenges = 'Please select at least one challenge'
+    } else if (jobSearchChallenges.includes('other')) {
+      if (
+        !data.jobSearchChallengeOther ||
+        data.jobSearchChallengeOther.trim() === ''
+      ) {
+        errors.jobSearchChallengeOther = 'Please specify your challenge'
+      }
     }
+  } catch {
+    errors.jobSearchChallenges = 'Please select at least one challenge'
   }
 
-  if (!data.valuableOutcome || data.valuableOutcome.trim() === '') {
-    errors.valuableOutcome = 'Please select the most valuable outcome'
-  }
-
-  if (data.valuableOutcome === 'other') {
-    if (!data.valuableOutcomeOther || data.valuableOutcomeOther.trim() === '') {
-      errors.valuableOutcomeOther = 'Please specify the outcome'
+  // Validate valuable outcomes (array)
+  try {
+    const valuableOutcomes = JSON.parse(data.valuableOutcomes)
+    if (!Array.isArray(valuableOutcomes) || valuableOutcomes.length === 0) {
+      errors.valuableOutcomes = 'Please select at least one outcome'
+    } else if (valuableOutcomes.includes('other')) {
+      if (
+        !data.valuableOutcomeOther ||
+        data.valuableOutcomeOther.trim() === ''
+      ) {
+        errors.valuableOutcomeOther = 'Please specify the outcome'
+      }
     }
+  } catch {
+    errors.valuableOutcomes = 'Please select at least one outcome'
   }
 
   return {

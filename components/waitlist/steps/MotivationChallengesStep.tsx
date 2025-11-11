@@ -3,14 +3,15 @@
 import type { HTMLAttributes } from 'react'
 import { FormField } from '@/components/ui/FormField'
 import { RadioButton } from '@/components/ui/RadioButton'
+import { Checkbox } from '@/components/ui/Checkbox'
 import { cn } from '@/lib/utils'
 
 interface MotivationChallengesStepProps extends HTMLAttributes<HTMLDivElement> {
   // Candidate-specific fields
   skillValidationConfidence?: string
-  jobSearchChallenge?: string
+  jobSearchChallenges?: string // JSON stringified array
   jobSearchChallengeOther?: string
-  valuableOutcome?: string
+  valuableOutcomes?: string // JSON stringified array
   valuableOutcomeOther?: string
   // Verifier-specific fields (legacy)
   motivation?: string
@@ -19,9 +20,9 @@ interface MotivationChallengesStepProps extends HTMLAttributes<HTMLDivElement> {
   errors: Record<string, string>
   isSubmitting: boolean
   onSkillValidationConfidenceChange?: (value: string) => void
-  onJobSearchChallengeChange?: (value: string) => void
+  onJobSearchChallengesChange?: (values: string[]) => void
   onJobSearchChallengeOtherChange?: (value: string) => void
-  onValuableOutcomeChange?: (value: string) => void
+  onValuableOutcomesChange?: (values: string[]) => void
   onValuableOutcomeOtherChange?: (value: string) => void
   // Verifier-specific handlers (legacy)
   onMotivationChange?: (value: string) => void
@@ -79,24 +80,42 @@ const VALUABLE_OUTCOME_OPTIONS = [
 
 export function MotivationChallengesStep({
   skillValidationConfidence = '',
-  jobSearchChallenge = '',
+  jobSearchChallenges = '[]',
   jobSearchChallengeOther = '',
-  valuableOutcome = '',
+  valuableOutcomes = '[]',
   valuableOutcomeOther = '',
   motivation = '',
   challenges = '',
   errors,
   isSubmitting,
   onSkillValidationConfidenceChange,
-  onJobSearchChallengeChange,
+  onJobSearchChallengesChange,
   onJobSearchChallengeOtherChange,
-  onValuableOutcomeChange,
+  onValuableOutcomesChange,
   onValuableOutcomeOtherChange,
   onMotivationChange,
   onChallengesChange,
   className,
   ...props
 }: MotivationChallengesStepProps) {
+  // Parse JSON arrays for checkboxes
+  const parsedJobSearchChallenges = JSON.parse(jobSearchChallenges)
+  const parsedValuableOutcomes = JSON.parse(valuableOutcomes)
+
+  const handleJobSearchChallengeToggle = (value: string) => {
+    const updated = parsedJobSearchChallenges.includes(value)
+      ? parsedJobSearchChallenges.filter((v: string) => v !== value)
+      : [...parsedJobSearchChallenges, value]
+    onJobSearchChallengesChange?.(updated)
+  }
+
+  const handleValuableOutcomeToggle = (value: string) => {
+    const updated = parsedValuableOutcomes.includes(value)
+      ? parsedValuableOutcomes.filter((v: string) => v !== value)
+      : [...parsedValuableOutcomes, value]
+    onValuableOutcomesChange?.(updated)
+  }
+
   return (
     <div className={cn('space-y-6', className)} {...props}>
       {/* Skill Validation Confidence - Candidate only */}
@@ -149,8 +168,8 @@ export function MotivationChallengesStep({
         </div>
       )}
 
-      {/* Job Search Challenge - Candidate only */}
-      {onJobSearchChallengeChange && (
+      {/* Job Search Challenges - Candidate only */}
+      {onJobSearchChallengesChange && (
         <div className='space-y-3'>
           <h3 className='text-sm font-medium'>
             What is the biggest challenge you face in your job search?
@@ -158,21 +177,19 @@ export function MotivationChallengesStep({
           <div className='space-y-2'>
             {JOB_SEARCH_CHALLENGE_OPTIONS.map((option) => (
               <div key={option.value}>
-                <RadioButton
+                <Checkbox
                   id={`job-search-challenge-${option.value}`}
-                  name='jobSearchChallenge'
-                  value={option.value}
-                  label={option.label}
-                  checked={jobSearchChallenge === option.value}
-                  onChange={(e) => onJobSearchChallengeChange(e.target.value)}
+                  checked={parsedJobSearchChallenges.includes(option.value)}
+                  onChange={() => handleJobSearchChallengeToggle(option.value)}
                   disabled={isSubmitting}
+                  label={option.label}
                   aria-describedby={
-                    errors.jobSearchChallenge
-                      ? 'jobSearchChallenge-error'
+                    errors.jobSearchChallenges
+                      ? 'jobSearchChallenges-error'
                       : undefined
                   }
                 />
-                {jobSearchChallenge === 'other' &&
+                {parsedJobSearchChallenges.includes('other') &&
                   option.value === 'other' &&
                   onJobSearchChallengeOtherChange && (
                     <div className='ml-7 mt-2'>
@@ -195,9 +212,9 @@ export function MotivationChallengesStep({
               </div>
             ))}
           </div>
-          {errors.jobSearchChallenge && (
+          {errors.jobSearchChallenges && (
             <p
-              id='jobSearchChallenge-error'
+              id='jobSearchChallenges-error'
               className='text-destructive text-sm mt-2 flex items-start gap-2 px-1'
               role='alert'
               aria-live='polite'
@@ -209,15 +226,15 @@ export function MotivationChallengesStep({
                 ⚠
               </span>
               <span className='leading-relaxed'>
-                {errors.jobSearchChallenge}
+                {errors.jobSearchChallenges}
               </span>
             </p>
           )}
         </div>
       )}
 
-      {/* Valuable Outcome - Candidate only */}
-      {onValuableOutcomeChange && (
+      {/* Valuable Outcomes - Candidate only */}
+      {onValuableOutcomesChange && (
         <div className='space-y-3'>
           <h3 className='text-sm font-medium'>
             What would be the SINGLE most valuable outcome for you from a
@@ -226,19 +243,19 @@ export function MotivationChallengesStep({
           <div className='space-y-2'>
             {VALUABLE_OUTCOME_OPTIONS.map((option) => (
               <div key={option.value}>
-                <RadioButton
+                <Checkbox
                   id={`valuable-outcome-${option.value}`}
-                  name='valuableOutcome'
-                  value={option.value}
-                  label={option.label}
-                  checked={valuableOutcome === option.value}
-                  onChange={(e) => onValuableOutcomeChange(e.target.value)}
+                  checked={parsedValuableOutcomes.includes(option.value)}
+                  onChange={() => handleValuableOutcomeToggle(option.value)}
                   disabled={isSubmitting}
+                  label={option.label}
                   aria-describedby={
-                    errors.valuableOutcome ? 'valuableOutcome-error' : undefined
+                    errors.valuableOutcomes
+                      ? 'valuableOutcomes-error'
+                      : undefined
                   }
                 />
-                {valuableOutcome === 'other' &&
+                {parsedValuableOutcomes.includes('other') &&
                   option.value === 'other' &&
                   onValuableOutcomeOtherChange && (
                     <div className='ml-7 mt-2'>
@@ -261,9 +278,9 @@ export function MotivationChallengesStep({
               </div>
             ))}
           </div>
-          {errors.valuableOutcome && (
+          {errors.valuableOutcomes && (
             <p
-              id='valuableOutcome-error'
+              id='valuableOutcomes-error'
               className='text-destructive text-sm mt-2 flex items-start gap-2 px-1'
               role='alert'
               aria-live='polite'
@@ -274,7 +291,7 @@ export function MotivationChallengesStep({
               >
                 ⚠
               </span>
-              <span className='leading-relaxed'>{errors.valuableOutcome}</span>
+              <span className='leading-relaxed'>{errors.valuableOutcomes}</span>
             </p>
           )}
         </div>

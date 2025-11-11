@@ -23,9 +23,9 @@ export interface CandidateFormData extends Record<string, string> {
 
   // Step 4: Motivation & Challenges
   skillValidationConfidence: string // Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
-  jobSearchChallenge: string // Selected challenge option
+  jobSearchChallenges: string // JSON stringified array of selected challenges
   jobSearchChallengeOther: string // Custom challenge if "Other" selected
-  valuableOutcome: string // Selected outcome option
+  valuableOutcomes: string // JSON stringified array of selected outcomes
   valuableOutcomeOther: string // Custom outcome if "Other" selected
 }
 
@@ -72,9 +72,9 @@ export const CANDIDATE_FORM_STEPS: CandidateFormStep[] = [
     description: 'Help us understand your goals',
     fields: [
       'skillValidationConfidence',
-      'jobSearchChallenge',
+      'jobSearchChallenges',
       'jobSearchChallengeOther',
-      'valuableOutcome',
+      'valuableOutcomes',
       'valuableOutcomeOther',
     ],
   },
@@ -93,8 +93,8 @@ export const INITIAL_CANDIDATE_FORM_DATA: CandidateFormData = {
   techCommunityDetails: '',
   githubGitlabUrl: '',
   skillValidationConfidence: '',
-  jobSearchChallenge: '',
+  jobSearchChallenges: '[]',
   jobSearchChallengeOther: '',
-  valuableOutcome: '',
+  valuableOutcomes: '[]',
   valuableOutcomeOther: '',
 }

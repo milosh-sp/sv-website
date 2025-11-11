@@ -16,14 +16,17 @@ export interface VerifierFormData extends Record<string, string> {
   technicalSkills: string // JSON stringified array
 
   // Step 3: Verifier Profile
-  yearsOfExperience: string
-  currentRole: string
-  currentCompany: string
-  verificationExperience: string
+  yearsOfExperience: string // 3-5, 6-10, 10+
+  hoursPerWeek: string // 1-3, 4-7, 8+
+  professionalStatus: string // Student, Unemployed, Employed (full-time), etc.
+  coachingMentoring: string // Yes, No
+  githubGitlabUrl: string
 
   // Step 4: Motivation & Challenges
-  motivation: string
-  challenges: string
+  verifierMotivations: string // JSON stringified array
+  verifierMotivationOther: string // Custom motivation if "Other" selected
+  professionalFrustration: string // Single selection
+  professionalFrustrationOther: string // Custom frustration if "Other" selected
 }
 
 export interface VerifierFormStep {
@@ -54,20 +57,26 @@ export const VERIFIER_FORM_STEPS: VerifierFormStep[] = [
   },
   {
     stepNumber: 3,
-    title: 'Your Background',
+    title: 'Your Verification Profile',
     description: 'Share your professional experience',
     fields: [
       'yearsOfExperience',
-      'currentRole',
-      'currentCompany',
-      'verificationExperience',
+      'hoursPerWeek',
+      'professionalStatus',
+      'coachingMentoring',
+      'githubGitlabUrl',
     ],
   },
   {
     stepNumber: 4,
-    title: 'Motivation & Challenges',
+    title: 'Your Motivation',
     description: 'Help us understand your goals',
-    fields: ['motivation', 'challenges'],
+    fields: [
+      'verifierMotivations',
+      'verifierMotivationOther',
+      'professionalFrustration',
+      'professionalFrustrationOther',
+    ],
   },
 ]
 
@@ -80,9 +89,12 @@ export const INITIAL_VERIFIER_FORM_DATA: VerifierFormData = {
   skillAreas: '[]',
   technicalSkills: '[]',
   yearsOfExperience: '',
-  currentRole: '',
-  currentCompany: '',
-  verificationExperience: '',
-  motivation: '',
-  challenges: '',
+  hoursPerWeek: '',
+  professionalStatus: '',
+  coachingMentoring: '',
+  githubGitlabUrl: '',
+  verifierMotivations: '[]',
+  verifierMotivationOther: '',
+  professionalFrustration: '',
+  professionalFrustrationOther: '',
 }

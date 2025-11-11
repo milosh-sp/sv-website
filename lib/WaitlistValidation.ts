@@ -176,31 +176,62 @@ export function validateVerifierForm(data: VerifierFormData): ValidationErrors {
 
   // Step 3: Verifier Profile
   if (!data.yearsOfExperience || data.yearsOfExperience.trim() === '') {
-    errors.yearsOfExperience = 'Years of experience is required'
+    errors.yearsOfExperience = 'Please select your years of experience'
   }
 
-  if (!data.currentRole || data.currentRole.trim() === '') {
-    errors.currentRole = 'Current role is required'
+  if (!data.hoursPerWeek || data.hoursPerWeek.trim() === '') {
+    errors.hoursPerWeek = 'Please select your availability'
   }
 
-  if (!data.currentCompany || data.currentCompany.trim() === '') {
-    errors.currentCompany = 'Current company is required'
+  if (!data.professionalStatus || data.professionalStatus.trim() === '') {
+    errors.professionalStatus = 'Please select your professional status'
   }
 
-  if (
-    !data.verificationExperience ||
-    data.verificationExperience.trim() === ''
-  ) {
-    errors.verificationExperience = 'Please share your verification experience'
+  if (!data.coachingMentoring || data.coachingMentoring.trim() === '') {
+    errors.coachingMentoring =
+      'Please select if you have coaching or mentoring experience'
+  }
+
+  if (!data.githubGitlabUrl || data.githubGitlabUrl.trim() === '') {
+    errors.githubGitlabUrl = 'GitHub/GitLab URL is required'
+  } else {
+    const urlValidation = validateUrl(data.githubGitlabUrl)
+    if (!urlValidation.isValid) {
+      errors.githubGitlabUrl =
+        urlValidation.message || 'Invalid GitHub/GitLab URL'
+    }
   }
 
   // Step 4: Motivation & Challenges
-  if (!data.motivation || data.motivation.trim() === '') {
-    errors.motivation = 'Please tell us your motivation'
+  // Validate verifier motivations (array)
+  try {
+    const motivations = JSON.parse(data.verifierMotivations)
+    if (!Array.isArray(motivations) || motivations.length === 0) {
+      errors.verifierMotivations = 'Please select at least one motivation'
+    } else if (motivations.includes('other')) {
+      if (
+        !data.verifierMotivationOther ||
+        data.verifierMotivationOther.trim() === ''
+      ) {
+        errors.verifierMotivationOther = 'Please specify your motivation'
+      }
+    }
+  } catch {
+    errors.verifierMotivations = 'Please select at least one motivation'
   }
 
-  if (!data.challenges || data.challenges.trim() === '') {
-    errors.challenges = 'Please share your challenges'
+  if (
+    !data.professionalFrustration ||
+    data.professionalFrustration.trim() === ''
+  ) {
+    errors.professionalFrustration = 'Please select your biggest frustration'
+  } else if (data.professionalFrustration === 'other') {
+    if (
+      !data.professionalFrustrationOther ||
+      data.professionalFrustrationOther.trim() === ''
+    ) {
+      errors.professionalFrustrationOther = 'Please specify your frustration'
+    }
   }
 
   return {

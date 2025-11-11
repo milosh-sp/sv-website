@@ -6,7 +6,7 @@ import { ContactConsentSection } from './sections/ContactConsentSection'
 import { SkillAreasSection } from './sections/SkillAreasSection'
 import { TechnicalSkillsSection } from './sections/TechnicalSkillsSection'
 import { VerifierProfileStep } from './steps/VerifierProfileStep'
-import { MotivationChallengesStep } from './steps/MotivationChallengesStep'
+import { VerifierMotivationStep } from './steps/VerifierMotivationStep'
 import { SubmitButton } from '@/components/ui/SubmitButton'
 import { StatusMessage } from '@/components/ui/StatusMessage'
 import { HoneypotField } from '@/components/ui/HoneypotField'
@@ -114,37 +114,54 @@ export function VerifierWaitlistForm() {
         return (
           <VerifierProfileStep
             yearsOfExperience={form.formData.yearsOfExperience}
-            currentRole={form.formData.currentRole}
-            currentCompany={form.formData.currentCompany}
-            verificationExperience={form.formData.verificationExperience}
+            hoursPerWeek={form.formData.hoursPerWeek}
+            professionalStatus={form.formData.professionalStatus}
+            coachingMentoring={form.formData.coachingMentoring}
+            githubGitlabUrl={form.formData.githubGitlabUrl}
             errors={form.errors}
             isSubmitting={form.isSubmitting}
             onYearsOfExperienceChange={(value) =>
               form.handleFieldChange('yearsOfExperience', value)
             }
-            onCurrentRoleChange={(value) =>
-              form.handleFieldChange('currentRole', value)
+            onHoursPerWeekChange={(value) =>
+              form.handleFieldChange('hoursPerWeek', value)
             }
-            onCurrentCompanyChange={(value) =>
-              form.handleFieldChange('currentCompany', value)
+            onProfessionalStatusChange={(value) =>
+              form.handleFieldChange('professionalStatus', value)
             }
-            onVerificationExperienceChange={(value) =>
-              form.handleFieldChange('verificationExperience', value)
+            onCoachingMentoringChange={(value) =>
+              form.handleFieldChange('coachingMentoring', value)
+            }
+            onGithubGitlabUrlChange={(value) =>
+              form.handleFieldChange('githubGitlabUrl', value)
             }
           />
         )
       case 4:
         return (
-          <MotivationChallengesStep
-            motivation={form.formData.motivation}
-            challenges={form.formData.challenges}
+          <VerifierMotivationStep
+            verifierMotivations={form.formData.verifierMotivations}
+            verifierMotivationOther={form.formData.verifierMotivationOther}
+            professionalFrustration={form.formData.professionalFrustration}
+            professionalFrustrationOther={
+              form.formData.professionalFrustrationOther
+            }
             errors={form.errors}
             isSubmitting={form.isSubmitting}
-            onMotivationChange={(value) =>
-              form.handleFieldChange('motivation', value)
+            onVerifierMotivationsChange={(values) =>
+              form.handleFieldChange(
+                'verifierMotivations',
+                JSON.stringify(values)
+              )
             }
-            onChallengesChange={(value) =>
-              form.handleFieldChange('challenges', value)
+            onVerifierMotivationOtherChange={(value) =>
+              form.handleFieldChange('verifierMotivationOther', value)
+            }
+            onProfessionalFrustrationChange={(value) =>
+              form.handleFieldChange('professionalFrustration', value)
+            }
+            onProfessionalFrustrationOtherChange={(value) =>
+              form.handleFieldChange('professionalFrustrationOther', value)
             }
           />
         )

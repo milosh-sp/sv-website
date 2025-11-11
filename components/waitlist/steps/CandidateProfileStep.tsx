@@ -62,7 +62,7 @@ export function CandidateProfileStep({
           onChange={(e) => onTechCommunityDetailsChange(e.target.value)}
           error={errors.techCommunityDetails}
           disabled={isSubmitting}
-          icon={<Users className='w-5 h-5' />}
+          icon={<Users className={cn('w-5 h-5')} />}
           label={strings.waitlistForms.fields.techCommunityDetails.label}
           ariaDescribedBy='techCommunityDetails-error'
         />

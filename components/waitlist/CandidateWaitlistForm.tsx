@@ -9,6 +9,7 @@ import {
   TOTAL_FORM_STEPS,
 } from '@/lib/waitlistConstants'
 import { strings } from '@/lib/strings' // Used for form labels and button text
+import { cn } from '@/lib/utils'
 import { ContactConsentSection } from './sections/ContactConsentSection'
 import { SkillAreasSection } from './sections/SkillAreasSection'
 import { TechnicalSkillsSection } from './sections/TechnicalSkillsSection'
@@ -73,7 +74,7 @@ export function CandidateWaitlistForm() {
           form.formData.technicalSkills || '[]'
         )
         return (
-          <div className='space-y-6'>
+          <div className={cn('space-y-6')}>
             <SkillAreasSection
               selectedSkillAreas={skillAreas}
               skillAreas={SKILL_AREAS}
@@ -167,7 +168,7 @@ export function CandidateWaitlistForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className='space-y-6 w-full max-w-2xl mx-auto'
+      className={cn('space-y-6 w-full max-w-2xl mx-auto')}
       noValidate
     >
       <ProgressIndicator

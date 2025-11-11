@@ -23,12 +23,12 @@ export function FieldError({
       {...props}
     >
       <span
-        className='text-destructive font-medium text-xs mt-0.5'
+        className={cn('text-destructive font-medium text-xs mt-0.5')}
         aria-hidden='true'
       >
         ⚠
       </span>
-      <span className='leading-relaxed'>{error}</span>
+      <span className={cn('leading-relaxed')}>{error}</span>
     </p>
   )
 }

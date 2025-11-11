@@ -21,10 +21,12 @@ export function RadioButtonGroup({
 
   return (
     <div className={cn('space-y-3', className)} {...props}>
-      {label && <h3 className='text-sm font-medium'>{label}</h3>}
-      {description && <p className='text-xs text-slate-500'>{description}</p>}
+      {label && <h3 className={cn('text-sm font-medium')}>{label}</h3>}
+      {description && (
+        <p className={cn('text-xs text-slate-500')}>{description}</p>
+      )}
 
-      <div className='space-y-2'>
+      <div className={cn('space-y-2')}>
         {options.map((option) => (
           <RadioButton
             key={option.value}

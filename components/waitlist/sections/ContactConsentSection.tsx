@@ -1,11 +1,13 @@
 'use client'
 
-import { Github, Linkedin, Mail } from 'lucide-react'
-import { cn } from '@/lib/utils'
+import { Github, Linkedin, Mail } from 'lucide-react' // TODO: Update to GithubIcon, LinkedinIcon when available
+
 import { Checkbox } from '@/components/ui/Checkbox'
 import { FormField } from '@/components/ui/FormField'
 import { PrivacyPolicyConsent } from '@/components/ui/PrivacyPolicyConsent'
 import { strings } from '@/lib/strings'
+import { cn } from '@/lib/utils'
+
 import type { ContactConsentSectionProps } from '@/types/ContactConsentSection.types'
 
 export function ContactConsentSection({
@@ -37,7 +39,7 @@ export function ContactConsentSection({
       : newsletterOptIn
 
   return (
-    <div className={cn('space-y-4', className)} {...props}>
+    <fieldset className={cn('space-y-4', className)} {...props}>
       {/* Email Field */}
       <FormField
         id='email'
@@ -47,7 +49,7 @@ export function ContactConsentSection({
         onChange={(e) => onEmailChange(e.target.value)}
         error={errors.email}
         disabled={isSubmitting}
-        icon={<Mail className='w-5 h-5' />}
+        icon={<Mail className={cn('w-5 h-5')} />}
         label={strings.waitlistForms.fields.email.label}
         ariaDescribedBy='email-error'
       />
@@ -62,7 +64,7 @@ export function ContactConsentSection({
           onChange={(e) => onLinkedInChange?.(e.target.value)}
           error={errors.linkedIn}
           disabled={isSubmitting}
-          icon={<Linkedin className='w-5 h-5' />}
+          icon={<Linkedin className={cn('w-5 h-5')} />}
           label={strings.waitlistForms.fields.linkedIn.label}
           ariaDescribedBy='linkedin-error'
         />
@@ -78,7 +80,7 @@ export function ContactConsentSection({
           onChange={(e) => onGitHubChange?.(e.target.value)}
           error={errors.github}
           disabled={isSubmitting}
-          icon={<Github className='w-5 h-5' />}
+          icon={<Github className={cn('w-5 h-5')} />}
           label={strings.waitlistForms.fields.github.label}
           ariaDescribedBy='github-error'
         />
@@ -112,6 +114,6 @@ export function ContactConsentSection({
         href='/privacy-policy'
         ariaLabel='Read our privacy policy'
       />
-    </div>
+    </fieldset>
   )
 }

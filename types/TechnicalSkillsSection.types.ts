@@ -1,11 +1,12 @@
-import type { HTMLAttributes } from 'react'
+import type { FieldsetHTMLAttributes } from 'react'
 
 interface TechnicalSkill {
   id: string
   label: string
 }
 
-interface TechnicalSkillsSectionProps extends HTMLAttributes<HTMLDivElement> {
+interface TechnicalSkillsSectionProps
+  extends FieldsetHTMLAttributes<HTMLFieldSetElement> {
   selectedSkills: string[]
   technicalSkills: TechnicalSkill[]
   errors: Record<string, string>

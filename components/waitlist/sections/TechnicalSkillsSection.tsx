@@ -1,8 +1,9 @@
 'use client'
 
 import { MultiSelectDropdown } from '@/components/ui/MultiSelectDropdown'
-import { cn } from '@/lib/utils'
 import { FieldError } from '../ui/FieldError'
+import { cn } from '@/lib/utils'
+
 import type { TechnicalSkillsSectionProps } from '@/types/TechnicalSkillsSection.types'
 
 export function TechnicalSkillsSection({
@@ -20,7 +21,7 @@ export function TechnicalSkillsSection({
   }))
 
   return (
-    <div className={cn('space-y-4', className)} {...props}>
+    <fieldset className={cn('space-y-4', className)} {...props}>
       <MultiSelectDropdown<string>
         options={formattedSkills}
         value={selectedSkills}
@@ -38,6 +39,6 @@ export function TechnicalSkillsSection({
       />
 
       <FieldError error={errors.technicalSkills} id='technicalSkills-error' />
-    </div>
+    </fieldset>
   )
 }

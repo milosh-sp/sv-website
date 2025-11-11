@@ -83,7 +83,7 @@ export function VerifierProfileStep({
         onChange={(e) => onGithubGitlabUrlChange(e.target.value)}
         error={errors.githubGitlabUrl}
         disabled={isSubmitting}
-        icon={<div className='w-5 h-5' />}
+        icon={<div className={cn('w-5 h-5')} />}
         label={strings.waitlistForms.fields.github.label}
         ariaDescribedBy='githubGitlabUrl-error'
       />

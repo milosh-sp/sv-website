@@ -1,10 +1,12 @@
 'use client'
 
-import { FormNavigation } from './FormNavigation'
-import { ProgressIndicator } from './ProgressIndicator'
 import { HoneypotField } from '@/components/ui/HoneypotField'
 import { StatusMessage } from '@/components/ui/StatusMessage'
 import { strings } from '@/lib/strings'
+import { cn } from '@/lib/utils'
+import { FormNavigation } from './FormNavigation'
+import { ProgressIndicator } from './ProgressIndicator'
+
 import type { WaitlistFormLayoutProps } from '@/types/WaitlistFormLayout.types'
 
 export function WaitlistFormLayout({
@@ -29,7 +31,7 @@ export function WaitlistFormLayout({
   return (
     <form
       onSubmit={onSubmit}
-      className='space-y-6 w-full max-w-2xl mx-auto'
+      className={cn('space-y-6 w-full max-w-2xl mx-auto')}
       noValidate
     >
       {/* Progress Indicator */}
@@ -42,7 +44,7 @@ export function WaitlistFormLayout({
       />
 
       {/* Current Step Content */}
-      <div>{children}</div>
+      <section>{children}</section>
 
       {/* Honeypot Field */}
       <HoneypotField

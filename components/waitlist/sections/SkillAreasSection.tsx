@@ -1,8 +1,9 @@
 'use client'
 
 import { Checkbox } from '@/components/ui/Checkbox'
-import { cn } from '@/lib/utils'
 import { FieldError } from '../ui/FieldError'
+import { cn } from '@/lib/utils'
+
 import type { SkillAreasSectionProps } from '@/types/SkillAreasSection.types'
 
 export function SkillAreasSection({
@@ -15,8 +16,8 @@ export function SkillAreasSection({
   ...props
 }: SkillAreasSectionProps) {
   return (
-    <div className={cn('space-y-4', className)} {...props}>
-      <div className='space-y-3'>
+    <fieldset className={cn('space-y-4', className)} {...props}>
+      <div className={cn('space-y-3')}>
         {skillAreas.map((skillArea) => (
           <Checkbox
             key={skillArea.id}
@@ -31,6 +32,6 @@ export function SkillAreasSection({
       </div>
 
       <FieldError error={errors.skillAreas} id='skillAreas-error' />
-    </div>
+    </fieldset>
   )
 }

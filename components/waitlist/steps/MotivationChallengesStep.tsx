@@ -84,7 +84,7 @@ export function MotivationChallengesStep({
               }
               error={errors.jobSearchChallengeOther}
               disabled={isSubmitting}
-              icon={<div className='w-5 h-5' />}
+              icon={<div className={cn('w-5 h-5')} />}
               label={strings.waitlistForms.fields.jobSearchChallengeOther.label}
               ariaDescribedBy='jobSearchChallengeOther-error'
             />
@@ -122,7 +122,7 @@ export function MotivationChallengesStep({
               onChange={(e) => onValuableOutcomeOtherChange?.(e.target.value)}
               error={errors.valuableOutcomeOther}
               disabled={isSubmitting}
-              icon={<div className='w-5 h-5' />}
+              icon={<div className={cn('w-5 h-5')} />}
               label={strings.waitlistForms.fields.valuableOutcomeOther.label}
               ariaDescribedBy='valuableOutcomeOther-error'
             />

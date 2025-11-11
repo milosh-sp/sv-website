@@ -1,6 +1,7 @@
-import type { HTMLAttributes } from 'react'
+import type { FieldsetHTMLAttributes } from 'react'
 
-interface ContactConsentSectionProps extends HTMLAttributes<HTMLDivElement> {
+interface ContactConsentSectionProps
+  extends FieldsetHTMLAttributes<HTMLFieldSetElement> {
   email: string
   linkedIn?: string
   github?: string

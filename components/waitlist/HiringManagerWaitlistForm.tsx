@@ -5,6 +5,7 @@ import { useHiringManagerForm } from '@/hooks/useHiringManagerForm'
 import { validateHiringManagerStep } from '@/lib/WaitlistValidation'
 import { TOTAL_FORM_STEPS } from '@/lib/waitlistConstants'
 import { strings } from '@/lib/strings' // Used for form labels and button text
+import { cn } from '@/lib/utils'
 import { ContactConsentSection } from './sections/ContactConsentSection'
 import { HiringManagerCompanyProfileStep } from './steps/HiringManagerCompanyProfileStep'
 import { HiringDemandChallengesStep } from './steps/HiringDemandChallengesStep'
@@ -120,7 +121,7 @@ export function HiringManagerWaitlistForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className='space-y-6 w-full max-w-2xl mx-auto'
+      className={cn('space-y-6 w-full max-w-2xl mx-auto')}
       noValidate
     >
       <ProgressIndicator

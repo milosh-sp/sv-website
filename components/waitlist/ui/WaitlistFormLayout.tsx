@@ -1,30 +1,11 @@
 'use client'
 
-import type { ReactNode } from 'react'
-import { ProgressIndicator } from './ProgressIndicator'
 import { FormNavigation } from './FormNavigation'
+import { ProgressIndicator } from './ProgressIndicator'
 import { HoneypotField } from '@/components/ui/HoneypotField'
 import { StatusMessage } from '@/components/ui/StatusMessage'
-
-interface WaitlistFormLayoutProps {
-  currentStep: number
-  totalSteps: number
-  onStepClick?: (step: number) => void
-  isStepClickable?: (step: number) => boolean
-  isSubmitting: boolean
-  canProceed: boolean
-  onPrevious: () => void
-  onNext: () => void
-  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void
-  children: ReactNode
-  submitStatus?: 'idle' | 'success' | 'error'
-  submitError?: string
-  honeypotValue: string
-  onHoneypotChange: (value: string) => void
-  submitLabel?: string
-  submitLoadingLabel?: string
-  submitAriaLabel?: string
-}
+import { strings } from '@/lib/strings'
+import type { WaitlistFormLayoutProps } from '@/types/WaitlistFormLayout.types'
 
 export function WaitlistFormLayout({
   currentStep,
@@ -41,9 +22,9 @@ export function WaitlistFormLayout({
   submitError,
   honeypotValue,
   onHoneypotChange,
-  submitLabel = 'Submit',
-  submitLoadingLabel = 'Submitting...',
-  submitAriaLabel = 'Submit form',
+  submitLabel = strings.waitlistForms.buttons.submit,
+  submitLoadingLabel = strings.waitlistForms.buttons.submitting,
+  submitAriaLabel = strings.waitlistForms.accessibility.submitButton,
 }: WaitlistFormLayoutProps) {
   return (
     <form
@@ -68,10 +49,10 @@ export function WaitlistFormLayout({
         id='website'
         name='website'
         type='text'
-        placeholder='https://example.com'
+        placeholder={strings.waitlistForms.fields.website.placeholder}
         value={honeypotValue}
         onChange={(e) => onHoneypotChange(e.target.value)}
-        label='Website'
+        label={strings.waitlistForms.fields.website.label}
       />
 
       {/* Status Messages */}

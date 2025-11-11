@@ -3,7 +3,12 @@
 import { useCandidateFormContext } from '@/contexts/CandidateFormContext'
 import { useCandidateForm } from '@/hooks/useCandidateForm'
 import { validateCandidateStep } from '@/lib/WaitlistValidation'
-import { SKILL_AREAS, TECHNICAL_SKILLS } from '@/lib/waitlistConstants'
+import {
+  SKILL_AREAS,
+  TECHNICAL_SKILLS,
+  TOTAL_FORM_STEPS,
+} from '@/lib/waitlistConstants'
+import { strings } from '@/lib/strings' // Used for form labels and button text
 import { ContactConsentSection } from './sections/ContactConsentSection'
 import { SkillAreasSection } from './sections/SkillAreasSection'
 import { TechnicalSkillsSection } from './sections/TechnicalSkillsSection'
@@ -167,7 +172,7 @@ export function CandidateWaitlistForm() {
     >
       <ProgressIndicator
         currentStep={context.currentStep}
-        totalSteps={4}
+        totalSteps={TOTAL_FORM_STEPS}
         onStepClick={(step) => {
           const canClickStep = step <= context.currentStep && isCurrentStepValid
           if (canClickStep) {
@@ -186,10 +191,10 @@ export function CandidateWaitlistForm() {
         id='website'
         name='website'
         type='text'
-        placeholder='https://example.com'
+        placeholder={strings.waitlistForms.fields.website.placeholder}
         value={form.honeypotValue}
         onChange={(e) => form.handleHoneypotChange(e.target.value)}
-        label='Website'
+        label={strings.waitlistForms.fields.website.label}
       />
 
       {form.submitStatus === 'error' && form.errors.submit && (
@@ -205,14 +210,14 @@ export function CandidateWaitlistForm() {
 
       <FormNavigation
         currentStep={context.currentStep}
-        totalSteps={4}
+        totalSteps={TOTAL_FORM_STEPS}
         isSubmitting={form.isSubmitting}
         canProceed={isCurrentStepValid}
         onPrevious={() => context.previousStep()}
         onNext={() => context.nextStep()}
-        submitAriaLabel='Submit candidate form'
-        submitLabel='Submit'
-        submitLoadingLabel='Submitting...'
+        submitAriaLabel={strings.waitlistForms.accessibility.submitButton}
+        submitLabel={strings.waitlistForms.buttons.submit}
+        submitLoadingLabel={strings.waitlistForms.buttons.submitting}
       />
     </form>
   )

@@ -1,10 +1,11 @@
 'use client'
 
 import { Github, Linkedin, Mail } from 'lucide-react'
+import { cn } from '@/lib/utils'
 import { Checkbox } from '@/components/ui/Checkbox'
 import { FormField } from '@/components/ui/FormField'
 import { PrivacyPolicyConsent } from '@/components/ui/PrivacyPolicyConsent'
-import { cn } from '@/lib/utils'
+import { strings } from '@/lib/strings'
 import type { ContactConsentSectionProps } from '@/types/ContactConsentSection.types'
 
 export function ContactConsentSection({
@@ -41,13 +42,13 @@ export function ContactConsentSection({
       <FormField
         id='email'
         type='email'
-        placeholder='your@email.com'
+        placeholder={strings.waitlistForms.fields.email.placeholder}
         value={email}
         onChange={(e) => onEmailChange(e.target.value)}
         error={errors.email}
         disabled={isSubmitting}
         icon={<Mail className='w-5 h-5' />}
-        label='Email Address'
+        label={strings.waitlistForms.fields.email.label}
         ariaDescribedBy='email-error'
       />
 
@@ -56,13 +57,13 @@ export function ContactConsentSection({
         <FormField
           id='linkedIn'
           type='url'
-          placeholder='https://linkedin.com/in/yourprofile'
+          placeholder={strings.waitlistForms.fields.linkedIn.placeholder}
           value={linkedIn}
           onChange={(e) => onLinkedInChange?.(e.target.value)}
           error={errors.linkedIn}
           disabled={isSubmitting}
           icon={<Linkedin className='w-5 h-5' />}
-          label='LinkedIn Profile URL'
+          label={strings.waitlistForms.fields.linkedIn.label}
           ariaDescribedBy='linkedin-error'
         />
       )}
@@ -72,13 +73,13 @@ export function ContactConsentSection({
         <FormField
           id='github'
           type='url'
-          placeholder='https://github.com/yourprofile (optional)'
+          placeholder={strings.waitlistForms.fields.github.placeholder}
           value={github}
           onChange={(e) => onGitHubChange?.(e.target.value)}
           error={errors.github}
           disabled={isSubmitting}
           icon={<Github className='w-5 h-5' />}
-          label='GitHub/GitLab Profile URL'
+          label={strings.waitlistForms.fields.github.label}
           ariaDescribedBy='github-error'
         />
       )}
@@ -86,7 +87,7 @@ export function ContactConsentSection({
       {/* Privacy Policy Consent - Required */}
       <Checkbox
         id='privacyConsent'
-        label='I agree to the Privacy Policy'
+        label={strings.waitlistForms.labels.privacyConsent}
         checked={privacyConsentBool}
         onChange={(e) => onPrivacyConsentChange(e.target.checked)}
         error={errors.privacyConsent}
@@ -98,7 +99,7 @@ export function ContactConsentSection({
       {/* Newsletter Opt-in - Optional */}
       <Checkbox
         id='newsletterOptIn'
-        label='Subscribe to our newsletter'
+        label={strings.waitlistForms.labels.newsletterOptIn}
         checked={newsletterOptInBool}
         onChange={(e) => onNewsletterOptInChange(e.target.checked)}
         disabled={isSubmitting}

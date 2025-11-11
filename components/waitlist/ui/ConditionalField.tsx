@@ -1,12 +1,7 @@
 'use client'
 
 import { cn } from '@/lib/utils'
-import type { ReactNode, HTMLAttributes } from 'react'
-
-interface ConditionalFieldProps extends HTMLAttributes<HTMLDivElement> {
-  condition: boolean
-  children: ReactNode
-}
+import type { ConditionalFieldProps } from '@/types/ConditionalField.types'
 
 /**
  * Wrapper component for conditionally rendering fields.

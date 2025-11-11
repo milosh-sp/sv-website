@@ -1,25 +1,16 @@
 'use client'
 
 import { Users } from 'lucide-react'
+import { cn } from '@/lib/utils'
 import { FormField } from '@/components/ui/FormField'
 import { RadioButtonGroup } from '@/components/waitlist/ui/RadioButtonGroup'
 import { ConditionalField } from '@/components/waitlist/ui/ConditionalField'
-import { cn } from '@/lib/utils'
+import {
+  PROFESSIONAL_STATUS_OPTIONS,
+  TECH_COMMUNITY_OPTIONS,
+} from '@/lib/waitlistConstants'
+import { strings } from '@/lib/strings'
 import type { CandidateProfileStepProps } from '@/types/CandidateProfileStep.types'
-
-const PROFESSIONAL_STATUS_OPTIONS = [
-  { value: 'student', label: 'Student' },
-  { value: 'unemployed', label: 'Unemployed' },
-  { value: 'employed-fulltime', label: 'Employed (full-time)' },
-  { value: 'employed-parttime', label: 'Employed (part-time)' },
-  { value: 'freelancer', label: 'Freelancer' },
-]
-
-const TECH_COMMUNITY_OPTIONS = [
-  { value: 'new', label: 'New' },
-  { value: 'yes', label: 'Yes, specify:' },
-  { value: 'no', label: 'No' },
-]
 
 export function CandidateProfileStep({
   professionalStatus,
@@ -40,7 +31,7 @@ export function CandidateProfileStep({
       {/* Professional Status */}
       <RadioButtonGroup
         name='professionalStatus'
-        label='What is your current professional status?'
+        label={strings.waitlistForms.labels.professionalStatus}
         options={PROFESSIONAL_STATUS_OPTIONS}
         value={professionalStatus}
         onChange={onProfessionalStatusChange}
@@ -51,7 +42,7 @@ export function CandidateProfileStep({
       {/* Tech Community Membership */}
       <RadioButtonGroup
         name='techCommunityMembership'
-        label='Are you already a member of a tech community?'
+        label={strings.waitlistForms.labels.techCommunityMembership}
         options={TECH_COMMUNITY_OPTIONS}
         value={techCommunityMembership}
         onChange={onTechCommunityMembershipChange}
@@ -64,13 +55,15 @@ export function CandidateProfileStep({
         <FormField
           id='techCommunityDetails'
           type='text'
-          placeholder='e.g., Python Developers Group, React Community'
+          placeholder={
+            strings.waitlistForms.fields.techCommunityDetails.placeholder
+          }
           value={techCommunityDetails}
           onChange={(e) => onTechCommunityDetailsChange(e.target.value)}
           error={errors.techCommunityDetails}
           disabled={isSubmitting}
           icon={<Users className='w-5 h-5' />}
-          label='Tech Community Details'
+          label={strings.waitlistForms.fields.techCommunityDetails.label}
           ariaDescribedBy='techCommunityDetails-error'
         />
       </ConditionalField>

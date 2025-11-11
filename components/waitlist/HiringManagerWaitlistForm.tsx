@@ -3,6 +3,8 @@
 import { useHiringManagerFormContext } from '@/contexts/HiringManagerFormContext'
 import { useHiringManagerForm } from '@/hooks/useHiringManagerForm'
 import { validateHiringManagerStep } from '@/lib/WaitlistValidation'
+import { TOTAL_FORM_STEPS } from '@/lib/waitlistConstants'
+import { strings } from '@/lib/strings' // Used for form labels and button text
 import { ContactConsentSection } from './sections/ContactConsentSection'
 import { HiringManagerCompanyProfileStep } from './steps/HiringManagerCompanyProfileStep'
 import { HiringDemandChallengesStep } from './steps/HiringDemandChallengesStep'
@@ -123,7 +125,7 @@ export function HiringManagerWaitlistForm() {
     >
       <ProgressIndicator
         currentStep={context.currentStep}
-        totalSteps={4}
+        totalSteps={TOTAL_FORM_STEPS}
         onStepClick={(step) => {
           const canClickStep = step <= context.currentStep && isCurrentStepValid
           if (canClickStep) {
@@ -142,10 +144,10 @@ export function HiringManagerWaitlistForm() {
         id='website'
         name='website'
         type='text'
-        placeholder='https://example.com'
+        placeholder={strings.waitlistForms.fields.website.placeholder}
         value={form.honeypotValue}
         onChange={(e) => form.handleHoneypotChange(e.target.value)}
-        label='Website'
+        label={strings.waitlistForms.fields.website.label}
       />
 
       {form.submitStatus === 'error' && form.errors.submit && (
@@ -161,14 +163,14 @@ export function HiringManagerWaitlistForm() {
 
       <FormNavigation
         currentStep={context.currentStep}
-        totalSteps={4}
+        totalSteps={TOTAL_FORM_STEPS}
         isSubmitting={form.isSubmitting}
         canProceed={isCurrentStepValid}
         onPrevious={() => context.previousStep()}
         onNext={() => context.nextStep()}
-        submitAriaLabel='Submit hiring manager form'
-        submitLabel='Submit'
-        submitLoadingLabel='Submitting...'
+        submitAriaLabel={strings.waitlistForms.accessibility.submitButton}
+        submitLabel={strings.waitlistForms.buttons.submit}
+        submitLoadingLabel={strings.waitlistForms.buttons.submitting}
       />
     </form>
   )

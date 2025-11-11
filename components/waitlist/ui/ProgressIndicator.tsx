@@ -1,15 +1,9 @@
 'use client'
 
 import { cn } from '@/lib/utils'
-import type { HTMLAttributes } from 'react'
+import { strings } from '@/lib/strings'
 
-interface ProgressIndicatorProps extends HTMLAttributes<HTMLDivElement> {
-  currentStep: number
-  totalSteps: number
-  onStepClick?: (step: number) => void
-  isStepClickable?: (step: number) => boolean
-  isSubmitting?: boolean
-}
+import type { ProgressIndicatorProps } from '@/types/ProgressIndicator.types'
 
 export function ProgressIndicator({
   currentStep,
@@ -23,8 +17,9 @@ export function ProgressIndicator({
   const steps = Array.from({ length: totalSteps }, (_, i) => i + 1)
 
   return (
-    <div
+    <nav
       className={cn('flex justify-between items-center mb-8 gap-2', className)}
+      aria-label={strings.waitlistForms.accessibility.progressIndicator}
       {...props}
     >
       {steps.map((step) => {
@@ -49,12 +44,12 @@ export function ProgressIndicator({
                 ? 'cursor-pointer hover:opacity-80'
                 : 'cursor-not-allowed opacity-50'
             )}
-            aria-label={`Go to step ${step}`}
+            aria-label={`${strings.waitlistForms.accessibility.goToStep} ${step}`}
             aria-current={isCurrent ? 'step' : undefined}
             aria-disabled={isSubmitting || !isClickable}
           />
         )
       })}
-    </div>
+    </nav>
   )
 }

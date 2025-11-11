@@ -1,26 +1,9 @@
 'use client'
 
-import { RadioButton } from '@/components/ui/RadioButton'
-import { FieldError } from './FieldError'
 import { cn } from '@/lib/utils'
-import type { HTMLAttributes } from 'react'
-
-interface RadioOption {
-  value: string
-  label: string
-}
-
-interface RadioButtonGroupProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
-  name: string
-  options: RadioOption[]
-  value: string
-  onChange: (value: string) => void
-  error?: string
-  disabled?: boolean
-  label?: string
-  description?: string
-}
+import { FieldError } from './FieldError'
+import { RadioButton } from '@/components/ui/RadioButton'
+import type { RadioButtonGroupProps } from '@/types/RadioButtonGroup.types'
 
 export function RadioButtonGroup({
   name,

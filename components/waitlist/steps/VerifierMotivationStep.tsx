@@ -1,64 +1,16 @@
 'use client'
 
+import { cn } from '@/lib/utils'
 import { FormField } from '@/components/ui/FormField'
 import { RadioButtonGroup } from '@/components/waitlist/ui/RadioButtonGroup'
 import { CheckboxGroup } from '@/components/waitlist/ui/CheckboxGroup'
 import { ConditionalField } from '@/components/waitlist/ui/ConditionalField'
-import { cn } from '@/lib/utils'
+import {
+  VERIFIER_MOTIVATION_OPTIONS,
+  PROFESSIONAL_FRUSTRATION_OPTIONS,
+} from '@/lib/waitlistConstants'
+import { strings } from '@/lib/strings'
 import type { VerifierMotivationStepProps } from '@/types/VerifierMotivationStep.types'
-
-const VERIFIER_MOTIVATION_OPTIONS = [
-  { value: 'improve-hiring', label: 'Improve hiring standards in tech' },
-  { value: 'earn-income', label: 'Earn extra income' },
-  { value: 'mentor-talent', label: 'Mentor and grow future talent' },
-  {
-    value: 'build-reputation',
-    label: 'Build my external reputation and credibility',
-  },
-  {
-    value: 'leadership-work',
-    label: 'Transition into more leadership/advisory work',
-  },
-  { value: 'community', label: 'To be a part of a like minded community' },
-  {
-    value: 'stay-updated',
-    label: 'Staying up-to-date with modern engineering practices and tools',
-  },
-  { value: 'other', label: 'Other:' },
-]
-
-const PROFESSIONAL_FRUSTRATION_OPTIONS = [
-  {
-    value: 'expertise-not-recognized',
-    label: "My leadership and expertise aren't fully recognized or utilized.",
-  },
-  {
-    value: 'undervalued',
-    label: 'I feel undervalued or unfairly compensated for my experience.',
-  },
-  {
-    value: 'lack-autonomy',
-    label: 'Lack of autonomy and too much micromanagement',
-  },
-  {
-    value: 'hiring-flawed',
-    label: 'The technical hiring processes I see are flawed or biased.',
-  },
-  {
-    value: 'no-growth',
-    label: 'Not having the opportunity to grow in my current position',
-  },
-  {
-    value: 'burnout-culture',
-    label: 'Burnout culture disguised as "hustle" or "startup mindset".',
-  },
-  {
-    value: 'meetings-context-switching',
-    label:
-      'Excessive meetings or context-switching hurts productivity and deep work.',
-  },
-  { value: 'other', label: 'Other:' },
-]
 
 export function VerifierMotivationStep({
   verifierMotivations = '[]',
@@ -84,7 +36,7 @@ export function VerifierMotivationStep({
         <>
           <CheckboxGroup
             name='verifierMotivations'
-            label='Why are you interested in becoming a Verifier? [Select all that apply]'
+            label={strings.waitlistForms.labels.verifierMotivations}
             options={VERIFIER_MOTIVATION_OPTIONS}
             values={parsedMotivations}
             onChange={(values) => onVerifierMotivationsChange(values)}
@@ -102,7 +54,9 @@ export function VerifierMotivationStep({
             <FormField
               id='verifierMotivationOther'
               type='text'
-              placeholder='Please specify your motivation'
+              placeholder={
+                strings.waitlistForms.fields.verifierMotivationOther.placeholder
+              }
               value={verifierMotivationOther}
               onChange={(e) =>
                 onVerifierMotivationOtherChange?.(e.target.value)
@@ -110,7 +64,7 @@ export function VerifierMotivationStep({
               error={errors.verifierMotivationOther}
               disabled={isSubmitting}
               icon={<div className='w-5 h-5' />}
-              label='Other motivation'
+              label={strings.waitlistForms.fields.verifierMotivationOther.label}
               ariaDescribedBy='verifierMotivationOther-error'
             />
           </ConditionalField>
@@ -122,7 +76,7 @@ export function VerifierMotivationStep({
         <>
           <RadioButtonGroup
             name='professionalFrustration'
-            label='What is your biggest professional frustration?'
+            label={strings.waitlistForms.labels.professionalFrustration}
             options={PROFESSIONAL_FRUSTRATION_OPTIONS}
             value={professionalFrustration}
             onChange={onProfessionalFrustrationChange}
@@ -140,7 +94,10 @@ export function VerifierMotivationStep({
             <FormField
               id='professionalFrustrationOther'
               type='text'
-              placeholder='Please specify your frustration'
+              placeholder={
+                strings.waitlistForms.fields.professionalFrustrationOther
+                  .placeholder
+              }
               value={professionalFrustrationOther}
               onChange={(e) =>
                 onProfessionalFrustrationOtherChange?.(e.target.value)
@@ -148,7 +105,9 @@ export function VerifierMotivationStep({
               error={errors.professionalFrustrationOther}
               disabled={isSubmitting}
               icon={<div className='w-5 h-5' />}
-              label='Other frustration'
+              label={
+                strings.waitlistForms.fields.professionalFrustrationOther.label
+              }
               ariaDescribedBy='professionalFrustrationOther-error'
             />
           </ConditionalField>

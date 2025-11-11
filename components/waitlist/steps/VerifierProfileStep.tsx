@@ -1,34 +1,16 @@
 'use client'
 
+import { cn } from '@/lib/utils'
 import { FormField } from '@/components/ui/FormField'
 import { RadioButtonGroup } from '@/components/waitlist/ui/RadioButtonGroup'
-import { cn } from '@/lib/utils'
+import {
+  YEARS_OF_EXPERIENCE_OPTIONS,
+  HOURS_PER_WEEK_OPTIONS,
+  PROFESSIONAL_STATUS_OPTIONS,
+  COACHING_MENTORING_OPTIONS,
+} from '@/lib/waitlistConstants'
+import { strings } from '@/lib/strings'
 import type { VerifierProfileStepProps } from '@/types/VerifierProfileStep.types'
-
-const YEARS_OF_EXPERIENCE_OPTIONS = [
-  { value: '3-5', label: '3–5 years' },
-  { value: '6-10', label: '6–10 years' },
-  { value: '10+', label: '10+ years' },
-]
-
-const HOURS_PER_WEEK_OPTIONS = [
-  { value: '1-3', label: '1-3 hours' },
-  { value: '4-7', label: '4-7 hours' },
-  { value: '8+', label: '8+ hours' },
-]
-
-const PROFESSIONAL_STATUS_OPTIONS = [
-  { value: 'student', label: 'Student' },
-  { value: 'unemployed', label: 'Unemployed' },
-  { value: 'employed-full-time', label: 'Employed (full-time)' },
-  { value: 'employed-part-time', label: 'Employed (part-time)' },
-  { value: 'freelancer', label: 'Freelancer' },
-]
-
-const COACHING_MENTORING_OPTIONS = [
-  { value: 'yes', label: 'Yes' },
-  { value: 'no', label: 'No' },
-]
 
 export function VerifierProfileStep({
   yearsOfExperience,
@@ -51,7 +33,7 @@ export function VerifierProfileStep({
       {/* Years of Experience */}
       <RadioButtonGroup
         name='yearsOfExperience'
-        label='Years of experience'
+        label={strings.waitlistForms.labels.yearsOfExperience}
         options={YEARS_OF_EXPERIENCE_OPTIONS}
         value={yearsOfExperience}
         onChange={onYearsOfExperienceChange}
@@ -62,7 +44,7 @@ export function VerifierProfileStep({
       {/* Hours Per Week */}
       <RadioButtonGroup
         name='hoursPerWeek'
-        label='Roughly how many hours per week would you be available for verification work?'
+        label={strings.waitlistForms.labels.hoursPerWeek}
         options={HOURS_PER_WEEK_OPTIONS}
         value={hoursPerWeek}
         onChange={onHoursPerWeekChange}
@@ -73,7 +55,7 @@ export function VerifierProfileStep({
       {/* Professional Status */}
       <RadioButtonGroup
         name='professionalStatus'
-        label='What is your current professional status?'
+        label={strings.waitlistForms.labels.professionalStatus}
         options={PROFESSIONAL_STATUS_OPTIONS}
         value={professionalStatus}
         onChange={onProfessionalStatusChange}
@@ -84,7 +66,7 @@ export function VerifierProfileStep({
       {/* Coaching/Mentoring */}
       <RadioButtonGroup
         name='coachingMentoring'
-        label='Have you ever done coaching or mentoring?'
+        label={strings.waitlistForms.labels.coachingMentoring}
         options={COACHING_MENTORING_OPTIONS}
         value={coachingMentoring}
         onChange={onCoachingMentoringChange}
@@ -96,13 +78,13 @@ export function VerifierProfileStep({
       <FormField
         id='githubGitlabUrl'
         type='url'
-        placeholder='https://github.com/username or https://gitlab.com/username'
+        placeholder={strings.waitlistForms.fields.github.placeholder}
         value={githubGitlabUrl}
         onChange={(e) => onGithubGitlabUrlChange(e.target.value)}
         error={errors.githubGitlabUrl}
         disabled={isSubmitting}
         icon={<div className='w-5 h-5' />}
-        label='GitHub/GitLab Profile URL'
+        label={strings.waitlistForms.fields.github.label}
         ariaDescribedBy='githubGitlabUrl-error'
       />
     </div>

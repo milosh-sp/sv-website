@@ -1,26 +1,9 @@
 'use client'
 
+import { cn } from '@/lib/utils'
 import { Checkbox } from '@/components/ui/Checkbox'
 import { FieldError } from './FieldError'
-import { cn } from '@/lib/utils'
-import type { HTMLAttributes } from 'react'
-
-interface CheckboxOption {
-  value: string
-  label: string
-}
-
-interface CheckboxGroupProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
-  name: string
-  options: CheckboxOption[]
-  values: string[]
-  onChange: (values: string[]) => void
-  error?: string
-  disabled?: boolean
-  label?: string
-  description?: string
-}
+import type { CheckboxGroupProps } from '@/types/CheckboxGroup.types'
 
 export function CheckboxGroup({
   name,

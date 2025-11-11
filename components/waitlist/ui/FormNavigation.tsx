@@ -2,19 +2,8 @@
 
 import { SubmitButton } from '@/components/ui/SubmitButton'
 import { cn } from '@/lib/utils'
-import type { HTMLAttributes } from 'react'
-
-interface FormNavigationProps extends HTMLAttributes<HTMLDivElement> {
-  currentStep: number
-  totalSteps: number
-  onPrevious: () => void
-  onNext: () => void
-  isSubmitting: boolean
-  canProceed: boolean
-  submitLabel?: string
-  submitLoadingLabel?: string
-  submitAriaLabel?: string
-}
+import { strings } from '@/lib/strings'
+import type { FormNavigationProps } from '@/types/FormNavigation.types'
 
 export function FormNavigation({
   currentStep,
@@ -23,9 +12,9 @@ export function FormNavigation({
   onNext,
   isSubmitting,
   canProceed,
-  submitLabel = 'Submit',
-  submitLoadingLabel = 'Submitting...',
-  submitAriaLabel = 'Submit form',
+  submitLabel = strings.waitlistForms.buttons.submit,
+  submitLoadingLabel = strings.waitlistForms.buttons.submitting,
+  submitAriaLabel = strings.waitlistForms.accessibility.submitButton,
   className,
   ...props
 }: FormNavigationProps) {
@@ -33,14 +22,24 @@ export function FormNavigation({
   const isLastStep = currentStep === totalSteps
 
   return (
-    <div className={cn('flex justify-between gap-4', className)} {...props}>
+    <nav
+      className={cn('flex justify-between gap-4', className)}
+      aria-label={strings.waitlistForms.accessibility.formNavigation}
+      {...props}
+    >
       <button
         type='button'
         onClick={onPrevious}
         disabled={isFirstStep || isSubmitting}
-        className='px-6 py-2 border border-gray-300 rounded-md disabled:opacity-50'
+        className={cn(
+          'px-6 py-2 border border-gray-300 rounded-md',
+          'transition-colors duration-200',
+          'disabled:opacity-50 disabled:cursor-not-allowed',
+          'hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
+        )}
+        aria-label={strings.waitlistForms.accessibility.previousButton}
       >
-        Previous
+        {strings.waitlistForms.buttons.previous}
       </button>
 
       {isLastStep ? (
@@ -56,11 +55,17 @@ export function FormNavigation({
           type='button'
           onClick={onNext}
           disabled={isSubmitting || !canProceed}
-          className='px-6 py-2 bg-blue-600 text-white rounded-md disabled:opacity-50'
+          className={cn(
+            'px-6 py-2 bg-blue-600 text-white rounded-md',
+            'transition-colors duration-200',
+            'disabled:opacity-50 disabled:cursor-not-allowed',
+            'hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
+          )}
+          aria-label={strings.waitlistForms.accessibility.nextButton}
         >
-          Next
+          {strings.waitlistForms.buttons.next}
         </button>
       )}
-    </div>
+    </nav>
   )
 }

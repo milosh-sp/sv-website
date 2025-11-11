@@ -1097,6 +1097,164 @@ export const radioButton = {
 } as const
 
 // ============================================================================
+// WAITLIST FORMS
+// ============================================================================
+
+export const waitlistForms = {
+  // Success screen messages
+  successScreen: {
+    candidate: {
+      title: `Welcome to the Waitlist!`,
+      description: `Thank you for joining our candidate waitlist. We'll review your profile and get back to you soon with next steps.`,
+      checkEmailMessage: `Check your email for confirmation and next steps.`,
+      backToHomepage: `Back to Homepage`,
+    },
+    verifier: {
+      title: `Welcome to the Verifier Program!`,
+      description: `Thank you for your interest in becoming a verifier. We'll review your qualifications and contact you shortly.`,
+      checkEmailMessage: `Check your email for confirmation and next steps.`,
+      backToHomepage: `Back to Homepage`,
+    },
+    'hiring-manager': {
+      title: `Welcome to Our Hiring Platform!`,
+      description: `Thank you for joining our hiring manager waitlist. We'll be in touch soon with information about verified talent.`,
+      checkEmailMessage: `Check your email for confirmation and next steps.`,
+      backToHomepage: `Back to Homepage`,
+    },
+  },
+
+  // Form field labels and placeholders
+  fields: {
+    email: {
+      label: `Email Address`,
+      placeholder: `your@email.com`,
+      ariaLabel: `Email address field`,
+    },
+    linkedIn: {
+      label: `LinkedIn Profile URL`,
+      placeholder: `https://linkedin.com/in/yourprofile`,
+      ariaLabel: `LinkedIn profile URL field`,
+    },
+    github: {
+      label: `GitHub/GitLab Profile URL`,
+      placeholder: `https://github.com/yourprofile (optional)`,
+      ariaLabel: `GitHub/GitLab profile URL field`,
+    },
+    website: {
+      label: `Website`,
+      placeholder: `https://example.com`,
+      ariaLabel: `Website field (honeypot)`,
+    },
+    techCommunityDetails: {
+      label: `Tech Community Details`,
+      placeholder: `e.g., Python Developers Group, React Community`,
+      ariaLabel: `Tech community details field`,
+    },
+    jobSearchChallengeOther: {
+      label: `Other challenge`,
+      placeholder: `Please specify your challenge`,
+      ariaLabel: `Other job search challenge field`,
+    },
+    valuableOutcomeOther: {
+      label: `Other outcome`,
+      placeholder: `Please specify the outcome`,
+      ariaLabel: `Other valuable outcome field`,
+    },
+    verifierMotivationOther: {
+      label: `Other motivation`,
+      placeholder: `Please specify your motivation`,
+      ariaLabel: `Other verifier motivation field`,
+    },
+    professionalFrustrationOther: {
+      label: `Other frustration`,
+      placeholder: `Please specify your frustration`,
+      ariaLabel: `Other professional frustration field`,
+    },
+  },
+
+  // Form labels and questions
+  labels: {
+    privacyConsent: `I agree to the Privacy Policy`,
+    newsletterOptIn: `Subscribe to our newsletter`,
+    professionalStatus: `What is your current professional status?`,
+    techCommunityMembership: `Are you already a member of a tech community?`,
+    skillValidationConfidence: `How much do you agree with the following statement: "I would feel more confident in my job search if my skills were validated anonymously by senior engineers"`,
+    jobSearchChallenges: `What is the biggest challenge you face in your job search?`,
+    valuableOutcomes: `What would be the SINGLE most valuable outcome for you from a skill-validation platform?`,
+    yearsOfExperience: `Years of experience`,
+    hoursPerWeek: `Roughly how many hours per week would you be available for verification work?`,
+    coachingMentoring: `Have you ever done coaching or mentoring?`,
+    verifierMotivations: `Why are you interested in becoming a Verifier? [Select all that apply]`,
+    professionalFrustration: `What is your biggest professional frustration?`,
+    managerRole: `What is your role?`,
+    fundingStage: `What is your company's current funding stage?`,
+    engineeringTeamSize: `What is the size of your engineering team?`,
+    rolesHiring: `Which roles are you looking to hire for in the next 3 months?`,
+    seniorityLevel: `What is the most critical seniority level you need to hire?`,
+    hiringInterviewHours: `On average, how many hours does your team and you spend interviewing per hire?`,
+    hiringFrustrations: `What are your biggest frustrations with your current hiring process?`,
+    hiringFailures: `What hiring failures have you experienced recently?`,
+  },
+
+  // Form button labels
+  buttons: {
+    previous: `Previous`,
+    next: `Next`,
+    submit: `Submit`,
+    submitting: `Submitting...`,
+  },
+
+  // Validation error messages
+  validation: {
+    emailRequired: `Email is required`,
+    emailInvalid: `Please enter a valid email address`,
+    linkedInRequired: `LinkedIn profile URL is required`,
+    linkedInInvalid: `Please enter a valid LinkedIn URL`,
+    githubInvalid: `Please enter a valid GitHub URL`,
+    privacyConsentRequired: `You must agree to the privacy policy`,
+    skillAreasRequired: `Please select at least one skill area`,
+    technicalSkillsRequired: `Please select at least one technical skill`,
+    professionalStatusRequired: `Please select your professional status`,
+    techCommunityMembershipRequired: `Please select your tech community membership status`,
+    techCommunityDetailsRequired: `Please specify which tech community`,
+    githubGitlabUrlRequired: `GitHub/GitLab profile URL is required`,
+    githubGitlabUrlInvalid: `Please enter a valid GitHub/GitLab URL`,
+    skillValidationConfidenceRequired: `Please select an option`,
+    jobSearchChallengesRequired: `Please select at least one challenge`,
+    jobSearchChallengeOtherRequired: `Please specify your challenge`,
+    valuableOutcomesRequired: `Please select at least one outcome`,
+    valuableOutcomeOtherRequired: `Please specify the outcome`,
+    yearsOfExperienceRequired: `Please select your years of experience`,
+    hoursPerWeekRequired: `Please select your availability`,
+    coachingMentoringRequired: `Please select an option`,
+    verifierMotivationsRequired: `Please select at least one motivation`,
+    verifierMotivationOtherRequired: `Please specify your motivation`,
+    professionalFrustrationRequired: `Please select your biggest frustration`,
+    professionalFrustrationOtherRequired: `Please specify your frustration`,
+    managerRoleRequired: `Please select your role`,
+    fundingStageRequired: `Please select your funding stage`,
+    engineeringTeamSizeRequired: `Please select your team size`,
+    rolesHiringRequired: `Please select at least one role`,
+    seniorityLevelRequired: `Please select a seniority level`,
+    hiringInterviewHoursRequired: `Please select an option`,
+    hiringFrustrationsRequired: `Please select at least one frustration`,
+    hiringFailuresRequired: `Please select at least one failure`,
+  },
+
+  // Accessibility labels
+  accessibility: {
+    progressIndicator: `Form progress indicator`,
+    goToStep: `Go to step`,
+    formNavigation: `Form navigation`,
+    previousButton: `Go to previous step`,
+    nextButton: `Go to next step`,
+    submitButton: `Submit form`,
+    successIcon: `Success icon`,
+    errorIcon: `Error icon`,
+  },
+} as const
+
+// ============================================================================
 // EXPORT ALL STRINGS
 // ============================================================================
 
@@ -1121,4 +1279,5 @@ export const strings = {
   cvSampleData,
   checkbox,
   radioButton,
+  waitlistForms,
 } as const

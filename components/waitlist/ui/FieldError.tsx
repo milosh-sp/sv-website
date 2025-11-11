@@ -1,12 +1,7 @@
 'use client'
 
 import { cn } from '@/lib/utils'
-import type { HTMLAttributes } from 'react'
-
-interface FieldErrorProps extends HTMLAttributes<HTMLParagraphElement> {
-  error?: string
-  id?: string
-}
+import type { FieldErrorProps } from '@/types/FieldError.types'
 
 export function FieldError({
   error,

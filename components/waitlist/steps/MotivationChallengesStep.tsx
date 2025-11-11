@@ -1,60 +1,17 @@
 'use client'
 
+import { cn } from '@/lib/utils'
 import { FormField } from '@/components/ui/FormField'
 import { RadioButtonGroup } from '@/components/waitlist/ui/RadioButtonGroup'
 import { CheckboxGroup } from '@/components/waitlist/ui/CheckboxGroup'
 import { ConditionalField } from '@/components/waitlist/ui/ConditionalField'
-import { cn } from '@/lib/utils'
+import {
+  SKILL_VALIDATION_OPTIONS,
+  JOB_SEARCH_CHALLENGE_OPTIONS,
+  VALUABLE_OUTCOME_OPTIONS,
+} from '@/lib/waitlistConstants'
+import { strings } from '@/lib/strings'
 import type { MotivationChallengesStepProps } from '@/types/MotivationChallengesStep.types'
-
-const SKILL_VALIDATION_OPTIONS = [
-  { value: 'strongly-agree', label: 'Strongly Agree' },
-  { value: 'agree', label: 'Agree' },
-  { value: 'neutral', label: 'Neutral' },
-  { value: 'disagree', label: 'Disagree' },
-  { value: 'strongly-disagree', label: 'Strongly Disagree' },
-]
-
-const JOB_SEARCH_CHALLENGE_OPTIONS = [
-  { value: 'no-response', label: 'Getting no response after applying' },
-  { value: 'cv-rejections', label: 'My CV is getting rejections' },
-  {
-    value: 'no-feedback',
-    label:
-      'Rejection without clear feedback (even after passing technical rounds)',
-  },
-  {
-    value: 'bias',
-    label: 'Bias (e.g., based on location, background, age, gender)',
-  },
-  { value: 'not-knowing', label: 'Not knowing what to improve' },
-  { value: 'lack-mentorship', label: 'Lack of mentorship / guidance' },
-  { value: 'other', label: 'Other:' },
-]
-
-const VALUABLE_OUTCOME_OPTIONS = [
-  {
-    value: 'credibility',
-    label:
-      'Credibility: A trusted certificate/badge for my resume that gets me more interviews.',
-  },
-  {
-    value: 'clarity-growth',
-    label:
-      'Clarity & Growth: A detailed report with actionable feedback and a personalized plan to improve my skills.',
-  },
-  {
-    value: 'efficiency',
-    label:
-      'Efficiency: Drastically reducing the number of technical screens I have to do for each company.',
-  },
-  {
-    value: 'opportunity',
-    label:
-      "Opportunity: Direct access to job opportunities from companies that trust the platform's assessment.",
-  },
-  { value: 'other', label: 'Other:' },
-]
 
 export function MotivationChallengesStep({
   skillValidationConfidence = '',
@@ -86,7 +43,7 @@ export function MotivationChallengesStep({
       {onSkillValidationConfidenceChange && (
         <RadioButtonGroup
           name='skillValidationConfidence'
-          label='How much do you agree with the following statement: "I would feel more confident in my job search if my skills were validated anonymously by senior engineers"'
+          label={strings.waitlistForms.labels.skillValidationConfidence}
           options={SKILL_VALIDATION_OPTIONS}
           value={skillValidationConfidence}
           onChange={onSkillValidationConfidenceChange}
@@ -100,7 +57,7 @@ export function MotivationChallengesStep({
         <>
           <CheckboxGroup
             name='jobSearchChallenges'
-            label='What is the biggest challenge you face in your job search?'
+            label={strings.waitlistForms.labels.jobSearchChallenges}
             options={JOB_SEARCH_CHALLENGE_OPTIONS}
             values={parsedJobSearchChallenges}
             onChange={(values) => onJobSearchChallengesChange(values)}
@@ -118,7 +75,9 @@ export function MotivationChallengesStep({
             <FormField
               id='jobSearchChallengeOther'
               type='text'
-              placeholder='Please specify your challenge'
+              placeholder={
+                strings.waitlistForms.fields.jobSearchChallengeOther.placeholder
+              }
               value={jobSearchChallengeOther}
               onChange={(e) =>
                 onJobSearchChallengeOtherChange?.(e.target.value)
@@ -126,7 +85,7 @@ export function MotivationChallengesStep({
               error={errors.jobSearchChallengeOther}
               disabled={isSubmitting}
               icon={<div className='w-5 h-5' />}
-              label='Other challenge'
+              label={strings.waitlistForms.fields.jobSearchChallengeOther.label}
               ariaDescribedBy='jobSearchChallengeOther-error'
             />
           </ConditionalField>
@@ -138,7 +97,7 @@ export function MotivationChallengesStep({
         <>
           <CheckboxGroup
             name='valuableOutcomes'
-            label='What would be the SINGLE most valuable outcome for you from a skill-validation platform?'
+            label={strings.waitlistForms.labels.valuableOutcomes}
             options={VALUABLE_OUTCOME_OPTIONS}
             values={parsedValuableOutcomes}
             onChange={(values) => onValuableOutcomesChange(values)}
@@ -156,13 +115,15 @@ export function MotivationChallengesStep({
             <FormField
               id='valuableOutcomeOther'
               type='text'
-              placeholder='Please specify the outcome'
+              placeholder={
+                strings.waitlistForms.fields.valuableOutcomeOther.placeholder
+              }
               value={valuableOutcomeOther}
               onChange={(e) => onValuableOutcomeOtherChange?.(e.target.value)}
               error={errors.valuableOutcomeOther}
               disabled={isSubmitting}
               icon={<div className='w-5 h-5' />}
-              label='Other outcome'
+              label={strings.waitlistForms.fields.valuableOutcomeOther.label}
               ariaDescribedBy='valuableOutcomeOther-error'
             />
           </ConditionalField>

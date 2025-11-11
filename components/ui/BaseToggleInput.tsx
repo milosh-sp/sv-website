@@ -5,14 +5,6 @@ import { cn } from '@/lib/utils'
 import type { BaseToggleInputProps } from '@/types/BaseToggleInput.types'
 import { FormInputWrapper } from './FormInputWrapper'
 
-/**
- * Base component for toggle inputs (checkbox and radio button).
- * Encapsulates shared rendering logic and styling.
- *
- * This component follows the Single Responsibility Principle by handling
- * only the common input rendering logic, while variant-specific behavior
- * is delegated to the consuming components.
- */
 export function BaseToggleInput({
   className,
   size = 'default',

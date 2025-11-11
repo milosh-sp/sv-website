@@ -1,33 +1,6 @@
 import { cn } from '@/lib/utils'
 import type { FormInputWrapperProps } from '@/types/FormInputWrapper.types'
 
-/**
- * Shared presentational component for form inputs with labels, descriptions,
- * and error messages.
- *
- * Encapsulates the common UI pattern used by Checkbox, RadioButton, and other
- * form input components. Handles rendering of:
- * - Input element (passed as children)
- * - Label with optional required indicator
- * - Description text
- * - Error messages with ARIA live region
- *
- * @example
- * ```tsx
- * <FormInputWrapper
- *   inputId={checkboxId}
- *   label="Accept terms"
- *   description="You must accept the terms to continue"
- *   error={error}
- *   required={true}
- *   size="default"
- *   descriptionId={descriptionId}
- *   errorId={errorId}
- * >
- *   <input type="checkbox" id={checkboxId} />
- * </FormInputWrapper>
- * ```
- */
 export function FormInputWrapper({
   children,
   size = 'default',

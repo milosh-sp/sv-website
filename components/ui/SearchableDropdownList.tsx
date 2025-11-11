@@ -18,7 +18,7 @@ const SIZE_STYLES = {
   },
 } as const
 
-function SearchableDropdownListImpl<T = string>({
+export function SearchableDropdownList<T = string>({
   listboxRef,
   listboxId,
   labelId,
@@ -91,9 +91,3 @@ function SearchableDropdownListImpl<T = string>({
     </div>
   )
 }
-
-export const SearchableDropdownList = SearchableDropdownListImpl as <
-  T = string,
->(
-  props: SearchableDropdownListProps<T>
-) => React.JSX.Element

@@ -13,7 +13,7 @@ const SIZE_STYLES = {
   },
 } as const
 
-function SearchableDropdownOptionImpl<T = string>({
+export function SearchableDropdownOption<T = string>({
   option,
   index,
   dropdownId,
@@ -68,9 +68,3 @@ function SearchableDropdownOptionImpl<T = string>({
     </div>
   )
 }
-
-export const SearchableDropdownOption = SearchableDropdownOptionImpl as <
-  T = string,
->(
-  props: SearchableDropdownOptionProps<T>
-) => React.JSX.Element

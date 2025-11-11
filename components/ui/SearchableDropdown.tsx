@@ -9,7 +9,7 @@ import { SearchableDropdownList } from './SearchableDropdownList'
 import { SearchableDropdownSearch } from './SearchableDropdownSearch'
 import { SearchableDropdownTrigger } from './SearchableDropdownTrigger'
 
-function SearchableDropdownImpl<T = string>({
+export function SearchableDropdown<T = string>({
   options,
   value,
   defaultValue,
@@ -191,7 +191,3 @@ function SearchableDropdownImpl<T = string>({
     </div>
   )
 }
-
-export const SearchableDropdown = SearchableDropdownImpl as <T = string>(
-  props: SearchableDropdownProps<T>
-) => React.JSX.Element

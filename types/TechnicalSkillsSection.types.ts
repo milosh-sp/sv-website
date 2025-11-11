@@ -14,4 +14,3 @@ interface TechnicalSkillsSectionProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export type { TechnicalSkill, TechnicalSkillsSectionProps }
-

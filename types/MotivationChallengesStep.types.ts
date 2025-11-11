@@ -24,4 +24,3 @@ interface MotivationChallengesStepProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export type { MotivationChallengesStepProps }
-

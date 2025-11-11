@@ -16,4 +16,3 @@ interface VerifierProfileStepProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export type { VerifierProfileStepProps }
-

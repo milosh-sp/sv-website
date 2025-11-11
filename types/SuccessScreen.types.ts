@@ -5,4 +5,3 @@ interface SuccessScreenProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export type { SuccessScreenProps }
-

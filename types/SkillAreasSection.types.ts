@@ -15,4 +15,3 @@ interface SkillAreasSectionProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export type { SkillArea, SkillAreasSectionProps }
-

@@ -1,0 +1,69 @@
+'use client'
+
+import { Checkbox } from '@/components/ui/Checkbox'
+import { FieldError } from './FieldError'
+import { cn } from '@/lib/utils'
+import type { HTMLAttributes } from 'react'
+
+interface CheckboxOption {
+  value: string
+  label: string
+}
+
+interface CheckboxGroupProps
+  extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
+  name: string
+  options: CheckboxOption[]
+  values: string[]
+  onChange: (values: string[]) => void
+  error?: string
+  disabled?: boolean
+  label?: string
+  description?: string
+}
+
+export function CheckboxGroup({
+  name,
+  options,
+  values,
+  onChange,
+  error,
+  disabled = false,
+  label,
+  description,
+  className,
+  ...props
+}: CheckboxGroupProps) {
+  const errorId = `${name}-error`
+
+  const handleToggle = (value: string) => {
+    const updated = values.includes(value)
+      ? values.filter((v) => v !== value)
+      : [...values, value]
+    onChange(updated)
+  }
+
+  return (
+    <div className={cn('space-y-3', className)} {...props}>
+      {label && <h3 className='text-sm font-medium'>{label}</h3>}
+      {description && <p className='text-xs text-slate-500'>{description}</p>}
+
+      <div className='space-y-2'>
+        {options.map((option) => (
+          <Checkbox
+            key={option.value}
+            id={`${name}-${option.value}`}
+            label={option.label}
+            checked={values.includes(option.value)}
+            onChange={() => handleToggle(option.value)}
+            disabled={disabled}
+            aria-describedby={error ? errorId : undefined}
+            aria-invalid={!!error}
+          />
+        ))}
+      </div>
+
+      {error && <FieldError error={error} id={errorId} />}
+    </div>
+  )
+}

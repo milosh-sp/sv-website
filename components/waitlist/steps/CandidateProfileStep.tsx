@@ -1,8 +1,9 @@
 'use client'
 
-import { Code2, Users } from 'lucide-react'
+import { Users } from 'lucide-react'
 import { FormField } from '@/components/ui/FormField'
-import { RadioButton } from '@/components/ui/RadioButton'
+import { RadioButtonGroup } from '@/components/waitlist/ui/RadioButtonGroup'
+import { ConditionalField } from '@/components/waitlist/ui/ConditionalField'
 import { cn } from '@/lib/utils'
 import type { CandidateProfileStepProps } from '@/types/CandidateProfileStep.types'
 
@@ -37,93 +38,29 @@ export function CandidateProfileStep({
   return (
     <div className={cn('space-y-6', className)} {...props}>
       {/* Professional Status */}
-      <div className='space-y-3'>
-        <h3 className='text-sm font-medium'>
-          What is your current professional status?
-        </h3>
-        <div className='space-y-2'>
-          {PROFESSIONAL_STATUS_OPTIONS.map((option) => (
-            <RadioButton
-              key={option.value}
-              id={`professional-status-${option.value}`}
-              name='professionalStatus'
-              value={option.value}
-              label={option.label}
-              checked={professionalStatus === option.value}
-              onChange={(e) => onProfessionalStatusChange(e.target.value)}
-              disabled={isSubmitting}
-              aria-describedby={
-                errors.professionalStatus
-                  ? 'professionalStatus-error'
-                  : undefined
-              }
-            />
-          ))}
-        </div>
-        {errors.professionalStatus && (
-          <p
-            id='professionalStatus-error'
-            className='text-destructive text-sm mt-2 flex items-start gap-2 px-1'
-            role='alert'
-            aria-live='polite'
-          >
-            <span
-              className='text-destructive font-medium text-xs mt-0.5'
-              aria-hidden='true'
-            >
-              ⚠
-            </span>
-            <span className='leading-relaxed'>{errors.professionalStatus}</span>
-          </p>
-        )}
-      </div>
+      <RadioButtonGroup
+        name='professionalStatus'
+        label='What is your current professional status?'
+        options={PROFESSIONAL_STATUS_OPTIONS}
+        value={professionalStatus}
+        onChange={onProfessionalStatusChange}
+        error={errors.professionalStatus}
+        disabled={isSubmitting}
+      />
 
       {/* Tech Community Membership */}
-      <div className='space-y-3'>
-        <h3 className='text-sm font-medium'>
-          Are you already a member of a tech community?
-        </h3>
-        <div className='space-y-2'>
-          {TECH_COMMUNITY_OPTIONS.map((option) => (
-            <RadioButton
-              key={option.value}
-              id={`tech-community-${option.value}`}
-              name='techCommunityMembership'
-              value={option.value}
-              label={option.label}
-              checked={techCommunityMembership === option.value}
-              onChange={(e) => onTechCommunityMembershipChange(e.target.value)}
-              disabled={isSubmitting}
-              aria-describedby={
-                errors.techCommunityMembership
-                  ? 'techCommunityMembership-error'
-                  : undefined
-              }
-            />
-          ))}
-        </div>
-        {errors.techCommunityMembership && (
-          <p
-            id='techCommunityMembership-error'
-            className='text-destructive text-sm mt-2 flex items-start gap-2 px-1'
-            role='alert'
-            aria-live='polite'
-          >
-            <span
-              className='text-destructive font-medium text-xs mt-0.5'
-              aria-hidden='true'
-            >
-              ⚠
-            </span>
-            <span className='leading-relaxed'>
-              {errors.techCommunityMembership}
-            </span>
-          </p>
-        )}
-      </div>
+      <RadioButtonGroup
+        name='techCommunityMembership'
+        label='Are you already a member of a tech community?'
+        options={TECH_COMMUNITY_OPTIONS}
+        value={techCommunityMembership}
+        onChange={onTechCommunityMembershipChange}
+        error={errors.techCommunityMembership}
+        disabled={isSubmitting}
+      />
 
-      {/* Tech Community Details - Show only if "Yes" is selected */}
-      {techCommunityMembership === 'yes' && (
+      {/* Tech Community Details - Conditional */}
+      <ConditionalField condition={techCommunityMembership === 'yes'}>
         <FormField
           id='techCommunityDetails'
           type='text'
@@ -136,21 +73,7 @@ export function CandidateProfileStep({
           label='Tech Community Details'
           ariaDescribedBy='techCommunityDetails-error'
         />
-      )}
-
-      {/* GitHub/GitLab URL */}
-      <FormField
-        id='githubGitlabUrl'
-        type='text'
-        placeholder='https://github.com/yourprofile or https://gitlab.com/yourprofile'
-        value={githubGitlabUrl}
-        onChange={(e) => onGithubGitlabUrlChange(e.target.value)}
-        error={errors.githubGitlabUrl}
-        disabled={isSubmitting}
-        icon={<Code2 className='w-5 h-5' />}
-        label='Please provide your Github/Gitlab profile URL'
-        ariaDescribedBy='githubGitlabUrl-error'
-      />
+      </ConditionalField>
     </div>
   )
 }

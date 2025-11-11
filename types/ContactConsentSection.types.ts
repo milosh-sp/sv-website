@@ -18,4 +18,3 @@ interface ContactConsentSectionProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export type { ContactConsentSectionProps }
-

@@ -21,4 +21,3 @@ interface CompanyProfileStepProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export type { CompanySize, CompanyProfileStepProps }
-

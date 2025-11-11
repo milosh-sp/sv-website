@@ -1,6 +1,6 @@
 'use client'
 
-import { RadioButton } from '@/components/ui/RadioButton'
+import { RadioButtonGroup } from '@/components/waitlist/ui/RadioButtonGroup'
 import { cn } from '@/lib/utils'
 import type { HiringManagerCompanyProfileStepProps } from '@/types/HiringManagerCompanyProfileStep.types'
 
@@ -43,106 +43,37 @@ export function HiringManagerCompanyProfileStep({
   return (
     <div className={cn('space-y-6', className)} {...props}>
       {/* Manager Role */}
-      <div className='space-y-3'>
-        <h3 className='text-sm font-medium'>What is your role?</h3>
-        <div className='space-y-2'>
-          {MANAGER_ROLE_OPTIONS.map((option) => (
-            <RadioButton
-              key={option.value}
-              id={`manager-role-${option.value}`}
-              name='managerRole'
-              value={option.value}
-              label={option.label}
-              checked={managerRole === option.value}
-              onChange={(e) => onManagerRoleChange(e.target.value)}
-              disabled={isSubmitting}
-              aria-describedby={
-                errors.managerRole ? 'managerRole-error' : undefined
-              }
-              aria-invalid={!!errors.managerRole}
-            />
-          ))}
-        </div>
-        {errors.managerRole && (
-          <p
-            id='managerRole-error'
-            className='text-destructive text-sm'
-            role='alert'
-          >
-            {errors.managerRole}
-          </p>
-        )}
-      </div>
+      <RadioButtonGroup
+        name='managerRole'
+        label='What is your role?'
+        options={MANAGER_ROLE_OPTIONS}
+        value={managerRole}
+        onChange={onManagerRoleChange}
+        error={errors.managerRole}
+        disabled={isSubmitting}
+      />
 
       {/* Funding Stage */}
-      <div className='space-y-3'>
-        <h3 className='text-sm font-medium'>
-          What is your company's current funding stage?
-        </h3>
-        <div className='space-y-2'>
-          {FUNDING_STAGE_OPTIONS.map((option) => (
-            <RadioButton
-              key={option.value}
-              id={`funding-stage-${option.value}`}
-              name='fundingStage'
-              value={option.value}
-              label={option.label}
-              checked={fundingStage === option.value}
-              onChange={(e) => onFundingStagChange(e.target.value)}
-              disabled={isSubmitting}
-              aria-describedby={
-                errors.fundingStage ? 'fundingStage-error' : undefined
-              }
-              aria-invalid={!!errors.fundingStage}
-            />
-          ))}
-        </div>
-        {errors.fundingStage && (
-          <p
-            id='fundingStage-error'
-            className='text-destructive text-sm'
-            role='alert'
-          >
-            {errors.fundingStage}
-          </p>
-        )}
-      </div>
+      <RadioButtonGroup
+        name='fundingStage'
+        label="What is your company's current funding stage?"
+        options={FUNDING_STAGE_OPTIONS}
+        value={fundingStage}
+        onChange={onFundingStagChange}
+        error={errors.fundingStage}
+        disabled={isSubmitting}
+      />
 
       {/* Engineering Team Size */}
-      <div className='space-y-3'>
-        <h3 className='text-sm font-medium'>
-          What is the size of your engineering team?
-        </h3>
-        <div className='space-y-2'>
-          {TEAM_SIZE_OPTIONS.map((option) => (
-            <RadioButton
-              key={option.value}
-              id={`team-size-${option.value}`}
-              name='engineeringTeamSize'
-              value={option.value}
-              label={option.label}
-              checked={engineeringTeamSize === option.value}
-              onChange={(e) => onEngineeringTeamSizeChange(e.target.value)}
-              disabled={isSubmitting}
-              aria-describedby={
-                errors.engineeringTeamSize
-                  ? 'engineeringTeamSize-error'
-                  : undefined
-              }
-              aria-invalid={!!errors.engineeringTeamSize}
-            />
-          ))}
-        </div>
-        {errors.engineeringTeamSize && (
-          <p
-            id='engineeringTeamSize-error'
-            className='text-destructive text-sm'
-            role='alert'
-          >
-            {errors.engineeringTeamSize}
-          </p>
-        )}
-      </div>
+      <RadioButtonGroup
+        name='engineeringTeamSize'
+        label='What is the size of your engineering team?'
+        options={TEAM_SIZE_OPTIONS}
+        value={engineeringTeamSize}
+        onChange={onEngineeringTeamSizeChange}
+        error={errors.engineeringTeamSize}
+        disabled={isSubmitting}
+      />
     </div>
   )
 }

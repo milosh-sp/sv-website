@@ -2,6 +2,7 @@
 
 import { Checkbox } from '@/components/ui/Checkbox'
 import { cn } from '@/lib/utils'
+import { FieldError } from '../ui/FieldError'
 import type { SkillAreasSectionProps } from '@/types/SkillAreasSection.types'
 
 export function SkillAreasSection({
@@ -29,21 +30,7 @@ export function SkillAreasSection({
         ))}
       </div>
 
-      {errors.skillAreas && (
-        <p
-          className='text-destructive text-sm mt-2 flex items-start gap-2 px-1'
-          role='alert'
-          aria-live='polite'
-        >
-          <span
-            className='text-destructive font-medium text-xs mt-0.5'
-            aria-hidden='true'
-          >
-            ⚠
-          </span>
-          <span className='leading-relaxed'>{errors.skillAreas}</span>
-        </p>
-      )}
+      <FieldError error={errors.skillAreas} id='skillAreas-error' />
     </div>
   )
 }

@@ -17,4 +17,3 @@ interface HiringDemandChallengesStepProps
 }
 
 export type { HiringDemandChallengesStepProps }
-

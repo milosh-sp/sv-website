@@ -1,7 +1,7 @@
 'use client'
 
-import { Checkbox } from '@/components/ui/Checkbox'
-import { RadioButton } from '@/components/ui/RadioButton'
+import { RadioButtonGroup } from '@/components/waitlist/ui/RadioButtonGroup'
+import { CheckboxGroup } from '@/components/waitlist/ui/CheckboxGroup'
 import { cn } from '@/lib/utils'
 import type { HiringDemandChallengesStepProps } from '@/types/HiringDemandChallengesStep.types'
 
@@ -121,206 +121,65 @@ export function HiringDemandChallengesStep({
     }
   })()
 
-  const handleRoleToggle = (value: string) => {
-    const updated = parsedRoles.includes(value)
-      ? parsedRoles.filter((v: string) => v !== value)
-      : [...parsedRoles, value]
-    onRolesHiringChange(updated)
-  }
-
-  const handleFrustrationToggle = (value: string) => {
-    const updated = parsedFrustrations.includes(value)
-      ? parsedFrustrations.filter((v: string) => v !== value)
-      : [...parsedFrustrations, value]
-    onHiringFrustrationsChange(updated)
-  }
-
-  const handleFailureToggle = (value: string) => {
-    const updated = parsedFailures.includes(value)
-      ? parsedFailures.filter((v: string) => v !== value)
-      : [...parsedFailures, value]
-    onHiringFailuresChange(updated)
-  }
-
   return (
     <div className={cn('space-y-6', className)} {...props}>
       {/* Roles Hiring */}
-      <div className='space-y-3'>
-        <h3 className='text-sm font-medium'>
-          Which roles are you looking to hire for in the next 3 months?
-        </h3>
-        <p className='text-xs text-slate-500'>Select all that apply</p>
-        <div className='space-y-2'>
-          {ROLES_HIRING_OPTIONS.map((option) => (
-            <Checkbox
-              key={option.value}
-              id={`roles-hiring-${option.value}`}
-              name='rolesHiring'
-              value={option.value}
-              label={option.label}
-              checked={parsedRoles.includes(option.value)}
-              onChange={() => handleRoleToggle(option.value)}
-              disabled={isSubmitting}
-              aria-describedby={
-                errors.rolesHiring ? 'rolesHiring-error' : undefined
-              }
-              aria-invalid={!!errors.rolesHiring}
-            />
-          ))}
-        </div>
-        {errors.rolesHiring && (
-          <p
-            id='rolesHiring-error'
-            className='text-destructive text-sm'
-            role='alert'
-          >
-            {errors.rolesHiring}
-          </p>
-        )}
-      </div>
+      <CheckboxGroup
+        name='rolesHiring'
+        label='Which roles are you looking to hire for in the next 3 months?'
+        description='Select all that apply'
+        options={ROLES_HIRING_OPTIONS}
+        values={parsedRoles}
+        onChange={(values) => onRolesHiringChange(values)}
+        error={errors.rolesHiring}
+        disabled={isSubmitting}
+      />
 
       {/* Seniority Level */}
-      <div className='space-y-3'>
-        <h3 className='text-sm font-medium'>
-          What is the most critical seniority level you need to hire?
-        </h3>
-        <div className='space-y-2'>
-          {SENIORITY_LEVEL_OPTIONS.map((option) => (
-            <RadioButton
-              key={option.value}
-              id={`seniority-level-${option.value}`}
-              name='seniorityLevel'
-              value={option.value}
-              label={option.label}
-              checked={seniorityLevel === option.value}
-              onChange={(e) => onSeniorityLevelChange(e.target.value)}
-              disabled={isSubmitting}
-              aria-describedby={
-                errors.seniorityLevel ? 'seniorityLevel-error' : undefined
-              }
-              aria-invalid={!!errors.seniorityLevel}
-            />
-          ))}
-        </div>
-        {errors.seniorityLevel && (
-          <p
-            id='seniorityLevel-error'
-            className='text-destructive text-sm'
-            role='alert'
-          >
-            {errors.seniorityLevel}
-          </p>
-        )}
-      </div>
+      <RadioButtonGroup
+        name='seniorityLevel'
+        label='What is the most critical seniority level you need to hire?'
+        options={SENIORITY_LEVEL_OPTIONS}
+        value={seniorityLevel}
+        onChange={onSeniorityLevelChange}
+        error={errors.seniorityLevel}
+        disabled={isSubmitting}
+      />
 
       {/* Interview Hours */}
-      <div className='space-y-3'>
-        <h3 className='text-sm font-medium'>
-          On average, how many hours does your team and you spend interviewing
-          per hire?
-        </h3>
-        <div className='space-y-2'>
-          {INTERVIEW_HOURS_OPTIONS.map((option) => (
-            <RadioButton
-              key={option.value}
-              id={`interview-hours-${option.value}`}
-              name='hiringInterviewHours'
-              value={option.value}
-              label={option.label}
-              checked={hiringInterviewHours === option.value}
-              onChange={(e) => onHiringInterviewHoursChange(e.target.value)}
-              disabled={isSubmitting}
-              aria-describedby={
-                errors.hiringInterviewHours
-                  ? 'hiringInterviewHours-error'
-                  : undefined
-              }
-              aria-invalid={!!errors.hiringInterviewHours}
-            />
-          ))}
-        </div>
-        {errors.hiringInterviewHours && (
-          <p
-            id='hiringInterviewHours-error'
-            className='text-destructive text-sm'
-            role='alert'
-          >
-            {errors.hiringInterviewHours}
-          </p>
-        )}
-      </div>
+      <RadioButtonGroup
+        name='hiringInterviewHours'
+        label='On average, how many hours does your team and you spend interviewing per hire?'
+        options={INTERVIEW_HOURS_OPTIONS}
+        value={hiringInterviewHours}
+        onChange={onHiringInterviewHoursChange}
+        error={errors.hiringInterviewHours}
+        disabled={isSubmitting}
+      />
 
       {/* Hiring Frustrations */}
-      <div className='space-y-3'>
-        <h3 className='text-sm font-medium'>
-          What are your biggest frustrations with your current hiring process?
-        </h3>
-        <p className='text-xs text-slate-500'>Select all that apply</p>
-        <div className='space-y-2'>
-          {HIRING_FRUSTRATIONS_OPTIONS.map((option) => (
-            <Checkbox
-              key={option.value}
-              id={`hiring-frustrations-${option.value}`}
-              name='hiringFrustrations'
-              value={option.value}
-              label={option.label}
-              checked={parsedFrustrations.includes(option.value)}
-              onChange={() => handleFrustrationToggle(option.value)}
-              disabled={isSubmitting}
-              aria-describedby={
-                errors.hiringFrustrations
-                  ? 'hiringFrustrations-error'
-                  : undefined
-              }
-              aria-invalid={!!errors.hiringFrustrations}
-            />
-          ))}
-        </div>
-        {errors.hiringFrustrations && (
-          <p
-            id='hiringFrustrations-error'
-            className='text-destructive text-sm'
-            role='alert'
-          >
-            {errors.hiringFrustrations}
-          </p>
-        )}
-      </div>
+      <CheckboxGroup
+        name='hiringFrustrations'
+        label='What are your biggest frustrations with your current hiring process?'
+        description='Select all that apply'
+        options={HIRING_FRUSTRATIONS_OPTIONS}
+        values={parsedFrustrations}
+        onChange={(values) => onHiringFrustrationsChange(values)}
+        error={errors.hiringFrustrations}
+        disabled={isSubmitting}
+      />
 
       {/* Hiring Failures */}
-      <div className='space-y-3'>
-        <h3 className='text-sm font-medium'>
-          What hiring failures have you experienced recently?
-        </h3>
-        <p className='text-xs text-slate-500'>Select all that apply</p>
-        <div className='space-y-2'>
-          {HIRING_FAILURES_OPTIONS.map((option) => (
-            <Checkbox
-              key={option.value}
-              id={`hiring-failures-${option.value}`}
-              name='hiringFailures'
-              value={option.value}
-              label={option.label}
-              checked={parsedFailures.includes(option.value)}
-              onChange={() => handleFailureToggle(option.value)}
-              disabled={isSubmitting}
-              aria-describedby={
-                errors.hiringFailures ? 'hiringFailures-error' : undefined
-              }
-              aria-invalid={!!errors.hiringFailures}
-            />
-          ))}
-        </div>
-        {errors.hiringFailures && (
-          <p
-            id='hiringFailures-error'
-            className='text-destructive text-sm'
-            role='alert'
-          >
-            {errors.hiringFailures}
-          </p>
-        )}
-      </div>
+      <CheckboxGroup
+        name='hiringFailures'
+        label='What hiring failures have you experienced recently?'
+        description='Select all that apply'
+        options={HIRING_FAILURES_OPTIONS}
+        values={parsedFailures}
+        onChange={(values) => onHiringFailuresChange(values)}
+        error={errors.hiringFailures}
+        disabled={isSubmitting}
+      />
     </div>
   )
 }

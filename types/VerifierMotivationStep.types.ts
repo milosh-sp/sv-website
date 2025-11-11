@@ -14,4 +14,3 @@ interface VerifierMotivationStepProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export type { VerifierMotivationStepProps }
-

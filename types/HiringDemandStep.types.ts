@@ -14,4 +14,3 @@ interface HiringDemandStepProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export type { HiringDemandStepProps }
-

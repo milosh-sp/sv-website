@@ -3,31 +3,16 @@
 import { useVerifierFormContext } from '@/contexts/VerifierFormContext'
 import { useVerifierForm } from '@/hooks/useVerifierForm'
 import { validateVerifierStep } from '@/lib/WaitlistValidation'
+import { SKILL_AREAS, TECHNICAL_SKILLS } from '@/lib/waitlistConstants'
 import { ContactConsentSection } from './sections/ContactConsentSection'
 import { SkillAreasSection } from './sections/SkillAreasSection'
 import { TechnicalSkillsSection } from './sections/TechnicalSkillsSection'
 import { VerifierProfileStep } from './steps/VerifierProfileStep'
 import { VerifierMotivationStep } from './steps/VerifierMotivationStep'
-import { SubmitButton } from '@/components/ui/SubmitButton'
-import { StatusMessage } from '@/components/ui/StatusMessage'
+import { ProgressIndicator } from './ui/ProgressIndicator'
+import { FormNavigation } from './ui/FormNavigation'
 import { HoneypotField } from '@/components/ui/HoneypotField'
-
-// Mock data - replace with actual data from lib/strings.ts
-const SKILL_AREAS = [
-  { id: 'frontend', label: 'Frontend Development' },
-  { id: 'backend', label: 'Backend Development' },
-  { id: 'fullstack', label: 'Full Stack Development' },
-  { id: 'devops', label: 'DevOps' },
-  { id: 'data', label: 'Data Science' },
-]
-
-const TECHNICAL_SKILLS = [
-  { id: 'react', label: 'React' },
-  { id: 'typescript', label: 'TypeScript' },
-  { id: 'nodejs', label: 'Node.js' },
-  { id: 'python', label: 'Python' },
-  { id: 'aws', label: 'AWS' },
-]
+import { StatusMessage } from '@/components/ui/StatusMessage'
 
 export function VerifierWaitlistForm() {
   const context = useVerifierFormContext()
@@ -171,48 +156,34 @@ export function VerifierWaitlistForm() {
     }
   }
 
+  const isCurrentStepValid = validateVerifierStep(
+    context.currentStep,
+    form.formData
+  ).isValid
+
   return (
     <form
       onSubmit={handleSubmit}
       className='space-y-6 w-full max-w-2xl mx-auto'
       noValidate
     >
-      {/* Progress indicator */}
-      <div className='flex justify-between items-center mb-8 gap-2'>
-        {[1, 2, 3, 4].map((step) => {
-          const isCurrentStepValid = validateVerifierStep(
-            context.currentStep,
-            form.formData
-          ).isValid
+      <ProgressIndicator
+        currentStep={context.currentStep}
+        totalSteps={4}
+        onStepClick={(step) => {
           const canClickStep = step <= context.currentStep && isCurrentStepValid
-          return (
-            <button
-              key={step}
-              type='button'
-              onClick={() => {
-                if (canClickStep) {
-                  context.goToStep(step)
-                }
-              }}
-              disabled={form.isSubmitting || !canClickStep}
-              className={`flex-1 h-1 rounded-full transition-colors ${
-                step <= context.currentStep ? 'bg-blue-600' : 'bg-gray-200'
-              } ${
-                canClickStep
-                  ? 'cursor-pointer hover:opacity-80'
-                  : 'cursor-not-allowed opacity-50'
-              }`}
-              aria-label={`Go to step ${step}`}
-              aria-current={step === context.currentStep ? 'step' : undefined}
-            />
-          )
-        })}
-      </div>
+          if (canClickStep) {
+            context.goToStep(step)
+          }
+        }}
+        isSubmitting={form.isSubmitting}
+        isStepClickable={(step: number) =>
+          step <= context.currentStep && isCurrentStepValid
+        }
+      />
 
-      {/* Current step */}
       <div>{renderStep()}</div>
 
-      {/* Honeypot field */}
       <HoneypotField
         id='website'
         name='website'
@@ -223,7 +194,6 @@ export function VerifierWaitlistForm() {
         label='Website'
       />
 
-      {/* Status messages */}
       {form.submitStatus === 'error' && form.errors.submit && (
         <StatusMessage
           status='error'
@@ -235,39 +205,17 @@ export function VerifierWaitlistForm() {
         />
       )}
 
-      {/* Navigation buttons */}
-      <div className='flex justify-between gap-4'>
-        <button
-          type='button'
-          onClick={() => context.previousStep()}
-          disabled={context.currentStep === 1 || form.isSubmitting}
-          className='px-6 py-2 border border-gray-300 rounded-md disabled:opacity-50'
-        >
-          Previous
-        </button>
-
-        {context.currentStep < 4 ? (
-          <button
-            type='button'
-            onClick={() => context.nextStep()}
-            disabled={
-              form.isSubmitting ||
-              !validateVerifierStep(context.currentStep, form.formData).isValid
-            }
-            className='px-6 py-2 bg-blue-600 text-white rounded-md disabled:opacity-50'
-          >
-            Next
-          </button>
-        ) : (
-          <SubmitButton
-            isSubmitting={form.isSubmitting}
-            isDisabled={form.isSubmitting}
-            ariaLabel='Submit verifier form'
-            idleText='Submit'
-            loadingText='Submitting...'
-          />
-        )}
-      </div>
+      <FormNavigation
+        currentStep={context.currentStep}
+        totalSteps={4}
+        isSubmitting={form.isSubmitting}
+        canProceed={isCurrentStepValid}
+        onPrevious={() => context.previousStep()}
+        onNext={() => context.nextStep()}
+        submitAriaLabel='Submit verifier form'
+        submitLabel='Submit'
+        submitLoadingLabel='Submitting...'
+      />
     </form>
   )
 }

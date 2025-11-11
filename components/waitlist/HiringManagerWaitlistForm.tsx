@@ -6,9 +6,10 @@ import { validateHiringManagerStep } from '@/lib/WaitlistValidation'
 import { ContactConsentSection } from './sections/ContactConsentSection'
 import { HiringManagerCompanyProfileStep } from './steps/HiringManagerCompanyProfileStep'
 import { HiringDemandChallengesStep } from './steps/HiringDemandChallengesStep'
-import { SubmitButton } from '@/components/ui/SubmitButton'
-import { StatusMessage } from '@/components/ui/StatusMessage'
+import { ProgressIndicator } from './ui/ProgressIndicator'
+import { FormNavigation } from './ui/FormNavigation'
 import { HoneypotField } from '@/components/ui/HoneypotField'
+import { StatusMessage } from '@/components/ui/StatusMessage'
 
 export function HiringManagerWaitlistForm() {
   const context = useHiringManagerFormContext()
@@ -109,48 +110,34 @@ export function HiringManagerWaitlistForm() {
     }
   }
 
+  const isCurrentStepValid = validateHiringManagerStep(
+    context.currentStep,
+    form.formData
+  ).isValid
+
   return (
     <form
       onSubmit={handleSubmit}
       className='space-y-6 w-full max-w-2xl mx-auto'
       noValidate
     >
-      {/* Progress indicator */}
-      <div className='flex justify-between items-center mb-8 gap-2'>
-        {[1, 2, 3, 4].map((step) => {
-          const isCurrentStepValid = validateHiringManagerStep(
-            context.currentStep,
-            form.formData
-          ).isValid
+      <ProgressIndicator
+        currentStep={context.currentStep}
+        totalSteps={4}
+        onStepClick={(step) => {
           const canClickStep = step <= context.currentStep && isCurrentStepValid
-          return (
-            <button
-              key={step}
-              type='button'
-              onClick={() => {
-                if (canClickStep) {
-                  context.goToStep(step)
-                }
-              }}
-              disabled={form.isSubmitting || !canClickStep}
-              className={`flex-1 h-1 rounded-full transition-colors ${
-                step <= context.currentStep ? 'bg-blue-600' : 'bg-gray-200'
-              } ${
-                canClickStep
-                  ? 'cursor-pointer hover:opacity-80'
-                  : 'cursor-not-allowed opacity-50'
-              }`}
-              aria-label={`Go to step ${step}`}
-              aria-current={step === context.currentStep ? 'step' : undefined}
-            />
-          )
-        })}
-      </div>
+          if (canClickStep) {
+            context.goToStep(step)
+          }
+        }}
+        isSubmitting={form.isSubmitting}
+        isStepClickable={(step: number) =>
+          step <= context.currentStep && isCurrentStepValid
+        }
+      />
 
-      {/* Current step */}
       <div>{renderStep()}</div>
 
-      {/* Honeypot field */}
       <HoneypotField
         id='website'
         name='website'
@@ -161,7 +148,6 @@ export function HiringManagerWaitlistForm() {
         label='Website'
       />
 
-      {/* Status messages */}
       {form.submitStatus === 'error' && form.errors.submit && (
         <StatusMessage
           status='error'
@@ -173,40 +159,17 @@ export function HiringManagerWaitlistForm() {
         />
       )}
 
-      {/* Navigation buttons */}
-      <div className='flex justify-between gap-4'>
-        <button
-          type='button'
-          onClick={() => context.previousStep()}
-          disabled={context.currentStep === 1 || form.isSubmitting}
-          className='px-6 py-2 border border-gray-300 rounded-md disabled:opacity-50'
-        >
-          Previous
-        </button>
-
-        {context.currentStep < 4 ? (
-          <button
-            type='button'
-            onClick={() => context.nextStep()}
-            disabled={
-              form.isSubmitting ||
-              !validateHiringManagerStep(context.currentStep, form.formData)
-                .isValid
-            }
-            className='px-6 py-2 bg-blue-600 text-white rounded-md disabled:opacity-50'
-          >
-            Next
-          </button>
-        ) : (
-          <SubmitButton
-            isSubmitting={form.isSubmitting}
-            isDisabled={form.isSubmitting}
-            ariaLabel='Submit hiring manager form'
-            idleText='Submit'
-            loadingText='Submitting...'
-          />
-        )}
-      </div>
+      <FormNavigation
+        currentStep={context.currentStep}
+        totalSteps={4}
+        isSubmitting={form.isSubmitting}
+        canProceed={isCurrentStepValid}
+        onPrevious={() => context.previousStep()}
+        onNext={() => context.nextStep()}
+        submitAriaLabel='Submit hiring manager form'
+        submitLabel='Submit'
+        submitLoadingLabel='Submitting...'
+      />
     </form>
   )
 }

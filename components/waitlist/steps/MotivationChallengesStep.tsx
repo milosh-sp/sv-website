@@ -1,8 +1,9 @@
 'use client'
 
 import { FormField } from '@/components/ui/FormField'
-import { RadioButton } from '@/components/ui/RadioButton'
-import { Checkbox } from '@/components/ui/Checkbox'
+import { RadioButtonGroup } from '@/components/waitlist/ui/RadioButtonGroup'
+import { CheckboxGroup } from '@/components/waitlist/ui/CheckboxGroup'
+import { ConditionalField } from '@/components/waitlist/ui/ConditionalField'
 import { cn } from '@/lib/utils'
 import type { MotivationChallengesStepProps } from '@/types/MotivationChallengesStep.types'
 
@@ -79,199 +80,93 @@ export function MotivationChallengesStep({
   const parsedJobSearchChallenges = JSON.parse(jobSearchChallenges)
   const parsedValuableOutcomes = JSON.parse(valuableOutcomes)
 
-  const handleJobSearchChallengeToggle = (value: string) => {
-    const updated = parsedJobSearchChallenges.includes(value)
-      ? parsedJobSearchChallenges.filter((v: string) => v !== value)
-      : [...parsedJobSearchChallenges, value]
-    onJobSearchChallengesChange?.(updated)
-  }
-
-  const handleValuableOutcomeToggle = (value: string) => {
-    const updated = parsedValuableOutcomes.includes(value)
-      ? parsedValuableOutcomes.filter((v: string) => v !== value)
-      : [...parsedValuableOutcomes, value]
-    onValuableOutcomesChange?.(updated)
-  }
-
   return (
     <div className={cn('space-y-6', className)} {...props}>
       {/* Skill Validation Confidence - Candidate only */}
       {onSkillValidationConfidenceChange && (
-        <div className='space-y-3'>
-          <h3 className='text-sm font-medium'>
-            How much do you agree with the following statement: "I would feel
-            more confident in my job search if my skills were validated
-            anonymously by senior engineers"
-          </h3>
-          <div className='space-y-2'>
-            {SKILL_VALIDATION_OPTIONS.map((option) => (
-              <RadioButton
-                key={option.value}
-                id={`skill-validation-${option.value}`}
-                name='skillValidationConfidence'
-                value={option.value}
-                label={option.label}
-                checked={skillValidationConfidence === option.value}
-                onChange={(e) =>
-                  onSkillValidationConfidenceChange(e.target.value)
-                }
-                disabled={isSubmitting}
-                aria-describedby={
-                  errors.skillValidationConfidence
-                    ? 'skillValidationConfidence-error'
-                    : undefined
-                }
-              />
-            ))}
-          </div>
-          {errors.skillValidationConfidence && (
-            <p
-              id='skillValidationConfidence-error'
-              className='text-destructive text-sm mt-2 flex items-start gap-2 px-1'
-              role='alert'
-              aria-live='polite'
-            >
-              <span
-                className='text-destructive font-medium text-xs mt-0.5'
-                aria-hidden='true'
-              >
-                ⚠
-              </span>
-              <span className='leading-relaxed'>
-                {errors.skillValidationConfidence}
-              </span>
-            </p>
-          )}
-        </div>
+        <RadioButtonGroup
+          name='skillValidationConfidence'
+          label='How much do you agree with the following statement: "I would feel more confident in my job search if my skills were validated anonymously by senior engineers"'
+          options={SKILL_VALIDATION_OPTIONS}
+          value={skillValidationConfidence}
+          onChange={onSkillValidationConfidenceChange}
+          error={errors.skillValidationConfidence}
+          disabled={isSubmitting}
+        />
       )}
 
       {/* Job Search Challenges - Candidate only */}
       {onJobSearchChallengesChange && (
-        <div className='space-y-3'>
-          <h3 className='text-sm font-medium'>
-            What is the biggest challenge you face in your job search?
-          </h3>
-          <div className='space-y-2'>
-            {JOB_SEARCH_CHALLENGE_OPTIONS.map((option) => (
-              <div key={option.value}>
-                <Checkbox
-                  id={`job-search-challenge-${option.value}`}
-                  checked={parsedJobSearchChallenges.includes(option.value)}
-                  onChange={() => handleJobSearchChallengeToggle(option.value)}
-                  disabled={isSubmitting}
-                  label={option.label}
-                  aria-describedby={
-                    errors.jobSearchChallenges
-                      ? 'jobSearchChallenges-error'
-                      : undefined
-                  }
-                />
-                {parsedJobSearchChallenges.includes('other') &&
-                  option.value === 'other' &&
-                  onJobSearchChallengeOtherChange && (
-                    <div className='ml-7 mt-2'>
-                      <FormField
-                        id='jobSearchChallengeOther'
-                        type='text'
-                        placeholder='Please specify your challenge'
-                        value={jobSearchChallengeOther}
-                        onChange={(e) =>
-                          onJobSearchChallengeOtherChange(e.target.value)
-                        }
-                        error={errors.jobSearchChallengeOther}
-                        disabled={isSubmitting}
-                        icon={<div className='w-5 h-5' />}
-                        label='Other challenge'
-                        ariaDescribedBy='jobSearchChallengeOther-error'
-                      />
-                    </div>
-                  )}
-              </div>
-            ))}
-          </div>
-          {errors.jobSearchChallenges && (
-            <p
-              id='jobSearchChallenges-error'
-              className='text-destructive text-sm mt-2 flex items-start gap-2 px-1'
-              role='alert'
-              aria-live='polite'
-            >
-              <span
-                className='text-destructive font-medium text-xs mt-0.5'
-                aria-hidden='true'
-              >
-                ⚠
-              </span>
-              <span className='leading-relaxed'>
-                {errors.jobSearchChallenges}
-              </span>
-            </p>
-          )}
-        </div>
+        <>
+          <CheckboxGroup
+            name='jobSearchChallenges'
+            label='What is the biggest challenge you face in your job search?'
+            options={JOB_SEARCH_CHALLENGE_OPTIONS}
+            values={parsedJobSearchChallenges}
+            onChange={(values) => onJobSearchChallengesChange(values)}
+            error={errors.jobSearchChallenges}
+            disabled={isSubmitting}
+          />
+
+          {/* Conditional field for "other" challenge */}
+          <ConditionalField
+            condition={
+              parsedJobSearchChallenges.includes('other') &&
+              !!onJobSearchChallengeOtherChange
+            }
+          >
+            <FormField
+              id='jobSearchChallengeOther'
+              type='text'
+              placeholder='Please specify your challenge'
+              value={jobSearchChallengeOther}
+              onChange={(e) =>
+                onJobSearchChallengeOtherChange?.(e.target.value)
+              }
+              error={errors.jobSearchChallengeOther}
+              disabled={isSubmitting}
+              icon={<div className='w-5 h-5' />}
+              label='Other challenge'
+              ariaDescribedBy='jobSearchChallengeOther-error'
+            />
+          </ConditionalField>
+        </>
       )}
 
       {/* Valuable Outcomes - Candidate only */}
       {onValuableOutcomesChange && (
-        <div className='space-y-3'>
-          <h3 className='text-sm font-medium'>
-            What would be the SINGLE most valuable outcome for you from a
-            skill-validation platform?
-          </h3>
-          <div className='space-y-2'>
-            {VALUABLE_OUTCOME_OPTIONS.map((option) => (
-              <div key={option.value}>
-                <Checkbox
-                  id={`valuable-outcome-${option.value}`}
-                  checked={parsedValuableOutcomes.includes(option.value)}
-                  onChange={() => handleValuableOutcomeToggle(option.value)}
-                  disabled={isSubmitting}
-                  label={option.label}
-                  aria-describedby={
-                    errors.valuableOutcomes
-                      ? 'valuableOutcomes-error'
-                      : undefined
-                  }
-                />
-                {parsedValuableOutcomes.includes('other') &&
-                  option.value === 'other' &&
-                  onValuableOutcomeOtherChange && (
-                    <div className='ml-7 mt-2'>
-                      <FormField
-                        id='valuableOutcomeOther'
-                        type='text'
-                        placeholder='Please specify the outcome'
-                        value={valuableOutcomeOther}
-                        onChange={(e) =>
-                          onValuableOutcomeOtherChange(e.target.value)
-                        }
-                        error={errors.valuableOutcomeOther}
-                        disabled={isSubmitting}
-                        icon={<div className='w-5 h-5' />}
-                        label='Other outcome'
-                        ariaDescribedBy='valuableOutcomeOther-error'
-                      />
-                    </div>
-                  )}
-              </div>
-            ))}
-          </div>
-          {errors.valuableOutcomes && (
-            <p
-              id='valuableOutcomes-error'
-              className='text-destructive text-sm mt-2 flex items-start gap-2 px-1'
-              role='alert'
-              aria-live='polite'
-            >
-              <span
-                className='text-destructive font-medium text-xs mt-0.5'
-                aria-hidden='true'
-              >
-                ⚠
-              </span>
-              <span className='leading-relaxed'>{errors.valuableOutcomes}</span>
-            </p>
-          )}
-        </div>
+        <>
+          <CheckboxGroup
+            name='valuableOutcomes'
+            label='What would be the SINGLE most valuable outcome for you from a skill-validation platform?'
+            options={VALUABLE_OUTCOME_OPTIONS}
+            values={parsedValuableOutcomes}
+            onChange={(values) => onValuableOutcomesChange(values)}
+            error={errors.valuableOutcomes}
+            disabled={isSubmitting}
+          />
+
+          {/* Conditional field for "other" outcome */}
+          <ConditionalField
+            condition={
+              parsedValuableOutcomes.includes('other') &&
+              !!onValuableOutcomeOtherChange
+            }
+          >
+            <FormField
+              id='valuableOutcomeOther'
+              type='text'
+              placeholder='Please specify the outcome'
+              value={valuableOutcomeOther}
+              onChange={(e) => onValuableOutcomeOtherChange?.(e.target.value)}
+              error={errors.valuableOutcomeOther}
+              disabled={isSubmitting}
+              icon={<div className='w-5 h-5' />}
+              label='Other outcome'
+              ariaDescribedBy='valuableOutcomeOther-error'
+            />
+          </ConditionalField>
+        </>
       )}
     </div>
   )

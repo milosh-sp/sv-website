@@ -2,6 +2,7 @@
 
 import { MultiSelectDropdown } from '@/components/ui/MultiSelectDropdown'
 import { cn } from '@/lib/utils'
+import { FieldError } from '../ui/FieldError'
 import type { TechnicalSkillsSectionProps } from '@/types/TechnicalSkillsSection.types'
 
 export function TechnicalSkillsSection({
@@ -36,21 +37,7 @@ export function TechnicalSkillsSection({
         }
       />
 
-      {errors.technicalSkills && (
-        <p
-          className='text-destructive text-sm mt-2 flex items-start gap-2 px-1'
-          role='alert'
-          aria-live='polite'
-        >
-          <span
-            className='text-destructive font-medium text-xs mt-0.5'
-            aria-hidden='true'
-          >
-            ⚠
-          </span>
-          <span className='leading-relaxed'>{errors.technicalSkills}</span>
-        </p>
-      )}
+      <FieldError error={errors.technicalSkills} id='technicalSkills-error' />
     </div>
   )
 }

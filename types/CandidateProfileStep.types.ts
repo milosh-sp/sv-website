@@ -14,4 +14,3 @@ interface CandidateProfileStepProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export type { CandidateProfileStepProps }
-

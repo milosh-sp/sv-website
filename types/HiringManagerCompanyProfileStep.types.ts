@@ -13,4 +13,3 @@ interface HiringManagerCompanyProfileStepProps
 }
 
 export type { HiringManagerCompanyProfileStepProps }
-

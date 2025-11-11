@@ -7,14 +7,19 @@ import {
   SKILL_AREAS,
   TECHNICAL_SKILLS,
   TOTAL_FORM_STEPS,
+  SKILL_VALIDATION_OPTIONS,
+  JOB_SEARCH_CHALLENGE_OPTIONS,
+  VALUABLE_OUTCOME_OPTIONS,
 } from '@/lib/waitlistConstants'
+import { strings } from '@/lib/strings'
 import { ContactConsentSection } from './sections/ContactConsentSection'
 import { SkillAreasSection } from './sections/SkillAreasSection'
 import { TechnicalSkillsSection } from './sections/TechnicalSkillsSection'
 import { CandidateProfileStep } from './steps/CandidateProfileStep'
-import { MotivationChallengesStep } from './steps/MotivationChallengesStep'
+import { FormFieldsStep } from './steps/FormFieldsStep'
 import { WaitlistFormWrapper } from './WaitlistFormWrapper'
 import { cn } from '@/lib/utils'
+import type { FormFieldConfig } from '@/types/FormFieldsStep.types'
 
 export function CandidateWaitlistForm() {
   const context = useCandidateFormContext()
@@ -46,7 +51,6 @@ export function CandidateWaitlistForm() {
             email={form.formData.email}
             linkedIn={form.formData.linkedIn}
             github={form.formData.github}
-            privacyConsent={form.formData.privacyConsent}
             newsletterOptIn={form.formData.newsletterOptIn}
             includeLinkedIn={true}
             errors={form.errors}
@@ -56,9 +60,6 @@ export function CandidateWaitlistForm() {
               form.handleFieldChange('linkedIn', value)
             }
             onGitHubChange={(value) => form.handleFieldChange('github', value)}
-            onPrivacyConsentChange={(checked) =>
-              context.updateFormData({ privacyConsent: String(checked) })
-            }
             onNewsletterOptInChange={(checked) =>
               context.updateFormData({ newsletterOptIn: String(checked) })
             }
@@ -121,36 +122,62 @@ export function CandidateWaitlistForm() {
             }
           />
         )
-      case 4:
-        return (
-          <MotivationChallengesStep
-            skillValidationConfidence={form.formData.skillValidationConfidence}
-            jobSearchChallenges={form.formData.jobSearchChallenges}
-            jobSearchChallengeOther={form.formData.jobSearchChallengeOther}
-            valuableOutcomes={form.formData.valuableOutcomes}
-            valuableOutcomeOther={form.formData.valuableOutcomeOther}
-            errors={form.errors}
-            isSubmitting={form.isSubmitting}
-            onSkillValidationConfidenceChange={(value) =>
-              form.handleFieldChange('skillValidationConfidence', value)
-            }
-            onJobSearchChallengesChange={(values) =>
+      case 4: {
+        const fields: FormFieldConfig[] = [
+          {
+            id: 'skillValidationConfidence',
+            type: 'radio',
+            label: strings.waitlistForms.labels.skillValidationConfidence,
+            options: SKILL_VALIDATION_OPTIONS,
+            value: form.formData.skillValidationConfidence,
+            onChange: (value) =>
+              form.handleFieldChange(
+                'skillValidationConfidence',
+                value as string
+              ),
+            error: form.errors.skillValidationConfidence,
+          },
+          {
+            id: 'jobSearchChallenges',
+            type: 'checkbox',
+            label: strings.waitlistForms.labels.jobSearchChallenges,
+            options: JOB_SEARCH_CHALLENGE_OPTIONS,
+            value: form.formData.jobSearchChallenges,
+            onChange: (values) =>
               form.handleFieldChange(
                 'jobSearchChallenges',
                 JSON.stringify(values)
-              )
-            }
-            onJobSearchChallengeOtherChange={(value) =>
-              form.handleFieldChange('jobSearchChallengeOther', value)
-            }
-            onValuableOutcomesChange={(values) =>
-              form.handleFieldChange('valuableOutcomes', JSON.stringify(values))
-            }
-            onValuableOutcomeOtherChange={(value) =>
-              form.handleFieldChange('valuableOutcomeOther', value)
-            }
-          />
+              ),
+            error: form.errors.jobSearchChallenges,
+            otherFieldId: 'jobSearchChallengeOther',
+            otherValue: form.formData.jobSearchChallengeOther,
+            onOtherChange: (value) =>
+              form.handleFieldChange('jobSearchChallengeOther', value),
+            otherError: form.errors.jobSearchChallengeOther,
+          },
+          {
+            id: 'valuableOutcomes',
+            type: 'checkbox',
+            label: strings.waitlistForms.labels.valuableOutcomes,
+            options: VALUABLE_OUTCOME_OPTIONS,
+            value: form.formData.valuableOutcomes,
+            onChange: (values) =>
+              form.handleFieldChange(
+                'valuableOutcomes',
+                JSON.stringify(values)
+              ),
+            error: form.errors.valuableOutcomes,
+            otherFieldId: 'valuableOutcomeOther',
+            otherValue: form.formData.valuableOutcomeOther,
+            onOtherChange: (value) =>
+              form.handleFieldChange('valuableOutcomeOther', value),
+            otherError: form.errors.valuableOutcomeOther,
+          },
+        ]
+        return (
+          <FormFieldsStep fields={fields} isSubmitting={form.isSubmitting} />
         )
+      }
       default:
         return null
     }

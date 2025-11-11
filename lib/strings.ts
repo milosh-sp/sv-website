@@ -1252,6 +1252,77 @@ export const waitlistForms = {
     successIcon: `Success icon`,
     errorIcon: `Error icon`,
   },
+
+  // Persona-specific form field configurations
+  // These are used by the generic FormFieldsStep component
+  personaFields: {
+    // Verifier persona - Section 2: Your Motivation
+    verifierMotivation: {
+      motivations: {
+        id: 'verifierMotivations',
+        label: `Why are you interested in becoming a Verifier? [Select all that apply]`,
+        otherFieldId: 'verifierMotivationOther',
+        otherLabel: `Other motivation`,
+        otherPlaceholder: `Please specify your motivation`,
+      },
+      frustration: {
+        id: 'professionalFrustration',
+        label: `What is your biggest professional frustration?`,
+        otherFieldId: 'professionalFrustrationOther',
+        otherLabel: `Other frustration`,
+        otherPlaceholder: `Please specify your frustration`,
+      },
+    },
+
+    // Candidate persona - Section 2: Your Motivation & Challenges
+    candidateMotivationChallenges: {
+      skillValidation: {
+        id: 'skillValidationConfidence',
+        label: `How much do you agree with the following statement: "I would feel more confident in my job search if my skills were validated anonymously by senior engineers"`,
+      },
+      challenges: {
+        id: 'jobSearchChallenges',
+        label: `What is the biggest challenge you face in your job search?`,
+        otherFieldId: 'jobSearchChallengeOther',
+        otherLabel: `Other challenge`,
+        otherPlaceholder: `Please specify your challenge`,
+      },
+      outcomes: {
+        id: 'valuableOutcomes',
+        label: `What would be the SINGLE most valuable outcome for you from a skill-validation platform?`,
+        otherFieldId: 'valuableOutcomeOther',
+        otherLabel: `Other outcome`,
+        otherPlaceholder: `Please specify the outcome`,
+      },
+    },
+
+    // Hiring Manager persona - Section 3: Hiring Demand & Challenges
+    hiringManagerDemandChallenges: {
+      rolesHiring: {
+        id: 'rolesHiring',
+        label: `Which roles are you looking to hire for in the next 3 months?`,
+        description: `Select all that apply`,
+      },
+      seniorityLevel: {
+        id: 'seniorityLevel',
+        label: `What is the most critical seniority level you need to hire?`,
+      },
+      interviewHours: {
+        id: 'hiringInterviewHours',
+        label: `On average, how many hours does your team and you spend interviewing per hire?`,
+      },
+      frustrations: {
+        id: 'hiringFrustrations',
+        label: `What are your biggest frustrations with your current hiring process?`,
+        description: `Select all that apply`,
+      },
+      failures: {
+        id: 'hiringFailures',
+        label: `What hiring failures have you experienced recently?`,
+        description: `Select all that apply`,
+      },
+    },
+  },
 } as const
 
 // ============================================================================

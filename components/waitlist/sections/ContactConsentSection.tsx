@@ -14,7 +14,6 @@ export function ContactConsentSection({
   email,
   linkedIn = '',
   github = '',
-  privacyConsent,
   newsletterOptIn,
   includeLinkedIn,
   includeGitHub = true,
@@ -23,16 +22,10 @@ export function ContactConsentSection({
   onEmailChange,
   onLinkedInChange,
   onGitHubChange,
-  onPrivacyConsentChange,
   onNewsletterOptInChange,
   className,
   ...props
 }: ContactConsentSectionProps) {
-  // Convert string booleans to actual booleans
-  const privacyConsentBool =
-    typeof privacyConsent === 'string'
-      ? privacyConsent === 'true'
-      : privacyConsent
   const newsletterOptInBool =
     typeof newsletterOptIn === 'string'
       ? newsletterOptIn === 'true'
@@ -85,18 +78,6 @@ export function ContactConsentSection({
           ariaDescribedBy='github-error'
         />
       )}
-
-      {/* Privacy Policy Consent - Required */}
-      <Checkbox
-        id='privacyConsent'
-        label={strings.waitlistForms.labels.privacyConsent}
-        checked={privacyConsentBool}
-        onChange={(e) => onPrivacyConsentChange(e.target.checked)}
-        error={errors.privacyConsent}
-        disabled={isSubmitting}
-        required
-        aria-required={true}
-      />
 
       {/* Newsletter Opt-in - Optional */}
       <Checkbox

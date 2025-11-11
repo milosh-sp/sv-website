@@ -5,7 +5,6 @@ interface ContactConsentSectionProps
   email: string
   linkedIn?: string
   github?: string
-  privacyConsent: string | boolean // Accept both for compatibility
   newsletterOptIn: string | boolean // Accept both for compatibility
   includeLinkedIn: boolean
   includeGitHub?: boolean
@@ -14,7 +13,6 @@ interface ContactConsentSectionProps
   onEmailChange: (value: string) => void
   onLinkedInChange?: (value: string) => void
   onGitHubChange?: (value: string) => void
-  onPrivacyConsentChange: (checked: boolean) => void
   onNewsletterOptInChange: (checked: boolean) => void
 }
 

@@ -1,27 +1,6 @@
-/**
- * FormStep - Reusable Base Step Component
- * Provides consistent step wrapper for all waitlist form steps
- * Handles: title, description, error display, loading states
- *
- * Usage:
- * <FormStep
- *   stepNumber={1}
- *   title="Contact & Consent"
- *   description="Let us know how to reach you"
- *   errors={errors}
- *   isSubmitting={isSubmitting}
- * >
- *   {children}
- * </FormStep>
- */
-
 import type { ReactNode } from 'react'
 import type { WaitlistStepProps } from '@/types/WaitlistStep.types'
 
-/**
- * Base step component for waitlist forms
- * Eliminates repetitive step wrapper code across all step components
- */
 export function FormStep({
   title,
   description,

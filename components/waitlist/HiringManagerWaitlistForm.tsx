@@ -3,11 +3,20 @@
 import { useHiringManagerFormContext } from '@/contexts/HiringManagerFormContext'
 import { useHiringManagerForm } from '@/hooks/useHiringManagerForm'
 import { validateHiringManagerStep } from '@/lib/WaitlistValidation'
-import { TOTAL_FORM_STEPS } from '@/lib/waitlistConstants'
+import {
+  TOTAL_FORM_STEPS,
+  ROLES_HIRING_OPTIONS,
+  SENIORITY_LEVEL_OPTIONS,
+  INTERVIEW_HOURS_OPTIONS,
+  HIRING_FRUSTRATIONS_OPTIONS,
+  HIRING_FAILURES_OPTIONS,
+} from '@/lib/waitlistConstants'
+import { strings } from '@/lib/strings'
 import { ContactConsentSection } from './sections/ContactConsentSection'
 import { HiringManagerCompanyProfileStep } from './steps/HiringManagerCompanyProfileStep'
-import { HiringDemandChallengesStep } from './steps/HiringDemandChallengesStep'
+import { FormFieldsStep } from './steps/FormFieldsStep'
 import { WaitlistFormWrapper } from './WaitlistFormWrapper'
+import type { FormFieldConfig } from '@/types/FormFieldsStep.types'
 
 export function HiringManagerWaitlistForm() {
   const context = useHiringManagerFormContext()
@@ -37,16 +46,12 @@ export function HiringManagerWaitlistForm() {
         return (
           <ContactConsentSection
             email={form.formData.email}
-            privacyConsent={form.formData.privacyConsent}
             newsletterOptIn={form.formData.newsletterOptIn}
             includeLinkedIn={false}
             includeGitHub={false}
             errors={form.errors}
             isSubmitting={form.isSubmitting}
             onEmailChange={(value) => form.handleFieldChange('email', value)}
-            onPrivacyConsentChange={(checked) =>
-              context.updateFormData({ privacyConsent: String(checked) })
-            }
             onNewsletterOptInChange={(checked) =>
               context.updateFormData({ newsletterOptIn: String(checked) })
             }
@@ -71,36 +76,69 @@ export function HiringManagerWaitlistForm() {
             }
           />
         )
-      case 3:
-        return (
-          <HiringDemandChallengesStep
-            rolesHiring={form.formData.rolesHiring}
-            seniorityLevel={form.formData.seniorityLevel}
-            hiringInterviewHours={form.formData.hiringInterviewHours}
-            hiringFrustrations={form.formData.hiringFrustrations}
-            hiringFailures={form.formData.hiringFailures}
-            errors={form.errors}
-            isSubmitting={form.isSubmitting}
-            onRolesHiringChange={(values) =>
-              form.handleFieldChange('rolesHiring', JSON.stringify(values))
-            }
-            onSeniorityLevelChange={(value) =>
-              form.handleFieldChange('seniorityLevel', value)
-            }
-            onHiringInterviewHoursChange={(value) =>
-              form.handleFieldChange('hiringInterviewHours', value)
-            }
-            onHiringFrustrationsChange={(values) =>
+      case 3: {
+        const fields: FormFieldConfig[] = [
+          {
+            id: 'rolesHiring',
+            type: 'checkbox',
+            label: strings.waitlistForms.labels.rolesHiring,
+            description: 'Select all that apply',
+            options: ROLES_HIRING_OPTIONS,
+            value: form.formData.rolesHiring,
+            onChange: (values) =>
+              form.handleFieldChange('rolesHiring', JSON.stringify(values)),
+            error: form.errors.rolesHiring,
+          },
+          {
+            id: 'seniorityLevel',
+            type: 'radio',
+            label: strings.waitlistForms.labels.seniorityLevel,
+            options: SENIORITY_LEVEL_OPTIONS,
+            value: form.formData.seniorityLevel,
+            onChange: (value) =>
+              form.handleFieldChange('seniorityLevel', value as string),
+            error: form.errors.seniorityLevel,
+          },
+          {
+            id: 'hiringInterviewHours',
+            type: 'radio',
+            label: strings.waitlistForms.labels.hiringInterviewHours,
+            options: INTERVIEW_HOURS_OPTIONS,
+            value: form.formData.hiringInterviewHours,
+            onChange: (value) =>
+              form.handleFieldChange('hiringInterviewHours', value as string),
+            error: form.errors.hiringInterviewHours,
+          },
+          {
+            id: 'hiringFrustrations',
+            type: 'checkbox',
+            label: strings.waitlistForms.labels.hiringFrustrations,
+            description: 'Select all that apply',
+            options: HIRING_FRUSTRATIONS_OPTIONS,
+            value: form.formData.hiringFrustrations,
+            onChange: (values) =>
               form.handleFieldChange(
                 'hiringFrustrations',
                 JSON.stringify(values)
-              )
-            }
-            onHiringFailuresChange={(values) =>
-              form.handleFieldChange('hiringFailures', JSON.stringify(values))
-            }
-          />
+              ),
+            error: form.errors.hiringFrustrations,
+          },
+          {
+            id: 'hiringFailures',
+            type: 'checkbox',
+            label: strings.waitlistForms.labels.hiringFailures,
+            description: 'Select all that apply',
+            options: HIRING_FAILURES_OPTIONS,
+            value: form.formData.hiringFailures,
+            onChange: (values) =>
+              form.handleFieldChange('hiringFailures', JSON.stringify(values)),
+            error: form.errors.hiringFailures,
+          },
+        ]
+        return (
+          <FormFieldsStep fields={fields} isSubmitting={form.isSubmitting} />
         )
+      }
       case 4:
         return null
       default:

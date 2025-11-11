@@ -7,14 +7,18 @@ import {
   SKILL_AREAS,
   TECHNICAL_SKILLS,
   TOTAL_FORM_STEPS,
+  VERIFIER_MOTIVATION_OPTIONS,
+  PROFESSIONAL_FRUSTRATION_OPTIONS,
 } from '@/lib/waitlistConstants'
+import { strings } from '@/lib/strings'
 import { ContactConsentSection } from './sections/ContactConsentSection'
 import { SkillAreasSection } from './sections/SkillAreasSection'
 import { TechnicalSkillsSection } from './sections/TechnicalSkillsSection'
 import { VerifierProfileStep } from './steps/VerifierProfileStep'
-import { VerifierMotivationStep } from './steps/VerifierMotivationStep'
+import { FormFieldsStep } from './steps/FormFieldsStep'
 import { WaitlistFormWrapper } from './WaitlistFormWrapper'
 import { cn } from '@/lib/utils'
+import type { FormFieldConfig } from '@/types/FormFieldsStep.types'
 
 export function VerifierWaitlistForm() {
   const context = useVerifierFormContext()
@@ -46,7 +50,6 @@ export function VerifierWaitlistForm() {
             email={form.formData.email}
             linkedIn={form.formData.linkedIn}
             github={form.formData.github}
-            privacyConsent={form.formData.privacyConsent}
             newsletterOptIn={form.formData.newsletterOptIn}
             includeLinkedIn={true}
             errors={form.errors}
@@ -56,9 +59,6 @@ export function VerifierWaitlistForm() {
               form.handleFieldChange('linkedIn', value)
             }
             onGitHubChange={(value) => form.handleFieldChange('github', value)}
-            onPrivacyConsentChange={(checked) =>
-              context.updateFormData({ privacyConsent: String(checked) })
-            }
             onNewsletterOptInChange={(checked) =>
               context.updateFormData({ newsletterOptIn: String(checked) })
             }
@@ -125,34 +125,49 @@ export function VerifierWaitlistForm() {
             }
           />
         )
-      case 4:
-        return (
-          <VerifierMotivationStep
-            verifierMotivations={form.formData.verifierMotivations}
-            verifierMotivationOther={form.formData.verifierMotivationOther}
-            professionalFrustration={form.formData.professionalFrustration}
-            professionalFrustrationOther={
-              form.formData.professionalFrustrationOther
-            }
-            errors={form.errors}
-            isSubmitting={form.isSubmitting}
-            onVerifierMotivationsChange={(values) =>
+      case 4: {
+        const fields: FormFieldConfig[] = [
+          {
+            id: 'verifierMotivations',
+            type: 'checkbox',
+            label: strings.waitlistForms.labels.verifierMotivations,
+            options: VERIFIER_MOTIVATION_OPTIONS,
+            value: form.formData.verifierMotivations,
+            onChange: (values) =>
               form.handleFieldChange(
                 'verifierMotivations',
                 JSON.stringify(values)
-              )
-            }
-            onVerifierMotivationOtherChange={(value) =>
-              form.handleFieldChange('verifierMotivationOther', value)
-            }
-            onProfessionalFrustrationChange={(value) =>
-              form.handleFieldChange('professionalFrustration', value)
-            }
-            onProfessionalFrustrationOtherChange={(value) =>
-              form.handleFieldChange('professionalFrustrationOther', value)
-            }
-          />
+              ),
+            error: form.errors.verifierMotivations,
+            otherFieldId: 'verifierMotivationOther',
+            otherValue: form.formData.verifierMotivationOther,
+            onOtherChange: (value) =>
+              form.handleFieldChange('verifierMotivationOther', value),
+            otherError: form.errors.verifierMotivationOther,
+          },
+          {
+            id: 'professionalFrustration',
+            type: 'radio',
+            label: strings.waitlistForms.labels.professionalFrustration,
+            options: PROFESSIONAL_FRUSTRATION_OPTIONS,
+            value: form.formData.professionalFrustration,
+            onChange: (value) =>
+              form.handleFieldChange(
+                'professionalFrustration',
+                value as string
+              ),
+            error: form.errors.professionalFrustration,
+            otherFieldId: 'professionalFrustrationOther',
+            otherValue: form.formData.professionalFrustrationOther,
+            onOtherChange: (value) =>
+              form.handleFieldChange('professionalFrustrationOther', value),
+            otherError: form.errors.professionalFrustrationOther,
+          },
+        ]
+        return (
+          <FormFieldsStep fields={fields} isSubmitting={form.isSubmitting} />
         )
+      }
       default:
         return null
     }

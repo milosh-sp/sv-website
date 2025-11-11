@@ -5,9 +5,8 @@
  */
 
 export interface HiringManagerFormData extends Record<string, string> {
-  // Step 1: Contact & Consent (NO LinkedIn required)
+  // Step 1: Contact & Consent (NO LinkedIn or GitHub required)
   email: string
-  github: string
   privacyConsent: string // Stored as 'true' or 'false'
   newsletterOptIn: string // Stored as 'true' or 'false'
 
@@ -62,7 +61,6 @@ export const HIRING_MANAGER_FORM_STEPS: HiringManagerFormStep[] = [
 
 export const INITIAL_HIRING_MANAGER_FORM_DATA: HiringManagerFormData = {
   email: '',
-  github: '',
   privacyConsent: 'false',
   newsletterOptIn: 'false',
   managerRole: '',

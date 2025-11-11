@@ -249,17 +249,10 @@ export function validateHiringManagerForm(
 ): ValidationErrors {
   const errors: Record<string, string> = {}
 
-  // Step 1: Contact & Consent (NO LinkedIn)
+  // Step 1: Contact & Consent (NO LinkedIn or GitHub)
   const emailValidation = validateEmail(data.email)
   if (!emailValidation.isValid) {
     errors.email = emailValidation.message || 'Invalid email'
-  }
-
-  if (data.github) {
-    const githubValidation = validateGitHub(data.github)
-    if (!githubValidation.isValid) {
-      errors.github = githubValidation.message || 'Invalid GitHub URL'
-    }
   }
 
   if (!data.privacyConsent) {

@@ -10,15 +10,16 @@ import type { HTMLAttributes } from 'react'
 interface ContactConsentSectionProps extends HTMLAttributes<HTMLDivElement> {
   email: string
   linkedIn?: string
-  github: string
+  github?: string
   privacyConsent: string | boolean // Accept both for compatibility
   newsletterOptIn: string | boolean // Accept both for compatibility
   includeLinkedIn: boolean
+  includeGitHub?: boolean
   errors: Record<string, string>
   isSubmitting: boolean
   onEmailChange: (value: string) => void
   onLinkedInChange?: (value: string) => void
-  onGitHubChange: (value: string) => void
+  onGitHubChange?: (value: string) => void
   onPrivacyConsentChange: (checked: boolean) => void
   onNewsletterOptInChange: (checked: boolean) => void
 }
@@ -26,10 +27,11 @@ interface ContactConsentSectionProps extends HTMLAttributes<HTMLDivElement> {
 export function ContactConsentSection({
   email,
   linkedIn = '',
-  github,
+  github = '',
   privacyConsent,
   newsletterOptIn,
   includeLinkedIn,
+  includeGitHub = true,
   errors,
   isSubmitting,
   onEmailChange,
@@ -82,19 +84,21 @@ export function ContactConsentSection({
         />
       )}
 
-      {/* GitHub Field - Optional */}
-      <FormField
-        id='github'
-        type='url'
-        placeholder='https://github.com/yourprofile (optional)'
-        value={github}
-        onChange={(e) => onGitHubChange(e.target.value)}
-        error={errors.github}
-        disabled={isSubmitting}
-        icon={<Github className='w-5 h-5' />}
-        label='GitHub/GitLab Profile URL'
-        ariaDescribedBy='github-error'
-      />
+      {/* GitHub Field - Conditional */}
+      {includeGitHub && (
+        <FormField
+          id='github'
+          type='url'
+          placeholder='https://github.com/yourprofile (optional)'
+          value={github}
+          onChange={(e) => onGitHubChange?.(e.target.value)}
+          error={errors.github}
+          disabled={isSubmitting}
+          icon={<Github className='w-5 h-5' />}
+          label='GitHub/GitLab Profile URL'
+          ariaDescribedBy='github-error'
+        />
+      )}
 
       {/* Privacy Policy Consent - Required */}
       <Checkbox

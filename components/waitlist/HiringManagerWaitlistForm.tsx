@@ -37,14 +37,13 @@ export function HiringManagerWaitlistForm() {
         return (
           <ContactConsentSection
             email={form.formData.email}
-            github={form.formData.github}
             privacyConsent={form.formData.privacyConsent}
             newsletterOptIn={form.formData.newsletterOptIn}
             includeLinkedIn={false}
+            includeGitHub={false}
             errors={form.errors}
             isSubmitting={form.isSubmitting}
             onEmailChange={(value) => form.handleFieldChange('email', value)}
-            onGitHubChange={(value) => form.handleFieldChange('github', value)}
             onPrivacyConsentChange={(checked) =>
               context.updateFormData({ privacyConsent: String(checked) })
             }

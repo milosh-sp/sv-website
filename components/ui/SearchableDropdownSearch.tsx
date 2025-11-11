@@ -1,18 +1,16 @@
 import { Search } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import type { SearchableDropdownSearchProps } from '@/types/SearchableDropdownSearch.types'
+import { Input } from './Input'
 
 const SIZE_STYLES = {
   sm: {
-    input: 'h-8 text-sm px-3',
     icon: 'h-4 w-4',
   },
   default: {
-    input: 'h-9 text-base px-3 md:text-sm',
     icon: 'h-4 w-4',
   },
   lg: {
-    input: 'h-10 text-base px-4',
     icon: 'h-5 w-5',
   },
 } as const
@@ -35,11 +33,11 @@ export function SearchableDropdownSearch({
         <Search
           className={cn(
             sizeStyles.icon,
-            'absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground'
+            'absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none'
           )}
           aria-hidden='true'
         />
-        <input
+        <Input
           ref={searchInputRef}
           id={searchInputId}
           type='text'
@@ -49,12 +47,7 @@ export function SearchableDropdownSearch({
           placeholder={searchPlaceholder}
           aria-label='Search options'
           aria-controls={listboxId}
-          className={cn(
-            'w-full rounded-md border border-input bg-background pl-9 pr-3 outline-none',
-            'focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]',
-            'placeholder:text-muted-foreground',
-            sizeStyles.input
-          )}
+          className='pl-9'
         />
       </div>
     </div>

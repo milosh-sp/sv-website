@@ -115,13 +115,18 @@ export function HiringManagerWaitlistForm() {
       noValidate
     >
       {/* Progress indicator */}
-      <div className='flex justify-between items-center mb-8'>
+      <div className='flex justify-between items-center mb-8 gap-2'>
         {[1, 2, 3, 4].map((step) => (
-          <div
+          <button
             key={step}
-            className={`flex-1 h-1 mx-1 rounded-full ${
+            type='button'
+            onClick={() => context.goToStep(step)}
+            disabled={form.isSubmitting}
+            className={`flex-1 h-1 rounded-full transition-colors cursor-pointer disabled:cursor-not-allowed ${
               step <= context.currentStep ? 'bg-blue-600' : 'bg-gray-200'
-            }`}
+            } hover:opacity-80`}
+            aria-label={`Go to step ${step}`}
+            aria-current={step === context.currentStep ? 'step' : undefined}
           />
         ))}
       </div>

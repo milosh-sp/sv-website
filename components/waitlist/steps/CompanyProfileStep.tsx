@@ -3,27 +3,7 @@
 import { Building2, Globe, Users } from 'lucide-react'
 import { FormField } from '@/components/ui/FormField'
 import { cn } from '@/lib/utils'
-import type { HTMLAttributes } from 'react'
-
-interface CompanySize {
-  id: string
-  label: string
-}
-
-interface CompanyProfileStepProps extends HTMLAttributes<HTMLDivElement> {
-  companyName: string
-  companySize: string
-  industry: string
-  companyWebsite: string
-  companySizes: CompanySize[]
-  industries: string[]
-  errors: Record<string, string>
-  isSubmitting: boolean
-  onCompanyNameChange: (value: string) => void
-  onCompanySizeChange: (value: string) => void
-  onIndustryChange: (value: string) => void
-  onCompanyWebsiteChange: (value: string) => void
-}
+import type { CompanyProfileStepProps } from '@/types/CompanyProfileStep.types'
 
 export function CompanyProfileStep({
   companyName,

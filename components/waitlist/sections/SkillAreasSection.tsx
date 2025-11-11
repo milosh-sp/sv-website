@@ -2,21 +2,7 @@
 
 import { Checkbox } from '@/components/ui/Checkbox'
 import { cn } from '@/lib/utils'
-import type { HTMLAttributes } from 'react'
-
-interface SkillArea {
-  id: string
-  label: string
-  description?: string
-}
-
-interface SkillAreasSectionProps extends HTMLAttributes<HTMLDivElement> {
-  selectedSkillAreas: string[]
-  skillAreas: SkillArea[]
-  errors: Record<string, string>
-  isSubmitting: boolean
-  onSkillAreaChange: (skillAreaId: string, checked: boolean) => void
-}
+import type { SkillAreasSectionProps } from '@/types/SkillAreasSection.types'
 
 export function SkillAreasSection({
   selectedSkillAreas,

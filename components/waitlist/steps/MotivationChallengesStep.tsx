@@ -1,33 +1,10 @@
 'use client'
 
-import type { HTMLAttributes } from 'react'
 import { FormField } from '@/components/ui/FormField'
 import { RadioButton } from '@/components/ui/RadioButton'
 import { Checkbox } from '@/components/ui/Checkbox'
 import { cn } from '@/lib/utils'
-
-interface MotivationChallengesStepProps extends HTMLAttributes<HTMLDivElement> {
-  // Candidate-specific fields
-  skillValidationConfidence?: string
-  jobSearchChallenges?: string // JSON stringified array
-  jobSearchChallengeOther?: string
-  valuableOutcomes?: string // JSON stringified array
-  valuableOutcomeOther?: string
-  // Verifier-specific fields (legacy)
-  motivation?: string
-  challenges?: string
-  // Common
-  errors: Record<string, string>
-  isSubmitting: boolean
-  onSkillValidationConfidenceChange?: (value: string) => void
-  onJobSearchChallengesChange?: (values: string[]) => void
-  onJobSearchChallengeOtherChange?: (value: string) => void
-  onValuableOutcomesChange?: (values: string[]) => void
-  onValuableOutcomeOtherChange?: (value: string) => void
-  // Verifier-specific handlers (legacy)
-  onMotivationChange?: (value: string) => void
-  onChallengesChange?: (value: string) => void
-}
+import type { MotivationChallengesStepProps } from '@/types/MotivationChallengesStep.types'
 
 const SKILL_VALIDATION_OPTIONS = [
   { value: 'strongly-agree', label: 'Strongly Agree' },

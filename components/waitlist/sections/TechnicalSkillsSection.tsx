@@ -2,20 +2,7 @@
 
 import { MultiSelectDropdown } from '@/components/ui/MultiSelectDropdown'
 import { cn } from '@/lib/utils'
-import type { HTMLAttributes } from 'react'
-
-interface TechnicalSkill {
-  id: string
-  label: string
-}
-
-interface TechnicalSkillsSectionProps extends HTMLAttributes<HTMLDivElement> {
-  selectedSkills: string[]
-  technicalSkills: TechnicalSkill[]
-  errors: Record<string, string>
-  isSubmitting: boolean
-  onSkillsChange: (skills: readonly string[]) => void
-}
+import type { TechnicalSkillsSectionProps } from '@/types/TechnicalSkillsSection.types'
 
 export function TechnicalSkillsSection({
   selectedSkills,

@@ -2,7 +2,7 @@
 
 import { RadioButton } from '@/components/ui/RadioButton'
 import { cn } from '@/lib/utils'
-import type { HTMLAttributes } from 'react'
+import type { HiringManagerCompanyProfileStepProps } from '@/types/HiringManagerCompanyProfileStep.types'
 
 const MANAGER_ROLE_OPTIONS = [
   { value: 'cto-vp', label: 'CTO / VP Engineering' },
@@ -27,18 +27,6 @@ const TEAM_SIZE_OPTIONS = [
   { value: '16-30', label: '16-30' },
   { value: '30+', label: '30+' },
 ]
-
-interface HiringManagerCompanyProfileStepProps
-  extends HTMLAttributes<HTMLDivElement> {
-  managerRole: string
-  fundingStage: string
-  engineeringTeamSize: string
-  errors: Record<string, string>
-  isSubmitting: boolean
-  onManagerRoleChange: (value: string) => void
-  onFundingStagChange: (value: string) => void
-  onEngineeringTeamSizeChange: (value: string) => void
-}
 
 export function HiringManagerCompanyProfileStep({
   managerRole,

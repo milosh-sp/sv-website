@@ -3,11 +3,7 @@
 import Link from 'next/link'
 import { CheckCircle } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import type { HTMLAttributes } from 'react'
-
-interface SuccessScreenProps extends HTMLAttributes<HTMLDivElement> {
-  personaType: 'candidate' | 'verifier' | 'hiring-manager'
-}
+import type { SuccessScreenProps } from '@/types/SuccessScreen.types'
 
 const PERSONA_MESSAGES = {
   candidate: {

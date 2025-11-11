@@ -3,7 +3,7 @@
 import { Checkbox } from '@/components/ui/Checkbox'
 import { RadioButton } from '@/components/ui/RadioButton'
 import { cn } from '@/lib/utils'
-import type { HTMLAttributes } from 'react'
+import type { HiringDemandChallengesStepProps } from '@/types/HiringDemandChallengesStep.types'
 
 const ROLES_HIRING_OPTIONS = [
   { value: 'fullstack', label: 'Full-stack engineer' },
@@ -80,22 +80,6 @@ const HIRING_FAILURES_OPTIONS = [
   },
   { value: 'other', label: 'Other:' },
 ]
-
-interface HiringDemandChallengesStepProps
-  extends HTMLAttributes<HTMLDivElement> {
-  rolesHiring: string // JSON stringified array
-  seniorityLevel: string
-  hiringInterviewHours: string
-  hiringFrustrations: string // JSON stringified array
-  hiringFailures: string // JSON stringified array
-  errors: Record<string, string>
-  isSubmitting: boolean
-  onRolesHiringChange: (values: string[]) => void
-  onSeniorityLevelChange: (value: string) => void
-  onHiringInterviewHoursChange: (value: string) => void
-  onHiringFrustrationsChange: (values: string[]) => void
-  onHiringFailuresChange: (values: string[]) => void
-}
 
 export function HiringDemandChallengesStep({
   rolesHiring,

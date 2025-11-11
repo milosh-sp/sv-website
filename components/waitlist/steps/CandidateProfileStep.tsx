@@ -1,23 +1,10 @@
 'use client'
 
-import type { HTMLAttributes } from 'react'
 import { Code2, Users } from 'lucide-react'
 import { FormField } from '@/components/ui/FormField'
 import { RadioButton } from '@/components/ui/RadioButton'
 import { cn } from '@/lib/utils'
-
-interface CandidateProfileStepProps extends HTMLAttributes<HTMLDivElement> {
-  professionalStatus: string
-  techCommunityMembership: string
-  techCommunityDetails: string
-  githubGitlabUrl: string
-  errors: Record<string, string>
-  isSubmitting: boolean
-  onProfessionalStatusChange: (value: string) => void
-  onTechCommunityMembershipChange: (value: string) => void
-  onTechCommunityDetailsChange: (value: string) => void
-  onGithubGitlabUrlChange: (value: string) => void
-}
+import type { CandidateProfileStepProps } from '@/types/CandidateProfileStep.types'
 
 const PROFESSIONAL_STATUS_OPTIONS = [
   { value: 'student', label: 'Student' },

@@ -43,25 +43,24 @@ export function validateContactConsentStep(data: {
     errors.email = emailValidation.message || 'Invalid email'
   }
 
-  // LinkedIn validation (if provided)
-  if (data.linkedIn) {
+  // LinkedIn validation (required)
+  if (!data.linkedIn || data.linkedIn.trim() === '') {
+    errors.linkedIn = 'LinkedIn profile URL is required'
+  } else {
     const linkedInValidation = validateLinkedIn(data.linkedIn)
     if (!linkedInValidation.isValid) {
       errors.linkedIn = linkedInValidation.message || 'Invalid LinkedIn URL'
     }
   }
 
-  // GitHub validation (if provided)
-  if (data.github) {
+  // GitHub validation (required)
+  if (!data.github || data.github.trim() === '') {
+    errors.github = 'GitHub profile URL is required'
+  } else {
     const githubValidation = validateGitHub(data.github)
     if (!githubValidation.isValid) {
       errors.github = githubValidation.message || 'Invalid GitHub URL'
     }
-  }
-
-  // Privacy consent validation
-  if (!data.privacyConsent || data.privacyConsent === 'false') {
-    errors.privacyConsent = 'You must agree to the privacy policy'
   }
 
   return {

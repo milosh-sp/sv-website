@@ -53,7 +53,7 @@ export function HiringManagerWaitlistForm() {
             isSubmitting={form.isSubmitting}
             onEmailChange={(value) => form.handleFieldChange('email', value)}
             onNewsletterOptInChange={(checked) =>
-              context.updateFormData({ newsletterOptIn: String(checked) })
+              form.handleFieldChange('newsletterOptIn', String(checked))
             }
           />
         )

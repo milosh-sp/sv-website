@@ -75,14 +75,17 @@ export function WaitlistFormWrapper({
         currentStep={currentStep}
         totalSteps={totalSteps}
         onStepClick={(step) => {
-          const canClickStep = step <= currentStep && isCurrentStepValid
+          // Allow navigation to previous steps or current step
+          // Only require validation for forward navigation
+          const canClickStep =
+            step < currentStep || (step === currentStep && isCurrentStepValid)
           if (canClickStep) {
             onStepClick(step)
           }
         }}
         isSubmitting={isSubmitting}
         isStepClickable={(step: number) =>
-          step <= currentStep && isCurrentStepValid
+          step < currentStep || (step === currentStep && isCurrentStepValid)
         }
       />
 

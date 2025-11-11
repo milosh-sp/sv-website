@@ -60,7 +60,7 @@ export function VerifierWaitlistForm() {
             }
             onGitHubChange={(value) => form.handleFieldChange('github', value)}
             onNewsletterOptInChange={(checked) =>
-              context.updateFormData({ newsletterOptIn: String(checked) })
+              form.handleFieldChange('newsletterOptIn', String(checked))
             }
           />
         )

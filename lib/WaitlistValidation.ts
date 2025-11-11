@@ -92,7 +92,7 @@ export function validateCandidateStep(
 
       Object.assign(
         errors,
-        validateUrlField(data.githubGitlabUrl, 'githubGitlabUrl', true)
+        validateUrlField(data.githubGitlabUrl, 'githubGitlabUrl', false)
       )
       break
     }
@@ -192,7 +192,7 @@ export function validateVerifierStep(
       )
       Object.assign(
         errors,
-        validateUrlField(data.githubGitlabUrl, 'githubGitlabUrl', true)
+        validateUrlField(data.githubGitlabUrl, 'githubGitlabUrl', false)
       )
       break
     }
@@ -351,10 +351,6 @@ export function validateCandidateForm(
     }
   }
 
-  if (!data.privacyConsent) {
-    errors.privacyConsent = 'You must agree to the privacy policy'
-  }
-
   // Step 2: Skills Profile
   if (!data.skillAreas || data.skillAreas.length === 0) {
     errors.skillAreas = 'Please select at least one skill area'
@@ -468,10 +464,6 @@ export function validateVerifierForm(data: VerifierFormData): ValidationErrors {
     }
   }
 
-  if (!data.privacyConsent) {
-    errors.privacyConsent = 'You must agree to the privacy policy'
-  }
-
   // Step 2: Skills Profile
   if (!data.skillAreas || data.skillAreas.length === 0) {
     errors.skillAreas = 'Please select at least one skill area'
@@ -560,10 +552,6 @@ export function validateHiringManagerForm(
   const emailValidation = validateEmail(data.email)
   if (!emailValidation.isValid) {
     errors.email = emailValidation.message || 'Invalid email'
-  }
-
-  if (!data.privacyConsent) {
-    errors.privacyConsent = 'You must agree to the privacy policy'
   }
 
   // Step 2: Company Profile

@@ -70,7 +70,7 @@ export function HiringManagerFormProvider({
   }
 
   const nextStep = () => {
-    setCurrentStep((prev) => Math.min(prev + 1, 3))
+    setCurrentStep((prev) => Math.min(prev + 1, 4))
   }
 
   const previousStep = () => {

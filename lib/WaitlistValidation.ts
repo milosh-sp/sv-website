@@ -267,40 +267,53 @@ export function validateHiringManagerForm(
   }
 
   // Step 2: Company Profile
-  if (!data.companyName || data.companyName.trim() === '') {
-    errors.companyName = 'Company name is required'
+  if (!data.managerRole || data.managerRole.trim() === '') {
+    errors.managerRole = 'Please select your role'
   }
 
-  if (!data.companySize || data.companySize.trim() === '') {
-    errors.companySize = 'Company size is required'
+  if (!data.fundingStage || data.fundingStage.trim() === '') {
+    errors.fundingStage = 'Please select your funding stage'
   }
 
-  if (!data.industry || data.industry.trim() === '') {
-    errors.industry = 'Industry is required'
+  if (!data.engineeringTeamSize || data.engineeringTeamSize.trim() === '') {
+    errors.engineeringTeamSize = 'Please select your engineering team size'
   }
 
-  if (data.companyWebsite) {
-    const websiteValidation = validateUrl(
-      data.companyWebsite,
-      'Company website'
-    )
-    if (!websiteValidation.isValid) {
-      errors.companyWebsite =
-        websiteValidation.message || 'Invalid company website URL'
+  // Step 3: Hiring Demand
+  try {
+    const rolesHiring = JSON.parse(data.rolesHiring)
+    if (!Array.isArray(rolesHiring) || rolesHiring.length === 0) {
+      errors.rolesHiring = 'Please select at least one role'
     }
+  } catch {
+    errors.rolesHiring = 'Please select at least one role'
   }
 
-  // Step 3: Hiring Demand & Challenges
-  if (!data.hiringDemand || data.hiringDemand.trim() === '') {
-    errors.hiringDemand = 'Please describe your hiring demand'
+  if (!data.seniorityLevel || data.seniorityLevel.trim() === '') {
+    errors.seniorityLevel = 'Please select a seniority level'
   }
 
-  if (!data.skillsNeeded || data.skillsNeeded.length === 0) {
-    errors.skillsNeeded = 'Please select at least one skill needed'
+  if (!data.hiringInterviewHours || data.hiringInterviewHours.trim() === '') {
+    errors.hiringInterviewHours = 'Please select interview hours'
   }
 
-  if (!data.challenges || data.challenges.trim() === '') {
-    errors.challenges = 'Please share your challenges'
+  // Step 4: Hiring Challenges
+  try {
+    const frustrations = JSON.parse(data.hiringFrustrations)
+    if (!Array.isArray(frustrations) || frustrations.length === 0) {
+      errors.hiringFrustrations = 'Please select at least one frustration'
+    }
+  } catch {
+    errors.hiringFrustrations = 'Please select at least one frustration'
+  }
+
+  try {
+    const failures = JSON.parse(data.hiringFailures)
+    if (!Array.isArray(failures) || failures.length === 0) {
+      errors.hiringFailures = 'Please select at least one failure'
+    }
+  } catch {
+    errors.hiringFailures = 'Please select at least one failure'
   }
 
   return {

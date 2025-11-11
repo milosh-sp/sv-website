@@ -1,6 +1,6 @@
 'use client'
 
-import { AlertCircle, Briefcase, Target } from 'lucide-react'
+import { AlertCircle, Target } from 'lucide-react'
 import { SkillAreasSection } from '@/components/waitlist/sections/SkillAreasSection'
 import { TextAreaField } from '@/components/ui/TextAreaField'
 import { cn } from '@/lib/utils'

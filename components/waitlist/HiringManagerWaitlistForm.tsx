@@ -3,38 +3,11 @@
 import { useHiringManagerFormContext } from '@/contexts/HiringManagerFormContext'
 import { useHiringManagerForm } from '@/hooks/useHiringManagerForm'
 import { ContactConsentSection } from './sections/ContactConsentSection'
-import { CompanyProfileStep } from './steps/CompanyProfileStep'
-import { HiringDemandStep } from './steps/HiringDemandStep'
+import { HiringManagerCompanyProfileStep } from './steps/HiringManagerCompanyProfileStep'
+import { HiringDemandChallengesStep } from './steps/HiringDemandChallengesStep'
 import { SubmitButton } from '@/components/ui/SubmitButton'
 import { StatusMessage } from '@/components/ui/StatusMessage'
 import { HoneypotField } from '@/components/ui/HoneypotField'
-
-// Mock data - replace with actual data from lib/strings.ts
-const COMPANY_SIZES = [
-  { id: '1-10', label: '1-10 employees' },
-  { id: '11-50', label: '11-50 employees' },
-  { id: '51-200', label: '51-200 employees' },
-  { id: '201-500', label: '201-500 employees' },
-  { id: '500+', label: '500+ employees' },
-]
-
-const INDUSTRIES = [
-  'Technology',
-  'Finance',
-  'Healthcare',
-  'Retail',
-  'Manufacturing',
-  'Education',
-  'Other',
-]
-
-const SKILL_AREAS = [
-  { id: 'frontend', label: 'Frontend Development' },
-  { id: 'backend', label: 'Backend Development' },
-  { id: 'fullstack', label: 'Full Stack Development' },
-  { id: 'devops', label: 'DevOps' },
-  { id: 'data', label: 'Data Science' },
-]
 
 export function HiringManagerWaitlistForm() {
   const context = useHiringManagerFormContext()
@@ -82,54 +55,55 @@ export function HiringManagerWaitlistForm() {
         )
       case 2:
         return (
-          <CompanyProfileStep
-            companyName={form.formData.companyName}
-            companySize={form.formData.companySize}
-            industry={form.formData.industry}
-            companyWebsite={form.formData.companyWebsite}
-            companySizes={COMPANY_SIZES}
-            industries={INDUSTRIES}
+          <HiringManagerCompanyProfileStep
+            managerRole={form.formData.managerRole}
+            fundingStage={form.formData.fundingStage}
+            engineeringTeamSize={form.formData.engineeringTeamSize}
             errors={form.errors}
             isSubmitting={form.isSubmitting}
-            onCompanyNameChange={(value) =>
-              form.handleFieldChange('companyName', value)
+            onManagerRoleChange={(value) =>
+              form.handleFieldChange('managerRole', value)
             }
-            onCompanySizeChange={(value) =>
-              form.handleFieldChange('companySize', value)
+            onFundingStagChange={(value) =>
+              form.handleFieldChange('fundingStage', value)
             }
-            onIndustryChange={(value) =>
-              form.handleFieldChange('industry', value)
-            }
-            onCompanyWebsiteChange={(value) =>
-              form.handleFieldChange('companyWebsite', value)
+            onEngineeringTeamSizeChange={(value) =>
+              form.handleFieldChange('engineeringTeamSize', value)
             }
           />
         )
-      case 3: {
-        const skillsNeeded = JSON.parse(form.formData.skillsNeeded || '[]')
+      case 3:
         return (
-          <HiringDemandStep
-            hiringDemand={form.formData.hiringDemand}
-            skillsNeeded={skillsNeeded}
-            challenges={form.formData.challenges}
-            skillAreas={SKILL_AREAS}
+          <HiringDemandChallengesStep
+            rolesHiring={form.formData.rolesHiring}
+            seniorityLevel={form.formData.seniorityLevel}
+            hiringInterviewHours={form.formData.hiringInterviewHours}
+            hiringFrustrations={form.formData.hiringFrustrations}
+            hiringFailures={form.formData.hiringFailures}
             errors={form.errors}
             isSubmitting={form.isSubmitting}
-            onHiringDemandChange={(value) =>
-              form.handleFieldChange('hiringDemand', value)
+            onRolesHiringChange={(values) =>
+              form.handleFieldChange('rolesHiring', JSON.stringify(values))
             }
-            onSkillsNeededChange={(skillId, checked) => {
-              const updated = checked
-                ? [...skillsNeeded, skillId]
-                : skillsNeeded.filter((id: string) => id !== skillId)
-              form.handleFieldChange('skillsNeeded', JSON.stringify(updated))
-            }}
-            onChallengesChange={(value) =>
-              form.handleFieldChange('challenges', value)
+            onSeniorityLevelChange={(value) =>
+              form.handleFieldChange('seniorityLevel', value)
+            }
+            onHiringInterviewHoursChange={(value) =>
+              form.handleFieldChange('hiringInterviewHours', value)
+            }
+            onHiringFrustrationsChange={(values) =>
+              form.handleFieldChange(
+                'hiringFrustrations',
+                JSON.stringify(values)
+              )
+            }
+            onHiringFailuresChange={(values) =>
+              form.handleFieldChange('hiringFailures', JSON.stringify(values))
             }
           />
         )
-      }
+      case 4:
+        return null
       default:
         return null
     }
@@ -143,7 +117,7 @@ export function HiringManagerWaitlistForm() {
     >
       {/* Progress indicator */}
       <div className='flex justify-between items-center mb-8'>
-        {[1, 2, 3].map((step) => (
+        {[1, 2, 3, 4].map((step) => (
           <div
             key={step}
             className={`flex-1 h-1 mx-1 rounded-full ${
@@ -190,7 +164,7 @@ export function HiringManagerWaitlistForm() {
           Previous
         </button>
 
-        {context.currentStep < 3 ? (
+        {context.currentStep < 4 ? (
           <button
             type='button'
             onClick={() => context.nextStep()}

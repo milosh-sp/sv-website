@@ -1078,6 +1078,25 @@ export const checkbox = {
 } as const
 
 // ============================================================================
+// RADIO BUTTON COMPONENT
+// ============================================================================
+
+export const radioButton = {
+  // Accessibility labels
+  accessibility: {
+    defaultLabel: `Radio button`,
+    requiredIndicator: `Required field`,
+    selectedState: `Selected`,
+    unselectedState: `Not selected`,
+  },
+
+  // Validation messages
+  validation: {
+    required: `This field is required`,
+  },
+} as const
+
+// ============================================================================
 // EXPORT ALL STRINGS
 // ============================================================================
 
@@ -1101,4 +1120,5 @@ export const strings = {
   layout,
   cvSampleData,
   checkbox,
+  radioButton,
 } as const

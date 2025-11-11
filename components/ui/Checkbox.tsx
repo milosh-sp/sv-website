@@ -1,8 +1,12 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+
+import { useFormInputAccessibility } from '@/hooks/useFormInputAccessibility'
 import { cn } from '@/lib/utils'
 import type { CheckboxProps } from '@/types/Checkbox.types'
+
+import { FormInputWrapper } from './FormInputWrapper'
 
 export function Checkbox({
   className,
@@ -28,15 +32,27 @@ export function Checkbox({
     }
   }, [indeterminate])
 
-  const checkboxId =
-    id ?? `checkbox-${Math.random().toString(36).substring(2, 9)}`
-  const descriptionId = description ? `${checkboxId}-description` : undefined
-  const errorId = error ? `${checkboxId}-error` : undefined
-
-  const ids = [ariaDescribedBy, descriptionId, errorId].filter(Boolean)
-  const combinedAriaDescribedBy = ids.length > 0 ? ids.join(' ') : undefined
-
-  const isInvalid = ariaInvalid ?? !!error
+  const {
+    inputId: checkboxId,
+    descriptionId,
+    errorId,
+    combinedAriaDescribedBy,
+    isInvalid,
+    computedAriaLabel,
+    computedAriaRequired,
+  } = useFormInputAccessibility({
+    id,
+    prefix: 'checkbox',
+    label,
+    description,
+    error,
+    'aria-describedby': ariaDescribedBy,
+    'aria-invalid': ariaInvalid,
+    'aria-label': ariaLabel,
+    'aria-required': ariaRequired,
+    required,
+    defaultAriaLabel: 'Checkbox',
+  })
 
   const checkboxElement = (
     <input
@@ -44,10 +60,10 @@ export function Checkbox({
       type='checkbox'
       id={checkboxId}
       data-slot='checkbox'
-      aria-label={ariaLabel ?? (label ? undefined : 'Checkbox')}
+      aria-label={computedAriaLabel}
       aria-describedby={combinedAriaDescribedBy}
       aria-invalid={isInvalid}
-      aria-required={ariaRequired ?? required}
+      aria-required={computedAriaRequired}
       disabled={disabled}
       required={required}
       className={cn(
@@ -70,62 +86,18 @@ export function Checkbox({
     />
   )
 
-  if (!label && !description) {
-    return checkboxElement
-  }
-
   return (
-    <div className='flex items-center gap-2'>
+    <FormInputWrapper
+      inputId={checkboxId}
+      label={label}
+      description={description}
+      error={error}
+      required={required}
+      size={size}
+      descriptionId={descriptionId}
+      errorId={errorId}
+    >
       {checkboxElement}
-      <div className='flex flex-col gap-1'>
-        {label && (
-          <label
-            htmlFor={checkboxId}
-            className={cn(
-              'font-medium text-foreground cursor-pointer select-none',
-              'peer-disabled:cursor-not-allowed peer-disabled:opacity-50',
-              size === 'sm' && 'text-sm',
-              size === 'default' && 'text-base',
-              size === 'lg' && 'text-lg'
-            )}
-          >
-            {label}
-            {required && (
-              <span className='text-destructive ml-1' aria-hidden='true'>
-                *
-              </span>
-            )}
-          </label>
-        )}
-        {description && (
-          <p
-            id={descriptionId}
-            className={cn(
-              'text-muted-foreground peer-disabled:opacity-50',
-              size === 'sm' && 'text-xs',
-              size === 'default' && 'text-sm',
-              size === 'lg' && 'text-base'
-            )}
-          >
-            {description}
-          </p>
-        )}
-        {error && (
-          <p
-            id={errorId}
-            className={cn(
-              'text-destructive',
-              size === 'sm' && 'text-xs',
-              size === 'default' && 'text-sm',
-              size === 'lg' && 'text-base'
-            )}
-            role='alert'
-            aria-live='polite'
-          >
-            {error}
-          </p>
-        )}
-      </div>
-    </div>
+    </FormInputWrapper>
   )
 }

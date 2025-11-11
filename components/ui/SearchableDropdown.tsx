@@ -1,6 +1,7 @@
 'use client'
 
 import { AlertCircle } from 'lucide-react'
+import { useFormInputAccessibility } from '@/hooks/useFormInputAccessibility'
 import { useSearchableDropdown } from '@/hooks/useSearchableDropdown'
 import { cn } from '@/lib/utils'
 import type { SearchableDropdownProps } from '@/types/SearchableDropdown.types'
@@ -60,18 +61,28 @@ function SearchableDropdownImpl<T = string>({
     loading,
   })
 
-  const dropdownId =
-    id ?? `searchable-dropdown-${Math.random().toString(36).substring(2, 9)}`
+  const {
+    inputId: dropdownId,
+    descriptionId,
+    errorId,
+    combinedAriaDescribedBy,
+    isInvalid,
+  } = useFormInputAccessibility({
+    id,
+    prefix: 'searchable-dropdown',
+    label,
+    description,
+    error,
+    'aria-describedby': ariaDescribedBy,
+    'aria-invalid': ariaInvalid,
+    'aria-label': ariaLabel,
+    required,
+    defaultAriaLabel: 'Searchable dropdown',
+  })
+
   const labelId = label ? `${dropdownId}-label` : undefined
-  const descriptionId = description ? `${dropdownId}-description` : undefined
-  const errorId = error ? `${dropdownId}-error` : undefined
   const listboxId = `${dropdownId}-listbox`
   const searchInputId = `${dropdownId}-search`
-
-  const ids = [ariaDescribedBy, descriptionId, errorId].filter(Boolean)
-  const combinedAriaDescribedBy = ids.length > 0 ? ids.join(' ') : undefined
-
-  const isInvalid = ariaInvalid ?? !!error
 
   return (
     <div ref={containerRef} className={cn('relative w-full', className)}>

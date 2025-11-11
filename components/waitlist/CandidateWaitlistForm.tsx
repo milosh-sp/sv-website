@@ -113,34 +113,50 @@ export function CandidateWaitlistForm() {
       case 3:
         return (
           <CandidateProfileStep
-            yearsOfExperience={form.formData.yearsOfExperience}
-            currentRole={form.formData.currentRole}
-            currentCompany={form.formData.currentCompany}
+            professionalStatus={form.formData.professionalStatus}
+            techCommunityMembership={form.formData.techCommunityMembership}
+            techCommunityDetails={form.formData.techCommunityDetails || ''}
+            githubGitlabUrl={form.formData.githubGitlabUrl}
             errors={form.errors}
             isSubmitting={form.isSubmitting}
-            onYearsOfExperienceChange={(value) =>
-              form.handleFieldChange('yearsOfExperience', value)
+            onProfessionalStatusChange={(value) =>
+              form.handleFieldChange('professionalStatus', value)
             }
-            onCurrentRoleChange={(value) =>
-              form.handleFieldChange('currentRole', value)
+            onTechCommunityMembershipChange={(value) =>
+              form.handleFieldChange('techCommunityMembership', value)
             }
-            onCurrentCompanyChange={(value) =>
-              form.handleFieldChange('currentCompany', value)
+            onTechCommunityDetailsChange={(value) =>
+              form.handleFieldChange('techCommunityDetails', value)
+            }
+            onGithubGitlabUrlChange={(value) =>
+              form.handleFieldChange('githubGitlabUrl', value)
             }
           />
         )
       case 4:
         return (
           <MotivationChallengesStep
-            motivation={form.formData.motivation}
-            challenges={form.formData.challenges}
+            skillValidationConfidence={form.formData.skillValidationConfidence}
+            jobSearchChallenge={form.formData.jobSearchChallenge}
+            jobSearchChallengeOther={form.formData.jobSearchChallengeOther}
+            valuableOutcome={form.formData.valuableOutcome}
+            valuableOutcomeOther={form.formData.valuableOutcomeOther}
             errors={form.errors}
             isSubmitting={form.isSubmitting}
-            onMotivationChange={(value) =>
-              form.handleFieldChange('motivation', value)
+            onSkillValidationConfidenceChange={(value) =>
+              form.handleFieldChange('skillValidationConfidence', value)
             }
-            onChallengesChange={(value) =>
-              form.handleFieldChange('challenges', value)
+            onJobSearchChallengeChange={(value) =>
+              form.handleFieldChange('jobSearchChallenge', value)
+            }
+            onJobSearchChallengeOtherChange={(value) =>
+              form.handleFieldChange('jobSearchChallengeOther', value)
+            }
+            onValuableOutcomeChange={(value) =>
+              form.handleFieldChange('valuableOutcome', value)
+            }
+            onValuableOutcomeOtherChange={(value) =>
+              form.handleFieldChange('valuableOutcomeOther', value)
             }
           />
         )

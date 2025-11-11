@@ -58,25 +58,63 @@ export function validateCandidateForm(
   }
 
   // Step 3: Candidate Profile
-  if (!data.yearsOfExperience || data.yearsOfExperience.trim() === '') {
-    errors.yearsOfExperience = 'Years of experience is required'
+  if (!data.professionalStatus || data.professionalStatus.trim() === '') {
+    errors.professionalStatus = 'Please select your professional status'
   }
 
-  if (!data.currentRole || data.currentRole.trim() === '') {
-    errors.currentRole = 'Current role is required'
+  if (
+    !data.techCommunityMembership ||
+    data.techCommunityMembership.trim() === ''
+  ) {
+    errors.techCommunityMembership =
+      'Please select your tech community membership status'
   }
 
-  if (!data.currentCompany || data.currentCompany.trim() === '') {
-    errors.currentCompany = 'Current company is required'
+  if (data.techCommunityMembership === 'yes') {
+    if (!data.techCommunityDetails || data.techCommunityDetails.trim() === '') {
+      errors.techCommunityDetails = 'Please specify which tech community'
+    }
+  }
+
+  if (!data.githubGitlabUrl || data.githubGitlabUrl.trim() === '') {
+    errors.githubGitlabUrl = 'GitHub/GitLab profile URL is required'
+  } else {
+    const urlValidation = validateUrl(data.githubGitlabUrl)
+    if (!urlValidation.isValid) {
+      errors.githubGitlabUrl =
+        urlValidation.message || 'Invalid GitHub/GitLab URL'
+    }
   }
 
   // Step 4: Motivation & Challenges
-  if (!data.motivation || data.motivation.trim() === '') {
-    errors.motivation = 'Please tell us your motivation'
+  if (
+    !data.skillValidationConfidence ||
+    data.skillValidationConfidence.trim() === ''
+  ) {
+    errors.skillValidationConfidence = 'Please select your confidence level'
   }
 
-  if (!data.challenges || data.challenges.trim() === '') {
-    errors.challenges = 'Please share your challenges'
+  if (!data.jobSearchChallenge || data.jobSearchChallenge.trim() === '') {
+    errors.jobSearchChallenge = 'Please select your biggest challenge'
+  }
+
+  if (data.jobSearchChallenge === 'other') {
+    if (
+      !data.jobSearchChallengeOther ||
+      data.jobSearchChallengeOther.trim() === ''
+    ) {
+      errors.jobSearchChallengeOther = 'Please specify your challenge'
+    }
+  }
+
+  if (!data.valuableOutcome || data.valuableOutcome.trim() === '') {
+    errors.valuableOutcome = 'Please select the most valuable outcome'
+  }
+
+  if (data.valuableOutcome === 'other') {
+    if (!data.valuableOutcomeOther || data.valuableOutcomeOther.trim() === '') {
+      errors.valuableOutcomeOther = 'Please specify the outcome'
+    }
   }
 
   return {

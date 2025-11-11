@@ -16,13 +16,17 @@ export interface CandidateFormData extends Record<string, string> {
   technicalSkills: string // JSON stringified array
 
   // Step 3: Candidate Profile
-  yearsOfExperience: string
-  currentRole: string
-  currentCompany: string
+  professionalStatus: string // Student, Unemployed, Employed (full-time), etc.
+  techCommunityMembership: string // New, Yes, No
+  techCommunityDetails: string // Details if "Yes" selected, empty otherwise
+  githubGitlabUrl: string
 
   // Step 4: Motivation & Challenges
-  motivation: string
-  challenges: string
+  skillValidationConfidence: string // Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+  jobSearchChallenge: string // Selected challenge option
+  jobSearchChallengeOther: string // Custom challenge if "Other" selected
+  valuableOutcome: string // Selected outcome option
+  valuableOutcomeOther: string // Custom outcome if "Other" selected
 }
 
 export interface CandidateFormStep {
@@ -53,15 +57,26 @@ export const CANDIDATE_FORM_STEPS: CandidateFormStep[] = [
   },
   {
     stepNumber: 3,
-    title: 'Your Background',
-    description: 'Share your professional experience',
-    fields: ['yearsOfExperience', 'currentRole', 'currentCompany'],
+    title: 'Your Candidate Profile',
+    description: 'Tell us about your professional background',
+    fields: [
+      'professionalStatus',
+      'techCommunityMembership',
+      'techCommunityDetails',
+      'githubGitlabUrl',
+    ],
   },
   {
     stepNumber: 4,
     title: 'Motivation & Challenges',
     description: 'Help us understand your goals',
-    fields: ['motivation', 'challenges'],
+    fields: [
+      'skillValidationConfidence',
+      'jobSearchChallenge',
+      'jobSearchChallengeOther',
+      'valuableOutcome',
+      'valuableOutcomeOther',
+    ],
   },
 ]
 
@@ -73,9 +88,13 @@ export const INITIAL_CANDIDATE_FORM_DATA: CandidateFormData = {
   newsletterOptIn: 'false',
   skillAreas: '[]',
   technicalSkills: '[]',
-  yearsOfExperience: '',
-  currentRole: '',
-  currentCompany: '',
-  motivation: '',
-  challenges: '',
+  professionalStatus: '',
+  techCommunityMembership: '',
+  techCommunityDetails: '',
+  githubGitlabUrl: '',
+  skillValidationConfidence: '',
+  jobSearchChallenge: '',
+  jobSearchChallengeOther: '',
+  valuableOutcome: '',
+  valuableOutcomeOther: '',
 }

@@ -4,15 +4,10 @@ import { useHiringManagerFormContext } from '@/contexts/HiringManagerFormContext
 import { useHiringManagerForm } from '@/hooks/useHiringManagerForm'
 import { validateHiringManagerStep } from '@/lib/WaitlistValidation'
 import { TOTAL_FORM_STEPS } from '@/lib/waitlistConstants'
-import { strings } from '@/lib/strings' // Used for form labels and button text
-import { cn } from '@/lib/utils'
 import { ContactConsentSection } from './sections/ContactConsentSection'
 import { HiringManagerCompanyProfileStep } from './steps/HiringManagerCompanyProfileStep'
 import { HiringDemandChallengesStep } from './steps/HiringDemandChallengesStep'
-import { ProgressIndicator } from '../ui/ProgressIndicator'
-import { FormNavigation } from '../ui/FormNavigation'
-import { HoneypotField } from '@/components/ui/HoneypotField'
-import { StatusMessage } from '@/components/ui/StatusMessage'
+import { WaitlistFormWrapper } from './WaitlistFormWrapper'
 
 export function HiringManagerWaitlistForm() {
   const context = useHiringManagerFormContext()
@@ -119,60 +114,21 @@ export function HiringManagerWaitlistForm() {
   ).isValid
 
   return (
-    <form
+    <WaitlistFormWrapper
+      currentStep={context.currentStep}
+      totalSteps={TOTAL_FORM_STEPS}
+      isSubmitting={form.isSubmitting}
+      isCurrentStepValid={isCurrentStepValid}
+      submitStatus={form.submitStatus}
+      errors={form.errors}
+      honeypotValue={form.honeypotValue}
+      onHoneypotChange={(value) => form.handleHoneypotChange(value)}
+      onStepClick={(step) => context.goToStep(step)}
+      onPrevious={() => context.previousStep()}
+      onNext={() => context.nextStep()}
       onSubmit={handleSubmit}
-      className={cn('space-y-6 w-full max-w-2xl mx-auto')}
-      noValidate
     >
-      <ProgressIndicator
-        currentStep={context.currentStep}
-        totalSteps={TOTAL_FORM_STEPS}
-        onStepClick={(step) => {
-          const canClickStep = step <= context.currentStep && isCurrentStepValid
-          if (canClickStep) {
-            context.goToStep(step)
-          }
-        }}
-        isSubmitting={form.isSubmitting}
-        isStepClickable={(step: number) =>
-          step <= context.currentStep && isCurrentStepValid
-        }
-      />
-
-      <div>{renderStep()}</div>
-
-      <HoneypotField
-        id='website'
-        name='website'
-        type='text'
-        placeholder={strings.waitlistForms.fields.website.placeholder}
-        value={form.honeypotValue}
-        onChange={(e) => form.handleHoneypotChange(e.target.value)}
-        label={strings.waitlistForms.fields.website.label}
-      />
-
-      {form.submitStatus === 'error' && form.errors.submit && (
-        <StatusMessage
-          status='error'
-          errorMessage={form.errors.submit}
-          errorIcon='❌'
-          successIcon='🎉'
-          successMessage='Success!'
-          defaultErrorMessage='An error occurred. Please try again.'
-        />
-      )}
-
-      <FormNavigation
-        currentStep={context.currentStep}
-        totalSteps={TOTAL_FORM_STEPS}
-        isSubmitting={form.isSubmitting}
-        canProceed={isCurrentStepValid}
-        onPrevious={() => context.previousStep()}
-        onNext={() => context.nextStep()}
-        submitAriaLabel={strings.waitlistForms.accessibility.submitButton}
-        submitLabel={strings.waitlistForms.buttons.submit}
-        submitLoadingLabel={strings.waitlistForms.buttons.submitting}
-      />
-    </form>
+      {renderStep()}
+    </WaitlistFormWrapper>
   )
 }

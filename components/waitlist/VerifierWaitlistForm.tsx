@@ -2,6 +2,7 @@
 
 import { useVerifierFormContext } from '@/contexts/VerifierFormContext'
 import { useVerifierForm } from '@/hooks/useVerifierForm'
+import { validateVerifierStep } from '@/lib/WaitlistValidation'
 import { ContactConsentSection } from './sections/ContactConsentSection'
 import { SkillAreasSection } from './sections/SkillAreasSection'
 import { TechnicalSkillsSection } from './sections/TechnicalSkillsSection'
@@ -178,19 +179,34 @@ export function VerifierWaitlistForm() {
     >
       {/* Progress indicator */}
       <div className='flex justify-between items-center mb-8 gap-2'>
-        {[1, 2, 3, 4].map((step) => (
-          <button
-            key={step}
-            type='button'
-            onClick={() => context.goToStep(step)}
-            disabled={form.isSubmitting}
-            className={`flex-1 h-1 rounded-full transition-colors cursor-pointer disabled:cursor-not-allowed ${
-              step <= context.currentStep ? 'bg-blue-600' : 'bg-gray-200'
-            } hover:opacity-80`}
-            aria-label={`Go to step ${step}`}
-            aria-current={step === context.currentStep ? 'step' : undefined}
-          />
-        ))}
+        {[1, 2, 3, 4].map((step) => {
+          const isCurrentStepValid = validateVerifierStep(
+            context.currentStep,
+            form.formData
+          ).isValid
+          const canClickStep = step <= context.currentStep && isCurrentStepValid
+          return (
+            <button
+              key={step}
+              type='button'
+              onClick={() => {
+                if (canClickStep) {
+                  context.goToStep(step)
+                }
+              }}
+              disabled={form.isSubmitting || !canClickStep}
+              className={`flex-1 h-1 rounded-full transition-colors ${
+                step <= context.currentStep ? 'bg-blue-600' : 'bg-gray-200'
+              } ${
+                canClickStep
+                  ? 'cursor-pointer hover:opacity-80'
+                  : 'cursor-not-allowed opacity-50'
+              }`}
+              aria-label={`Go to step ${step}`}
+              aria-current={step === context.currentStep ? 'step' : undefined}
+            />
+          )
+        })}
       </div>
 
       {/* Current step */}
@@ -234,7 +250,10 @@ export function VerifierWaitlistForm() {
           <button
             type='button'
             onClick={() => context.nextStep()}
-            disabled={form.isSubmitting}
+            disabled={
+              form.isSubmitting ||
+              !validateVerifierStep(context.currentStep, form.formData).isValid
+            }
             className='px-6 py-2 bg-blue-600 text-white rounded-md disabled:opacity-50'
           >
             Next

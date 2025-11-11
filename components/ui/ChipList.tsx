@@ -1,4 +1,3 @@
-import { useCallback } from 'react'
 import { cn } from '@/lib/utils'
 import type { ChipListProps } from '@/types/ChipList.types'
 import { Chip } from './Chip'
@@ -12,14 +11,11 @@ export function ChipList<T = string>({
   className,
   'aria-label': ariaLabel,
 }: ChipListProps<T>) {
-  const handleRemove = useCallback(
-    (value: T) => {
-      if (!disabled) {
-        onRemove(value)
-      }
-    },
-    [disabled, onRemove]
-  )
+  const handleRemove = (value: T) => {
+    if (!disabled) {
+      onRemove(value)
+    }
+  }
 
   if (selectedOptions.length === 0) {
     return null

@@ -17,7 +17,7 @@ const SIZE_STYLES = {
   },
 } as const
 
-function SearchableDropdownTriggerImpl<T = string>({
+export function SearchableDropdownTrigger<T = string>({
   triggerRef,
   dropdownId,
   isOpen,
@@ -100,9 +100,3 @@ function SearchableDropdownTriggerImpl<T = string>({
     </button>
   )
 }
-
-export const SearchableDropdownTrigger = SearchableDropdownTriggerImpl as <
-  T = string,
->(
-  props: SearchableDropdownTriggerProps<T>
-) => React.JSX.Element

@@ -129,5 +129,3 @@ export function Checkbox({
     </div>
   )
 }
-
-export type { CheckboxProps }

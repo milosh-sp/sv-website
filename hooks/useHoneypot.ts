@@ -77,6 +77,7 @@ export function useHoneypot() {
   }
 
   // Reset honeypot state (useful for form reset)
+  // necessary here not to cause infinite re-renders
   const resetHoneypot = useCallback(() => {
     setState({
       honeypotValue: '',

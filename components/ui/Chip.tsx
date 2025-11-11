@@ -1,5 +1,4 @@
 import { X } from 'lucide-react'
-import { useCallback } from 'react'
 import { cn } from '@/lib/utils'
 import type { ChipProps } from '@/types/Chip.types'
 
@@ -30,21 +29,18 @@ export function Chip<T = string>({
 }: ChipProps<T>) {
   const sizeStyles = SIZE_STYLES[size]
 
-  const handleRemove = useCallback(() => {
+  const handleRemove = () => {
     if (!disabled) {
       onRemove(value)
     }
-  }, [disabled, onRemove, value])
+  }
 
-  const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault()
-        handleRemove()
-      }
-    },
-    [handleRemove]
-  )
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      handleRemove()
+    }
+  }
 
   // Allow custom chip rendering via render prop
   if (renderChip) {

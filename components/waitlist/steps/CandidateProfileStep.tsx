@@ -3,8 +3,8 @@
 import { Users } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { FormField } from '@/components/ui/FormField'
-import { RadioButtonGroup } from '@/components/waitlist/ui/RadioButtonGroup'
-import { ConditionalField } from '@/components/waitlist/ui/ConditionalField'
+import { RadioButtonGroup } from '@/components/ui/RadioButtonGroup'
+import { ConditionalField } from '@/components/ui/ConditionalField'
 import {
   PROFESSIONAL_STATUS_OPTIONS,
   TECH_COMMUNITY_OPTIONS,

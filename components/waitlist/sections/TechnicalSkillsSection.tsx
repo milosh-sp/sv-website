@@ -1,7 +1,7 @@
 'use client'
 
 import { MultiSelectDropdown } from '@/components/ui/MultiSelectDropdown'
-import { FieldError } from '../ui/FieldError'
+import { FieldError } from '../../ui/FieldError'
 import { cn } from '@/lib/utils'
 
 import type { TechnicalSkillsSectionProps } from '@/types/TechnicalSkillsSection.types'

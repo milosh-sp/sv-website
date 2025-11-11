@@ -1,7 +1,7 @@
 'use client'
 
 import { Checkbox } from '@/components/ui/Checkbox'
-import { FieldError } from '../ui/FieldError'
+import { FieldError } from '../../ui/FieldError'
 import { cn } from '@/lib/utils'
 
 import type { SkillAreasSectionProps } from '@/types/SkillAreasSection.types'

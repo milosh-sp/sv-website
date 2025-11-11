@@ -1,8 +1,8 @@
 'use client'
 
 import { cn } from '@/lib/utils'
-import { RadioButtonGroup } from '@/components/waitlist/ui/RadioButtonGroup'
-import { CheckboxGroup } from '@/components/waitlist/ui/CheckboxGroup'
+import { RadioButtonGroup } from '@/components/ui/RadioButtonGroup'
+import { CheckboxGroup } from '@/components/ui/CheckboxGroup'
 import {
   ROLES_HIRING_OPTIONS,
   SENIORITY_LEVEL_OPTIONS,

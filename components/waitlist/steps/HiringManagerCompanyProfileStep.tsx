@@ -1,7 +1,7 @@
 'use client'
 
 import { cn } from '@/lib/utils'
-import { RadioButtonGroup } from '@/components/waitlist/ui/RadioButtonGroup'
+import { RadioButtonGroup } from '@/components/ui/RadioButtonGroup'
 import {
   MANAGER_ROLE_OPTIONS,
   FUNDING_STAGE_OPTIONS,

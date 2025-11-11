@@ -2,9 +2,9 @@
 
 import { cn } from '@/lib/utils'
 import { FormField } from '@/components/ui/FormField'
-import { RadioButtonGroup } from '@/components/waitlist/ui/RadioButtonGroup'
-import { CheckboxGroup } from '@/components/waitlist/ui/CheckboxGroup'
-import { ConditionalField } from '@/components/waitlist/ui/ConditionalField'
+import { RadioButtonGroup } from '@/components/ui/RadioButtonGroup'
+import { CheckboxGroup } from '@/components/ui/CheckboxGroup'
+import { ConditionalField } from '@/components/ui/ConditionalField'
 import {
   VERIFIER_MOTIVATION_OPTIONS,
   PROFESSIONAL_FRUSTRATION_OPTIONS,

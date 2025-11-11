@@ -2,7 +2,7 @@
 
 import { cn } from '@/lib/utils'
 import { FormField } from '@/components/ui/FormField'
-import { RadioButtonGroup } from '@/components/waitlist/ui/RadioButtonGroup'
+import { RadioButtonGroup } from '@/components/ui/RadioButtonGroup'
 import {
   YEARS_OF_EXPERIENCE_OPTIONS,
   HOURS_PER_WEEK_OPTIONS,

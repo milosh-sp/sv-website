@@ -17,36 +17,36 @@
 // ============================================================================
 
 import {
-  Shield,
-  Clock,
-  UserCheck,
-  Medal,
-  FastForward,
-  Rocket,
-  QrCode,
-  DollarSign,
-  Calendar,
-  TrendingUp,
-  Network,
-  FileText,
+  ArrowLeft,
   Brain,
-  Video,
+  Building2,
+  Calendar,
   CheckCircle,
   ClipboardList,
-  MessageCircle,
+  Clock,
   Database,
-  IdCard,
-  Globe,
+  DollarSign,
+  FastForward,
+  FileText,
   FolderOpen,
-  Building2,
   Github,
+  Globe,
+  Home,
+  IdCard,
   Linkedin,
   Mail,
-  Home,
+  Medal,
+  MessageCircle,
+  Network,
+  QrCode,
+  Rocket,
   Search,
-  ArrowLeft,
   Send,
+  Shield,
+  TrendingUp,
   User,
+  UserCheck,
+  Video,
 } from 'lucide-react'
 
 // ============================================================================
@@ -1049,6 +1049,50 @@ export const common = {
     save: `Save`,
     edit: `Edit`,
     delete: `Delete`,
+    required: `Required field`,
+    checkbox: `Checkbox`,
+    checked: `Checked`,
+    unchecked: `Unchecked`,
+    indeterminate: `Partially selected`,
+  },
+} as const
+
+// ============================================================================
+// CHECKBOX COMPONENT
+// ============================================================================
+
+export const checkbox = {
+  // Accessibility labels
+  accessibility: {
+    defaultLabel: `Checkbox`,
+    requiredIndicator: `Required field`,
+    checkedState: `Checked`,
+    uncheckedState: `Unchecked`,
+    indeterminateState: `Partially selected`,
+  },
+
+  // Validation messages
+  validation: {
+    required: `This field is required`,
+  },
+} as const
+
+// ============================================================================
+// RADIO BUTTON COMPONENT
+// ============================================================================
+
+export const radioButton = {
+  // Accessibility labels
+  accessibility: {
+    defaultLabel: `Radio button`,
+    requiredIndicator: `Required field`,
+    selectedState: `Selected`,
+    unselectedState: `Not selected`,
+  },
+
+  // Validation messages
+  validation: {
+    required: `This field is required`,
   },
 } as const
 
@@ -1075,4 +1119,6 @@ export const strings = {
   common,
   layout,
   cvSampleData,
+  checkbox,
+  radioButton,
 } as const

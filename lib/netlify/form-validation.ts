@@ -274,23 +274,23 @@ function validateUnifiedFormData(
 }
 
 /**
- * Validate contact form data (email, name, message)
+ * Validate contact form data (email, contactName, message)
  */
 function validateContactFormDataUnified(
   data: UnifiedFormSubmissionData & { formType: 'contact' }
 ): ValidationError | null {
-  // Validate name
-  if (!data.name) {
+  // Validate contactName
+  if (!data.contactName) {
     return {
-      field: 'name',
+      field: 'contactName',
       message: 'Name is required.',
     }
   }
 
-  const nameValidation = validateName(data.name as string)
+  const nameValidation = validateName(data.contactName as string)
   if (!nameValidation.isValid) {
     return {
-      field: 'name',
+      field: 'contactName',
       message: nameValidation.message || 'Please provide a valid name.',
     }
   }

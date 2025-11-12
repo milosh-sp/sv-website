@@ -32,4 +32,3 @@ export const INITIAL_BASE_FORM_DATA: BaseFormData = {
   technicalSkills: '[]',
   professionalStatus: '',
 }
-

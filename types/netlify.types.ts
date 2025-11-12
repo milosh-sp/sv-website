@@ -34,7 +34,7 @@ interface SignupFormFields extends FormFields {
 
 // Contact form fields
 interface ContactFormFields extends FormFields {
-  name?: string
+  contactName?: string
   message?: string
 }
 

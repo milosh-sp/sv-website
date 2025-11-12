@@ -155,49 +155,6 @@ export function validateGitHub(url: string): ValidationResult {
 }
 
 /**
- * Validate form data for signup
- */
-export interface SignupFormData {
-  email: string
-  linkedin: string
-  github?: string
-}
-
-export interface FormValidationResult {
-  isValid: boolean
-  errors: Record<string, string>
-}
-
-export function validateSignupForm(data: SignupFormData): FormValidationResult {
-  const errors: Record<string, string> = {}
-
-  // Validate email
-  const emailValidation = validateEmail(data.email)
-  if (!emailValidation.isValid) {
-    errors.email = emailValidation.message || 'Invalid email'
-  }
-
-  // Validate LinkedIn
-  const linkedinValidation = validateLinkedIn(data.linkedin)
-  if (!linkedinValidation.isValid) {
-    errors.linkedin = linkedinValidation.message || 'Invalid LinkedIn URL'
-  }
-
-  // Validate GitHub if provided
-  if (data.github) {
-    const githubValidation = validateGitHub(data.github)
-    if (!githubValidation.isValid) {
-      errors.github = githubValidation.message || 'Invalid GitHub URL'
-    }
-  }
-
-  return {
-    isValid: Object.keys(errors).length === 0,
-    errors,
-  }
-}
-
-/**
  * Legacy validation functions for backward compatibility
  * These return boolean values like the original functions
  */
@@ -215,33 +172,6 @@ function isValidLinkedIn(url: string): boolean {
 
 function isValidGitHub(url: string): boolean {
   return validateGitHub(url).isValid
-}
-
-function isFormValid(formData: {
-  email: string
-  linkedin: string
-  github: string
-}): boolean {
-  if (!formData.email || !formData.linkedin || !formData.github) {
-    return false
-  }
-
-  const emailValidation = validateEmail(formData.email)
-  if (!emailValidation.isValid) {
-    return false
-  }
-
-  const linkedinValidation = validateLinkedIn(formData.linkedin)
-  if (!linkedinValidation.isValid) {
-    return false
-  }
-
-  const githubValidation = validateGitHub(formData.github)
-  if (!githubValidation.isValid) {
-    return false
-  }
-
-  return true
 }
 
 /**
@@ -401,4 +331,9 @@ export function isContactFormValid(formData: ContactFormData): boolean {
   return true
 }
 
-export { isValidEmail, isValidUrl, isValidLinkedIn, isValidGitHub, isFormValid }
+export interface FormValidationResult {
+  isValid: boolean
+  errors: Record<string, string>
+}
+
+export { isValidEmail, isValidUrl, isValidLinkedIn, isValidGitHub }

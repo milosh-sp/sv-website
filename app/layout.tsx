@@ -6,7 +6,6 @@ import '../styles/globals.css'
 
 import { Header } from '@/components/templates/Navigation'
 import { Footer } from '@/components/templates/Footer'
-import { SignupModalProvider } from '@/context/SignupModalContext'
 import {
   defaultMetadata,
   generateOrganizationSchema,
@@ -86,14 +85,12 @@ export default function RootLayout({
           {strings.layout.accessibility.skipToMain}
         </a>
 
-        <SignupModalProvider>
-          <Header />
-          {/* Main content wrapper with top padding to account for fixed header (80px) */}
-          <main id='main-content' className='pt-20'>
-            {children}
-          </main>
-          <Footer />
-        </SignupModalProvider>
+        <Header />
+        {/* Main content wrapper with top padding to account for fixed header (80px) */}
+        <main id='main-content' className='pt-20'>
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   )

@@ -1,6 +1,6 @@
 'use client'
 
-import type { SubmitButtonProps } from '@/types/SignupModalComponents.types'
+import type { SubmitButtonProps } from '@/types/FormComponents.types'
 import { Button } from '@/components/atoms/Button'
 
 export function SubmitButton({

@@ -489,84 +489,6 @@ export const faq = {
 } as const
 
 // ============================================================================
-// SIGNUP MODAL
-// ============================================================================
-
-export const signupModal = {
-  // Modal header
-  title: `Join Skill Verdict`,
-
-  // Form fields
-  form: {
-    email: {
-      label: `Email address`,
-      placeholder: `Your email address *`,
-      ariaLabel: `Email address field`,
-      icon: Mail,
-    },
-    linkedin: {
-      label: `LinkedIn profile URL`,
-      placeholder: `https://linkedin.com/in/yourname *`,
-      ariaLabel: `LinkedIn profile URL field`,
-      icon: Linkedin,
-    },
-    website: {
-      label: `Website (leave this field empty)`,
-      placeholder: `Your website`,
-      ariaLabel: `Website field (honeypot)`,
-    },
-    github: {
-      label: `GitHub profile URL`,
-      placeholder: `https://github.com/username *`,
-      ariaLabel: `GitHub profile URL field`,
-      icon: Github,
-    },
-  },
-
-  // Submit button
-  submitButton: {
-    idle: `Secure my spot`,
-    submitting: `Securing your spot...`,
-    ariaLabel: {
-      idle: `Submit signup form`,
-      submitting: `Submitting form`,
-    },
-  },
-
-  // Status messages
-  status: {
-    success: {
-      title: `Success!`,
-      message: `We've added you to our waitlist. You'll be among the first to know
-        when we launch!`,
-      icon: `🎉`,
-    },
-    error: {
-      title: `Error`,
-      message: `Something went wrong. Please try again or contact support.`,
-      icon: `❌`,
-    },
-  },
-
-  // Privacy Policy Consent
-  privacyPolicyConsent: {
-    prefix: `By signing up, you agree to our`,
-    linkText: `Privacy Policy`,
-    href: `/privacy-policy`,
-    ariaLabel: `Read our privacy policy`,
-  },
-
-  // Accessibility
-  accessibility: {
-    closeModal: `Close modal`,
-    signupForm: `Signup form`,
-    emailError: `Email validation error`,
-    linkedinError: `LinkedIn validation error`,
-    githubError: `GitHub validation error`,
-  },
-} as const
-
-// ============================================================================
 // FLOATING SIGNUP BUTTON
 // ============================================================================
 
@@ -1354,7 +1276,6 @@ export const strings = {
   companyDiscovery,
   process,
   faq,
-  signupModal,
   floatingSignupButton,
   footer,
   contactPage,

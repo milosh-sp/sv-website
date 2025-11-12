@@ -1,7 +1,5 @@
 import type { ComponentProps } from 'react'
 import type { UserType } from './FormData.types'
-import type { FormData, FormErrors, SubmitStatus } from './SignUpModal.types'
-import type { ContactSubmitStatus } from './ContactForm.types'
 
 interface UserTypeHeaderProps extends ComponentProps<'header'> {
   userType: UserType | null
@@ -13,7 +11,6 @@ interface FormFieldProps extends ComponentProps<'input'> {
   label: string
   ariaDescribedBy?: string
   className?: string
-  status?: SubmitStatus
 }
 
 interface HoneypotFieldProps extends ComponentProps<'div'> {
@@ -32,28 +29,19 @@ interface SubmitButtonProps extends ComponentProps<'button'> {
   ariaLabel: string
   loadingText: string
   idleText: string
+  className?: string
 }
+
+type SubmitStatus = 'idle' | 'success' | 'error'
 
 interface StatusMessageProps extends ComponentProps<'section'> {
-  status: ContactSubmitStatus
+  status: SubmitStatus
   errorMessage?: string
-  successIcon: string
-  errorIcon: string
-  successMessage: string
-  defaultErrorMessage: string
-}
-
-interface SignupFormProps extends ComponentProps<'form'> {
-  formData: FormData
-  isSubmitting: boolean
-  errors: FormErrors
-  submitStatus: SubmitStatus
-  honeypotValue: string
-  onEmailChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  onLinkedInChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  onGitHubChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  onHoneypotChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void
+  successIcon?: React.ReactNode
+  errorIcon?: React.ReactNode
+  successMessage?: string
+  defaultErrorMessage?: string
+  className?: string
 }
 
 export type {
@@ -62,5 +50,5 @@ export type {
   HoneypotFieldProps,
   SubmitButtonProps,
   StatusMessageProps,
-  SignupFormProps,
+  SubmitStatus,
 }

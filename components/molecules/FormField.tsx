@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils'
 import { Input } from '@/components/atoms/Input'
-import type { FormFieldProps } from '@/types/SignupModalComponents.types'
+import type { FormFieldProps } from '@/types/FormComponents.types'
 
 export function FormField({
   id,

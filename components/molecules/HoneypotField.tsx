@@ -1,4 +1,4 @@
-import type { HoneypotFieldProps } from '@/types/SignupModalComponents.types'
+import type { HoneypotFieldProps } from '@/types/FormComponents.types'
 import { Input } from '@/components/atoms/Input'
 
 export function HoneypotField({

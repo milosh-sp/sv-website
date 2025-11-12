@@ -1,4 +1,4 @@
-import type { StatusMessageProps } from '@/types/SignupModalComponents.types'
+import type { StatusMessageProps } from '@/types/FormComponents.types'
 
 export function StatusMessage({
   status,

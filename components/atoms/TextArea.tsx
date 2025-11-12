@@ -1,12 +1,5 @@
 import { cn } from '@/lib/utils'
-import type { ComponentProps } from 'react'
-
-interface TextAreaProps extends ComponentProps<'textarea'> {
-  'aria-label'?: string
-  'aria-describedby'?: string
-  'aria-invalid'?: boolean
-  'aria-required'?: boolean
-}
+import type { TextAreaProps } from '@/types/TextArea.types'
 
 export function TextArea({
   className,

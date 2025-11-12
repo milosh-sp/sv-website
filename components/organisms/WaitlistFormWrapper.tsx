@@ -29,22 +29,7 @@ import { ProgressIndicator } from '@/components/molecules/ProgressIndicator'
 import { FormNavigation } from '@/components/organisms/FormNavigation'
 import { HoneypotField } from '@/components/molecules/HoneypotField'
 import { StatusMessage } from '@/components/atoms/StatusMessage'
-
-interface WaitlistFormWrapperProps {
-  currentStep: number
-  totalSteps: number
-  isSubmitting: boolean
-  isCurrentStepValid: boolean
-  submitStatus: 'idle' | 'success' | 'error'
-  errors: Record<string, string>
-  honeypotValue: string
-  onHoneypotChange: (value: string) => void
-  onStepClick: (step: number) => void
-  onPrevious: () => void
-  onNext: () => void
-  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void
-  children: ReactNode
-}
+import type { WaitlistFormWrapperProps } from '@/types/WaitlistFormWrapper.types'
 
 /**
  * Generic form wrapper for all waitlist forms

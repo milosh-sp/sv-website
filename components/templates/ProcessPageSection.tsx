@@ -2,18 +2,14 @@
 
 import { useState } from 'react'
 import { strings } from '@/lib/strings'
-import type { UserType } from '@/types/FormData.types'
 import { HeaderAndButtons } from '@/components/molecules/HeaderAndButtons'
 import { StepsGrid } from '@/components/organisms/Steps'
+import type { UserType } from '@/types/FormData.types'
+import type { ProcessPageSectionProps } from '@/types/ProcessPageSection.types'
 
 // Steps already have icons embedded in strings
 const guruMemberSteps = strings.process.guruMembersteps
 const memberSteps = strings.process.memberSteps
-
-interface ProcessPageSectionProps {
-  /** Section ID for scroll targeting */
-  id: string
-}
 
 export function ProcessPageSection({ id }: ProcessPageSectionProps) {
   const [activeTab, setActiveTab] = useState<UserType>('member')

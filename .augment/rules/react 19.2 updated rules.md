@@ -20,7 +20,7 @@ type: "always_apply"
   - Each `type` or `interface` should have it's own type file named `{ComponentName}.types.ts`
 - Use react 19.2 with react compiler features, prioritize modern react  
 - If codebase is using Nextjs16 prioritize Nextjs16
-- When creating types for components, always extend from semantic HTML5 elements  
+- When creating types for components, always extend from semantic HTML5 elements 
 - Stricly follow React S.O.L.I.D
 
 ## SRP (Single Responsibility)
@@ -394,6 +394,8 @@ Ask before impelmenting tests if it is necessary
   - Any npm dependency without audit check  
   - Coupling logic too much into one file 
   - Adding content directly into a component and not using `strings.ts` file or `i18n` if the codebase has it
+  - Use of `use client` everywhere, use only if there is a client interaction
+
 
 [Final Validation]  
 - Pre-commit Hooks:  

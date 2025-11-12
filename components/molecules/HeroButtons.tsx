@@ -3,10 +3,13 @@
 import { strings } from '@/lib/strings'
 import { Award, CircleStar } from 'lucide-react'
 import { Button } from '@/components/atoms/Button'
-import { useSignupModal } from '@/context/SignupModalContext'
+import { useRouter } from 'next/navigation'
 
 export function HeroButtons() {
-  const { openModal } = useSignupModal()
+  const router = useRouter()
+
+  const handleNavigateToCandidate = () => router.push('/candidate')
+  const handleNavigateToVerifier = () => router.push('/verifier')
 
   return (
     <article
@@ -14,7 +17,7 @@ export function HeroButtons() {
       aria-label={'Primary actions'}
     >
       <Button
-        onClick={() => openModal('member')}
+        onClick={handleNavigateToCandidate}
         size='lg'
         className='h-16 px-12 text-xl bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 rounded-lg font-medium'
         aria-label={strings.hero.accessibility.openSignupModal}
@@ -24,7 +27,7 @@ export function HeroButtons() {
         <span>{strings.hero.buttons.verifySkills}</span>
       </Button>
       <Button
-        onClick={() => openModal('guru')}
+        onClick={handleNavigateToVerifier}
         size='lg'
         className='h-16 px-12 text-xl bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 rounded-lg font-medium'
         aria-label={strings.hero.accessibility.openEarnModal}

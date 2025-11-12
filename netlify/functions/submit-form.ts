@@ -21,8 +21,14 @@ import {
   createValidationErrorResponse,
 } from '../../lib/netlify/response-builder'
 import { extractClientIPAndCountry } from '../../lib/netlify/client-info'
-import type { HttpResponse, UnifiedFormSubmissionData } from '../../types/netlify.types'
-import { detectBot, validateUnifiedFormData } from '../../lib/netlify/form-validation'
+import type {
+  HttpResponse,
+  UnifiedFormSubmissionData,
+} from '../../types/netlify.types'
+import {
+  detectBot,
+  validateUnifiedFormData,
+} from '../../lib/netlify/form-validation'
 
 /**
  * Unified form submission handler
@@ -113,4 +119,3 @@ export const handler: Handler = async (
     return createUnexpectedErrorResponse()
   }
 }
-

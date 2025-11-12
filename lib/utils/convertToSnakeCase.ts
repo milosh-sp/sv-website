@@ -30,11 +30,9 @@ export function convertKeysToSnakeCase(
           value as Record<string, unknown>
         )
       } else if (Array.isArray(value)) {
-        acc[snakeCaseKey] = value.map((item) =>
-          typeof item === 'object' && item !== null
-            ? convertKeysToSnakeCase(item as Record<string, unknown>)
-            : item
-        )
+        // Convert array to JSON string for backend compatibility
+        // Backend expects arrays as JSON strings that will be parsed and converted to comma-separated format
+        acc[snakeCaseKey] = JSON.stringify(value)
       } else {
         acc[snakeCaseKey] = value
       }

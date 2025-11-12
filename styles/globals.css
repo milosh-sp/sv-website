@@ -325,9 +325,5 @@ html {
 
 /* Section spacing following 8px grid */
 .section-padding {
-  @apply pt-24 md:pt-24 lg:pt-32 px-4 sm:px-6 lg:px-8;
-}
-
-.section-padding-sm {
-  @apply py-12 md:py-16 lg:py-20;
+  @apply pt-15 md:pt-15 lg:pt-10 px-4 sm:px-6 lg:px-8;
 }

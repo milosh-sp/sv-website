@@ -89,7 +89,7 @@ export default function RootLayout({
         <SignupModalProvider>
           <Header />
           {/* Main content wrapper with top padding to account for fixed header (80px) */}
-          <main id='main-content' className='pt-30'>
+          <main id='main-content' className='pt-20'>
             {children}
           </main>
           <Footer />

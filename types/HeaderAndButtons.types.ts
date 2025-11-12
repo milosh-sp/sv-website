@@ -6,7 +6,7 @@ export interface HeaderAndButtonsProps extends ComponentProps<'section'> {
   headingHighlight?: string
   description: string
   children: ReactNode
-  sectionId?: string
+  sectionId: string
   ariaLabel?: string
   className?: string
   activeTab: UserType

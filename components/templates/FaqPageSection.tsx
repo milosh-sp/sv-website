@@ -1,9 +1,10 @@
 'use client'
 
-import { strings } from '@/lib/strings'
 import { useEffect, useState } from 'react'
 import { FaqList } from '@/components/organisms/FaqList'
+import { SectionWrapper } from '@/components/templates/SectionWrapper'
 import { generateFaqSchema } from '@/lib/seo'
+import { strings } from '@/lib/strings'
 import type { SectionProps } from '@/types/Sections.types'
 
 export function FaqPageSection({ id }: SectionProps) {
@@ -36,7 +37,7 @@ export function FaqPageSection({ id }: SectionProps) {
   }, [faqSchema])
 
   return (
-    <section id={id} className='py-10 bg-gray-50'>
+    <SectionWrapper id={id} className='py-10 bg-gray-50'>
       <div className='container mx-auto px-4'>
         <div className='max-w-3xl mx-auto'>
           <FaqList
@@ -59,6 +60,6 @@ export function FaqPageSection({ id }: SectionProps) {
           />
         </div>
       </div>
-    </section>
+    </SectionWrapper>
   )
 }

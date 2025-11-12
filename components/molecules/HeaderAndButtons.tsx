@@ -1,6 +1,7 @@
-import { cn } from '@/lib/utils'
 import { HeaderAndDescription } from '@/components/molecules/HeaderAndDescription'
 import { TwoSidesButtons } from '@/components/molecules/TwoSidesButtons'
+import { SectionWrapper } from '@/components/templates/SectionWrapper'
+import { cn } from '@/lib/utils'
 import type { HeaderAndButtonsProps } from '@/types/HeaderAndButtons.types'
 
 export function HeaderAndButtons({
@@ -16,12 +17,12 @@ export function HeaderAndButtons({
   ...props
 }: HeaderAndButtonsProps) {
   return (
-    <section
+    <SectionWrapper
+      id={sectionId}
       className={cn(
         'p-5 md:p-15 bg-gradient-to-b from-white to-slate-50/50',
         className
       )}
-      id={sectionId}
       aria-label={ariaLabel}
       {...props}
     >
@@ -34,6 +35,6 @@ export function HeaderAndButtons({
         <TwoSidesButtons activeTab={activeTab} onTabChange={onTabChange} />
         {children}
       </div>
-    </section>
+    </SectionWrapper>
   )
 }

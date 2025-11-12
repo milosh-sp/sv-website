@@ -1,12 +1,13 @@
 import { strings } from '@/lib/strings'
 import { HeroButtons } from '@/components/molecules/HeroButtons'
+import { SectionWrapper } from '@/components/templates/SectionWrapper'
 import type { SectionProps } from '@/types/Sections.types'
 
 export function HeroPageSection({ id }: SectionProps) {
   return (
-    <section
+    <SectionWrapper
       id={id}
-      className='section-padding gradient-hero flex items-center pb-15'
+      className='gradient-hero flex items-center pb-15'
       aria-labelledby='hero-heading'
       aria-describedby='hero-description'
     >
@@ -59,6 +60,6 @@ export function HeroPageSection({ id }: SectionProps) {
           </ul>
         </header>
       </div>
-    </section>
+    </SectionWrapper>
   )
 }

@@ -2,10 +2,10 @@
 
 import { useState } from 'react'
 import { Award, CircleStar } from 'lucide-react'
-import { strings } from '@/lib/strings'
-import type { UserType } from '@/types/FormData.types'
 import { BenefitCards } from '@/components/organisms/BenefitCards'
 import { HeaderAndButtons } from '@/components/molecules/HeaderAndButtons'
+import { strings } from '@/lib/strings'
+import type { UserType } from '@/types/FormData.types'
 import type { SectionProps } from '@/types/Sections.types'
 
 // Benefits already have icons embedded in strings
@@ -24,6 +24,7 @@ export function BenefitsPageSection({ id }: SectionProps) {
       headingHighlight={strings.benefits.headingHighlight}
       description={strings.benefits.description}
       ariaLabel={strings.benefits.accessibility.benefitsSection}
+      className='p-5 md:p-15 bg-gradient-to-b from-white to-slate-50/50'
     >
       {activeTab === 'member' && (
         <BenefitCards

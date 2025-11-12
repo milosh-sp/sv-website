@@ -1,9 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import { strings } from '@/lib/strings'
 import { HeaderAndButtons } from '@/components/molecules/HeaderAndButtons'
 import { StepsGrid } from '@/components/organisms/Steps'
+import { strings } from '@/lib/strings'
 import type { UserType } from '@/types/FormData.types'
 import type { ProcessPageSectionProps } from '@/types/ProcessPageSection.types'
 

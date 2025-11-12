@@ -1,12 +1,13 @@
-import { strings } from '@/lib/strings'
 import { HeaderAndDescription } from '@/components/molecules/HeaderAndDescription'
+import { SectionWrapper } from '@/components/templates/SectionWrapper'
+import { strings } from '@/lib/strings'
 import type { SectionProps } from '@/types/Sections.types'
 
 const BuildingIcon = strings.companyDiscovery.icon
 
 export function CompanyDiscoveryPageSection({ id }: SectionProps) {
   return (
-    <section
+    <SectionWrapper
       className='py-16 bg-slate-50'
       id={id}
       aria-labelledby='company-discovery-heading'
@@ -50,6 +51,6 @@ export function CompanyDiscoveryPageSection({ id }: SectionProps) {
           </ul>
         </div>
       </div>
-    </section>
+    </SectionWrapper>
   )
 }

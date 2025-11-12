@@ -1,20 +1,21 @@
-import { strings } from '@/lib/strings'
 import { CertificationsSection } from '@/components/organisms/CertificationSection'
 import { CVHeader } from '@/components/organisms/CVHeader'
+import { CvFeaturesList } from '@/components/organisms/CvFeaturesList'
 import { EducationSection } from '@/components/organisms/EducationSection'
 import { ExperienceSection } from '@/components/organisms/ExperianceSection'
-import { HeaderAndDescription } from '@/components/molecules/HeaderAndDescription'
 import { LanguagesSection } from '@/components/organisms/LanguagesSection'
 import { ProfileSection } from '@/components/organisms/ProfileSection'
 import { ProjectsSection } from '@/components/organisms/ProjectSection'
 import { QrCodeSection } from '@/components/organisms/QrCodeSection'
 import { TechnicalSkillsSection } from '@/components/organisms/TechnicalSkillsSection'
-import { CvFeaturesList } from '@/components/organisms/CvFeaturesList'
+import { HeaderAndDescription } from '@/components/molecules/HeaderAndDescription'
+import { SectionWrapper } from '@/components/templates/SectionWrapper'
+import { strings } from '@/lib/strings'
 import type { SectionProps } from '@/types/Sections.types'
 
 export function CvPreviewPageSection({ id }: SectionProps) {
   return (
-    <section
+    <SectionWrapper
       id={id}
       className='py-20 bg-white'
       aria-labelledby='cv-preview-heading'
@@ -62,6 +63,6 @@ export function CvPreviewPageSection({ id }: SectionProps) {
 
         <CvFeaturesList />
       </div>
-    </section>
+    </SectionWrapper>
   )
 }

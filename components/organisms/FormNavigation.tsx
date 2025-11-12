@@ -3,6 +3,7 @@
 import { SubmitButton } from '@/components/atoms/SubmitButton'
 import { cn } from '@/lib/utils'
 import { strings } from '@/lib/strings'
+import { getStepNumber } from '@/lib/stepIdentifiers'
 import type { FormNavigationProps } from '@/types/FormNavigation.types'
 
 export function FormNavigation({
@@ -18,8 +19,9 @@ export function FormNavigation({
   className,
   ...props
 }: FormNavigationProps) {
-  const isFirstStep = currentStep === 1
-  const isLastStep = currentStep === totalSteps
+  const currentStepNumber = getStepNumber(currentStep)
+  const isFirstStep = currentStepNumber === 1
+  const isLastStep = currentStepNumber === totalSteps
 
   return (
     <nav

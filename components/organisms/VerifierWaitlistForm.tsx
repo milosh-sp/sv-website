@@ -18,8 +18,11 @@ import {
 import { strings } from '@/lib/strings'
 import { validateVerifierStep } from '@/lib/waitlistFormValidators'
 import { cn } from '@/lib/utils'
+import { STEP_IDS } from '@/lib/stepIdentifiers'
 
 import type { FormFieldConfig } from '@/types/FormFieldsStep.types'
+import type { ReactNode } from 'react'
+import type { StepId } from '@/lib/stepIdentifiers'
 
 export function VerifierWaitlistForm() {
   const context = useVerifierFormContext()
@@ -43,135 +46,125 @@ export function VerifierWaitlistForm() {
     }
   }
 
+  const stepRenderers: Record<StepId, () => ReactNode> = {
+    [STEP_IDS.STEP_1]: () => (
+      <ContactConsentSection
+        email={form.formData.email}
+        linkedIn={form.formData.linkedIn}
+        github={form.formData.github}
+        newsletterOptIn={form.formData.newsletterOptIn}
+        includeLinkedIn={true}
+        errors={form.errors}
+        isSubmitting={form.isSubmitting}
+        onEmailChange={(value) => form.handleFieldChange('email', value)}
+        onLinkedInChange={(value) => form.handleFieldChange('linkedIn', value)}
+        onGitHubChange={(value) => form.handleFieldChange('github', value)}
+        onNewsletterOptInChange={(checked) =>
+          form.handleFieldChange('newsletterOptIn', String(checked))
+        }
+      />
+    ),
+    [STEP_IDS.STEP_2]: () => {
+      const skillAreas = JSON.parse(form.formData.skillAreas || '[]')
+      const technicalSkills = JSON.parse(form.formData.technicalSkills || '[]')
+      return (
+        <div className={cn('space-y-6')}>
+          <SkillAreasSection
+            selectedSkillAreas={skillAreas}
+            skillAreas={SKILL_AREAS}
+            errors={form.errors}
+            isSubmitting={form.isSubmitting}
+            onSkillAreaChange={(skillId, checked) => {
+              const updated = checked
+                ? [...skillAreas, skillId]
+                : skillAreas.filter((id: string) => id !== skillId)
+              form.handleFieldChange('skillAreas', JSON.stringify(updated))
+            }}
+          />
+          <TechnicalSkillsSection
+            selectedSkills={technicalSkills}
+            technicalSkills={TECHNICAL_SKILLS}
+            errors={form.errors}
+            isSubmitting={form.isSubmitting}
+            onSkillsChange={(skills) => {
+              form.handleFieldChange(
+                'technicalSkills',
+                JSON.stringify(Array.from(skills))
+              )
+            }}
+          />
+        </div>
+      )
+    },
+    [STEP_IDS.STEP_3]: () => (
+      <VerifierProfileStep
+        yearsOfExperience={form.formData.yearsOfExperience}
+        hoursPerWeek={form.formData.hoursPerWeek}
+        professionalStatus={form.formData.professionalStatus}
+        coachingMentoring={form.formData.coachingMentoring}
+        githubGitlabUrl={form.formData.githubGitlabUrl}
+        errors={form.errors}
+        isSubmitting={form.isSubmitting}
+        onYearsOfExperienceChange={(value) =>
+          form.handleFieldChange('yearsOfExperience', value)
+        }
+        onHoursPerWeekChange={(value) =>
+          form.handleFieldChange('hoursPerWeek', value)
+        }
+        onProfessionalStatusChange={(value) =>
+          form.handleFieldChange('professionalStatus', value)
+        }
+        onCoachingMentoringChange={(value) =>
+          form.handleFieldChange('coachingMentoring', value)
+        }
+        onGithubGitlabUrlChange={(value) =>
+          form.handleFieldChange('githubGitlabUrl', value)
+        }
+      />
+    ),
+    [STEP_IDS.STEP_4]: () => {
+      const fields: FormFieldConfig[] = [
+        {
+          id: 'verifierMotivations',
+          type: 'checkbox',
+          label: strings.waitlistForms.labels.verifierMotivations,
+          options: VERIFIER_MOTIVATION_OPTIONS,
+          value: form.formData.verifierMotivations,
+          onChange: (values) =>
+            form.handleFieldChange(
+              'verifierMotivations',
+              JSON.stringify(values)
+            ),
+          error: form.errors.verifierMotivations,
+          otherFieldId: 'verifierMotivationOther',
+          otherValue: form.formData.verifierMotivationOther,
+          onOtherChange: (value) =>
+            form.handleFieldChange('verifierMotivationOther', value),
+          otherError: form.errors.verifierMotivationOther,
+        },
+        {
+          id: 'professionalFrustration',
+          type: 'radio',
+          label: strings.waitlistForms.labels.professionalFrustration,
+          options: PROFESSIONAL_FRUSTRATION_OPTIONS,
+          value: form.formData.professionalFrustration,
+          onChange: (value) =>
+            form.handleFieldChange('professionalFrustration', value as string),
+          error: form.errors.professionalFrustration,
+          otherFieldId: 'professionalFrustrationOther',
+          otherValue: form.formData.professionalFrustrationOther,
+          onOtherChange: (value) =>
+            form.handleFieldChange('professionalFrustrationOther', value),
+          otherError: form.errors.professionalFrustrationOther,
+        },
+      ]
+      return <FormFieldsStep fields={fields} isSubmitting={form.isSubmitting} />
+    },
+  }
+
   const renderStep = () => {
-    switch (context.currentStep) {
-      case 1:
-        return (
-          <ContactConsentSection
-            email={form.formData.email}
-            linkedIn={form.formData.linkedIn}
-            github={form.formData.github}
-            newsletterOptIn={form.formData.newsletterOptIn}
-            includeLinkedIn={true}
-            errors={form.errors}
-            isSubmitting={form.isSubmitting}
-            onEmailChange={(value) => form.handleFieldChange('email', value)}
-            onLinkedInChange={(value) =>
-              form.handleFieldChange('linkedIn', value)
-            }
-            onGitHubChange={(value) => form.handleFieldChange('github', value)}
-            onNewsletterOptInChange={(checked) =>
-              form.handleFieldChange('newsletterOptIn', String(checked))
-            }
-          />
-        )
-      case 2: {
-        const skillAreas = JSON.parse(form.formData.skillAreas || '[]')
-        const technicalSkills = JSON.parse(
-          form.formData.technicalSkills || '[]'
-        )
-        return (
-          <div className={cn('space-y-6')}>
-            <SkillAreasSection
-              selectedSkillAreas={skillAreas}
-              skillAreas={SKILL_AREAS}
-              errors={form.errors}
-              isSubmitting={form.isSubmitting}
-              onSkillAreaChange={(skillId, checked) => {
-                const updated = checked
-                  ? [...skillAreas, skillId]
-                  : skillAreas.filter((id: string) => id !== skillId)
-                form.handleFieldChange('skillAreas', JSON.stringify(updated))
-              }}
-            />
-            <TechnicalSkillsSection
-              selectedSkills={technicalSkills}
-              technicalSkills={TECHNICAL_SKILLS}
-              errors={form.errors}
-              isSubmitting={form.isSubmitting}
-              onSkillsChange={(skills) => {
-                form.handleFieldChange(
-                  'technicalSkills',
-                  JSON.stringify(Array.from(skills))
-                )
-              }}
-            />
-          </div>
-        )
-      }
-      case 3:
-        return (
-          <VerifierProfileStep
-            yearsOfExperience={form.formData.yearsOfExperience}
-            hoursPerWeek={form.formData.hoursPerWeek}
-            professionalStatus={form.formData.professionalStatus}
-            coachingMentoring={form.formData.coachingMentoring}
-            githubGitlabUrl={form.formData.githubGitlabUrl}
-            errors={form.errors}
-            isSubmitting={form.isSubmitting}
-            onYearsOfExperienceChange={(value) =>
-              form.handleFieldChange('yearsOfExperience', value)
-            }
-            onHoursPerWeekChange={(value) =>
-              form.handleFieldChange('hoursPerWeek', value)
-            }
-            onProfessionalStatusChange={(value) =>
-              form.handleFieldChange('professionalStatus', value)
-            }
-            onCoachingMentoringChange={(value) =>
-              form.handleFieldChange('coachingMentoring', value)
-            }
-            onGithubGitlabUrlChange={(value) =>
-              form.handleFieldChange('githubGitlabUrl', value)
-            }
-          />
-        )
-      case 4: {
-        const fields: FormFieldConfig[] = [
-          {
-            id: 'verifierMotivations',
-            type: 'checkbox',
-            label: strings.waitlistForms.labels.verifierMotivations,
-            options: VERIFIER_MOTIVATION_OPTIONS,
-            value: form.formData.verifierMotivations,
-            onChange: (values) =>
-              form.handleFieldChange(
-                'verifierMotivations',
-                JSON.stringify(values)
-              ),
-            error: form.errors.verifierMotivations,
-            otherFieldId: 'verifierMotivationOther',
-            otherValue: form.formData.verifierMotivationOther,
-            onOtherChange: (value) =>
-              form.handleFieldChange('verifierMotivationOther', value),
-            otherError: form.errors.verifierMotivationOther,
-          },
-          {
-            id: 'professionalFrustration',
-            type: 'radio',
-            label: strings.waitlistForms.labels.professionalFrustration,
-            options: PROFESSIONAL_FRUSTRATION_OPTIONS,
-            value: form.formData.professionalFrustration,
-            onChange: (value) =>
-              form.handleFieldChange(
-                'professionalFrustration',
-                value as string
-              ),
-            error: form.errors.professionalFrustration,
-            otherFieldId: 'professionalFrustrationOther',
-            otherValue: form.formData.professionalFrustrationOther,
-            onOtherChange: (value) =>
-              form.handleFieldChange('professionalFrustrationOther', value),
-            otherError: form.errors.professionalFrustrationOther,
-          },
-        ]
-        return (
-          <FormFieldsStep fields={fields} isSubmitting={form.isSubmitting} />
-        )
-      }
-      default:
-        return null
-    }
+    const renderer = stepRenderers[context.currentStep]
+    return renderer ? renderer() : null
   }
 
   const isCurrentStepValid = validateVerifierStep(

@@ -1,10 +1,11 @@
 import type { HTMLAttributes } from 'react'
+import type { StepId } from '@/lib/stepIdentifiers'
 
 interface ProgressIndicatorProps extends HTMLAttributes<HTMLDivElement> {
-  currentStep: number
+  currentStep: StepId
   totalSteps: number
-  onStepClick?: (step: number) => void
-  isStepClickable?: (step: number) => boolean
+  onStepClick?: (step: StepId) => void
+  isStepClickable?: (step: StepId) => boolean
   isSubmitting?: boolean
 }
 

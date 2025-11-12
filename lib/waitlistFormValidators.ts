@@ -20,6 +20,8 @@ import {
   validateSkillsProfileStep,
   validateUrlField,
 } from '@/lib/waitlistValidators'
+import { getStepNumber } from '@/lib/stepIdentifiers'
+import type { StepId } from '@/lib/stepIdentifiers'
 import type { CandidateFormData } from '@/types/CandidateFormData.types'
 import type { HiringManagerFormData } from '@/types/HiringManagerFormData.types'
 import type { VerifierFormData } from '@/types/VerifierFormData.types'
@@ -29,12 +31,13 @@ import type { ValidationErrors } from '@/types/WaitlistValidation.types'
  * Validate a specific step of the Candidate form
  */
 function validateCandidateStep(
-  step: number,
+  step: StepId,
   data: CandidateFormData
 ): ValidationErrors {
   const errors: Record<string, string> = {}
+  const stepNumber = getStepNumber(step)
 
-  switch (step) {
+  switch (stepNumber) {
     case 1: {
       // Contact Information (shared validator)
       const contactErrors = validateContactConsentStep({
@@ -133,12 +136,13 @@ function validateCandidateStep(
  * Validate a specific step of the Verifier form
  */
 function validateVerifierStep(
-  step: number,
+  step: StepId,
   data: VerifierFormData
 ): ValidationErrors {
   const errors: Record<string, string> = {}
+  const stepNumber = getStepNumber(step)
 
-  switch (step) {
+  switch (stepNumber) {
     case 1: {
       // Contact Information (shared validator)
       const contactErrors = validateContactConsentStep({
@@ -230,12 +234,13 @@ function validateVerifierStep(
  * Validate a specific step of the Hiring Manager form
  */
 function validateHiringManagerStep(
-  step: number,
+  step: StepId,
   data: HiringManagerFormData
 ): ValidationErrors {
   const errors: Record<string, string> = {}
+  const stepNumber = getStepNumber(step)
 
-  switch (step) {
+  switch (stepNumber) {
     case 1: {
       // Contact Information (NO LinkedIn or GitHub)
       const contactErrors = validateContactConsentStep({
@@ -318,10 +323,11 @@ function validateHiringManagerStep(
  */
 function validateCandidateForm(data: CandidateFormData): ValidationErrors {
   const errors: Record<string, string> = {}
+  const stepIds: StepId[] = ['step1', 'step2', 'step3', 'step4']
 
   // Validate all steps
-  for (let step = 1; step <= 4; step++) {
-    const stepErrors = validateCandidateStep(step, data)
+  for (const stepId of stepIds) {
+    const stepErrors = validateCandidateStep(stepId, data)
     Object.assign(errors, stepErrors.errors)
   }
 
@@ -337,10 +343,11 @@ function validateCandidateForm(data: CandidateFormData): ValidationErrors {
  */
 function validateVerifierForm(data: VerifierFormData): ValidationErrors {
   const errors: Record<string, string> = {}
+  const stepIds: StepId[] = ['step1', 'step2', 'step3', 'step4']
 
   // Validate all steps
-  for (let step = 1; step <= 4; step++) {
-    const stepErrors = validateVerifierStep(step, data)
+  for (const stepId of stepIds) {
+    const stepErrors = validateVerifierStep(stepId, data)
     Object.assign(errors, stepErrors.errors)
   }
 
@@ -358,10 +365,11 @@ function validateHiringManagerForm(
   data: HiringManagerFormData
 ): ValidationErrors {
   const errors: Record<string, string> = {}
+  const stepIds: StepId[] = ['step1', 'step2', 'step3', 'step4']
 
   // Validate all steps
-  for (let step = 1; step <= 4; step++) {
-    const stepErrors = validateHiringManagerStep(step, data)
+  for (const stepId of stepIds) {
+    const stepErrors = validateHiringManagerStep(stepId, data)
     Object.assign(errors, stepErrors.errors)
   }
 

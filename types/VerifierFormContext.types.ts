@@ -1,8 +1,9 @@
 import type { VerifierFormData } from '@/types/VerifierFormData.types'
+import type { StepId } from '@/lib/stepIdentifiers'
 
 interface VerifierFormContextType {
   formData: VerifierFormData
-  currentStep: number
+  currentStep: StepId
   errors: Record<string, string>
   isSubmitting: boolean
   submitStatus: 'idle' | 'success' | 'error'
@@ -12,7 +13,7 @@ interface VerifierFormContextType {
   setFormData: (data: VerifierFormData) => void
 
   // Step navigation
-  goToStep: (step: number) => void
+  goToStep: (step: StepId) => void
   nextStep: () => void
   previousStep: () => void
 

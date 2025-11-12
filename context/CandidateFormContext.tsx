@@ -4,6 +4,12 @@ import { createContext, useContext, useState, type ReactNode } from 'react'
 import { INITIAL_CANDIDATE_FORM_DATA } from '@/types/CandidateFormData.types'
 import type { CandidateFormData } from '@/types/CandidateFormData.types'
 import type { CandidateFormContextType } from '@/types/CandidateFormContext.types'
+import {
+  STEP_IDS,
+  getNextStepId,
+  getPreviousStepId,
+  type StepId,
+} from '@/lib/stepIdentifiers'
 
 const CandidateFormContext = createContext<
   CandidateFormContextType | undefined
@@ -13,7 +19,7 @@ export function CandidateFormProvider({ children }: { children: ReactNode }) {
   const [formData, setFormDataState] = useState<CandidateFormData>(
     INITIAL_CANDIDATE_FORM_DATA
   )
-  const [currentStep, setCurrentStep] = useState(1)
+  const [currentStep, setCurrentStep] = useState<StepId>(STEP_IDS.STEP_1)
   const [errors, setErrorsState] = useState<Record<string, string>>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<
@@ -34,16 +40,16 @@ export function CandidateFormProvider({ children }: { children: ReactNode }) {
     setFormDataState(data)
   }
 
-  const goToStep = (step: number) => {
+  const goToStep = (step: StepId) => {
     setCurrentStep(step)
   }
 
   const nextStep = () => {
-    setCurrentStep((prev) => Math.min(prev + 1, 4))
+    setCurrentStep((prev) => getNextStepId(prev))
   }
 
   const previousStep = () => {
-    setCurrentStep((prev) => Math.max(prev - 1, 1))
+    setCurrentStep((prev) => getPreviousStepId(prev))
   }
 
   const setErrors = (newErrors: Record<string, string>) => {
@@ -56,7 +62,7 @@ export function CandidateFormProvider({ children }: { children: ReactNode }) {
 
   const resetForm = () => {
     setFormDataState(INITIAL_CANDIDATE_FORM_DATA)
-    setCurrentStep(1)
+    setCurrentStep(STEP_IDS.STEP_1)
     setErrorsState({})
     setIsSubmitting(false)
     setSubmitStatus('idle')

@@ -4,6 +4,12 @@ import { createContext, useContext, useState, type ReactNode } from 'react'
 import type { VerifierFormData } from '@/types/VerifierFormData.types'
 import { INITIAL_VERIFIER_FORM_DATA } from '@/types/VerifierFormData.types'
 import type { VerifierFormContextType } from '@/types/VerifierFormContext.types'
+import {
+  STEP_IDS,
+  getNextStepId,
+  getPreviousStepId,
+  type StepId,
+} from '@/lib/stepIdentifiers'
 
 const VerifierFormContext = createContext<VerifierFormContextType | undefined>(
   undefined
@@ -13,7 +19,7 @@ export function VerifierFormProvider({ children }: { children: ReactNode }) {
   const [formData, setFormDataState] = useState<VerifierFormData>(
     INITIAL_VERIFIER_FORM_DATA
   )
-  const [currentStep, setCurrentStep] = useState(1)
+  const [currentStep, setCurrentStep] = useState<StepId>(STEP_IDS.STEP_1)
   const [errors, setErrorsState] = useState<Record<string, string>>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<
@@ -34,16 +40,16 @@ export function VerifierFormProvider({ children }: { children: ReactNode }) {
     setFormDataState(data)
   }
 
-  const goToStep = (step: number) => {
+  const goToStep = (step: StepId) => {
     setCurrentStep(step)
   }
 
   const nextStep = () => {
-    setCurrentStep((prev) => Math.min(prev + 1, 4))
+    setCurrentStep((prev) => getNextStepId(prev))
   }
 
   const previousStep = () => {
-    setCurrentStep((prev) => Math.max(prev - 1, 1))
+    setCurrentStep((prev) => getPreviousStepId(prev))
   }
 
   const setErrors = (newErrors: Record<string, string>) => {
@@ -56,7 +62,7 @@ export function VerifierFormProvider({ children }: { children: ReactNode }) {
 
   const resetForm = () => {
     setFormDataState(INITIAL_VERIFIER_FORM_DATA)
-    setCurrentStep(1)
+    setCurrentStep(STEP_IDS.STEP_1)
     setErrorsState({})
     setIsSubmitting(false)
     setSubmitStatus('idle')

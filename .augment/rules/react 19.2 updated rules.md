@@ -8,6 +8,7 @@ type: "always_apply"
 [React-Specific Requirements]  
 - Scan for already built components and do not build new ones, prioritize re-use  
 - Functional components ONLY (no class components)  
+- Use `function` syntax instead of `const` for functions
 - State management hierarchy:  
   - If a codebase has a state manager, use the state manager
   - Local state → Context API → State management lib (Redux Toolkit ONLY if needed)  
@@ -344,6 +345,7 @@ function UserDashboard() {
 
 [Code Quality Standards]  
 - Instead of using `case` use simple object k:v
+- Add one export on the bottom of the file if there are two more exports for example `export { func1, funcs }`
 - ES7+ Features Required:  
   - Async/await over promise chains  
   - Optional chaining (?.) + Nullish coalescing (??)  
@@ -386,7 +388,8 @@ Ask before impelmenting tests if it is necessary
   - i18n-ready component structure  
   - Dark mode/theme support  
   - Loading states + error UX patterns
-  - Make sure styling is mobile responsive as welll  
+  - Make sure styling is mobile responsive as well
+  - Write pure functions much as possible since they are easier to test and maintain
 - Forbidden Patterns:  
   - Prop spreading without type safety  
   - Nested ternary operators  

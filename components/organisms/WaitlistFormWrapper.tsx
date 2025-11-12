@@ -25,10 +25,12 @@
 import type { ReactNode } from 'react'
 import { cn } from '@/lib/utils'
 import { strings } from '@/lib/strings'
+import { getStepNumber } from '@/lib/stepIdentifiers'
 import { ProgressIndicator } from '@/components/molecules/ProgressIndicator'
 import { FormNavigation } from '@/components/organisms/FormNavigation'
 import { HoneypotField } from '@/components/molecules/HoneypotField'
 import { StatusMessage } from '@/components/atoms/StatusMessage'
+
 import type { WaitlistFormWrapperProps } from '@/types/WaitlistFormWrapper.types'
 
 /**
@@ -69,9 +71,14 @@ export function WaitlistFormWrapper({
           }
         }}
         isSubmitting={isSubmitting}
-        isStepClickable={(step: number) =>
-          step < currentStep || (step === currentStep && isCurrentStepValid)
-        }
+        isStepClickable={(step) => {
+          const stepNumber = getStepNumber(step)
+          const currentStepNumber = getStepNumber(currentStep)
+          return (
+            stepNumber < currentStepNumber ||
+            (stepNumber === currentStepNumber && isCurrentStepValid)
+          )
+        }}
       />
 
       <div>{children}</div>

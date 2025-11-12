@@ -1,7 +1,8 @@
 import type { HTMLAttributes } from 'react'
+import type { StepId } from '@/lib/stepIdentifiers'
 
 interface FormNavigationProps extends HTMLAttributes<HTMLDivElement> {
-  currentStep: number
+  currentStep: StepId
   totalSteps: number
   onPrevious: () => void
   onNext: () => void

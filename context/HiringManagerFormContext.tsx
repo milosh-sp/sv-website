@@ -4,6 +4,12 @@ import { createContext, useContext, useState, type ReactNode } from 'react'
 import type { HiringManagerFormData } from '@/types/HiringManagerFormData.types'
 import { INITIAL_HIRING_MANAGER_FORM_DATA } from '@/types/HiringManagerFormData.types'
 import type { HiringManagerFormContextType } from '@/types/HiringManagerFormContext.types'
+import {
+  STEP_IDS,
+  getNextStepId,
+  getPreviousStepId,
+  type StepId,
+} from '@/lib/stepIdentifiers'
 
 const HiringManagerFormContext = createContext<
   HiringManagerFormContextType | undefined
@@ -17,7 +23,7 @@ export function HiringManagerFormProvider({
   const [formData, setFormDataState] = useState<HiringManagerFormData>(
     INITIAL_HIRING_MANAGER_FORM_DATA
   )
-  const [currentStep, setCurrentStep] = useState(1)
+  const [currentStep, setCurrentStep] = useState<StepId>(STEP_IDS.STEP_1)
   const [errors, setErrorsState] = useState<Record<string, string>>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<
@@ -38,16 +44,16 @@ export function HiringManagerFormProvider({
     setFormDataState(data)
   }
 
-  const goToStep = (step: number) => {
+  const goToStep = (step: StepId) => {
     setCurrentStep(step)
   }
 
   const nextStep = () => {
-    setCurrentStep((prev) => Math.min(prev + 1, 4))
+    setCurrentStep((prev) => getNextStepId(prev))
   }
 
   const previousStep = () => {
-    setCurrentStep((prev) => Math.max(prev - 1, 1))
+    setCurrentStep((prev) => getPreviousStepId(prev))
   }
 
   const setErrors = (newErrors: Record<string, string>) => {
@@ -60,7 +66,7 @@ export function HiringManagerFormProvider({
 
   const resetForm = () => {
     setFormDataState(INITIAL_HIRING_MANAGER_FORM_DATA)
-    setCurrentStep(1)
+    setCurrentStep(STEP_IDS.STEP_1)
     setErrorsState({})
     setIsSubmitting(false)
     setSubmitStatus('idle')

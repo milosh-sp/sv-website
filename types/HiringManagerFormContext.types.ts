@@ -1,8 +1,9 @@
 import type { HiringManagerFormData } from '@/types/HiringManagerFormData.types'
+import type { StepId } from '@/lib/stepIdentifiers'
 
 interface HiringManagerFormContextType {
   formData: HiringManagerFormData
-  currentStep: number
+  currentStep: StepId
   errors: Record<string, string>
   isSubmitting: boolean
   submitStatus: 'idle' | 'success' | 'error'
@@ -12,7 +13,7 @@ interface HiringManagerFormContextType {
   setFormData: (data: HiringManagerFormData) => void
 
   // Step navigation
-  goToStep: (step: number) => void
+  goToStep: (step: StepId) => void
   nextStep: () => void
   previousStep: () => void
 

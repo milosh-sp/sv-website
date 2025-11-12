@@ -1,7 +1,8 @@
 import type { ReactNode } from 'react'
+import type { StepId } from '@/lib/stepIdentifiers'
 
 interface WaitlistFormWrapperProps {
-  currentStep: number
+  currentStep: StepId
   totalSteps: number
   isSubmitting: boolean
   isCurrentStepValid: boolean
@@ -9,7 +10,7 @@ interface WaitlistFormWrapperProps {
   errors: Record<string, string>
   honeypotValue: string
   onHoneypotChange: (value: string) => void
-  onStepClick: (step: number) => void
+  onStepClick: (step: StepId) => void
   onPrevious: () => void
   onNext: () => void
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void

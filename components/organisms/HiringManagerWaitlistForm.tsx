@@ -80,17 +80,6 @@ export function HiringManagerWaitlistForm() {
     [STEP_IDS.STEP_3]: () => {
       const fields: FormFieldConfig[] = [
         {
-          id: 'rolesHiring',
-          type: 'checkbox',
-          label: strings.waitlistForms.labels.rolesHiring,
-          description: 'Select all that apply',
-          options: ROLES_HIRING_OPTIONS,
-          value: form.formData.rolesHiring,
-          onChange: (values) =>
-            form.handleFieldChange('rolesHiring', JSON.stringify(values)),
-          error: form.errors.rolesHiring,
-        },
-        {
           id: 'seniorityLevel',
           type: 'radio',
           label: strings.waitlistForms.labels.seniorityLevel,
@@ -110,41 +99,59 @@ export function HiringManagerWaitlistForm() {
             form.handleFieldChange('hiringInterviewHours', value as string),
           error: form.errors.hiringInterviewHours,
         },
-        {
-          id: 'hiringFrustrations',
-          type: 'checkbox',
-          label: strings.waitlistForms.labels.hiringFrustrations,
-          description: 'Select all that apply',
-          options: HIRING_FRUSTRATIONS_OPTIONS,
-          value: form.formData.hiringFrustrations,
-          onChange: (values) =>
-            form.handleFieldChange(
-              'hiringFrustrations',
-              JSON.stringify(values)
-            ),
-          error: form.errors.hiringFrustrations,
-        },
-        {
-          id: 'hiringFailures',
-          type: 'checkbox',
-          label: strings.waitlistForms.labels.hiringFailures,
-          description: 'Select all that apply',
-          options: HIRING_FAILURES_OPTIONS,
-          value: form.formData.hiringFailures,
-          onChange: (values) =>
-            form.handleFieldChange('hiringFailures', JSON.stringify(values)),
-          error: form.errors.hiringFailures,
-        },
       ]
       return <FormFieldsStep fields={fields} isSubmitting={form.isSubmitting} />
     },
     [STEP_IDS.STEP_4]: () => (
-      <PrivacyPolicyConsent
-        prefix={strings.waitlistForms.privacyPolicyConsent.prefix}
-        linkText={strings.waitlistForms.privacyPolicyConsent.linkText}
-        href={strings.waitlistForms.privacyPolicyConsent.href}
-        ariaLabel={strings.waitlistForms.privacyPolicyConsent.ariaLabel}
-      />
+      <>
+        <FormFieldsStep
+          fields={[
+            {
+              id: 'rolesHiring',
+              type: 'checkbox',
+              label: strings.waitlistForms.labels.rolesHiring,
+              options: ROLES_HIRING_OPTIONS,
+              value: form.formData.rolesHiring,
+              onChange: (values) =>
+                form.handleFieldChange('rolesHiring', JSON.stringify(values)),
+              error: form.errors.rolesHiring,
+            },
+            {
+              id: 'hiringFrustrations',
+              type: 'checkbox',
+              label: strings.waitlistForms.labels.hiringFrustrations,
+              options: HIRING_FRUSTRATIONS_OPTIONS,
+              value: form.formData.hiringFrustrations,
+              onChange: (values) =>
+                form.handleFieldChange(
+                  'hiringFrustrations',
+                  JSON.stringify(values)
+                ),
+              error: form.errors.hiringFrustrations,
+            },
+            {
+              id: 'hiringFailures',
+              type: 'checkbox',
+              label: strings.waitlistForms.labels.hiringFailures,
+              options: HIRING_FAILURES_OPTIONS,
+              value: form.formData.hiringFailures,
+              onChange: (values) =>
+                form.handleFieldChange(
+                  'hiringFailures',
+                  JSON.stringify(values)
+                ),
+              error: form.errors.hiringFailures,
+            },
+          ]}
+          isSubmitting={form.isSubmitting}
+        />
+        <PrivacyPolicyConsent
+          prefix={strings.waitlistForms.privacyPolicyConsent.prefix}
+          linkText={strings.waitlistForms.privacyPolicyConsent.linkText}
+          href={strings.waitlistForms.privacyPolicyConsent.href}
+          ariaLabel={strings.waitlistForms.privacyPolicyConsent.ariaLabel}
+        />
+      </>
     ),
   }
 

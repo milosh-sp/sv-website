@@ -23,8 +23,9 @@ import type { ValidationErrors } from '@/types/WaitlistValidation.types'
 /**
  * Shared Step 1 validation (Contact Information)
  * Used by: Candidate, Verifier, Hiring Manager
- * Validates: email, LinkedIn, GitHub
+ * Validates: email, LinkedIn (optional), GitHub (optional)
  * Note: Consent is implicit - users consent by submitting the form
+ * LinkedIn and GitHub are only validated if provided (for Candidate/Verifier forms)
  */
 export function validateContactConsentStep(data: {
   email: string
@@ -39,23 +40,27 @@ export function validateContactConsentStep(data: {
     errors.email = emailValidation.message || 'Invalid email'
   }
 
-  // LinkedIn validation (required)
-  if (!data.linkedIn || data.linkedIn.trim() === '') {
-    errors.linkedIn = 'LinkedIn profile URL is required'
-  } else {
-    const linkedInValidation = validateLinkedIn(data.linkedIn)
-    if (!linkedInValidation.isValid) {
-      errors.linkedIn = linkedInValidation.message || 'Invalid LinkedIn URL'
+  // LinkedIn validation (only if provided)
+  if (data.linkedIn !== undefined) {
+    if (!data.linkedIn || data.linkedIn.trim() === '') {
+      errors.linkedIn = 'LinkedIn profile URL is required'
+    } else {
+      const linkedInValidation = validateLinkedIn(data.linkedIn)
+      if (!linkedInValidation.isValid) {
+        errors.linkedIn = linkedInValidation.message || 'Invalid LinkedIn URL'
+      }
     }
   }
 
-  // GitHub validation (required)
-  if (!data.github || data.github.trim() === '') {
-    errors.github = 'GitHub profile URL is required'
-  } else {
-    const githubValidation = validateGitHub(data.github)
-    if (!githubValidation.isValid) {
-      errors.github = githubValidation.message || 'Invalid GitHub URL'
+  // GitHub validation (only if provided)
+  if (data.github !== undefined) {
+    if (!data.github || data.github.trim() === '') {
+      errors.github = 'GitHub profile URL is required'
+    } else {
+      const githubValidation = validateGitHub(data.github)
+      if (!githubValidation.isValid) {
+        errors.github = githubValidation.message || 'Invalid GitHub URL'
+      }
     }
   }
 

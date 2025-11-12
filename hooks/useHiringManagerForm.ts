@@ -5,7 +5,7 @@
  */
 
 import { useForm } from '@/hooks/useForm'
-import { validateEmail, validateGitHub } from '@/lib/validation'
+import { validateEmail } from '@/lib/validation'
 import { validateHiringManagerForm } from '@/lib/waitlistFormValidators'
 import type { HiringManagerFormData } from '@/types/HiringManagerFormData.types'
 import { INITIAL_HIRING_MANAGER_FORM_DATA } from '@/types/HiringManagerFormData.types'
@@ -18,10 +18,7 @@ interface UseHiringManagerFormConfig {
 export function useHiringManagerForm(config?: UseHiringManagerFormConfig) {
   const form = useForm<HiringManagerFormData>({
     initialData: INITIAL_HIRING_MANAGER_FORM_DATA,
-    fields: [
-      { name: 'email', validator: validateEmail },
-      { name: 'github', validator: validateGitHub },
-    ],
+    fields: [{ name: 'email', validator: validateEmail }],
     validateForm: validateHiringManagerForm,
     onSubmit: async (formData, honeypotValue, formStartTime) => {
       // Skip API requests as per requirements

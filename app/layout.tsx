@@ -11,7 +11,7 @@ import {
   generateWebsiteSchema,
 } from '@/lib/seo'
 import { strings } from '@/lib/strings'
-import { GoogleAnalytics } from '@/components/utils/GoogleAnalytics'
+import { GoogleAnalytics } from '@/utils/GoogleAnalytics'
 
 const inter = Inter({
   subsets: ['latin'],

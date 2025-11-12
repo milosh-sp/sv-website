@@ -9,10 +9,10 @@
     "ignoreUnknown": false,
     "includes": [
       "**",
-      "!.out/**/*",
-      "!node_modules/**/*",
-      "!public/**/*",
-      "!.next/**/*"
+      "!**/out/**/*",
+      "!**/node_modules/**/*",
+      "!**/public/**/*",
+      "!**/.next/**/*"
     ]
   },
   "formatter": {
@@ -51,6 +51,22 @@
   },
   "linter": {
     "enabled": true,
+    "includes": [
+      "**",
+      "!**/out/**/*",
+      "!**/.netlify/**/*",
+      "!**/.vscode/**/*",
+      "!**/dist/**/*",
+      "!**/.next/**/*",
+      "!**/.sanity/**/*",
+      "!**/coverage/**/*",
+      "!**/coverage-ts/**/*",
+      "!**/node_modules/**/*",
+      "!**/public/**/*",
+      "!**/.cache/**/*",
+      "!**/.turbo/**/*",
+      "!**/.vercel/**/*"
+    ],
     "rules": {
       "recommended": true,
       "correctness": {

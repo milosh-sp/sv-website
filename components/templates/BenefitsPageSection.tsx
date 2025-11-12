@@ -12,7 +12,7 @@ import type { SectionProps } from '@/types/Sections.types'
 const vetterBenefits = strings.benefits.guruMembers.benefits
 const candidateBenefits = strings.benefits.members.benefits
 
-export function BenefitsSection({ id }: SectionProps) {
+export function BenefitsPageSection({ id }: SectionProps) {
   const [activeTab, setActiveTab] = useState<UserType>('member')
 
   return (

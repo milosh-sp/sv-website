@@ -4,7 +4,7 @@ import type { SectionProps } from '@/types/Sections.types'
 
 const BuildingIcon = strings.companyDiscovery.icon
 
-export function CompanyDiscoverySection({ id }: SectionProps) {
+export function CompanyDiscoveryPageSection({ id }: SectionProps) {
   return (
     <section
       className='py-16 bg-slate-50'

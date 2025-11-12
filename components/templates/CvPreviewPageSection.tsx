@@ -12,7 +12,7 @@ import { TechnicalSkillsSection } from '@/components/organisms/TechnicalSkillsSe
 import { CvFeaturesList } from '@/components/organisms/CvFeaturesList'
 import type { SectionProps } from '@/types/Sections.types'
 
-export function CvPreviewSection({ id }: SectionProps) {
+export function CvPreviewPageSection({ id }: SectionProps) {
   return (
     <section
       id={id}

@@ -10,12 +10,12 @@ import { StepsGrid } from '@/components/organisms/Steps'
 const guruMemberSteps = strings.process.guruMembersteps
 const memberSteps = strings.process.memberSteps
 
-interface ProcessSectionProps {
+interface ProcessPageSectionProps {
   /** Section ID for scroll targeting */
   id: string
 }
 
-export function ProcessSection({ id }: ProcessSectionProps) {
+export function ProcessPageSection({ id }: ProcessPageSectionProps) {
   const [activeTab, setActiveTab] = useState<UserType>('member')
 
   return (

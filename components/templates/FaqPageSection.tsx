@@ -6,7 +6,7 @@ import { FaqList } from '@/components/organisms/FaqList'
 import { generateFaqSchema } from '@/lib/seo'
 import type { SectionProps } from '@/types/Sections.types'
 
-export function FaqSection({ id }: SectionProps) {
+export function FaqPageSection({ id }: SectionProps) {
   const [openItems, setOpenItems] = useState<number[]>([])
 
   const toggleItem = (index: number) => {

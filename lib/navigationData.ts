@@ -1,10 +1,10 @@
 import { strings } from '@/lib/strings'
-import { BenefitsSection } from '@/components/sections/BenefitsSection'
-import { CompanyDiscoverySection } from '@/components/sections/CompanyDiscoverySection'
-import { CvPreviewSection } from '@/components/sections/CvPreviewSection'
-import { FaqSection } from '@/components/sections/FaqSection'
-import { HeroSection } from '@/components/sections/HeroSection'
-import { ProcessSection } from '@/components/sections/ProcessSection'
+import { BenefitsPageSection } from '@/components/templates/BenefitsPageSection'
+import { CompanyDiscoveryPageSection } from '@/components/templates/CompanyDiscoveryPageSection'
+import { CvPreviewPageSection } from '@/components/templates/CvPreviewPageSection'
+import { FaqPageSection } from '@/components/templates/FaqPageSection'
+import { HeroPageSection } from '@/components/templates/HeroPageSection'
+import { ProcessPageSection } from '@/components/templates/ProcessPageSection'
 
 /**
  * Navigation data for the application,
@@ -15,37 +15,37 @@ export const navigationData = [
     id: 'home',
     label: strings.navigation.menu.home,
     href: '/#home',
-    Component: HeroSection,
+    Component: HeroPageSection,
   },
   {
     id: 'benefits',
     label: strings.navigation.menu.benefits,
     href: '/#benefits',
-    Component: BenefitsSection,
+    Component: BenefitsPageSection,
   },
   {
     id: 'company-discovery',
     label: strings.navigation.menu.companies,
     href: '/#company-discovery',
-    Component: CompanyDiscoverySection,
+    Component: CompanyDiscoveryPageSection,
   },
   {
     id: 'process',
     label: strings.navigation.menu.howToJoin,
     href: '/#process',
-    Component: ProcessSection,
+    Component: ProcessPageSection,
   },
   {
     id: 'cv-preview',
     label: strings.navigation.menu.cvPreview,
     href: '/#cv-preview',
-    Component: CvPreviewSection,
+    Component: CvPreviewPageSection,
   },
   {
     id: 'faq',
     label: strings.navigation.menu.faqs,
     href: '/#faq',
-    Component: FaqSection,
+    Component: FaqPageSection,
   },
   {
     id: 'contact',

@@ -6,7 +6,7 @@ import { strings } from '@/lib/strings'
 import type { SectionProps } from '@/types/Sections.types'
 import { HeaderAndDescription } from '@/components/molecules/HeaderAndDescription'
 
-export function ContactPageContent({ id }: SectionProps) {
+export function ContactFormPageSection({ id }: SectionProps) {
   const {
     formData,
     errors,

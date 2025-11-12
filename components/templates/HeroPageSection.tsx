@@ -2,7 +2,7 @@ import { strings } from '@/lib/strings'
 import { HeroButtons } from '@/components/molecules/HeroButtons'
 import type { SectionProps } from '@/types/Sections.types'
 
-export function HeroSection({ id }: SectionProps) {
+export function HeroPageSection({ id }: SectionProps) {
   return (
     <section
       id={id}

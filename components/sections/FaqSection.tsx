@@ -2,7 +2,7 @@
 
 import { strings } from '@/lib/strings'
 import { useEffect, useState } from 'react'
-import { FaqList } from '../ui/FaqList'
+import { FaqList } from '@/components/organisms/FaqList'
 import { generateFaqSchema } from '@/lib/seo'
 import type { SectionProps } from '@/types/Sections.types'
 

@@ -3,8 +3,8 @@
 import { useState } from 'react'
 import { strings } from '@/lib/strings'
 import type { UserType } from '@/types/FormData.types'
-import { HeaderAndButtons } from '../ui/HeaderAndButtons'
-import { StepsGrid } from '../ui/Steps'
+import { HeaderAndButtons } from '@/components/molecules/HeaderAndButtons'
+import { StepsGrid } from '@/components/organisms/Steps'
 
 // Steps already have icons embedded in strings
 const guruMemberSteps = strings.process.guruMembersteps

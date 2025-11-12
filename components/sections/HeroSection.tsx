@@ -1,5 +1,5 @@
 import { strings } from '@/lib/strings'
-import { HeroButtons } from '../ui/HeroButtons'
+import { HeroButtons } from '@/components/molecules/HeroButtons'
 import type { SectionProps } from '@/types/Sections.types'
 
 export function HeroSection({ id }: SectionProps) {

@@ -1,5 +1,5 @@
 import { strings } from '@/lib/strings'
-import { HeaderAndDescription } from '../ui/HeaderAndDescription'
+import { HeaderAndDescription } from '@/components/molecules/HeaderAndDescription'
 import type { SectionProps } from '@/types/Sections.types'
 
 const BuildingIcon = strings.companyDiscovery.icon

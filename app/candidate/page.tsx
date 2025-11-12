@@ -1,8 +1,8 @@
 'use client'
 
 import { CandidateFormProvider } from '@/contexts/CandidateFormContext'
-import { CandidateWaitlistForm } from '@/components/waitlist/CandidateWaitlistForm'
-import { SuccessScreen } from '@/components/waitlist/SuccessScreen'
+import { CandidateWaitlistForm } from '@/components/waitlist/organisms/CandidateWaitlistForm'
+import { SuccessScreen } from '@/components/waitlist/organisms/SuccessScreen'
 import { useCandidateFormContext } from '@/contexts/CandidateFormContext'
 
 function CandidateFormContent() {

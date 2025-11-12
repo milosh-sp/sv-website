@@ -1,10 +1,10 @@
 'use client'
 
-import { ContactForm } from '@/components/ui/ContactForm'
+import { ContactForm } from '@/components/organisms/ContactForm'
 import { useContactForm } from '@/hooks/useContactForm'
 import { strings } from '@/lib/strings'
 import type { SectionProps } from '@/types/Sections.types'
-import { HeaderAndDescription } from '../ui/HeaderAndDescription'
+import { HeaderAndDescription } from '@/components/molecules/HeaderAndDescription'
 
 export function ContactPageContent({ id }: SectionProps) {
   const {

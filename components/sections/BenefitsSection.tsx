@@ -4,8 +4,8 @@ import { useState } from 'react'
 import { Award, CircleStar } from 'lucide-react'
 import { strings } from '@/lib/strings'
 import type { UserType } from '@/types/FormData.types'
-import { BenefitCards } from '../ui/BenefitCards'
-import { HeaderAndButtons } from '../ui/HeaderAndButtons'
+import { BenefitCards } from '@/components/organisms/BenefitCards'
+import { HeaderAndButtons } from '@/components/molecules/HeaderAndButtons'
 import type { SectionProps } from '@/types/Sections.types'
 
 // Benefits already have icons embedded in strings

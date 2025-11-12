@@ -1,8 +1,8 @@
 'use client'
 
 import { HiringManagerFormProvider } from '@/contexts/HiringManagerFormContext'
-import { HiringManagerWaitlistForm } from '@/components/waitlist/HiringManagerWaitlistForm'
-import { SuccessScreen } from '@/components/waitlist/SuccessScreen'
+import { HiringManagerWaitlistForm } from '@/components/waitlist/organisms/HiringManagerWaitlistForm'
+import { SuccessScreen } from '@/components/waitlist/organisms/SuccessScreen'
 import { useHiringManagerFormContext } from '@/contexts/HiringManagerFormContext'
 
 function HiringManagerFormContent() {

@@ -2,8 +2,8 @@ import type React from 'react'
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import '../styles/globals.css'
-import { Header } from '@/components/sections/Navigation'
-import { Footer } from '@/components/sections/Footer'
+import { Header } from '@/components/templates/Navigation'
+import { Footer } from '@/components/templates/Footer'
 import { SignupModalProvider } from '@/contexts/SignupModalContext'
 import {
   defaultMetadata,
@@ -11,7 +11,7 @@ import {
   generateWebsiteSchema,
 } from '@/lib/seo'
 import { strings } from '@/lib/strings'
-import { GoogleAnalytics } from '@/components/GoogleAnalytics'
+import { GoogleAnalytics } from '@/components/utils/GoogleAnalytics'
 
 const inter = Inter({
   subsets: ['latin'],

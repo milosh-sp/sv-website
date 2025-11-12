@@ -1,0 +1,18 @@
+import { strings } from '@/lib/strings'
+import { User } from 'lucide-react'
+import { CVSectionHeader } from '@/components/organisms/CVSectionHeader'
+
+export function ProfileSection() {
+  return (
+    <article aria-labelledby='profile-section-heading'>
+      <CVSectionHeader
+        title={strings.cvSampleData.sections.profile}
+        icon={User}
+      >
+        <p className='text-gray-600 text-sm'>
+          {strings.cvSampleData.profile.bio}
+        </p>
+      </CVSectionHeader>
+    </article>
+  )
+}

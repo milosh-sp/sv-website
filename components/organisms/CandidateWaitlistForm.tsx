@@ -208,6 +208,7 @@ export function CandidateWaitlistForm() {
       onPrevious={() => context.previousStep()}
       onNext={() => context.nextStep()}
       onSubmit={handleSubmit}
+      formData={form.formData}
     >
       {renderStep()}
     </WaitlistFormWrapper>

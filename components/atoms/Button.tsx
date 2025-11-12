@@ -16,7 +16,8 @@ const BASE_STYLES = cn(
   'focus-visible:outline-offset-2',
   'aria-invalid:ring-destructive/20',
   'dark:aria-invalid:ring-destructive/40',
-  'aria-invalid:border-destructive'
+  'aria-invalid:border-destructive',
+  'cursor-pointer hover:opacity-80 disabled:cursor-not-allowed'
 )
 
 const VARIANT_STYLES: Record<ButtonVariant, string> = {

@@ -1,7 +1,6 @@
 'use client'
 
 import { cn } from '@/lib/utils'
-import { FormField } from '@/components/molecules/FormField'
 import { RadioButtonGroup } from '@/components/molecules/RadioButtonGroup'
 import {
   YEARS_OF_EXPERIENCE_OPTIONS,
@@ -72,20 +71,6 @@ export function VerifierProfileStep({
         onChange={onCoachingMentoringChange}
         error={errors.coachingMentoring}
         disabled={isSubmitting}
-      />
-
-      {/* GitHub/GitLab URL */}
-      <FormField
-        id='githubGitlabUrl'
-        type='url'
-        placeholder={strings.waitlistForms.fields.github.placeholder}
-        value={githubGitlabUrl}
-        onChange={(e) => onGithubGitlabUrlChange(e.target.value)}
-        error={errors.githubGitlabUrl}
-        disabled={isSubmitting}
-        icon={<div className={cn('w-5 h-5')} />}
-        label={strings.waitlistForms.fields.github.label}
-        ariaDescribedBy='githubGitlabUrl-error'
       />
     </div>
   )

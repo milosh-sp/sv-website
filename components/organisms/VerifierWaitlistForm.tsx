@@ -71,6 +71,7 @@ export function VerifierWaitlistForm() {
       return (
         <div className={cn('space-y-6')}>
           <SkillAreasSection
+            label={strings.waitlistForms.fields.skillAreas.label}
             selectedSkillAreas={skillAreas}
             skillAreas={SKILL_AREAS}
             errors={form.errors}
@@ -83,6 +84,7 @@ export function VerifierWaitlistForm() {
             }}
           />
           <TechnicalSkillsSection
+            label={strings.waitlistForms.fields.technicalSkills.label}
             selectedSkills={technicalSkills}
             technicalSkills={TECHNICAL_SKILLS}
             errors={form.errors}
@@ -145,12 +147,15 @@ export function VerifierWaitlistForm() {
         },
         {
           id: 'professionalFrustration',
-          type: 'radio',
+          type: 'checkbox',
           label: strings.waitlistForms.labels.professionalFrustration,
           options: PROFESSIONAL_FRUSTRATION_OPTIONS,
           value: form.formData.professionalFrustration,
-          onChange: (value) =>
-            form.handleFieldChange('professionalFrustration', value as string),
+          onChange: (values) =>
+            form.handleFieldChange(
+              'professionalFrustration',
+              JSON.stringify(values)
+            ),
           error: form.errors.professionalFrustration,
           otherFieldId: 'professionalFrustrationOther',
           otherValue: form.formData.professionalFrustrationOther,
@@ -197,6 +202,7 @@ export function VerifierWaitlistForm() {
       onPrevious={() => context.previousStep()}
       onNext={() => context.nextStep()}
       onSubmit={handleSubmit}
+      formData={form.formData}
     >
       {renderStep()}
     </WaitlistFormWrapper>

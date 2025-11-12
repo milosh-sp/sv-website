@@ -1,5 +1,8 @@
 import type { ReactNode } from 'react'
 import type { StepId } from '@/lib/stepIdentifiers'
+import type { CandidateFormData } from '@/types/CandidateFormData.types'
+import type { VerifierFormData } from '@/types/VerifierFormData.types'
+import type { HiringManagerFormData } from '@/types/HiringManagerFormData.types'
 
 interface WaitlistFormWrapperProps {
   currentStep: StepId
@@ -15,6 +18,7 @@ interface WaitlistFormWrapperProps {
   onNext: () => void
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void
   children: ReactNode
+  formData: CandidateFormData | VerifierFormData | HiringManagerFormData
 }
 
 export type { WaitlistFormWrapperProps }

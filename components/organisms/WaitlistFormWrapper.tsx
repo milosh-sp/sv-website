@@ -25,13 +25,53 @@
 import type { ReactNode } from 'react'
 import { cn } from '@/lib/utils'
 import { strings } from '@/lib/strings'
-import { getStepNumber } from '@/lib/stepIdentifiers'
+import { getStepNumber, type StepId } from '@/lib/stepIdentifiers'
+import { validateStepsUpTo } from '@/lib/waitlistFormValidators'
 import { ProgressIndicator } from '@/components/molecules/ProgressIndicator'
 import { FormNavigation } from '@/components/organisms/FormNavigation'
 import { HoneypotField } from '@/components/molecules/HoneypotField'
 import { StatusMessage } from '@/components/atoms/StatusMessage'
 
 import type { WaitlistFormWrapperProps } from '@/types/WaitlistFormWrapper.types'
+import type { CandidateFormData } from '@/types/CandidateFormData.types'
+import type { VerifierFormData } from '@/types/VerifierFormData.types'
+import type { HiringManagerFormData } from '@/types/HiringManagerFormData.types'
+
+/**
+ * Determines if a user can navigate to a specific step
+ * Rules:
+ * - Can always navigate to current step
+ * - Can navigate to any validated step (backward or forward)
+ * - Cannot navigate to unvalidated steps
+ */
+function isStepNavigationAllowed(
+  targetStep: StepId,
+  currentStep: StepId,
+  isCurrentStepValid: boolean,
+  formData: CandidateFormData | VerifierFormData | HiringManagerFormData
+): boolean {
+  const targetStepNumber = getStepNumber(targetStep)
+  const currentStepNumber = getStepNumber(currentStep)
+
+  // Can always navigate to current step
+  if (targetStepNumber === currentStepNumber) {
+    return true
+  }
+
+  // Can navigate backward to previously validated steps
+  if (targetStepNumber < currentStepNumber) {
+    return validateStepsUpTo(targetStep, formData)
+  }
+
+  // Can navigate forward only to validated steps
+  // First, check if current step is valid (required to move forward at all)
+  if (!isCurrentStepValid) {
+    return false
+  }
+
+  // Then check if the target step has been validated
+  return validateStepsUpTo(targetStep, formData)
+}
 
 /**
  * Generic form wrapper for all waitlist forms
@@ -51,6 +91,7 @@ export function WaitlistFormWrapper({
   onNext,
   onSubmit,
   children,
+  formData,
 }: WaitlistFormWrapperProps): ReactNode {
   return (
     <form
@@ -62,23 +103,26 @@ export function WaitlistFormWrapper({
         currentStep={currentStep}
         totalSteps={totalSteps}
         onStepClick={(step) => {
-          // Allow navigation to previous steps or current step
-          // Only require validation for forward navigation
-          const canClickStep =
-            step < currentStep || (step === currentStep && isCurrentStepValid)
+          // Allow navigation based on validation and step position
+          const canClickStep = isStepNavigationAllowed(
+            step,
+            currentStep,
+            isCurrentStepValid,
+            formData
+          )
           if (canClickStep) {
             onStepClick(step)
           }
         }}
         isSubmitting={isSubmitting}
-        isStepClickable={(step) => {
-          const stepNumber = getStepNumber(step)
-          const currentStepNumber = getStepNumber(currentStep)
-          return (
-            stepNumber < currentStepNumber ||
-            (stepNumber === currentStepNumber && isCurrentStepValid)
+        isStepClickable={(step) =>
+          isStepNavigationAllowed(
+            step,
+            currentStep,
+            isCurrentStepValid,
+            formData
           )
-        }}
+        }
       />
 
       <div>{children}</div>

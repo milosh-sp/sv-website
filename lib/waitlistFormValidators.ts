@@ -205,21 +205,19 @@ function validateVerifierStep(
       )
       Object.assign(
         errors,
-        validateRadioField(
+        validateJsonArrayField(
           data.professionalFrustration,
           'professionalFrustration'
         )
       )
-
-      if (data.professionalFrustration === 'other') {
-        if (
-          !data.professionalFrustrationOther ||
-          data.professionalFrustrationOther.trim() === ''
-        ) {
-          errors.professionalFrustrationOther =
-            'Please specify your frustration'
-        }
-      }
+      Object.assign(
+        errors,
+        validateConditionalOtherField(
+          data.professionalFrustration,
+          data.professionalFrustrationOther,
+          'professionalFrustrationOther'
+        )
+      )
       break
     }
   }
@@ -377,6 +375,47 @@ function validateHiringManagerForm(
     isValid: Object.keys(errors).length === 0,
     errors,
   }
+}
+
+/**
+ * Validate all steps up to and including a specific step
+ * Used to determine if a user can jump to a specific step
+ * Returns true only if all steps from 1 to the target step are valid
+ */
+export function validateStepsUpTo(
+  targetStep: StepId,
+  data: CandidateFormData | VerifierFormData | HiringManagerFormData
+): boolean {
+  const targetStepNumber = getStepNumber(targetStep)
+
+  for (let stepNum = 1; stepNum <= targetStepNumber; stepNum++) {
+    // Map step number to StepId
+    const stepId = ['step1', 'step2', 'step3', 'step4'][stepNum - 1] as StepId
+
+    // Determine which validator to use based on data type
+    let stepValidation: ValidationErrors
+
+    if ('professionalFrustration' in data) {
+      // Verifier form
+      stepValidation = validateVerifierStep(stepId, data as VerifierFormData)
+    } else if ('managerRole' in data) {
+      // Hiring Manager form
+      stepValidation = validateHiringManagerStep(
+        stepId,
+        data as HiringManagerFormData
+      )
+    } else {
+      // Candidate form
+      stepValidation = validateCandidateStep(stepId, data as CandidateFormData)
+    }
+
+    // If any step has errors, return false
+    if (!stepValidation.isValid) {
+      return false
+    }
+  }
+
+  return true
 }
 
 export {

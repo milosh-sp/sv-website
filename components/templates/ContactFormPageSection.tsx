@@ -15,7 +15,7 @@ export function ContactFormPageSection({ id }: SectionProps) {
     submitStatus,
     honeypotValue,
     handleEmailChange,
-    handleNameChange,
+    handleContactNameChange,
     handleMessageChange,
     handleHoneypotChange,
     handleSubmit,
@@ -41,7 +41,7 @@ export function ContactFormPageSection({ id }: SectionProps) {
         submitStatus={submitStatus}
         honeypotValue={honeypotValue}
         onEmailChange={handleEmailChange}
-        onNameChange={handleNameChange}
+        onContactNameChange={handleContactNameChange}
         onMessageChange={handleMessageChange}
         onHoneypotChange={handleHoneypotChange}
         onSubmit={handleSubmit}

@@ -4,7 +4,7 @@ import {
   validateContactForm,
   validateEmail,
   validateMessage,
-  validateName,
+  validateContactName,
 } from '@/lib/validation'
 import type { ContactFormData } from '@/types/ContactForm.types'
 import type { ContactFormSubmission } from '@/types/netlify.types'
@@ -18,12 +18,12 @@ export function useContactForm() {
   const form = useForm<ContactFormData>({
     initialData: {
       email: '',
-      name: '',
+      contactName: '',
       message: '',
     },
     fields: [
       { name: 'email', validator: validateEmail },
-      { name: 'name', validator: validateName },
+      { name: 'contactName', validator: validateContactName },
       { name: 'message', validator: validateMessage },
     ],
     validateForm: validateContactForm,
@@ -32,7 +32,7 @@ export function useContactForm() {
       return submitUnifiedForm({
         formType: 'contact',
         email: formData.email,
-        name: formData.name,
+        contactName: formData.contactName,
         message: formData.message,
         website: honeypotValue,
         form_start_time: formStartTime,
@@ -51,8 +51,8 @@ export function useContactForm() {
     form.handleFieldChange('email', e.target.value)
   }
 
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    form.handleFieldChange('name', e.target.value)
+  const handleContactNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    form.handleFieldChange('contactName', e.target.value)
   }
 
   const handleMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -70,7 +70,7 @@ export function useContactForm() {
     submitStatus: form.submitStatus,
     honeypotValue: form.honeypotValue,
     handleEmailChange,
-    handleNameChange,
+    handleContactNameChange,
     handleMessageChange,
     handleHoneypotChange,
     handleSubmit: form.handleSubmit,

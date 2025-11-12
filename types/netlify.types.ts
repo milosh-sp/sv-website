@@ -38,13 +38,17 @@ interface ContactFormFields extends FormFields {
   message?: string
 }
 
-// Candidate form fields
-interface CandidateFormFields extends FormFields {
+// Base fields shared between Candidate and Verifier forms
+interface TechnicalProfileFormFields extends FormFields {
   linkedin?: string
   githubGitlabUrl?: string
   skillAreas?: string
   technicalSkills?: string
   professionalStatus?: string
+}
+
+// Candidate form fields
+interface CandidateFormFields extends TechnicalProfileFormFields {
   techCommunityMembership?: string
   techCommunityDetails?: string
   skillValidationConfidence?: string
@@ -67,14 +71,9 @@ interface HiringManagerFormFields extends FormFields {
 }
 
 // Verifier form fields
-interface VerifierFormFields extends FormFields {
-  linkedin?: string
-  githubGitlabUrl?: string
-  skillAreas?: string
-  technicalSkills?: string
+interface VerifierFormFields extends TechnicalProfileFormFields {
   yearsOfExperience?: string
   hoursPerWeek?: string
-  professionalStatus?: string
   coachingMentoring?: string
   verifierMotivations?: string
   verifierMotivationOther?: string
@@ -181,6 +180,7 @@ export type {
   FormFields,
   SignupFormFields,
   ContactFormFields,
+  TechnicalProfileFormFields,
   CandidateFormFields,
   HiringManagerFormFields,
   VerifierFormFields,

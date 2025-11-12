@@ -9,7 +9,7 @@ import { TextAreaField } from '@/components/molecules/TextAreaField'
 
 // Icons are embedded in strings
 const MailIcon = strings.contactPage.form.email.icon
-const UserIcon = strings.contactPage.form.name.icon
+const UserIcon = strings.contactPage.form.contactName.icon
 const MessageIcon = strings.contactPage.form.message.icon
 
 export function ContactForm({
@@ -19,7 +19,7 @@ export function ContactForm({
   submitStatus,
   honeypotValue,
   onEmailChange,
-  onNameChange,
+  onContactNameChange,
   onMessageChange,
   onHoneypotChange,
   onSubmit,
@@ -50,16 +50,16 @@ export function ContactForm({
       />
 
       <FormField
-        id='name'
+        id='contactName'
         type='text'
-        placeholder={strings.contactPage.form.name.placeholder}
-        value={formData.name}
-        onChange={onNameChange}
-        error={errors.name}
+        placeholder={strings.contactPage.form.contactName.placeholder}
+        value={formData.contactName}
+        onChange={onContactNameChange}
+        error={errors.contactName}
         disabled={isSubmitting}
         icon={<UserIcon className='h-5 w-5' aria-hidden='true' />}
-        label={strings.contactPage.form.name.label}
-        ariaDescribedBy={strings.contactPage.accessibility.nameError}
+        label={strings.contactPage.form.contactName.label}
+        ariaDescribedBy={strings.contactPage.accessibility.contactNameError}
       />
 
       <TextAreaField

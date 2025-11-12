@@ -540,7 +540,7 @@ export const contactPage = {
       ariaLabel: `Email address field`,
       icon: Mail,
     },
-    name: {
+    contactName: {
       label: `Name (Company or Individual)`,
       placeholder: `Your name or company name *`,
       ariaLabel: `Name field`,
@@ -600,7 +600,7 @@ export const contactPage = {
   accessibility: {
     contactForm: `Contact form`,
     emailError: `Email validation error`,
-    nameError: `Name validation error`,
+    contactNameError: `Name validation error`,
     messageError: `Message validation error`,
   },
 

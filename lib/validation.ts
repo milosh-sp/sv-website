@@ -175,24 +175,24 @@ function isValidGitHub(url: string): boolean {
 }
 
 /**
- * Validate name field for contact form
+ * Validate contact name field for contact form
  */
-export function validateName(name: string): ValidationResult {
-  if (!name) {
+export function validateContactName(contactName: string): ValidationResult {
+  if (!contactName) {
     return {
       isValid: false,
       message: 'Name is required',
     }
   }
 
-  if (typeof name !== 'string') {
+  if (typeof contactName !== 'string') {
     return {
       isValid: false,
       message: 'Name must be a string',
     }
   }
 
-  const trimmedName = name.trim()
+  const trimmedName = contactName.trim()
   if (!trimmedName) {
     return {
       isValid: false,
@@ -269,7 +269,7 @@ export function validateMessage(message: string): ValidationResult {
  */
 export interface ContactFormData {
   email: string
-  name: string
+  contactName: string
   message: string
 }
 
@@ -287,10 +287,10 @@ export function validateContactForm(
     errors.email = emailValidation.message || 'Invalid email'
   }
 
-  // Validate name
-  const nameValidation = validateName(data.name)
-  if (!nameValidation.isValid) {
-    errors.name = nameValidation.message || 'Invalid name'
+  // Validate contact name
+  const contactNameValidation = validateContactName(data.contactName)
+  if (!contactNameValidation.isValid) {
+    errors.contactName = contactNameValidation.message || 'Invalid name'
   }
 
   // Validate message
@@ -309,7 +309,7 @@ export function validateContactForm(
  * Check if contact form is valid (all fields filled and valid)
  */
 export function isContactFormValid(formData: ContactFormData): boolean {
-  if (!formData.email || !formData.name || !formData.message) {
+  if (!formData.email || !formData.contactName || !formData.message) {
     return false
   }
 
@@ -318,8 +318,8 @@ export function isContactFormValid(formData: ContactFormData): boolean {
     return false
   }
 
-  const nameValidation = validateName(formData.name)
-  if (!nameValidation.isValid) {
+  const contactNameValidation = validateContactName(formData.contactName)
+  if (!contactNameValidation.isValid) {
     return false
   }
 

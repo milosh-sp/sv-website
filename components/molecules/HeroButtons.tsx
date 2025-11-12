@@ -3,7 +3,7 @@
 import { strings } from '@/lib/strings'
 import { Award, CircleStar } from 'lucide-react'
 import { Button } from '@/components/atoms/Button'
-import { useSignupModal } from '@/contexts/SignupModalContext'
+import { useSignupModal } from '@/context/SignupModalContext'
 
 export function HeroButtons() {
   const { openModal } = useSignupModal()

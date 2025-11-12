@@ -17,27 +17,6 @@ import type { FormFieldsStepProps } from '@/types/FormFieldsStep.types'
  *
  * Single Responsibility: Only handles rendering form fields based on configuration
  * No business logic, no persona-specific knowledge
- *
- * Usage:
- * ```tsx
- * <FormFieldsStep
- *   fields={[
- *     {
- *       id: 'motivation',
- *       type: 'checkbox',
- *       label: 'Why are you interested?',
- *       options: [...],
- *       value: '[]',
- *       onChange: handleMotivationChange,
- *       otherFieldId: 'motivationOther',
- *       otherValue: '',
- *       onOtherChange: handleMotivationOtherChange,
- *     },
- *     // ... more fields
- *   ]}
- *   isSubmitting={false}
- * />
- * ```
  */
 export function FormFieldsStep({
   fields,

@@ -1,7 +1,7 @@
 import { navigationData } from '@/lib/navigationData'
 import { FloatingSignupButton } from '@/components/organisms/FloatingSignupButton'
 import { SignupModal } from '@/components/organisms/SignupModal'
-import { SignupModalProvider } from '@/contexts/SignupModalContext'
+import { SignupModalProvider } from '@/context/SignupModalContext'
 
 export default function Home() {
   return (

@@ -1,6 +1,6 @@
 'use client'
 
-import { Github, Linkedin, Mail } from 'lucide-react' // TODO: Update to GithubIcon, LinkedinIcon when available
+import { Github, Linkedin, Mail } from 'lucide-react'
 
 import { Checkbox } from '@/components/atoms/Checkbox'
 import { FormField } from '@/components/molecules/FormField'

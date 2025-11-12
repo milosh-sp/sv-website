@@ -1,6 +1,6 @@
 'use client'
 
-import { useHiringManagerFormContext } from '@/contexts/HiringManagerFormContext'
+import { useHiringManagerFormContext } from '@/context/HiringManagerFormContext'
 import { useHiringManagerForm } from '@/hooks/useHiringManagerForm'
 import { validateHiringManagerStep } from '@/lib/waitlistFormValidators'
 import {
@@ -12,10 +12,10 @@ import {
   HIRING_FAILURES_OPTIONS,
 } from '@/lib/waitlistConstants'
 import { strings } from '@/lib/strings'
-import { ContactConsentSection } from '@/components/waitlist/molecules/ContactConsentSection'
-import { HiringManagerCompanyProfileStep } from '@/components/waitlist/molecules/HiringManagerCompanyProfileStep'
-import { FormFieldsStep } from '@/components/waitlist/molecules/FormFieldsStep'
-import { WaitlistFormWrapper } from '@/components/waitlist/organisms/WaitlistFormWrapper'
+import { ContactConsentSection } from '@/components/molecules/ContactConsentSection'
+import { HiringManagerCompanyProfileStep } from '@/components/molecules/HiringManagerCompanyProfileStep'
+import { FormFieldsStep } from '@/components/molecules/FormFieldsStep'
+import { WaitlistFormWrapper } from '@/components/organisms/WaitlistFormWrapper'
 import type { FormFieldConfig } from '@/types/FormFieldsStep.types'
 
 export function HiringManagerWaitlistForm() {

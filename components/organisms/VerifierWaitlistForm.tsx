@@ -1,6 +1,6 @@
 'use client'
 
-import { useVerifierFormContext } from '@/contexts/VerifierFormContext'
+import { useVerifierFormContext } from '@/context/VerifierFormContext'
 import { useVerifierForm } from '@/hooks/useVerifierForm'
 import { validateVerifierStep } from '@/lib/waitlistFormValidators'
 import {
@@ -11,12 +11,12 @@ import {
   PROFESSIONAL_FRUSTRATION_OPTIONS,
 } from '@/lib/waitlistConstants'
 import { strings } from '@/lib/strings'
-import { ContactConsentSection } from '@/components/waitlist/molecules/ContactConsentSection'
-import { SkillAreasSection } from '@/components/waitlist/molecules/SkillAreasSection'
-import { TechnicalSkillsSection } from '@/components/waitlist/molecules/TechnicalSkillsSection'
-import { VerifierProfileStep } from '@/components/waitlist/molecules/VerifierProfileStep'
-import { FormFieldsStep } from '@/components/waitlist/molecules/FormFieldsStep'
-import { WaitlistFormWrapper } from '@/components/waitlist/organisms/WaitlistFormWrapper'
+import { ContactConsentSection } from '@/components/molecules/ContactConsentSection'
+import { SkillAreasSection } from '@/components/molecules/SkillAreasSection'
+import { TechnicalSkillsSection } from '@/components/molecules/TechnicalSkillsSection'
+import { VerifierProfileStep } from '@/components/molecules/VerifierProfileStep'
+import { FormFieldsStep } from '@/components/molecules/FormFieldsStep'
+import { WaitlistFormWrapper } from '@/components/organisms/WaitlistFormWrapper'
 import { cn } from '@/lib/utils'
 import type { FormFieldConfig } from '@/types/FormFieldsStep.types'
 

@@ -1,9 +1,9 @@
 'use client'
 
-import { VerifierFormProvider } from '@/contexts/VerifierFormContext'
-import { VerifierWaitlistForm } from '@/components/waitlist/organisms/VerifierWaitlistForm'
-import { SuccessScreen } from '@/components/waitlist/organisms/SuccessScreen'
-import { useVerifierFormContext } from '@/contexts/VerifierFormContext'
+import { VerifierFormProvider } from '@/context/VerifierFormContext'
+import { VerifierWaitlistForm } from '@/components/organisms/VerifierWaitlistForm'
+import { SuccessScreen } from '@/components/organisms/SuccessScreen'
+import { useVerifierFormContext } from '@/context/VerifierFormContext'
 
 function VerifierFormContent() {
   const context = useVerifierFormContext()

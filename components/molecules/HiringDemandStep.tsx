@@ -1,7 +1,7 @@
 'use client'
 
 import { AlertCircle, Target } from 'lucide-react'
-import { SkillAreasSection } from '@/components/waitlist/molecules/SkillAreasSection'
+import { SkillAreasSection } from '@/components/molecules/SkillAreasSection'
 import { TextAreaField } from '@/components/molecules/TextAreaField'
 import { cn } from '@/lib/utils'
 import type { HiringDemandStepProps } from '@/types/HiringDemandStep.types'

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-import { useSignupModal } from '@/contexts/SignupModalContext'
+import { useSignupModal } from '@/context/SignupModalContext'
 import { useForm } from '@/hooks/useForm'
 import { submitForm } from '@/lib/api'
 import {

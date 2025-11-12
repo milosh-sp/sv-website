@@ -4,7 +4,7 @@ import { Inter } from 'next/font/google'
 import '../styles/globals.css'
 import { Header } from '@/components/templates/Navigation'
 import { Footer } from '@/components/templates/Footer'
-import { SignupModalProvider } from '@/contexts/SignupModalContext'
+import { SignupModalProvider } from '@/context/SignupModalContext'
 import {
   defaultMetadata,
   generateOrganizationSchema,

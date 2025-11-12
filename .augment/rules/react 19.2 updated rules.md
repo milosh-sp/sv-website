@@ -343,6 +343,7 @@ function UserDashboard() {
   - Inline object creation in render  
 
 [Code Quality Standards]  
+- Instead of using `case` use simple object k:v
 - ES7+ Features Required:  
   - Async/await over promise chains  
   - Optional chaining (?.) + Nullish coalescing (??)  

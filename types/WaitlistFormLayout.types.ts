@@ -1,10 +1,11 @@
 import type { ReactNode } from 'react'
+import type { StepId } from '@/lib/stepIdentifiers'
 
 interface WaitlistFormLayoutProps {
-  currentStep: number
+  currentStep: StepId
   totalSteps: number
-  onStepClick?: (step: number) => void
-  isStepClickable?: (step: number) => boolean
+  onStepClick?: (step: StepId) => void
+  isStepClickable?: (step: StepId) => boolean
   isSubmitting: boolean
   canProceed: boolean
   onPrevious: () => void

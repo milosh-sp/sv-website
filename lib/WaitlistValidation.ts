@@ -20,12 +20,6 @@ import {
   validateRadioField,
   validateUrlField,
 } from '@/lib/waitlistValidatorFactory'
-import {
-  validateEmail,
-  validateLinkedIn,
-  validateGitHub,
-  validateUrl,
-} from '@/lib/validation'
 import type { CandidateFormData } from '@/types/CandidateFormData.types'
 import type { VerifierFormData } from '@/types/VerifierFormData.types'
 import type { HiringManagerFormData } from '@/types/HiringManagerFormData.types'
@@ -38,7 +32,7 @@ interface ValidationErrors {
 /**
  * Validate a specific step of the Candidate form
  */
-export function validateCandidateStep(
+function validateCandidateStep(
   step: number,
   data: CandidateFormData
 ): ValidationErrors {
@@ -46,12 +40,11 @@ export function validateCandidateStep(
 
   switch (step) {
     case 1: {
-      // Contact & Consent (shared validator)
+      // Contact Information (shared validator)
       const contactErrors = validateContactConsentStep({
         email: data.email,
         linkedIn: data.linkedIn,
         github: data.github,
-        privacyConsent: data.privacyConsent,
       })
       Object.assign(errors, contactErrors.errors)
       break
@@ -143,7 +136,7 @@ export function validateCandidateStep(
 /**
  * Validate a specific step of the Verifier form
  */
-export function validateVerifierStep(
+function validateVerifierStep(
   step: number,
   data: VerifierFormData
 ): ValidationErrors {
@@ -151,12 +144,11 @@ export function validateVerifierStep(
 
   switch (step) {
     case 1: {
-      // Contact & Consent (shared validator)
+      // Contact Information (shared validator)
       const contactErrors = validateContactConsentStep({
         email: data.email,
         linkedIn: data.linkedIn,
         github: data.github,
-        privacyConsent: data.privacyConsent,
       })
       Object.assign(errors, contactErrors.errors)
       break
@@ -241,7 +233,7 @@ export function validateVerifierStep(
 /**
  * Validate a specific step of the Hiring Manager form
  */
-export function validateHiringManagerStep(
+function validateHiringManagerStep(
   step: number,
   data: HiringManagerFormData
 ): ValidationErrors {
@@ -249,10 +241,9 @@ export function validateHiringManagerStep(
 
   switch (step) {
     case 1: {
-      // Contact & Consent (NO LinkedIn or GitHub)
+      // Contact Information (NO LinkedIn or GitHub)
       const contactErrors = validateContactConsentStep({
         email: data.email,
-        privacyConsent: data.privacyConsent,
       })
       Object.assign(errors, contactErrors.errors)
       break
@@ -326,112 +317,16 @@ export function validateHiringManagerStep(
 }
 
 /**
- * Validate Candidate Form Data
+ * Validate entire Candidate Form Data
+ * Validates all steps sequentially
  */
-export function validateCandidateForm(
-  data: CandidateFormData
-): ValidationErrors {
+function validateCandidateForm(data: CandidateFormData): ValidationErrors {
   const errors: Record<string, string> = {}
 
-  // Step 1: Contact & Consent
-  const emailValidation = validateEmail(data.email)
-  if (!emailValidation.isValid) {
-    errors.email = emailValidation.message || 'Invalid email'
-  }
-
-  const linkedInValidation = validateLinkedIn(data.linkedIn)
-  if (!linkedInValidation.isValid) {
-    errors.linkedIn = linkedInValidation.message || 'Invalid LinkedIn URL'
-  }
-
-  if (data.github) {
-    const githubValidation = validateGitHub(data.github)
-    if (!githubValidation.isValid) {
-      errors.github = githubValidation.message || 'Invalid GitHub URL'
-    }
-  }
-
-  // Step 2: Skills Profile
-  if (!data.skillAreas || data.skillAreas.length === 0) {
-    errors.skillAreas = 'Please select at least one skill area'
-  }
-
-  if (!data.technicalSkills || data.technicalSkills.length === 0) {
-    errors.technicalSkills = 'Please select at least one technical skill'
-  }
-
-  // Step 3: Candidate Profile
-  if (!data.professionalStatus || data.professionalStatus.trim() === '') {
-    errors.professionalStatus = 'Please select your professional status'
-  }
-
-  if (
-    !data.techCommunityMembership ||
-    data.techCommunityMembership.trim() === ''
-  ) {
-    errors.techCommunityMembership =
-      'Please select your tech community membership status'
-  }
-
-  if (data.techCommunityMembership === 'yes') {
-    if (!data.techCommunityDetails || data.techCommunityDetails.trim() === '') {
-      errors.techCommunityDetails = 'Please specify which tech community'
-    }
-  }
-
-  if (!data.githubGitlabUrl || data.githubGitlabUrl.trim() === '') {
-    errors.githubGitlabUrl = 'GitHub/GitLab profile URL is required'
-  } else {
-    const urlValidation = validateUrl(data.githubGitlabUrl)
-    if (!urlValidation.isValid) {
-      errors.githubGitlabUrl =
-        urlValidation.message || 'Invalid GitHub/GitLab URL'
-    }
-  }
-
-  // Step 4: Motivation & Challenges
-  if (
-    !data.skillValidationConfidence ||
-    data.skillValidationConfidence.trim() === ''
-  ) {
-    errors.skillValidationConfidence = 'Please select your confidence level'
-  }
-
-  // Validate job search challenges (array)
-  try {
-    const jobSearchChallenges = JSON.parse(data.jobSearchChallenges)
-    if (
-      !Array.isArray(jobSearchChallenges) ||
-      jobSearchChallenges.length === 0
-    ) {
-      errors.jobSearchChallenges = 'Please select at least one challenge'
-    } else if (jobSearchChallenges.includes('other')) {
-      if (
-        !data.jobSearchChallengeOther ||
-        data.jobSearchChallengeOther.trim() === ''
-      ) {
-        errors.jobSearchChallengeOther = 'Please specify your challenge'
-      }
-    }
-  } catch {
-    errors.jobSearchChallenges = 'Please select at least one challenge'
-  }
-
-  // Validate valuable outcomes (array)
-  try {
-    const valuableOutcomes = JSON.parse(data.valuableOutcomes)
-    if (!Array.isArray(valuableOutcomes) || valuableOutcomes.length === 0) {
-      errors.valuableOutcomes = 'Please select at least one outcome'
-    } else if (valuableOutcomes.includes('other')) {
-      if (
-        !data.valuableOutcomeOther ||
-        data.valuableOutcomeOther.trim() === ''
-      ) {
-        errors.valuableOutcomeOther = 'Please specify the outcome'
-      }
-    }
-  } catch {
-    errors.valuableOutcomes = 'Please select at least one outcome'
+  // Validate all steps
+  for (let step = 1; step <= 4; step++) {
+    const stepErrors = validateCandidateStep(step, data)
+    Object.assign(errors, stepErrors.errors)
   }
 
   return {
@@ -441,96 +336,16 @@ export function validateCandidateForm(
 }
 
 /**
- * Validate Verifier Form Data
+ * Validate entire Verifier Form Data
+ * Validates all steps sequentially
  */
-export function validateVerifierForm(data: VerifierFormData): ValidationErrors {
+function validateVerifierForm(data: VerifierFormData): ValidationErrors {
   const errors: Record<string, string> = {}
 
-  // Step 1: Contact & Consent
-  const emailValidation = validateEmail(data.email)
-  if (!emailValidation.isValid) {
-    errors.email = emailValidation.message || 'Invalid email'
-  }
-
-  const linkedInValidation = validateLinkedIn(data.linkedIn)
-  if (!linkedInValidation.isValid) {
-    errors.linkedIn = linkedInValidation.message || 'Invalid LinkedIn URL'
-  }
-
-  if (data.github) {
-    const githubValidation = validateGitHub(data.github)
-    if (!githubValidation.isValid) {
-      errors.github = githubValidation.message || 'Invalid GitHub URL'
-    }
-  }
-
-  // Step 2: Skills Profile
-  if (!data.skillAreas || data.skillAreas.length === 0) {
-    errors.skillAreas = 'Please select at least one skill area'
-  }
-
-  if (!data.technicalSkills || data.technicalSkills.length === 0) {
-    errors.technicalSkills = 'Please select at least one technical skill'
-  }
-
-  // Step 3: Verifier Profile
-  if (!data.yearsOfExperience || data.yearsOfExperience.trim() === '') {
-    errors.yearsOfExperience = 'Please select your years of experience'
-  }
-
-  if (!data.hoursPerWeek || data.hoursPerWeek.trim() === '') {
-    errors.hoursPerWeek = 'Please select your availability'
-  }
-
-  if (!data.professionalStatus || data.professionalStatus.trim() === '') {
-    errors.professionalStatus = 'Please select your professional status'
-  }
-
-  if (!data.coachingMentoring || data.coachingMentoring.trim() === '') {
-    errors.coachingMentoring =
-      'Please select if you have coaching or mentoring experience'
-  }
-
-  if (!data.githubGitlabUrl || data.githubGitlabUrl.trim() === '') {
-    errors.githubGitlabUrl = 'GitHub/GitLab URL is required'
-  } else {
-    const urlValidation = validateUrl(data.githubGitlabUrl)
-    if (!urlValidation.isValid) {
-      errors.githubGitlabUrl =
-        urlValidation.message || 'Invalid GitHub/GitLab URL'
-    }
-  }
-
-  // Step 4: Motivation & Challenges
-  // Validate verifier motivations (array)
-  try {
-    const motivations = JSON.parse(data.verifierMotivations)
-    if (!Array.isArray(motivations) || motivations.length === 0) {
-      errors.verifierMotivations = 'Please select at least one motivation'
-    } else if (motivations.includes('other')) {
-      if (
-        !data.verifierMotivationOther ||
-        data.verifierMotivationOther.trim() === ''
-      ) {
-        errors.verifierMotivationOther = 'Please specify your motivation'
-      }
-    }
-  } catch {
-    errors.verifierMotivations = 'Please select at least one motivation'
-  }
-
-  if (
-    !data.professionalFrustration ||
-    data.professionalFrustration.trim() === ''
-  ) {
-    errors.professionalFrustration = 'Please select your biggest frustration'
-  } else if (data.professionalFrustration === 'other') {
-    if (
-      !data.professionalFrustrationOther ||
-      data.professionalFrustrationOther.trim() === ''
-    ) {
-      errors.professionalFrustrationOther = 'Please specify your frustration'
-    }
+  // Validate all steps
+  for (let step = 1; step <= 4; step++) {
+    const stepErrors = validateVerifierStep(step, data)
+    Object.assign(errors, stepErrors.errors)
   }
 
   return {
@@ -540,72 +355,31 @@ export function validateVerifierForm(data: VerifierFormData): ValidationErrors {
 }
 
 /**
- * Validate Hiring Manager Form Data
- * Note: LinkedIn is NOT required for Hiring Managers
+ * Validate entire Hiring Manager Form Data
+ * Validates all steps sequentially
  */
-export function validateHiringManagerForm(
+function validateHiringManagerForm(
   data: HiringManagerFormData
 ): ValidationErrors {
   const errors: Record<string, string> = {}
 
-  // Step 1: Contact & Consent (NO LinkedIn or GitHub)
-  const emailValidation = validateEmail(data.email)
-  if (!emailValidation.isValid) {
-    errors.email = emailValidation.message || 'Invalid email'
-  }
-
-  // Step 2: Company Profile
-  if (!data.managerRole || data.managerRole.trim() === '') {
-    errors.managerRole = 'Please select your role'
-  }
-
-  if (!data.fundingStage || data.fundingStage.trim() === '') {
-    errors.fundingStage = 'Please select your funding stage'
-  }
-
-  if (!data.engineeringTeamSize || data.engineeringTeamSize.trim() === '') {
-    errors.engineeringTeamSize = 'Please select your engineering team size'
-  }
-
-  // Step 3: Hiring Demand
-  try {
-    const rolesHiring = JSON.parse(data.rolesHiring)
-    if (!Array.isArray(rolesHiring) || rolesHiring.length === 0) {
-      errors.rolesHiring = 'Please select at least one role'
-    }
-  } catch {
-    errors.rolesHiring = 'Please select at least one role'
-  }
-
-  if (!data.seniorityLevel || data.seniorityLevel.trim() === '') {
-    errors.seniorityLevel = 'Please select a seniority level'
-  }
-
-  if (!data.hiringInterviewHours || data.hiringInterviewHours.trim() === '') {
-    errors.hiringInterviewHours = 'Please select interview hours'
-  }
-
-  // Step 4: Hiring Challenges
-  try {
-    const frustrations = JSON.parse(data.hiringFrustrations)
-    if (!Array.isArray(frustrations) || frustrations.length === 0) {
-      errors.hiringFrustrations = 'Please select at least one frustration'
-    }
-  } catch {
-    errors.hiringFrustrations = 'Please select at least one frustration'
-  }
-
-  try {
-    const failures = JSON.parse(data.hiringFailures)
-    if (!Array.isArray(failures) || failures.length === 0) {
-      errors.hiringFailures = 'Please select at least one failure'
-    }
-  } catch {
-    errors.hiringFailures = 'Please select at least one failure'
+  // Validate all steps
+  for (let step = 1; step <= 4; step++) {
+    const stepErrors = validateHiringManagerStep(step, data)
+    Object.assign(errors, stepErrors.errors)
   }
 
   return {
     isValid: Object.keys(errors).length === 0,
     errors,
   }
+}
+
+export {
+  validateCandidateStep,
+  validateVerifierStep,
+  validateHiringManagerStep,
+  validateCandidateForm,
+  validateVerifierForm,
+  validateHiringManagerForm,
 }

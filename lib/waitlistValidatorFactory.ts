@@ -25,15 +25,15 @@ interface ValidationErrors {
 }
 
 /**
- * Shared Step 1 validation (Contact & Consent)
+ * Shared Step 1 validation (Contact Information)
  * Used by: Candidate, Verifier, Hiring Manager
- * Validates: email, LinkedIn, GitHub, privacy consent
+ * Validates: email, LinkedIn, GitHub
+ * Note: Consent is implicit - users consent by submitting the form
  */
 export function validateContactConsentStep(data: {
   email: string
   linkedIn?: string
   github?: string
-  privacyConsent: string
 }): ValidationErrors {
   const errors: Record<string, string> = {}
 

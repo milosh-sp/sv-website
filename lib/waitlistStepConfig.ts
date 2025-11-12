@@ -1,32 +1,15 @@
-/**
- * Waitlist Step Configuration Factory
- * Centralizes step definitions for all form personas
- * Enables data-driven step rendering and reduces component code by 40%
- *
- * Configuration includes:
- * - Step metadata (number, title, description)
- * - Field definitions for each step
- * - Validation rules per step
- */
-
 import type { WaitlistStepConfig } from '@/types/WaitlistStep.types'
 
 /**
  * Candidate form step configuration
- * 4 steps: Contact & Consent → Skills Profile → Profile → Motivation & Challenges
+ * 4 steps: Contact Information → Skills Profile → Profile → Motivation & Challenges
  */
 export const CANDIDATE_STEP_CONFIG: WaitlistStepConfig[] = [
   {
     stepNumber: 1,
-    title: 'Contact & Consent',
+    title: 'Contact Information',
     description: 'Let us know how to reach you',
-    fields: [
-      'email',
-      'linkedIn',
-      'github',
-      'privacyConsent',
-      'newsletterOptIn',
-    ],
+    fields: ['email', 'linkedIn', 'github', 'newsletterOptIn'],
   },
   {
     stepNumber: 2,
@@ -61,20 +44,14 @@ export const CANDIDATE_STEP_CONFIG: WaitlistStepConfig[] = [
 
 /**
  * Verifier form step configuration
- * 4 steps: Contact & Consent → Skills Profile → Profile → Motivation & Challenges
+ * 4 steps: Contact Information → Skills Profile → Profile → Motivation & Challenges
  */
 export const VERIFIER_STEP_CONFIG: WaitlistStepConfig[] = [
   {
     stepNumber: 1,
-    title: 'Contact & Consent',
+    title: 'Contact Information',
     description: 'Let us know how to reach you',
-    fields: [
-      'email',
-      'linkedIn',
-      'github',
-      'privacyConsent',
-      'newsletterOptIn',
-    ],
+    fields: ['email', 'linkedIn', 'github', 'newsletterOptIn'],
   },
   {
     stepNumber: 2,
@@ -109,14 +86,14 @@ export const VERIFIER_STEP_CONFIG: WaitlistStepConfig[] = [
 
 /**
  * Hiring Manager form step configuration
- * 4 steps: Contact & Consent → Company Profile → Hiring Demand → Hiring Challenges
+ * 4 steps: Contact Information → Company Profile → Hiring Demand → Hiring Challenges
  */
 export const HIRING_MANAGER_STEP_CONFIG: WaitlistStepConfig[] = [
   {
     stepNumber: 1,
-    title: 'Contact & Consent',
+    title: 'Contact Information',
     description: 'Let us know how to reach you',
-    fields: ['email', 'privacyConsent', 'newsletterOptIn'],
+    fields: ['email', 'newsletterOptIn'],
   },
   {
     stepNumber: 2,

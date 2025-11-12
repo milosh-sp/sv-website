@@ -4,11 +4,10 @@
  */
 
 export interface VerifierFormData extends Record<string, string> {
-  // Step 1: Contact & Consent
+  // Step 1: Contact Information
   email: string
   linkedIn: string
   github: string
-  privacyConsent: string // Stored as 'true' or 'false'
   newsletterOptIn: string // Stored as 'true' or 'false'
 
   // Step 2: Skills Profile
@@ -39,15 +38,9 @@ export interface VerifierFormStep {
 export const VERIFIER_FORM_STEPS: VerifierFormStep[] = [
   {
     stepNumber: 1,
-    title: 'Contact & Consent',
+    title: 'Contact Information',
     description: 'Let us know how to reach you',
-    fields: [
-      'email',
-      'linkedIn',
-      'github',
-      'privacyConsent',
-      'newsletterOptIn',
-    ],
+    fields: ['email', 'linkedIn', 'github', 'newsletterOptIn'],
   },
   {
     stepNumber: 2,
@@ -84,7 +77,6 @@ export const INITIAL_VERIFIER_FORM_DATA: VerifierFormData = {
   email: '',
   linkedIn: '',
   github: '',
-  privacyConsent: 'false',
   newsletterOptIn: 'false',
   skillAreas: '[]',
   technicalSkills: '[]',

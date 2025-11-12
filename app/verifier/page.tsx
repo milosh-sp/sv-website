@@ -1,9 +1,12 @@
 'use client'
 
 import { VerifierFormProvider } from '@/context/VerifierFormContext'
-import { VerifierWaitlistForm } from '@/components/organisms/VerifierWaitlistForm'
-import { SuccessScreen } from '@/components/organisms/SuccessScreen'
 import { useVerifierFormContext } from '@/context/VerifierFormContext'
+import { SuccessScreen } from '@/components/organisms/SuccessScreen'
+import { VerifierWaitlistForm } from '@/components/organisms/VerifierWaitlistForm'
+import { PageHeader } from '@/components/molecules/PageHeader'
+import { PageLayout } from '@/components/templates/PageLayout'
+import { strings } from '@/lib/strings'
 
 function VerifierFormContent() {
   const context = useVerifierFormContext()
@@ -12,23 +15,13 @@ function VerifierFormContent() {
     return <SuccessScreen personaType='verifier' />
   }
 
-  return (
-    <div className='min-h-screen bg-gradient-to-b from-blue-50 to-white py-12 px-4'>
-      <div className='max-w-4xl mx-auto'>
-        {/* Header */}
-        <div className='text-center mb-12'>
-          <h1 className='text-4xl font-bold text-gray-900 mb-4'>
-            Become a Skill Verifier
-          </h1>
-          <p className='text-xl text-gray-600'>
-            Help verify skills and build trust in our community
-          </p>
-        </div>
+  const { title, description } = strings.waitlistForms.pageHeaders.verifier
 
-        {/* Form */}
-        <VerifierWaitlistForm />
-      </div>
-    </div>
+  return (
+    <PageLayout>
+      <PageHeader title={title} description={description} />
+      <VerifierWaitlistForm />
+    </PageLayout>
   )
 }
 

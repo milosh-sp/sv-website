@@ -1,24 +1,25 @@
 'use client'
 
+import { CandidateProfileStep } from '@/components/molecules/CandidateProfileStep'
+import { ContactConsentSection } from '@/components/molecules/ContactConsentSection'
+import { FormFieldsStep } from '@/components/molecules/FormFieldsStep'
+import { SkillAreasSection } from '@/components/molecules/SkillAreasSection'
+import { TechnicalSkillsSection } from '@/components/molecules/TechnicalSkillsSection'
+import { WaitlistFormWrapper } from '@/components/organisms/WaitlistFormWrapper'
 import { useCandidateFormContext } from '@/context/CandidateFormContext'
 import { useCandidateForm } from '@/hooks/useCandidateForm'
-import { validateCandidateStep } from '@/lib/waitlistFormValidators'
 import {
+  JOB_SEARCH_CHALLENGE_OPTIONS,
   SKILL_AREAS,
+  SKILL_VALIDATION_OPTIONS,
   TECHNICAL_SKILLS,
   TOTAL_FORM_STEPS,
-  SKILL_VALIDATION_OPTIONS,
-  JOB_SEARCH_CHALLENGE_OPTIONS,
   VALUABLE_OUTCOME_OPTIONS,
 } from '@/lib/waitlistConstants'
 import { strings } from '@/lib/strings'
-import { ContactConsentSection } from '@/components/molecules/ContactConsentSection'
-import { SkillAreasSection } from '@/components/molecules/SkillAreasSection'
-import { TechnicalSkillsSection } from '@/components/molecules/TechnicalSkillsSection'
-import { CandidateProfileStep } from '@/components/molecules/CandidateProfileStep'
-import { FormFieldsStep } from '@/components/molecules/FormFieldsStep'
-import { WaitlistFormWrapper } from '@/components/organisms/WaitlistFormWrapper'
+import { validateCandidateStep } from '@/lib/waitlistFormValidators'
 import { cn } from '@/lib/utils'
+
 import type { FormFieldConfig } from '@/types/FormFieldsStep.types'
 
 export function CandidateWaitlistForm() {

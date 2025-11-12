@@ -1101,6 +1101,22 @@ export const radioButton = {
 // ============================================================================
 
 export const waitlistForms = {
+  // Page headers for waitlist forms
+  pageHeaders: {
+    candidate: {
+      title: `Join Our Candidate Waitlist`,
+      description: `Get your skills verified and discover opportunities`,
+    },
+    verifier: {
+      title: `Become a Skill Verifier`,
+      description: `Help verify skills and build trust in our community`,
+    },
+    'hiring-manager': {
+      title: `Find Verified Talent`,
+      description: `Access our network of verified professionals`,
+    },
+  },
+
   // Success screen messages
   successScreen: {
     candidate: {

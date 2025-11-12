@@ -1,21 +1,22 @@
 'use client'
 
+import { ContactConsentSection } from '@/components/molecules/ContactConsentSection'
+import { FormFieldsStep } from '@/components/molecules/FormFieldsStep'
+import { HiringManagerCompanyProfileStep } from '@/components/molecules/HiringManagerCompanyProfileStep'
+import { WaitlistFormWrapper } from '@/components/organisms/WaitlistFormWrapper'
 import { useHiringManagerFormContext } from '@/context/HiringManagerFormContext'
 import { useHiringManagerForm } from '@/hooks/useHiringManagerForm'
-import { validateHiringManagerStep } from '@/lib/waitlistFormValidators'
 import {
-  TOTAL_FORM_STEPS,
+  HIRING_FAILURES_OPTIONS,
+  HIRING_FRUSTRATIONS_OPTIONS,
+  INTERVIEW_HOURS_OPTIONS,
   ROLES_HIRING_OPTIONS,
   SENIORITY_LEVEL_OPTIONS,
-  INTERVIEW_HOURS_OPTIONS,
-  HIRING_FRUSTRATIONS_OPTIONS,
-  HIRING_FAILURES_OPTIONS,
+  TOTAL_FORM_STEPS,
 } from '@/lib/waitlistConstants'
 import { strings } from '@/lib/strings'
-import { ContactConsentSection } from '@/components/molecules/ContactConsentSection'
-import { HiringManagerCompanyProfileStep } from '@/components/molecules/HiringManagerCompanyProfileStep'
-import { FormFieldsStep } from '@/components/molecules/FormFieldsStep'
-import { WaitlistFormWrapper } from '@/components/organisms/WaitlistFormWrapper'
+import { validateHiringManagerStep } from '@/lib/waitlistFormValidators'
+
 import type { FormFieldConfig } from '@/types/FormFieldsStep.types'
 
 export function HiringManagerWaitlistForm() {

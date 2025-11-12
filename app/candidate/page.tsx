@@ -1,9 +1,12 @@
 'use client'
 
+import { useCandidateFormContext } from '@/context/CandidateFormContext'
 import { CandidateFormProvider } from '@/context/CandidateFormContext'
 import { CandidateWaitlistForm } from '@/components/organisms/CandidateWaitlistForm'
 import { SuccessScreen } from '@/components/organisms/SuccessScreen'
-import { useCandidateFormContext } from '@/context/CandidateFormContext'
+import { PageHeader } from '@/components/molecules/PageHeader'
+import { PageLayout } from '@/components/templates/PageLayout'
+import { strings } from '@/lib/strings'
 
 function CandidateFormContent() {
   const context = useCandidateFormContext()
@@ -12,23 +15,13 @@ function CandidateFormContent() {
     return <SuccessScreen personaType='candidate' />
   }
 
-  return (
-    <div className='min-h-screen bg-gradient-to-b from-blue-50 to-white py-12 px-4'>
-      <div className='max-w-4xl mx-auto'>
-        {/* Header */}
-        <div className='text-center mb-12'>
-          <h1 className='text-4xl font-bold text-gray-900 mb-4'>
-            Join Our Candidate Waitlist
-          </h1>
-          <p className='text-xl text-gray-600'>
-            Get your skills verified and discover opportunities
-          </p>
-        </div>
+  const { title, description } = strings.waitlistForms.pageHeaders.candidate
 
-        {/* Form */}
-        <CandidateWaitlistForm />
-      </div>
-    </div>
+  return (
+    <PageLayout>
+      <PageHeader title={title} description={description} />
+      <CandidateWaitlistForm />
+    </PageLayout>
   )
 }
 

@@ -1324,7 +1324,7 @@ export const waitlistForms = {
         stepNumber: 1,
         title: 'Contact Information',
         description: 'Let us know how to reach you',
-        fields: ['linkedIn', 'github', 'newsletterOptIn'],
+        fields: ['email', 'linkedIn', 'github', 'newsletterOptIn'],
       },
       {
         stepNumber: 2,

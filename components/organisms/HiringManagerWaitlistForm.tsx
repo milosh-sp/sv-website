@@ -45,20 +45,23 @@ export function HiringManagerWaitlistForm() {
   }
 
   const stepRenderers: Record<StepId, () => ReactNode> = {
-    [STEP_IDS.STEP_1]: () => (
-      <ContactConsentSection
-        email={form.formData.email}
-        newsletterOptIn={form.formData.newsletterOptIn}
-        includeLinkedIn={false}
-        includeGitHub={false}
-        errors={form.errors}
-        isSubmitting={form.isSubmitting}
-        onEmailChange={(value) => form.handleFieldChange('email', value)}
-        onNewsletterOptInChange={(checked) =>
-          form.handleFieldChange('newsletterOptIn', String(checked))
-        }
-      />
-    ),
+    [STEP_IDS.STEP_1]: () => {
+      const stepFields =
+        strings.waitlistForms.stepConfigs['hiring-manager'][0].fields
+      return (
+        <ContactConsentSection
+          email={form.formData.email}
+          newsletterOptIn={form.formData.newsletterOptIn}
+          fields={stepFields}
+          errors={form.errors}
+          isSubmitting={form.isSubmitting}
+          onEmailChange={(value) => form.handleFieldChange('email', value)}
+          onNewsletterOptInChange={(checked) =>
+            form.handleFieldChange('newsletterOptIn', String(checked))
+          }
+        />
+      )
+    },
     [STEP_IDS.STEP_2]: () => (
       <HiringManagerCompanyProfileStep
         managerRole={form.formData.managerRole}

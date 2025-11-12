@@ -48,23 +48,28 @@ export function VerifierWaitlistForm() {
   }
 
   const stepRenderers: Record<StepId, () => ReactNode> = {
-    [STEP_IDS.STEP_1]: () => (
-      <ContactConsentSection
-        email={form.formData.email}
-        linkedIn={form.formData.linkedIn}
-        github={form.formData.github}
-        newsletterOptIn={form.formData.newsletterOptIn}
-        includeLinkedIn={true}
-        errors={form.errors}
-        isSubmitting={form.isSubmitting}
-        onEmailChange={(value) => form.handleFieldChange('email', value)}
-        onLinkedInChange={(value) => form.handleFieldChange('linkedIn', value)}
-        onGitHubChange={(value) => form.handleFieldChange('github', value)}
-        onNewsletterOptInChange={(checked) =>
-          form.handleFieldChange('newsletterOptIn', String(checked))
-        }
-      />
-    ),
+    [STEP_IDS.STEP_1]: () => {
+      const stepFields = strings.waitlistForms.stepConfigs.verifier[0].fields
+      return (
+        <ContactConsentSection
+          email={form.formData.email}
+          linkedIn={form.formData.linkedIn}
+          github={form.formData.github}
+          newsletterOptIn={form.formData.newsletterOptIn}
+          fields={stepFields}
+          errors={form.errors}
+          isSubmitting={form.isSubmitting}
+          onEmailChange={(value) => form.handleFieldChange('email', value)}
+          onLinkedInChange={(value) =>
+            form.handleFieldChange('linkedIn', value)
+          }
+          onGitHubChange={(value) => form.handleFieldChange('github', value)}
+          onNewsletterOptInChange={(checked) =>
+            form.handleFieldChange('newsletterOptIn', String(checked))
+          }
+        />
+      )
+    },
     [STEP_IDS.STEP_2]: () => {
       const skillAreas = JSON.parse(form.formData.skillAreas || '[]')
       const technicalSkills = JSON.parse(form.formData.technicalSkills || '[]')

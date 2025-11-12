@@ -16,6 +16,7 @@ export function ContactConsentSection({
   newsletterOptIn,
   includeLinkedIn,
   includeGitHub = true,
+  fields,
   errors,
   isSubmitting,
   onEmailChange,
@@ -30,24 +31,37 @@ export function ContactConsentSection({
       ? newsletterOptIn === 'true'
       : newsletterOptIn
 
+  // Determine which fields to show
+  // If fields array is provided, use it; otherwise fall back to includeLinkedIn/includeGitHub
+  const showEmail = !fields || fields.includes('email')
+  const showLinkedIn = fields
+    ? fields.includes('linkedIn')
+    : (includeLinkedIn ?? true)
+  const showGitHub = fields
+    ? fields.includes('github')
+    : (includeGitHub ?? true)
+  const showNewsletter = !fields || fields.includes('newsletterOptIn')
+
   return (
     <fieldset className={cn('space-y-4', className)} {...props}>
       {/* Email Field */}
-      <FormField
-        id='email'
-        type='email'
-        placeholder={strings.waitlistForms.fields.email.placeholder}
-        value={email}
-        onChange={(e) => onEmailChange(e.target.value)}
-        error={errors.email}
-        disabled={isSubmitting}
-        icon={<Mail className={cn('w-5 h-5')} />}
-        label={strings.waitlistForms.fields.email.label}
-        ariaDescribedBy='email-error'
-      />
+      {showEmail && (
+        <FormField
+          id='email'
+          type='email'
+          placeholder={strings.waitlistForms.fields.email.placeholder}
+          value={email}
+          onChange={(e) => onEmailChange(e.target.value)}
+          error={errors.email}
+          disabled={isSubmitting}
+          icon={<Mail className={cn('w-5 h-5')} />}
+          label={strings.waitlistForms.fields.email.label}
+          ariaDescribedBy='email-error'
+        />
+      )}
 
       {/* LinkedIn Field - Conditional */}
-      {includeLinkedIn && (
+      {showLinkedIn && (
         <FormField
           id='linkedIn'
           type='url'
@@ -63,7 +77,7 @@ export function ContactConsentSection({
       )}
 
       {/* GitHub Field - Conditional */}
-      {includeGitHub && (
+      {showGitHub && (
         <FormField
           id='github'
           type='url'
@@ -79,13 +93,15 @@ export function ContactConsentSection({
       )}
 
       {/* Newsletter Opt-in - Optional */}
-      <Checkbox
-        id='newsletterOptIn'
-        label={strings.waitlistForms.labels.newsletterOptIn}
-        checked={newsletterOptInBool}
-        onChange={(e) => onNewsletterOptInChange(e.target.checked)}
-        disabled={isSubmitting}
-      />
+      {showNewsletter && (
+        <Checkbox
+          id='newsletterOptIn'
+          label={strings.waitlistForms.labels.newsletterOptIn}
+          checked={newsletterOptInBool}
+          onChange={(e) => onNewsletterOptInChange(e.target.checked)}
+          disabled={isSubmitting}
+        />
+      )}
     </fieldset>
   )
 }

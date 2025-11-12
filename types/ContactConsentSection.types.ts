@@ -6,8 +6,9 @@ interface ContactConsentSectionProps
   linkedIn?: string
   github?: string
   newsletterOptIn: string | boolean // Accept both for compatibility
-  includeLinkedIn: boolean
-  includeGitHub?: boolean
+  includeLinkedIn?: boolean // Deprecated: use fields array instead
+  includeGitHub?: boolean // Deprecated: use fields array instead
+  fields?: string[] // New: array of field names to render
   errors: Record<string, string>
   isSubmitting: boolean
   onEmailChange: (value: string) => void

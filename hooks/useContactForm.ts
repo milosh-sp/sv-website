@@ -1,15 +1,13 @@
 import { useForm } from '@/hooks/useForm'
-import { submitContactForm } from '@/lib/api'
+import { submitUnifiedForm } from '@/lib/api'
 import {
   validateContactForm,
   validateEmail,
   validateMessage,
   validateName,
 } from '@/lib/validation'
-import type {
-  ContactFormData,
-  ContactFormSubmissionData,
-} from '@/types/ContactForm.types'
+import type { ContactFormData } from '@/types/ContactForm.types'
+import type { ContactFormSubmission } from '@/types/netlify.types'
 
 /**
  * Custom hook for managing contact form state and validation
@@ -30,8 +28,9 @@ export function useContactForm() {
     ],
     validateForm: validateContactForm,
     onSubmit: async (formData, honeypotValue, formStartTime) => {
-      // Submit to Netlify function with contact-specific fields
-      return submitContactForm({
+      // Submit to unified Netlify function with contact-specific fields
+      return submitUnifiedForm({
+        formType: 'contact',
         email: formData.email,
         fields: {
           name: formData.name,
@@ -39,7 +38,7 @@ export function useContactForm() {
           website: honeypotValue,
           form_start_time: formStartTime,
         },
-      } as ContactFormSubmissionData)
+      } as ContactFormSubmission)
     },
     onSuccess: () => {
       // Reset status after successful submission

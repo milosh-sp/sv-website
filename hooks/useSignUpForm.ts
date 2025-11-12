@@ -2,14 +2,15 @@ import { useEffect, useRef } from 'react'
 
 import { useSignupModal } from '@/context/SignupModalContext'
 import { useForm } from '@/hooks/useForm'
-import { submitForm } from '@/lib/api'
+import { submitUnifiedForm } from '@/lib/api'
 import {
   validateEmail,
   validateGitHub,
   validateLinkedIn,
   validateSignupForm,
 } from '@/lib/validation'
-import type { FormData, FormSubmissionData } from '@/types/SignUpModal.types'
+import type { FormData } from '@/types/SignUpModal.types'
+import type { SignupFormSubmission } from '@/types/netlify.types'
 
 export const useSignupForm = () => {
   const { isOpen, userType, closeModal } = useSignupModal()
@@ -29,8 +30,9 @@ export const useSignupForm = () => {
     ],
     validateForm: validateSignupForm,
     onSubmit: async (formData, honeypotValue, formStartTime) => {
-      // Submit to Netlify function with signup-specific fields
-      return submitForm({
+      // Submit to unified Netlify function with signup-specific fields
+      return submitUnifiedForm({
+        formType: 'signup',
         email: formData.email,
         fields: {
           linkedin: formData.linkedin,
@@ -40,7 +42,7 @@ export const useSignupForm = () => {
           website: honeypotValue,
           form_start_time: formStartTime,
         },
-      } as FormSubmissionData)
+      } as SignupFormSubmission)
     },
     onSuccess: () => {
       // Close modal after successful submission

@@ -21,21 +21,21 @@ import {
   createValidationErrorResponse,
 } from '../../lib/netlify/response-builder'
 import { extractClientIPAndCountry } from '../../lib/netlify/client-info'
-import type { HttpResponse } from '../../types/netlify.types'
-import type { ContactFormSubmissionData } from '../../types/ContactForm.types'
-import {
-  detectBot,
-  validateContactFormData,
-} from '../../lib/netlify/form-validation'
+import type { HttpResponse, UnifiedFormSubmissionData } from '../../types/netlify.types'
+import { detectBot, validateUnifiedFormData } from '../../lib/netlify/form-validation'
 
+/**
+ * Unified form submission handler
+ * Supports all form types: signup, contact, candidate, hiring-manager, verifier
+ * Routes to appropriate validation based on formType discriminator
+ */
 export const handler: Handler = async (
   event: HandlerEvent,
   _context: HandlerContext
 ): Promise<HttpResponse> => {
-  console.log('Contact form submit function called:', {
+  console.log('Unified form submit function called:', {
     method: event.httpMethod,
     path: event.path,
-    headers: event.headers,
     hasBody: !!event.body,
   })
 
@@ -54,7 +54,7 @@ export const handler: Handler = async (
       return createMissingBodyResponse()
     }
 
-    let requestData: ContactFormSubmissionData
+    let requestData: UnifiedFormSubmissionData
     try {
       requestData = JSON.parse(event.body)
     } catch (_parseError) {
@@ -72,7 +72,7 @@ export const handler: Handler = async (
       return createBotDetectedResponse()
     }
 
-    const validationError = validateContactFormData(requestData)
+    const validationError = validateUnifiedFormData(requestData)
     if (validationError) {
       return createValidationErrorResponse(validationError.message)
     }
@@ -88,16 +88,7 @@ export const handler: Handler = async (
       return createMissingApiTokenResponse()
     }
 
-    // Build subscriber data with contact form fields
-    const subscriberData = buildSubscriberData(
-      email,
-      {
-        ...fields,
-        form_type: 'contact',
-      },
-      clientIP
-    )
-
+    const subscriberData = buildSubscriberData(email, fields, clientIP)
     const senderResponse = await submitToSenderNet(subscriberData, apiToken)
 
     if (!senderResponse.ok) {
@@ -118,7 +109,8 @@ export const handler: Handler = async (
 
     return createSuccessResponse(email, new Date().toISOString())
   } catch (error) {
-    console.error('Unexpected error in contact-submit function:', error)
+    console.error('Unexpected error in submit-form function:', error)
     return createUnexpectedErrorResponse()
   }
 }
+

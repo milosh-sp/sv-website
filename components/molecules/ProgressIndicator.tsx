@@ -42,6 +42,7 @@ export function ProgressIndicator({
             }}
             disabled={isSubmitting || !isClickable}
             className={cn(
+              'p-1',
               'flex-1 h-1 rounded-full transition-colors',
               isCompleted || isCurrent ? 'bg-blue-600' : 'bg-gray-200',
               isClickable && !isSubmitting

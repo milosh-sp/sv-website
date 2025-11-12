@@ -13,10 +13,12 @@ export function SkillAreasSection({
   isSubmitting,
   onSkillAreaChange,
   className,
+  label,
   ...props
 }: SkillAreasSectionProps) {
   return (
     <fieldset className={cn('space-y-4', className)} {...props}>
+      <h3 className={cn('font-medium')}>{label}</h3>
       <div className={cn('space-y-3')}>
         {skillAreas.map((skillArea) => (
           <Checkbox

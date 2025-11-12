@@ -53,7 +53,6 @@ export const PROFESSIONAL_STATUS_OPTIONS = [
 ]
 
 export const TECH_COMMUNITY_OPTIONS = [
-  { value: 'new', label: 'New' },
   { value: 'yes', label: 'Yes, specify:' },
   { value: 'no', label: 'No' },
 ]

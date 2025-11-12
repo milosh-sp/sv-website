@@ -1,5 +1,3 @@
-'use client'
-
 import { Users } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { FormField } from '@/components/molecules/FormField'

@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils'
 import { strings } from '@/lib/strings'
 import { getStepNumber } from '@/lib/stepIdentifiers'
 import type { FormNavigationProps } from '@/types/FormNavigation.types'
+import { Button } from '../atoms/Button'
 
 export function FormNavigation({
   currentStep,
@@ -29,20 +30,17 @@ export function FormNavigation({
       aria-label={strings.waitlistForms.accessibility.formNavigation}
       {...props}
     >
-      <button
+      <Button
         type='button'
         onClick={onPrevious}
         disabled={isFirstStep || isSubmitting}
-        className={cn(
-          'px-6 py-2 border border-gray-300 rounded-md',
-          'transition-colors duration-200',
-          'disabled:opacity-50 disabled:cursor-not-allowed',
-          'hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
-        )}
+        variant='outline'
+        size='default'
+        className='px-6 py-2'
         aria-label={strings.waitlistForms.accessibility.previousButton}
       >
         {strings.waitlistForms.buttons.previous}
-      </button>
+      </Button>
 
       {isLastStep ? (
         <SubmitButton
@@ -53,20 +51,17 @@ export function FormNavigation({
           loadingText={submitLoadingLabel}
         />
       ) : (
-        <button
+        <Button
+          variant='verdict'
           type='button'
           onClick={onNext}
           disabled={isSubmitting || !canProceed}
-          className={cn(
-            'px-6 py-2 bg-blue-600 text-white rounded-md',
-            'transition-colors duration-200',
-            'disabled:opacity-50 disabled:cursor-not-allowed',
-            'hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
-          )}
+          size='default'
+          className='px-6 py-2'
           aria-label={strings.waitlistForms.accessibility.nextButton}
         >
           {strings.waitlistForms.buttons.next}
-        </button>
+        </Button>
       )}
     </nav>
   )

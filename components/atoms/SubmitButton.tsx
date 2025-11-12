@@ -1,5 +1,6 @@
 'use client'
 
+import { cn } from '@/lib/utils'
 import type { SubmitButtonProps } from '@/types/FormComponents.types'
 import { Button } from '@/components/atoms/Button'
 
@@ -16,7 +17,10 @@ export function SubmitButton({
     <Button
       type='submit'
       disabled={isDisabled}
-      className='w-full h-12 text-base btn-primary disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer'
+      className={cn(
+        'h-12 text-base btn-primary disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer',
+        className
+      )}
       aria-label={ariaLabel}
       aria-busy={isSubmitting}
       tabIndex={0}

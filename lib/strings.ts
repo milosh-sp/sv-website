@@ -1066,6 +1066,9 @@ export const waitlistForms = {
       placeholder: `your@email.com`,
       ariaLabel: `Email address field`,
     },
+    technicalSkills: {
+      label: `What technical skills do you have?`,
+    },
     linkedIn: {
       label: `LinkedIn Profile URL`,
       placeholder: `https://linkedin.com/in/yourprofile`,
@@ -1085,6 +1088,9 @@ export const waitlistForms = {
       label: `Tech Community Details`,
       placeholder: `e.g., Python Developers Group, React Community`,
       ariaLabel: `Tech community details field`,
+    },
+    skillAreas: {
+      label: `What are your primary skill areas?`,
     },
     jobSearchChallengeOther: {
       label: `Other challenge`,

@@ -12,6 +12,7 @@ interface SkillAreasSectionProps extends ComponentProps<'fieldset'> {
   errors: Record<string, string>
   isSubmitting: boolean
   onSkillAreaChange: (skillAreaId: string, checked: boolean) => void
+  label?: string
 }
 
 export type { SkillArea, SkillAreasSectionProps }

@@ -12,6 +12,10 @@ export function TechnicalSkillsSection({
   errors,
   isSubmitting,
   onSkillsChange,
+  placeholder,
+  searchPlaceholder,
+  label,
+  description,
   className,
   ...props
 }: TechnicalSkillsSectionProps) {
@@ -26,10 +30,10 @@ export function TechnicalSkillsSection({
         options={formattedSkills}
         value={selectedSkills}
         onChange={onSkillsChange}
-        placeholder='Select technical skills'
-        searchPlaceholder='Search skills...'
-        label='Technical Skills'
-        description='Select the technical skills you have'
+        placeholder={placeholder}
+        searchPlaceholder={searchPlaceholder}
+        label={label}
+        description={description}
         disabled={isSubmitting}
         error={errors.technicalSkills}
         renderOption={(option) => option.label}

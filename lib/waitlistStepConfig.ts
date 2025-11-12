@@ -25,7 +25,6 @@ export const CANDIDATE_STEP_CONFIG: WaitlistStepConfig[] = [
       'professionalStatus',
       'techCommunityMembership',
       'techCommunityDetails',
-      'githubGitlabUrl',
     ],
   },
   {
@@ -68,7 +67,6 @@ export const VERIFIER_STEP_CONFIG: WaitlistStepConfig[] = [
       'hoursPerWeek',
       'professionalStatus',
       'coachingMentoring',
-      'githubGitlabUrl',
     ],
   },
   {

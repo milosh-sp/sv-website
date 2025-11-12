@@ -1,9 +1,4 @@
-/**
- * Candidate Waitlist Form Data Types
- * Represents the complete form data for candidate persona
- */
-
-export interface CandidateFormData extends Record<string, string> {
+interface CandidateFormData extends Record<string, string> {
   // Step 1: Contact Information
   email: string
   linkedIn: string
@@ -28,14 +23,14 @@ export interface CandidateFormData extends Record<string, string> {
   valuableOutcomeOther: string // Custom outcome if "Other" selected
 }
 
-export interface CandidateFormStep {
+interface CandidateFormStep {
   stepNumber: number
   title: string
   description: string
   fields: string[]
 }
 
-export const CANDIDATE_FORM_STEPS: CandidateFormStep[] = [
+const CANDIDATE_FORM_STEPS: CandidateFormStep[] = [
   {
     stepNumber: 1,
     title: 'Contact Information',
@@ -73,7 +68,7 @@ export const CANDIDATE_FORM_STEPS: CandidateFormStep[] = [
   },
 ]
 
-export const INITIAL_CANDIDATE_FORM_DATA: CandidateFormData = {
+const INITIAL_CANDIDATE_FORM_DATA: CandidateFormData = {
   email: '',
   linkedIn: '',
   github: '',
@@ -90,3 +85,6 @@ export const INITIAL_CANDIDATE_FORM_DATA: CandidateFormData = {
   valuableOutcomes: '[]',
   valuableOutcomeOther: '',
 }
+
+export type { CandidateFormData, CandidateFormStep }
+export { CANDIDATE_FORM_STEPS, INITIAL_CANDIDATE_FORM_DATA }

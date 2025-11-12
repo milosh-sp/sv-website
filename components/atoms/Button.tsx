@@ -5,21 +5,52 @@ import type {
   ButtonProps,
 } from '@/types/Buttons.types'
 
-const BASE_STYLES =
-  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive focus-visible:outline-2 focus-visible:outline-offset-2'
+const BASE_STYLES = cn(
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap',
+  'rounded-md text-sm font-medium transition-all',
+  'disabled:pointer-events-none disabled:opacity-50',
+  '[&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4',
+  'shrink-0 [&_svg]:shrink-0 outline-none',
+  'focus-visible:border-ring focus-visible:ring-ring/50',
+  'focus-visible:ring-[3px] focus-visible:outline-2',
+  'focus-visible:outline-offset-2',
+  'aria-invalid:ring-destructive/20',
+  'dark:aria-invalid:ring-destructive/40',
+  'aria-invalid:border-destructive'
+)
 
 const VARIANT_STYLES: Record<ButtonVariant, string> = {
-  default:
-    'bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 active:bg-primary/80',
-  destructive:
-    'bg-destructive text-white shadow-sm hover:bg-destructive/90 active:bg-destructive/80 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',
-  outline:
-    'border bg-background shadow-sm hover:bg-accent hover:text-accent-foreground active:bg-accent/80 dark:bg-input/30 dark:border-input dark:hover:bg-input/50',
-  secondary:
-    'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80 active:bg-secondary/70',
-  ghost:
-    'hover:bg-accent hover:text-accent-foreground active:bg-accent/80 dark:hover:bg-accent/50',
-  link: 'text-primary underline-offset-4 hover:underline focus-visible:underline',
+  default: cn(
+    'bg-primary text-primary-foreground shadow-sm hover:bg-primary/90',
+    'active:bg-primary/80'
+  ),
+  destructive: cn(
+    'bg-destructive text-white shadow-sm hover:bg-destructive/90',
+    'active:bg-destructive/80 focus-visible:ring-destructive/20',
+    'dark:focus-visible:ring-destructive/40 dark:bg-destructive/60'
+  ),
+  outline: cn(
+    'border bg-background shadow-sm hover:bg-accent',
+    'hover:text-accent-foreground active:bg-accent/80 dark:bg-input/30',
+    'dark:border-input dark:hover:bg-input/50'
+  ),
+  secondary: cn(
+    'bg-secondary text-secondary-foreground shadow-sm',
+    'hover:bg-secondary/80 active:bg-secondary/70'
+  ),
+  ghost: cn(
+    'hover:bg-accent hover:text-accent-foreground active:bg-accent/80',
+    'dark:hover:bg-accent/50'
+  ),
+  link: cn(
+    'text-primary underline-offset-4 hover:underline',
+    'focus-visible:underline'
+  ),
+  verdict: cn(
+    'bg-skill-verdict text-white shadow-sm hover:bg-skill-verdict/90',
+    'active:bg-skill-verdict/80 focus-visible:ring-skill-verdict/20',
+    'dark:focus-visible:ring-skill-verdict/40'
+  ),
 } as const
 
 const SIZE_STYLES: Record<ButtonSize, string> = {
@@ -36,6 +67,7 @@ const ARIA_LABELS: Record<ButtonVariant, string> = {
   secondary: 'Alternative action button',
   ghost: 'Tertiary action button',
   link: 'Link button',
+  verdict: 'Verdict action button',
 } as const
 
 export function Button({

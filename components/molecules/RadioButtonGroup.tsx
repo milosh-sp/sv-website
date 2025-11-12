@@ -21,7 +21,7 @@ export function RadioButtonGroup({
 
   return (
     <div className={cn('space-y-3', className)} {...props}>
-      {label && <h3 className={cn('text-sm font-medium')}>{label}</h3>}
+      {label && <h3 className={cn('font-medium')}>{label}</h3>}
       {description && (
         <p className={cn('text-xs text-slate-500')}>{description}</p>
       )}

@@ -25,7 +25,7 @@ export function FormInputWrapper({
           <label
             htmlFor={inputId}
             className={cn(
-              'font-medium text-foreground cursor-pointer select-none',
+              'font-light text-foreground cursor-pointer select-none',
               'peer-disabled:cursor-not-allowed peer-disabled:opacity-50',
               size === 'sm' && 'text-sm',
               size === 'default' && 'text-base',

@@ -12,6 +12,10 @@ interface TechnicalSkillsSectionProps
   errors: Record<string, string>
   isSubmitting: boolean
   onSkillsChange: (skills: readonly string[]) => void
+  placeholder?: string
+  searchPlaceholder?: string
+  label?: string
+  description?: string
 }
 
 export type { TechnicalSkill, TechnicalSkillsSectionProps }

@@ -39,6 +39,14 @@ export function MultiSelectDropdown<T = string>({
 
   return (
     <div className='space-y-2'>
+      {/* Reuse existing SearchableDropdown */}
+      <SearchableDropdown
+        {...dropdownProps}
+        options={availableOptions}
+        value={null}
+        onChange={handleSelect}
+        disabled={disabled || (!canSelect && availableOptions.length === 0)}
+      />
       {/* Selected items chips */}
       {selectedOptions.length > 0 && (
         <ChipList
@@ -50,15 +58,6 @@ export function MultiSelectDropdown<T = string>({
           className={chipContainerClassName}
         />
       )}
-
-      {/* Reuse existing SearchableDropdown */}
-      <SearchableDropdown
-        {...dropdownProps}
-        options={availableOptions}
-        value={null}
-        onChange={handleSelect}
-        disabled={disabled || (!canSelect && availableOptions.length === 0)}
-      />
     </div>
   )
 }

@@ -81,8 +81,10 @@ export function CandidateWaitlistForm() {
                 : skillAreas.filter((id: string) => id !== skillId)
               form.handleFieldChange('skillAreas', JSON.stringify(updated))
             }}
+            label={strings.waitlistForms.fields.skillAreas.label}
           />
           <TechnicalSkillsSection
+            label={strings.waitlistForms.fields.technicalSkills.label}
             selectedSkills={technicalSkills}
             technicalSkills={TECHNICAL_SKILLS}
             errors={form.errors}

@@ -384,7 +384,8 @@ Ask before impelmenting tests if it is necessary
   - A11y compliance (WCAG 2.1 AA)  
   - i18n-ready component structure  
   - Dark mode/theme support  
-  - Loading states + error UX patterns  
+  - Loading states + error UX patterns
+  - Make sure styling is mobile responsive as welll  
 - Forbidden Patterns:  
   - Prop spreading without type safety  
   - Nested ternary operators  

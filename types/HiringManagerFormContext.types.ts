@@ -29,4 +29,3 @@ interface HiringManagerFormContextType {
 }
 
 export type { HiringManagerFormContextType }
-

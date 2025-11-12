@@ -1,7 +1,9 @@
 import type React from 'react'
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
+
 import '../styles/globals.css'
+
 import { Header } from '@/components/templates/Navigation'
 import { Footer } from '@/components/templates/Footer'
 import { SignupModalProvider } from '@/context/SignupModalContext'
@@ -86,7 +88,10 @@ export default function RootLayout({
 
         <SignupModalProvider>
           <Header />
-          <main id='main-content'>{children}</main>
+          {/* Main content wrapper with top padding to account for fixed header (80px) */}
+          <main id='main-content' className='pt-30'>
+            {children}
+          </main>
           <Footer />
         </SignupModalProvider>
       </body>

@@ -29,4 +29,3 @@ interface VerifierFormContextType {
 }
 
 export type { VerifierFormContextType }
-

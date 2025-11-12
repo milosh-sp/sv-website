@@ -4,4 +4,3 @@ interface ProcessPageSectionProps {
 }
 
 export type { ProcessPageSectionProps }
-

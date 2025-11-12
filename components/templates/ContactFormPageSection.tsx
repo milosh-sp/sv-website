@@ -23,7 +23,7 @@ export function ContactFormPageSection({ id }: SectionProps) {
   return (
     <section
       id={id}
-      className='pt-30 pb-15 md:pb-[6.90rem] px-5 bg-white'
+      className='pb-15 md:pb-[6.90rem] px-5 bg-white'
       aria-labelledby='contact-heading'
     >
       <div className='container-narrow'>

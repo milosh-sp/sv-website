@@ -8,4 +8,3 @@ interface TextAreaProps extends ComponentProps<'textarea'> {
 }
 
 export type { TextAreaProps }
-

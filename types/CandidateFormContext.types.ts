@@ -29,4 +29,3 @@ interface CandidateFormContextType {
 }
 
 export type { CandidateFormContextType }
-

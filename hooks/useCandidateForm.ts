@@ -5,11 +5,7 @@
 
 import { useForm } from '@/hooks/useForm'
 import { submitUnifiedForm } from '@/lib/api'
-import {
-  validateEmail,
-  validateLinkedIn,
-  validateGitHub,
-} from '@/lib/validation'
+import { validateEmail, validateLinkedIn, validateUrl } from '@/lib/validation'
 import { validateCandidateForm } from '@/lib/waitlistFormValidators'
 import type { CandidateFormData } from '@/types/CandidateFormData.types'
 import { INITIAL_CANDIDATE_FORM_DATA } from '@/types/CandidateFormData.types'
@@ -26,7 +22,7 @@ export function useCandidateForm(config?: UseCandidateFormConfig) {
     fields: [
       { name: 'email', validator: validateEmail },
       { name: 'linkedIn', validator: validateLinkedIn },
-      { name: 'github', validator: validateGitHub },
+      { name: 'githubGitlabUrl', validator: validateUrl },
     ],
     validateForm: validateCandidateForm,
     onSubmit: async (formData, honeypotValue, formStartTime) => {
@@ -36,13 +32,12 @@ export function useCandidateForm(config?: UseCandidateFormConfig) {
         email: formData.email,
         fields: {
           linkedin: formData.linkedIn,
-          github: formData.github,
+          githubGitlabUrl: formData.githubGitlabUrl,
           skillAreas: formData.skillAreas,
           technicalSkills: formData.technicalSkills,
           professionalStatus: formData.professionalStatus,
           techCommunityMembership: formData.techCommunityMembership,
           techCommunityDetails: formData.techCommunityDetails,
-          githubGitlabUrl: formData.githubGitlabUrl,
           skillValidationConfidence: formData.skillValidationConfidence,
           jobSearchChallenges: formData.jobSearchChallenges,
           jobSearchChallengeOther: formData.jobSearchChallengeOther,

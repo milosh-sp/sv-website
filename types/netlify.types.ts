@@ -17,7 +17,7 @@ type FormType =
 
 interface FormFields {
   linkedin?: string
-  github?: string
+  githubGitlabUrl?: string
   user_type?: string
   website?: string
   form_start_time?: string
@@ -27,7 +27,7 @@ interface FormFields {
 // Signup form fields
 interface SignupFormFields extends FormFields {
   linkedin?: string
-  github?: string
+  githubGitlabUrl?: string
   user_type?: string
   source?: string
 }
@@ -41,13 +41,12 @@ interface ContactFormFields extends FormFields {
 // Candidate form fields
 interface CandidateFormFields extends FormFields {
   linkedin?: string
-  github?: string
+  githubGitlabUrl?: string
   skillAreas?: string
   technicalSkills?: string
   professionalStatus?: string
   techCommunityMembership?: string
   techCommunityDetails?: string
-  githubGitlabUrl?: string
   skillValidationConfidence?: string
   jobSearchChallenges?: string
   jobSearchChallengeOther?: string
@@ -70,14 +69,13 @@ interface HiringManagerFormFields extends FormFields {
 // Verifier form fields
 interface VerifierFormFields extends FormFields {
   linkedin?: string
-  github?: string
+  githubGitlabUrl?: string
   skillAreas?: string
   technicalSkills?: string
   yearsOfExperience?: string
   hoursPerWeek?: string
   professionalStatus?: string
   coachingMentoring?: string
-  githubGitlabUrl?: string
   verifierMotivations?: string
   verifierMotivationOther?: string
   professionalFrustration?: string

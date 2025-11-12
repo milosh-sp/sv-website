@@ -1080,10 +1080,10 @@ export const waitlistForms = {
       placeholder: `https://linkedin.com/in/yourprofile`,
       ariaLabel: `LinkedIn profile URL field`,
     },
-    github: {
-      label: `GitHub/GitLab Profile URL`,
+    githubGitlabUrl: {
+      label: `GitHub or GitLab Profile URL`,
       placeholder: `https://github.com/yourprofile (optional)`,
-      ariaLabel: `GitHub/GitLab profile URL field`,
+      ariaLabel: `GitHub or GitLab profile URL field`,
     },
     website: {
       label: `Website`,
@@ -1166,7 +1166,6 @@ export const waitlistForms = {
     emailInvalid: `Please enter a valid email address`,
     linkedInRequired: `LinkedIn profile URL is required`,
     linkedInInvalid: `Please enter a valid LinkedIn URL`,
-    githubInvalid: `Please enter a valid GitHub URL`,
     privacyConsentRequired: `You must agree to the privacy policy`,
     skillAreasRequired: `Please select at least one skill area`,
     technicalSkillsRequired: `Please select at least one technical skill`,
@@ -1287,7 +1286,7 @@ export const waitlistForms = {
         stepNumber: 1,
         title: 'Contact Information',
         description: 'Let us know how to reach you',
-        fields: ['email', 'linkedIn', 'github', 'newsletterOptIn'],
+        fields: ['email', 'linkedIn', 'githubGitlabUrl', 'newsletterOptIn'],
       },
       {
         stepNumber: 2,
@@ -1324,7 +1323,7 @@ export const waitlistForms = {
         stepNumber: 1,
         title: 'Contact Information',
         description: 'Let us know how to reach you',
-        fields: ['email', 'linkedIn', 'github', 'newsletterOptIn'],
+        fields: ['email', 'linkedIn', 'githubGitlabUrl', 'newsletterOptIn'],
       },
       {
         stepNumber: 2,

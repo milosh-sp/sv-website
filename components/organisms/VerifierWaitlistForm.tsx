@@ -54,7 +54,7 @@ export function VerifierWaitlistForm() {
         <ContactConsentSection
           email={form.formData.email}
           linkedIn={form.formData.linkedIn}
-          github={form.formData.github}
+          githubGitlabUrl={form.formData.githubGitlabUrl}
           newsletterOptIn={form.formData.newsletterOptIn}
           fields={stepFields}
           errors={form.errors}
@@ -63,7 +63,9 @@ export function VerifierWaitlistForm() {
           onLinkedInChange={(value) =>
             form.handleFieldChange('linkedIn', value)
           }
-          onGitHubChange={(value) => form.handleFieldChange('github', value)}
+          onGitHubGitlabUrlChange={(value) =>
+            form.handleFieldChange('githubGitlabUrl', value)
+          }
           onNewsletterOptInChange={(checked) =>
             form.handleFieldChange('newsletterOptIn', String(checked))
           }

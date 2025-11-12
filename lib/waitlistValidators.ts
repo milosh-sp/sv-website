@@ -4,7 +4,7 @@
  * Eliminates 50% of validation code duplication
  *
  * Shared validators (100% identical across personas):
- * - Step 1: Contact & Consent (email, LinkedIn, GitHub, privacy consent)
+ * - Step 1: Contact & Consent (email, LinkedIn, GitHub/GitLab, privacy consent)
  * - Step 2: Skills Profile (skill areas, technical skills)
  *
  * Persona-specific validators:
@@ -14,7 +14,7 @@
 
 import {
   validateEmail,
-  validateGitHub,
+  validateGitHubGitlab,
   validateLinkedIn,
   validateUrl,
 } from '@/lib/validation'
@@ -23,14 +23,14 @@ import type { ValidationErrors } from '@/types/WaitlistValidation.types'
 /**
  * Shared Step 1 validation (Contact Information)
  * Used by: Candidate, Verifier, Hiring Manager
- * Validates: email, LinkedIn (optional), GitHub (optional)
+ * Validates: email, LinkedIn (optional), GitHub/GitLab (optional)
  * Note: Consent is implicit - users consent by submitting the form
- * LinkedIn and GitHub are only validated if provided (for Candidate/Verifier forms)
+ * LinkedIn and GitHub/GitLab are only validated if provided (for Candidate/Verifier forms)
  */
 export function validateContactConsentStep(data: {
   email: string
   linkedIn?: string
-  github?: string
+  githubGitlabUrl?: string
 }): ValidationErrors {
   const errors: Record<string, string> = {}
 
@@ -52,14 +52,15 @@ export function validateContactConsentStep(data: {
     }
   }
 
-  // GitHub validation (only if provided)
-  if (data.github !== undefined) {
-    if (!data.github || data.github.trim() === '') {
-      errors.github = 'GitHub profile URL is required'
+  // GitHub/GitLab validation (only if provided)
+  if (data.githubGitlabUrl !== undefined) {
+    if (!data.githubGitlabUrl || data.githubGitlabUrl.trim() === '') {
+      errors.githubGitlabUrl = 'GitHub or GitLab profile URL is required'
     } else {
-      const githubValidation = validateGitHub(data.github)
-      if (!githubValidation.isValid) {
-        errors.github = githubValidation.message || 'Invalid GitHub URL'
+      const githubGitlabValidation = validateGitHubGitlab(data.githubGitlabUrl)
+      if (!githubGitlabValidation.isValid) {
+        errors.githubGitlabUrl =
+          githubGitlabValidation.message || 'Invalid GitHub or GitLab URL'
       }
     }
   }

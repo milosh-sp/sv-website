@@ -43,7 +43,7 @@ function validateCandidateStep(
       const contactErrors = validateContactConsentStep({
         email: data.email,
         linkedIn: data.linkedIn,
-        github: data.github,
+        githubGitlabUrl: data.githubGitlabUrl,
       })
       Object.assign(errors, contactErrors.errors)
       break
@@ -148,7 +148,7 @@ function validateVerifierStep(
       const contactErrors = validateContactConsentStep({
         email: data.email,
         linkedIn: data.linkedIn,
-        github: data.github,
+        githubGitlabUrl: data.githubGitlabUrl,
       })
       Object.assign(errors, contactErrors.errors)
       break

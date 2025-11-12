@@ -4,7 +4,7 @@ interface ContactConsentSectionProps
   extends FieldsetHTMLAttributes<HTMLFieldSetElement> {
   email: string
   linkedIn?: string
-  github?: string
+  githubGitlabUrl?: string
   newsletterOptIn: string | boolean // Accept both for compatibility
   includeLinkedIn?: boolean // Deprecated: use fields array instead
   includeGitHub?: boolean // Deprecated: use fields array instead
@@ -13,7 +13,7 @@ interface ContactConsentSectionProps
   isSubmitting: boolean
   onEmailChange: (value: string) => void
   onLinkedInChange?: (value: string) => void
-  onGitHubChange?: (value: string) => void
+  onGitHubGitlabUrlChange?: (value: string) => void
   onNewsletterOptInChange: (checked: boolean) => void
 }
 

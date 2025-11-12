@@ -5,11 +5,7 @@
 
 import { useForm } from '@/hooks/useForm'
 import { submitUnifiedForm } from '@/lib/api'
-import {
-  validateEmail,
-  validateLinkedIn,
-  validateGitHub,
-} from '@/lib/validation'
+import { validateEmail, validateLinkedIn, validateUrl } from '@/lib/validation'
 import { validateVerifierForm } from '@/lib/waitlistFormValidators'
 import type { VerifierFormData } from '@/types/VerifierFormData.types'
 import { INITIAL_VERIFIER_FORM_DATA } from '@/types/VerifierFormData.types'
@@ -26,7 +22,7 @@ export function useVerifierForm(config?: UseVerifierFormConfig) {
     fields: [
       { name: 'email', validator: validateEmail },
       { name: 'linkedIn', validator: validateLinkedIn },
-      { name: 'github', validator: validateGitHub },
+      { name: 'githubGitlabUrl', validator: validateUrl },
     ],
     validateForm: validateVerifierForm,
     onSubmit: async (formData, honeypotValue, formStartTime) => {
@@ -36,14 +32,13 @@ export function useVerifierForm(config?: UseVerifierFormConfig) {
         email: formData.email,
         fields: {
           linkedin: formData.linkedIn,
-          github: formData.github,
+          githubGitlabUrl: formData.githubGitlabUrl,
           skillAreas: formData.skillAreas,
           technicalSkills: formData.technicalSkills,
           yearsOfExperience: formData.yearsOfExperience,
           hoursPerWeek: formData.hoursPerWeek,
           professionalStatus: formData.professionalStatus,
           coachingMentoring: formData.coachingMentoring,
-          githubGitlabUrl: formData.githubGitlabUrl,
           verifierMotivations: formData.verifierMotivations,
           verifierMotivationOther: formData.verifierMotivationOther,
           professionalFrustration: formData.professionalFrustration,

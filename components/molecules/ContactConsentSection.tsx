@@ -12,7 +12,7 @@ import type { ContactConsentSectionProps } from '@/types/ContactConsentSection.t
 export function ContactConsentSection({
   email,
   linkedIn = '',
-  github = '',
+  githubGitlabUrl = '',
   newsletterOptIn,
   includeLinkedIn,
   includeGitHub = true,
@@ -21,7 +21,7 @@ export function ContactConsentSection({
   isSubmitting,
   onEmailChange,
   onLinkedInChange,
-  onGitHubChange,
+  onGitHubGitlabUrlChange,
   onNewsletterOptInChange,
   className,
   ...props
@@ -37,8 +37,8 @@ export function ContactConsentSection({
   const showLinkedIn = fields
     ? fields.includes('linkedIn')
     : (includeLinkedIn ?? true)
-  const showGitHub = fields
-    ? fields.includes('github')
+  const showGitHubGitlab = fields
+    ? fields.includes('githubGitlabUrl')
     : (includeGitHub ?? true)
   const showNewsletter = !fields || fields.includes('newsletterOptIn')
 
@@ -76,19 +76,19 @@ export function ContactConsentSection({
         />
       )}
 
-      {/* GitHub Field - Conditional */}
-      {showGitHub && (
+      {/* GitHub/GitLab Field - Conditional */}
+      {showGitHubGitlab && (
         <FormField
-          id='github'
+          id='githubGitlabUrl'
           type='url'
-          placeholder={strings.waitlistForms.fields.github.placeholder}
-          value={github}
-          onChange={(e) => onGitHubChange?.(e.target.value)}
-          error={errors.github}
+          placeholder={strings.waitlistForms.fields.githubGitlabUrl.placeholder}
+          value={githubGitlabUrl}
+          onChange={(e) => onGitHubGitlabUrlChange?.(e.target.value)}
+          error={errors.githubGitlabUrl}
           disabled={isSubmitting}
           icon={<Github className={cn('w-5 h-5')} />}
-          label={strings.waitlistForms.fields.github.label}
-          ariaDescribedBy='github-error'
+          label={strings.waitlistForms.fields.githubGitlabUrl.label}
+          ariaDescribedBy='githubGitlabUrl-error'
         />
       )}
 

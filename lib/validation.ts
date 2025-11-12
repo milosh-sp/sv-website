@@ -147,11 +147,11 @@ export function validateLinkedIn(url: string): ValidationResult {
 }
 
 /**
- * Validate GitHub profile URL format
+ * Validate GitHub/GitLab profile URL format
  * Now uses generic URL validation
  */
-export function validateGitHub(url: string): ValidationResult {
-  return validateUrl(url, 'GitHub profile URL')
+export function validateGitHubGitlab(url: string): ValidationResult {
+  return validateUrl(url, 'GitHub or GitLab profile URL')
 }
 
 /**
@@ -171,7 +171,7 @@ function isValidLinkedIn(url: string): boolean {
 }
 
 function isValidGitHub(url: string): boolean {
-  return validateGitHub(url).isValid
+  return validateGitHubGitlab(url).isValid
 }
 
 /**

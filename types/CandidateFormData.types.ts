@@ -2,7 +2,7 @@ interface CandidateFormData extends Record<string, string> {
   // Step 1: Contact Information
   email: string
   linkedIn: string
-  github: string
+  githubGitlabUrl: string
   newsletterOptIn: string // Stored as 'true' or 'false'
 
   // Step 2: Skills Profile
@@ -13,7 +13,6 @@ interface CandidateFormData extends Record<string, string> {
   professionalStatus: string // Student, Unemployed, Employed (full-time), etc.
   techCommunityMembership: string // New, Yes, No
   techCommunityDetails: string // Details if "Yes" selected, empty otherwise
-  githubGitlabUrl: string
 
   // Step 4: Motivation & Challenges
   skillValidationConfidence: string // Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
@@ -35,7 +34,7 @@ const CANDIDATE_FORM_STEPS: CandidateFormStep[] = [
     stepNumber: 1,
     title: 'Contact Information',
     description: 'Let us know how to reach you',
-    fields: ['email', 'linkedIn', 'github', 'newsletterOptIn'],
+    fields: ['email', 'linkedIn', 'githubGitlabUrl', 'newsletterOptIn'],
   },
   {
     stepNumber: 2,
@@ -71,14 +70,13 @@ const CANDIDATE_FORM_STEPS: CandidateFormStep[] = [
 const INITIAL_CANDIDATE_FORM_DATA: CandidateFormData = {
   email: '',
   linkedIn: '',
-  github: '',
+  githubGitlabUrl: '',
   newsletterOptIn: 'false',
   skillAreas: '[]',
   technicalSkills: '[]',
   professionalStatus: '',
   techCommunityMembership: '',
   techCommunityDetails: '',
-  githubGitlabUrl: '',
   skillValidationConfidence: '',
   jobSearchChallenges: '[]',
   jobSearchChallengeOther: '',

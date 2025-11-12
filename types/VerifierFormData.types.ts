@@ -7,7 +7,7 @@ export interface VerifierFormData extends Record<string, string> {
   // Step 1: Contact Information
   email: string
   linkedIn: string
-  github: string
+  githubGitlabUrl: string
   newsletterOptIn: string // Stored as 'true' or 'false'
 
   // Step 2: Skills Profile
@@ -19,7 +19,6 @@ export interface VerifierFormData extends Record<string, string> {
   hoursPerWeek: string // 1-3, 4-7, 8+
   professionalStatus: string // Student, Unemployed, Employed (full-time), etc.
   coachingMentoring: string // Yes, No
-  githubGitlabUrl: string
 
   // Step 4: Motivation & Challenges
   verifierMotivations: string // JSON stringified array
@@ -40,7 +39,7 @@ export const VERIFIER_FORM_STEPS: VerifierFormStep[] = [
     stepNumber: 1,
     title: 'Contact Information',
     description: 'Let us know how to reach you',
-    fields: ['email', 'linkedIn', 'github', 'newsletterOptIn'],
+    fields: ['email', 'linkedIn', 'githubGitlabUrl', 'newsletterOptIn'],
   },
   {
     stepNumber: 2,
@@ -76,7 +75,7 @@ export const VERIFIER_FORM_STEPS: VerifierFormStep[] = [
 export const INITIAL_VERIFIER_FORM_DATA: VerifierFormData = {
   email: '',
   linkedIn: '',
-  github: '',
+  githubGitlabUrl: '',
   newsletterOptIn: 'false',
   skillAreas: '[]',
   technicalSkills: '[]',
@@ -84,7 +83,6 @@ export const INITIAL_VERIFIER_FORM_DATA: VerifierFormData = {
   hoursPerWeek: '',
   professionalStatus: '',
   coachingMentoring: '',
-  githubGitlabUrl: '',
   verifierMotivations: '[]',
   verifierMotivationOther: '',
   professionalFrustration: '',

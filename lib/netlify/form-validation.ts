@@ -7,11 +7,9 @@ import {
 import type {
   BotDetectionResult,
   FormFields,
-  FormSubmissionData,
   ValidationError,
   UnifiedFormSubmissionData,
 } from '../../types/netlify.types'
-import type { ContactFormSubmissionData } from '../../types/ContactForm.types'
 
 const FORM_SUBMISSION_MIN_TIME_MS = 1000
 const FORM_SUBMISSION_MAX_TIME_MS = 30 * 60 * 1000
@@ -135,43 +133,17 @@ function validateLinkedInIfProvided(
 }
 
 /**
- * Validate GitHub URL if provided
+ * Validate GitHub/GitLab URL if provided
  * Uses generic URL validation
  */
-function validateGitHubIfProvided(
-  githubUrl: string | undefined
+function validateGitHubGitlabUrlIfProvided(
+  githubGitlabUrl: string | undefined
 ): ValidationError | null {
-  return validateUrlIfProvided(githubUrl, 'github', 'GitHub profile URL')
-}
-
-/**
- * @deprecated Use validateUnifiedFormData instead
- * Legacy validator - kept for reference but no longer used
- */
-function validateFormData(data: FormSubmissionData): ValidationError | null {
-  const { email, fields = {} } = data
-
-  const emailRequiredError = validateRequiredEmail(email)
-  if (emailRequiredError) {
-    return emailRequiredError
-  }
-
-  const emailFormatError = validateEmailFormat(email as string)
-  if (emailFormatError) {
-    return emailFormatError
-  }
-
-  const linkedinError = validateLinkedInIfProvided(fields.linkedin)
-  if (linkedinError) {
-    return linkedinError
-  }
-
-  const githubError = validateGitHubIfProvided(fields.github)
-  if (githubError) {
-    return githubError
-  }
-
-  return null
+  return validateUrlIfProvided(
+    githubGitlabUrl,
+    'githubGitlabUrl',
+    'GitHub or GitLab profile URL'
+  )
 }
 
 function detectBot(fields: FormFields): BotDetectionResult {
@@ -188,61 +160,6 @@ function detectBot(fields: FormFields): BotDetectionResult {
   }
 
   return { isBot: false }
-}
-
-/**
- * @deprecated Use validateUnifiedFormData instead
- * Legacy validator - kept for reference but no longer used
- * Validate contact form data
- */
-function validateContactFormData(
-  data: ContactFormSubmissionData
-): ValidationError | null {
-  const { email, fields = {} } = data
-
-  const emailRequiredError = validateRequiredEmail(email)
-  if (emailRequiredError) {
-    return emailRequiredError
-  }
-
-  const emailFormatError = validateEmailFormat(email as string)
-  if (emailFormatError) {
-    return emailFormatError
-  }
-
-  // Validate name
-  if (!fields.name) {
-    return {
-      field: 'name',
-      message: 'Name is required.',
-    }
-  }
-
-  const nameValidation = validateName(fields.name)
-  if (!nameValidation.isValid) {
-    return {
-      field: 'name',
-      message: nameValidation.message || 'Please provide a valid name.',
-    }
-  }
-
-  // Validate message
-  if (!fields.message) {
-    return {
-      field: 'message',
-      message: 'Message is required.',
-    }
-  }
-
-  const messageValidation = validateMessage(fields.message)
-  if (!messageValidation.isValid) {
-    return {
-      field: 'message',
-      message: messageValidation.message || 'Please provide a valid message.',
-    }
-  }
-
-  return null
 }
 
 /**
@@ -291,7 +208,7 @@ function validateUnifiedFormData(
 }
 
 /**
- * Validate signup form data (email, linkedin, github)
+ * Validate signup form data (email, linkedin, githubGitlabUrl)
  */
 function validateSignupFormData(
   data: UnifiedFormSubmissionData & { formType: 'signup' }
@@ -305,11 +222,11 @@ function validateSignupFormData(
     return linkedinError
   }
 
-  const githubError = validateGitHubIfProvided(
-    fields.github as string | undefined
+  const githubGitlabError = validateGitHubGitlabUrlIfProvided(
+    fields.githubGitlabUrl as string | undefined
   )
-  if (githubError) {
-    return githubError
+  if (githubGitlabError) {
+    return githubGitlabError
   }
 
   return null
@@ -359,8 +276,6 @@ function validateContactFormDataUnified(
 }
 
 export {
-  validateFormData,
-  validateContactFormData,
   validateUnifiedFormData,
   detectBot,
   validateHoneypot,
@@ -369,5 +284,5 @@ export {
   validateEmailFormat,
   validateUrlIfProvided,
   validateLinkedInIfProvided,
-  validateGitHubIfProvided,
+  validateGitHubGitlabUrlIfProvided,
 }

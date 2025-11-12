@@ -2,7 +2,7 @@
 
 import { useCandidateFormContext } from '@/contexts/CandidateFormContext'
 import { useCandidateForm } from '@/hooks/useCandidateForm'
-import { validateCandidateStep } from '@/lib/WaitlistValidation'
+import { validateCandidateStep } from '@/lib/waitlistFormValidators'
 import {
   SKILL_AREAS,
   TECHNICAL_SKILLS,

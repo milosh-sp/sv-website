@@ -2,7 +2,7 @@
 
 import { useHiringManagerFormContext } from '@/contexts/HiringManagerFormContext'
 import { useHiringManagerForm } from '@/hooks/useHiringManagerForm'
-import { validateHiringManagerStep } from '@/lib/WaitlistValidation'
+import { validateHiringManagerStep } from '@/lib/waitlistFormValidators'
 import {
   TOTAL_FORM_STEPS,
   ROLES_HIRING_OPTIONS,

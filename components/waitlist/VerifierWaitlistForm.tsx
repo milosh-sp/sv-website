@@ -2,7 +2,7 @@
 
 import { useVerifierFormContext } from '@/contexts/VerifierFormContext'
 import { useVerifierForm } from '@/hooks/useVerifierForm'
-import { validateVerifierStep } from '@/lib/WaitlistValidation'
+import { validateVerifierStep } from '@/lib/waitlistFormValidators'
 import {
   SKILL_AREAS,
   TECHNICAL_SKILLS,

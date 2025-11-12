@@ -6,7 +6,7 @@
 
 import { useForm } from '@/hooks/useForm'
 import { validateEmail, validateGitHub } from '@/lib/validation'
-import { validateHiringManagerForm } from '@/lib/WaitlistValidation'
+import { validateHiringManagerForm } from '@/lib/waitlistFormValidators'
 import type { HiringManagerFormData } from '@/types/HiringManagerFormData.types'
 import { INITIAL_HIRING_MANAGER_FORM_DATA } from '@/types/HiringManagerFormData.types'
 

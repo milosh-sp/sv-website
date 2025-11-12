@@ -9,7 +9,7 @@ import {
   validateLinkedIn,
   validateGitHub,
 } from '@/lib/validation'
-import { validateVerifierForm } from '@/lib/WaitlistValidation'
+import { validateVerifierForm } from '@/lib/waitlistFormValidators'
 import type { VerifierFormData } from '@/types/VerifierFormData.types'
 import { INITIAL_VERIFIER_FORM_DATA } from '@/types/VerifierFormData.types'
 

@@ -13,21 +13,17 @@
  */
 
 import {
-  validateContactConsentStep,
-  validateSkillsProfileStep,
-  validateJsonArrayField,
   validateConditionalOtherField,
+  validateContactConsentStep,
+  validateJsonArrayField,
   validateRadioField,
+  validateSkillsProfileStep,
   validateUrlField,
-} from '@/lib/waitlistValidatorFactory'
+} from '@/lib/waitlistValidators'
 import type { CandidateFormData } from '@/types/CandidateFormData.types'
-import type { VerifierFormData } from '@/types/VerifierFormData.types'
 import type { HiringManagerFormData } from '@/types/HiringManagerFormData.types'
-
-interface ValidationErrors {
-  isValid: boolean
-  errors: Record<string, string>
-}
+import type { VerifierFormData } from '@/types/VerifierFormData.types'
+import type { ValidationErrors } from '@/types/WaitlistValidation.types'
 
 /**
  * Validate a specific step of the Candidate form

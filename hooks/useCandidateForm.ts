@@ -9,7 +9,7 @@ import {
   validateLinkedIn,
   validateGitHub,
 } from '@/lib/validation'
-import { validateCandidateForm } from '@/lib/WaitlistValidation'
+import { validateCandidateForm } from '@/lib/waitlistFormValidators'
 import type { CandidateFormData } from '@/types/CandidateFormData.types'
 import { INITIAL_CANDIDATE_FORM_DATA } from '@/types/CandidateFormData.types'
 

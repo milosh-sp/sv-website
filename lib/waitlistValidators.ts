@@ -14,15 +14,11 @@
 
 import {
   validateEmail,
-  validateLinkedIn,
   validateGitHub,
+  validateLinkedIn,
   validateUrl,
 } from '@/lib/validation'
-
-interface ValidationErrors {
-  isValid: boolean
-  errors: Record<string, string>
-}
+import type { ValidationErrors } from '@/types/WaitlistValidation.types'
 
 /**
  * Shared Step 1 validation (Contact Information)

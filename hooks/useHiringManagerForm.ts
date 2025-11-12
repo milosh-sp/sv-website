@@ -5,10 +5,12 @@
  */
 
 import { useForm } from '@/hooks/useForm'
+import { submitUnifiedForm } from '@/lib/api'
 import { validateEmail } from '@/lib/validation'
 import { validateHiringManagerForm } from '@/lib/waitlistFormValidators'
 import type { HiringManagerFormData } from '@/types/HiringManagerFormData.types'
 import { INITIAL_HIRING_MANAGER_FORM_DATA } from '@/types/HiringManagerFormData.types'
+import type { HiringManagerFormSubmission } from '@/types/netlify.types'
 
 interface UseHiringManagerFormConfig {
   onSuccess?: () => void
@@ -21,16 +23,23 @@ export function useHiringManagerForm(config?: UseHiringManagerFormConfig) {
     fields: [{ name: 'email', validator: validateEmail }],
     validateForm: validateHiringManagerForm,
     onSubmit: async (formData, honeypotValue, formStartTime) => {
-      // Skip API requests as per requirements
-      // In production, this would submit to Netlify function
-      console.log('Hiring Manager form submitted:', {
-        formData,
-        honeypotValue,
-        formStartTime,
-      })
-
-      // Simulate successful submission
-      return { success: true }
+      // Submit to unified Netlify function with hiring manager-specific fields
+      return submitUnifiedForm({
+        formType: 'hiring-manager',
+        email: formData.email,
+        fields: {
+          managerRole: formData.managerRole,
+          fundingStage: formData.fundingStage,
+          engineeringTeamSize: formData.engineeringTeamSize,
+          rolesHiring: formData.rolesHiring,
+          seniorityLevel: formData.seniorityLevel,
+          hiringInterviewHours: formData.hiringInterviewHours,
+          hiringFrustrations: formData.hiringFrustrations,
+          hiringFailures: formData.hiringFailures,
+          website: honeypotValue,
+          form_start_time: formStartTime,
+        },
+      } as HiringManagerFormSubmission)
     },
     onSuccess: config?.onSuccess,
     debounceDelay: config?.debounceDelay,

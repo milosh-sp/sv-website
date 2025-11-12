@@ -4,6 +4,7 @@
  */
 
 import { useForm } from '@/hooks/useForm'
+import { submitUnifiedForm } from '@/lib/api'
 import {
   validateEmail,
   validateLinkedIn,
@@ -12,6 +13,7 @@ import {
 import { validateCandidateForm } from '@/lib/waitlistFormValidators'
 import type { CandidateFormData } from '@/types/CandidateFormData.types'
 import { INITIAL_CANDIDATE_FORM_DATA } from '@/types/CandidateFormData.types'
+import type { CandidateFormSubmission } from '@/types/netlify.types'
 
 interface UseCandidateFormConfig {
   onSuccess?: () => void
@@ -28,16 +30,28 @@ export function useCandidateForm(config?: UseCandidateFormConfig) {
     ],
     validateForm: validateCandidateForm,
     onSubmit: async (formData, honeypotValue, formStartTime) => {
-      // Skip API requests as per requirements
-      // In production, this would submit to Netlify function
-      console.log('Candidate form submitted:', {
-        formData,
-        honeypotValue,
-        formStartTime,
-      })
-
-      // Simulate successful submission
-      return { success: true }
+      // Submit to unified Netlify function with candidate-specific fields
+      return submitUnifiedForm({
+        formType: 'candidate',
+        email: formData.email,
+        fields: {
+          linkedin: formData.linkedIn,
+          github: formData.github,
+          skillAreas: formData.skillAreas,
+          technicalSkills: formData.technicalSkills,
+          professionalStatus: formData.professionalStatus,
+          techCommunityMembership: formData.techCommunityMembership,
+          techCommunityDetails: formData.techCommunityDetails,
+          githubGitlabUrl: formData.githubGitlabUrl,
+          skillValidationConfidence: formData.skillValidationConfidence,
+          jobSearchChallenges: formData.jobSearchChallenges,
+          jobSearchChallengeOther: formData.jobSearchChallengeOther,
+          valuableOutcomes: formData.valuableOutcomes,
+          valuableOutcomeOther: formData.valuableOutcomeOther,
+          website: honeypotValue,
+          form_start_time: formStartTime,
+        },
+      } as CandidateFormSubmission)
     },
     onSuccess: config?.onSuccess,
     debounceDelay: config?.debounceDelay,

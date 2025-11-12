@@ -4,6 +4,7 @@
  */
 
 import { useForm } from '@/hooks/useForm'
+import { submitUnifiedForm } from '@/lib/api'
 import {
   validateEmail,
   validateLinkedIn,
@@ -12,6 +13,7 @@ import {
 import { validateVerifierForm } from '@/lib/waitlistFormValidators'
 import type { VerifierFormData } from '@/types/VerifierFormData.types'
 import { INITIAL_VERIFIER_FORM_DATA } from '@/types/VerifierFormData.types'
+import type { VerifierFormSubmission } from '@/types/netlify.types'
 
 interface UseVerifierFormConfig {
   onSuccess?: () => void
@@ -28,16 +30,28 @@ export function useVerifierForm(config?: UseVerifierFormConfig) {
     ],
     validateForm: validateVerifierForm,
     onSubmit: async (formData, honeypotValue, formStartTime) => {
-      // Skip API requests as per requirements
-      // In production, this would submit to Netlify function
-      console.log('Verifier form submitted:', {
-        formData,
-        honeypotValue,
-        formStartTime,
-      })
-
-      // Simulate successful submission
-      return { success: true }
+      // Submit to unified Netlify function with verifier-specific fields
+      return submitUnifiedForm({
+        formType: 'verifier',
+        email: formData.email,
+        fields: {
+          linkedin: formData.linkedIn,
+          github: formData.github,
+          skillAreas: formData.skillAreas,
+          technicalSkills: formData.technicalSkills,
+          yearsOfExperience: formData.yearsOfExperience,
+          hoursPerWeek: formData.hoursPerWeek,
+          professionalStatus: formData.professionalStatus,
+          coachingMentoring: formData.coachingMentoring,
+          githubGitlabUrl: formData.githubGitlabUrl,
+          verifierMotivations: formData.verifierMotivations,
+          verifierMotivationOther: formData.verifierMotivationOther,
+          professionalFrustration: formData.professionalFrustration,
+          professionalFrustrationOther: formData.professionalFrustrationOther,
+          website: honeypotValue,
+          form_start_time: formStartTime,
+        },
+      } as VerifierFormSubmission)
     },
     onSuccess: config?.onSuccess,
     debounceDelay: config?.debounceDelay,

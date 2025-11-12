@@ -13,14 +13,40 @@ import type {
 } from '../../types/netlify.types'
 import type { ContactFormSubmissionData } from '../../types/ContactForm.types'
 
-const FORM_SUBMISSION_MIN_TIME_MS = 2000
+const FORM_SUBMISSION_MIN_TIME_MS = 1000
 const FORM_SUBMISSION_MAX_TIME_MS = 30 * 60 * 1000
 
 function validateHoneypot(fields: FormFields): BotDetectionResult {
-  if (fields.website && fields.website.trim() !== '') {
-    return {
-      isBot: true,
-      reason: 'Honeypot field filled',
+  // Disable honeypot in development
+  if (process.env.NODE_ENV === 'development') {
+    return { isBot: false }
+  }
+
+  const honeypotValue = fields.website?.trim() || ''
+
+  // Very lenient validation - only flag obvious bot patterns
+  if (honeypotValue.length > 0) {
+    // Allow common autofill values and legitimate short entries
+    const commonAutofillValues = [
+      'http://',
+      'https://',
+      'www.',
+      'website',
+      'http',
+      'https',
+      'www',
+    ]
+    const isLikelyAutofill = commonAutofillValues.some((pattern) =>
+      honeypotValue.toLowerCase().includes(pattern)
+    )
+
+    // Only flag as bot if it's a substantial entry (>20 chars) and not autofill
+    // This avoids false positives from legitimate short entries or autofill
+    if (!isLikelyAutofill && honeypotValue.length > 20) {
+      return {
+        isBot: true,
+        reason: 'Honeypot field filled',
+      }
     }
   }
 

@@ -1,16 +1,8 @@
-interface CandidateFormData extends Record<string, string> {
-  // Step 1: Contact Information
-  email: string
-  linkedIn: string
-  githubGitlabUrl: string
-  newsletterOptIn: string // Stored as 'true' or 'false'
+import type { BaseFormData } from '@/types/BaseFormData.types'
+import { INITIAL_BASE_FORM_DATA } from '@/types/BaseFormData.types'
 
-  // Step 2: Skills Profile
-  skillAreas: string // JSON stringified array
-  technicalSkills: string // JSON stringified array
-
-  // Step 3: Candidate Profile
-  professionalStatus: string // Student, Unemployed, Employed (full-time), etc.
+interface CandidateFormData extends BaseFormData {
+  // Step 3: Candidate Profile (extends base professionalStatus)
   techCommunityMembership: string // New, Yes, No
   techCommunityDetails: string // Details if "Yes" selected, empty otherwise
 
@@ -68,13 +60,7 @@ const CANDIDATE_FORM_STEPS: CandidateFormStep[] = [
 ]
 
 const INITIAL_CANDIDATE_FORM_DATA: CandidateFormData = {
-  email: '',
-  linkedIn: '',
-  githubGitlabUrl: '',
-  newsletterOptIn: 'false',
-  skillAreas: '[]',
-  technicalSkills: '[]',
-  professionalStatus: '',
+  ...INITIAL_BASE_FORM_DATA,
   techCommunityMembership: '',
   techCommunityDetails: '',
   skillValidationConfidence: '',

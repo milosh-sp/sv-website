@@ -1,23 +1,15 @@
 /**
  * Verifier Waitlist Form Data Types
  * Represents the complete form data for verifier persona
+ * Extends BaseFormData with verifier-specific fields
  */
 
-export interface VerifierFormData extends Record<string, string> {
-  // Step 1: Contact Information
-  email: string
-  linkedIn: string
-  githubGitlabUrl: string
-  newsletterOptIn: string // Stored as 'true' or 'false'
+import type { BaseFormData } from '@/types/BaseFormData.types'
 
-  // Step 2: Skills Profile
-  skillAreas: string // JSON stringified array
-  technicalSkills: string // JSON stringified array
-
-  // Step 3: Verifier Profile
+export interface VerifierFormData extends BaseFormData {
+  // Step 3: Verifier Profile (extends base professionalStatus)
   yearsOfExperience: string // 3-5, 6-10, 10+
   hoursPerWeek: string // 1-3, 4-7, 8+
-  professionalStatus: string // Student, Unemployed, Employed (full-time), etc.
   coachingMentoring: string // Yes, No
 
   // Step 4: Motivation & Challenges
@@ -72,16 +64,12 @@ export const VERIFIER_FORM_STEPS: VerifierFormStep[] = [
   },
 ]
 
+import { INITIAL_BASE_FORM_DATA } from '@/types/BaseFormData.types'
+
 export const INITIAL_VERIFIER_FORM_DATA: VerifierFormData = {
-  email: '',
-  linkedIn: '',
-  githubGitlabUrl: '',
-  newsletterOptIn: 'false',
-  skillAreas: '[]',
-  technicalSkills: '[]',
+  ...INITIAL_BASE_FORM_DATA,
   yearsOfExperience: '',
   hoursPerWeek: '',
-  professionalStatus: '',
   coachingMentoring: '',
   verifierMotivations: '[]',
   verifierMotivationOther: '',

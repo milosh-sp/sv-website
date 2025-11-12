@@ -1140,6 +1140,14 @@ export const waitlistForms = {
     submitting: `Submitting...`,
   },
 
+  // Privacy policy consent
+  privacyPolicyConsent: {
+    prefix: `By signing up, you agree to our `,
+    linkText: `Privacy Policy`,
+    href: `/privacy-policy`,
+    ariaLabel: `Read our privacy policy`,
+  },
+
   // Validation error messages
   validation: {
     emailRequired: `Email is required`,

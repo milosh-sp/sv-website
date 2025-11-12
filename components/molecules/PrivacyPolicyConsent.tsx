@@ -17,7 +17,9 @@ export function PrivacyPolicyConsent({
           href={href}
           aria-label={ariaLabel}
           className={cn(
-            'font-semibold text-blue-600 hover:text-blue-700 hover:underline transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded px-1'
+            `font-semibold text-blue-600 hover:text-blue-700 
+             hover:underline transition-colors duration-200 focus:outline-none 
+             focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded px-1`
           )}
         >
           {linkText}

@@ -4,7 +4,6 @@ import { Github, Linkedin, Mail } from 'lucide-react'
 
 import { Checkbox } from '@/components/atoms/Checkbox'
 import { FormField } from '@/components/molecules/FormField'
-import { PrivacyPolicyConsent } from '@/components/molecules/PrivacyPolicyConsent'
 import { strings } from '@/lib/strings'
 import { cn } from '@/lib/utils'
 
@@ -86,14 +85,6 @@ export function ContactConsentSection({
         checked={newsletterOptInBool}
         onChange={(e) => onNewsletterOptInChange(e.target.checked)}
         disabled={isSubmitting}
-      />
-
-      {/* Privacy Policy Link */}
-      <PrivacyPolicyConsent
-        prefix='By signing up, you agree to our '
-        linkText='Privacy Policy'
-        href='/privacy-policy'
-        ariaLabel='Read our privacy policy'
       />
     </fieldset>
   )

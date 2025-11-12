@@ -3,6 +3,7 @@
 import { ContactConsentSection } from '@/components/molecules/ContactConsentSection'
 import { FormFieldsStep } from '@/components/molecules/FormFieldsStep'
 import { HiringManagerCompanyProfileStep } from '@/components/molecules/HiringManagerCompanyProfileStep'
+import { PrivacyPolicyConsent } from '@/components/molecules/PrivacyPolicyConsent'
 import { WaitlistFormWrapper } from '@/components/organisms/WaitlistFormWrapper'
 import { useHiringManagerFormContext } from '@/context/HiringManagerFormContext'
 import { useHiringManagerForm } from '@/hooks/useHiringManagerForm'
@@ -137,7 +138,14 @@ export function HiringManagerWaitlistForm() {
       ]
       return <FormFieldsStep fields={fields} isSubmitting={form.isSubmitting} />
     },
-    [STEP_IDS.STEP_4]: () => null,
+    [STEP_IDS.STEP_4]: () => (
+      <PrivacyPolicyConsent
+        prefix={strings.waitlistForms.privacyPolicyConsent.prefix}
+        linkText={strings.waitlistForms.privacyPolicyConsent.linkText}
+        href={strings.waitlistForms.privacyPolicyConsent.href}
+        ariaLabel={strings.waitlistForms.privacyPolicyConsent.ariaLabel}
+      />
+    ),
   }
 
   const renderStep = () => {

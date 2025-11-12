@@ -3,6 +3,7 @@
 import { CandidateProfileStep } from '@/components/molecules/CandidateProfileStep'
 import { ContactConsentSection } from '@/components/molecules/ContactConsentSection'
 import { FormFieldsStep } from '@/components/molecules/FormFieldsStep'
+import { PrivacyPolicyConsent } from '@/components/molecules/PrivacyPolicyConsent'
 import { SkillAreasSection } from '@/components/molecules/SkillAreasSection'
 import { TechnicalSkillsSection } from '@/components/molecules/TechnicalSkillsSection'
 import { WaitlistFormWrapper } from '@/components/organisms/WaitlistFormWrapper'
@@ -167,7 +168,17 @@ export function CandidateWaitlistForm() {
           otherError: form.errors.valuableOutcomeOther,
         },
       ]
-      return <FormFieldsStep fields={fields} isSubmitting={form.isSubmitting} />
+      return (
+        <div className={cn('space-y-6')}>
+          <FormFieldsStep fields={fields} isSubmitting={form.isSubmitting} />
+          <PrivacyPolicyConsent
+            prefix={strings.waitlistForms.privacyPolicyConsent.prefix}
+            linkText={strings.waitlistForms.privacyPolicyConsent.linkText}
+            href={strings.waitlistForms.privacyPolicyConsent.href}
+            ariaLabel={strings.waitlistForms.privacyPolicyConsent.ariaLabel}
+          />
+        </div>
+      )
     },
   }
 

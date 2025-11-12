@@ -1,4 +1,4 @@
-import type { FieldsetHTMLAttributes } from 'react'
+import type { ComponentProps } from 'react'
 
 interface SkillArea {
   id: string
@@ -6,8 +6,7 @@ interface SkillArea {
   description?: string
 }
 
-interface SkillAreasSectionProps
-  extends FieldsetHTMLAttributes<HTMLFieldSetElement> {
+interface SkillAreasSectionProps extends ComponentProps<'fieldset'> {
   selectedSkillAreas: string[]
   skillAreas: SkillArea[]
   errors: Record<string, string>

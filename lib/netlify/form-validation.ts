@@ -1,7 +1,7 @@
 import {
   validateEmail,
   validateUrl,
-  validateName,
+  validateContactName,
   validateMessage,
 } from '../validation'
 import type {
@@ -287,7 +287,7 @@ function validateContactFormDataUnified(
     }
   }
 
-  const nameValidation = validateName(data.contactName as string)
+  const nameValidation = validateContactName(data.contactName as string)
   if (!nameValidation.isValid) {
     return {
       field: 'contactName',

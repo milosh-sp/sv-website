@@ -88,32 +88,32 @@ interface VerifierFormFields extends FormFields {
 
 interface BaseFormSubmission {
   email: string
-  fields?: FormFields
 }
 
-interface SignupFormSubmission extends BaseFormSubmission {
+interface SignupFormSubmission extends BaseFormSubmission, SignupFormFields {
   formType: 'signup'
-  fields?: SignupFormFields
 }
 
-interface ContactFormSubmission extends BaseFormSubmission {
+interface ContactFormSubmission extends BaseFormSubmission, ContactFormFields {
   formType: 'contact'
-  fields?: ContactFormFields
 }
 
-interface CandidateFormSubmission extends BaseFormSubmission {
+interface CandidateFormSubmission
+  extends BaseFormSubmission,
+    CandidateFormFields {
   formType: 'candidate'
-  fields?: CandidateFormFields
 }
 
-interface HiringManagerFormSubmission extends BaseFormSubmission {
+interface HiringManagerFormSubmission
+  extends BaseFormSubmission,
+    HiringManagerFormFields {
   formType: 'hiring-manager'
-  fields?: HiringManagerFormFields
 }
 
-interface VerifierFormSubmission extends BaseFormSubmission {
+interface VerifierFormSubmission
+  extends BaseFormSubmission,
+    VerifierFormFields {
   formType: 'verifier'
-  fields?: VerifierFormFields
 }
 
 type UnifiedFormSubmissionData =

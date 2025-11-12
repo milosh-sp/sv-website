@@ -14,6 +14,64 @@ import type {
 const FORM_SUBMISSION_MIN_TIME_MS = 1000
 const FORM_SUBMISSION_MAX_TIME_MS = 30 * 60 * 1000
 
+/**
+ * Convert JSON stringified array to comma-separated string
+ * Handles both valid JSON arrays and plain strings
+ * O(n) where n is the length of the input string
+ */
+function convertJsonArrayToCommaSeparated(value: unknown): string {
+  if (typeof value !== 'string') {
+    return ''
+  }
+
+  try {
+    const parsed = JSON.parse(value)
+    if (Array.isArray(parsed)) {
+      return parsed.join(',')
+    }
+    return value
+  } catch {
+    // If JSON parsing fails, return the original string
+    return value
+  }
+}
+
+/**
+ * Array fields that should be converted from JSON to comma-separated format
+ * These fields are submitted as JSON stringified arrays from the frontend
+ */
+const ARRAY_FIELDS_TO_CONVERT = new Set([
+  'skillAreas',
+  'technicalSkills',
+  'jobSearchChallenges',
+  'valuableOutcomes',
+  'rolesHiring',
+  'hiringFrustrations',
+  'hiringFailures',
+  'verifierMotivations',
+  'professionalFrustration',
+  'coachingMentoring',
+  'techCommunityMembership',
+])
+
+/**
+ * Format form fields by converting JSON array fields to comma-separated strings
+ * Pure function that returns a new object without mutating the input
+ */
+function formatFormFields(fields: FormFields): FormFields {
+  const formatted: FormFields = {}
+
+  Object.entries(fields).forEach(([key, value]) => {
+    if (ARRAY_FIELDS_TO_CONVERT.has(key)) {
+      formatted[key] = convertJsonArrayToCommaSeparated(value)
+    } else {
+      formatted[key] = value
+    }
+  })
+
+  return formatted
+}
+
 function validateHoneypot(fields: FormFields): BotDetectionResult {
   // Disable honeypot in development
   if (process.env.NODE_ENV === 'development') {
@@ -164,9 +222,10 @@ function detectBot(fields: FormFields): BotDetectionResult {
 
 /**
  * Universal form validator that routes to appropriate validator based on formType
- * Supports all form types: signup, contact, candidate, hiring-manager, verifier
- * Currently implements validation for: signup, contact
+ * Supports all form types: contact, candidate, hiring-manager, verifier
+ * Currently implements validation for: contact, verifier
  * Future forms can be added without changing the unified function
+ * Also formats array fields from JSON to comma-separated strings
  */
 function validateUnifiedFormData(
   data: UnifiedFormSubmissionData
@@ -184,46 +243,92 @@ function validateUnifiedFormData(
     return emailFormatError
   }
 
-  // Form-specific validation
-  switch (formType) {
-    case 'signup':
-      return validateSignupFormData(
-        data as typeof data & { formType: 'signup' }
-      )
-    case 'contact':
-      return validateContactFormDataUnified(
-        data as typeof data & { formType: 'contact' }
-      )
-    case 'candidate':
-    case 'hiring-manager':
-    case 'verifier': {
-      // Future implementations - currently no additional validation
-      return null
-    }
-    default: {
-      const _exhaustive: never = formType
-      return _exhaustive
-    }
+  // Format array fields before validation
+  const formattedData = formatFormFields(data as FormFields)
+  const dataWithFormattedFields = { ...data, ...formattedData }
+
+  // Form-specific validation routing using object map instead of switch
+  const validatorMap: Record<
+    string,
+    (d: UnifiedFormSubmissionData) => ValidationError | null
+  > = {
+    contact: (d) =>
+      validateContactFormDataUnified(d as typeof d & { formType: 'contact' }),
+    verifier: (d) =>
+      validateVerifierFormData(d as typeof d & { formType: 'verifier' }),
+    candidate: (d) =>
+      validateCandidateFormData(d as typeof d & { formType: 'candidate' }),
+    'hiring-manager': (d) =>
+      validateHiringManagerFormData(
+        d as typeof d & { formType: 'hiring-manager' }
+      ),
   }
+
+  const validator = validatorMap[formType]
+  if (!validator) {
+    // This should never happen due to type safety, but handle gracefully
+    return null
+  }
+
+  return validator(dataWithFormattedFields)
 }
 
 /**
- * Validate signup form data (email, linkedin, githubGitlabUrl)
+ * Validate contact form data (email, name, message)
  */
-function validateSignupFormData(
-  data: UnifiedFormSubmissionData & { formType: 'signup' }
+function validateContactFormDataUnified(
+  data: UnifiedFormSubmissionData & { formType: 'contact' }
 ): ValidationError | null {
-  const { fields = {} } = data
+  // Validate name
+  if (!data.name) {
+    return {
+      field: 'name',
+      message: 'Name is required.',
+    }
+  }
 
+  const nameValidation = validateName(data.name as string)
+  if (!nameValidation.isValid) {
+    return {
+      field: 'name',
+      message: nameValidation.message || 'Please provide a valid name.',
+    }
+  }
+
+  // Validate message
+  if (!data.message) {
+    return {
+      field: 'message',
+      message: 'Message is required.',
+    }
+  }
+
+  const messageValidation = validateMessage(data.message as string)
+  if (!messageValidation.isValid) {
+    return {
+      field: 'message',
+      message: messageValidation.message || 'Please provide a valid message.',
+    }
+  }
+
+  return null
+}
+
+/**
+ * Validate verifier form data (email, linkedin, githubGitlabUrl)
+ */
+function validateVerifierFormData(
+  data: UnifiedFormSubmissionData & { formType: 'verifier' }
+): ValidationError | null {
   const linkedinError = validateLinkedInIfProvided(
-    fields.linkedin as string | undefined
+    data.linkedin as string | undefined
   )
   if (linkedinError) {
     return linkedinError
   }
 
   const githubGitlabError = validateGitHubGitlabUrlIfProvided(
-    fields.githubGitlabUrl as string | undefined
+    data.githubGitlabUrl as string | undefined
   )
   if (githubGitlabError) {
     return githubGitlabError
@@ -233,43 +338,46 @@ function validateSignupFormData(
 }
 
 /**
- * Validate contact form data (email, name, message)
+ * Validate candidate form data (email, linkedin, githubGitlabUrl)
  */
-function validateContactFormDataUnified(
-  data: UnifiedFormSubmissionData & { formType: 'contact' }
+function validateCandidateFormData(
+  data: UnifiedFormSubmissionData & { formType: 'candidate' }
 ): ValidationError | null {
-  const { fields = {} } = data
-
-  // Validate name
-  if (!fields.name) {
-    return {
-      field: 'name',
-      message: 'Name is required.',
-    }
+  const linkedinError = validateLinkedInIfProvided(
+    data.linkedin as string | undefined
+  )
+  if (linkedinError) {
+    return linkedinError
   }
 
-  const nameValidation = validateName(fields.name as string)
-  if (!nameValidation.isValid) {
-    return {
-      field: 'name',
-      message: nameValidation.message || 'Please provide a valid name.',
-    }
+  const githubGitlabError = validateGitHubGitlabUrlIfProvided(
+    data.githubGitlabUrl as string | undefined
+  )
+  if (githubGitlabError) {
+    return githubGitlabError
   }
 
-  // Validate message
-  if (!fields.message) {
-    return {
-      field: 'message',
-      message: 'Message is required.',
-    }
+  return null
+}
+
+/**
+ * Validate hiring manager form data (email, linkedin, githubGitlabUrl)
+ */
+function validateHiringManagerFormData(
+  data: UnifiedFormSubmissionData & { formType: 'hiring-manager' }
+): ValidationError | null {
+  const linkedinError = validateLinkedInIfProvided(
+    data.linkedin as string | undefined
+  )
+  if (linkedinError) {
+    return linkedinError
   }
 
-  const messageValidation = validateMessage(fields.message as string)
-  if (!messageValidation.isValid) {
-    return {
-      field: 'message',
-      message: messageValidation.message || 'Please provide a valid message.',
-    }
+  const githubGitlabError = validateGitHubGitlabUrlIfProvided(
+    data.githubGitlabUrl as string | undefined
+  )
+  if (githubGitlabError) {
+    return githubGitlabError
   }
 
   return null
@@ -285,4 +393,5 @@ export {
   validateUrlIfProvided,
   validateLinkedInIfProvided,
   validateGitHubGitlabUrlIfProvided,
+  formatFormFields,
 }

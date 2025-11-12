@@ -32,12 +32,10 @@ export function useContactForm() {
       return submitUnifiedForm({
         formType: 'contact',
         email: formData.email,
-        fields: {
-          name: formData.name,
-          message: formData.message,
-          website: honeypotValue,
-          form_start_time: formStartTime,
-        },
+        name: formData.name,
+        message: formData.message,
+        website: honeypotValue,
+        form_start_time: formStartTime,
       } as ContactFormSubmission)
     },
     onSuccess: () => {

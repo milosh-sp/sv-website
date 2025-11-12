@@ -22,11 +22,13 @@ import {
 } from '../../lib/netlify/response-builder'
 import { extractClientIPAndCountry } from '../../lib/netlify/client-info'
 import type {
+  FormFields,
   HttpResponse,
   UnifiedFormSubmissionData,
 } from '../../types/netlify.types'
 import {
   detectBot,
+  formatFormFields,
   validateUnifiedFormData,
 } from '../../lib/netlify/form-validation'
 
@@ -67,9 +69,9 @@ export const handler: Handler = async (
       return createInvalidJsonResponse()
     }
 
-    const { email, fields = {} } = requestData
+    const { email } = requestData
 
-    const botDetection = detectBot(fields)
+    const botDetection = detectBot(requestData as FormFields)
     if (botDetection.isBot) {
       console.log('Bot detected:', botDetection.reason)
       if (botDetection.reason === 'Form session expired') {
@@ -94,7 +96,9 @@ export const handler: Handler = async (
       return createMissingApiTokenResponse()
     }
 
-    const subscriberData = buildSubscriberData(email, fields, clientIP)
+    // Format array fields to comma-separated strings for submission
+    const formattedData = formatFormFields(requestData as FormFields)
+    const subscriberData = buildSubscriberData(email, formattedData, clientIP)
     const senderResponse = await submitToSenderNet(subscriberData, apiToken)
 
     if (!senderResponse.ok) {

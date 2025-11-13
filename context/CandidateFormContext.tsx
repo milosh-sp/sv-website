@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useState, type ReactNode } from 'react'
+import { createContext, use, useState, type ReactNode } from 'react'
 import { INITIAL_CANDIDATE_FORM_DATA } from '@/types/CandidateFormData.types'
 import type { CandidateFormData } from '@/types/CandidateFormData.types'
 import type { CandidateFormContextType } from '@/types/CandidateFormContext.types'
@@ -11,9 +11,9 @@ import {
   type StepId,
 } from '@/lib/stepIdentifiers'
 
-const CandidateFormContext = createContext<
-  CandidateFormContextType | undefined
->(undefined)
+const CandidateFormContext = createContext<CandidateFormContextType | null>(
+  null
+)
 
 export function CandidateFormProvider({ children }: { children: ReactNode }) {
   const [formData, setFormDataState] = useState<CandidateFormData>(
@@ -86,15 +86,11 @@ export function CandidateFormProvider({ children }: { children: ReactNode }) {
     resetForm,
   }
 
-  return (
-    <CandidateFormContext.Provider value={value}>
-      {children}
-    </CandidateFormContext.Provider>
-  )
+  return <CandidateFormContext value={value}>{children}</CandidateFormContext>
 }
 
 export function useCandidateFormContext() {
-  const context = useContext(CandidateFormContext)
+  const context = use(CandidateFormContext)
   if (!context) {
     throw new Error(
       'useCandidateFormContext must be used within CandidateFormProvider'

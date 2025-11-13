@@ -308,25 +308,26 @@ Used for:
 #### Good
 
 ```typescript
+import React from "react";
 // Service abstraction
-const DataContext = React.createContext();
+export const DataContext = createContext<ApiService | null>(null);
+
 
 // High-level component
 function App() {
   return (
-    <DataContext.Provider value={apiService}>
+    <DataContext value={apiService}>
       <UserDashboard />
-    </DataContext.Provider>
+    </DataContext>
   );
 }
 ```
-
 #### Bad
-
 ```typescript
 // Low-level consumer
 function UserDashboard() {
-  const apiService = useContext(DataContext);
+  const a  const apiService = React.use(DataContext)
+  // Modern use() hook in React 19+
   // Uses service without knowing implementation
 }
 ```

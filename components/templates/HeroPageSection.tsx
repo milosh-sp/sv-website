@@ -10,12 +10,12 @@ export function HeroPageSection({ id }: SectionProps) {
     <SectionWrapper
       id={id}
       className={cn(
-        'bg-linear-to-b from-blue-100 to-purple-100 py-16 md:py-24'
+        'flex justify-center bg-linear-to-b from-blue-100 to-purple-100 py-16 md:py-24'
       )}
       aria-labelledby='hero-heading'
       aria-describedby='hero-description'
     >
-      <div className={cn('container-wide')}>
+      <div className={cn('max-w-400 mx-auto px-4 sm:px-6 lg:px-8')}>
         <article
           className={cn(
             'grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center'

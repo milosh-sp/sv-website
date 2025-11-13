@@ -1,22 +1,60 @@
 import { strings } from '@/lib/strings'
+import { cn } from '@/lib/utils'
 import { User } from 'lucide-react'
+import type { CVHeaderProps } from '@/types/CVHeader.types'
 
-export function CVHeader() {
+export function CVHeader({
+  variant = 'default',
+  className,
+  ...props
+}: CVHeaderProps) {
+  const isCompact = variant === 'compact'
+
+  const headerClasses = cn(
+    'bg-slate-800 text-white',
+    isCompact ? 'p-4' : 'p-8',
+    className
+  )
+
+  const avatarClasses = cn(
+    'bg-slate-700 rounded-full flex items-center justify-center',
+    isCompact ? 'w-16 h-16' : 'w-24 h-24'
+  )
+
+  const avatarIconClasses = isCompact ? 'h-8 w-8' : 'h-12 w-12'
+
+  const nameClasses = cn(
+    'font-bold mb-2 text-white',
+    isCompact ? 'text-lg' : 'text-2xl md:text-3xl'
+  )
+
+  const titleClasses = cn('text-slate-200', isCompact ? 'text-sm' : 'text-lg')
+
+  const containerClasses = cn(
+    'flex flex-col md:flex-row items-center',
+    isCompact ? 'gap-3' : 'gap-6'
+  )
+
+  const textContainerClasses = cn(
+    isCompact ? 'text-center md:text-left' : 'text-center md:text-left'
+  )
+
   return (
-    <header className='bg-slate-800 text-white p-8'>
-      <div className='flex flex-col md:flex-row items-center gap-6'>
+    <header className={headerClasses} {...props}>
+      <div className={containerClasses}>
         <div
-          className='w-24 h-24 bg-slate-700 rounded-full flex items-center justify-center'
+          className={avatarClasses}
           role='img'
           aria-label={`Profile picture for ${strings.cvSampleData.profile.name}`}
         >
-          <User className='h-12 w-12 text-white' aria-hidden='true' />
+          <User
+            className={cn(avatarIconClasses, 'text-white')}
+            aria-hidden='true'
+          />
         </div>
-        <div className='text-center md:text-left'>
-          <h2 className='text-2xl md:text-3xl font-bold mb-2 text-white'>
-            {strings.cvSampleData.profile.name}
-          </h2>
-          <p className='text-lg text-slate-200' role='doc-subtitle'>
+        <div className={textContainerClasses}>
+          <h2 className={nameClasses}>{strings.cvSampleData.profile.name}</h2>
+          <p className={titleClasses} role='doc-subtitle'>
             {strings.cvSampleData.profile.title}
           </p>
         </div>

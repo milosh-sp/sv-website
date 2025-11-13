@@ -4,6 +4,7 @@ import { strings } from '@/lib/strings'
 import { Award, CircleStar } from 'lucide-react'
 import { Button } from '@/components/atoms/Button'
 import { useRouter } from 'next/navigation'
+import { cn } from '@/lib/utils'
 
 export function HeroButtons() {
   const router = useRouter()
@@ -13,13 +14,18 @@ export function HeroButtons() {
 
   return (
     <article
-      className='flex flex-col sm:flex-row gap-4 mb-12'
-      aria-label={'Primary actions'}
+      className={cn('flex flex-col sm:flex-row gap-4 mb-12')}
+      aria-label='Primary actions'
     >
       <Button
         onClick={handleNavigateToCandidate}
         size='lg'
-        className='h-14 px-8 text-base bg-emerald-600 hover:bg-emerald-700 text-white shadow-md hover:shadow-lg transition-all duration-300 rounded-lg font-semibold'
+        className={cn(
+          'h-14 px-8 text-base',
+          'bg-emerald-600 hover:bg-emerald-700',
+          'text-white shadow-md hover:shadow-lg',
+          'transition-all duration-300 rounded-lg font-semibold'
+        )}
         aria-label={strings.hero.accessibility.openSignupModal}
         type='button'
       >
@@ -29,7 +35,12 @@ export function HeroButtons() {
       <Button
         onClick={handleNavigateToVerifier}
         size='lg'
-        className='h-14 px-8 text-base bg-blue-600 hover:bg-blue-700 text-white shadow-md hover:shadow-lg transition-all duration-300 rounded-lg font-semibold'
+        className={cn(
+          'h-14 px-8 text-base',
+          'bg-blue-600 hover:bg-blue-700',
+          'text-white shadow-md hover:shadow-lg',
+          'transition-all duration-300 rounded-lg font-semibold'
+        )}
         aria-label={strings.hero.accessibility.openEarnModal}
         type='button'
       >

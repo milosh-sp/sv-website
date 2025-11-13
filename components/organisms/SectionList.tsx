@@ -1,4 +1,3 @@
-import { useMemo } from 'react'
 import { CVSectionHeader } from '@/components/organisms/CVSectionHeader'
 import { VerificationBadge } from '@/components/atoms/VerificationBadge'
 import { VerifierTooltip } from '@/components/atoms/ToolTip'
@@ -14,7 +13,7 @@ export function SectionList<T extends BaseSectionItem>({
   ...props
 }: SectionListProps<T>) {
   // Memoize layout decision to prevent recalculation on every render
-  const useGridLayout = useMemo(() => items.length >= 4, [items.length])
+  const useGridLayout = items.length >= 4
 
   const sectionId = `section-${title.toLowerCase().replace(/\s+/g, '-')}`
 

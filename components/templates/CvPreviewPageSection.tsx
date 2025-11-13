@@ -1,17 +1,9 @@
-import { CertificationsSection } from '@/components/organisms/CertificationSection'
-import { CVHeader } from '@/components/organisms/CVHeader'
-import { CvFeaturesList } from '@/components/organisms/CvFeaturesList'
-import { EducationSection } from '@/components/organisms/EducationSection'
-import { ExperienceSection } from '@/components/organisms/ExperianceSection'
-import { LanguagesSection } from '@/components/organisms/LanguagesSection'
-import { ProfileSection } from '@/components/organisms/ProfileSection'
-import { ProjectsSection } from '@/components/organisms/ProjectSection'
-import { QrCodeSection } from '@/components/organisms/QrCodeSection'
-import { TechnicalSkillsSection } from '@/components/organisms/TechnicalSkillsSection'
 import { HeaderAndDescription } from '@/components/molecules/HeaderAndDescription'
+import { CvFeaturesList } from '@/components/organisms/CvFeaturesList'
 import { SectionWrapper } from '@/components/templates/SectionWrapper'
 import { strings } from '@/lib/strings'
 import type { SectionProps } from '@/types/Sections.types'
+import { CVPreviewBody } from '../organisms/CVPreviewBody'
 
 export function CvPreviewPageSection({ id }: SectionProps) {
   return (
@@ -35,31 +27,7 @@ export function CvPreviewPageSection({ id }: SectionProps) {
           {strings.cvPreview.note}
         </p>
 
-        <article
-          className='max-w-5xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden'
-          aria-label='Sample curriculum vitae document'
-        >
-          <CVHeader />
-
-          <div className='grid md:grid-cols-2 gap-8 p-8'>
-            {/* Left Column - Primary Information */}
-            <div className='space-y-8'>
-              <ProfileSection />
-              <TechnicalSkillsSection />
-              <EducationSection />
-              <ExperienceSection />
-            </div>
-
-            {/* Right Column - Supplementary Information */}
-            <div className='space-y-8'>
-              <ProjectsSection />
-              <CertificationsSection />
-              <LanguagesSection />
-            </div>
-          </div>
-
-          <QrCodeSection />
-        </article>
+        <CVPreviewBody />
 
         <CvFeaturesList />
       </div>

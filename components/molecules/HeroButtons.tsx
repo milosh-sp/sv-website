@@ -13,27 +13,27 @@ export function HeroButtons() {
 
   return (
     <article
-      className='flex flex-col sm:flex-row gap-4 justify-center mb-16'
+      className='flex flex-col sm:flex-row gap-4 mb-12'
       aria-label={'Primary actions'}
     >
       <Button
         onClick={handleNavigateToCandidate}
         size='lg'
-        className='h-16 px-12 text-xl bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 rounded-lg font-medium'
+        className='h-14 px-8 text-base bg-emerald-600 hover:bg-emerald-700 text-white shadow-md hover:shadow-lg transition-all duration-300 rounded-lg font-semibold'
         aria-label={strings.hero.accessibility.openSignupModal}
         type='button'
       >
-        <CircleStar className='h-6 w-6 mr-2' aria-hidden='true' />
+        <CircleStar className='h-5 w-5 mr-2' aria-hidden='true' />
         <span>{strings.hero.buttons.verifySkills}</span>
       </Button>
       <Button
         onClick={handleNavigateToVerifier}
         size='lg'
-        className='h-16 px-12 text-xl bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 rounded-lg font-medium'
+        className='h-14 px-8 text-base bg-blue-600 hover:bg-blue-700 text-white shadow-md hover:shadow-lg transition-all duration-300 rounded-lg font-semibold'
         aria-label={strings.hero.accessibility.openEarnModal}
         type='button'
       >
-        <Award className='h-6 w-6 mr-2' aria-hidden='true' />
+        <Award className='h-5 w-5 mr-2' aria-hidden='true' />
         <span>{strings.hero.buttons.earnByVerifying}</span>
       </Button>
     </article>

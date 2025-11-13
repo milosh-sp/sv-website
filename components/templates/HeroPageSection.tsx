@@ -13,28 +13,34 @@ export function HeroPageSection({ id }: SectionProps) {
       aria-describedby='hero-description'
     >
       <div className='container-wide'>
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center'>
+        <article className='grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center'>
           {/* Left Content */}
           <header className='animate-fade-in-up'>
             {/* Main Heading with Accent Bar */}
-            <div className='flex gap-4 mb-8'>
-              <div className='w-1 bg-linear-to-b from-blue-600 to-purple-600 rounded-full' />
+            <hgroup className='flex gap-4 mb-8'>
+              <div
+                className='w-1 bg-linear-to-b from-blue-600 to-purple-600 rounded-full'
+                aria-hidden='true'
+              />
               <div>
                 <h1
                   id='hero-heading'
                   className='text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 text-balance leading-tight'
                 >
                   {strings.hero.mainHeading}
-                  <span className='bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent'>
+                  <strong className='bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent'>
                     {strings.hero.mainHeadingHighlight}
-                  </span>
+                  </strong>
                 </h1>
               </div>
-            </div>
+            </hgroup>
 
             {/* Subheading with Accent Bar */}
             <div className='flex gap-4 mb-8'>
-              <div className='w-1 bg-emerald-500 rounded-full' />
+              <div
+                className='w-1 bg-emerald-500 rounded-full'
+                aria-hidden='true'
+              />
               <p
                 id='hero-description'
                 className='text-lg md:text-xl text-slate-600 text-pretty leading-relaxed'
@@ -44,17 +50,20 @@ export function HeroPageSection({ id }: SectionProps) {
             </div>
 
             {/* Call to Action with Accent Bar */}
-            <div className='flex gap-4 mb-8'>
-              <div className='w-1 bg-slate-300 rounded-full' />
+            <aside className='flex gap-4 mb-8'>
+              <div
+                className='w-1 bg-slate-300 rounded-full'
+                aria-hidden='true'
+              />
               <p className='text-base md:text-lg text-slate-700 font-medium'>
                 {strings.hero.callToAction}
               </p>
-            </div>
+            </aside>
 
             {/* Buttons */}
-            <div className='mb-12'>
+            <nav className='mb-12' aria-label='Hero actions'>
               <HeroButtons />
-            </div>
+            </nav>
 
             {/* Trust Indicators */}
             <ul
@@ -80,10 +89,10 @@ export function HeroPageSection({ id }: SectionProps) {
           </header>
 
           {/* Right Visual */}
-          <div className='hidden lg:block'>
+          <figure className='hidden lg:block'>
             <HeroVisual />
-          </div>
-        </div>
+          </figure>
+        </article>
       </div>
     </SectionWrapper>
   )

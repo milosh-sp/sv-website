@@ -9,21 +9,18 @@ import { VerifierProfileStep } from '@/components/molecules/VerifierProfileStep'
 import { WaitlistFormWrapper } from '@/components/organisms/WaitlistFormWrapper'
 import { useVerifierFormContext } from '@/context/VerifierFormContext'
 import { useVerifierForm } from '@/hooks/useVerifierForm'
-import {
-  PROFESSIONAL_FRUSTRATION_OPTIONS,
-  SKILL_AREAS,
-  TECHNICAL_SKILLS,
-  TOTAL_FORM_STEPS,
-  VERIFIER_MOTIVATION_OPTIONS,
-} from '@/lib/waitlistConstants'
 import { strings } from '@/lib/strings'
 import { validateVerifierStep } from '@/lib/waitlistFormValidators'
 import { cn } from '@/lib/utils'
 import { STEP_IDS } from '@/lib/stepIdentifiers'
-
 import type { FormFieldConfig } from '@/types/FormFieldsStep.types'
 import type { ReactNode } from 'react'
 import type { StepId } from '@/lib/stepIdentifiers'
+const {
+  professionalFrustrationOptions,
+  totalFormSteps,
+  verifierMotivationOptions,
+} = strings.waitlistForms
 
 export function VerifierWaitlistForm() {
   const context = useVerifierFormContext()
@@ -80,7 +77,7 @@ export function VerifierWaitlistForm() {
           <SkillAreasSection
             label={strings.waitlistForms.fields.skillAreas.label}
             selectedSkillAreas={skillAreas}
-            skillAreas={SKILL_AREAS}
+            skillAreas={strings.waitlistForms.skillAreas}
             errors={form.errors}
             isSubmitting={form.isSubmitting}
             onSkillAreaChange={(skillId, checked) => {
@@ -93,7 +90,7 @@ export function VerifierWaitlistForm() {
           <TechnicalSkillsSection
             label={strings.waitlistForms.fields.technicalSkills.label}
             selectedSkills={technicalSkills}
-            technicalSkills={TECHNICAL_SKILLS}
+            technicalSkills={strings.waitlistForms.technicalSkills}
             errors={form.errors}
             isSubmitting={form.isSubmitting}
             onSkillsChange={(skills) => {
@@ -138,7 +135,7 @@ export function VerifierWaitlistForm() {
           id: 'verifierMotivations',
           type: 'checkbox',
           label: strings.waitlistForms.labels.verifierMotivations,
-          options: VERIFIER_MOTIVATION_OPTIONS,
+          options: verifierMotivationOptions,
           value: form.formData.verifierMotivations,
           onChange: (values) =>
             form.handleFieldChange(
@@ -156,7 +153,7 @@ export function VerifierWaitlistForm() {
           id: 'professionalFrustration',
           type: 'checkbox',
           label: strings.waitlistForms.labels.professionalFrustration,
-          options: PROFESSIONAL_FRUSTRATION_OPTIONS,
+          options: professionalFrustrationOptions,
           value: form.formData.professionalFrustration,
           onChange: (values) =>
             form.handleFieldChange(
@@ -198,7 +195,7 @@ export function VerifierWaitlistForm() {
   return (
     <WaitlistFormWrapper
       currentStep={context.currentStep}
-      totalSteps={TOTAL_FORM_STEPS}
+      totalSteps={totalFormSteps}
       isSubmitting={form.isSubmitting}
       isCurrentStepValid={isCurrentStepValid}
       submitStatus={form.submitStatus}

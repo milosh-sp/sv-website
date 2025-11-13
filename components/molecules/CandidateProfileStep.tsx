@@ -3,11 +3,10 @@ import { cn } from '@/lib/utils'
 import { FormField } from '@/components/molecules/FormField'
 import { RadioButtonGroup } from '@/components/molecules/RadioButtonGroup'
 import { ConditionalField } from '@/components/molecules/ConditionalField'
-import {
-  PROFESSIONAL_STATUS_OPTIONS,
-  TECH_COMMUNITY_OPTIONS,
-} from '@/lib/waitlistConstants'
 import { strings } from '@/lib/strings'
+
+const { professionalStatusOptions, techCommunityOptions } =
+  strings.waitlistForms
 import type { CandidateProfileStepProps } from '@/types/CandidateProfileStep.types'
 
 export function CandidateProfileStep({
@@ -30,7 +29,7 @@ export function CandidateProfileStep({
       <RadioButtonGroup
         name='professionalStatus'
         label={strings.waitlistForms.labels.professionalStatus}
-        options={PROFESSIONAL_STATUS_OPTIONS}
+        options={professionalStatusOptions}
         value={professionalStatus}
         onChange={onProfessionalStatusChange}
         error={errors.professionalStatus}
@@ -41,7 +40,7 @@ export function CandidateProfileStep({
       <RadioButtonGroup
         name='techCommunityMembership'
         label={strings.waitlistForms.labels.techCommunityMembership}
-        options={TECH_COMMUNITY_OPTIONS}
+        options={techCommunityOptions}
         value={techCommunityMembership}
         onChange={onTechCommunityMembershipChange}
         error={errors.techCommunityMembership}

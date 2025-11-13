@@ -3,7 +3,6 @@ import { Database, Eye, Globe, Lock, Shield, UserCheck } from 'lucide-react'
 import { generateMetadata } from '@/lib/seo'
 import { pageSeoConfig } from '@/lib/seo-config'
 import { strings } from '@/lib/strings'
-import { PrivacyPolicyBreadcrumb } from '@/utils/PrivacyPolicyBreadcrumb'
 
 export const metadata: Metadata = generateMetadata(pageSeoConfig.privacy)
 
@@ -13,9 +12,7 @@ export default function PrivacyPolicyPage() {
       <div className='section-padding'>
         <div className='container-narrow'>
           {/* Breadcrumb Navigation */}
-          <div className='mb-8'>
-            <PrivacyPolicyBreadcrumb />
-          </div>
+          <div className='mb-8'></div>
           {/* Header Section */}
           <div className='text-center mb-16'>
             <div className='flex justify-center mb-6'>

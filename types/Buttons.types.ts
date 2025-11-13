@@ -8,6 +8,8 @@ type ButtonVariant =
   | 'ghost'
   | 'link'
   | 'verdict'
+  | 'hero-emerald'
+  | 'hero-blue'
 type ButtonSize = 'default' | 'sm' | 'lg' | 'icon'
 
 interface ButtonProps extends ComponentProps<'button'> {

@@ -52,6 +52,16 @@ const VARIANT_STYLES: Record<ButtonVariant, string> = {
     'active:bg-skill-verdict/80 focus-visible:ring-skill-verdict/20',
     'dark:focus-visible:ring-skill-verdict/40'
   ),
+  'hero-emerald': cn(
+    'bg-emerald-600 text-white shadow-md hover:bg-emerald-700',
+    'active:bg-emerald-600 focus-visible:ring-emerald-600/20',
+    'dark:focus-visible:ring-emerald-600/40 transition-all duration-300'
+  ),
+  'hero-blue': cn(
+    'bg-blue-600 text-white shadow-md hover:bg-blue-700',
+    'active:bg-blue-600 focus-visible:ring-blue-600/20',
+    'dark:focus-visible:ring-blue-600/40 transition-all duration-300'
+  ),
 } as const
 
 const SIZE_STYLES: Record<ButtonSize, string> = {
@@ -69,6 +79,8 @@ const ARIA_LABELS: Record<ButtonVariant, string> = {
   ghost: 'Tertiary action button',
   link: 'Link button',
   verdict: 'Verdict action button',
+  'hero-emerald': 'Hero action button',
+  'hero-blue': 'Hero action button',
 } as const
 
 export function Button({

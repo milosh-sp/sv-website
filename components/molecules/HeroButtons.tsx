@@ -19,32 +19,24 @@ export function HeroButtons() {
     >
       <Button
         onClick={handleNavigateToCandidate}
+        variant='hero-emerald'
         size='lg'
-        className={cn(
-          'h-14 px-8 text-base',
-          'bg-emerald-600 hover:bg-emerald-700',
-          'text-white shadow-md hover:shadow-lg',
-          'transition-all duration-300 rounded-lg font-semibold'
-        )}
+        className={cn('h-14 px-8 text-base rounded-lg font-semibold')}
         aria-label={strings.hero.accessibility.openSignupModal}
         type='button'
       >
-        <CircleStar className='h-5 w-5 mr-2' aria-hidden='true' />
+        <CircleStar className={cn('h-5 w-5 mr-2')} aria-hidden='true' />
         <span>{strings.hero.buttons.verifySkills}</span>
       </Button>
       <Button
         onClick={handleNavigateToVerifier}
+        variant='hero-blue'
         size='lg'
-        className={cn(
-          'h-14 px-8 text-base',
-          'bg-blue-600 hover:bg-blue-700',
-          'text-white shadow-md hover:shadow-lg',
-          'transition-all duration-300 rounded-lg font-semibold'
-        )}
+        className={cn('h-14 px-8 text-base rounded-lg font-semibold')}
         aria-label={strings.hero.accessibility.openEarnModal}
         type='button'
       >
-        <Award className='h-5 w-5 mr-2' aria-hidden='true' />
+        <Award className={cn('h-5 w-5 mr-2')} aria-hidden='true' />
         <span>{strings.hero.buttons.earnByVerifying}</span>
       </Button>
     </article>

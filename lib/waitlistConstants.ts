@@ -7,7 +7,7 @@
 // FORM STEP CONFIGURATION
 // ============================================================================
 
-export const TOTAL_FORM_STEPS = 4
+const TOTAL_FORM_STEPS = 4
 
 // ============================================================================
 // SKILL AREAS & TECHNICAL SKILLS
@@ -24,7 +24,7 @@ interface TechnicalSkill {
   label: string
 }
 
-export const SKILL_AREAS: SkillArea[] = [
+const SKILL_AREAS: SkillArea[] = [
   { id: 'frontend', label: 'Frontend Development' },
   { id: 'backend', label: 'Backend Development' },
   { id: 'fullstack', label: 'Full Stack Development' },
@@ -32,7 +32,7 @@ export const SKILL_AREAS: SkillArea[] = [
   { id: 'data', label: 'Data Science' },
 ]
 
-export const TECHNICAL_SKILLS: TechnicalSkill[] = [
+const TECHNICAL_SKILLS: TechnicalSkill[] = [
   { id: 'react', label: 'React' },
   { id: 'typescript', label: 'TypeScript' },
   { id: 'nodejs', label: 'Node.js' },
@@ -44,7 +44,7 @@ export const TECHNICAL_SKILLS: TechnicalSkill[] = [
 // CANDIDATE FORM OPTIONS
 // ============================================================================
 
-export const PROFESSIONAL_STATUS_OPTIONS = [
+const PROFESSIONAL_STATUS_OPTIONS = [
   { value: 'student', label: 'Student' },
   { value: 'unemployed', label: 'Unemployed' },
   { value: 'employed-fulltime', label: 'Employed (full-time)' },
@@ -52,12 +52,12 @@ export const PROFESSIONAL_STATUS_OPTIONS = [
   { value: 'freelancer', label: 'Freelancer' },
 ]
 
-export const TECH_COMMUNITY_OPTIONS = [
+const TECH_COMMUNITY_OPTIONS = [
   { value: 'yes', label: 'Yes, specify:' },
   { value: 'no', label: 'No' },
 ]
 
-export const SKILL_VALIDATION_OPTIONS = [
+const SKILL_VALIDATION_OPTIONS = [
   { value: 'strongly-agree', label: 'Strongly Agree' },
   { value: 'agree', label: 'Agree' },
   { value: 'neutral', label: 'Neutral' },
@@ -65,7 +65,7 @@ export const SKILL_VALIDATION_OPTIONS = [
   { value: 'strongly-disagree', label: 'Strongly Disagree' },
 ]
 
-export const JOB_SEARCH_CHALLENGE_OPTIONS = [
+const JOB_SEARCH_CHALLENGE_OPTIONS = [
   { value: 'no-response', label: 'Getting no response after applying' },
   { value: 'cv-rejections', label: 'My CV is getting rejections' },
   {
@@ -82,7 +82,7 @@ export const JOB_SEARCH_CHALLENGE_OPTIONS = [
   { value: 'other', label: 'Other:' },
 ]
 
-export const VALUABLE_OUTCOME_OPTIONS = [
+const VALUABLE_OUTCOME_OPTIONS = [
   {
     value: 'credibility',
     label:
@@ -110,24 +110,24 @@ export const VALUABLE_OUTCOME_OPTIONS = [
 // VERIFIER FORM OPTIONS
 // ============================================================================
 
-export const YEARS_OF_EXPERIENCE_OPTIONS = [
+const YEARS_OF_EXPERIENCE_OPTIONS = [
   { value: '3-5', label: '3–5 years' },
   { value: '6-10', label: '6–10 years' },
   { value: '10+', label: '10+ years' },
 ]
 
-export const HOURS_PER_WEEK_OPTIONS = [
+const HOURS_PER_WEEK_OPTIONS = [
   { value: '1-3', label: '1-3 hours' },
   { value: '4-7', label: '4-7 hours' },
   { value: '8+', label: '8+ hours' },
 ]
 
-export const COACHING_MENTORING_OPTIONS = [
+const COACHING_MENTORING_OPTIONS = [
   { value: 'yes', label: 'Yes' },
   { value: 'no', label: 'No' },
 ]
 
-export const VERIFIER_MOTIVATION_OPTIONS = [
+const VERIFIER_MOTIVATION_OPTIONS = [
   { value: 'improve-hiring', label: 'Improve hiring standards in tech' },
   { value: 'earn-income', label: 'Earn extra income' },
   { value: 'mentor-talent', label: 'Mentor and grow future talent' },
@@ -147,7 +147,7 @@ export const VERIFIER_MOTIVATION_OPTIONS = [
   { value: 'other', label: 'Other:' },
 ]
 
-export const PROFESSIONAL_FRUSTRATION_OPTIONS = [
+const PROFESSIONAL_FRUSTRATION_OPTIONS = [
   {
     value: 'expertise-not-recognized',
     label: "My leadership and expertise aren't fully recognized or utilized.",
@@ -184,7 +184,7 @@ export const PROFESSIONAL_FRUSTRATION_OPTIONS = [
 // HIRING MANAGER FORM OPTIONS
 // ============================================================================
 
-export const MANAGER_ROLE_OPTIONS = [
+const MANAGER_ROLE_OPTIONS = [
   { value: 'cto-vp', label: 'CTO / VP Engineering' },
   { value: 'head-engineering', label: 'Head of Engineering' },
   { value: 'tech-lead', label: 'Tech Lead / Engineering Manager' },
@@ -192,7 +192,7 @@ export const MANAGER_ROLE_OPTIONS = [
   { value: 'recruiter', label: 'Recruiter' },
 ]
 
-export const FUNDING_STAGE_OPTIONS = [
+const FUNDING_STAGE_OPTIONS = [
   { value: 'pre-seed', label: 'Pre-seed / Bootstrapped' },
   { value: 'seed', label: 'Seed' },
   { value: 'series-a', label: 'Series A' },
@@ -200,7 +200,7 @@ export const FUNDING_STAGE_OPTIONS = [
   { value: 'profitable', label: 'Profitable / Late-Stage' },
 ]
 
-export const TEAM_SIZE_OPTIONS = [
+const TEAM_SIZE_OPTIONS = [
   { value: '0', label: '0' },
   { value: '1-5', label: '1-5' },
   { value: '6-15', label: '6-15' },
@@ -208,7 +208,7 @@ export const TEAM_SIZE_OPTIONS = [
   { value: '30+', label: '30+' },
 ]
 
-export const ROLES_HIRING_OPTIONS = [
+const ROLES_HIRING_OPTIONS = [
   { value: 'fullstack', label: 'Full-stack engineer' },
   { value: 'backend', label: 'Backend engineer' },
   { value: 'frontend', label: 'Frontend / Web' },
@@ -224,7 +224,7 @@ export const ROLES_HIRING_OPTIONS = [
   },
 ]
 
-export const SENIORITY_LEVEL_OPTIONS = [
+const SENIORITY_LEVEL_OPTIONS = [
   { value: 'intern', label: 'Intern' },
   { value: 'mid-level', label: 'Mid-level' },
   { value: 'senior', label: 'Senior' },
@@ -235,7 +235,7 @@ export const SENIORITY_LEVEL_OPTIONS = [
   },
 ]
 
-export const INTERVIEW_HOURS_OPTIONS = [
+const INTERVIEW_HOURS_OPTIONS = [
   { value: 'less-10', label: 'Less than 10 hours' },
   { value: '10-20', label: '10 - 20 hours' },
   { value: '20-40', label: '20 - 40 hours' },
@@ -243,7 +243,7 @@ export const INTERVIEW_HOURS_OPTIONS = [
   { value: 'dont-know', label: "I don't know" },
 ]
 
-export const HIRING_FRUSTRATIONS_OPTIONS = [
+const HIRING_FRUSTRATIONS_OPTIONS = [
   {
     value: 'wasting-hours',
     label: 'Wasting 10+ hours per candidate with my engineering team.',
@@ -267,7 +267,7 @@ export const HIRING_FRUSTRATIONS_OPTIONS = [
   { value: 'other', label: 'Other:' },
 ]
 
-export const HIRING_FAILURES_OPTIONS = [
+const HIRING_FAILURES_OPTIONS = [
   { value: 'bad-interview', label: 'Bad hire that did great on interview' },
   {
     value: 'skill-assessment',
@@ -283,3 +283,27 @@ export const HIRING_FAILURES_OPTIONS = [
   },
   { value: 'other', label: 'Other:' },
 ]
+
+export {
+  TOTAL_FORM_STEPS,
+  SKILL_AREAS,
+  TECHNICAL_SKILLS,
+  PROFESSIONAL_STATUS_OPTIONS,
+  TECH_COMMUNITY_OPTIONS,
+  SKILL_VALIDATION_OPTIONS,
+  JOB_SEARCH_CHALLENGE_OPTIONS,
+  VALUABLE_OUTCOME_OPTIONS,
+  YEARS_OF_EXPERIENCE_OPTIONS,
+  HOURS_PER_WEEK_OPTIONS,
+  COACHING_MENTORING_OPTIONS,
+  VERIFIER_MOTIVATION_OPTIONS,
+  PROFESSIONAL_FRUSTRATION_OPTIONS,
+  MANAGER_ROLE_OPTIONS,
+  FUNDING_STAGE_OPTIONS,
+  TEAM_SIZE_OPTIONS,
+  ROLES_HIRING_OPTIONS,
+  SENIORITY_LEVEL_OPTIONS,
+  INTERVIEW_HOURS_OPTIONS,
+  HIRING_FRUSTRATIONS_OPTIONS,
+  HIRING_FAILURES_OPTIONS,
+}

@@ -1,11 +1,17 @@
+'use client'
+
 import { HeaderAndDescription } from '@/components/molecules/HeaderAndDescription'
 import { SectionWrapper } from '@/components/templates/SectionWrapper'
 import { strings } from '@/lib/strings'
 import type { SectionProps } from '@/types/Sections.types'
+import { Button } from '@/components/atoms/Button'
+import { useRouter } from 'next/navigation'
 
 const BuildingIcon = strings.companyDiscovery.icon
 
 export function CompanyDiscoveryPageSection({ id }: SectionProps) {
+  const router = useRouter()
+
   return (
     <SectionWrapper
       className='py-16 bg-slate-50'
@@ -28,6 +34,12 @@ export function CompanyDiscoveryPageSection({ id }: SectionProps) {
               description={strings.companyDiscovery.description}
             />
           </header>
+          <Button
+            variant='secondary'
+            onClick={() => router.push('/hiring-manager')}
+          >
+            {strings.waitlistForms.pageHeaders['hiring-manager'].title}
+          </Button>
           {/* Benefits List */}
           <ul
             className='flex flex-wrap justify-center gap-6 text-sm list-none'

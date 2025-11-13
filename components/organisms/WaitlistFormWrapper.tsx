@@ -1,27 +1,3 @@
-/**
- * WaitlistFormWrapper - Generic Form Container
- * Eliminates 70% of duplicated form structure code
- * Handles: ProgressIndicator, FormNavigation, HoneypotField, StatusMessage
- *
- * Usage:
- * <WaitlistFormWrapper
- *   currentStep={currentStep}
- *   totalSteps={4}
- *   isSubmitting={isSubmitting}
- *   isCurrentStepValid={isValid}
- *   submitStatus={submitStatus}
- *   errors={errors}
- *   honeypotValue={honeypotValue}
- *   onHoneypotChange={handleHoneypotChange}
- *   onStepClick={goToStep}
- *   onPrevious={previousStep}
- *   onNext={nextStep}
- *   onSubmit={handleSubmit}
- * >
- *   {renderStep()}
- * </WaitlistFormWrapper>
- */
-
 import type { ReactNode } from 'react'
 import { cn } from '@/lib/utils'
 import { strings } from '@/lib/strings'
@@ -37,13 +13,6 @@ import type { CandidateFormData } from '@/types/CandidateFormData.types'
 import type { VerifierFormData } from '@/types/VerifierFormData.types'
 import type { HiringManagerFormData } from '@/types/HiringManagerFormData.types'
 
-/**
- * Determines if a user can navigate to a specific step
- * Rules:
- * - Can always navigate to current step
- * - Can navigate to any validated step (backward or forward)
- * - Cannot navigate to unvalidated steps
- */
 function isStepNavigationAllowed(
   targetStep: StepId,
   currentStep: StepId,

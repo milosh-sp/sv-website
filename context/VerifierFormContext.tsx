@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useState, type ReactNode } from 'react'
+import { createContext, use, useState, type ReactNode } from 'react'
 import type { VerifierFormData } from '@/types/VerifierFormData.types'
 import { INITIAL_VERIFIER_FORM_DATA } from '@/types/VerifierFormData.types'
 import type { VerifierFormContextType } from '@/types/VerifierFormContext.types'
@@ -11,9 +11,7 @@ import {
   type StepId,
 } from '@/lib/stepIdentifiers'
 
-const VerifierFormContext = createContext<VerifierFormContextType | undefined>(
-  undefined
-)
+const VerifierFormContext = createContext<VerifierFormContextType | null>(null)
 
 export function VerifierFormProvider({ children }: { children: ReactNode }) {
   const [formData, setFormDataState] = useState<VerifierFormData>(
@@ -86,15 +84,11 @@ export function VerifierFormProvider({ children }: { children: ReactNode }) {
     resetForm,
   }
 
-  return (
-    <VerifierFormContext.Provider value={value}>
-      {children}
-    </VerifierFormContext.Provider>
-  )
+  return <VerifierFormContext value={value}>{children}</VerifierFormContext>
 }
 
 export function useVerifierFormContext() {
-  const context = useContext(VerifierFormContext)
+  const context = use(VerifierFormContext)
   if (!context) {
     throw new Error(
       'useVerifierFormContext must be used within VerifierFormProvider'

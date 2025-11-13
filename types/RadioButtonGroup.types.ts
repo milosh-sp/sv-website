@@ -8,7 +8,7 @@ interface RadioOption {
 interface RadioButtonGroupProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
   name: string
-  options: RadioOption[]
+  options: readonly RadioOption[]
   value: string
   onChange: (value: string) => void
   error?: string

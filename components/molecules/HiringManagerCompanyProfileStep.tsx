@@ -2,12 +2,10 @@
 
 import { cn } from '@/lib/utils'
 import { RadioButtonGroup } from '@/components/molecules/RadioButtonGroup'
-import {
-  MANAGER_ROLE_OPTIONS,
-  FUNDING_STAGE_OPTIONS,
-  TEAM_SIZE_OPTIONS,
-} from '@/lib/waitlistConstants'
 import { strings } from '@/lib/strings'
+
+const { managerRoleOptions, fundingStageOptions, teamSizeOptions } =
+  strings.waitlistForms
 import type { HiringManagerCompanyProfileStepProps } from '@/types/HiringManagerCompanyProfileStep.types'
 
 export function HiringManagerCompanyProfileStep({
@@ -28,7 +26,7 @@ export function HiringManagerCompanyProfileStep({
       <RadioButtonGroup
         name='managerRole'
         label={strings.waitlistForms.labels.managerRole}
-        options={MANAGER_ROLE_OPTIONS}
+        options={managerRoleOptions}
         value={managerRole}
         onChange={onManagerRoleChange}
         error={errors.managerRole}
@@ -39,7 +37,7 @@ export function HiringManagerCompanyProfileStep({
       <RadioButtonGroup
         name='fundingStage'
         label={strings.waitlistForms.labels.fundingStage}
-        options={FUNDING_STAGE_OPTIONS}
+        options={fundingStageOptions}
         value={fundingStage}
         onChange={onFundingStagChange}
         error={errors.fundingStage}
@@ -50,7 +48,7 @@ export function HiringManagerCompanyProfileStep({
       <RadioButtonGroup
         name='engineeringTeamSize'
         label={strings.waitlistForms.labels.engineeringTeamSize}
-        options={TEAM_SIZE_OPTIONS}
+        options={teamSizeOptions}
         value={engineeringTeamSize}
         onChange={onEngineeringTeamSizeChange}
         error={errors.engineeringTeamSize}

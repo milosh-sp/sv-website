@@ -7,16 +7,17 @@ import { PrivacyPolicyConsent } from '@/components/molecules/PrivacyPolicyConsen
 import { WaitlistFormWrapper } from '@/components/organisms/WaitlistFormWrapper'
 import { useHiringManagerFormContext } from '@/context/HiringManagerFormContext'
 import { useHiringManagerForm } from '@/hooks/useHiringManagerForm'
-import {
-  HIRING_FAILURES_OPTIONS,
-  HIRING_FRUSTRATIONS_OPTIONS,
-  INTERVIEW_HOURS_OPTIONS,
-  ROLES_HIRING_OPTIONS,
-  SENIORITY_LEVEL_OPTIONS,
-  TOTAL_FORM_STEPS,
-} from '@/lib/waitlistConstants'
 import { strings } from '@/lib/strings'
 import { validateHiringManagerStep } from '@/lib/waitlistFormValidators'
+
+const {
+  hiringFailureOptions,
+  interviewHoursOptions,
+  rolesHiringOptions,
+  seniorityLevelOptions,
+  totalFormSteps,
+  hiringFrustrationOptions,
+} = strings.waitlistForms
 import { STEP_IDS, type StepId } from '@/lib/stepIdentifiers'
 
 import type { FormFieldConfig } from '@/types/FormFieldsStep.types'
@@ -86,7 +87,7 @@ export function HiringManagerWaitlistForm() {
           id: 'seniorityLevel',
           type: 'radio',
           label: strings.waitlistForms.labels.seniorityLevel,
-          options: SENIORITY_LEVEL_OPTIONS,
+          options: seniorityLevelOptions,
           value: form.formData.seniorityLevel,
           onChange: (value) =>
             form.handleFieldChange('seniorityLevel', value as string),
@@ -96,7 +97,7 @@ export function HiringManagerWaitlistForm() {
           id: 'hiringInterviewHours',
           type: 'radio',
           label: strings.waitlistForms.labels.hiringInterviewHours,
-          options: INTERVIEW_HOURS_OPTIONS,
+          options: interviewHoursOptions,
           value: form.formData.hiringInterviewHours,
           onChange: (value) =>
             form.handleFieldChange('hiringInterviewHours', value as string),
@@ -113,36 +114,45 @@ export function HiringManagerWaitlistForm() {
               id: 'rolesHiring',
               type: 'checkbox',
               label: strings.waitlistForms.labels.rolesHiring,
-              options: ROLES_HIRING_OPTIONS,
+              options: rolesHiringOptions,
               value: form.formData.rolesHiring,
               onChange: (values) =>
                 form.handleFieldChange('rolesHiring', JSON.stringify(values)),
+              otherFieldId: 'rolesHiringOther',
+              onOtherChange: (value) =>
+                form.handleFieldChange('rolesHiringOther', value),
               error: form.errors.rolesHiring,
             },
             {
               id: 'hiringFrustrations',
               type: 'checkbox',
               label: strings.waitlistForms.labels.hiringFrustrations,
-              options: HIRING_FRUSTRATIONS_OPTIONS,
+              options: hiringFrustrationOptions,
               value: form.formData.hiringFrustrations,
               onChange: (values) =>
                 form.handleFieldChange(
                   'hiringFrustrations',
                   JSON.stringify(values)
                 ),
+              otherFieldId: 'hiringFrustrationsOther',
+              onOtherChange: (value) =>
+                form.handleFieldChange('hiringFrustrationsOther', value),
               error: form.errors.hiringFrustrations,
             },
             {
               id: 'hiringFailures',
               type: 'checkbox',
               label: strings.waitlistForms.labels.hiringFailures,
-              options: HIRING_FAILURES_OPTIONS,
+              options: hiringFailureOptions,
               value: form.formData.hiringFailures,
               onChange: (values) =>
                 form.handleFieldChange(
                   'hiringFailures',
                   JSON.stringify(values)
                 ),
+              otherFieldId: 'hiringFailuresOther',
+              onOtherChange: (value) =>
+                form.handleFieldChange('hiringFailuresOther', value),
               error: form.errors.hiringFailures,
             },
           ]}
@@ -171,7 +181,7 @@ export function HiringManagerWaitlistForm() {
   return (
     <WaitlistFormWrapper
       currentStep={context.currentStep}
-      totalSteps={TOTAL_FORM_STEPS}
+      totalSteps={totalFormSteps}
       isSubmitting={form.isSubmitting}
       isCurrentStepValid={isCurrentStepValid}
       submitStatus={form.submitStatus}

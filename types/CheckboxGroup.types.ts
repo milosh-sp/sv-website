@@ -8,7 +8,7 @@ interface CheckboxOption {
 interface CheckboxGroupProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
   name: string
-  options: CheckboxOption[]
+  options: readonly CheckboxOption[]
   values: string[]
   onChange: (values: string[]) => void
   error?: string

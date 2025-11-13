@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useState, type ReactNode } from 'react'
+import { createContext, use, useState, type ReactNode } from 'react'
 import type { HiringManagerFormData } from '@/types/HiringManagerFormData.types'
 import { INITIAL_HIRING_MANAGER_FORM_DATA } from '@/types/HiringManagerFormData.types'
 import type { HiringManagerFormContextType } from '@/types/HiringManagerFormContext.types'
@@ -11,9 +11,8 @@ import {
   type StepId,
 } from '@/lib/stepIdentifiers'
 
-const HiringManagerFormContext = createContext<
-  HiringManagerFormContextType | undefined
->(undefined)
+const HiringManagerFormContext =
+  createContext<HiringManagerFormContextType | null>(null)
 
 export function HiringManagerFormProvider({
   children,
@@ -91,14 +90,14 @@ export function HiringManagerFormProvider({
   }
 
   return (
-    <HiringManagerFormContext.Provider value={value}>
+    <HiringManagerFormContext value={value}>
       {children}
-    </HiringManagerFormContext.Provider>
+    </HiringManagerFormContext>
   )
 }
 
 export function useHiringManagerFormContext() {
-  const context = useContext(HiringManagerFormContext)
+  const context = use(HiringManagerFormContext)
   if (!context) {
     throw new Error(
       'useHiringManagerFormContext must be used within HiringManagerFormProvider'

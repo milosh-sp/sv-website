@@ -9,15 +9,14 @@ import { TechnicalSkillsSection } from '@/components/molecules/TechnicalSkillsSe
 import { WaitlistFormWrapper } from '@/components/organisms/WaitlistFormWrapper'
 import { useCandidateFormContext } from '@/context/CandidateFormContext'
 import { useCandidateForm } from '@/hooks/useCandidateForm'
-import {
-  JOB_SEARCH_CHALLENGE_OPTIONS,
-  SKILL_AREAS,
-  SKILL_VALIDATION_OPTIONS,
-  TECHNICAL_SKILLS,
-  TOTAL_FORM_STEPS,
-  VALUABLE_OUTCOME_OPTIONS,
-} from '@/lib/waitlistConstants'
 import { strings } from '@/lib/strings'
+
+const {
+  jobSearchChallengeOptions,
+  skillValidationOptions,
+  totalFormSteps,
+  valuableOutcomeOptions,
+} = strings.waitlistForms
 import { validateCandidateStep } from '@/lib/waitlistFormValidators'
 import { cn } from '@/lib/utils'
 import { STEP_IDS, type StepId } from '@/lib/stepIdentifiers'
@@ -79,7 +78,7 @@ export function CandidateWaitlistForm() {
         <div className={cn('space-y-6')}>
           <SkillAreasSection
             selectedSkillAreas={skillAreas}
-            skillAreas={SKILL_AREAS}
+            skillAreas={strings.waitlistForms.skillAreas}
             errors={form.errors}
             isSubmitting={form.isSubmitting}
             onSkillAreaChange={(skillId, checked) => {
@@ -93,7 +92,7 @@ export function CandidateWaitlistForm() {
           <TechnicalSkillsSection
             label={strings.waitlistForms.fields.technicalSkills.label}
             selectedSkills={technicalSkills}
-            technicalSkills={TECHNICAL_SKILLS}
+            technicalSkills={strings.waitlistForms.technicalSkills}
             errors={form.errors}
             isSubmitting={form.isSubmitting}
             onSkillsChange={(skills) => {
@@ -134,7 +133,10 @@ export function CandidateWaitlistForm() {
           id: 'skillValidationConfidence',
           type: 'radio',
           label: strings.waitlistForms.labels.skillValidationConfidence,
-          options: SKILL_VALIDATION_OPTIONS,
+          options: skillValidationOptions as unknown as Array<{
+            value: string
+            label: string
+          }>,
           value: form.formData.skillValidationConfidence,
           onChange: (value) =>
             form.handleFieldChange(
@@ -147,7 +149,10 @@ export function CandidateWaitlistForm() {
           id: 'jobSearchChallenges',
           type: 'checkbox',
           label: strings.waitlistForms.labels.jobSearchChallenges,
-          options: JOB_SEARCH_CHALLENGE_OPTIONS,
+          options: jobSearchChallengeOptions as unknown as Array<{
+            value: string
+            label: string
+          }>,
           value: form.formData.jobSearchChallenges,
           onChange: (values) =>
             form.handleFieldChange(
@@ -165,7 +170,10 @@ export function CandidateWaitlistForm() {
           id: 'valuableOutcomes',
           type: 'checkbox',
           label: strings.waitlistForms.labels.valuableOutcomes,
-          options: VALUABLE_OUTCOME_OPTIONS,
+          options: valuableOutcomeOptions as unknown as Array<{
+            value: string
+            label: string
+          }>,
           value: form.formData.valuableOutcomes,
           onChange: (values) =>
             form.handleFieldChange('valuableOutcomes', JSON.stringify(values)),
@@ -204,7 +212,7 @@ export function CandidateWaitlistForm() {
   return (
     <WaitlistFormWrapper
       currentStep={context.currentStep}
-      totalSteps={TOTAL_FORM_STEPS}
+      totalSteps={totalFormSteps}
       isSubmitting={form.isSubmitting}
       isCurrentStepValid={isCurrentStepValid}
       submitStatus={form.submitStatus}

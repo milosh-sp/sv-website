@@ -2,13 +2,14 @@
 
 import { cn } from '@/lib/utils'
 import { RadioButtonGroup } from '@/components/molecules/RadioButtonGroup'
-import {
-  YEARS_OF_EXPERIENCE_OPTIONS,
-  HOURS_PER_WEEK_OPTIONS,
-  PROFESSIONAL_STATUS_OPTIONS,
-  COACHING_MENTORING_OPTIONS,
-} from '@/lib/waitlistConstants'
 import { strings } from '@/lib/strings'
+
+const {
+  yearsOfExperienceOptions,
+  hoursPerWeekOptions,
+  professionalStatusOptions,
+  coachingMentoringOptions,
+} = strings.waitlistForms
 import type { VerifierProfileStepProps } from '@/types/VerifierProfileStep.types'
 
 export function VerifierProfileStep({
@@ -33,7 +34,7 @@ export function VerifierProfileStep({
       <RadioButtonGroup
         name='yearsOfExperience'
         label={strings.waitlistForms.labels.yearsOfExperience}
-        options={YEARS_OF_EXPERIENCE_OPTIONS}
+        options={yearsOfExperienceOptions}
         value={yearsOfExperience}
         onChange={onYearsOfExperienceChange}
         error={errors.yearsOfExperience}
@@ -44,7 +45,7 @@ export function VerifierProfileStep({
       <RadioButtonGroup
         name='hoursPerWeek'
         label={strings.waitlistForms.labels.hoursPerWeek}
-        options={HOURS_PER_WEEK_OPTIONS}
+        options={hoursPerWeekOptions}
         value={hoursPerWeek}
         onChange={onHoursPerWeekChange}
         error={errors.hoursPerWeek}
@@ -55,7 +56,7 @@ export function VerifierProfileStep({
       <RadioButtonGroup
         name='professionalStatus'
         label={strings.waitlistForms.labels.professionalStatus}
-        options={PROFESSIONAL_STATUS_OPTIONS}
+        options={professionalStatusOptions}
         value={professionalStatus}
         onChange={onProfessionalStatusChange}
         error={errors.professionalStatus}
@@ -66,7 +67,7 @@ export function VerifierProfileStep({
       <RadioButtonGroup
         name='coachingMentoring'
         label={strings.waitlistForms.labels.coachingMentoring}
-        options={COACHING_MENTORING_OPTIONS}
+        options={coachingMentoringOptions}
         value={coachingMentoring}
         onChange={onCoachingMentoringChange}
         error={errors.coachingMentoring}

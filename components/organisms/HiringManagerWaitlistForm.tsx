@@ -118,6 +118,9 @@ export function HiringManagerWaitlistForm() {
               value: form.formData.rolesHiring,
               onChange: (values) =>
                 form.handleFieldChange('rolesHiring', JSON.stringify(values)),
+              otherFieldId: 'rolesHiringOther',
+              onOtherChange: (value) =>
+                form.handleFieldChange('rolesHiringOther', value),
               error: form.errors.rolesHiring,
             },
             {
@@ -131,6 +134,9 @@ export function HiringManagerWaitlistForm() {
                   'hiringFrustrations',
                   JSON.stringify(values)
                 ),
+              otherFieldId: 'hiringFrustrationsOther',
+              onOtherChange: (value) =>
+                form.handleFieldChange('hiringFrustrationsOther', value),
               error: form.errors.hiringFrustrations,
             },
             {
@@ -144,6 +150,9 @@ export function HiringManagerWaitlistForm() {
                   'hiringFailures',
                   JSON.stringify(values)
                 ),
+              otherFieldId: 'hiringFailuresOther',
+              onOtherChange: (value) =>
+                form.handleFieldChange('hiringFailuresOther', value),
               error: form.errors.hiringFailures,
             },
           ]}

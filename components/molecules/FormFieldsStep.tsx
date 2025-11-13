@@ -1,5 +1,3 @@
-'use client'
-
 import { CheckboxGroup } from '@/components/molecules/CheckboxGroup'
 import { ConditionalField } from '@/components/molecules/ConditionalField'
 import { FormField } from '@/components/molecules/FormField'
@@ -7,17 +5,6 @@ import { RadioButtonGroup } from '@/components/molecules/RadioButtonGroup'
 import { cn } from '@/lib/utils'
 import type { FormFieldsStepProps } from '@/types/FormFieldsStep.types'
 
-/**
- * Generic, reusable form fields step component
- *
- * Implements Dependency Inversion Principle:
- * - Depends on FormFieldConfig abstraction (interface) rather than concrete implementations
- * - Accepts configuration data as props instead of hardcoding field logic
- * - Polymorphic: renders the same UI structure with different data injected via props
- *
- * Single Responsibility: Only handles rendering form fields based on configuration
- * No business logic, no persona-specific knowledge
- */
 export function FormFieldsStep({
   fields,
   isSubmitting,
@@ -37,6 +24,7 @@ export function FormFieldsStep({
               return false
             }
           }
+
           return field.value === 'other'
         })()
 

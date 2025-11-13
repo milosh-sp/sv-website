@@ -1,17 +1,3 @@
-/**
- * Waitlist Form Validation Utilities
- * Reuses existing validators from lib/validation.ts
- * Uses validator factory to eliminate code duplication
- *
- * Shared validators (100% identical):
- * - Step 1: Contact & Consent (all personas)
- * - Step 2: Skills Profile (Candidate & Verifier)
- *
- * Persona-specific validators:
- * - Step 3: Profile (varies by persona)
- * - Step 4: Motivation/Challenges (varies by persona)
- */
-
 import {
   validateConditionalOtherField,
   validateContactConsentStep,
@@ -263,11 +249,6 @@ function validateHiringManagerStep(
     }
 
     case 3: {
-      // Hiring Demand
-      Object.assign(
-        errors,
-        validateJsonArrayField(data.rolesHiring, 'rolesHiring')
-      )
       Object.assign(
         errors,
         validateRadioField(data.seniorityLevel, 'seniorityLevel')
@@ -280,6 +261,10 @@ function validateHiringManagerStep(
     }
 
     case 4: {
+      Object.assign(
+        errors,
+        validateJsonArrayField(data.rolesHiring, 'rolesHiring')
+      )
       // Hiring Challenges
       Object.assign(
         errors,

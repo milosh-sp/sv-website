@@ -61,11 +61,13 @@ export function WaitlistFormWrapper({
   onSubmit,
   children,
   formData,
+  ...props
 }: WaitlistFormWrapperProps): ReactNode {
   return (
     <form
+      {...props}
       onSubmit={onSubmit}
-      className={cn('space-y-6 w-full max-w-2xl mx-auto')}
+      className={cn(`space-y-6 w-full max-w-2xl mx-auto ${props.className}`)}
       noValidate
     >
       <ProgressIndicator

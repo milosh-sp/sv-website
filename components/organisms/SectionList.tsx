@@ -37,7 +37,9 @@ export function SectionList<T extends BaseSectionItem>({
               aria-setsize={items.length}
             >
               {itemRenderer(item)}
-              <div className='absolute top-0 right-0 flex items-center gap-1'>
+              <div
+                className={cn(`absolute top-5 right-0 flex items-center gap-1`)}
+              >
                 <VerificationBadge verified={item.verified ?? 'unverified'} />
                 {item.verifier && item.verified === 'verified' && (
                   <VerifierTooltip verifier={item.verifier} />

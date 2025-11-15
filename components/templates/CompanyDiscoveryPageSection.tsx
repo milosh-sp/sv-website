@@ -5,7 +5,9 @@ import { SectionWrapper } from '@/components/templates/SectionWrapper'
 import { strings } from '@/lib/strings'
 import type { SectionProps } from '@/types/Sections.types'
 import { Button } from '@/components/atoms/Button'
+import { Text } from '@/components/atoms/Text'
 import { useRouter } from 'next/navigation'
+import { cn } from '@/lib/utils'
 
 const BuildingIcon = strings.companyDiscovery.icon
 
@@ -14,20 +16,26 @@ export function CompanyDiscoveryPageSection({ id }: SectionProps) {
 
   return (
     <SectionWrapper
-      className='py-16 bg-slate-50'
+      className={cn('py-16 bg-slate-50')}
       id={id}
       aria-labelledby='company-discovery-heading'
       aria-describedby='company-discovery-description'
     >
-      <div className='container-wide'>
-        <div className='max-w-3xl mx-auto text-center'>
+      <div className={cn('container-wide')}>
+        <div className={cn('max-w-3xl mx-auto text-center')}>
           {/* Main Message */}
-          <header className='mb-8'>
+          <header className={cn('mb-8')}>
             <div
-              className='inline-flex items-center justify-center w-12 h-12 bg-blue-500 rounded-lg mb-4'
+              className={cn(
+                'inline-flex items-center justify-center w-12 h-12',
+                'bg-blue-500 rounded-lg mb-4'
+              )}
               aria-hidden='true'
             >
-              <BuildingIcon className='h-6 w-6 text-white' aria-hidden='true' />
+              <BuildingIcon
+                className={cn('h-6 w-6 text-white')}
+                aria-hidden='true'
+              />
             </div>
             <HeaderAndDescription
               heading={strings.companyDiscovery.heading}
@@ -42,7 +50,10 @@ export function CompanyDiscoveryPageSection({ id }: SectionProps) {
           </Button>
           {/* Benefits List */}
           <ul
-            className='flex flex-wrap justify-center gap-6 text-sm list-none'
+            className={cn(
+              'flex flex-wrap justify-center gap-6 text-sm',
+              'list-none'
+            )}
             aria-label='Company discovery benefits'
           >
             {strings.companyDiscovery.benefits.map((benefit) => {
@@ -50,13 +61,15 @@ export function CompanyDiscoveryPageSection({ id }: SectionProps) {
               return (
                 <li
                   key={benefit.text}
-                  className='flex items-center gap-2 text-slate-600'
+                  className={cn('flex items-center gap-2')}
                 >
                   <BenefitIcon
-                    className='h-4 w-4 text-blue-600'
+                    className={cn('h-4 w-4 text-blue-600')}
                     aria-hidden='true'
                   />
-                  <span>{benefit.text}</span>
+                  <Text variant='caption' className={cn('text-slate-600')}>
+                    {benefit.text}
+                  </Text>
                 </li>
               )
             })}

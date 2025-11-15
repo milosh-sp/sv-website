@@ -1,6 +1,8 @@
 import { strings } from '@/lib/strings'
 import type { LanguageItem } from '@/types/CVPreview.types'
 import { SectionList } from '@/components/organisms/SectionList'
+import { Text } from '@/components/atoms/Text'
+import { cn } from '@/lib/utils'
 
 const LanguageIcon = strings.cvSampleData.languages[0].icon
 
@@ -12,15 +14,18 @@ export function LanguagesSection() {
       items={strings.cvSampleData.languages}
       itemRenderer={(language: LanguageItem) => (
         <article
-          className='bg-slate-50 p-3 rounded-lg border-l-4 border-slate-700'
+          className={cn(
+            'bg-slate-50 p-3 rounded-lg border-l-4 border-slate-700'
+          )}
           aria-label={`${language.name}: ${language.level}`}
         >
-          <header className='flex items-center justify-between mb-1'>
-            <h4 className='font-medium text-sm text-slate-800'>
-              {language.name}
-            </h4>
-          </header>
-          <p className='text-slate-600 text-xs'>{language.level}</p>
+          <Text variant='body' className={cn('font-bold')}>
+            {language.name}
+          </Text>
+
+          <Text variant='caption' className={cn('text-slate-600')}>
+            {language.level}
+          </Text>
         </article>
       )}
     />

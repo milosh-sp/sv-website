@@ -1,4 +1,6 @@
 import { strings } from '@/lib/strings'
+import { Heading } from '@/components/atoms/Heading'
+import { Text } from '@/components/atoms/Text'
 
 // Features already have icons embedded in strings
 const featuresWithIcons = strings.cvPreview.features
@@ -22,12 +24,10 @@ export function CvFeaturesList() {
                 aria-hidden='true'
               />
             </div>
-            <h3 className='font-semibold text-foreground mb-2'>
+            <Heading level={3} variant='subheading' size='md' className='mb-2'>
               {feature.title}
-            </h3>
-            <p className='text-muted-foreground text-sm'>
-              {feature.description}
-            </p>
+            </Heading>
+            <Text variant='caption'>{feature.description}</Text>
           </article>
         )
       })}

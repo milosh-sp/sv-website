@@ -5,6 +5,7 @@ import { Award, CircleStar } from 'lucide-react'
 import { BenefitCards } from '@/components/organisms/BenefitCards'
 import { HeaderAndButtons } from '@/components/molecules/HeaderAndButtons'
 import { strings } from '@/lib/strings'
+import { cn } from '@/lib/utils'
 import type { UserType } from '@/types/FormData.types'
 import type { SectionProps } from '@/types/Sections.types'
 
@@ -24,12 +25,15 @@ export function BenefitsPageSection({ id }: SectionProps) {
       headingHighlight={strings.benefits.headingHighlight}
       description={strings.benefits.description}
       ariaLabel={strings.benefits.accessibility.benefitsSection}
-      className='p-5 md:p-15 bg-gradient-to-b from-white to-slate-50/50'
+      className={cn('p-5 md:p-15 bg-gradient-to-b from-white to-slate-50/50')}
     >
       {activeTab === 'member' && (
         <BenefitCards
           icon={
-            <CircleStar className='h-10 w-10 text-white' aria-hidden='true' />
+            <CircleStar
+              className={cn('h-10 w-10 text-white')}
+              aria-hidden='true'
+            />
           }
           description={strings.benefits.members.description}
           benefits={candidateBenefits}
@@ -40,7 +44,7 @@ export function BenefitsPageSection({ id }: SectionProps) {
         <BenefitCards
           icon={
             <Award
-              className='h-10 w-10 text-white'
+              className={cn('h-10 w-10 text-white')}
               aria-hidden='true'
               aria-label={strings.benefits.guruMembers.iconAriaLabel}
             />

@@ -32,12 +32,12 @@ export function SectionList<T extends BaseSectionItem>({
           {items.map((item, index) => (
             <li
               key={`${item.name}-${index}`}
-              className='flex items-center justify-between gap-3 group'
+              className={cn('flex items-center justify-between gap-3 group')}
               aria-posinset={index + 1}
               aria-setsize={items.length}
             >
-              <div className='flex-1 min-w-0'>{itemRenderer(item)}</div>
-              <div className='relative flex items-center gap-1 shrink-0'>
+              <div className={cn('flex-1 min-w-0')}>{itemRenderer(item)}</div>
+              <div className={cn('relative flex items-center gap-1 shrink-0')}>
                 <VerificationBadge verified={item.verified ?? 'unverified'} />
                 {item.verifier && item.verified === 'verified' && (
                   <VerifierTooltip verifier={item.verifier} />

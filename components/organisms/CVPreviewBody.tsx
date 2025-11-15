@@ -20,10 +20,11 @@ export function CVPreviewBody({ variant }: { variant?: CVHeaderVariant }) {
     >
       <CVHeader variant={variant ?? 'default'} />
 
+      <ProfileSection className={cn('pl-8 pr-8 pt-2')} />
+
       <div className={cn('grid md:grid-cols-2 gap-8 p-8')}>
         {/* Left Column - Primary Information */}
         <div className={cn('space-y-8')}>
-          <ProfileSection />
           <TechnicalSkillsSectionCv />
           <EducationSection />
           <ExperienceSection />

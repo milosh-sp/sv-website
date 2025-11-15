@@ -10,17 +10,17 @@ const STATUS_CONFIG_MAP: Record<
   verified: {
     icon: BadgeCheck,
     ariaLabel: 'Verified',
-    className: 'bg-success text-success-foreground',
+    className: 'text-success',
   },
   pending: {
     icon: ClockIcon,
     ariaLabel: 'Pending verification',
-    className: 'bg-pending text-warning-foreground',
+    className: 'text-warning',
   },
   unverified: {
     icon: XCircle,
     ariaLabel: 'Unverified',
-    className: 'bg-muted-foreground text-white',
+    className: 'text-muted-foreground',
   },
 } as const
 
@@ -34,14 +34,14 @@ export function VerificationBadge({
   return (
     <span
       className={cn(
-        'rounded-full inline-flex items-center justify-center cursor-pointer',
+        `rounded-full inline-flex items-center justify-center ${verified === 'verified' ? 'cursor-pointer' : ''}`,
         statusConfig.className,
         className
       )}
       aria-label={statusConfig.ariaLabel}
       role='img'
     >
-      <Icon className='h-6 w-6' aria-hidden='true' />
+      <Icon className='h-5 w-5 md:h-7 md:w-7' aria-hidden='true' />
     </span>
   )
 }

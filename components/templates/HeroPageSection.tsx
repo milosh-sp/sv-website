@@ -2,6 +2,8 @@ import { strings } from '@/lib/strings'
 import { HeroButtons } from '@/components/molecules/HeroButtons'
 import { HeroVisual } from '@/components/molecules/HeroVisual'
 import { SectionWrapper } from '@/components/templates/SectionWrapper'
+import { Heading } from '@/components/atoms/Heading'
+import { Text } from '@/components/atoms/Text'
 import { cn } from '@/lib/utils'
 import type { SectionProps } from '@/types/Sections.types'
 
@@ -32,12 +34,7 @@ export function HeroPageSection({ id }: SectionProps) {
                 aria-hidden='true'
               />
               <div>
-                <h1
-                  id='hero-heading'
-                  className={cn(
-                    'text-4xl md:text-5xl lg:text-6xl font-bold text-foreground text-balance leading-tight '
-                  )}
-                >
+                <Heading level={1} variant='display' id='hero-heading'>
                   {strings.hero.mainHeading}
                   <strong
                     className={cn(
@@ -46,7 +43,7 @@ export function HeroPageSection({ id }: SectionProps) {
                   >
                     {strings.hero.mainHeadingHighlight}
                   </strong>
-                </h1>
+                </Heading>
               </div>
             </hgroup>
 
@@ -56,14 +53,14 @@ export function HeroPageSection({ id }: SectionProps) {
                 className={cn('w-1 bg-success rounded-full')}
                 aria-hidden='true'
               />
-              <p
+              <Text
                 id='hero-description'
-                className={cn(
-                  'text-lg md:text-xl text-muted-foreground text-pretty leading-relaxed'
-                )}
+                variant='body-large'
+                className='text-muted-foreground'
+                pretty
               >
                 {strings.hero.subHeading}
-              </p>
+              </Text>
             </div>
 
             {/* Call to Action with Accent Bar */}
@@ -72,13 +69,9 @@ export function HeroPageSection({ id }: SectionProps) {
                 className={cn('w-1 bg-muted rounded-full')}
                 aria-hidden='true'
               />
-              <p
-                className={cn(
-                  'text-base md:text-lg text-foreground font-medium'
-                )}
-              >
+              <Text variant='body' className='font-medium'>
                 {strings.hero.callToAction}
-              </p>
+              </Text>
             </aside>
 
             {/* Buttons */}

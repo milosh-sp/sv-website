@@ -1,24 +1,36 @@
 import { strings } from '@/lib/strings'
 import { QrCode } from 'lucide-react'
+import { Text } from '@/components/atoms/Text'
+import { cn } from '@/lib/utils'
 
 export function QrCodeSection() {
   return (
     <section
-      className='bg-muted p-6 text-center border-t'
+      className={cn('bg-muted p-6 text-center border-t')}
       aria-labelledby='qr-code-heading'
     >
-      <figure className='w-24 h-24 bg-muted rounded-lg mx-auto mb-4 flex items-center justify-center'>
+      <figure
+        className={cn(
+          'mb-4 bg-muted rounded-lg flex items-center justify-center'
+        )}
+      >
         <QrCode
-          className='h-12 w-12 text-muted-foreground'
+          className={cn('h-12 w-12 text-muted-foreground')}
           aria-hidden='true'
         />
       </figure>
-      <p id='qr-code-heading' className='text-sm text-muted-foreground mb-2'>
+      <Text
+        id='qr-code-heading'
+        variant='caption'
+        className={cn('text-muted-foreground mb-2')}
+      >
         {strings.cvSampleData.qrSection.scanText}
-      </p>
+      </Text>
       <button
         type='button'
-        className='text-foreground text-sm hover:underline bg-transparent border-none cursor-pointer'
+        className={cn(
+          'text-foreground text-sm hover:underline bg-transparent border-none cursor-pointer'
+        )}
         aria-label={`${strings.cvSampleData.qrSection.viewHistoryLink}`}
       >
         {strings.cvSampleData.qrSection.viewHistoryLink}

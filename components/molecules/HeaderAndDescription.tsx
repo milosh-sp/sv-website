@@ -1,5 +1,7 @@
 import { cn } from '@/lib/utils'
-import type { SectionHeaderProps } from '@/types/HeaderAndDescription.types'
+import { Heading } from '@/components/atoms/Heading'
+import { Text } from '@/components/atoms/Text'
+import type { HeaderAndDescriptionProps } from '@/types/HeaderAndDescription.types'
 
 export function HeaderAndDescription({
   heading,
@@ -9,17 +11,17 @@ export function HeaderAndDescription({
   headingClassName,
   descriptionClassName,
   highlightClassName,
-}: SectionHeaderProps) {
+}: HeaderAndDescriptionProps) {
   const headingId = `heading-${heading.toLowerCase().replace(/\s+/g, '-')}`
 
   return (
     <header className={cn('text-center mb-16 animate-fade-in-up', className)}>
-      <h2
+      <Heading
+        level={2}
+        size='lg'
+        variant='heading'
         id={headingId}
-        className={cn(
-          'text-3xl md:text-4xl font-bold text-foreground mb-6',
-          headingClassName
-        )}
+        className={cn('mb-6', headingClassName)}
       >
         {heading}
         {headingHighlight && (
@@ -32,16 +34,18 @@ export function HeaderAndDescription({
             {headingHighlight}
           </span>
         )}
-      </h2>
-      <p
+      </Heading>
+      <Text
+        size='lg'
         className={cn(
-          'text-body-large text-muted-foreground mx-auto text-pretty leading-relaxed max-w-4xl',
+          'text-muted-foreground mx-auto max-w-4xl',
           descriptionClassName
         )}
+        pretty
         aria-describedby={headingId}
       >
         {description}
-      </p>
+      </Text>
     </header>
   )
 }

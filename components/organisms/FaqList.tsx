@@ -1,7 +1,9 @@
 import type { FaqListProps } from '@/types/FaqList.types'
 import { FaqItem } from '@/components/organisms/FaqItem'
+import { cn } from '@/lib/utils'
+import { HeaderAndDescription } from '../molecules/HeaderAndDescription'
 
-export const FaqList = ({
+export function FaqList({
   faqs,
   heading,
   headingId,
@@ -10,31 +12,28 @@ export const FaqList = ({
   idPrefix,
   indexOffset = 0,
   ...props
-}: FaqListProps) => (
-  <article className='mb-16' aria-labelledby={headingId} {...props}>
-    <h2
-      id={headingId}
-      className='text-3xl md:text-4xl font-bold text-foreground text-center mb-12'
-    >
-      {heading}
-    </h2>
+}: FaqListProps) {
+  return (
+    <article className={cn('mb-16')} aria-labelledby={headingId} {...props}>
+      <HeaderAndDescription heading={heading} />
 
-    <dl className='space-y-4'>
-      {faqs.map((faq, index) => {
-        const adjustedIndex = index + indexOffset
-        const isOpen = openItems.includes(adjustedIndex)
+      <dl className={cn('space-y-4')}>
+        {faqs.map((faq, index) => {
+          const adjustedIndex = index + indexOffset
+          const isOpen = openItems.includes(adjustedIndex)
 
-        return (
-          <FaqItem
-            key={`${idPrefix}-faq-${faq.question.slice(0, 20)}`}
-            faq={faq}
-            index={adjustedIndex}
-            isOpen={isOpen}
-            onToggle={onToggle}
-            idPrefix={idPrefix}
-          />
-        )
-      })}
-    </dl>
-  </article>
-)
+          return (
+            <FaqItem
+              key={`${idPrefix}-faq-${faq.question.slice(0, 20)}`}
+              faq={faq}
+              index={adjustedIndex}
+              isOpen={isOpen}
+              onToggle={onToggle}
+              idPrefix={idPrefix}
+            />
+          )
+        })}
+      </dl>
+    </article>
+  )
+}

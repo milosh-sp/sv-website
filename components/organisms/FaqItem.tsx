@@ -1,6 +1,8 @@
 import { cn } from '@/lib/utils'
 import type { FaqItemProps } from '@/types/FaqItem.types'
 import { ChevronDown } from 'lucide-react'
+import { Heading } from '@/components/atoms/Heading'
+import { Text } from '@/components/atoms/Text'
 
 export const FaqItem = ({
   faq,
@@ -30,7 +32,9 @@ export const FaqItem = ({
           aria-expanded={isOpen}
           aria-controls={panelId}
         >
-          <span className='font-semibold text-foreground'>{faq.question}</span>
+          <Heading level={3} variant='subheading' size='sm'>
+            {faq.question}
+          </Heading>
           <ChevronDown
             className={cn(
               'h-5 w-5 text-primary transition-transform',
@@ -47,7 +51,9 @@ export const FaqItem = ({
           isOpen ? 'block' : 'hidden'
         )}
       >
-        <p className='text-muted-foreground pt-4'>{faq.answer}</p>
+        <Text variant='body' className='text-muted-foreground pt-4'>
+          {faq.answer}
+        </Text>
       </dd>
     </div>
   )

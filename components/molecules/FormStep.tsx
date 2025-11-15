@@ -1,6 +1,8 @@
 import type { ReactNode } from 'react'
 import { cn } from '@/lib/utils'
 import type { WaitlistStepProps } from '@/types/WaitlistStep.types'
+import { Heading } from '@/components/atoms/Heading'
+import { Text } from '@/components/atoms/Text'
 
 export function FormStep({
   title,
@@ -12,10 +14,12 @@ export function FormStep({
     <div className='space-y-6'>
       {/* Step Header */}
       <div className='space-y-2'>
-        <h2 className='text-heading-2 font-semibold text-foreground'>
+        <Heading level={2} variant='heading' size='lg'>
           {title}
-        </h2>
-        <p className='text-body text-muted-foreground'>{description}</p>
+        </Heading>
+        <Text variant='body' className='text-muted-foreground'>
+          {description}
+        </Text>
       </div>
 
       {/* Step Content */}
@@ -30,9 +34,9 @@ export function FormStep({
           role='alert'
           aria-live='polite'
         >
-          <p className='text-sm font-medium text-destructive'>
+          <Text variant='caption' className='font-medium text-destructive'>
             Please fix the following errors:
-          </p>
+          </Text>
           <ul className='mt-2 space-y-1'>
             {Object.entries(errors).map(([field, message]) => (
               <li key={field} className='text-sm text-destructive/80'>

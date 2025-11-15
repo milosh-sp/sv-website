@@ -29,7 +29,7 @@
   --success-foreground: oklch(0.985 0 0);
   /* Warning/pending state colors */
   --warning: oklch(0.75 0.15 70);
-  --pending: oklch(90.007% 0.08535 76.1);
+  --pending: #bb8c4a;
   --warning-foreground: oklch(0.145 0 0);
   /* Info/informational state colors */
   --info: oklch(0.6 0.12 240);
@@ -100,6 +100,7 @@
   --success-foreground: oklch(0.2 0 0);
   /* Dark mode warning/pending state colors */
   --warning: oklch(0.6 0.15 70);
+  --pending: #bb8c4a;
   --warning-foreground: oklch(0.2 0 0);
   /* Dark mode info/informational state colors */
   --info: oklch(0.6 0.12 240);
@@ -157,6 +158,7 @@
   --color-success: var(--success);
   --color-success-foreground: var(--success-foreground);
   --color-warning: var(--warning);
+  --color-pending: var(--pending);
   --color-warning-foreground: var(--warning-foreground);
   --color-info: var(--info);
   --color-info-foreground: var(--info-foreground);
@@ -198,15 +200,6 @@
   button:focus-visible {
     @apply ring-2 ring-ring ring-offset-2 ring-offset-background;
   }
-}
-
-/* Modern utility classes following design system */
-.text-balance {
-  text-wrap: balance;
-}
-
-.text-pretty {
-  text-wrap: pretty;
 }
 
 /* Smooth scrolling with reduced motion support */

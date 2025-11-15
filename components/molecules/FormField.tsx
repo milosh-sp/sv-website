@@ -1,5 +1,6 @@
 import { cn } from '@/lib/utils'
 import { Input } from '@/components/atoms/Input'
+import { Text } from '@/components/atoms/Text'
 import type { FormFieldProps } from '@/types/FormComponents.types'
 
 export function FormField({
@@ -49,9 +50,10 @@ export function FormField({
         />
       </div>
       {error && (
-        <p
+        <Text
           id={ariaDescribedBy}
-          className='text-destructive text-sm mt-2 flex items-start gap-2 px-1'
+          variant='caption'
+          className='text-destructive mt-2 flex items-start gap-2 px-1'
           role='alert'
           aria-live='polite'
         >
@@ -62,7 +64,7 @@ export function FormField({
             ⚠
           </span>
           <span className='leading-relaxed'>{error}</span>
-        </p>
+        </Text>
       )}
     </div>
   )

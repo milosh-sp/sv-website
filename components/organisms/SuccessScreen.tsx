@@ -5,6 +5,8 @@ import Link from 'next/link'
 
 import { strings } from '@/lib/strings'
 import { cn } from '@/lib/utils'
+import { Heading } from '@/components/atoms/Heading'
+import { Text } from '@/components/atoms/Text'
 
 import type { SuccessScreenProps } from '@/types/SuccessScreen.types'
 
@@ -30,14 +32,14 @@ export function SuccessScreen({
         </div>
 
         {/* Title */}
-        <h1 className={cn('text-heading-1 font-bold text-foreground')}>
+        <Heading level={1} variant='heading'>
           {message.title}
-        </h1>
+        </Heading>
 
         {/* Description */}
-        <p className={cn('text-body-large text-muted-foreground')}>
+        <Text variant='body-large' className='text-muted-foreground'>
           {message.description}
-        </p>
+        </Text>
 
         {/* CTA Button */}
         <Link
@@ -50,9 +52,9 @@ export function SuccessScreen({
         </Link>
 
         {/* Additional Info */}
-        <p className={cn('text-sm text-slate-500 pt-4')}>
+        <Text variant='caption' className='text-slate-500 pt-4'>
           {message.checkEmailMessage}
-        </p>
+        </Text>
       </article>
     </main>
   )

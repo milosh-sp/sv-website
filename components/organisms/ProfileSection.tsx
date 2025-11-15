@@ -1,17 +1,24 @@
 import { strings } from '@/lib/strings'
 import { User } from 'lucide-react'
 import { CVSectionHeader } from '@/components/organisms/CVSectionHeader'
+import { Text } from '@/components/atoms/Text'
+import { cn } from '@/lib/utils'
+import type { ComponentProps } from 'react'
 
-export function ProfileSection() {
+type ProfileSectionProps = ComponentProps<'article'>
+
+export function ProfileSection({ className, ...props }: ProfileSectionProps) {
   return (
-    <article aria-labelledby='profile-section-heading'>
+    <article
+      aria-labelledby='profile-section-heading'
+      className={cn(className)}
+      {...props}
+    >
       <CVSectionHeader
         title={strings.cvSampleData.sections.profile}
         icon={User}
       >
-        <p className='text-gray-600 text-sm'>
-          {strings.cvSampleData.profile.bio}
-        </p>
+        <Text>{strings.cvSampleData.profile.bio}</Text>
       </CVSectionHeader>
     </article>
   )

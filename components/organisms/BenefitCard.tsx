@@ -1,6 +1,8 @@
 import { COLOR_SCHEMES } from '@/lib/consts'
 import { cn } from '@/lib/utils'
 import type { BenefitCardProps } from '@/types/GridCards.types'
+import { Heading } from '@/components/atoms/Heading'
+import { Text } from '@/components/atoms/Text'
 
 /**
  * Semantic benefit card component
@@ -38,16 +40,17 @@ export function BenefitCard({
         />
       </div>
       <header>
-        <h3
+        <Heading
+          level={3}
+          variant='heading'
+          size='sm'
           id={`benefit-${benefit.title.toLowerCase().replace(/\s+/g, '-')}`}
-          className='text-xl font-semibold text-foreground mb-3'
+          className='mb-3'
         >
           {benefit.title}
-        </h3>
+        </Heading>
       </header>
-      <p className='text-muted-foreground leading-relaxed'>
-        {benefit.description}
-      </p>
+      <Text variant='muted'>{benefit.description}</Text>
     </article>
   )
 }

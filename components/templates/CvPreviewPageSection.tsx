@@ -4,6 +4,7 @@ import { SectionWrapper } from '@/components/templates/SectionWrapper'
 import { strings } from '@/lib/strings'
 import type { SectionProps } from '@/types/Sections.types'
 import { CVPreviewBody } from '../organisms/CVPreviewBody'
+import { Text } from '@/components/atoms/Text'
 
 export function CvPreviewPageSection({ id }: SectionProps) {
   return (
@@ -19,13 +20,14 @@ export function CvPreviewPageSection({ id }: SectionProps) {
           className='mb-12'
           id='cv-preview-heading'
         />
-        <p
-          className='text-sm text-gray-500 max-w-3xl mx-auto text-center mb-12'
+        <Text
+          variant='caption'
+          className='text-gray-500 max-w-3xl mx-auto text-center mb-12'
           role='note'
           aria-label='CV preview disclaimer'
         >
           {strings.cvPreview.note}
-        </p>
+        </Text>
 
         <CVPreviewBody />
 

@@ -1,5 +1,7 @@
 import { cn } from '@/lib/utils'
 import type { StepsGridProps } from '@/types/Steps.types'
+import { Heading } from '@/components/atoms/Heading'
+import { Text } from '@/components/atoms/Text'
 
 const ICON_BG_COLORS = {
   blue: 'bg-accent',
@@ -43,11 +45,11 @@ export function StepsGrid({
           return (
             <li
               key={stepId}
-              className='text-center p-1'
+              className={cn('text-center p-1')}
               aria-posinset={index + 1}
               aria-setsize={steps.length}
             >
-              <article className='flex flex-col items-center'>
+              <article className={cn('flex flex-col items-center')}>
                 <div
                   className={cn(
                     'w-16 h-16 rounded-full flex items-center justify-center mb-4',
@@ -57,15 +59,22 @@ export function StepsGrid({
                 >
                   <StepIcon className={cn('h-8 w-8', iconColor)} />
                 </div>
-                <h3 id={stepId} className='font-semibold text-foreground mb-3'>
+                <Heading
+                  level={3}
+                  variant='subheading'
+                  size='md'
+                  id={stepId}
+                  className={cn('mb-3 font-bold')}
+                >
                   {step.title}
-                </h3>
-                <p
-                  className='text-muted-foreground text-sm'
+                </Heading>
+                <Text
+                  variant='caption'
+                  className={cn('text-muted-foreground')}
                   aria-describedby={stepId}
                 >
                   {step.description}
-                </p>
+                </Text>
               </article>
             </li>
           )

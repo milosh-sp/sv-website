@@ -1,6 +1,7 @@
 import { cn } from '@/lib/utils'
 import type { PrivacyPolicyConsentProps } from '@/types/PrivacyPolictConsent.types'
 import Link from 'next/link'
+import { Text } from '@/components/atoms/Text'
 
 export function PrivacyPolicyConsent({
   prefix,
@@ -10,10 +11,8 @@ export function PrivacyPolicyConsent({
   className,
 }: PrivacyPolicyConsentProps) {
   return (
-    <aside
-      className={cn('text-sm text-muted-foreground text-center', className)}
-    >
-      <p>
+    <aside className={cn('text-center', className)}>
+      <Text variant='caption' className='text-muted-foreground'>
         {prefix}
         <Link
           href={href}
@@ -26,7 +25,7 @@ export function PrivacyPolicyConsent({
         >
           {linkText}
         </Link>
-      </p>
+      </Text>
     </aside>
   )
 }

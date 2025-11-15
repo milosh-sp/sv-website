@@ -2,6 +2,8 @@ import { strings } from '@/lib/strings'
 import type { ExperienceItem } from '@/types/CVPreview.types'
 import { Briefcase } from 'lucide-react'
 import { SectionList } from '@/components/organisms/SectionList'
+import { Heading } from '@/components/atoms/Heading'
+import { Text } from '@/components/atoms/Text'
 
 export function ExperienceSection() {
   return (
@@ -14,18 +16,24 @@ export function ExperienceSection() {
           aria-labelledby={`job-title-${job.title.toLowerCase().replace(/\s+/g, '-')}`}
         >
           <header className='flex justify-between items-start mb-1'>
-            <h4
+            <Heading
+              level={4}
+              variant='subheading'
+              size='sm'
               id={`job-title-${job.title.toLowerCase().replace(/\s+/g, '-')}`}
-              className='font-medium text-sm'
             >
               {job.title}
-            </h4>
+            </Heading>
             <time className='text-xs text-gray-500' dateTime={job.period}>
               {job.period}
             </time>
           </header>
-          <p className='text-slate-800 text-sm mb-2'>{job.company}</p>
-          <p className='text-gray-600 text-xs'>{job.description}</p>
+          <Text variant='caption' className='text-slate-800 mb-2'>
+            {job.company}
+          </Text>
+          <Text variant='caption' className='text-gray-600'>
+            {job.description}
+          </Text>
         </article>
       )}
     />

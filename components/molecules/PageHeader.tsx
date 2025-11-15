@@ -1,5 +1,7 @@
 import { cn } from '@/lib/utils'
 import type { PageHeaderProps } from '@/types/PageHeader.types'
+import { Heading } from '@/components/atoms/Heading'
+import { Text } from '@/components/atoms/Text'
 
 /**
  * Reusable page header component for waitlist form pages
@@ -13,10 +15,15 @@ export function PageHeader({
 }: PageHeaderProps) {
   return (
     <header className={cn('text-center mb-12', className)} {...props}>
-      <h1 className='text-display-2 font-bold text-foreground mb-4'>{title}</h1>
-      <p className='text-body-large text-muted-foreground max-w-2xl mx-auto'>
+      <Heading level={1} variant='display' className='mb-4'>
+        {title}
+      </Heading>
+      <Text
+        variant='body-large'
+        className='text-muted-foreground max-w-2xl mx-auto'
+      >
         {description}
-      </p>
+      </Text>
     </header>
   )
 }

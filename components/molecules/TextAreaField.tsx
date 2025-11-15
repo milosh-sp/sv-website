@@ -1,5 +1,6 @@
 import { cn } from '@/lib/utils'
 import { TextArea } from '@/components/atoms/TextArea'
+import { Text } from '@/components/atoms/Text'
 import type { ContactTextAreaFieldProps } from '@/types/ContactForm.types'
 
 export function TextAreaField({
@@ -49,14 +50,15 @@ export function TextAreaField({
         />
       </div>
       {error && (
-        <p
+        <Text
           id={`${id}-error`}
-          className='text-sm text-red-600 mt-1'
+          variant='caption'
+          className='text-red-600 mt-1'
           role='alert'
           aria-live='polite'
         >
           {error}
-        </p>
+        </Text>
       )}
     </div>
   )

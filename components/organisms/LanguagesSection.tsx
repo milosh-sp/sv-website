@@ -12,7 +12,7 @@ export function LanguagesSection() {
       items={strings.cvSampleData.languages}
       itemRenderer={(language: LanguageItem) => (
         <article
-          className='bg-slate-50 p-3 rounded-lg border-l-4 border-slate-700 group relative'
+          className='bg-slate-50 p-3 rounded-lg border-l-4 border-slate-700'
           aria-label={`${language.name}: ${language.level}`}
         >
           <header className='flex items-center justify-between mb-1'>

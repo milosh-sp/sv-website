@@ -13,8 +13,7 @@ export function CertificationsSection() {
       itemRenderer={(cert: CertificationItem) => (
         <article
           className={cn(
-            'bg-slate-50 p-3 rounded-lg border-l-4 border-slate-700',
-            'flex items-center justify-between group relative'
+            'bg-slate-50 p-3 rounded-lg border-l-4 border-slate-700'
           )}
           aria-label={`Certification: ${cert.name}`}
         >

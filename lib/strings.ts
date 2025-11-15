@@ -948,6 +948,7 @@ export const cvSampleData = {
     {
       name: `AWS Certified`,
       verifier: `David Kim - Solutions Architect at Amazon`,
+      verified: `verified`,
     },
     {
       name: `React Expert`,
@@ -956,6 +957,7 @@ export const cvSampleData = {
     {
       name: `Node.js Master`,
       verifier: `Robert Williams - Backend Engineer at Netflix`,
+      verified: `pending`,
     },
   ],
   languages: [

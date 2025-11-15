@@ -29,6 +29,7 @@
   --success-foreground: oklch(0.985 0 0);
   /* Warning/pending state colors */
   --warning: oklch(0.75 0.15 70);
+  --pending: oklch(90.007% 0.08535 76.1);
   --warning-foreground: oklch(0.145 0 0);
   /* Info/informational state colors */
   --info: oklch(0.6 0.12 240);

@@ -1,26 +1,26 @@
 import { cn } from '@/lib/utils'
 import type { VerificationBadgeProps } from '@/types/CVPreview.types'
 import type { StatusConfig } from '@/types/VerificationBadge.types'
-import { CheckCircle2, Clock, XCircle } from 'lucide-react'
+import { BadgeCheck, ClockIcon, XCircle } from 'lucide-react'
 
 const STATUS_CONFIG_MAP: Record<
   NonNullable<VerificationBadgeProps['verified']>,
   StatusConfig
 > = {
   verified: {
-    icon: CheckCircle2,
+    icon: BadgeCheck,
     ariaLabel: 'Verified',
     className: 'bg-success text-success-foreground',
   },
   pending: {
-    icon: Clock,
+    icon: ClockIcon,
     ariaLabel: 'Pending verification',
-    className: 'bg-warning text-warning-foreground',
+    className: 'bg-pending text-warning-foreground',
   },
   unverified: {
     icon: XCircle,
     ariaLabel: 'Unverified',
-    className: 'bg-muted text-muted-foreground',
+    className: 'bg-muted-foreground text-white',
   },
 } as const
 
@@ -34,14 +34,14 @@ export function VerificationBadge({
   return (
     <span
       className={cn(
-        'p-1.5 rounded-full inline-flex items-center justify-center',
+        'rounded-full inline-flex items-center justify-center cursor-pointer',
         statusConfig.className,
         className
       )}
       aria-label={statusConfig.ariaLabel}
       role='img'
     >
-      <Icon className='h-5 w-5' aria-hidden='true' />
+      <Icon className='h-6 w-6' aria-hidden='true' />
     </span>
   )
 }

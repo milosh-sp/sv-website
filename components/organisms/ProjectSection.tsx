@@ -12,7 +12,7 @@ export function ProjectsSection() {
       items={strings.cvSampleData.projects}
       itemRenderer={(project: ProjectItem) => (
         <article
-          className='bg-slate-50 p-3 rounded-lg border-l-4 border-slate-700 group relative'
+          className='bg-slate-50 p-3 rounded-lg border-l-4 border-slate-700'
           aria-label={`Project: ${project.name}`}
         >
           <header className='flex items-center justify-between mb-2'>

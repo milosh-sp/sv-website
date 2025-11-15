@@ -11,7 +11,6 @@ export function ExperienceSection() {
       items={strings.cvSampleData.experience}
       itemRenderer={(job: ExperienceItem) => (
         <article
-          className='relative pb-4'
           aria-labelledby={`job-title-${job.title.toLowerCase().replace(/\s+/g, '-')}`}
         >
           <header className='flex justify-between items-start mb-1'>

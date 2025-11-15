@@ -12,8 +12,10 @@ export function FormStep({
     <div className='space-y-6'>
       {/* Step Header */}
       <div className='space-y-2'>
-        <h2 className='text-heading-2 font-semibold text-slate-900'>{title}</h2>
-        <p className='text-body text-slate-600'>{description}</p>
+        <h2 className='text-heading-2 font-semibold text-foreground'>
+          {title}
+        </h2>
+        <p className='text-body text-muted-foreground'>{description}</p>
       </div>
 
       {/* Step Content */}

@@ -42,7 +42,7 @@ export function Breadcrumb({
     <nav
       aria-label='Breadcrumb navigation'
       className={cn(
-        'flex items-center space-x-1 text-sm text-slate-600',
+        'flex items-center space-x-1 text-sm text-muted-foreground',
         className
       )}
       {...props}
@@ -67,7 +67,7 @@ export function Breadcrumb({
             >
               {index > 0 && (
                 <ChevronRight
-                  className='h-4 w-4 text-slate-400 mx-1'
+                  className='h-4 w-4 text-muted-foreground mx-1'
                   aria-hidden='true'
                   role='presentation'
                 />
@@ -75,7 +75,7 @@ export function Breadcrumb({
 
               {isLast ? (
                 <span
-                  className='font-medium text-slate-900'
+                  className='font-medium text-foreground'
                   aria-current='page'
                   itemProp='name'
                 >
@@ -92,7 +92,7 @@ export function Breadcrumb({
               ) : (
                 <Link
                   href={item.url}
-                  className='hover:text-blue-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded-sm px-1 py-0.5'
+                  className='hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm px-1 py-0.5'
                   aria-label={`Navigate to ${item.name}`}
                   itemProp='item'
                 >

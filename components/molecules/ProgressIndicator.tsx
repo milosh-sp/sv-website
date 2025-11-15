@@ -45,12 +45,12 @@ export function ProgressIndicator({
               disabled={isSubmitting || !isClickable}
               className={cn(
                 'flex-1 h-2 rounded-full transition-all',
-                // Completed steps: filled with green indicator
-                isCompleted && 'bg-green-600 hover:bg-green-700',
-                // Current step: highlighted with distinct color
-                isCurrent && 'bg-blue-600 ring-2 ring-blue-400 ring-offset-2',
+                // Completed steps: filled with success indicator
+                isCompleted && 'bg-success hover:bg-success/90',
+                // Current step: highlighted with primary color
+                isCurrent && 'bg-primary ring-2 ring-primary/50 ring-offset-2',
                 // Future steps: unfilled
-                !isCompleted && !isCurrent && 'bg-gray-200',
+                !isCompleted && !isCurrent && 'bg-muted',
                 // Clickable state
                 isClickable && !isSubmitting
                   ? 'cursor-pointer hover:shadow-md'

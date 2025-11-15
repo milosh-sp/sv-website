@@ -4,10 +4,10 @@ import { BenefitGrid } from '@/components/organisms/BenefitGrid'
 import type { BenefitCardsProps } from '@/types/BenefitCards.types'
 
 const COLOR_SCHEME_GRADIENTS = {
-  blue: 'from-blue-500 to-blue-600',
-  emerald: 'from-emerald-500 to-emerald-600',
-  purple: 'from-purple-500 to-purple-600',
-  orange: 'from-orange-500 to-orange-600',
+  blue: 'from-primary to-primary/80',
+  emerald: 'from-success to-success/80',
+  purple: 'from-primary to-primary/80',
+  orange: 'from-warning to-warning/80',
 } as const
 
 export function BenefitCards({
@@ -29,14 +29,14 @@ export function BenefitCards({
       <header className='mb-12'>
         <figure
           className={cn(
-            'w-17 h-17 bg-gradient-to-br rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-lg',
+            'w-17 h-17 bg-linear-to-br rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-lg',
             COLOR_SCHEME_GRADIENTS[colorScheme]
           )}
           aria-hidden='true'
         >
           {icon}
         </figure>
-        <p className='text-body-large text-slate-600 max-w-3xl mx-auto text-pretty'>
+        <p className='text-body-large text-muted-foreground max-w-3xl mx-auto text-pretty'>
           {description}
         </p>
       </header>

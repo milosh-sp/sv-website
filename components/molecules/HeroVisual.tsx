@@ -9,14 +9,17 @@ export function HeroVisual() {
       <div
         className={cn(
           'absolute bottom-[-40] right-[-40]',
-          'bg-emerald-600 rounded-full p-4',
-          'shadow-2xl border-4 border-white',
+          'bg-success rounded-full p-4',
+          'shadow-2xl border-4 border-background',
           'transform -rotate-[-40deg]'
         )}
         role='img'
         aria-label='CV2.0 Verified stamp'
       >
-        <Stamp className={cn('h-16 w-16 text-white')} aria-hidden='true' />
+        <Stamp
+          className={cn('h-16 w-16 text-success-foreground')}
+          aria-hidden='true'
+        />
       </div>
     </div>
   )

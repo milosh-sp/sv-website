@@ -2,17 +2,17 @@ import { cn } from '@/lib/utils'
 import type { StepsGridProps } from '@/types/Steps.types'
 
 const ICON_BG_COLORS = {
-  blue: 'bg-blue-100',
-  emerald: 'bg-emerald-100',
-  purple: 'bg-purple-100',
-  orange: 'bg-orange-100',
+  blue: 'bg-accent',
+  emerald: 'bg-success/20',
+  purple: 'bg-primary/20',
+  orange: 'bg-warning/20',
 } as const
 
 const ICON_COLORS = {
-  blue: 'text-blue-600',
-  emerald: 'text-emerald-600',
-  purple: 'text-purple-600',
-  orange: 'text-orange-600',
+  blue: 'text-primary',
+  emerald: 'text-success',
+  purple: 'text-primary',
+  orange: 'text-warning',
 } as const
 
 export function StepsGrid({
@@ -57,10 +57,13 @@ export function StepsGrid({
                 >
                   <StepIcon className={cn('h-8 w-8', iconColor)} />
                 </div>
-                <h3 id={stepId} className='font-semibold text-gray-900 mb-3'>
+                <h3 id={stepId} className='font-semibold text-foreground mb-3'>
                   {step.title}
                 </h3>
-                <p className='text-gray-600 text-sm' aria-describedby={stepId}>
+                <p
+                  className='text-muted-foreground text-sm'
+                  aria-describedby={stepId}
+                >
                   {step.description}
                 </p>
               </article>

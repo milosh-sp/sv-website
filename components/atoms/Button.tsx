@@ -53,14 +53,14 @@ const VARIANT_STYLES: Record<ButtonVariant, string> = {
     'dark:focus-visible:ring-skill-verdict/40'
   ),
   'hero-emerald': cn(
-    'bg-emerald-600 text-white shadow-md hover:bg-emerald-700',
-    'active:bg-emerald-600 focus-visible:ring-emerald-600/20',
-    'dark:focus-visible:ring-emerald-600/40 transition-all duration-300'
+    'bg-success text-success-foreground shadow-md hover:bg-success/90',
+    'active:bg-success focus-visible:ring-success/20',
+    'dark:focus-visible:ring-success/40 transition-all duration-300'
   ),
   'hero-blue': cn(
-    'bg-blue-600 text-white shadow-md hover:bg-blue-700',
-    'active:bg-blue-600 focus-visible:ring-blue-600/20',
-    'dark:focus-visible:ring-blue-600/40 transition-all duration-300'
+    'bg-primary text-primary-foreground shadow-md hover:bg-primary/90',
+    'active:bg-primary focus-visible:ring-primary/20',
+    'dark:focus-visible:ring-primary/40 transition-all duration-300'
   ),
 } as const
 

@@ -16,13 +16,13 @@ function Dialog({
   return (
     <CustomDialog isOpen={isOpen} onClose={onClose}>
       <div
-        className='fixed top-[50%] left-[50%] max-h-[85vh] w-full max-w-md translate-x-[-50%] translate-y-[-50%] rounded-lg bg-white p-6 shadow-lg focus:outline-none'
+        className='fixed top-[50%] left-[50%] max-h-[85vh] w-full max-w-md translate-x-[-50%] translate-y-[-50%] rounded-lg bg-card p-6 shadow-lg focus:outline-none'
         {...props}
       >
         {children}
         <button
           type='button'
-          className='absolute top-2 right-2 text-gray-500 hover:text-gray-700'
+          className='absolute top-2 right-2 text-muted-foreground hover:text-foreground'
           onClick={onClose}
         >
           <XIcon className='h-5 w-5' />

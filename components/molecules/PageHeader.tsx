@@ -13,8 +13,8 @@ export function PageHeader({
 }: PageHeaderProps) {
   return (
     <header className={cn('text-center mb-12', className)} {...props}>
-      <h1 className='text-display-2 font-bold text-slate-900 mb-4'>{title}</h1>
-      <p className='text-body-large text-slate-600 max-w-2xl mx-auto'>
+      <h1 className='text-display-2 font-bold text-foreground mb-4'>{title}</h1>
+      <p className='text-body-large text-muted-foreground max-w-2xl mx-auto'>
         {description}
       </p>
     </header>

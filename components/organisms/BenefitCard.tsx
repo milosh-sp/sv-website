@@ -26,7 +26,7 @@ export function BenefitCard({
     >
       <div
         className={cn(
-          'w-14 h-14 bg-gradient-to-br rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-200',
+          'w-14 h-14 bg-linear-to-br rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-200',
           colors.iconBg
         )}
         role='img'
@@ -40,12 +40,14 @@ export function BenefitCard({
       <header>
         <h3
           id={`benefit-${benefit.title.toLowerCase().replace(/\s+/g, '-')}`}
-          className='text-xl font-semibold text-slate-900 mb-3'
+          className='text-xl font-semibold text-foreground mb-3'
         >
           {benefit.title}
         </h3>
       </header>
-      <p className='text-slate-600 leading-relaxed'>{benefit.description}</p>
+      <p className='text-muted-foreground leading-relaxed'>
+        {benefit.description}
+      </p>
     </article>
   )
 }

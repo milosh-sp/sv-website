@@ -10,17 +10,17 @@ const STATUS_CONFIG_MAP: Record<
   verified: {
     icon: CheckCircle2,
     ariaLabel: 'Verified',
-    className: 'bg-green-100 text-green-800',
+    className: 'bg-success text-success-foreground',
   },
   pending: {
     icon: Clock,
     ariaLabel: 'Pending verification',
-    className: 'bg-yellow-100 text-yellow-800',
+    className: 'bg-warning text-warning-foreground',
   },
   unverified: {
     icon: XCircle,
     ariaLabel: 'Unverified',
-    className: 'bg-gray-100 text-gray-800',
+    className: 'bg-muted text-muted-foreground',
   },
 } as const
 

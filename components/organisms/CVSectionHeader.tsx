@@ -16,7 +16,7 @@ export function CVSectionHeader({
       <h3
         id={`section-${title.toLowerCase().replace(/\s+/g, '-')}`}
         className={cn(
-          'flex items-center gap-2 text-lg font-semibold text-slate-800 mb-4 pb-2 border-b border-slate-200',
+          'flex items-center gap-2 text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border',
           className
         )}
       >

@@ -13,19 +13,21 @@ export function CvFeaturesList() {
         return (
           <article key={`feature-${feature.title}`} className='text-center p-1'>
             <div
-              className='w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4'
+              className='w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4'
               role='img'
               aria-label={`${feature.title} icon`}
             >
               <FeatureIcon
-                className='h-8 w-8 text-slate-800'
+                className='h-8 w-8 text-foreground'
                 aria-hidden='true'
               />
             </div>
-            <h3 className='font-semibold text-gray-900 mb-2'>
+            <h3 className='font-semibold text-foreground mb-2'>
               {feature.title}
             </h3>
-            <p className='text-gray-600 text-sm'>{feature.description}</p>
+            <p className='text-muted-foreground text-sm'>
+              {feature.description}
+            </p>
           </article>
         )
       })}

@@ -10,7 +10,7 @@ export function HeroPageSection({ id }: SectionProps) {
     <SectionWrapper
       id={id}
       className={cn(
-        'flex justify-center bg-linear-to-b from-blue-100 to-purple-100 py-16 md:py-24'
+        'flex justify-center bg-linear-to-b from-accent to-accent/50 py-16 md:py-24'
       )}
       aria-labelledby='hero-heading'
       aria-describedby='hero-description'
@@ -27,7 +27,7 @@ export function HeroPageSection({ id }: SectionProps) {
             <hgroup className={cn('flex gap-4 mb-8')}>
               <div
                 className={cn(
-                  'w-1 bg-linear-to-b from-blue-600 to-purple-600 rounded-full'
+                  'w-1 bg-linear-to-b from-primary to-primary/60 rounded-full'
                 )}
                 aria-hidden='true'
               />
@@ -35,13 +35,13 @@ export function HeroPageSection({ id }: SectionProps) {
                 <h1
                   id='hero-heading'
                   className={cn(
-                    'text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 text-balance leading-tight'
+                    'text-4xl md:text-5xl lg:text-6xl font-bold text-foreground text-balance leading-tight'
                   )}
                 >
                   {strings.hero.mainHeading}
                   <strong
                     className={cn(
-                      'bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent'
+                      'bg-linear-to-r from-primary to-primary/60 bg-clip-text text-transparent'
                     )}
                   >
                     {strings.hero.mainHeadingHighlight}
@@ -53,13 +53,13 @@ export function HeroPageSection({ id }: SectionProps) {
             {/* Subheading with Accent Bar */}
             <div className={cn('flex gap-4 mb-8')}>
               <div
-                className={cn('w-1 bg-emerald-500 rounded-full')}
+                className={cn('w-1 bg-success rounded-full')}
                 aria-hidden='true'
               />
               <p
                 id='hero-description'
                 className={cn(
-                  'text-lg md:text-xl text-slate-600 text-pretty leading-relaxed'
+                  'text-lg md:text-xl text-muted-foreground text-pretty leading-relaxed'
                 )}
               >
                 {strings.hero.subHeading}
@@ -69,12 +69,12 @@ export function HeroPageSection({ id }: SectionProps) {
             {/* Call to Action with Accent Bar */}
             <aside className={cn('flex gap-4 mb-8')}>
               <div
-                className={cn('w-1 bg-slate-300 rounded-full')}
+                className={cn('w-1 bg-muted rounded-full')}
                 aria-hidden='true'
               />
               <p
                 className={cn(
-                  'text-base md:text-lg text-slate-700 font-medium'
+                  'text-base md:text-lg text-foreground font-medium'
                 )}
               >
                 {strings.hero.callToAction}
@@ -96,10 +96,12 @@ export function HeroPageSection({ id }: SectionProps) {
                 return (
                   <li
                     key={indicator.text}
-                    className={cn('flex items-center gap-3 text-slate-600')}
+                    className={cn(
+                      'flex items-center gap-3 text-muted-foreground'
+                    )}
                   >
                     <Icon
-                      className={cn('h-5 w-5 text-emerald-500 shrink-0')}
+                      className={cn('h-5 w-5 text-success shrink-0')}
                       aria-hidden='true'
                     />
                     <span className={cn('font-medium')}>{indicator.text}</span>

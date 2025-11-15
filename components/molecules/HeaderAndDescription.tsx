@@ -17,7 +17,7 @@ export function HeaderAndDescription({
       <h2
         id={headingId}
         className={cn(
-          'text-3xl md:text-4xl font-bold text-gray-800 mb-6',
+          'text-3xl md:text-4xl font-bold text-foreground mb-6',
           headingClassName
         )}
       >
@@ -25,7 +25,7 @@ export function HeaderAndDescription({
         {headingHighlight && (
           <span
             className={cn(
-              'ml-1.5 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent',
+              'ml-1.5 bg-linear-to-r from-primary to-primary/60 bg-clip-text text-transparent',
               highlightClassName
             )}
           >
@@ -35,7 +35,7 @@ export function HeaderAndDescription({
       </h2>
       <p
         className={cn(
-          'text-body-large text-slate-600 mx-auto text-pretty leading-relaxed max-w-4xl',
+          'text-body-large text-muted-foreground mx-auto text-pretty leading-relaxed max-w-4xl',
           descriptionClassName
         )}
         aria-describedby={headingId}

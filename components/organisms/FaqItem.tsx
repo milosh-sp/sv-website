@@ -30,7 +30,7 @@ export const FaqItem = ({
           aria-expanded={isOpen}
           aria-controls={panelId}
         >
-          <span className='font-semibold text-gray-900'>{faq.question}</span>
+          <span className='font-semibold text-foreground'>{faq.question}</span>
           <ChevronDown
             className={cn(
               'h-5 w-5 text-primary transition-transform',
@@ -43,11 +43,11 @@ export const FaqItem = ({
       <dd
         id={panelId}
         className={cn(
-          'px-6 pb-4 border-t border-gray-100',
+          'px-6 pb-4 border-t border-border',
           isOpen ? 'block' : 'hidden'
         )}
       >
-        <p className='text-gray-600 pt-4'>{faq.answer}</p>
+        <p className='text-muted-foreground pt-4'>{faq.answer}</p>
       </dd>
     </div>
   )

@@ -26,16 +26,16 @@ export function SuccessScreen({
       <article className={cn('max-w-md w-full text-center space-y-6')}>
         {/* Success Icon */}
         <div className={cn('flex justify-center')}>
-          <CheckCircle className={cn('w-16 h-16 text-emerald-600')} />
+          <CheckCircle className={cn('w-16 h-16 text-success')} />
         </div>
 
         {/* Title */}
-        <h1 className={cn('text-heading-1 font-bold text-slate-900')}>
+        <h1 className={cn('text-heading-1 font-bold text-foreground')}>
           {message.title}
         </h1>
 
         {/* Description */}
-        <p className={cn('text-body-large text-slate-600')}>
+        <p className={cn('text-body-large text-muted-foreground')}>
           {message.description}
         </p>
 

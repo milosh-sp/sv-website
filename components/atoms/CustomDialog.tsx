@@ -46,12 +46,12 @@ const CustomDialog = ({ isOpen, onClose, children }: CustomDialogProps) => {
       tabIndex={-1}
     >
       <div
-        className='bg-white p-6 rounded-lg shadow-lg relative'
+        className='bg-card p-6 rounded-lg shadow-lg relative'
         role='document'
       >
         <button
           type='button'
-          className='absolute top-2 right-2 text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 rounded'
+          className='absolute top-2 right-2 text-muted-foreground hover:text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded'
           onClick={onClose}
           aria-label='Close dialog'
         >

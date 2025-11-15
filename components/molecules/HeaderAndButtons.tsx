@@ -20,7 +20,7 @@ export function HeaderAndButtons({
     <SectionWrapper
       id={sectionId}
       className={cn(
-        'p-5 md:p-15 bg-gradient-to-b from-white to-slate-50/50',
+        'p-5 md:p-15 bg-linear-to-b from-background to-muted/50',
         className
       )}
       aria-label={ariaLabel}

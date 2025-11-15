@@ -14,7 +14,7 @@ export const FaqList = ({
   <article className='mb-16' aria-labelledby={headingId} {...props}>
     <h2
       id={headingId}
-      className='text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12'
+      className='text-3xl md:text-4xl font-bold text-foreground text-center mb-12'
     >
       {heading}
     </h2>

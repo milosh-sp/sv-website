@@ -13,9 +13,7 @@ export function CertificationsSection() {
       items={strings.cvSampleData.certifications}
       itemRenderer={(cert: CertificationItem) => (
         <article
-          className={cn(
-            'bg-slate-50 p-3 rounded-lg border-l-4 border-slate-700'
-          )}
+          className={cn(' p-3 rounded-lg border-l-4 border-slate-700')}
           aria-label={`Certification: ${cert.name}`}
         >
           <Text>{cert.name}</Text>

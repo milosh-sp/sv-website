@@ -14,9 +14,7 @@ export function LanguagesSection() {
       items={strings.cvSampleData.languages}
       itemRenderer={(language: LanguageItem) => (
         <article
-          className={cn(
-            'bg-slate-50 p-3 rounded-lg border-l-4 border-slate-700'
-          )}
+          className={cn('p-3 rounded-lg border-l-4 border-slate-700')}
           aria-label={`${language.name}: ${language.level}`}
         >
           <Text variant='body' className={cn('font-bold')}>

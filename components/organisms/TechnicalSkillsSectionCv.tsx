@@ -14,7 +14,7 @@ export function TechnicalSkillsSectionCv() {
       itemRenderer={(skill: SkillItem) => (
         <article
           className={cn(
-            'bg-slate-50 p-3 rounded-lg border-l-4 border-slate-700'
+            'pl-3 pb-1 pt-1 rounded-lg border-l-4 border-slate-700'
           )}
           aria-label={`Technical skill: ${skill.name}`}
         >

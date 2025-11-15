@@ -1,7 +1,9 @@
 import { strings } from '@/lib/strings'
 import { cn } from '@/lib/utils'
-import { User } from 'lucide-react'
 import type { CVHeaderProps } from '@/types/CVHeader.types'
+import { Text } from '@/components/atoms/Text'
+import { Heading } from '@/components/atoms/Heading'
+import { User } from 'lucide-react'
 
 export function CVHeader({
   variant = 'default',
@@ -53,10 +55,17 @@ export function CVHeader({
           />
         </div>
         <div className={textContainerClasses}>
-          <h2 className={nameClasses}>{strings.cvSampleData.profile.name}</h2>
-          <p className={titleClasses} role='doc-subtitle'>
+          <Heading level={4} size='md' className={nameClasses}>
+            {strings.cvSampleData.profile.name}
+          </Heading>
+          <Text className={titleClasses} role='doc-subtitle'>
             {strings.cvSampleData.profile.title}
-          </p>
+          </Text>
+          {!isCompact && (
+            <>
+              <Text>{strings.cvSampleData.profile.bio}</Text>
+            </>
+          )}
         </div>
       </div>
     </header>

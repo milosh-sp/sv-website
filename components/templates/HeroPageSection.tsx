@@ -17,7 +17,7 @@ export function HeroPageSection({ id }: SectionProps) {
       aria-labelledby='hero-heading'
       aria-describedby='hero-description'
     >
-      <div className={cn('max-w-400 mx-auto px-4 sm:px-6 lg:px-8')}>
+      <div className={cn('max-w-400')}>
         <article
           className={cn(
             'grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center'
@@ -66,7 +66,7 @@ export function HeroPageSection({ id }: SectionProps) {
             {/* Call to Action with Accent Bar */}
             <aside className={cn('flex gap-4 mb-8')}>
               <div
-                className={cn('w-1 bg-muted rounded-full')}
+                className={cn('w-1 rounded-full bg-purple')}
                 aria-hidden='true'
               />
               <Text variant='body' className='font-medium'>

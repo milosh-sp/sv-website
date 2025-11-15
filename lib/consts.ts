@@ -1,19 +1,19 @@
 const COLOR_SCHEMES = {
   blue: {
-    iconBg: 'from-blue-100 to-blue-200',
-    iconColor: 'text-blue-600',
+    iconBg: 'from-accent to-accent/80',
+    iconColor: 'text-primary',
   },
   emerald: {
-    iconBg: 'from-emerald-100 to-emerald-200',
-    iconColor: 'text-emerald-600',
+    iconBg: 'from-success/20 to-success/10',
+    iconColor: 'text-success',
   },
   purple: {
-    iconBg: 'from-purple-100 to-purple-200',
-    iconColor: 'text-purple-600',
+    iconBg: 'from-primary/20 to-primary/10',
+    iconColor: 'text-primary',
   },
   orange: {
-    iconBg: 'from-orange-100 to-orange-200',
-    iconColor: 'text-orange-600',
+    iconBg: 'from-warning/20 to-warning/10',
+    iconColor: 'text-warning',
   },
 } as const
 

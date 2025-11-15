@@ -14,7 +14,7 @@ export function useForm<TFormData extends Record<string, string>>(
     validateForm: validateFormFn,
     onSubmit,
     onSuccess,
-    debounceDelay = 600,
+    debounceDelay = 1_500,
   } = config
 
   // State management

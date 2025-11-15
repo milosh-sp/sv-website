@@ -6,11 +6,11 @@
 :root {
   /* Updated to modern design system with 8px grid and improved color palette */
   --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  --foreground: oklch(33.289% 0.00004 271.152);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --card-foreground: oklch(0.2 0 0);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.2 0 0);
   /* Updated primary to muted dark blue */
   --primary: oklch(0.35 0.08 240);
   --primary-foreground: oklch(0.985 0 0);
@@ -23,6 +23,20 @@
   --accent-foreground: oklch(0.35 0.08 240);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.577 0.245 27.325);
+  --skill-verdict: oklch(29.15% 0.14728 263.04);
+  /* Success/positive state colors */
+  --success: oklch(0.65 0.15 142.5);
+  --success-foreground: oklch(0.985 0 0);
+  /* Warning/pending state colors */
+  --warning: oklch(0.75 0.15 70);
+  --pending: #bb8c4a;
+  --warning-foreground: oklch(0.145 0 0);
+  /* Info/informational state colors */
+  --info: oklch(0.6 0.12 240);
+  --info-foreground: oklch(0.985 0 0);
+  /* Purple brand color */
+  --purple: oklch(0.45 0.12 280);
+  --purple-foreground: oklch(0.985 0 0);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
@@ -33,7 +47,7 @@
   --chart-5: oklch(0.769 0.188 70.08);
   --radius: 0.625rem;
   --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-foreground: oklch(0.2 0 0);
   --sidebar-primary: oklch(0.35 0.08 240);
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: oklch(0.97 0 0);
@@ -51,27 +65,27 @@
   --spacing-3xl: 4rem; /* 64px */
 
   /* Typography system with proper hierarchy */
-  --font-size-xs: 0.75rem;
-  --font-size-sm: 0.875rem;
-  --font-size-base: 1rem;
-  --font-size-lg: 1.125rem;
-  --font-size-xl: 1.25rem;
-  --font-size-2xl: 1.5rem;
-  --font-size-3xl: 1.875rem;
-  --font-size-4xl: 2.25rem;
-  --font-size-5xl: 3rem;
-  --font-size-6xl: 3.75rem;
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 30px;
+  --font-size-4xl: 36px;
+  --font-size-5xl: 48px;
+  --font-size-6xl: 60px;
 }
 
 .dark {
   --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
+  --foreground: oklch(0.95 0 0);
   --card: oklch(0.145 0 0);
-  --card-foreground: oklch(0.985 0 0);
+  --card-foreground: oklch(0.95 0 0);
   --popover: oklch(0.145 0 0);
-  --popover-foreground: oklch(0.985 0 0);
+  --popover-foreground: oklch(0.95 0 0);
   --primary: oklch(0.6 0.12 240);
-  --primary-foreground: oklch(0.145 0 0);
+  --primary-foreground: oklch(0.2 0 0);
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
@@ -80,6 +94,20 @@
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.396 0.141 25.723);
   --destructive-foreground: oklch(0.637 0.237 25.331);
+  --skill-verdict: oklch(0.6 0.12 240);
+  /* Dark mode success/positive state colors */
+  --success: oklch(0.5 0.15 142.5);
+  --success-foreground: oklch(0.2 0 0);
+  /* Dark mode warning/pending state colors */
+  --warning: oklch(0.6 0.15 70);
+  --pending: #bb8c4a;
+  --warning-foreground: oklch(0.2 0 0);
+  /* Dark mode info/informational state colors */
+  --info: oklch(0.6 0.12 240);
+  --info-foreground: oklch(0.2 0 0);
+  /* Dark mode purple brand color */
+  --purple: oklch(0.65 0.12 280);
+  --purple-foreground: oklch(0.2 0 0);
   --border: oklch(0.269 0 0);
   --input: oklch(0.269 0 0);
   --ring: oklch(0.439 0 0);
@@ -89,9 +117,9 @@
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
   --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.95 0 0);
   --sidebar-primary: oklch(0.6 0.12 240);
-  --sidebar-primary-foreground: oklch(0.145 0 0);
+  --sidebar-primary-foreground: oklch(0.2 0 0);
   --sidebar-accent: oklch(0.269 0 0);
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(0.269 0 0);
@@ -118,6 +146,7 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
+  --color-skill-verdict: var(--skill-verdict);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
@@ -126,6 +155,15 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-pending: var(--pending);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  --color-purple: var(--purple);
+  --color-purple-foreground: var(--purple-foreground);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -162,15 +200,6 @@
   button:focus-visible {
     @apply ring-2 ring-ring ring-offset-2 ring-offset-background;
   }
-}
-
-/* Modern utility classes following design system */
-.text-balance {
-  text-wrap: balance;
-}
-
-.text-pretty {
-  text-wrap: pretty;
 }
 
 /* Smooth scrolling with reduced motion support */
@@ -325,9 +354,5 @@ html {
 
 /* Section spacing following 8px grid */
 .section-padding {
-  @apply pt-24 md:pt-24 lg:pt-32 px-4 sm:px-6 lg:px-8;
-}
-
-.section-padding-sm {
-  @apply py-12 md:py-16 lg:py-20;
+  @apply pt-15 md:pt-15 lg:pt-10 px-4 sm:px-6 lg:px-8;
 }

@@ -3,7 +3,7 @@ import type { ComponentProps } from 'react'
 // Contact form data structure
 interface ContactFormData extends Record<string, string> {
   email: string
-  name: string
+  contactName: string
   message: string
 }
 
@@ -23,7 +23,7 @@ type ContactSubmitStatus = 'idle' | 'success' | 'error'
 interface ContactFormSubmissionData {
   email: string
   fields?: {
-    name?: string
+    contactName?: string
     message?: string
     website?: string // Honeypot field
     form_start_time?: string // For timing validation
@@ -67,7 +67,7 @@ interface ContactFormProps extends ComponentProps<'form'> {
   submitStatus: ContactSubmitStatus
   honeypotValue: string
   onEmailChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  onNameChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onContactNameChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   onMessageChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
   onHoneypotChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void

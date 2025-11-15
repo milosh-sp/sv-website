@@ -147,54 +147,11 @@ export function validateLinkedIn(url: string): ValidationResult {
 }
 
 /**
- * Validate GitHub profile URL format
+ * Validate GitHub/GitLab profile URL format
  * Now uses generic URL validation
  */
-export function validateGitHub(url: string): ValidationResult {
-  return validateUrl(url, 'GitHub profile URL')
-}
-
-/**
- * Validate form data for signup
- */
-export interface SignupFormData {
-  email: string
-  linkedin: string
-  github?: string
-}
-
-export interface FormValidationResult {
-  isValid: boolean
-  errors: Record<string, string>
-}
-
-export function validateSignupForm(data: SignupFormData): FormValidationResult {
-  const errors: Record<string, string> = {}
-
-  // Validate email
-  const emailValidation = validateEmail(data.email)
-  if (!emailValidation.isValid) {
-    errors.email = emailValidation.message || 'Invalid email'
-  }
-
-  // Validate LinkedIn
-  const linkedinValidation = validateLinkedIn(data.linkedin)
-  if (!linkedinValidation.isValid) {
-    errors.linkedin = linkedinValidation.message || 'Invalid LinkedIn URL'
-  }
-
-  // Validate GitHub if provided
-  if (data.github) {
-    const githubValidation = validateGitHub(data.github)
-    if (!githubValidation.isValid) {
-      errors.github = githubValidation.message || 'Invalid GitHub URL'
-    }
-  }
-
-  return {
-    isValid: Object.keys(errors).length === 0,
-    errors,
-  }
+export function validateGitHubGitlab(url: string): ValidationResult {
+  return validateUrl(url, 'GitHub or GitLab profile URL')
 }
 
 /**
@@ -214,55 +171,28 @@ function isValidLinkedIn(url: string): boolean {
 }
 
 function isValidGitHub(url: string): boolean {
-  return validateGitHub(url).isValid
-}
-
-function isFormValid(formData: {
-  email: string
-  linkedin: string
-  github: string
-}): boolean {
-  if (!formData.email || !formData.linkedin || !formData.github) {
-    return false
-  }
-
-  const emailValidation = validateEmail(formData.email)
-  if (!emailValidation.isValid) {
-    return false
-  }
-
-  const linkedinValidation = validateLinkedIn(formData.linkedin)
-  if (!linkedinValidation.isValid) {
-    return false
-  }
-
-  const githubValidation = validateGitHub(formData.github)
-  if (!githubValidation.isValid) {
-    return false
-  }
-
-  return true
+  return validateGitHubGitlab(url).isValid
 }
 
 /**
- * Validate name field for contact form
+ * Validate contact name field for contact form
  */
-export function validateName(name: string): ValidationResult {
-  if (!name) {
+export function validateContactName(contactName: string): ValidationResult {
+  if (!contactName) {
     return {
       isValid: false,
       message: 'Name is required',
     }
   }
 
-  if (typeof name !== 'string') {
+  if (typeof contactName !== 'string') {
     return {
       isValid: false,
       message: 'Name must be a string',
     }
   }
 
-  const trimmedName = name.trim()
+  const trimmedName = contactName.trim()
   if (!trimmedName) {
     return {
       isValid: false,
@@ -339,7 +269,7 @@ export function validateMessage(message: string): ValidationResult {
  */
 export interface ContactFormData {
   email: string
-  name: string
+  contactName: string
   message: string
 }
 
@@ -357,10 +287,10 @@ export function validateContactForm(
     errors.email = emailValidation.message || 'Invalid email'
   }
 
-  // Validate name
-  const nameValidation = validateName(data.name)
-  if (!nameValidation.isValid) {
-    errors.name = nameValidation.message || 'Invalid name'
+  // Validate contact name
+  const contactNameValidation = validateContactName(data.contactName)
+  if (!contactNameValidation.isValid) {
+    errors.contactName = contactNameValidation.message || 'Invalid name'
   }
 
   // Validate message
@@ -379,7 +309,7 @@ export function validateContactForm(
  * Check if contact form is valid (all fields filled and valid)
  */
 export function isContactFormValid(formData: ContactFormData): boolean {
-  if (!formData.email || !formData.name || !formData.message) {
+  if (!formData.email || !formData.contactName || !formData.message) {
     return false
   }
 
@@ -388,8 +318,8 @@ export function isContactFormValid(formData: ContactFormData): boolean {
     return false
   }
 
-  const nameValidation = validateName(formData.name)
-  if (!nameValidation.isValid) {
+  const contactNameValidation = validateContactName(formData.contactName)
+  if (!contactNameValidation.isValid) {
     return false
   }
 
@@ -401,4 +331,9 @@ export function isContactFormValid(formData: ContactFormData): boolean {
   return true
 }
 
-export { isValidEmail, isValidUrl, isValidLinkedIn, isValidGitHub, isFormValid }
+export interface FormValidationResult {
+  isValid: boolean
+  errors: Record<string, string>
+}
+
+export { isValidEmail, isValidUrl, isValidLinkedIn, isValidGitHub }

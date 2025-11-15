@@ -43,6 +43,16 @@ export function useHoneypot() {
 
   // Validate form submission against bot indicators
   const validateSubmission = (): HoneypotValidation => {
+    // Disable honeypot validation in development
+    if (
+      typeof window !== 'undefined' &&
+      process.env.NODE_ENV === 'development'
+    ) {
+      return {
+        isValid: true,
+      }
+    }
+
     const currentTime = Date.now()
     const timeTaken = currentTime - state.startTime
 

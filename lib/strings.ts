@@ -13,6 +13,27 @@
  */
 
 // ============================================================================
+// TYPE IMPORTS
+// ============================================================================
+
+import type { WaitlistStepConfig } from '@/types/WaitlistStep.types'
+
+// ============================================================================
+// WAITLIST FORM TYPES
+// ============================================================================
+
+interface SkillArea {
+  id: string
+  label: string
+  description?: string
+}
+
+interface TechnicalSkill {
+  id: string
+  label: string
+}
+
+// ============================================================================
 // LUCIDE REACT ICON IMPORTS
 // ============================================================================
 
@@ -29,11 +50,9 @@ import {
   FastForward,
   FileText,
   FolderOpen,
-  Github,
   Globe,
   Home,
   IdCard,
-  Linkedin,
   Mail,
   Medal,
   MessageCircle,
@@ -489,84 +508,6 @@ export const faq = {
 } as const
 
 // ============================================================================
-// SIGNUP MODAL
-// ============================================================================
-
-export const signupModal = {
-  // Modal header
-  title: `Join Skill Verdict`,
-
-  // Form fields
-  form: {
-    email: {
-      label: `Email address`,
-      placeholder: `Your email address *`,
-      ariaLabel: `Email address field`,
-      icon: Mail,
-    },
-    linkedin: {
-      label: `LinkedIn profile URL`,
-      placeholder: `https://linkedin.com/in/yourname *`,
-      ariaLabel: `LinkedIn profile URL field`,
-      icon: Linkedin,
-    },
-    website: {
-      label: `Website (leave this field empty)`,
-      placeholder: `Your website`,
-      ariaLabel: `Website field (honeypot)`,
-    },
-    github: {
-      label: `GitHub profile URL`,
-      placeholder: `https://github.com/username *`,
-      ariaLabel: `GitHub profile URL field`,
-      icon: Github,
-    },
-  },
-
-  // Submit button
-  submitButton: {
-    idle: `Secure my spot`,
-    submitting: `Securing your spot...`,
-    ariaLabel: {
-      idle: `Submit signup form`,
-      submitting: `Submitting form`,
-    },
-  },
-
-  // Status messages
-  status: {
-    success: {
-      title: `Success!`,
-      message: `We've added you to our waitlist. You'll be among the first to know
-        when we launch!`,
-      icon: `🎉`,
-    },
-    error: {
-      title: `Error`,
-      message: `Something went wrong. Please try again or contact support.`,
-      icon: `❌`,
-    },
-  },
-
-  // Privacy Policy Consent
-  privacyPolicyConsent: {
-    prefix: `By signing up, you agree to our`,
-    linkText: `Privacy Policy`,
-    href: `/privacy-policy`,
-    ariaLabel: `Read our privacy policy`,
-  },
-
-  // Accessibility
-  accessibility: {
-    closeModal: `Close modal`,
-    signupForm: `Signup form`,
-    emailError: `Email validation error`,
-    linkedinError: `LinkedIn validation error`,
-    githubError: `GitHub validation error`,
-  },
-} as const
-
-// ============================================================================
 // FLOATING SIGNUP BUTTON
 // ============================================================================
 
@@ -614,7 +555,7 @@ export const contactPage = {
       ariaLabel: `Email address field`,
       icon: Mail,
     },
-    name: {
+    contactName: {
       label: `Name (Company or Individual)`,
       placeholder: `Your name or company name *`,
       ariaLabel: `Name field`,
@@ -674,7 +615,7 @@ export const contactPage = {
   accessibility: {
     contactForm: `Contact form`,
     emailError: `Email validation error`,
-    nameError: `Name validation error`,
+    contactNameError: `Name validation error`,
     messageError: `Message validation error`,
   },
 
@@ -697,23 +638,40 @@ export const legalPages = {
   // Privacy Policy
   privacyPolicy: {
     title: `Privacy Policy`,
-    description: `Your privacy is fundamental to our mission. Learn how we protect and handle your data.`,
-    lastUpdated: `10-Nov-2025`,
-    effectiveDate: `10-Nov-2025`,
+    description: `Your privacy is fundamental to our mission. Learn how we 
+      protect and handle your data.`,
+    lastUpdated: `11-Nov-2025`,
+    effectiveDate: `13-Nov-2025`,
     sections: {
       introduction: {
         title: `Introduction`,
         content: [
-          `This Privacy Policy describes the policies of Skill Verdict, Dover, Delaware 19901, United States of America, email: contact@skillverdict.com, phone: +1123423523 on the collection, use and disclosure of your information that we collect when you use our website (https://skillverdict.com). (the "Service"). By accessing or using the Service, you are consenting to the collection, use and disclosure of your information in accordance with this Privacy Policy. If you do not consent to the same, please do not access or use the Service.`,
-          `We may modify this Privacy Policy at any time without any prior notice to you and will post the revised Privacy Policy on the Service. The revised Policy will be effective 180 days from when the revised Policy is posted in the Service and your continued access or use of the Service after such time will constitute your acceptance of the revised Privacy Policy. We therefore recommend that you periodically review this page.`,
+          `This Privacy Policy describes the policies of Skill Verdict, Dover, 
+          Delaware 19901, United States of America (the), email: 
+          contact@skillverdict.com, on the collection, use 
+          and disclosure of your information that we collect when you use our 
+          website (https://skillverdict.com). (the "Service"). By accessing or 
+          using the Service, you are consenting to the collection, use and 
+          disclosure of your information in accordance with this Privacy 
+          Policy. If you do not consent to the same, please do not access or 
+          use the Service.`,
+          `We may modify this Privacy Policy at any time without any prior 
+          notice to you and will post the revised Privacy Policy on the 
+          Service. The revised Policy will be effective 180 days from when the 
+          revised Policy is posted in the Service and your continued access or 
+          use of the Service after such time will constitute your acceptance 
+          of the revised Privacy Policy. We therefore recommend that you 
+          periodically review this page.`,
         ],
       },
       informationWeCollect: {
         title: `Information We Collect`,
         content: [
-          `We will collect and process the following personal information about you:`,
+          `We will collect and process the following personal information 
+          about you:`,
         ],
         items: [
+          `Name`,
           `Email`,
           `Social Media Profile`,
           `Employment status`,
@@ -724,59 +682,109 @@ export const legalPages = {
       howWeUse: {
         title: `How We Use Your Information`,
         content: [
-          `We will use the information that we collect about you for the following purposes:`,
+          `We will use the information that we collect about you for the 
+          following purposes:`,
           `Marketing/Promotional`,
           `Creating user account`,
+          `Testimonials`,
           `Customer feedback collection`,
-          `If we want to use your information for any other purpose, we will ask you for consent and will use your information only on receiving your consent and then, only for the purpose(s) for which grant consent unless we are required to do otherwise by law.`,
+          `If we want to use your information for any other purpose, we will 
+          ask you for consent and will use your information only on receiving 
+          your consent and then, only for the purpose(s) for which grant 
+          consent unless we are required to do otherwise by law.`,
         ],
       },
       informationSharing: {
         title: `How We Share Your Information`,
         content: [
-          `We will not transfer your personal information to any third party without seeking your consent, except in limited circumstances as described below:`,
+          `We will not transfer your personal information to any third party 
+          without seeking your consent, except in limited circumstances as 
+          described below:`,
           `Analytics`,
-          `We require such third party's to use the personal information we transfer to them only for the purpose for which it was transferred and not to retain it for longer than is required for fulfilling the said purpose.`,
-          `We may also disclose your personal information for the following: (1) to comply with applicable law, regulation, court order or other legal process; (2) to enforce your agreements with us, including this Privacy Policy; or (3) to respond to claims that your use of the Service violates any third-party rights. If the Service or our company is merged or acquired with another company, your information will be one of the assets that is transferred to the new owner.`,
+          `Data collection & process`,
+          `We require such third party's to use the personal information we 
+          transfer to them only for the purpose for which it was transferred 
+          and not to retain it for longer than is required for fulfilling the 
+          said purpose.`,
+          `We may also disclose your personal information for the following: 
+          (1) to comply with applicable law, regulation, court order or other 
+          legal process; (2) to enforce your agreements with us, including 
+          this Privacy Policy; or (3) to respond to claims that your use of 
+          the Service violates any third-party rights. If the Service or our 
+          company is merged or acquired with another company, your information 
+          will be one of the assets that is transferred to the new owner.`,
         ],
       },
       dataRetention: {
         title: `Retention Of Your Information`,
         content: [
-          `We will retain your personal information with us for Anonymous data is stored forever or for as long as we need it to fulfill the purposes for which it was collected as detailed in this Privacy Policy. We may need to retain certain information for longer periods such as record-keeping / reporting in accordance with applicable law or for other legitimate reasons like enforcement of legal rights, fraud prevention, etc. Residual anonymous information and aggregate information, neither of which identifies you (directly or indirectly), may be stored indefinitely.`,
+          `We will retain your personal information with us for 90 days to 2 
+          years after users terminate their accounts or for as long as we need 
+          it to fulfill the purposes for which it was collected as detailed in 
+          this Privacy Policy. We may need to retain certain information for 
+          longer periods such as record-keeping / reporting in accordance with 
+          applicable law or for other legitimate reasons like enforcement of 
+          legal rights, fraud prevention, etc. Residual anonymous information 
+          and aggregate information, neither of which identifies you (directly 
+          or indirectly), may be stored indefinitely.`,
         ],
       },
       yourRights: {
         title: `Your Rights`,
         content: [
-          `Depending on the law that applies, you may have a right to access and rectify or erase your personal data or receive a copy of your personal data, restrict or object to the active processing of your data, ask us to share (port) your personal information to another entity, withdraw any consent you provided to us to process your data, a right to lodge a complaint with a statutory authority and such other rights as may be relevant under applicable laws. To exercise these rights, you can write to us at contact@skillverdict.com. We will respond to your request in accordance with applicable law.`,
-          `You may opt-out of direct marketing communications or the profiling we carry out for marketing purposes by writing to us at contact@skillverdict.com.`,
-          `Do note that if you do not allow us to collect or process the required personal information or withdraw the consent to process the same for the required purposes, you may not be able to access or use the services for which your information was sought.`,
+          `Depending on the law that applies, you may have a right to access 
+          and rectify or erase your personal data or receive a copy of your 
+          personal data, restrict or object to the active processing of your 
+          data, ask us to share (port) your personal information to another 
+          entity, withdraw any consent you provided to us to process your 
+          data, a right to lodge a complaint with a statutory authority and 
+          such other rights as may be relevant under applicable laws. To 
+          exercise these rights, you can write to us at 
+          contact@skillverdict.com. We will respond to your request in 
+          accordance with applicable law.`,
+          `You may opt-out of direct marketing communications or the profiling 
+          we carry out for marketing purposes by writing to us at 
+          contact@skillverdict.com.`,
+          `Do note that if you do not allow us to collect or process the 
+          required personal information or withdraw the consent to process the 
+          same for the required purposes, you may not be able to access or use 
+          the services for which your information was sought.`,
         ],
       },
       cookies: {
         title: `Cookies Etc.`,
         content: [
-          `To learn more about how we use these and your choices in relation to these tracking technologies, please refer to our Cookie Policy.`,
+          `To learn more about how we use these and your choices in relation 
+          to these tracking technologies, please refer to our Cookie Policy.`,
         ],
       },
       dataSecurity: {
         title: `Security`,
         content: [
-          `The security of your information is important to us and we will use reasonable security measures to prevent the loss, misuse or unauthorized alteration of your information under our control. However, given the inherent risks, we cannot guarantee absolute security and consequently, we cannot ensure or warrant the security of any information you transmit to us and you do so at your own risk.`,
+          `The security of your information is important to us and we will use 
+          reasonable security measures to prevent the loss, misuse or 
+          unauthorized alteration of your information under our control. 
+          However, given the inherent risks, we cannot guarantee absolute 
+          security and consequently, we cannot ensure or warrant the security 
+          of any information you transmit to us and you do so at your own 
+          risk.`,
         ],
       },
       grievanceOfficer: {
         title: `Grievance / Data Protection Officer`,
         content: [
-          `If you have any queries or concerns about the processing of your information that is available with us, you may email our Grievance Officer at Skill Verdict, Dover, email: contact@skillverdict.com. We will address your concerns in accordance with applicable law.`,
+          `If you have any queries or concerns about the processing of your 
+          information that is available with us, you may email our Grievance 
+          Officer at Skill Verdict, Dover, email: contact@skillverdict.com. We 
+          will address your concerns in accordance with applicable law.`,
         ],
       },
     },
     contact: {
       email: `contact@skillverdict.com`,
-      phone: `+1123423523`,
-      address: `Skill Verdict, Dover, Delaware 19901, United States of America`,
+      phone: ``,
+      address: `Skill Verdict, Dover, Delaware 19901, United States of 
+        America`,
     },
   },
 } as const
@@ -940,6 +948,7 @@ export const cvSampleData = {
     {
       name: `AWS Certified`,
       verifier: `David Kim - Solutions Architect at Amazon`,
+      verified: `verified`,
     },
     {
       name: `React Expert`,
@@ -948,6 +957,7 @@ export const cvSampleData = {
     {
       name: `Node.js Master`,
       verifier: `Robert Williams - Backend Engineer at Netflix`,
+      verified: `pending`,
     },
   ],
   languages: [
@@ -1097,6 +1107,878 @@ export const radioButton = {
 } as const
 
 // ============================================================================
+// WAITLIST FORMS
+// ============================================================================
+
+export const waitlistForms = {
+  // ========================================================================
+  // FORM CONFIGURATION
+  // ========================================================================
+
+  totalFormSteps: 4,
+
+  // ========================================================================
+  // SKILL AREAS & TECHNICAL SKILLS
+  // ========================================================================
+
+  skillAreas: [
+    { id: 'frontend', label: 'Frontend Development' },
+    { id: 'backend', label: 'Backend Development' },
+    { id: 'fullstack', label: 'Full Stack Development' },
+    { id: 'devops', label: 'DevOps' },
+    { id: 'data', label: 'Data Science' },
+  ] as SkillArea[],
+
+  technicalSkills: [
+    { id: 'react', label: 'React' },
+    { id: 'typescript', label: 'TypeScript' },
+    { id: 'nodejs', label: 'Node.js' },
+    { id: 'python', label: 'Python' },
+    { id: 'aws', label: 'AWS' },
+  ] as TechnicalSkill[],
+
+  // ========================================================================
+  // CANDIDATE FORM OPTIONS
+  // ========================================================================
+
+  professionalStatusOptions: [
+    { value: 'student', label: 'Student' },
+    { value: 'unemployed', label: 'Unemployed' },
+    { value: 'employed-fulltime', label: 'Employed (full-time)' },
+    { value: 'employed-parttime', label: 'Employed (part-time)' },
+    { value: 'freelancer', label: 'Freelancer' },
+  ],
+
+  techCommunityOptions: [
+    { value: 'yes', label: 'Yes, specify:' },
+    { value: 'no', label: 'No' },
+  ],
+
+  skillValidationOptions: [
+    { value: 'strongly-agree', label: 'Strongly Agree' },
+    { value: 'agree', label: 'Agree' },
+    { value: 'neutral', label: 'Neutral' },
+    { value: 'disagree', label: 'Disagree' },
+    { value: 'strongly-disagree', label: 'Strongly Disagree' },
+  ],
+
+  jobSearchChallengeOptions: [
+    { value: 'no-response', label: 'Getting no response after applying' },
+    { value: 'cv-rejections', label: 'My CV is getting rejections' },
+    {
+      value: 'no-feedback',
+      label:
+        'Rejection without clear feedback (even after passing technical rounds)',
+    },
+    {
+      value: 'bias',
+      label: 'Bias (e.g., based on location, background, age, gender)',
+    },
+    { value: 'not-knowing', label: 'Not knowing what to improve' },
+    { value: 'lack-mentorship', label: 'Lack of mentorship / guidance' },
+    { value: 'other', label: 'Other:' },
+  ],
+
+  valuableOutcomeOptions: [
+    {
+      value: 'credibility',
+      label:
+        'Credibility: A trusted certificate/badge for my resume that gets me more interviews.',
+    },
+    {
+      value: 'clarity-growth',
+      label:
+        'Clarity & Growth: A detailed report with actionable feedback and a personalized plan to improve my skills.',
+    },
+    {
+      value: 'efficiency',
+      label:
+        'Efficiency: Drastically reducing the number of technical screens I have to do for each company.',
+    },
+    {
+      value: 'opportunity',
+      label:
+        "Opportunity: Direct access to job opportunities from companies that trust the platform's assessment.",
+    },
+    { value: 'other', label: 'Other:' },
+  ],
+
+  // ========================================================================
+  // VERIFIER FORM OPTIONS
+  // ========================================================================
+
+  yearsOfExperienceOptions: [
+    { value: '3-5', label: '3–5 years' },
+    { value: '6-10', label: '6–10 years' },
+    { value: '10+', label: '10+ years' },
+  ],
+
+  hoursPerWeekOptions: [
+    { value: '1-3', label: '1-3 hours' },
+    { value: '4-7', label: '4-7 hours' },
+    { value: '8+', label: '8+ hours' },
+  ],
+
+  coachingMentoringOptions: [
+    { value: 'yes', label: 'Yes' },
+    { value: 'no', label: 'No' },
+  ],
+
+  verifierMotivationOptions: [
+    { value: 'improve-hiring', label: 'Improve hiring standards in tech' },
+    { value: 'earn-income', label: 'Earn extra income' },
+    { value: 'mentor-talent', label: 'Mentor and grow future talent' },
+    {
+      value: 'build-reputation',
+      label: 'Build my external reputation and credibility',
+    },
+    {
+      value: 'leadership-work',
+      label: 'Transition into more leadership/advisory work',
+    },
+    { value: 'community', label: 'To be a part of a like minded community' },
+    {
+      value: 'stay-updated',
+      label: 'Staying up-to-date with modern engineering practices and tools',
+    },
+    { value: 'other', label: 'Other:' },
+  ],
+
+  professionalFrustrationOptions: [
+    {
+      value: 'expertise-not-recognized',
+      label: "My leadership and expertise aren't fully recognized or utilized.",
+    },
+    {
+      value: 'undervalued',
+      label: 'I feel undervalued or unfairly compensated for my experience.',
+    },
+    {
+      value: 'lack-autonomy',
+      label: 'Lack of autonomy and too much micromanagement',
+    },
+    {
+      value: 'hiring-flawed',
+      label: 'The technical hiring processes I see are flawed or biased.',
+    },
+    {
+      value: 'no-growth',
+      label: 'Not having the opportunity to grow in my current position',
+    },
+    {
+      value: 'burnout-culture',
+      label: 'Burnout culture disguised as "hustle" or "startup mindset".',
+    },
+    {
+      value: 'meetings-context-switching',
+      label:
+        'Excessive meetings or context-switching hurts productivity and deep work.',
+    },
+    { value: 'other', label: 'Other:' },
+  ],
+
+  // ========================================================================
+  // HIRING MANAGER FORM OPTIONS
+  // ========================================================================
+
+  managerRoleOptions: [
+    { value: 'cto-vp', label: 'CTO / VP Engineering' },
+    { value: 'head-engineering', label: 'Head of Engineering' },
+    { value: 'tech-lead', label: 'Tech Lead / Engineering Manager' },
+    { value: 'founder-ceo', label: 'Founder / CEO (hiring first engineers)' },
+    { value: 'recruiter', label: 'Recruiter' },
+  ],
+
+  fundingStageOptions: [
+    { value: 'pre-seed', label: 'Pre-seed / Bootstrapped' },
+    { value: 'seed', label: 'Seed' },
+    { value: 'series-a', label: 'Series A' },
+    { value: 'series-b', label: 'Series B' },
+    { value: 'profitable', label: 'Profitable / Late-Stage' },
+  ],
+
+  teamSizeOptions: [
+    { value: '0', label: '0' },
+    { value: '1-5', label: '1-5' },
+    { value: '6-15', label: '6-15' },
+    { value: '16-30', label: '16-30' },
+    { value: '30+', label: '30+' },
+  ],
+
+  rolesHiringOptions: [
+    { value: 'fullstack', label: 'Full-stack engineer' },
+    { value: 'backend', label: 'Backend engineer' },
+    { value: 'frontend', label: 'Frontend / Web' },
+    { value: 'mobile', label: 'Mobile (iOS / Android / Flutter)' },
+    { value: 'devops', label: 'DevOps / SRE / Platform' },
+    { value: 'ai-ml', label: 'AI / ML / Data' },
+    { value: 'product-design', label: 'Product / Design / QA' },
+    { value: 'leadership', label: 'Engineering leadership' },
+    {
+      value: 'squad',
+      label:
+        'A pre-formed squad (e.g., Full-stack + Engineering leadership + QA)',
+    },
+  ],
+
+  seniorityLevelOptions: [
+    { value: 'intern', label: 'Intern' },
+    { value: 'mid-level', label: 'Mid-level' },
+    { value: 'senior', label: 'Senior' },
+    { value: 'staff-principal', label: 'Staff / Principal' },
+    {
+      value: 'generalists',
+      label: 'Hands-on startup generalists (wears many hats)',
+    },
+  ],
+
+  interviewHoursOptions: [
+    { value: 'less-10', label: 'Less than 10 hours' },
+    { value: '10-20', label: '10 - 20 hours' },
+    { value: '20-40', label: '20 - 40 hours' },
+    { value: '40+', label: "40+ hours (it's a massive drain)" },
+    { value: 'dont-know', label: "I don't know" },
+  ],
+
+  hiringFrustrationOptions: [
+    {
+      value: 'wasting-hours',
+      label: 'Wasting 10+ hours per candidate with my engineering team.',
+    },
+    { value: 'bad-hire-cost', label: 'The fear and cost of a bad hire.' },
+    { value: 'fake-cvs', label: 'Spam of fake people applying with great CVs' },
+    {
+      value: 'cv-mismatch',
+      label:
+        "Massive amount of CVs that don't match the position that I am hiring for",
+    },
+    {
+      value: 'desperate-hiring',
+      label:
+        "Desperate hiring - we don't know who's actually good, but we hire them to fill the position",
+    },
+    {
+      value: 'talkers-not-doers',
+      label: 'Interviewing great "talkers" but average "doers."',
+    },
+    { value: 'other', label: 'Other:' },
+  ],
+
+  hiringFailureOptions: [
+    { value: 'bad-interview', label: 'Bad hire that did great on interview' },
+    {
+      value: 'skill-assessment',
+      label: "Unable to assess the candidate's skills accurately",
+    },
+    {
+      value: 'expensive-talent',
+      label: 'Senior talent too expensive to experiment on',
+    },
+    {
+      value: 'missed-deadlines',
+      label: 'Missed product deadlines due to hiring gap',
+    },
+    { value: 'other', label: 'Other:' },
+  ],
+
+  // ========================================================================
+  // PAGE HEADERS & CONTENT
+  // ========================================================================
+  // Page headers for waitlist forms
+  pageHeaders: {
+    candidate: {
+      title: `Join Our Candidate Waitlist`,
+      description: `Get your skills verified and discover opportunities`,
+    },
+    verifier: {
+      title: `Become a Skill Verifier`,
+      description: `Help verify skills and build trust in our community`,
+    },
+    'hiring-manager': {
+      title: `Find Verified Talent`,
+      description: `Access our network of verified professionals`,
+    },
+  },
+
+  // Success screen messages
+  successScreen: {
+    candidate: {
+      title: `Welcome to the Waitlist!`,
+      description: `Thank you for joining our candidate waitlist. We'll review your profile and get back to you soon with next steps.`,
+      checkEmailMessage: `Check your email for confirmation and next steps.`,
+      backToHomepage: `Back to Homepage`,
+    },
+    verifier: {
+      title: `Welcome to the Verifier Program!`,
+      description: `Thank you for your interest in becoming a verifier. We'll review your qualifications and contact you shortly.`,
+      checkEmailMessage: `Check your email for confirmation and next steps.`,
+      backToHomepage: `Back to Homepage`,
+    },
+    'hiring-manager': {
+      title: `Welcome to Our Hiring Platform!`,
+      description: `Thank you for joining our hiring manager waitlist. We'll be in touch soon with information about verified talent.`,
+      checkEmailMessage: `Check your email for confirmation and next steps.`,
+      backToHomepage: `Back to Homepage`,
+    },
+  },
+
+  // Form field labels and placeholders
+  fields: {
+    email: {
+      label: `Email Address`,
+      placeholder: `your@email.com`,
+      ariaLabel: `Email address field`,
+    },
+    technicalSkills: {
+      label: `What technical skills do you have?`,
+    },
+    linkedIn: {
+      label: `LinkedIn Profile URL`,
+      placeholder: `https://linkedin.com/in/yourprofile`,
+      ariaLabel: `LinkedIn profile URL field`,
+    },
+    githubGitlabUrl: {
+      label: `GitHub or GitLab Profile URL`,
+      placeholder: `https://github.com/yourprofile (optional)`,
+      ariaLabel: `GitHub or GitLab profile URL field`,
+    },
+    website: {
+      label: `Website`,
+      placeholder: `https://example.com`,
+      ariaLabel: `Website field (honeypot)`,
+    },
+    techCommunityDetails: {
+      label: `Tech Community Details`,
+      placeholder: `e.g., Python Developers Group, React Community`,
+      ariaLabel: `Tech community details field`,
+    },
+    skillAreas: {
+      label: `What are your primary skill areas?`,
+    },
+    jobSearchChallengeOther: {
+      label: `Other challenge`,
+      placeholder: `Please specify your challenge`,
+      ariaLabel: `Other job search challenge field`,
+    },
+    valuableOutcomeOther: {
+      label: `Other outcome`,
+      placeholder: `Please specify the outcome`,
+      ariaLabel: `Other valuable outcome field`,
+    },
+    verifierMotivationOther: {
+      label: `Other motivation`,
+      placeholder: `Please specify your motivation`,
+      ariaLabel: `Other verifier motivation field`,
+    },
+    professionalFrustrationOther: {
+      label: `Other frustration`,
+      placeholder: `Please specify your frustration`,
+      ariaLabel: `Other professional frustration field`,
+    },
+  },
+
+  // Form labels and questions
+  labels: {
+    privacyConsent: `I agree to the Privacy Policy`,
+    newsletterOptIn: `Subscribe to our newsletter`,
+    professionalStatus: `What is your current professional status?`,
+    techCommunityMembership: `Are you already a member of a tech community?`,
+    skillValidationConfidence: `How much do you agree with the following statement: "I would feel more confident in my job search if my skills were validated anonymously by senior engineers"`,
+    jobSearchChallenges: `What is the biggest challenge you face in your job search?`,
+    valuableOutcomes: `What would be the SINGLE most valuable outcome for you from a skill-validation platform?`,
+    yearsOfExperience: `Years of experience`,
+    hoursPerWeek: `Roughly how many hours per week would you be available for verification work?`,
+    coachingMentoring: `Have you ever done coaching or mentoring?`,
+    verifierMotivations: `Why are you interested in becoming a Verifier? [Select all that apply]`,
+    professionalFrustration: `What is your biggest professional frustration?`,
+    managerRole: `What is your role?`,
+    fundingStage: `What is your company's current funding stage?`,
+    engineeringTeamSize: `What is the size of your engineering team?`,
+    rolesHiring: `Which roles are you looking to hire for in the next 3 months?`,
+    seniorityLevel: `What is the most critical seniority level you need to hire?`,
+    hiringInterviewHours: `On average, how many hours does your team and you spend interviewing per hire?`,
+    hiringFrustrations: `What are your biggest frustrations with your current hiring process?`,
+    hiringFailures: `What hiring failures have you experienced recently?`,
+  },
+
+  // Form button labels
+  buttons: {
+    previous: `Previous`,
+    next: `Next`,
+    submit: `Submit`,
+    submitting: `Submitting...`,
+  },
+
+  // Privacy policy consent
+  privacyPolicyConsent: {
+    prefix: `By signing up, you agree to our `,
+    linkText: `Privacy Policy`,
+    href: `/privacy-policy`,
+    ariaLabel: `Read our privacy policy`,
+  },
+
+  // Validation error messages
+  validation: {
+    emailRequired: `Email is required`,
+    emailInvalid: `Please enter a valid email address`,
+    linkedInRequired: `LinkedIn profile URL is required`,
+    linkedInInvalid: `Please enter a valid LinkedIn URL`,
+    privacyConsentRequired: `You must agree to the privacy policy`,
+    skillAreasRequired: `Please select at least one skill area`,
+    technicalSkillsRequired: `Please select at least one technical skill`,
+    professionalStatusRequired: `Please select your professional status`,
+    techCommunityMembershipRequired: `Please select your tech community membership status`,
+    techCommunityDetailsRequired: `Please specify which tech community`,
+    githubGitlabUrlRequired: `GitHub/GitLab profile URL is required`,
+    githubGitlabUrlInvalid: `Please enter a valid GitHub/GitLab URL`,
+    skillValidationConfidenceRequired: `Please select an option`,
+    jobSearchChallengesRequired: `Please select at least one challenge`,
+    jobSearchChallengeOtherRequired: `Please specify your challenge`,
+    valuableOutcomesRequired: `Please select at least one outcome`,
+    valuableOutcomeOtherRequired: `Please specify the outcome`,
+    yearsOfExperienceRequired: `Please select your years of experience`,
+    hoursPerWeekRequired: `Please select your availability`,
+    coachingMentoringRequired: `Please select an option`,
+    verifierMotivationsRequired: `Please select at least one motivation`,
+    verifierMotivationOtherRequired: `Please specify your motivation`,
+    professionalFrustrationRequired: `Please select your biggest frustration`,
+    professionalFrustrationOtherRequired: `Please specify your frustration`,
+    managerRoleRequired: `Please select your role`,
+    fundingStageRequired: `Please select your funding stage`,
+    engineeringTeamSizeRequired: `Please select your team size`,
+    rolesHiringRequired: `Please select at least one role`,
+    seniorityLevelRequired: `Please select a seniority level`,
+    hiringInterviewHoursRequired: `Please select an option`,
+    hiringFrustrationsRequired: `Please select at least one frustration`,
+    hiringFailuresRequired: `Please select at least one failure`,
+  },
+
+  // Accessibility labels
+  accessibility: {
+    progressIndicator: `Form progress indicator`,
+    goToStep: `Go to step`,
+    formNavigation: `Form navigation`,
+    previousButton: `Go to previous step`,
+    nextButton: `Go to next step`,
+    submitButton: `Submit form`,
+    successIcon: `Success icon`,
+    errorIcon: `Error icon`,
+  },
+
+  // Persona-specific form field configurations
+  // These are used by the generic FormFieldsStep component
+  personaFields: {
+    // Verifier persona - Section 2: Your Motivation
+    verifierMotivation: {
+      motivations: {
+        id: 'verifierMotivations',
+        label: `Why are you interested in becoming a Verifier? [Select all that apply]`,
+        otherFieldId: 'verifierMotivationOther',
+        otherLabel: `Other motivation`,
+        otherPlaceholder: `Please specify your motivation`,
+      },
+      frustration: {
+        id: 'professionalFrustration',
+        label: `What is your biggest professional frustration?`,
+        otherFieldId: 'professionalFrustrationOther',
+        otherLabel: `Other frustration`,
+        otherPlaceholder: `Please specify your frustration`,
+      },
+    },
+
+    // Candidate persona - Section 2: Your Motivation & Challenges
+    candidateMotivationChallenges: {
+      skillValidation: {
+        id: 'skillValidationConfidence',
+        label: `How much do you agree with the following statement: "I would feel more confident in my job search if my skills were validated anonymously by senior engineers"`,
+      },
+      challenges: {
+        id: 'jobSearchChallenges',
+        label: `What is the biggest challenge you face in your job search?`,
+        otherFieldId: 'jobSearchChallengeOther',
+        otherLabel: `Other challenge`,
+        otherPlaceholder: `Please specify your challenge`,
+      },
+      outcomes: {
+        id: 'valuableOutcomes',
+        label: `What would be the SINGLE most valuable outcome for you from a skill-validation platform?`,
+        otherFieldId: 'valuableOutcomeOther',
+        otherLabel: `Other outcome`,
+        otherPlaceholder: `Please specify the outcome`,
+      },
+    },
+
+    // Hiring Manager persona - Section 3: Hiring Demand & Challenges
+    hiringManagerDemandChallenges: {
+      rolesHiring: {
+        id: 'rolesHiring',
+        label: `Which roles are you looking to hire for in the next 3 months?`,
+        description: `Select all that apply`,
+      },
+      seniorityLevel: {
+        id: 'seniorityLevel',
+        label: `What is the most critical seniority level you need to hire?`,
+      },
+      interviewHours: {
+        id: 'hiringInterviewHours',
+        label: `On average, how many hours does your team and you spend interviewing per hire?`,
+      },
+      frustrations: {
+        id: 'hiringFrustrations',
+        label: `What are your biggest frustrations with your current hiring process?`,
+        description: `Select all that apply`,
+      },
+      failures: {
+        id: 'hiringFailures',
+        label: `What hiring failures have you experienced recently?`,
+        description: `Select all that apply`,
+      },
+    },
+  },
+
+  // Step configurations for each persona
+  stepConfigs: {
+    candidate: [
+      {
+        stepNumber: 1,
+        title: 'Contact Information',
+        description: 'Let us know how to reach you',
+        fields: ['email', 'linkedIn', 'githubGitlabUrl', 'newsletterOptIn'],
+      },
+      {
+        stepNumber: 2,
+        title: 'Skills Profile',
+        description: 'Tell us about your skills',
+        fields: ['skillAreas', 'technicalSkills'],
+      },
+      {
+        stepNumber: 3,
+        title: 'Your Candidate Profile',
+        description: 'Tell us about your professional background',
+        fields: [
+          'professionalStatus',
+          'techCommunityMembership',
+          'techCommunityDetails',
+          'githubGitlabUrl',
+        ],
+      },
+      {
+        stepNumber: 4,
+        title: 'Motivation & Challenges',
+        description: 'Help us understand your goals',
+        fields: [
+          'skillValidationConfidence',
+          'jobSearchChallenges',
+          'jobSearchChallengeOther',
+          'valuableOutcomes',
+          'valuableOutcomeOther',
+        ],
+      },
+    ] as WaitlistStepConfig[],
+    verifier: [
+      {
+        stepNumber: 1,
+        title: 'Contact Information',
+        description: 'Let us know how to reach you',
+        fields: ['email', 'linkedIn', 'githubGitlabUrl', 'newsletterOptIn'],
+      },
+      {
+        stepNumber: 2,
+        title: 'Skills Profile',
+        description: 'Tell us about your skills',
+        fields: ['skillAreas', 'technicalSkills'],
+      },
+      {
+        stepNumber: 3,
+        title: 'Your Verification Profile',
+        description: 'Share your professional experience',
+        fields: [
+          'yearsOfExperience',
+          'hoursPerWeek',
+          'professionalStatus',
+          'coachingMentoring',
+          'githubGitlabUrl',
+        ],
+      },
+      {
+        stepNumber: 4,
+        title: 'Your Motivation',
+        description: 'Help us understand your goals',
+        fields: [
+          'verifierMotivations',
+          'verifierMotivationOther',
+          'professionalFrustration',
+          'professionalFrustrationOther',
+        ],
+      },
+    ] as WaitlistStepConfig[],
+    'hiring-manager': [
+      {
+        stepNumber: 1,
+        title: 'Contact Information',
+        description: 'Let us know how to reach you',
+        fields: ['email', 'newsletterOptIn'],
+      },
+      {
+        stepNumber: 2,
+        title: 'Your Company Profile',
+        description: 'Tell us about your company',
+        fields: ['managerRole', 'fundingStage', 'engineeringTeamSize'],
+      },
+      {
+        stepNumber: 3,
+        title: 'Hiring Demand',
+        description: 'Share your hiring needs',
+        fields: ['rolesHiring', 'seniorityLevel', 'hiringInterviewHours'],
+      },
+      {
+        stepNumber: 4,
+        title: 'Hiring Challenges',
+        description: 'Tell us about your challenges',
+        fields: ['hiringFrustrations', 'hiringFailures'],
+      },
+    ] as WaitlistStepConfig[],
+  },
+
+  // Exported constants for backward compatibility and direct access
+  constants: {
+    TOTAL_FORM_STEPS: 4,
+    SKILL_AREAS: [
+      { id: 'frontend', label: 'Frontend Development' },
+      { id: 'backend', label: 'Backend Development' },
+      { id: 'fullstack', label: 'Full Stack Development' },
+      { id: 'devops', label: 'DevOps' },
+      { id: 'data', label: 'Data Science' },
+    ] as SkillArea[],
+    TECHNICAL_SKILLS: [
+      { id: 'react', label: 'React' },
+      { id: 'typescript', label: 'TypeScript' },
+      { id: 'nodejs', label: 'Node.js' },
+      { id: 'python', label: 'Python' },
+      { id: 'aws', label: 'AWS' },
+    ] as TechnicalSkill[],
+    PROFESSIONAL_STATUS_OPTIONS: [
+      { value: 'student', label: 'Student' },
+      { value: 'unemployed', label: 'Unemployed' },
+      { value: 'employed-fulltime', label: 'Employed (full-time)' },
+      { value: 'employed-parttime', label: 'Employed (part-time)' },
+      { value: 'freelancer', label: 'Freelancer' },
+    ],
+    TECH_COMMUNITY_OPTIONS: [
+      { value: 'yes', label: 'Yes, specify:' },
+      { value: 'no', label: 'No' },
+    ],
+    SKILL_VALIDATION_OPTIONS: [
+      { value: 'strongly-agree', label: 'Strongly Agree' },
+      { value: 'agree', label: 'Agree' },
+      { value: 'neutral', label: 'Neutral' },
+      { value: 'disagree', label: 'Disagree' },
+      { value: 'strongly-disagree', label: 'Strongly Disagree' },
+    ],
+    JOB_SEARCH_CHALLENGE_OPTIONS: [
+      { value: 'no-response', label: 'Getting no response after applying' },
+      { value: 'cv-rejections', label: 'My CV is getting rejections' },
+      {
+        value: 'no-feedback',
+        label:
+          'Rejection without clear feedback (even after passing technical rounds)',
+      },
+      {
+        value: 'bias',
+        label: 'Bias (e.g., based on location, background, age, gender)',
+      },
+      { value: 'not-knowing', label: 'Not knowing what to improve' },
+      { value: 'lack-mentorship', label: 'Lack of mentorship / guidance' },
+      { value: 'other', label: 'Other:' },
+    ],
+    VALUABLE_OUTCOME_OPTIONS: [
+      {
+        value: 'credibility',
+        label:
+          'Credibility: A trusted certificate/badge for my resume that gets me more interviews.',
+      },
+      {
+        value: 'clarity-growth',
+        label:
+          'Clarity & Growth: A detailed report with actionable feedback and a personalized plan to improve my skills.',
+      },
+      {
+        value: 'efficiency',
+        label:
+          'Efficiency: Drastically reducing the number of technical screens I have to do for each company.',
+      },
+      {
+        value: 'opportunity',
+        label:
+          "Opportunity: Direct access to job opportunities from companies that trust the platform's assessment.",
+      },
+      { value: 'other', label: 'Other:' },
+    ],
+    YEARS_OF_EXPERIENCE_OPTIONS: [
+      { value: '3-5', label: '3–5 years' },
+      { value: '6-10', label: '6–10 years' },
+      { value: '10+', label: '10+ years' },
+    ],
+    HOURS_PER_WEEK_OPTIONS: [
+      { value: '1-3', label: '1-3 hours' },
+      { value: '4-7', label: '4-7 hours' },
+      { value: '8+', label: '8+ hours' },
+    ],
+    COACHING_MENTORING_OPTIONS: [
+      { value: 'yes', label: 'Yes' },
+      { value: 'no', label: 'No' },
+    ],
+    VERIFIER_MOTIVATION_OPTIONS: [
+      { value: 'improve-hiring', label: 'Improve hiring standards in tech' },
+      { value: 'earn-income', label: 'Earn extra income' },
+      { value: 'mentor-talent', label: 'Mentor and grow future talent' },
+      {
+        value: 'build-reputation',
+        label: 'Build my external reputation and credibility',
+      },
+      {
+        value: 'leadership-work',
+        label: 'Transition into more leadership/advisory work',
+      },
+      { value: 'community', label: 'To be a part of a like minded community' },
+      {
+        value: 'stay-updated',
+        label: 'Staying up-to-date with modern engineering practices and tools',
+      },
+      { value: 'other', label: 'Other:' },
+    ],
+    PROFESSIONAL_FRUSTRATION_OPTIONS: [
+      {
+        value: 'expertise-not-recognized',
+        label:
+          "My leadership and expertise aren't fully recognized or utilized.",
+      },
+      {
+        value: 'undervalued',
+        label: 'I feel undervalued or unfairly compensated for my experience.',
+      },
+      {
+        value: 'lack-autonomy',
+        label: 'Lack of autonomy and too much micromanagement',
+      },
+      {
+        value: 'hiring-flawed',
+        label: 'The technical hiring processes I see are flawed or biased.',
+      },
+      {
+        value: 'no-growth',
+        label: 'Not having the opportunity to grow in my current position',
+      },
+      {
+        value: 'burnout-culture',
+        label: 'Burnout culture disguised as "hustle" or "startup mindset".',
+      },
+      {
+        value: 'meetings-context-switching',
+        label:
+          'Excessive meetings or context-switching hurts productivity and deep work.',
+      },
+      { value: 'other', label: 'Other:' },
+    ],
+    MANAGER_ROLE_OPTIONS: [
+      { value: 'cto-vp', label: 'CTO / VP Engineering' },
+      { value: 'head-engineering', label: 'Head of Engineering' },
+      { value: 'tech-lead', label: 'Tech Lead / Engineering Manager' },
+      { value: 'founder-ceo', label: 'Founder / CEO (hiring first engineers)' },
+      { value: 'recruiter', label: 'Recruiter' },
+    ],
+    FUNDING_STAGE_OPTIONS: [
+      { value: 'pre-seed', label: 'Pre-seed / Bootstrapped' },
+      { value: 'seed', label: 'Seed' },
+      { value: 'series-a', label: 'Series A' },
+      { value: 'series-b', label: 'Series B' },
+      { value: 'profitable', label: 'Profitable / Late-Stage' },
+    ],
+    TEAM_SIZE_OPTIONS: [
+      { value: '0', label: '0' },
+      { value: '1-5', label: '1-5' },
+      { value: '6-15', label: '6-15' },
+      { value: '16-30', label: '16-30' },
+      { value: '30+', label: '30+' },
+    ],
+    ROLES_HIRING_OPTIONS: [
+      { value: 'fullstack', label: 'Full-stack engineer' },
+      { value: 'backend', label: 'Backend engineer' },
+      { value: 'frontend', label: 'Frontend / Web' },
+      { value: 'mobile', label: 'Mobile (iOS / Android / Flutter)' },
+      { value: 'devops', label: 'DevOps / SRE / Platform' },
+      { value: 'ai-ml', label: 'AI / ML / Data' },
+      { value: 'product-design', label: 'Product / Design / QA' },
+      { value: 'leadership', label: 'Engineering leadership' },
+      {
+        value: 'squad',
+        label:
+          'A pre-formed squad (e.g., Full-stack + Engineering leadership + QA)',
+      },
+    ],
+    SENIORITY_LEVEL_OPTIONS: [
+      { value: 'intern', label: 'Intern' },
+      { value: 'mid-level', label: 'Mid-level' },
+      { value: 'senior', label: 'Senior' },
+      { value: 'staff-principal', label: 'Staff / Principal' },
+      {
+        value: 'generalists',
+        label: 'Hands-on startup generalists (wears many hats)',
+      },
+    ],
+    INTERVIEW_HOURS_OPTIONS: [
+      { value: 'less-10', label: 'Less than 10 hours' },
+      { value: '10-20', label: '10 - 20 hours' },
+      { value: '20-40', label: '20 - 40 hours' },
+      { value: '40+', label: "40+ hours (it's a massive drain)" },
+      { value: 'dont-know', label: "I don't know" },
+    ],
+    HIRING_FRUSTRATIONS_OPTIONS: [
+      {
+        value: 'wasting-hours',
+        label: 'Wasting 10+ hours per candidate with my engineering team.',
+      },
+      { value: 'bad-hire-cost', label: 'The fear and cost of a bad hire.' },
+      {
+        value: 'fake-cvs',
+        label: 'Spam of fake people applying with great CVs',
+      },
+      {
+        value: 'cv-mismatch',
+        label:
+          "Massive amount of CVs that don't match the position that I am hiring for",
+      },
+      {
+        value: 'desperate-hiring',
+        label:
+          "Desperate hiring - we don't know who's actually good, but we hire them to fill the position",
+      },
+      {
+        value: 'talkers-not-doers',
+        label: 'Interviewing great "talkers" but average "doers."',
+      },
+      { value: 'other', label: 'Other:' },
+    ],
+    HIRING_FAILURES_OPTIONS: [
+      { value: 'bad-interview', label: 'Bad hire that did great on interview' },
+      {
+        value: 'skill-assessment',
+        label: "Unable to assess the candidate's skills accurately",
+      },
+      {
+        value: 'expensive-talent',
+        label: 'Senior talent too expensive to experiment on',
+      },
+      {
+        value: 'missed-deadlines',
+        label: 'Missed product deadlines due to hiring gap',
+      },
+      { value: 'other', label: 'Other:' },
+    ],
+  },
+} as const
+
+// ============================================================================
 // EXPORT ALL STRINGS
 // ============================================================================
 
@@ -1109,7 +1991,6 @@ export const strings = {
   companyDiscovery,
   process,
   faq,
-  signupModal,
   floatingSignupButton,
   footer,
   contactPage,
@@ -1121,4 +2002,5 @@ export const strings = {
   cvSampleData,
   checkbox,
   radioButton,
+  waitlistForms,
 } as const

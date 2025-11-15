@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useEffect } from 'react'
 import { strings } from '@/lib/strings'
-import { Button } from '@/components/ui/Button'
+import { Button } from '@/components/atoms/Button'
 
 export default function NotFound() {
   // Icons are embedded in strings

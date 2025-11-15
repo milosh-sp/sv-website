@@ -1,17 +1,18 @@
 import type React from 'react'
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
+
 import '../styles/globals.css'
-import { Header } from '@/components/sections/Navigation'
-import { Footer } from '@/components/sections/Footer'
-import { SignupModalProvider } from '@/contexts/SignupModalContext'
+
+import { Header } from '@/components/templates/Navigation'
+import { Footer } from '@/components/templates/Footer'
 import {
   defaultMetadata,
   generateOrganizationSchema,
   generateWebsiteSchema,
 } from '@/lib/seo'
 import { strings } from '@/lib/strings'
-import { GoogleAnalytics } from '@/components/GoogleAnalytics'
+import { GoogleAnalytics } from '@/utils/GoogleAnalytics'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -84,11 +85,12 @@ export default function RootLayout({
           {strings.layout.accessibility.skipToMain}
         </a>
 
-        <SignupModalProvider>
-          <Header />
-          <main id='main-content'>{children}</main>
-          <Footer />
-        </SignupModalProvider>
+        <Header />
+        {/* Main content wrapper with top padding to account for fixed header (80px) */}
+        <main id='main-content' className='pt-20'>
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   )

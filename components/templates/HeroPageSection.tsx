@@ -35,7 +35,7 @@ export function HeroPageSection({ id }: SectionProps) {
                 <h1
                   id='hero-heading'
                   className={cn(
-                    'text-4xl md:text-5xl lg:text-6xl font-bold text-foreground text-balance leading-tight'
+                    'text-4xl md:text-5xl lg:text-6xl font-bold text-foreground text-balance leading-tight '
                   )}
                 >
                   {strings.hero.mainHeading}

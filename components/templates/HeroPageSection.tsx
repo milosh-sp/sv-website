@@ -81,7 +81,7 @@ export function HeroPageSection({ id }: SectionProps) {
 
             {/* Trust Indicators */}
             <ul
-              className={cn('flex flex-col gap-3 text-sm list-none')}
+              className={cn('flex flex-row gap-3 text-sm list-none')}
               aria-label='Trust indicators'
             >
               {strings.hero.trustIndicators.map((indicator) => {

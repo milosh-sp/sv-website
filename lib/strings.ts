@@ -1,21 +1,3 @@
-/**
- * Centralized Content Strings for SkillVerdict
- *
- * This file contains ALL text content used throughout the application.
- * It's organized by sections to make it easy for editors to find and modify content.
- *
- * Structure:
- * - Each section represents a major component or page area
- * - Content is organized logically within each section
- * - All user-facing text should be defined here
- * - Use descriptive property names that indicate the content's purpose
- * - Icons are embedded directly in content objects as Lucide React components
- */
-
-// ============================================================================
-// TYPE IMPORTS
-// ============================================================================
-
 import type { WaitlistStepConfig } from '@/types/WaitlistStep.types'
 
 // ============================================================================
@@ -84,7 +66,7 @@ export const branding = {
   },
 
   // Copyright and legal
-  copyright: `© 2025 Skill Verdict. All rights reserved.`,
+  copyright: `© ${new Date().getFullYear()} Skill Verdict. All rights reserved.`,
 } as const
 
 // ============================================================================
@@ -96,18 +78,20 @@ export const navigation = {
   menu: {
     home: `Home`,
     benefits: `Benefits`,
-    cvPreview: `CV2.0 Preview`,
+    cvPreview: `CV2.0`,
     companies: `Companies`,
     howToJoin: `How it works`,
     faqs: `FAQs`,
+    contact: `Contact`,
   },
 
   // Mobile menu specific items
   mobile: {
-    cvPreview: `CV2.0 Preview`,
-    forCompanies: `For Companies`,
+    cvPreview: `CV2.0`,
+    forCompanies: `Companies`,
     process: `Process`,
     faq: `FAQ`,
+    contact: `Contact`,
   },
 
   // Menu accessibility labels
@@ -130,16 +114,16 @@ export const navigation = {
 
 export const hero = {
   // Main hero content
-  mainHeading: `Don't chase your next role, attract it with your`,
+  mainHeading: `Attract Careers, Not Just Interviews—With the Peer-Verified`,
   /**
    * Will be placed next to the main heading to the right side, with a gradient applied
    */
   mainHeadingHighlight: ` CV2.0!`,
-  subHeading: `Skill Verdict is a decentralized, unbiased and respected community where
-    global tech professionals from leading companies verify your skills. Replace
-    empty resume claims with proven endorsements, build your CV2.0 and get hired
-    faster, or earn income by selling your own credibility as a tech
-    professional`,
+  subHeading: `Backed by anonymous, peer-validated reviews and real-world skill assessments, 
+                CV2.0 proves your true engineering 
+                ability and delivers actionable feedback to 
+                help you grow—while giving companies instant,
+                 trusted access to verified talent they can rely on`,
   callToAction: `Choose your path to get started:`,
 
   // Action buttons
@@ -167,8 +151,8 @@ export const hero = {
   // Accessibility labels
   accessibility: {
     heroSection: `Hero section`,
-    openSignupModal: `Open signup modal to verify your skills`,
-    openEarnModal: `Open signup modal to earn by verifying skills`,
+    openSignupModal: `Navigate to the candidate wait-list`,
+    openEarnModal: `Navigate to the verifier wait-list`,
   },
 } as const
 
@@ -178,11 +162,12 @@ export const hero = {
 
 export const benefits = {
   // Section header
-  heading: `Twitter Community Notes, but for your`,
-  headingHighlight: `skills`,
-  description: `Inspired by models like Twitter's Community Notes, Skill Verdict brings
-    transparent, community-driven verification to member's skills. It's unbiased
-    assessment, powered by the community.`,
+  heading: `Peer-Powered Skill Verification, Inspired by Community Notes`,
+  headingHighlight: `Skill`,
+  description: `Inspired by models like Twitter’s 
+              Community Notes, Skill Verdict brings transparent,
+               community-driven verification to your skills—enabling 
+               trust and bias-free recognition for every member.`,
 
   // Tab labels
   tabs: {
@@ -204,32 +189,33 @@ export const benefits = {
       career with a next-generation CV2.0.`,
     benefits: [
       {
-        title: `Verified skill badges`,
-        description: `Stand out with verified skill badges on your profile`,
+        title: `Your verified skill badges`,
+        description: `Get verified skill badges on your profile—professionally 
+                      endorsed evidence of your abilities.`,
         icon: Medal,
       },
       {
         title: `Possibly skip lengthy interviews`,
-        description: `Chance to reduce multi-step interviews or skip fully because your
-          skills are already verified by world's top talent`,
+        description: `You may be able to skip long technical screens. Top talent already verified by 
+                      industry pros can fast-track the hiring process`,
         icon: FastForward,
       },
       {
-        title: `Increase Hiring Chances`,
-        description: `Don't just say you're good—prove it. Verified skills from top
-          professionals make employers notice`,
+        title: `Increase your hiring chances`,
+        description: `Verified skills from respected professionals catch employers 
+        attention—don't just claim you’re good, prove it!`,
         icon: Rocket,
       },
       {
-        title: `Customizable digital CV2.0`,
-        description: `Share your verified skills instantly. Export a digital CV2.0 with a
-          trusted QR code or send a live link to anyone.`,
+        title: `Passive discovery`,
+        description: `No need to apply to jobs, jobs will be apply to you. With passive discovery 
+        companies will contact you and offer you opportunities.`,
         icon: QrCode,
       },
     ],
   },
 
-  // Guru membersection
+  // Guru member section
   guruMembers: {
     iconAriaLabel: `Dollar sign icon for tech professionals`,
     description: `Top talent is valued in the Skill Verdict community. Monetize your
@@ -237,22 +223,22 @@ export const benefits = {
     benefits: [
       {
         title: `Earn extra income`,
-        description: `Get paid for reviewing code and conducting technical interviews`,
+        description: `Get paid for reviewing code and conducting technical interviews—turn your experience into extra income.`,
         icon: DollarSign,
       },
       {
-        title: `Flexible schedule`,
-        description: `Work on your own time from anywhere - no contracts or minimum hours`,
+        title: `Your schedule`,
+        description: `By verifying skills, you establish yourself as an industry expert, building your professional reputation among peers.`,
         icon: Calendar,
       },
       {
         title: `Build your reputation`,
-        description: `Establish yourself as an industry expert in the community`,
+        description: `By verifying skills, you establish yourself as an industry expert, building your professional reputation among peers`,
         icon: TrendingUp,
       },
       {
-        title: `Expand your network`,
-        description: `Connect with talented tech professionals`,
+        title: `Expand your skills and network`,
+        description: `By collaborating with talented members across the Skill Verdict community. `,
         icon: Network,
       },
     ],
@@ -262,7 +248,7 @@ export const benefits = {
   accessibility: {
     benefitsSection: `How Skill Verdict works for different users`,
     membersPanel: `Members panel`,
-    guruMembersPanel: `Guru memberpanel`,
+    guruMembersPanel: `Guru member panel`,
   },
 } as const
 
@@ -317,23 +303,30 @@ export const companyDiscovery = {
   // Section content
   icon: Building2,
   iconAriaLabel: `Building icon for company discovery`,
-  heading: `Your CV2.0 attracts companies!`,
-  description: `With passive discovery, companies on Skill Verdict discover and contact
-    you directly with opportunities that match your verified skills.`,
-
+  heading: `Discover and Hire Verified Talent, Instantly`,
+  description: `Ditch the guesswork. Skill Verdict gives your company access to a trusted pool of peer-verified engineers—proven in real-world conditions, not just interview puzzles.`,
   // Benefits list
   benefits: [
     {
-      text: `Passive discovery`,
-      icon: CheckCircle,
+      title: `Instantly identify true experts`,
+      description: `Browse a talent pool where every candidate's abilities are validated through anonymous, real-world project evaluations—no more relying on self-reported claims or artificial assessments.`,
+      icon: UserCheck,
     },
     {
-      text: `Direct company contact`,
-      icon: CheckCircle,
+      title: `Reduce Time-to-Hire`,
+      description: `Skip redundant screening rounds. Candidates demonstrate proven skills in hands-on, scenario-based reviews, so your team interviews only those already recognized for excellence by domain experts.`,
+      icon: Clock,
+    },
+
+    {
+      title: `Access Broader, More Diverse Talent`,
+      description: `Skill Verdict's decentralized, anonymous review process neutralizes hiring bias, allowing you to connect with high-potential professionals from all backgrounds and geographies—opening doors to hidden talent.`,
+      icon: Globe,
     },
     {
-      text: `No applications needed`,
-      icon: CheckCircle,
+      title: `Seamless Integration & Passive Candidate Discovery`,
+      description: `No applications needed. Reach out directly to pre-qualified professionals whose verified skills match your exact requirements, or let passive discovery bring strong contenders to you.`,
+      icon: Search,
     },
   ],
 
@@ -1135,6 +1128,10 @@ export const waitlistForms = {
     { id: 'nodejs', label: 'Node.js' },
     { id: 'python', label: 'Python' },
     { id: 'aws', label: 'AWS' },
+    { id: 'docker', label: 'Docker' },
+    { id: 'kubernetes', label: 'Kubernetes' },
+    { id: 'git', label: 'Git' },
+    { id: 'ci-cd', label: 'CI/CD' },
   ] as TechnicalSkill[],
 
   // ========================================================================
@@ -1395,11 +1392,10 @@ export const waitlistForms = {
       description: `Help verify skills and build trust in our community`,
     },
     'hiring-manager': {
-      title: `Find Verified Talent`,
+      title: `Discover verified talent`,
       description: `Access our network of verified professionals`,
     },
   },
-
   // Success screen messages
   successScreen: {
     candidate: {

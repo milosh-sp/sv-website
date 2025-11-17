@@ -42,11 +42,13 @@ export const navigationData = [
     Component: CvPreviewPageSection,
   },
   {
+    id: 'faq',
     label: strings.navigation.menu.faqs,
     href: '/#faq',
     Component: FaqPageSection,
   },
   {
+    id: 'contact',
     label: strings.footer.links.contactUs,
     href: '/contact',
   },

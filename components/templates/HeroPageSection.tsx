@@ -24,9 +24,11 @@ export function HeroPageSection({ id }: SectionProps) {
           )}
         >
           {/* Left Content */}
-          <header className={cn('animate-fade-in-up')}>
+          <header className={cn('animate-fade-in-up text-center lg:text-left')}>
             {/* Main Heading with Accent Bar */}
-            <hgroup className={cn('flex gap-4 mb-8')}>
+            <hgroup
+              className={cn('flex gap-4 mb-8 justify-center lg:justify-start')}
+            >
               <div
                 className={cn(
                   'w-1 bg-linear-to-b from-primary to-primary/60 rounded-full'
@@ -48,7 +50,9 @@ export function HeroPageSection({ id }: SectionProps) {
             </hgroup>
 
             {/* Subheading with Accent Bar */}
-            <div className={cn('flex gap-4 mb-8')}>
+            <div
+              className={cn('flex gap-4 mb-8 justify-center lg:justify-start')}
+            >
               <div
                 className={cn('w-1 bg-success rounded-full')}
                 aria-hidden='true'
@@ -64,7 +68,9 @@ export function HeroPageSection({ id }: SectionProps) {
             </div>
 
             {/* Call to Action with Accent Bar */}
-            <aside className={cn('flex gap-4 mb-8')}>
+            <aside
+              className={cn('flex gap-4 mb-8 justify-center lg:justify-start')}
+            >
               <div
                 className={cn('w-1 rounded-full bg-purple')}
                 aria-hidden='true'
@@ -75,13 +81,18 @@ export function HeroPageSection({ id }: SectionProps) {
             </aside>
 
             {/* Buttons */}
-            <nav className={cn('mb-12')} aria-label='Hero actions'>
+            <nav
+              className={cn('mb-12 flex justify-center lg:justify-start')}
+              aria-label='Hero actions'
+            >
               <HeroButtons />
             </nav>
 
             {/* Trust Indicators */}
             <ul
-              className={cn('flex flex-row gap-3 text-sm list-none')}
+              className={cn(
+                'flex flex-row gap-3 text-sm list-none justify-center lg:justify-start'
+              )}
               aria-label='Trust indicators'
             >
               {strings.hero.trustIndicators.map((indicator) => {
@@ -105,7 +116,7 @@ export function HeroPageSection({ id }: SectionProps) {
           </header>
 
           {/* Right Visual */}
-          <figure className={cn('hidden lg:block')}>
+          <figure>
             <HeroVisual />
           </figure>
         </article>

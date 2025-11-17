@@ -83,7 +83,7 @@ export function Header() {
             className={cn(
               'flex items-center gap-3',
               'hover:opacity-80 transition-opacity duration-200',
-              'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg'
+              'rounded-lg'
             )}
             aria-label={strings.navigation.accessibility.goToHomepage}
           >

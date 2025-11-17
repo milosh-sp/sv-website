@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <>
       {navigationData.map(({ id, Component }) => {
-        if (!Component) return null
+        if (!Component || !id) return null
         // Renders each section based on the navigation data order
         return <Component key={id} id={id} />
       })}

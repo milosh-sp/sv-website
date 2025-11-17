@@ -16,7 +16,9 @@ const SCROLL_MARGIN_TOP_MOBILE = 96
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  const scrollToSection = (sectionId: string) => {
+  const scrollToSection = (sectionId?: string) => {
+    if (!sectionId) return
+
     setIsMenuOpen(false)
     const element = document.getElementById(sectionId)
     if (!element) {

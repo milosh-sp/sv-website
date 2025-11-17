@@ -16,7 +16,7 @@ export function ConditionalField({
   if (!condition) return null
 
   return (
-    <div className={cn('ml-7 mt-2', className)} {...props}>
+    <div className={cn('mt-3 mb-3', className)} {...props}>
       {children}
     </div>
   )

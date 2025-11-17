@@ -258,38 +258,34 @@ export const benefits = {
 
 export const cvPreview = {
   // Section header
-  heading: `Your CV2.0 - The only CV that grows with you`,
-  description: `See what makes your CV2.0 different from traditional resumes.
-  Our flexible CV2.0 platform lets you showcase your verified skills in a
-  format that best represents your expertise and achievements.
-  Your CV2.0 updates automatically if you update you linkedin or github, or
-  yourself.`,
-  note: `Note: This is a simplified demo version, our CV2.0 platform is heavily
-  in development and is going to be much more advanced and customizable with
-  your feedback.`,
+  heading: `Your CV2.0 - The Living CV that Opens Opportunities`,
+  description: `Showcase your verified skills in a way regular resumes can’t. With CV2.0, your profile automatically updates with your latest achievements from GitHub, LinkedIn, and peer reviews—no manual work required.
+
+Demonstrate real expertise with verified badges, and always keep your credentials fresh, accurate, and matched to what employers actually want to see.
+
+Worried about privacy or control? Your data stays yours—customize what gets displayed and update your CV2.0 anytime.`,
+  note: `Note: This is a demo—help us shape CV2.0 to fit your needs. Your feedback will make it even more powerful and personalized. The community will build the CV2.0, not us.`,
 
   // CV features
   features: [
     {
-      title: `QR Code live links`,
-      description: `Anyone can access your CV2.0 by scanning your unique QR code`,
+      title: `Share instantly, connect everywhere`,
+      description: `Anyone can access your CV2.0 by scanning your unique QR code — network in person, online, or at events with one seamless tap.`,
       icon: QrCode,
     },
     {
       title: `Skill Badges`,
-      description: `Visual badges show exactly which skills have been verified by the
-        community`,
+      description: `Visual badges highlight every skill you’ve been peer-verified for — stand out to employers and collaborators at a glance.`,
       icon: Shield,
     },
     {
       title: `Optimized metadata`,
-      description: `Your live CV2.0 page and exported PDF file contain optimized metadata`,
+      description: `Your live CV2.0 and exported PDF come with optimized metadata, so you’re more discoverable in recruiter searches and professional databases.`,
       icon: Database,
     },
     {
-      title: `Your personal business card`,
-      description: `Your CV2.0 can be added to your Apple or Google wallet to be used as
-        your personal business card`,
+      title: `Your brand, your personal business card`,
+      description: `Add your CV2.0 to your Apple or Google Wallet — now your verified skills travel with you, ready to share anytime, anywhere.`,
       icon: IdCard,
     },
   ],
@@ -329,7 +325,6 @@ export const companyDiscovery = {
       icon: Search,
     },
   ],
-
   // Section accessibility
   accessibility: {
     companyDiscoverySection: `How companies discover and contact verified talent`,
@@ -344,44 +339,47 @@ export const process = {
   // Section header
   heading: `How Skill Verdict Works`,
   description: {
-    members: `As a Member, your skills can be evaluated by a Guru using their own preferred technique. 
-    This means each review is shaped by the Guru’s personal expertise and unique approach, giving you a more authentic and practical assessment of your abilities. 
-    It’s an opportunity to learn from real experience, not just a standardized test. 
-    You can verify as many skills as you want, and you can always add new skills to your profile.`,
-    guruMembers: `As a Guru, you have the freedom to evaluate a Member’s skills using your own preferred technique. 
-      This allows you to leverage your personal expertise and unique approach, ensuring a more authentic and practical skill review.`,
+    members: `As a Member, your skills are evaluated by Guru reviewers with their own real world techniques so every endorsement reflects practical, professional expertise, not just another generic quiz. Want to expand your abilities? Verify as many skills as you like and add new ones whenever you’re ready.
+     Each review boosts your profile with peer-validated badges,
+      making you stand out to employers who trust 
+      Skill Verdict’s hiring signal.`,
+    guruMembers: `As a Guru, you set the standard — review Members’ skills your way, using your preferred methods and proven expertise. 
+    Your evaluations shape authentic, actionable feedback, helping candidates grow through real-world scenarios, not just theory.
+By mentoring and validating others,
+ you not only influence the next generation of
+ talent but also build your reputation as a respected industry expert.`,
   },
 
   // Tab labels
   tabs: {
     members: `Members`,
-    guruMembers: `Tech professionals`,
+    guruMembers: `Guru members`,
   },
 
   // Process steps for members
   memberSteps: [
     {
       title: `1. Create your profile`,
-      description: `Connect your github profile and linkedin, and modify your new CV2.0 to
-        your perfection`,
+      description: `Connect your GitHub and LinkedIn—instantly build your new, dynamic CV2.0 and showcase your real-world experience.`,
       icon: FileText,
     },
     {
       title: `2. Prepare for verification`,
-      description: `Choose the skills you want to verify and pick your guru member to
-        verify your skills`,
+      description: `Select any skills you want to get verified (add more any time) and pick your Guru for a personalized, skill-based assessment.`,
       icon: Brain,
     },
     {
       title: `3. Verification process`,
-      description: `The guru member sends you an assignment for you to complete and then
-        your solution is discussed with them`,
+      description: `Receive a practical assignment from your Guru reviewer, 
+      complete it, and get actionable, 
+      growth-focused feedback in a real conversation.`,
       icon: Video,
     },
     {
       title: `4. Final verdict`,
-      description: `If you pass the technical discussion, you will receive your verified
-        skill badge and get a chance to rate the guru member`,
+      description: `Pass the review to earn your verified skill badge, 
+      boost your profile visibility, 
+      and rate your experience to help others choose top Gurus.`,
       icon: CheckCircle,
     },
   ],
@@ -389,27 +387,29 @@ export const process = {
   // Process steps for tech professionals
   guruMembersteps: [
     {
-      title: `1. Create your profile`,
-      description: `Connect your github profile and linkedin, and modify your new CV2.0 to
-        your perfection`,
+      title: `1. Create your Guru profile`,
+      description: `Connect your LinkedIn and GitHub to showcase your real industry expertise and 
+      set up your personalized Guru identity.`,
       icon: ClipboardList,
     },
     {
-      title: `2. Guru interview`,
-      description: `You will be interviewed by other gurus to determine if you are a fit to
-        become a guru member`,
+      title: `2. Pass the Guru interview`,
+      description: `Join a collaborative interview with 
+      other Gurus to demonstrate your technical know-how 
+      and mentoring experience—the community only admits trusted experts.`,
       icon: Video,
     },
     {
-      title: `3. Start verifying`,
-      description: `Access our AI-assisted dashboard to easily review member candidate
-        submissions`,
+      title: `3. Start mentoring`,
+      description: `Access our intuitive AI-powered dashboard 
+      to review candidates, design meaningful assessments,
+      and provide valuable feedback that strengthens the entire community.`,
       icon: MessageCircle,
     },
     {
-      title: `4. Earn`,
-      description: `Earn income by selling your credibility. Grow your expertise by
-        learning from candidate feedback.`,
+      title: `4. Earn recognition and income`,
+      description: `Get rewarded for your expertise: 
+      earn money with every review, grow your reputation as an industry leader, and sharpen your skills through real-world candidate challenges.`,
       icon: DollarSign,
     },
   ],
@@ -427,44 +427,37 @@ export const faq = {
   members: [
     {
       question: `How does the verification process work?`,
-      answer: `Our verification process involves a multi-step evaluation where your
-        skills are assessed by experienced guru member in the field. Our guru
-        member come from different backgrounds and companies like Google,
-        Netflix, Airbnb, Amazon, Meta and many more. Once verified, your skills
-        are permanently recorded and can be easily validated by employers
-        through QR codes or direct links.`,
+      answer: `Our multi-step process lets your skills shine—every 
+      submission is reviewed by expert Gurus with real
+       hiring backgrounds (think Google, Netflix, Amazon, Meta).
+        You’ll complete practical assessments, get actionable feedback, and, once verified,
+         your skills are recorded and easily shareable by QR code or direct link—ready for 
+         employers to see in seconds.`,
     },
     {
       question: `How long does it take to get a skill or skills verified?`,
-      answer: `The verification process typically takes 1-3 business days, depending
-        on the complexity of the skills being assessed and the availability of
-        our verifiers.`,
+      answer: `No more endless waiting. 
+      Most verifications take just 1–3 day, so you can move forward in your job search or unlock new opportunities right away. 
+      Timing depends on the skills and Guru availability, but we keep it fast.`,
     },
     {
       question: `Can I update my skills after verification?`,
-      answer: `Yes, you can always add new skills or request re-verification of
-        existing skills as you continue to develop your expertise. The platform
-        is designed to grow with your career.`,
+      answer: `Absolutely. Add new skills anytime, or ask for re-verification as you level up your CV2.0 evolves with your career. You’re never locked in, making ongoing growth and credibility effortless.`,
     },
     {
-      question: `I am not happy with my verification outcome, what can I do?`,
-      answer: `You can always submit a complaint if you think you have not been
-        treated fairly. We will investigate your complaint, if your claim turns
-        out to be true, we will assign a new guru member to your case.`,
+      question: `What if I’m not happy with my verification outcome?`,
+      answer: `Your fairness matters. If you feel your skills weren’t evaluated properly, simply file a complaint. We’ll review your case, and if needed, connect you to a different Guru for a fresh, unbiased assessment—so you always have a voice and a path to a fair outcome.`,
     },
     {
-      question: `Can I become a guru member and earn?`,
-      answer: `Of course you can, after you have verified the skills you want to
-        verify other members skills with, you can apply and go through the
-        become a guru member process.`,
+      question: `Can I become a Guru member and earn?`,
+      answer: `Absolutely! Once you've successfully verified your own skills, you can apply to become a Guru. Share your expertise, help others grow, and earn income each time you verify members’ skills. It’s a rewarding way to level up your own reputation, grow your network, and get paid for your experience.`,
     },
     {
       question: `Is my data and code safe? Who can see my verification results?`,
-      answer: `Your privacy is paramount. Your specific code and assignment solutions
-        are only visible to the verifiers assigned to you. Your public profile
-        and CV2.0 will only show the skills you choose to make public and their
-        verification status. You have full control over your visibility
-        settings.`,
+      answer: `Your privacy and security are at the core of Skill Verdict. 
+      Only your assigned verifiers can see your code and assignment solutions. 
+      Your public CV2.0 and profile will display just the skills you choose and you always control what’s visible to employers or the public. 
+      You’re in charge of your data, your privacy, and every detail of your profile.`,
     },
   ],
 
@@ -472,30 +465,23 @@ export const faq = {
   verifiers: [
     {
       question: `How much can I earn as a guru member?`,
-      answer: `Earnings are based on a share of the verification fee for each
-        assessment you complete. The more complex the skill, the higher the fee
-        and your potential earnings. We provide a clear breakdown of potential
-        earnings in your verifier dashboard.`,
+      answer: `Your earning power grows with your expertise. For every skill assessment you complete, you earn a share of the verification fee, higher complexity means higher rewards. Track your income and see exactly what you’ve earned in your dashboard. The more you help, the more you earn.`,
     },
     {
       question: `What's the time commitment for being a guru member?`,
-      answer: `There is no minimum time commitment. You can choose to take on as many
-        or as few verification tasks as your schedule allows. The platform is
-        designed for flexibility.`,
+      answer: `You’re in control! There’s no minimum time requirement. Take on as many or as few verifications as you want, whenever it fits your schedule. It’s flexible by design, so you can contribute and earn on your terms, no pressure.`,
     },
     {
       question: `How does the "AI-assisted dashboard" help me?`,
-      answer: `Our dashboard helps you streamline the review process. It can help with
-        initial code analysis, flagging common patterns, managing your queue of
-        assignments, and generating structured feedback templates, allowing you
-        to focus on the high-level assessment.`,
+      answer: `Our dashboard does the heavy lifting, so you can focus on what matters—mentoring and evaluating. It speeds up code review, flags patterns, organizes your queue, and provides templates for feedback, letting you deliver great, consistent experiences without extra busywork.`,
     },
     {
       question: `What happens if a candidate disputes my assessment?`,
-      answer: `Our admin team will review the dispute neutrally. If your feedback is
-        found to be constructive, professional, and accurate, your rating and
-        standing will be unaffected. This system protects verifiers from
-        frivolous disputes while ensuring fairness for members.`,
+      answer: `We stand by fairness. If a candidate disputes your review, our admins handle the case neutrally and privately. As long as your feedback is fair and constructive, your reputation remains protected. The platform is designed to support both verifiers and candidates, making sure everyone gets a fair process.`,
+    },
+    {
+      question: `What payment methods do you support?`,
+      answer: `We will support many payment methods, including bank transfer, Bitcoin, Ethereum, and more. You can view and manage your earnings in your dashboard.`,
     },
   ],
 } as const
@@ -523,11 +509,7 @@ export const footer = {
   contactUs: `Contact us`,
   email: `contact@skillverdict.com`,
   // Social media
-  social: {
-    twitter: `Twitter profile`,
-    linkedin: `LinkedIn profile`,
-    github: `GitHub profile`,
-  },
+  social: {},
 } as const
 
 // ============================================================================
@@ -538,25 +520,26 @@ export const contactPage = {
   // Page header
   title: `Contact Us`,
   heading: `Get in Touch`,
-  description: `Have a question or want to learn more about Skill Verdict? We'd love to hear from you. Fill out the form below and we'll get back to you as soon as possible.`,
+  description: `Have a question, feedback or want to learn more about Skill Verdict? 
+  We'd love to hear from you. Fill out the form below and we'll get back to you as soon as possible.`,
 
   // Form fields
   form: {
     email: {
       label: `Email address`,
-      placeholder: `your.email@example.com *`,
+      placeholder: `your.email@example.com`,
       ariaLabel: `Email address field`,
       icon: Mail,
     },
     contactName: {
       label: `Name (Company or Individual)`,
-      placeholder: `Your name or company name *`,
+      placeholder: `Company or individual name`,
       ariaLabel: `Name field`,
       icon: User,
     },
     message: {
       label: `Message`,
-      placeholder: `Tell us how we can help you... *`,
+      placeholder: `Your message...`,
       ariaLabel: `Message field`,
       icon: MessageCircle,
     },
@@ -1147,7 +1130,7 @@ export const waitlistForms = {
   ],
 
   techCommunityOptions: [
-    { value: 'yes', label: 'Yes, specify:' },
+    { value: 'yes', label: 'Yes, please specify' },
     { value: 'no', label: 'No' },
   ],
 
@@ -1161,15 +1144,16 @@ export const waitlistForms = {
 
   jobSearchChallengeOptions: [
     { value: 'no-response', label: 'Getting no response after applying' },
-    { value: 'cv-rejections', label: 'My CV is getting rejections' },
+    { value: 'cv-rejections', label: 'My CV is always getting rejections' },
     {
       value: 'no-feedback',
       label:
-        'Rejection without clear feedback (even after passing technical rounds)',
+        'Rejection without clear feedback (even after completing every interview round successfully)',
     },
     {
       value: 'bias',
-      label: 'Bias (e.g., based on location, background, age, gender)',
+      label:
+        'Bias (e.g., based on geographical location, background, age, gender)',
     },
     { value: 'not-knowing', label: 'Not knowing what to improve' },
     { value: 'lack-mentorship', label: 'Lack of mentorship / guidance' },
@@ -1384,37 +1368,37 @@ export const waitlistForms = {
   // Page headers for waitlist forms
   pageHeaders: {
     candidate: {
-      title: `Join Our Candidate Waitlist`,
-      description: `Get your skills verified and discover opportunities`,
+      title: `Get Discovered — Unlock Opportunities!`,
+      description: `Answer few simple questions, and be the first to get exclusive early access to Skill Verdict`,
     },
     verifier: {
       title: `Become a Skill Verifier`,
-      description: `Help verify skills and build trust in our community`,
+      description: `Answer few simple questions, and find out how you can earn money by verifying skills`,
     },
     'hiring-manager': {
-      title: `Discover verified talent`,
-      description: `Access our network of verified professionals`,
+      title: `Discover untapped potential and hire verified talent`,
+      description: `Gain access to a pool of verified talent and reduce your time-to-hire drastically`,
     },
   },
   // Success screen messages
   successScreen: {
     candidate: {
-      title: `Welcome to the Waitlist!`,
-      description: `Thank you for joining our candidate waitlist. We'll review your profile and get back to you soon with next steps.`,
-      checkEmailMessage: `Check your email for confirmation and next steps.`,
-      backToHomepage: `Back to Homepage`,
+      title: `You have just unlocked tons of opportunities and your full potential!`,
+      description: `Thanks for joining Skill Verdict. You’ll be among the first to access verified badges and get matched with top opportunities as soon as Skill Verdict launches`,
+      checkEmailMessage: `Keep a look at your inbox, we will keep you updated, and not spam you.`,
+      backToHomepage: `Lean more about Skill Verdict`,
     },
     verifier: {
-      title: `Welcome to the Verifier Program!`,
-      description: `Thank you for your interest in becoming a verifier. We'll review your qualifications and contact you shortly.`,
-      checkEmailMessage: `Check your email for confirmation and next steps.`,
-      backToHomepage: `Back to Homepage`,
+      title: `You just joined the biggest community of tech gurus!`,
+      description: `Thanks for your interest in becoming a Skill Verifier. Get ready to mentor, earn, and build your professional brand.`,
+      checkEmailMessage: `Keep a look at your inbox, we will keep you updated, and not spam you.`,
+      backToHomepage: `Lean more about Skill Verdict`,
     },
     'hiring-manager': {
-      title: `Welcome to Our Hiring Platform!`,
-      description: `Thank you for joining our hiring manager waitlist. We'll be in touch soon with information about verified talent.`,
-      checkEmailMessage: `Check your email for confirmation and next steps.`,
-      backToHomepage: `Back to Homepage`,
+      title: `You just tapped into the world's best talent!`,
+      description: `Thank you for showing interest in community verified talent. We’ll connect you with the first group of thoroughly verified candidates as soon as we go live, helping you hire with confidence from day one.`,
+      checkEmailMessage: `Keep a look at your inbox, we will keep you updated, and not spam you.`,
+      backToHomepage: `Lean more about Skill Verdict`,
     },
   },
 
@@ -1426,7 +1410,8 @@ export const waitlistForms = {
       ariaLabel: `Email address field`,
     },
     technicalSkills: {
-      label: `What technical skills do you have?`,
+      label: `What technical skills best describe you?`,
+      placeholder: `Search and select at least one skill`,
     },
     linkedIn: {
       label: `LinkedIn Profile URL`,
@@ -1435,7 +1420,7 @@ export const waitlistForms = {
     },
     githubGitlabUrl: {
       label: `GitHub or GitLab Profile URL`,
-      placeholder: `https://github.com/yourprofile (optional)`,
+      placeholder: `GitHub or GitLab profile URL`,
       ariaLabel: `GitHub or GitLab profile URL field`,
     },
     website: {
@@ -1478,20 +1463,20 @@ export const waitlistForms = {
     privacyConsent: `I agree to the Privacy Policy`,
     newsletterOptIn: `Subscribe to our newsletter`,
     professionalStatus: `What is your current professional status?`,
-    techCommunityMembership: `Are you already a member of a tech community?`,
+    techCommunityMembership: `Are you already a part of an active tech communities?`,
     skillValidationConfidence: `How much do you agree with the following statement: "I would feel more confident in my job search if my skills were validated anonymously by senior engineers"`,
-    jobSearchChallenges: `What is the biggest challenge you face in your job search?`,
-    valuableOutcomes: `What would be the SINGLE most valuable outcome for you from a skill-validation platform?`,
-    yearsOfExperience: `Years of experience`,
-    hoursPerWeek: `Roughly how many hours per week would you be available for verification work?`,
+    jobSearchChallenges: `What is the biggest challenges you face or faced in your job search?`,
+    valuableOutcomes: `What would be the biggest benefit you want to see from a skill validation platform?`,
+    yearsOfExperience: `Your years of industry experience in your current or past role`,
+    hoursPerWeek: `Roughly how many hours per week would you want to dedicate to reviewing candidates?`,
     coachingMentoring: `Have you ever done coaching or mentoring?`,
-    verifierMotivations: `Why are you interested in becoming a Verifier? [Select all that apply]`,
-    professionalFrustration: `What is your biggest professional frustration?`,
-    managerRole: `What is your role?`,
+    verifierMotivations: `What motivates you to become a verifier and help others grow?`,
+    professionalFrustration: `What is your biggest professional frustrations in your current or past roles?`,
+    managerRole: `What is your current position in your company?`,
     fundingStage: `What is your company's current funding stage?`,
     engineeringTeamSize: `What is the size of your engineering team?`,
     rolesHiring: `Which roles are you looking to hire for in the next 3 months?`,
-    seniorityLevel: `What is the most critical seniority level you need to hire?`,
+    seniorityLevel: `What is the most urgent seniority level you need to hire?`,
     hiringInterviewHours: `On average, how many hours does your team and you spend interviewing per hire?`,
     hiringFrustrations: `What are your biggest frustrations with your current hiring process?`,
     hiringFailures: `What hiring failures have you experienced recently?`,
@@ -1507,7 +1492,7 @@ export const waitlistForms = {
 
   // Privacy policy consent
   privacyPolicyConsent: {
-    prefix: `By signing up, you agree to our `,
+    prefix: `By submitting this form, you agree to our`,
     linkText: `Privacy Policy`,
     href: `/privacy-policy`,
     ariaLabel: `Read our privacy policy`,
@@ -1734,243 +1719,6 @@ export const waitlistForms = {
         fields: ['hiringFrustrations', 'hiringFailures'],
       },
     ] as WaitlistStepConfig[],
-  },
-
-  // Exported constants for backward compatibility and direct access
-  constants: {
-    TOTAL_FORM_STEPS: 4,
-    SKILL_AREAS: [
-      { id: 'frontend', label: 'Frontend Development' },
-      { id: 'backend', label: 'Backend Development' },
-      { id: 'fullstack', label: 'Full Stack Development' },
-      { id: 'devops', label: 'DevOps' },
-      { id: 'data', label: 'Data Science' },
-    ] as SkillArea[],
-    TECHNICAL_SKILLS: [
-      { id: 'react', label: 'React' },
-      { id: 'typescript', label: 'TypeScript' },
-      { id: 'nodejs', label: 'Node.js' },
-      { id: 'python', label: 'Python' },
-      { id: 'aws', label: 'AWS' },
-    ] as TechnicalSkill[],
-    PROFESSIONAL_STATUS_OPTIONS: [
-      { value: 'student', label: 'Student' },
-      { value: 'unemployed', label: 'Unemployed' },
-      { value: 'employed-fulltime', label: 'Employed (full-time)' },
-      { value: 'employed-parttime', label: 'Employed (part-time)' },
-      { value: 'freelancer', label: 'Freelancer' },
-    ],
-    TECH_COMMUNITY_OPTIONS: [
-      { value: 'yes', label: 'Yes, specify:' },
-      { value: 'no', label: 'No' },
-    ],
-    SKILL_VALIDATION_OPTIONS: [
-      { value: 'strongly-agree', label: 'Strongly Agree' },
-      { value: 'agree', label: 'Agree' },
-      { value: 'neutral', label: 'Neutral' },
-      { value: 'disagree', label: 'Disagree' },
-      { value: 'strongly-disagree', label: 'Strongly Disagree' },
-    ],
-    JOB_SEARCH_CHALLENGE_OPTIONS: [
-      { value: 'no-response', label: 'Getting no response after applying' },
-      { value: 'cv-rejections', label: 'My CV is getting rejections' },
-      {
-        value: 'no-feedback',
-        label:
-          'Rejection without clear feedback (even after passing technical rounds)',
-      },
-      {
-        value: 'bias',
-        label: 'Bias (e.g., based on location, background, age, gender)',
-      },
-      { value: 'not-knowing', label: 'Not knowing what to improve' },
-      { value: 'lack-mentorship', label: 'Lack of mentorship / guidance' },
-      { value: 'other', label: 'Other:' },
-    ],
-    VALUABLE_OUTCOME_OPTIONS: [
-      {
-        value: 'credibility',
-        label:
-          'Credibility: A trusted certificate/badge for my resume that gets me more interviews.',
-      },
-      {
-        value: 'clarity-growth',
-        label:
-          'Clarity & Growth: A detailed report with actionable feedback and a personalized plan to improve my skills.',
-      },
-      {
-        value: 'efficiency',
-        label:
-          'Efficiency: Drastically reducing the number of technical screens I have to do for each company.',
-      },
-      {
-        value: 'opportunity',
-        label:
-          "Opportunity: Direct access to job opportunities from companies that trust the platform's assessment.",
-      },
-      { value: 'other', label: 'Other:' },
-    ],
-    YEARS_OF_EXPERIENCE_OPTIONS: [
-      { value: '3-5', label: '3–5 years' },
-      { value: '6-10', label: '6–10 years' },
-      { value: '10+', label: '10+ years' },
-    ],
-    HOURS_PER_WEEK_OPTIONS: [
-      { value: '1-3', label: '1-3 hours' },
-      { value: '4-7', label: '4-7 hours' },
-      { value: '8+', label: '8+ hours' },
-    ],
-    COACHING_MENTORING_OPTIONS: [
-      { value: 'yes', label: 'Yes' },
-      { value: 'no', label: 'No' },
-    ],
-    VERIFIER_MOTIVATION_OPTIONS: [
-      { value: 'improve-hiring', label: 'Improve hiring standards in tech' },
-      { value: 'earn-income', label: 'Earn extra income' },
-      { value: 'mentor-talent', label: 'Mentor and grow future talent' },
-      {
-        value: 'build-reputation',
-        label: 'Build my external reputation and credibility',
-      },
-      {
-        value: 'leadership-work',
-        label: 'Transition into more leadership/advisory work',
-      },
-      { value: 'community', label: 'To be a part of a like minded community' },
-      {
-        value: 'stay-updated',
-        label: 'Staying up-to-date with modern engineering practices and tools',
-      },
-      { value: 'other', label: 'Other:' },
-    ],
-    PROFESSIONAL_FRUSTRATION_OPTIONS: [
-      {
-        value: 'expertise-not-recognized',
-        label:
-          "My leadership and expertise aren't fully recognized or utilized.",
-      },
-      {
-        value: 'undervalued',
-        label: 'I feel undervalued or unfairly compensated for my experience.',
-      },
-      {
-        value: 'lack-autonomy',
-        label: 'Lack of autonomy and too much micromanagement',
-      },
-      {
-        value: 'hiring-flawed',
-        label: 'The technical hiring processes I see are flawed or biased.',
-      },
-      {
-        value: 'no-growth',
-        label: 'Not having the opportunity to grow in my current position',
-      },
-      {
-        value: 'burnout-culture',
-        label: 'Burnout culture disguised as "hustle" or "startup mindset".',
-      },
-      {
-        value: 'meetings-context-switching',
-        label:
-          'Excessive meetings or context-switching hurts productivity and deep work.',
-      },
-      { value: 'other', label: 'Other:' },
-    ],
-    MANAGER_ROLE_OPTIONS: [
-      { value: 'cto-vp', label: 'CTO / VP Engineering' },
-      { value: 'head-engineering', label: 'Head of Engineering' },
-      { value: 'tech-lead', label: 'Tech Lead / Engineering Manager' },
-      { value: 'founder-ceo', label: 'Founder / CEO (hiring first engineers)' },
-      { value: 'recruiter', label: 'Recruiter' },
-    ],
-    FUNDING_STAGE_OPTIONS: [
-      { value: 'pre-seed', label: 'Pre-seed / Bootstrapped' },
-      { value: 'seed', label: 'Seed' },
-      { value: 'series-a', label: 'Series A' },
-      { value: 'series-b', label: 'Series B' },
-      { value: 'profitable', label: 'Profitable / Late-Stage' },
-    ],
-    TEAM_SIZE_OPTIONS: [
-      { value: '0', label: '0' },
-      { value: '1-5', label: '1-5' },
-      { value: '6-15', label: '6-15' },
-      { value: '16-30', label: '16-30' },
-      { value: '30+', label: '30+' },
-    ],
-    ROLES_HIRING_OPTIONS: [
-      { value: 'fullstack', label: 'Full-stack engineer' },
-      { value: 'backend', label: 'Backend engineer' },
-      { value: 'frontend', label: 'Frontend / Web' },
-      { value: 'mobile', label: 'Mobile (iOS / Android / Flutter)' },
-      { value: 'devops', label: 'DevOps / SRE / Platform' },
-      { value: 'ai-ml', label: 'AI / ML / Data' },
-      { value: 'product-design', label: 'Product / Design / QA' },
-      { value: 'leadership', label: 'Engineering leadership' },
-      {
-        value: 'squad',
-        label:
-          'A pre-formed squad (e.g., Full-stack + Engineering leadership + QA)',
-      },
-    ],
-    SENIORITY_LEVEL_OPTIONS: [
-      { value: 'intern', label: 'Intern' },
-      { value: 'mid-level', label: 'Mid-level' },
-      { value: 'senior', label: 'Senior' },
-      { value: 'staff-principal', label: 'Staff / Principal' },
-      {
-        value: 'generalists',
-        label: 'Hands-on startup generalists (wears many hats)',
-      },
-    ],
-    INTERVIEW_HOURS_OPTIONS: [
-      { value: 'less-10', label: 'Less than 10 hours' },
-      { value: '10-20', label: '10 - 20 hours' },
-      { value: '20-40', label: '20 - 40 hours' },
-      { value: '40+', label: "40+ hours (it's a massive drain)" },
-      { value: 'dont-know', label: "I don't know" },
-    ],
-    HIRING_FRUSTRATIONS_OPTIONS: [
-      {
-        value: 'wasting-hours',
-        label: 'Wasting 10+ hours per candidate with my engineering team.',
-      },
-      { value: 'bad-hire-cost', label: 'The fear and cost of a bad hire.' },
-      {
-        value: 'fake-cvs',
-        label: 'Spam of fake people applying with great CVs',
-      },
-      {
-        value: 'cv-mismatch',
-        label:
-          "Massive amount of CVs that don't match the position that I am hiring for",
-      },
-      {
-        value: 'desperate-hiring',
-        label:
-          "Desperate hiring - we don't know who's actually good, but we hire them to fill the position",
-      },
-      {
-        value: 'talkers-not-doers',
-        label: 'Interviewing great "talkers" but average "doers."',
-      },
-      { value: 'other', label: 'Other:' },
-    ],
-    HIRING_FAILURES_OPTIONS: [
-      { value: 'bad-interview', label: 'Bad hire that did great on interview' },
-      {
-        value: 'skill-assessment',
-        label: "Unable to assess the candidate's skills accurately",
-      },
-      {
-        value: 'expensive-talent',
-        label: 'Senior talent too expensive to experiment on',
-      },
-      {
-        value: 'missed-deadlines',
-        label: 'Missed product deadlines due to hiring gap',
-      },
-      { value: 'other', label: 'Other:' },
-    ],
   },
 } as const
 

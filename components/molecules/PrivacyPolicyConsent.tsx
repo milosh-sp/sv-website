@@ -2,12 +2,13 @@ import { cn } from '@/lib/utils'
 import type { PrivacyPolicyConsentProps } from '@/types/PrivacyPolictConsent.types'
 import Link from 'next/link'
 import { Text } from '@/components/atoms/Text'
+import { strings } from '@/lib/strings'
 
 export function PrivacyPolicyConsent({
-  prefix,
-  linkText,
-  href,
-  ariaLabel,
+  prefix = strings.waitlistForms.privacyPolicyConsent.prefix,
+  linkText = strings.waitlistForms.privacyPolicyConsent.linkText,
+  href = strings.waitlistForms.privacyPolicyConsent.href,
+  ariaLabel = strings.waitlistForms.privacyPolicyConsent.ariaLabel,
   className,
 }: PrivacyPolicyConsentProps) {
   return (

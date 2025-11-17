@@ -90,6 +90,9 @@ export function CandidateWaitlistForm() {
             label={strings.waitlistForms.fields.skillAreas.label}
           />
           <TechnicalSkillsSection
+            placeholder={
+              strings.waitlistForms.fields.technicalSkills.placeholder
+            }
             label={strings.waitlistForms.fields.technicalSkills.label}
             selectedSkills={technicalSkills}
             technicalSkills={strings.waitlistForms.technicalSkills}

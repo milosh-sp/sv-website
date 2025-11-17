@@ -85,12 +85,15 @@ export function HiringManagerWaitlistForm() {
       const fields: FormFieldConfig[] = [
         {
           id: 'seniorityLevel',
-          type: 'radio',
+          type: 'checkbox',
           label: strings.waitlistForms.labels.seniorityLevel,
           options: seniorityLevelOptions,
           value: form.formData.seniorityLevel,
-          onChange: (value) =>
-            form.handleFieldChange('seniorityLevel', value as string),
+          onChange: (values) =>
+            form.handleFieldChange('seniorityLevel', JSON.stringify(values)),
+          otherFieldId: 'seniorityLevelOther',
+          onOtherChange: (value) =>
+            form.handleFieldChange('seniorityLevelOther', value),
           error: form.errors.seniorityLevel,
         },
         {

@@ -325,6 +325,9 @@ export const companyDiscovery = {
       icon: Search,
     },
   ],
+  buttons: {
+    hiringManagerCta: `Discover verified talent`,
+  },
   // Section accessibility
   accessibility: {
     companyDiscoverySection: `How companies discover and contact verified talent`,

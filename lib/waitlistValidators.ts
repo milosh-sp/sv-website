@@ -27,7 +27,7 @@ import type { ValidationErrors } from '@/types/WaitlistValidation.types'
  * Note: Consent is implicit - users consent by submitting the form
  * LinkedIn and GitHub/GitLab are only validated if provided (for Candidate/Verifier forms)
  */
-export function validateContactConsentStep(data: {
+function validateContactConsentStep(data: {
   email: string
   linkedIn?: string
   githubGitlabUrl?: string
@@ -76,7 +76,7 @@ export function validateContactConsentStep(data: {
  * Used by: Candidate, Verifier
  * Validates: skill areas, technical skills
  */
-export function validateSkillsProfileStep(data: {
+function validateSkillsProfileStep(data: {
   skillAreas: string
   technicalSkills: string
 }): ValidationErrors {
@@ -102,7 +102,7 @@ export function validateSkillsProfileStep(data: {
  * Validate JSON array field
  * Reusable for any field that stores JSON stringified arrays
  */
-export function validateJsonArrayField(
+function validateJsonArrayField(
   fieldValue: string,
   fieldName: string,
   minItems: number = 1
@@ -125,7 +125,7 @@ export function validateJsonArrayField(
  * Validate conditional "other" field
  * Used when a field has an "other" option that requires text input
  */
-export function validateConditionalOtherField(
+function validateConditionalOtherField(
   arrayFieldValue: string,
   otherFieldValue: string,
   otherFieldName: string
@@ -151,7 +151,7 @@ export function validateConditionalOtherField(
  * Validate URL field
  * Reusable for GitHub/GitLab URLs and company websites
  */
-export function validateUrlField(
+function validateUrlField(
   fieldValue: string,
   fieldName: string,
   required: boolean = true
@@ -176,7 +176,7 @@ export function validateUrlField(
  * Validate radio button field
  * Reusable for single-select fields
  */
-export function validateRadioField(
+function validateRadioField(
   fieldValue: string,
   fieldName: string
 ): Record<string, string> {
@@ -187,4 +187,13 @@ export function validateRadioField(
   }
 
   return errors
+}
+
+export {
+  validateContactConsentStep,
+  validateSkillsProfileStep,
+  validateJsonArrayField,
+  validateConditionalOtherField,
+  validateUrlField,
+  validateRadioField,
 }

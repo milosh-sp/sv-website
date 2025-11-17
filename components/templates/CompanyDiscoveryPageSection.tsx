@@ -36,7 +36,7 @@ export function CompanyDiscoveryPageSection({ id }: SectionProps) {
           onClick={() => router.push('/hiring-manager')}
           className={cn('mb-8 p-6')}
         >
-          {strings.waitlistForms.pageHeaders['hiring-manager'].title}
+          {strings.companyDiscovery.buttons.hiringManagerCta}
         </Button>
 
         <BenefitCards

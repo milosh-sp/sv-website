@@ -1,10 +1,3 @@
-/**
- * Centralized SEO Configuration for SkillVerdict
- * This file serves as the single source of truth for all SEO-related values
- *
- * Content is imported from strings.ts to maintain single source of truth
- */
-
 import { strings } from './strings'
 
 // ============================================================================
@@ -266,35 +259,3 @@ export const technicalSeo = {
     'theme-color': '#ffffff',
   },
 } as const
-
-// ============================================================================
-// SITEMAP CONFIGURATION
-// ============================================================================
-
-export const sitemapConfig = {
-  pages: [
-    {
-      url: '',
-      lastModified: new Date(),
-      changeFrequency: 'daily' as const,
-      priority: 1.0,
-      images: [
-        '/og-image.min.png',
-        '/og-image.svg',
-        '/placeholder-logo.png',
-        '/placeholder-user.jpg',
-        '/placeholder.jpg',
-      ],
-    },
-    {
-      url: '/contact',
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    },
-  ],
-} as const
-
-// ============================================================================
-// EXPORT TYPES
-// ============================================================================

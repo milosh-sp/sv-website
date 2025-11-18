@@ -17,7 +17,7 @@ export function FaqList({
     <article className={cn('mb-16')} aria-labelledby={headingId} {...props}>
       <HeaderAndDescription heading={heading} />
 
-      <dl className={cn('space-y-4')}>
+      <dl className={cn('space-y-4 animate-fade-in-up')}>
         {faqs.map((faq, index) => {
           const adjustedIndex = index + indexOffset
           const isOpen = openItems.includes(adjustedIndex)

@@ -855,49 +855,54 @@ export const cvSampleData = {
       verifier: `Emily Zhang - Cloud Architect at Amazon`,
     },
     { name: `Docker`, verified: `unverified` },
+    {
+      name: `AI / ML`,
+      verified: `verified`,
+      verifier: `Mark James - AI Engineer at OpenAI`,
+    },
   ],
   education: [
     {
       name: `MSc Computer Science`,
       degree: `MSc Computer Science`,
-      institution: `Stanford University`,
-      year: `2016`,
+      institution: `Harvard University`,
+      period: `2014 - 2016`,
       verified: `unverified`,
     },
     {
       name: `BSc Software Engineering`,
       degree: `BSc Software Engineering`,
-      institution: `UC Berkeley`,
-      year: `2014`,
+      institution: `Oxford University`,
+      period: `2010 - 2014`,
       verified: `verified`,
-      verifier: `John Doe - Professor at UC Berkeley`,
+      verifier: `Peter Tufano - Professor at Oxford University`,
     },
   ],
   experience: [
     {
-      title: `Senior Developer`,
-      company: `TechInnovate Inc.`,
+      title: `Senior AI Engineer`,
+      company: `OpenAI`,
       period: `2020 - Present`,
-      description: `Lead development of customer-facing web applications using React and
-        Node.js. Mentored junior developers and implemented CI/CD pipelines.`,
+      description: `Lead development of LLM powered and generative AI features. 
+      Architect scalable, cloud-native AI solutions on AWS/Azure.
+       Mentor team on AI-assisted development. `,
       verified: `unverified`,
     },
     {
       title: `Full Stack Developer`,
-      company: `WebSolutions LLC`,
+      company: `Amazon `,
       period: `2017 - 2020`,
-      description: `Developed and maintained multiple web applications for clients across
-        various industries. Implemented responsive designs and optimized
-        performance.`,
+      description: `Architected scalable, cloud-native applications. 
+      Led CI/CD pipelines, containerization (Docker/Kubernetes), and microservices. Worked on the Angular framework.`,
       verified: `verified`,
-      verifier: `Jane Smith - CTO at WebSolutions LLC`,
+      verifier: `Taylor Swift - Technical Lead at Amazon`,
     },
     {
-      title: `Junior Developer`,
-      company: `DigitalCreations`,
+      title: `Junior Backend Developer`,
+      company: `YouTube`,
       period: `2015 - 2017`,
-      description: `Assisted in development of front-end interfaces and backend APIs.
-        Participated in code reviews and agile development processes.`,
+      description: `Developed features using modern frameworks (React, Node.js). 
+      Gained experience in RESTful API design and cloud platform (AWS) services.`,
       verified: `unverified`,
     },
   ],
@@ -963,11 +968,6 @@ export const cvSampleData = {
   qrSection: {
     scanText: `Scan to view my verified skills`,
     viewHistoryLink: `View full verification history`,
-  },
-  statusLabels: {
-    verified: `✓ Verified`,
-    pending: `⏱ Pending`,
-    unverified: `⏱ Unverified`,
   },
 } as const
 

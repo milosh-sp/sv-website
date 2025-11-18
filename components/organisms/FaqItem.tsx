@@ -18,7 +18,7 @@ export const FaqItem = ({
   return (
     <div
       className={cn(
-        'bg-white rounded-lg border overflow-hidden transition-colors hover:border-blue-500',
+        'bg-white rounded-lg border overflow-hidden transition-colors hover:border-blue-500 shadow-accent',
         isOpen ? 'border-blue-500' : 'border-gray-450'
       )}
       {...props}
@@ -47,8 +47,10 @@ export const FaqItem = ({
       <dd
         id={panelId}
         className={cn(
-          'px-6 pb-4 border-t border-border',
-          isOpen ? 'block' : 'hidden'
+          'px-6 pb-4 border-t border-border transition-all duration-300 ease-in-out',
+          isOpen
+            ? 'block animate-collapsible-down'
+            : 'hidden animate-collapsible-up'
         )}
       >
         <Text variant='body' className='text-muted-foreground pt-4'>

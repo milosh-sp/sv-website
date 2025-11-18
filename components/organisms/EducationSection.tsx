@@ -17,8 +17,8 @@ export function EducationSection() {
             <Heading level={4} variant='subheading' size='sm'>
               {edu.degree}
             </Heading>
-            <time className='text-xs text-gray-500' dateTime={edu.year}>
-              {edu.year}
+            <time className='text-xs text-gray-500' dateTime={edu.period}>
+              {edu.period}
             </time>
           </header>
           <Text variant='caption' className='text-slate-800 mb-2'>

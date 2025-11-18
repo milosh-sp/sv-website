@@ -834,28 +834,23 @@ export const cvSampleData = {
     languages: `Languages`,
   },
   skills: [
+    { name: `Docker`, verified: `unverified` },
     {
       name: `JavaScript`,
-      verified: `verified`,
+      verified: `pending`,
       verifier: `Sarah Chen - Senior Developer at Google`,
     },
+    { name: `Node.js`, verified: `pending` },
     {
       name: `React`,
       verified: `verified`,
       verifier: `Michael Rodriguez - Engineering Lead at Meta`,
-    },
-    { name: `Node.js`, verified: `pending` },
-    {
-      name: `Python`,
-      verified: `verified`,
-      verifier: `James Wilson - Principal Engineer at Netflix`,
     },
     {
       name: `AWS`,
       verified: `verified`,
       verifier: `Emily Zhang - Cloud Architect at Amazon`,
     },
-    { name: `Docker`, verified: `unverified` },
     {
       name: `AI / ML`,
       verified: `verified`,
@@ -931,11 +926,6 @@ export const cvSampleData = {
   ],
   certifications: [
     {
-      name: `AWS Certified`,
-      verifier: `David Kim - Solutions Architect at Amazon`,
-      verified: `verified`,
-    },
-    {
       name: `React Expert`,
       verifier: `Lisa Johnson - Frontend Lead at Meta`,
     },
@@ -944,19 +934,24 @@ export const cvSampleData = {
       verifier: `Robert Williams - Backend Engineer at Netflix`,
       verified: `pending`,
     },
+    {
+      name: `AWS Certified`,
+      verifier: `David Kim - Solutions Architect at Amazon`,
+      verified: `verified`,
+    },
   ],
   languages: [
+    {
+      name: `Spanish`,
+      level: `B2`,
+      verified: `pending`,
+      icon: Globe,
+    },
     {
       name: `English`,
       level: `C2`,
       verified: `verified`,
       verifier: `Sarah Mitchell - Language Specialist at Cambridge Assessment`,
-      icon: Globe,
-    },
-    {
-      name: `Spanish`,
-      level: `B2`,
-      verified: `pending`,
       icon: Globe,
     },
     {

@@ -20,7 +20,7 @@ export function HeroButtons({
 
   return (
     <article
-      className={cn('flex flex-col sm:flex-row gap-4 mb-12')}
+      className={cn('flex flex-col sm:flex-row gap-4 mb-1 md:mb-12')}
       aria-label='Primary actions'
     >
       {showCandidate && (

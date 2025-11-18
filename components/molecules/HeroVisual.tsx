@@ -11,7 +11,7 @@ export function HeroVisual() {
   const router = useRouter()
 
   return (
-    <div className={cn('relative h-96 md:h-full min-h-96')}>
+    <div className={cn('relative h-full')}>
       <CV2TeaserPreview />
 
       <div className={cn('flex justify-center align-center mt-5')}>

@@ -16,7 +16,7 @@ export function VerifierTooltip({
         'absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2',
         'px-3 py-2 bg-slate-900 text-white text-xs rounded-lg',
         'opacity-0 group-hover:opacity-100 transition-all duration-200',
-        'z-10 shadow-lg max-w-48 pointer-events-none',
+        'z-99 shadow-lg max-w-48 pointer-events-none',
         className
       )}
       {...props}

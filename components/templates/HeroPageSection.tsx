@@ -116,7 +116,7 @@ export function HeroPageSection({ id }: SectionProps) {
           </header>
 
           {/* Right Visual */}
-          <figure>
+          <figure className={cn('animate-fade-in-up')}>
             <HeroVisual />
           </figure>
         </article>

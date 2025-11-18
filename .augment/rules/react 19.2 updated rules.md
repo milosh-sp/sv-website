@@ -2,7 +2,7 @@
 type: "always_apply"
 ---
 
-[Rect Project Architecture]
+[React Project Architecture]
 - If the react project usese 'Atomic Design' and 'Feature based Architecture' follow it strictly
 
 [React-Specific Requirements]  
@@ -346,7 +346,8 @@ function UserDashboard() {
 
 [Code Quality Standards]  
 - Instead of using `case` use simple object k:v
-- Add one export on the bottom of the file if there are two more exports for example `export { func1, funcs }`
+- For types add one export on the bottom of the type file if there are two more exports for example `export { func1, funcs }`,
+  for component export use `export function Component()`
 - ES7+ Features Required:  
   - Async/await over promise chains  
   - Optional chaining (?.) + Nullish coalescing (??)  

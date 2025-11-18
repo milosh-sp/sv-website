@@ -9,6 +9,7 @@ import { useState } from 'react'
 import { HeaderLink } from '@/components/molecules/HeaderLink'
 import logo from '@/public/logo-sv.svg'
 import { cn } from '@/lib/utils'
+import { DecorativeText } from '../atoms/DecorativeText'
 
 const SCROLL_MARGIN_TOP_DESKTOP = 96
 const SCROLL_MARGIN_TOP_MOBILE = 96
@@ -94,16 +95,7 @@ export function Header() {
               height={25}
               aria-hidden='true'
             />
-
-            <span
-              className={cn(
-                'text-2xl font-bold',
-                'bg-linear-to-r from-blue-600 to-blue-800',
-                'bg-clip-text text-transparent'
-              )}
-            >
-              {strings.branding.companyName}
-            </span>
+            <DecorativeText text={strings.branding.companyName} />
           </Link>
 
           {/* Desktop Navigation */}

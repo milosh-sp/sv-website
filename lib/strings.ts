@@ -130,6 +130,7 @@ export const hero = {
   buttons: {
     verifySkills: `Verify my skills`,
     earnByVerifying: `Earn by verifying`,
+    hireMeNow: `Hire me now`,
   },
 
   // Trust indicators with embedded icons
@@ -139,7 +140,7 @@ export const hero = {
       icon: Shield,
     },
     {
-      text: `No time commitment`,
+      text: `Your time, your schedule`,
       icon: Clock,
     },
     {
@@ -1389,19 +1390,19 @@ export const waitlistForms = {
       title: `You have just unlocked tons of opportunities and your full potential!`,
       description: `Thanks for joining Skill Verdict. You’ll be among the first to access verified badges and get matched with top opportunities as soon as Skill Verdict launches`,
       checkEmailMessage: `Keep a look at your inbox, we will keep you updated, and not spam you.`,
-      backToHomepage: `Lean more about Skill Verdict`,
+      backToHomepage: `Learn more about Skill Verdict`,
     },
     verifier: {
       title: `You just joined the biggest community of tech gurus!`,
       description: `Thanks for your interest in becoming a Skill Verifier. Get ready to mentor, earn, and build your professional brand.`,
       checkEmailMessage: `Keep a look at your inbox, we will keep you updated, and not spam you.`,
-      backToHomepage: `Lean more about Skill Verdict`,
+      backToHomepage: `Learn more about Skill Verdict`,
     },
     'hiring-manager': {
       title: `You just tapped into the world's best talent!`,
       description: `Thank you for showing interest in community verified talent. We’ll connect you with the first group of thoroughly verified candidates as soon as we go live, helping you hire with confidence from day one.`,
       checkEmailMessage: `Keep a look at your inbox, we will keep you updated, and not spam you.`,
-      backToHomepage: `Lean more about Skill Verdict`,
+      backToHomepage: `Learn more about Skill Verdict`,
     },
   },
 

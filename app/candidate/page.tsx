@@ -7,6 +7,11 @@ import { SuccessScreen } from '@/components/organisms/SuccessScreen'
 import { PageHeader } from '@/components/molecules/PageHeader'
 import { PageLayout } from '@/components/templates/PageLayout'
 import { strings } from '@/lib/strings'
+import { generateMetadata } from '@/lib/seo'
+import { pageSeoConfig } from '@/lib/seo-config'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = generateMetadata(pageSeoConfig.candidate)
 
 function CandidateFormContent() {
   const context = useCandidateFormContext()

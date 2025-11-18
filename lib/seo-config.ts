@@ -4,7 +4,7 @@ import { strings } from './strings'
 // CORE SITE CONFIGURATION
 // ============================================================================
 
-export const siteConfig = {
+const siteConfig = {
   // Basic site information
   name: strings.branding.companyName,
   title: `${strings.branding.companyName} | ${strings.branding.tagline}`,
@@ -25,16 +25,14 @@ export const siteConfig = {
 
   // Contact information
   contact: {
-    email: 'support@skillverdict.com',
-    legalEmail: 'legal@skillverdict.com',
-    privacyEmail: 'privacy@skillverdict.com',
+    email: 'contact@skillverdict.com',
   },
 
   // Company information
   company: {
     name: strings.branding.companyName,
-    foundingDate: '2024',
-    category: 'Technology',
+    foundingDate: '2025',
+    category: 'HR Technology',
     creator: strings.branding.companyName,
     publisher: strings.branding.companyName,
   },
@@ -51,7 +49,7 @@ export const siteConfig = {
 // KEYWORDS AND SEO TERMS
 // ============================================================================
 
-export const seoKeywords = {
+const seoKeywords = {
   // Primary keywords
   primary: [
     'skill verification',
@@ -121,7 +119,7 @@ export const seoKeywords = {
 // PAGE-SPECIFIC SEO CONFIGURATION
 // ============================================================================
 
-export const pageSeoConfig = {
+const pageSeoConfig = {
   home: {
     title: siteConfig.title,
     description: siteConfig.description,
@@ -145,14 +143,49 @@ export const pageSeoConfig = {
     canonical: `${siteConfig.url}/contact`,
     ogImage: siteConfig.ogImage,
   },
-} as const
+
+  candidate: {
+    title: `${strings.waitlistForms.pageHeaders.candidate.title} | ${strings.branding.companyName}`,
+    description: strings.waitlistForms.pageHeaders.candidate.description,
+    keywords: [...seoKeywords.primary, ...seoKeywords.secondary],
+    canonical: `${siteConfig.url}/candidate`,
+    ogImage: siteConfig.ogImage,
+  },
+
+  verifier: {
+    title: `${strings.waitlistForms.pageHeaders.verifier.title} | ${strings.branding.companyName}`,
+    description: strings.waitlistForms.pageHeaders.verifier.description,
+    keywords: [
+      ...seoKeywords.primary,
+      'code review',
+      'earn money',
+      'peer review',
+    ],
+    canonical: `${siteConfig.url}/verifier`,
+    ogImage: siteConfig.ogImage,
+  },
+
+  hiringManager: {
+    title: `${strings.waitlistForms.pageHeaders['hiring-manager'].title} | ${strings.branding.companyName}`,
+    description:
+      strings.waitlistForms.pageHeaders['hiring-manager'].description,
+    keywords: [
+      ...seoKeywords.primary,
+      'hiring',
+      'recruitment',
+      'verified talent',
+    ],
+    canonical: `${siteConfig.url}/hiring-manager`,
+    ogImage: siteConfig.ogImage,
+  },
+}
 
 // ============================================================================
 // STRUCTURED DATA CONTENT
 // ============================================================================
 // Note: Content is now sourced from strings.ts to maintain single source of truth
 
-export const structuredData = {
+const structuredData = {
   // Hero section content
   hero: {
     mainHeading: strings.hero.mainHeading,
@@ -183,7 +216,7 @@ export const structuredData = {
 // ============================================================================
 // Note: Content is now sourced from strings.ts to maintain single source of truth
 
-export const faqContent = {
+const faqContent = {
   member: strings.faq.members,
   verifier: strings.faq.verifiers,
 } as const
@@ -192,7 +225,7 @@ export const faqContent = {
 // TECHNICAL SEO CONFIGURATION
 // ============================================================================
 
-export const technicalSeo = {
+const technicalSeo = {
   // Robots configuration
   robots: {
     index: true,
@@ -259,3 +292,12 @@ export const technicalSeo = {
     'theme-color': '#ffffff',
   },
 } as const
+
+export {
+  siteConfig,
+  seoKeywords,
+  pageSeoConfig,
+  structuredData,
+  faqContent,
+  technicalSeo,
+}

@@ -175,6 +175,7 @@ export const benefits = {
   tabs: {
     members: `Members`,
     guruMembers: `Guru members`,
+    hiringManagers: `Hiring managers`,
   },
 
   // Tab accessibility
@@ -427,6 +428,8 @@ By mentoring and validating others,
 export const faq = {
   membersHeading: `Frequently asked questions for Members`,
   verifiersHeading: `Frequently asked questions for Guru members`,
+  hiringManagersHeading: `Frequently asked questions for Hiring Managers`,
+  contactUsButton: `Have more questions? Contact us`,
 
   // Members FAQ
   members: [
@@ -487,6 +490,24 @@ export const faq = {
     {
       question: `What payment methods do you support?`,
       answer: `We will support many payment methods, including bank transfer, Bitcoin, Ethereum, and more. You can view and manage your earnings in your dashboard.`,
+    },
+  ],
+
+  hiringManagers: [
+    {
+      question: `Can I hire entire teams or just individuals?`,
+      answer: `You can hire both pre-formed teams (squads) and individual vetted developers, helping to speed up project launches with ready-to-work groups.`,
+    },
+    {
+      question: `What if a candidate doesn’t meet our skill level?`,
+      answer: `Candidates receive clear feedback and a roadmap to improve, making every assessment a growth opportunity instead of a dead end.`,
+    },
+    {
+      question: `How does peer-validated assessment reduce hiring risk?`,
+      answer: `Traditional interviews often fail to surface true skill, leading to costly bad hires. 
+      With CV 2.0, candidates are evaluated by a decentralized network of qualified engineers and domain experts. 
+      This peer review system ensures that only candidates with proven, real-world abilities receive higher skill tiers.
+       You can trust these credentials because they’re backed by community validation, not just a single company’s flawed process.`,
     },
   ],
 } as const

@@ -1,11 +1,12 @@
 import { strings } from '@/lib/strings'
 import type { TwoSidesButtonsProps } from '@/types/TwoSidesButtons.types'
-import { Award, CircleStar } from 'lucide-react'
+import { Award, CircleStar, Handshake } from 'lucide-react'
 import { SideTabButton } from '@/components/atoms/SideButton'
 
 export function TwoSidesButtons({
   activeTab,
   onTabChange,
+  showHiringManager,
 }: TwoSidesButtonsProps) {
   return (
     <div className='flex justify-center mb-12'>
@@ -28,6 +29,15 @@ export function TwoSidesButtons({
           label={strings.benefits.tabs.guruMembers}
           ariaControls='guru-panel'
         />
+        {showHiringManager && (
+          <SideTabButton
+            isActive={activeTab === 'hiring-manager'}
+            onClick={() => onTabChange('hiring-manager')}
+            icon={Handshake}
+            label={strings.benefits.tabs.hiringManagers}
+            ariaControls='hiring-manager-panel'
+          />
+        )}
       </div>
     </div>
   )

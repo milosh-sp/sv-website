@@ -48,6 +48,7 @@ import {
   User,
   UserCheck,
   Video,
+  Users,
 } from 'lucide-react'
 
 // ============================================================================
@@ -196,15 +197,15 @@ export const benefits = {
         icon: Medal,
       },
       {
-        title: `Possibly skip lengthy interviews`,
-        description: `You may be able to skip long technical screens. Top talent already verified by 
-                      industry pros can fast-track the hiring process`,
-        icon: FastForward,
+        title: `Anonymous, fair and unbiased skill verification`,
+        description: `We make that the verification process as transparent and fair as possible, the guru members
+        will not know who they are verifying, which insures they focus on the candidate's skills and not their personal biases.`,
+        icon: Users,
       },
       {
         title: `Increase your hiring chances`,
         description: `Verified skills from respected professionals catch employers 
-        attention—don't just claim you’re good, prove it!`,
+        attention—don't just claim you’re good, prove it and possibly skip technical interviews!`,
         icon: Rocket,
       },
       {
@@ -260,7 +261,7 @@ export const benefits = {
 export const cvPreview = {
   // Section header
   heading: `Your CV2.0 - The Living CV that Opens Opportunities`,
-  description: `Showcase your verified skills in a way regular resumes can’t. With CV2.0, your profile automatically updates with your latest achievements from GitHub, LinkedIn, and peer reviews—no manual work required.
+  description: `Showcase your verified skills in a way regular resumes can’t. With CV2.0, your profile automatically updates with your latest achievements and peer reviews, no manual work required.
 
 Demonstrate real expertise with verified badges, and always keep your credentials fresh, accurate, and matched to what employers actually want to see.
 
@@ -322,7 +323,7 @@ export const companyDiscovery = {
     },
     {
       title: `Seamless Integration & Passive Candidate Discovery`,
-      description: `No applications needed. Reach out directly to pre-qualified professionals whose verified skills match your exact requirements, or let passive discovery bring strong contenders to you.`,
+      description: `Reach out directly to pre-qualified professionals whose verified skills match your exact requirements, or let passive discovery bring strong contenders to you.`,
       icon: Search,
     },
   ],
@@ -364,7 +365,7 @@ By mentoring and validating others,
   memberSteps: [
     {
       title: `1. Create your profile`,
-      description: `Connect your GitHub and LinkedIn—instantly build your new, dynamic CV2.0 and showcase your real-world experience.`,
+      description: `Connect your professional and portfolio accounts to instantly build your new, dynamic CV2.0 and showcase your real-world experience.`,
       icon: FileText,
     },
     {
@@ -392,7 +393,7 @@ By mentoring and validating others,
   guruMembersteps: [
     {
       title: `1. Create your Guru profile`,
-      description: `Connect your LinkedIn and GitHub to showcase your real industry expertise and 
+      description: `Connect your professional and portfolio accounts to showcase your real industry expertise and 
       set up your personalized Guru identity.`,
       icon: ClipboardList,
     },
@@ -446,7 +447,7 @@ export const faq = {
     },
     {
       question: `Can I update my skills after verification?`,
-      answer: `Absolutely. Add new skills anytime, or ask for re-verification as you level up your CV2.0 evolves with your career. You’re never locked in, making ongoing growth and credibility effortless.`,
+      answer: `Absolutely. Add new skills anytime, or ask for re-verification as you level up your CV2.0 evolves with your career. You’re never locked, making ongoing growth and credibility effortless.`,
     },
     {
       question: `What if I’m not happy with my verification outcome?`,

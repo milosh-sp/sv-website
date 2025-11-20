@@ -5,9 +5,6 @@
 import type { Metadata } from 'next'
 import { siteConfig, seoKeywords, technicalSeo } from './seo-config'
 
-// Re-export siteConfig for backward compatibility
-export { siteConfig }
-
 // Default metadata for the application
 export const defaultMetadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -16,10 +13,14 @@ export const defaultMetadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  keywords: seoKeywords.primary,
+  keywords: [
+    ...seoKeywords.primary,
+    ...seoKeywords.secondary,
+    ...seoKeywords.longTail,
+  ],
   authors: [
     {
-      name: 'SkillVerdict Team',
+      name: 'Skill Verdict Team',
       url: siteConfig.url,
     },
   ],
@@ -75,14 +76,21 @@ export interface PageMetadata {
 }
 
 export function generateMetadata(pageData: PageMetadata): Metadata {
-  const title = pageData.title
-    ? `${pageData.title} | ${siteConfig.name}`
-    : siteConfig.title
+  const title = pageData.title ? `${pageData.title}` : siteConfig.title
 
   const description = pageData.description || siteConfig.description
   const keywords = pageData.keywords
-    ? [...seoKeywords.primary, ...pageData.keywords]
-    : seoKeywords.primary
+    ? [
+        ...seoKeywords.primary,
+        ...seoKeywords.secondary,
+        ...seoKeywords.longTail,
+        ...pageData.keywords,
+      ]
+    : [
+        ...seoKeywords.primary,
+        ...seoKeywords.secondary,
+        ...seoKeywords.longTail,
+      ]
 
   const ogImage = pageData.ogImage || siteConfig.ogImage
   const canonical = pageData.canonical || siteConfig.url
@@ -196,15 +204,14 @@ export function generateServiceSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    name: 'Skill Verification Service',
+    name: siteConfig.name,
     provider: {
       '@type': 'Organization',
-      name: siteConfig.name,
+      name: siteConfig.company.name,
       url: siteConfig.url,
     },
-    description:
-      'Professional skill verification and assessment service for developers and tech professionals',
-    serviceType: 'Professional Verification',
+    description: siteConfig.description,
+    serviceType: siteConfig.company.category,
     areaServed: 'Worldwide',
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
@@ -223,9 +230,27 @@ export function generateServiceSchema() {
           '@type': 'Offer',
           itemOffered: {
             '@type': 'Service',
-            name: 'CV2.0 Generation',
+            name: 'Talent Marketplace',
             description:
-              'Modern, verified CV generation with community validation',
+              'Access to verified, pre-screened talent for hiring needs',
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Outsourcing talent',
+            description:
+              'Hire remote developers for short-term or long-term projects',
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Online coding tests',
+            description:
+              'Online coding tests, challenges for skill assessment and coding challenges',
           },
         },
       ],

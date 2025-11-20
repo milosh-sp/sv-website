@@ -9,14 +9,22 @@ import { useState } from 'react'
 import { HeaderLink } from '@/components/molecules/HeaderLink'
 import logo from '@/public/logo-sv.svg'
 import { cn } from '@/lib/utils'
+import { DecorativeText } from '../atoms/DecorativeText'
 
 const SCROLL_MARGIN_TOP_DESKTOP = 96
 const SCROLL_MARGIN_TOP_MOBILE = 96
+const MOBILE_BREAKPOINT = 930
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  const scrollToSection = (sectionId: string) => {
+  const scrollToSection = (link: (typeof navigationData)[0]) => {
+    // If the link doesn't have a hash, it's an external link
+    // so a warning does not spam every click
+    if (!link || (link && !link.href.includes('#'))) return
+
+    const { id: sectionId } = link
+
     setIsMenuOpen(false)
     const element = document.getElementById(sectionId)
     if (!element) {
@@ -33,7 +41,7 @@ export function Header() {
     ).matches
 
     // Get scroll margin based on viewport
-    const isMobile = window.innerWidth < 768 // md breakpoint
+    const isMobile = window.innerWidth < MOBILE_BREAKPOINT
     const scrollMargin = isMobile
       ? SCROLL_MARGIN_TOP_MOBILE
       : SCROLL_MARGIN_TOP_DESKTOP
@@ -76,7 +84,7 @@ export function Header() {
             className={cn(
               'flex items-center gap-3',
               'hover:opacity-80 transition-opacity duration-200',
-              'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg'
+              'rounded-lg'
             )}
             aria-label={strings.navigation.accessibility.goToHomepage}
           >
@@ -87,22 +95,13 @@ export function Header() {
               height={25}
               aria-hidden='true'
             />
-
-            <span
-              className={cn(
-                'text-2xl font-bold',
-                'bg-linear-to-r from-blue-600 to-blue-800',
-                'bg-clip-text text-transparent'
-              )}
-            >
-              {strings.branding.companyName}
-            </span>
+            <DecorativeText text={strings.branding.companyName} />
           </Link>
 
           {/* Desktop Navigation */}
           <ul
             className={cn(
-              'hidden md:flex items-center gap-8',
+              'hidden min-[930px]:flex items-center gap-8',
               'list-none m-0 p-0'
             )}
             aria-label='Primary navigation'
@@ -112,7 +111,7 @@ export function Header() {
                 <HeaderLink
                   scroll
                   href={link.href}
-                  onClick={() => scrollToSection(link.id)}
+                  onClick={() => scrollToSection(link)}
                   variant='desktop'
                 >
                   {link.label}
@@ -125,7 +124,7 @@ export function Header() {
           <button
             type='button'
             className={cn(
-              'md:hidden p-3',
+              'min-[930px]:hidden p-3',
               'text-slate-700 hover:text-blue-600 hover:bg-slate-100',
               'rounded-lg transition-all duration-200 cursor-pointer',
               'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
@@ -152,7 +151,7 @@ export function Header() {
           <nav
             id='mobile-menu'
             className={cn(
-              'md:hidden py-6',
+              'min-[930px]:hidden py-6',
               'border-t border-slate-200/50',
               'bg-white/98 backdrop-blur-md',
               'animate-fade-in-scale',
@@ -165,7 +164,7 @@ export function Header() {
                 <li key={link.id} role='none'>
                   <HeaderLink
                     href={link.href}
-                    onClick={() => scrollToSection(link.id)}
+                    onClick={() => scrollToSection(link)}
                     variant='mobile'
                   >
                     {link.label}

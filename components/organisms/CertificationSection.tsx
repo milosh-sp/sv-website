@@ -8,6 +8,7 @@ import { Text } from '@/components/atoms/Text'
 export function CertificationsSection() {
   return (
     <SectionList
+      className={cn('h-45 overflow-hidden md:overflow-visible md:h-auto')}
       title={strings.cvSampleData.sections.certifications}
       icon={Award}
       items={strings.cvSampleData.certifications}

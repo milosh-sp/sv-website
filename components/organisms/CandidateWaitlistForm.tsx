@@ -10,19 +10,23 @@ import { WaitlistFormWrapper } from '@/components/organisms/WaitlistFormWrapper'
 import { useCandidateFormContext } from '@/context/CandidateFormContext'
 import { useCandidateForm } from '@/hooks/useCandidateForm'
 import { strings } from '@/lib/strings'
-
+import { validateCandidateStep } from '@/lib/waitlistFormValidators'
+import { cn } from '@/lib/utils'
+import { STEP_IDS, type StepId } from '@/lib/stepIdentifiers'
+import type { FormFieldConfig } from '@/types/FormFieldsStep.types'
+import type { ReactNode } from 'react'
+import { SuccessScreen } from './SuccessScreen'
+import { PageLayout } from '../templates/PageLayout'
+import { PageHeader } from '../molecules/PageHeader'
 const {
   jobSearchChallengeOptions,
   skillValidationOptions,
   totalFormSteps,
   valuableOutcomeOptions,
+  pageHeaders: {
+    candidate: { title, description },
+  },
 } = strings.waitlistForms
-import { validateCandidateStep } from '@/lib/waitlistFormValidators'
-import { cn } from '@/lib/utils'
-import { STEP_IDS, type StepId } from '@/lib/stepIdentifiers'
-
-import type { FormFieldConfig } from '@/types/FormFieldsStep.types'
-import type { ReactNode } from 'react'
 
 export function CandidateWaitlistForm() {
   const context = useCandidateFormContext()
@@ -90,6 +94,9 @@ export function CandidateWaitlistForm() {
             label={strings.waitlistForms.fields.skillAreas.label}
           />
           <TechnicalSkillsSection
+            placeholder={
+              strings.waitlistForms.fields.technicalSkills.placeholder
+            }
             label={strings.waitlistForms.fields.technicalSkills.label}
             selectedSkills={technicalSkills}
             technicalSkills={strings.waitlistForms.technicalSkills}
@@ -209,23 +216,31 @@ export function CandidateWaitlistForm() {
     form.formData
   ).isValid
 
+  if (context.submitStatus === 'success') {
+    return <SuccessScreen personaType='candidate' />
+  }
+
   return (
-    <WaitlistFormWrapper
-      currentStep={context.currentStep}
-      totalSteps={totalFormSteps}
-      isSubmitting={form.isSubmitting}
-      isCurrentStepValid={isCurrentStepValid}
-      submitStatus={form.submitStatus}
-      errors={form.errors}
-      honeypotValue={form.honeypotValue}
-      onHoneypotChange={(value) => form.handleHoneypotChange(value)}
-      onStepClick={(step) => context.goToStep(step)}
-      onPrevious={() => context.previousStep()}
-      onNext={() => context.nextStep()}
-      onSubmit={handleSubmit}
-      formData={form.formData}
-    >
-      {renderStep()}
-    </WaitlistFormWrapper>
+    <PageLayout>
+      <PageHeader title={title} description={description} />
+
+      <WaitlistFormWrapper
+        currentStep={context.currentStep}
+        totalSteps={totalFormSteps}
+        isSubmitting={form.isSubmitting}
+        isCurrentStepValid={isCurrentStepValid}
+        submitStatus={form.submitStatus}
+        errors={form.errors}
+        honeypotValue={form.honeypotValue}
+        onHoneypotChange={(value) => form.handleHoneypotChange(value)}
+        onStepClick={(step) => context.goToStep(step)}
+        onPrevious={() => context.previousStep()}
+        onNext={() => context.nextStep()}
+        onSubmit={handleSubmit}
+        formData={form.formData}
+      >
+        {renderStep()}
+      </WaitlistFormWrapper>
+    </PageLayout>
   )
 }

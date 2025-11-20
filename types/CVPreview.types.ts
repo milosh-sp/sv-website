@@ -23,7 +23,7 @@ interface EducationItem extends BaseSectionItem {
 interface EducationSectionItem extends BaseSectionItem {
   degree: string
   institution: string
-  year: string
+  period: string
 }
 
 interface ExperienceItem extends BaseSectionItem {

@@ -18,6 +18,8 @@
   --secondary-foreground: oklch(0.35 0.08 240);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
+  /* Blue color will be used later */
+  /* --blue-pleasant: from-blue-600 to-blue-700; */
   /* Updated accent to complement the muted blue */
   --accent: oklch(0.94 0.02 240);
   --accent-foreground: oklch(0.35 0.08 240);

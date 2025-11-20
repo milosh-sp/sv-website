@@ -61,11 +61,7 @@ export function CVHeader({
           <Text className={titleClasses} role='doc-subtitle'>
             {strings.cvSampleData.profile.title}
           </Text>
-          {!isCompact && (
-            <>
-              <Text>{strings.cvSampleData.profile.bio}</Text>
-            </>
-          )}
+          {!isCompact && <Text>{strings.cvSampleData.profile.bio}</Text>}
         </div>
       </div>
     </header>

@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils'
 export function TechnicalSkillsSectionCv() {
   return (
     <SectionList
+      className={cn('h-50 overflow-hidden md:overflow-visible md:h-auto')}
       title={strings.cvSampleData.sections.technicalSkills}
       icon={Code}
       items={strings.cvSampleData.skills}

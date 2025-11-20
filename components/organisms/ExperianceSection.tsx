@@ -4,10 +4,12 @@ import { Briefcase } from 'lucide-react'
 import { SectionList } from '@/components/organisms/SectionList'
 import { Heading } from '@/components/atoms/Heading'
 import { Text } from '@/components/atoms/Text'
+import { cn } from '@/lib/utils'
 
 export function ExperienceSection() {
   return (
     <SectionList
+      className={cn('h-40 overflow-hidden md:h-auto')}
       title={strings.cvSampleData.sections.experience}
       icon={Briefcase}
       items={strings.cvSampleData.experience}

@@ -15,7 +15,7 @@ export function PageHeader({
 }: PageHeaderProps) {
   return (
     <header className={cn('text-center mb-12', className)} {...props}>
-      <Heading level={1} variant='display' className='mb-4'>
+      <Heading level={1} variant='heading' size='lg' className='mb-4'>
         {title}
       </Heading>
       <Text

@@ -9,6 +9,7 @@ const LanguageIcon = strings.cvSampleData.languages[0].icon
 export function LanguagesSection() {
   return (
     <SectionList
+      className={cn('h-30 overflow-hidden md:overflow-visible md:h-auto')}
       title={strings.cvSampleData.sections.languages}
       icon={LanguageIcon}
       items={strings.cvSampleData.languages}

@@ -6,8 +6,15 @@ import { SectionWrapper } from '@/components/templates/SectionWrapper'
 import { generateFaqSchema } from '@/lib/seo'
 import { strings } from '@/lib/strings'
 import type { SectionProps } from '@/types/Sections.types'
+import { Button } from '../atoms/Button'
+import type { UserType } from '@/types/FormData.types'
+import { TwoSidesButtons } from '../molecules/TwoSidesButtons'
+import { cn } from '@/lib/utils'
+import { useRouter } from 'next/navigation'
 
 export function FaqPageSection({ id }: SectionProps) {
+  const router = useRouter()
+  const [activeTab, setActiveTab] = useState<UserType>('member')
   const [openItems, setOpenItems] = useState<number[]>([])
 
   const toggleItem = (index: number) => {
@@ -37,27 +44,63 @@ export function FaqPageSection({ id }: SectionProps) {
   }, [faqSchema])
 
   return (
-    <SectionWrapper id={id} className='py-10 bg-gray-50'>
-      <div className='container mx-auto px-4'>
-        <div className='max-w-3xl mx-auto'>
-          <FaqList
-            faqs={memberFaqs}
-            heading={strings.faq.membersHeading}
-            headingId='members-faq-heading'
-            openItems={openItems}
-            onToggle={toggleItem}
-            idPrefix='member'
-          />
+    <SectionWrapper
+      id={id}
+      className={cn('py-10 bg-gray-50 flex flex-col items-center')}
+    >
+      <TwoSidesButtons
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+        showHiringManager
+      />
+      <div className={cn('container px-4 flex flex-col items-center')}>
+        <div className={cn('max-w-3xl flex flex-col items-center')}>
+          {activeTab === 'member' && (
+            <FaqList
+              faqs={memberFaqs}
+              heading={strings.faq.membersHeading}
+              headingId='members-faq-heading'
+              openItems={openItems}
+              onToggle={toggleItem}
+              idPrefix='member'
+            />
+          )}
 
-          <FaqList
-            faqs={verifierFaqs}
-            heading={strings.faq.verifiersHeading}
-            headingId='verifiers-faq-heading'
-            openItems={openItems}
-            onToggle={toggleItem}
-            idPrefix='verifier'
-            indexOffset={memberFaqs.length}
-          />
+          {activeTab === 'guru' && (
+            <FaqList
+              faqs={verifierFaqs}
+              heading={strings.faq.verifiersHeading}
+              headingId='verifiers-faq-heading'
+              openItems={openItems}
+              onToggle={toggleItem}
+              idPrefix='verifier'
+              indexOffset={memberFaqs.length}
+            />
+          )}
+
+          {activeTab === 'hiring-manager' && (
+            <FaqList
+              faqs={strings.faq.hiringManagers}
+              heading={strings.faq.hiringManagersHeading}
+              headingId='hiring-managers-faq-heading'
+              openItems={openItems}
+              onToggle={toggleItem}
+              idPrefix='hiring-manager'
+              indexOffset={memberFaqs.length + verifierFaqs.length}
+            />
+          )}
+
+          <Button
+            onClick={() => router.push('/contact')}
+            variant='hero-blue'
+            size='lg'
+            className={cn(
+              'h-14 px-8 text-base rounded-lg font-semibold animate-fade-in-up'
+            )}
+            type='button'
+          >
+            {strings.faq.contactUsButton}
+          </Button>
         </div>
       </div>
     </SectionWrapper>

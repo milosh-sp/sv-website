@@ -6,6 +6,8 @@ import { HoneypotField } from '@/components/molecules/HoneypotField'
 import { StatusMessage } from '@/components/atoms/StatusMessage'
 import { SubmitButton } from '@/components/atoms/SubmitButton'
 import { TextAreaField } from '@/components/molecules/TextAreaField'
+import { cn } from '@/lib/utils'
+import { PrivacyPolicyConsent } from '../molecules/PrivacyPolicyConsent'
 
 // Icons are embedded in strings
 const MailIcon = strings.contactPage.form.email.icon
@@ -85,17 +87,21 @@ export function ContactForm({
         label={strings.contactPage.form.website.label}
       />
 
-      <SubmitButton
-        isSubmitting={isSubmitting}
-        isDisabled={isFormDisabled}
-        ariaLabel={
-          isSubmitting
-            ? strings.contactPage.submitButton.ariaLabel.submitting
-            : strings.contactPage.submitButton.ariaLabel.idle
-        }
-        loadingText={strings.contactPage.submitButton.submitting}
-        idleText={strings.contactPage.submitButton.idle}
-      />
+      <PrivacyPolicyConsent />
+
+      <div className={cn('flex justify-center')}>
+        <SubmitButton
+          isSubmitting={isSubmitting}
+          isDisabled={isFormDisabled}
+          ariaLabel={
+            isSubmitting
+              ? strings.contactPage.submitButton.ariaLabel.submitting
+              : strings.contactPage.submitButton.ariaLabel.idle
+          }
+          loadingText={strings.contactPage.submitButton.submitting}
+          idleText={strings.contactPage.submitButton.idle}
+        />
+      </div>
 
       <StatusMessage
         status={submitStatus}

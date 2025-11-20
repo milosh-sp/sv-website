@@ -13,7 +13,6 @@ export default function PrivacyPolicyPage() {
     <div className='min-h-screen bg-background'>
       <div className='section-padding'>
         <div className='container-narrow'>
-          {/* Breadcrumb Navigation */}
           <div className='mb-8'></div>
           {/* Header Section */}
           <div className='text-center mb-16'>
@@ -304,10 +303,12 @@ export default function PrivacyPolicyPage() {
                       <strong>Email:</strong>{' '}
                       {strings.legalPages.privacyPolicy.contact.email}
                     </li>
-                    <li>
-                      <strong>Phone:</strong>{' '}
-                      {strings.legalPages.privacyPolicy.contact.phone}
-                    </li>
+                    {strings.legalPages.privacyPolicy.contact.phone && (
+                      <li>
+                        <strong>Phone:</strong>{' '}
+                        {strings.legalPages.privacyPolicy.contact.phone}
+                      </li>
+                    )}
                     <li>
                       <strong>Address:</strong>{' '}
                       {strings.legalPages.privacyPolicy.contact.address}

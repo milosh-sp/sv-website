@@ -16,10 +16,17 @@ import { STEP_IDS } from '@/lib/stepIdentifiers'
 import type { FormFieldConfig } from '@/types/FormFieldsStep.types'
 import type { ReactNode } from 'react'
 import type { StepId } from '@/lib/stepIdentifiers'
+import { SuccessScreen } from './SuccessScreen'
+import { PageHeader } from '../molecules/PageHeader'
+import { PageLayout } from '../templates/PageLayout'
+
 const {
   professionalFrustrationOptions,
   totalFormSteps,
   verifierMotivationOptions,
+  pageHeaders: {
+    verifier: { title, description },
+  },
 } = strings.waitlistForms
 
 export function VerifierWaitlistForm() {
@@ -192,23 +199,30 @@ export function VerifierWaitlistForm() {
     form.formData
   ).isValid
 
+  if (context.submitStatus === 'success') {
+    return <SuccessScreen personaType='verifier' />
+  }
+
   return (
-    <WaitlistFormWrapper
-      currentStep={context.currentStep}
-      totalSteps={totalFormSteps}
-      isSubmitting={form.isSubmitting}
-      isCurrentStepValid={isCurrentStepValid}
-      submitStatus={form.submitStatus}
-      errors={form.errors}
-      honeypotValue={form.honeypotValue}
-      onHoneypotChange={(value) => form.handleHoneypotChange(value)}
-      onStepClick={(step) => context.goToStep(step)}
-      onPrevious={() => context.previousStep()}
-      onNext={() => context.nextStep()}
-      onSubmit={handleSubmit}
-      formData={form.formData}
-    >
-      {renderStep()}
-    </WaitlistFormWrapper>
+    <PageLayout>
+      <PageHeader title={title} description={description} />
+      <WaitlistFormWrapper
+        currentStep={context.currentStep}
+        totalSteps={totalFormSteps}
+        isSubmitting={form.isSubmitting}
+        isCurrentStepValid={isCurrentStepValid}
+        submitStatus={form.submitStatus}
+        errors={form.errors}
+        honeypotValue={form.honeypotValue}
+        onHoneypotChange={(value) => form.handleHoneypotChange(value)}
+        onStepClick={(step) => context.goToStep(step)}
+        onPrevious={() => context.previousStep()}
+        onNext={() => context.nextStep()}
+        onSubmit={handleSubmit}
+        formData={form.formData}
+      >
+        {renderStep()}
+      </WaitlistFormWrapper>
+    </PageLayout>
   )
 }

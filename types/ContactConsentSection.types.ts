@@ -2,6 +2,7 @@ import type { FieldsetHTMLAttributes } from 'react'
 
 interface ContactConsentSectionProps
   extends FieldsetHTMLAttributes<HTMLFieldSetElement> {
+  name?: string
   email: string
   linkedIn?: string
   githubGitlabUrl?: string
@@ -10,6 +11,7 @@ interface ContactConsentSectionProps
   fields?: string[] // New: array of field names to render
   errors: Record<string, string>
   isSubmitting: boolean
+  onNameChange?: (value: string) => void
   onEmailChange: (value: string) => void
   onLinkedInChange?: (value: string) => void
   onGitHubGitlabUrlChange?: (value: string) => void

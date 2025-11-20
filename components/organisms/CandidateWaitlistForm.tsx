@@ -55,6 +55,7 @@ export function CandidateWaitlistForm() {
       const stepFields = strings.waitlistForms.stepConfigs.candidate[0].fields
       return (
         <ContactConsentSection
+          name={form.formData.name}
           email={form.formData.email}
           linkedIn={form.formData.linkedIn}
           githubGitlabUrl={form.formData.githubGitlabUrl}
@@ -62,6 +63,7 @@ export function CandidateWaitlistForm() {
           fields={stepFields}
           errors={form.errors}
           isSubmitting={form.isSubmitting}
+          onNameChange={(value) => form.handleFieldChange('name', value)}
           onEmailChange={(value) => form.handleFieldChange('email', value)}
           onLinkedInChange={(value) =>
             form.handleFieldChange('linkedIn', value)

@@ -1415,6 +1415,11 @@ export const waitlistForms = {
 
   // Form field labels and placeholders
   fields: {
+    name: {
+      label: `Name`,
+      placeholder: `Your name (optional)`,
+      ariaLabel: `Name field`,
+    },
     email: {
       label: `Email Address`,
       placeholder: `your@email.com`,
@@ -1640,7 +1645,13 @@ export const waitlistForms = {
         stepNumber: 1,
         title: 'Contact Information',
         description: 'Let us know how to reach you',
-        fields: ['email', 'linkedIn', 'githubGitlabUrl', 'newsletterOptIn'],
+        fields: [
+          'name',
+          'email',
+          'linkedIn',
+          'githubGitlabUrl',
+          'newsletterOptIn',
+        ],
       },
       {
         stepNumber: 2,
@@ -1677,7 +1688,13 @@ export const waitlistForms = {
         stepNumber: 1,
         title: 'Contact Information',
         description: 'Let us know how to reach you',
-        fields: ['email', 'linkedIn', 'githubGitlabUrl', 'newsletterOptIn'],
+        fields: [
+          'name',
+          'email',
+          'linkedIn',
+          'githubGitlabUrl',
+          'newsletterOptIn',
+        ],
       },
       {
         stepNumber: 2,
@@ -1714,7 +1731,7 @@ export const waitlistForms = {
         stepNumber: 1,
         title: 'Contact Information',
         description: 'Let us know how to reach you',
-        fields: ['email', 'newsletterOptIn', 'companyUrl'],
+        fields: ['name', 'email', 'newsletterOptIn', 'companyUrl'],
       },
       {
         stepNumber: 2,

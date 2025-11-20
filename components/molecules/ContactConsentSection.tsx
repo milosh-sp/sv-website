@@ -1,6 +1,6 @@
 'use client'
 
-import { Building, Github, Linkedin, Mail } from 'lucide-react'
+import { Building, Github, Linkedin, Mail, User } from 'lucide-react'
 
 import { Checkbox } from '@/components/atoms/Checkbox'
 import { FormField } from '@/components/molecules/FormField'
@@ -10,6 +10,7 @@ import { cn } from '@/lib/utils'
 import type { ContactConsentSectionProps } from '@/types/ContactConsentSection.types'
 
 export function ContactConsentSection({
+  name,
   email,
   linkedIn = '',
   githubGitlabUrl = '',
@@ -18,6 +19,7 @@ export function ContactConsentSection({
   fields,
   errors,
   isSubmitting,
+  onNameChange,
   onEmailChange,
   onLinkedInChange,
   onGitHubGitlabUrlChange,
@@ -38,9 +40,26 @@ export function ContactConsentSection({
   const showGitHubGitlab = fields?.includes('githubGitlabUrl')
   const showNewsletter = !fields || fields.includes('newsletterOptIn')
   const showCompanyUrl = fields?.includes('companyUrl')
+  const showName = fields?.includes('name')
 
   return (
     <fieldset className={cn('space-y-4', className)} {...props}>
+      {/* Name Field - Conditional */}
+      {showName && (
+        <FormField
+          id='name'
+          type='text'
+          placeholder={strings.waitlistForms.fields.name.placeholder}
+          value={name}
+          onChange={(e) => onNameChange?.(e.target.value)}
+          error={errors.name}
+          disabled={isSubmitting}
+          icon={<User className={cn('w-5 h-5')} />}
+          label={strings.waitlistForms.fields.name.label}
+          ariaDescribedBy='name-error'
+        />
+      )}
+
       {/* Email Field */}
       {showEmail && (
         <FormField

@@ -75,4 +75,5 @@ export const INITIAL_VERIFIER_FORM_DATA: VerifierFormData = {
   verifierMotivationOther: '',
   professionalFrustration: '',
   professionalFrustrationOther: '',
+  name: '',
 }

@@ -29,6 +29,7 @@ export function useCandidateForm(config?: UseCandidateFormConfig) {
       // Submit to unified Netlify function with candidate-specific fields
       return submitUnifiedForm({
         formType: 'candidate',
+        name: formData.name,
         email: formData.email,
         linkedin: formData.linkedIn,
         githubGitlabUrl: formData.githubGitlabUrl,

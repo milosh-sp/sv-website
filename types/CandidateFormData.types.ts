@@ -68,6 +68,7 @@ const INITIAL_CANDIDATE_FORM_DATA: CandidateFormData = {
   jobSearchChallengeOther: '',
   valuableOutcomes: '[]',
   valuableOutcomeOther: '',
+  name: '',
 }
 
 export type { CandidateFormData, CandidateFormStep }

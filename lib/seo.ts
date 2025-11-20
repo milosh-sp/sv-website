@@ -5,9 +5,6 @@
 import type { Metadata } from 'next'
 import { siteConfig, seoKeywords, technicalSeo } from './seo-config'
 
-// Re-export siteConfig for backward compatibility
-export { siteConfig }
-
 // Default metadata for the application
 export const defaultMetadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -19,7 +16,7 @@ export const defaultMetadata: Metadata = {
   keywords: seoKeywords.primary,
   authors: [
     {
-      name: 'SkillVerdict Team',
+      name: 'Skill Verdict Team',
       url: siteConfig.url,
     },
   ],

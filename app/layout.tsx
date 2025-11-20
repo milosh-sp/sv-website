@@ -9,6 +9,7 @@ import { Footer } from '@/components/templates/Footer'
 import {
   defaultMetadata,
   generateOrganizationSchema,
+  generateServiceSchema,
   generateWebsiteSchema,
 } from '@/lib/seo'
 import { strings } from '@/lib/strings'
@@ -41,6 +42,7 @@ export default function RootLayout({
 }) {
   const organizationSchema = generateOrganizationSchema()
   const websiteSchema = generateWebsiteSchema()
+  const serviceSchema = generateServiceSchema()
 
   return (
     <html lang='en' className={`${inter.variable} antialiased`}>
@@ -70,6 +72,13 @@ export default function RootLayout({
           /* biome-ignore lint/security/noDangerouslySetInnerHtml: Web schemas require dynamic content for structured data */
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(websiteSchema),
+          }}
+        />
+        <script
+          type='application/ld+json'
+          /* biome-ignore lint/security/noDangerouslySetInnerHtml: Web schemas require dynamic content for structured data */
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(serviceSchema),
           }}
         />
       </head>

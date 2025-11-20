@@ -29,7 +29,6 @@ import {
   Clock,
   Database,
   DollarSign,
-  FastForward,
   FileText,
   FolderOpen,
   Globe,

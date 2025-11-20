@@ -22,10 +22,9 @@ export function ProcessPageSection({ id }: ProcessPageSectionProps) {
       onTabChange={setActiveTab}
       heading={strings.process.heading}
       description={
-        {
-          member: strings.process.description.members,
-          guru: strings.process.description.guruMembers,
-        }[activeTab]
+        activeTab === 'member'
+          ? strings.process.description.members
+          : strings.process.description.guruMembers
       }
       sectionId={id}
       className='py-20 bg-white'

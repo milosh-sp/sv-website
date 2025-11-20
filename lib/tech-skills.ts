@@ -633,4 +633,4 @@ export const techSkills = [
   { id: 'load-testing', label: 'Load Testing' },
   { id: 'security-testing', label: 'Security Testing' },
   { id: 'penetration-testing', label: 'Penetration Testing' },
-]
+].sort((a, b) => a.label.localeCompare(b.label))

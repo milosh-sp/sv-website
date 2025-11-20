@@ -34,16 +34,13 @@ export function HiringDemandStep({
         rows={4}
       />
 
-      <div>
-        <h3 className='text-sm font-medium mb-3'>Skills Needed</h3>
-        <SkillAreasSection
-          selectedSkillAreas={skillsNeeded}
-          skillAreas={skillAreas}
-          errors={errors}
-          isSubmitting={isSubmitting}
-          onSkillAreaChange={onSkillsNeededChange}
-        />
-      </div>
+      <SkillAreasSection
+        selectedSkillAreas={skillsNeeded}
+        skillAreas={skillAreas}
+        errors={errors}
+        isSubmitting={isSubmitting}
+        onSkillAreaChange={onSkillsNeededChange}
+      />
 
       <TextAreaField
         id='challenges'

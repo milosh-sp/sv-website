@@ -226,10 +226,11 @@ function validateHiringManagerStep(
 
   switch (stepNumber) {
     case 1: {
-      // Contact Information (NO LinkedIn or GitHub)
       const contactErrors = validateContactConsentStep({
         email: data.email,
+        companyUrl: data.companyUrl,
       })
+
       Object.assign(errors, contactErrors.errors)
       break
     }

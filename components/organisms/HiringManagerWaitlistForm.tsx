@@ -57,6 +57,7 @@ export function HiringManagerWaitlistForm() {
       return (
         <ContactConsentSection
           email={form.formData.email}
+          companyUrl={form.formData.companyUrl}
           newsletterOptIn={form.formData.newsletterOptIn}
           fields={stepFields}
           errors={form.errors}
@@ -64,6 +65,9 @@ export function HiringManagerWaitlistForm() {
           onEmailChange={(value) => form.handleFieldChange('email', value)}
           onNewsletterOptInChange={(checked) =>
             form.handleFieldChange('newsletterOptIn', String(checked))
+          }
+          onCompanyUrlChange={(value) =>
+            form.handleFieldChange('companyUrl', value)
           }
         />
       )

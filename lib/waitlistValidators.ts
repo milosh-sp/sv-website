@@ -4,7 +4,7 @@
  * Eliminates 50% of validation code duplication
  *
  * Shared validators (100% identical across personas):
- * - Step 1: Contact & Consent (email, LinkedIn, GitHub/GitLab, privacy consent)
+ * - Step 1: Contact & Consent (name, email, LinkedIn, GitHub/GitLab, privacy consent, company URL)
  * - Step 2: Skills Profile (skill areas, technical skills)
  *
  * Persona-specific validators:
@@ -23,7 +23,7 @@ import type { ValidationErrors } from '@/types/WaitlistValidation.types'
 /**
  * Shared Step 1 validation (Contact Information)
  * Used by: Candidate, Verifier, Hiring Manager
- * Validates: email, LinkedIn (optional), GitHub/GitLab (optional)
+ * Validates: name, email, LinkedIn (optional), GitHub/GitLab (optional)
  * Note: Consent is implicit - users consent by submitting the form
  * LinkedIn and GitHub/GitLab are only validated if provided (for Candidate/Verifier forms)
  */
@@ -31,6 +31,7 @@ function validateContactConsentStep(data: {
   email: string
   linkedIn?: string
   githubGitlabUrl?: string
+  companyUrl?: string
 }): ValidationErrors {
   const errors: Record<string, string> = {}
 
@@ -61,6 +62,19 @@ function validateContactConsentStep(data: {
       if (!githubGitlabValidation.isValid) {
         errors.githubGitlabUrl =
           githubGitlabValidation.message || 'Invalid GitHub or GitLab URL'
+      }
+    }
+  }
+
+  // Company URL validation (only if provided)
+  if (data.companyUrl !== undefined) {
+    if (!data.companyUrl || data.companyUrl.trim() === '') {
+      errors.companyUrl = 'Company website URL is required'
+    } else {
+      const companyUrlValidation = validateUrl(data.companyUrl)
+      if (!companyUrlValidation.isValid) {
+        errors.companyUrl =
+          companyUrlValidation.message || 'Invalid company URL'
       }
     }
   }

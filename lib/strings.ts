@@ -49,6 +49,7 @@ import {
   Video,
   Users,
 } from 'lucide-react'
+import { techSkills } from './tech-skills'
 
 // ============================================================================
 // SITE BRANDING & IDENTITY
@@ -1125,17 +1126,7 @@ export const waitlistForms = {
     { id: 'data', label: 'Data Science' },
   ] as SkillArea[],
 
-  technicalSkills: [
-    { id: 'react', label: 'React' },
-    { id: 'typescript', label: 'TypeScript' },
-    { id: 'nodejs', label: 'Node.js' },
-    { id: 'python', label: 'Python' },
-    { id: 'aws', label: 'AWS' },
-    { id: 'docker', label: 'Docker' },
-    { id: 'kubernetes', label: 'Kubernetes' },
-    { id: 'git', label: 'Git' },
-    { id: 'ci-cd', label: 'CI/CD' },
-  ] as TechnicalSkill[],
+  technicalSkills: techSkills as TechnicalSkill[],
 
   // ========================================================================
   // CANDIDATE FORM OPTIONS
@@ -1424,6 +1415,11 @@ export const waitlistForms = {
 
   // Form field labels and placeholders
   fields: {
+    name: {
+      label: `Name`,
+      placeholder: `Your name (optional)`,
+      ariaLabel: `Name field`,
+    },
     email: {
       label: `Email Address`,
       placeholder: `your@email.com`,
@@ -1442,6 +1438,11 @@ export const waitlistForms = {
       label: `GitHub or GitLab Profile URL`,
       placeholder: `GitHub or GitLab profile URL`,
       ariaLabel: `GitHub or GitLab profile URL field`,
+    },
+    companyUrl: {
+      label: `Company URL`,
+      placeholder: `https://example.com`,
+      ariaLabel: `Company URL field`,
     },
     website: {
       label: `Website`,
@@ -1644,7 +1645,13 @@ export const waitlistForms = {
         stepNumber: 1,
         title: 'Contact Information',
         description: 'Let us know how to reach you',
-        fields: ['email', 'linkedIn', 'githubGitlabUrl', 'newsletterOptIn'],
+        fields: [
+          'name',
+          'email',
+          'linkedIn',
+          'githubGitlabUrl',
+          'newsletterOptIn',
+        ],
       },
       {
         stepNumber: 2,
@@ -1681,7 +1688,13 @@ export const waitlistForms = {
         stepNumber: 1,
         title: 'Contact Information',
         description: 'Let us know how to reach you',
-        fields: ['email', 'linkedIn', 'githubGitlabUrl', 'newsletterOptIn'],
+        fields: [
+          'name',
+          'email',
+          'linkedIn',
+          'githubGitlabUrl',
+          'newsletterOptIn',
+        ],
       },
       {
         stepNumber: 2,
@@ -1718,7 +1731,7 @@ export const waitlistForms = {
         stepNumber: 1,
         title: 'Contact Information',
         description: 'Let us know how to reach you',
-        fields: ['email', 'newsletterOptIn'],
+        fields: ['name', 'email', 'newsletterOptIn', 'companyUrl'],
       },
       {
         stepNumber: 2,

@@ -56,6 +56,7 @@ export function VerifierWaitlistForm() {
       const stepFields = strings.waitlistForms.stepConfigs.verifier[0].fields
       return (
         <ContactConsentSection
+          name={form.formData.name}
           email={form.formData.email}
           linkedIn={form.formData.linkedIn}
           githubGitlabUrl={form.formData.githubGitlabUrl}
@@ -63,6 +64,7 @@ export function VerifierWaitlistForm() {
           fields={stepFields}
           errors={form.errors}
           isSubmitting={form.isSubmitting}
+          onNameChange={(value) => form.handleFieldChange('name', value)}
           onEmailChange={(value) => form.handleFieldChange('email', value)}
           onLinkedInChange={(value) =>
             form.handleFieldChange('linkedIn', value)

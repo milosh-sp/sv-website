@@ -4,7 +4,7 @@
  * Eliminates 50% of validation code duplication
  *
  * Shared validators (100% identical across personas):
- * - Step 1: Contact & Consent (email, LinkedIn, GitHub/GitLab, privacy consent)
+ * - Step 1: Contact & Consent (email, LinkedIn, GitHub/GitLab, privacy consent, company URL)
  * - Step 2: Skills Profile (skill areas, technical skills)
  *
  * Persona-specific validators:
@@ -31,6 +31,7 @@ function validateContactConsentStep(data: {
   email: string
   linkedIn?: string
   githubGitlabUrl?: string
+  companyUrl?: string
 }): ValidationErrors {
   const errors: Record<string, string> = {}
 
@@ -61,6 +62,19 @@ function validateContactConsentStep(data: {
       if (!githubGitlabValidation.isValid) {
         errors.githubGitlabUrl =
           githubGitlabValidation.message || 'Invalid GitHub or GitLab URL'
+      }
+    }
+  }
+
+  // Company URL validation (only if provided)
+  if (data.companyUrl !== undefined) {
+    if (!data.companyUrl || data.companyUrl.trim() === '') {
+      errors.companyUrl = 'Company website URL is required'
+    } else {
+      const companyUrlValidation = validateUrl(data.companyUrl)
+      if (!companyUrlValidation.isValid) {
+        errors.companyUrl =
+          companyUrlValidation.message || 'Invalid company URL'
       }
     }
   }

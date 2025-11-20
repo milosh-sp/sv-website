@@ -107,6 +107,7 @@ interface HiringManagerFormSubmission
   extends BaseFormSubmission,
     HiringManagerFormFields {
   formType: 'hiring-manager'
+  companyUrl: string
 }
 
 interface VerifierFormSubmission

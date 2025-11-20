@@ -1434,6 +1434,11 @@ export const waitlistForms = {
       placeholder: `GitHub or GitLab profile URL`,
       ariaLabel: `GitHub or GitLab profile URL field`,
     },
+    companyUrl: {
+      label: `Company URL`,
+      placeholder: `https://example.com`,
+      ariaLabel: `Company URL field`,
+    },
     website: {
       label: `Website`,
       placeholder: `https://example.com`,
@@ -1709,7 +1714,7 @@ export const waitlistForms = {
         stepNumber: 1,
         title: 'Contact Information',
         description: 'Let us know how to reach you',
-        fields: ['email', 'newsletterOptIn'],
+        fields: ['email', 'newsletterOptIn', 'companyUrl'],
       },
       {
         stepNumber: 2,

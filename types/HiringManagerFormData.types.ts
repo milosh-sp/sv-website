@@ -7,6 +7,7 @@
 export interface HiringManagerFormData extends Record<string, string> {
   // Step 1: Contact Information (NO LinkedIn or GitHub required)
   email: string
+  companyUrl: string
   newsletterOptIn: string // Stored as 'true' or 'false'
 
   // Step 2: Company Profile
@@ -31,33 +32,6 @@ export interface HiringManagerFormStep {
   fields: string[]
 }
 
-export const HIRING_MANAGER_FORM_STEPS: HiringManagerFormStep[] = [
-  {
-    stepNumber: 1,
-    title: 'Contact Information',
-    description: 'Let us know how to reach you',
-    fields: ['email', 'newsletterOptIn'],
-  },
-  {
-    stepNumber: 2,
-    title: 'Your Company Profile',
-    description: 'Tell us about your company',
-    fields: ['managerRole', 'fundingStage', 'engineeringTeamSize'],
-  },
-  {
-    stepNumber: 3,
-    title: 'Hiring Demand',
-    description: 'Share your hiring needs',
-    fields: ['rolesHiring', 'seniorityLevel', 'hiringInterviewHours'],
-  },
-  {
-    stepNumber: 4,
-    title: 'Hiring Challenges',
-    description: 'Tell us about your challenges',
-    fields: ['hiringFrustrations', 'hiringFailures'],
-  },
-]
-
 export const INITIAL_HIRING_MANAGER_FORM_DATA: HiringManagerFormData = {
   email: '',
   newsletterOptIn: 'false',
@@ -69,4 +43,5 @@ export const INITIAL_HIRING_MANAGER_FORM_DATA: HiringManagerFormData = {
   hiringInterviewHours: '',
   hiringFrustrations: '[]',
   hiringFailures: '[]',
+  companyUrl: '',
 }

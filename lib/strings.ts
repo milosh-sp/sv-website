@@ -49,6 +49,7 @@ import {
   Video,
   Users,
 } from 'lucide-react'
+import { techSkills } from './tech-skills'
 
 // ============================================================================
 // SITE BRANDING & IDENTITY
@@ -1125,17 +1126,7 @@ export const waitlistForms = {
     { id: 'data', label: 'Data Science' },
   ] as SkillArea[],
 
-  technicalSkills: [
-    { id: 'react', label: 'React' },
-    { id: 'typescript', label: 'TypeScript' },
-    { id: 'nodejs', label: 'Node.js' },
-    { id: 'python', label: 'Python' },
-    { id: 'aws', label: 'AWS' },
-    { id: 'docker', label: 'Docker' },
-    { id: 'kubernetes', label: 'Kubernetes' },
-    { id: 'git', label: 'Git' },
-    { id: 'ci-cd', label: 'CI/CD' },
-  ] as TechnicalSkill[],
+  technicalSkills: techSkills as TechnicalSkill[],
 
   // ========================================================================
   // CANDIDATE FORM OPTIONS

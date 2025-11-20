@@ -414,15 +414,15 @@ const pageSeoConfig = {
   },
 
   privacy: {
-    title: `Privacy Policy | ${strings.branding.companyName} - GDPR Compliant`,
-    description: `Learn how ${strings.branding.companyName} protects developer privacy with anonymous assessment, GDPR compliance, and transparent data practices.`,
+    title: strings.legalPages.privacyPolicy.title,
+    description: strings.legalPages.privacyPolicy.description,
     keywords: seoKeywords.pages.privacy,
     canonical: `${siteConfig.url}/privacy-policy`,
     ogImage: siteConfig.ogImage,
   },
 
   contact: {
-    title: `Contact ${strings.branding.companyName} | Get Support`,
+    title: strings.contactPage.title,
     description: strings.contactPage.description,
     keywords: seoKeywords.pages.contact,
     canonical: `${siteConfig.url}/contact`,
@@ -430,9 +430,8 @@ const pageSeoConfig = {
   },
 
   candidate: {
-    title: 'Build Verified Developer Credentials | Skill Verdict',
-    description:
-      'Get peer-validated skills, build your verified developer reputation, and prove your programming expertise to employers without lengthy interviews.',
+    title: strings.waitlistForms.pageHeaders.candidate.title,
+    description: strings.waitlistForms.pageHeaders.candidate.description,
     keywords: seoKeywords.pages.candidate,
     canonical: `${siteConfig.url}/candidate`,
     ogImage: siteConfig.ogImage,
@@ -454,9 +453,8 @@ const pageSeoConfig = {
   },
 
   verifier: {
-    title: 'Earn Money Reviewing Developer Code | Skill Verdict',
-    description:
-      'Join our verifier community. Assess developers, earn compensation, gain recognition. Flexible peer review work with meaningful impact on hiring.',
+    title: strings.waitlistForms.pageHeaders.verifier.title,
+    description: strings.waitlistForms.pageHeaders.verifier.description,
     keywords: seoKeywords.pages.verifier,
     canonical: `${siteConfig.url}/verifier`,
     ogImage: siteConfig.ogImage,
@@ -478,9 +476,9 @@ const pageSeoConfig = {
   },
 
   hiringManager: {
-    title: 'Hire Verified Developers | Pre-Vetted Talent Pool | Skill Verdict',
+    title: strings.waitlistForms.pageHeaders['hiring-manager'].title,
     description:
-      'Access pre-vetted developers through verified peer assessment. Remove hiring bias, reduce interview time 80%, eliminate bad hires. Fast, fair, transparent.',
+      strings.waitlistForms.pageHeaders['hiring-manager'].description,
     keywords: seoKeywords.pages.hiringManager,
     canonical: `${siteConfig.url}/hiring-manager`,
     ogImage: siteConfig.ogImage,
@@ -501,90 +499,6 @@ const pageSeoConfig = {
     },
   },
 }
-
-// ============================================================================
-// STRUCTURED DATA CONTENT - SEO-OPTIMIZED
-// ============================================================================
-
-const structuredData = {
-  hero: {
-    mainHeading: strings.hero.mainHeading,
-    subHeading: strings.hero.subHeading,
-    callToAction: strings.hero.callToAction,
-    primaryButton: strings.hero.buttons.verifySkills,
-    secondaryButton: strings.hero.buttons.earnByVerifying,
-    trustIndicators: strings.hero.trustIndicators,
-  },
-
-  verifierBenefits: strings.benefits.guruMembers.benefits,
-  memberBenefits: strings.benefits.members.benefits,
-
-  verifierProcess: strings.process.guruMembersteps,
-  memberProcess: strings.process.memberSteps,
-
-  cvFeatures: strings.cvPreview.features,
-
-  // SEO-focused value propositions
-  valuePropositions: [
-    {
-      title: 'Stop Interviewing. Start Verifying.',
-      description:
-        'Replace broken interviews with verified peer assessment. Real-world evaluation replaces coding puzzles.',
-      keywords: [
-        'interview alternative',
-        'verified assessment',
-        'developer verification',
-      ],
-    },
-    {
-      title: 'Eliminate Bias. Hire Better.',
-      description:
-        'Anonymous evaluation removes gender, race, age, and background bias. Purely merit-based assessment.',
-      keywords: ['bias-free hiring', 'anonymous assessment', 'fair evaluation'],
-    },
-    {
-      title: 'One Assessment. Universal Trust.',
-      description:
-        'Candidates assess once. Credentials work everywhere. Companies trust verified skills backed by peers.',
-      keywords: ['universal credentials', 'verified skills', 'skill tier'],
-    },
-  ],
-} as const
-
-// ============================================================================
-// FAQ CONTENT - OPTIMIZED FOR SEO AND VOICE SEARCH
-// ============================================================================
-
-const faqContent = {
-  member: strings.faq.members,
-  verifier: strings.faq.verifiers,
-  seoOptimized: [
-    {
-      question:
-        'What is the difference between Skill Verdict and traditional interviews?',
-      answer:
-        'Skill Verdict uses peer-validated assessment instead of timed interviews. Evaluations are anonymous, removing bias. You build verifiable credentials that work across multiple companies, eliminating repetitive interview cycles.',
-      keywords: [
-        'interview alternative',
-        'peer validation',
-        'anonymous assessment',
-      ],
-    },
-    {
-      question: 'How does anonymous assessment reduce hiring bias?',
-      answer:
-        'Reviewers do not see candidate names, demographics, or background. Assessment focuses purely on demonstrated technical capability and real-world problem-solving—not on identity characteristics or personal networks.',
-      keywords: ['bias reduction', 'fair hiring', 'anonymous evaluation'],
-    },
-    {
-      question:
-        'Can I use verified credentials from Skill Verdict for multiple job applications?',
-      answer:
-        'Yes. CV 2.0 credentials are universal. Once verified, your skill tier credential can be shared with any company, eliminating the need to repeat assessment processes.',
-      keywords: ['universal credentials', 'CV 2.0', 'skill verification'],
-    },
-  ],
-} as const
 
 // ============================================================================
 // TECHNICAL SEO CONFIGURATION
@@ -686,11 +600,4 @@ const technicalSeo = {
   },
 } as const
 
-export {
-  siteConfig,
-  seoKeywords,
-  pageSeoConfig,
-  structuredData,
-  faqContent,
-  technicalSeo,
-}
+export { siteConfig, seoKeywords, pageSeoConfig, technicalSeo }

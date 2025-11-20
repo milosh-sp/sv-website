@@ -13,7 +13,6 @@ export default function PrivacyPolicyPage() {
     <div className='min-h-screen bg-background'>
       <div className='section-padding'>
         <div className='container-narrow'>
-          {/* Breadcrumb Navigation */}
           <div className='mb-8'></div>
           {/* Header Section */}
           <div className='text-center mb-16'>

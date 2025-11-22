@@ -103,7 +103,7 @@ export const handler: Handler = async (
     const subscriberData = buildSubscriberData(email, formattedData, clientIP)
 
     const groups = [senderGroups.unverified]
-    const isPartial = formattedData.form_step === 'step1'
+    const isPartial = requestData.formStep === 'step1'
 
     console.log('Formatted data:', formattedData)
 

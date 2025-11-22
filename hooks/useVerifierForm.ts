@@ -49,6 +49,8 @@ export function useVerifierForm(config?: UseVerifierFormConfig) {
         professionalFrustrationOther: formData.professionalFrustrationOther,
         website: honeypotValue,
         form_start_time: formStartTime,
+        referralCode: formData.referralCode,
+        referredByReferralCode: formData.referredByReferralCode,
       } as VerifierFormSubmission)
     },
     onSuccess: config?.onSuccess,

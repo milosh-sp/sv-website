@@ -35,6 +35,8 @@ export function useHiringManagerForm(config?: UseHiringManagerFormConfig) {
         hiringFailures: formData.hiringFailures,
         website: honeypotValue,
         form_start_time: formStartTime,
+        referralCode: formData.referralCode,
+        referredByReferralCode: formData.referredByReferralCode,
       } as HiringManagerFormSubmission)
     },
     onSuccess: config?.onSuccess,

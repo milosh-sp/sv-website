@@ -99,7 +99,18 @@ export const handler: Handler = async (
     // Format array fields to comma-separated strings for submission
     const formattedData = formatFormFields(requestData as FormFields)
     const subscriberData = buildSubscriberData(email, formattedData, clientIP)
-    const senderResponse = await submitToSenderNet(subscriberData, apiToken)
+    const senderResponse = await submitToSenderNet(
+      {
+        ...subscriberData,
+        fields: {
+          ...subscriberData.fields,
+          email_verified: 'false',
+          // Because we have, by submitting you agreed to our privacy policy
+          privacy_policy_agreed: 'true',
+        },
+      },
+      apiToken
+    )
 
     if (!senderResponse.ok) {
       logSenderNetError(senderResponse.status, '', senderResponse.data)

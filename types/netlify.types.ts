@@ -87,6 +87,8 @@ interface VerifierFormFields extends TechnicalProfileFormFields {
 
 interface BaseFormSubmission {
   email: string
+  referralCode?: string
+  referredByReferralCode?: string
 }
 
 interface SignupFormSubmission extends BaseFormSubmission, SignupFormFields {

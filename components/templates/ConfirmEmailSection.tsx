@@ -10,11 +10,11 @@ import { useEffect, useEffectEvent } from 'react'
 
 export function ConfirmEmailSection() {
   const searchParams = useSearchParams()
-  const userId = searchParams.get('id')
+  const userId = searchParams.get('userId')
 
   const handleUpdate = useEffectEvent(() => {
     updateSubscriberData({
-      id: searchParams.get('id') ?? '',
+      id: userId ?? '',
       fields: {
         email_verified: 'true',
         groups: [senderGroups.active],

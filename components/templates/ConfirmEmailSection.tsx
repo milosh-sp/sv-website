@@ -23,7 +23,7 @@ function ConfirmEmailContent() {
       id: userId ?? '',
       fields: {
         email_verified: 'true',
-        groups: [senderGroups.active],
+        groups: [senderGroups.verified],
         referral_code: referralCode,
       },
     })

@@ -1,4 +1,3 @@
-import { senderGroups } from '@/lib/consts'
 import type { Handler, HandlerContext, HandlerEvent } from '@netlify/functions'
 import { detectBot } from '../../lib/netlify/form-validation'
 import {
@@ -44,7 +43,11 @@ export const handler: Handler = async (
       return createMissingBodyResponse()
     }
 
-    let requestData: { id: string; fields: Record<string, unknown> }
+    let requestData: {
+      id: string
+      fields: Record<string, unknown>
+      groups: string[]
+    }
     try {
       requestData = JSON.parse(event.body)
     } catch (_parseError) {
@@ -74,7 +77,7 @@ export const handler: Handler = async (
     const senderResponse = await updateSubscriberData({
       id: requestData.id,
       fields: requestData.fields,
-      groups: [senderGroups.active],
+      groups: requestData.groups,
       apiToken,
     })
 

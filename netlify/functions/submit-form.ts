@@ -101,10 +101,19 @@ export const handler: Handler = async (
     // Format array fields to comma-separated strings for submission
     const formattedData = formatFormFields(requestData as FormFields)
     const subscriberData = buildSubscriberData(email, formattedData, clientIP)
+
+    const groups = [senderGroups.unverified]
+    const isPartial = subscriberData.fields.form_step === 'step1'
+
+    if (isPartial) {
+      groups.pop()
+      groups.push(senderGroups.contactOnly)
+    }
+
     const senderResponse = await submitToSenderNet(
       {
         ...subscriberData,
-        groups: [senderGroups.inactive],
+        groups,
         fields: {
           ...subscriberData.fields,
           email_verified: 'false',
@@ -134,6 +143,12 @@ export const handler: Handler = async (
       'Successfully added form data, response from sender.net:',
       senderResponse.data
     )
+
+    // Do not send confirmation email to partial submissions
+    if (isPartial) {
+      return createSuccessResponse(email, new Date().toISOString())
+    }
+
     console.log('Sending confirmation email')
 
     const transactionalResponse = await sendTransactionalEmail({

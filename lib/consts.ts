@@ -18,8 +18,9 @@ const COLOR_SCHEMES = {
 } as const
 
 const senderGroups = {
-  inactive: 'bq84PR',
-  active: 'e7JKjw',
+  contactOnly: 'dykg1w',
+  unverified: 'bq84PR',
+  verified: 'e7JKjw',
 }
 
 const senderTransactionalCampaigns = {

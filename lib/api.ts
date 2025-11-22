@@ -25,9 +25,29 @@ export async function submitUnifiedForm(
 ): Promise<ApiResponse> {
   try {
     // Convert all keys to snake_case for backend compatibility
-    const snakeCaseData = convertKeysToSnakeCase(
-      data as Record<string, unknown>
+    // Filter out empty strings and empty arrays before conversion
+    const filteredData = Object.entries(data).reduce(
+      (acc, [key, value]) => {
+        // Skip empty strings
+        if (value === '') {
+          return acc
+        }
+
+        // Skip empty arrays (both actual arrays and stringified "[]")
+        if (Array.isArray(value) && value.length === 0) {
+          return acc
+        }
+        if (value === '[]') {
+          return acc
+        }
+
+        acc[key] = value
+        return acc
+      },
+      {} as Record<string, unknown>
     )
+
+    const snakeCaseData = convertKeysToSnakeCase(filteredData)
 
     const response = await fetch(endpoint, {
       method: 'POST',

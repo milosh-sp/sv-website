@@ -44,6 +44,11 @@ export function CandidateWaitlistForm() {
     e.preventDefault()
     context.setIsSubmitting(true)
 
+    form.setFormData({
+      ...context.formData,
+      formStep: context.currentStep,
+    })
+
     try {
       await form.handleSubmit(e)
       if (form.submitStatus === 'success') {

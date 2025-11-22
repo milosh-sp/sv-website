@@ -44,7 +44,7 @@ export function HiringManagerWaitlistForm() {
     e.preventDefault()
     context.setIsSubmitting(true)
 
-    form.setFormData({
+    context.setFormData({
       ...context.formData,
       formStep: context.currentStep,
     })

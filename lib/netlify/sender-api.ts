@@ -132,6 +132,53 @@ async function sendTransactionalEmail({
   }
 }
 
+async function updateSubscriberData({
+  id,
+  email,
+  fields,
+  apiToken,
+  groups,
+}: {
+  id: string
+  email?: string
+  fields?: Record<string, unknown>
+  apiToken: string
+  groups?: string[]
+}) {
+  const controller = new AbortController()
+  const timeoutId = setTimeout(() => controller.abort(), SENDER_API_TIMEOUT_MS)
+
+  try {
+    const response = await fetch(
+      `${SENDER_API_URL}/subscribers/${id ?? email}`,
+      {
+        method: 'PATCH',
+        headers: {
+          Authorization: `Bearer ${apiToken}`,
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          groups,
+          fields,
+        }),
+        signal: controller.signal,
+      }
+    )
+
+    const data = await response.json()
+
+    return {
+      ok: response.ok,
+      status: response.status,
+      data,
+    }
+  } finally {
+    clearTimeout(timeoutId)
+  }
+}
+
 export {
   getApiToken,
   buildSubscriberData,
@@ -139,4 +186,5 @@ export {
   logSenderNetError,
   SENDER_API_URL,
   sendTransactionalEmail,
+  updateSubscriberData,
 }

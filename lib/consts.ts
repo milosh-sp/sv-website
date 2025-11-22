@@ -19,6 +19,7 @@ const COLOR_SCHEMES = {
 
 const senderGroups = {
   inactive: 'bq84PR',
+  active: 'e7JKjw',
 }
 
 const senderTransactionalCampaigns = {

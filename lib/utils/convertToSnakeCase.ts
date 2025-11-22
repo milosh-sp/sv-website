@@ -2,7 +2,7 @@ function camelToSnakeCase(str: string): string {
   return str.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`)
 }
 
-export function convertKeysToSnakeCase(
+function convertKeysToSnakeCase(
   obj: Record<string, unknown>
 ): Record<string, unknown> {
   if (Array.isArray(obj)) {
@@ -42,3 +42,9 @@ export function convertKeysToSnakeCase(
     {} as Record<string, unknown>
   )
 }
+
+function generateReferralCode() {
+  return (Math.random() + 1).toString(36).substring(2, 12)
+}
+
+export { convertKeysToSnakeCase, generateReferralCode }

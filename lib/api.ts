@@ -103,3 +103,45 @@ export async function submitUnifiedForm(
     }
   }
 }
+
+export async function updateSubscriberData(
+  data: {
+    id: string
+    fields: Record<string, unknown>
+  },
+  endpoint: string = '/.netlify/functions/update-form'
+): Promise<ApiResponse> {
+  console.log(JSON.stringify(data))
+  const response = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+  const result = await response.json()
+
+  if (!response.ok) {
+    const errorMessage =
+      typeof result === 'object' &&
+      result !== null &&
+      'error' in result &&
+      typeof (result as Record<string, unknown>).error === 'string'
+        ? (result as Record<string, unknown>).error
+        : `HTTP error! status: ${response.status}`
+
+    return {
+      success: false,
+      error: errorMessage as string,
+    }
+  }
+
+  if (isApiResponse(result)) {
+    return result
+  }
+
+  return {
+    success: false,
+    error: 'Unexpected error occurred',
+  }
+}

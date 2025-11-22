@@ -6,9 +6,9 @@ import { senderGroups } from '@/lib/consts'
 import { cn } from '@/lib/utils'
 import { generateReferralCode } from '@/lib/utils/convertToSnakeCase'
 import { useSearchParams } from 'next/navigation'
-import { useEffect, useEffectEvent } from 'react'
+import { Suspense, useEffect, useEffectEvent } from 'react'
 
-export function ConfirmEmailSection() {
+function ConfirmEmailContent() {
   const searchParams = useSearchParams()
   const userId = searchParams.get('userId')
 
@@ -37,5 +37,13 @@ export function ConfirmEmailSection() {
     >
       <h1>You verified your email!</h1>
     </SectionWrapper>
+  )
+}
+
+export function ConfirmEmailSection() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ConfirmEmailContent />
+    </Suspense>
   )
 }

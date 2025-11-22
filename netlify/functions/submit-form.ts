@@ -130,6 +130,13 @@ export const handler: Handler = async (
       return createSenderNetErrorResponse()
     }
 
+    console.log(
+      'response from sender',
+      senderResponse.data,
+      'id?',
+      senderResponse.data.id
+    )
+
     return createSuccessResponse(email, new Date().toISOString())
   } catch (error) {
     console.error('Unexpected error in submit-form function:', error)

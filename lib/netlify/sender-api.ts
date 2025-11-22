@@ -22,7 +22,7 @@ function buildSubscriberData(
   email: string,
   fields: FormFields,
   clientIP: ClientIPAndCountry
-): SenderNetSubscriber {
+): Omit<SenderNetSubscriber, 'groups'> {
   return {
     email,
     fields: {

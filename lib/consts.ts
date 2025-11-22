@@ -17,4 +17,8 @@ const COLOR_SCHEMES = {
   },
 } as const
 
-export { COLOR_SCHEMES }
+const senderGroups = {
+  inactive: 'bq84PR',
+}
+
+export { COLOR_SCHEMES, senderGroups }

@@ -31,6 +31,7 @@ import {
   formatFormFields,
   validateUnifiedFormData,
 } from '../../lib/netlify/form-validation'
+import { senderGroups } from '@/lib/consts'
 
 /**
  * Unified form submission handler
@@ -102,6 +103,7 @@ export const handler: Handler = async (
     const senderResponse = await submitToSenderNet(
       {
         ...subscriberData,
+        groups: [senderGroups.inactive],
         fields: {
           ...subscriberData.fields,
           email_verified: 'false',

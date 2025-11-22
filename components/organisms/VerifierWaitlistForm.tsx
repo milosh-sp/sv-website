@@ -33,6 +33,11 @@ export function VerifierWaitlistForm() {
   const form = useVerifierForm({
     onSuccess: () => {
       context.setSubmitStatus('success')
+
+      if (context.currentStep === 'step1') {
+        context.goToStep('step2')
+        context.setSubmitStatus('idle')
+      }
     },
   })
 

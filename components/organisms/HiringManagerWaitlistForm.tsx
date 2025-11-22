@@ -32,6 +32,11 @@ export function HiringManagerWaitlistForm() {
   const form = useHiringManagerForm({
     onSuccess: () => {
       context.setSubmitStatus('success')
+
+      if (context.currentStep === 'step1') {
+        context.goToStep('step2')
+        context.setSubmitStatus('idle')
+      }
     },
   })
 

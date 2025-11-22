@@ -137,6 +137,7 @@ interface ClientIPAndCountry {
 }
 
 interface SenderNetSubscriber {
+  groups: string[]
   email: string
   fields: Record<string, unknown>
 }

@@ -312,6 +312,12 @@ function validateCandidateForm(data: CandidateFormData): ValidationErrors {
   // Validate all steps
   for (const stepId of stepIds) {
     const stepErrors = validateCandidateStep(stepId, data)
+
+    if (stepId === 'step1') {
+      Object.assign(errors, stepErrors.errors)
+      break
+    }
+
     Object.assign(errors, stepErrors.errors)
   }
 
@@ -332,6 +338,12 @@ function validateVerifierForm(data: VerifierFormData): ValidationErrors {
   // Validate all steps
   for (const stepId of stepIds) {
     const stepErrors = validateVerifierStep(stepId, data)
+
+    if (stepId === 'step1') {
+      Object.assign(errors, stepErrors.errors)
+      break
+    }
+
     Object.assign(errors, stepErrors.errors)
   }
 
@@ -354,6 +366,12 @@ function validateHiringManagerForm(
   // Validate all steps
   for (const stepId of stepIds) {
     const stepErrors = validateHiringManagerStep(stepId, data)
+
+    if (stepId === 'step1') {
+      Object.assign(errors, stepErrors.errors)
+      break
+    }
+
     Object.assign(errors, stepErrors.errors)
   }
 

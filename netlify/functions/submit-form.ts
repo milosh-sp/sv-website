@@ -105,8 +105,6 @@ export const handler: Handler = async (
     const groups = [senderGroups.unverified]
     const isPartial = requestData.formStep === 'step1'
 
-    console.log('Formatted data:', formattedData)
-
     if (isPartial) {
       groups.pop()
       groups.push(senderGroups.contactOnly)

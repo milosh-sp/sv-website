@@ -35,7 +35,7 @@ export const handler: Handler = async (
     return createOptionsResponse()
   }
 
-  if (event.httpMethod !== 'POST') {
+  if (event.httpMethod !== 'PATCH') {
     return createMethodNotAllowedResponse()
   }
 

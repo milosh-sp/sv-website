@@ -111,9 +111,8 @@ export async function updateSubscriberData(
   },
   endpoint: string = '/.netlify/functions/update-form'
 ): Promise<ApiResponse> {
-  console.log(JSON.stringify(data))
   const response = await fetch(endpoint, {
-    method: 'POST',
+    method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
     },

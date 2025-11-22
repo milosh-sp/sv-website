@@ -55,14 +55,10 @@ function validateContactConsentStep(data: {
 
   // GitHub/GitLab validation (only if provided)
   if (data.githubGitlabUrl !== undefined) {
-    if (!data.githubGitlabUrl || data.githubGitlabUrl.trim() === '') {
-      errors.githubGitlabUrl = 'GitHub or GitLab profile URL is required'
-    } else {
-      const githubGitlabValidation = validateGitHubGitlab(data.githubGitlabUrl)
-      if (!githubGitlabValidation.isValid) {
-        errors.githubGitlabUrl =
-          githubGitlabValidation.message || 'Invalid GitHub or GitLab URL'
-      }
+    const githubGitlabValidation = validateGitHubGitlab(data.githubGitlabUrl)
+    if (!githubGitlabValidation.isValid) {
+      errors.githubGitlabUrl =
+        githubGitlabValidation.message || 'Invalid GitHub or GitLab URL'
     }
   }
 

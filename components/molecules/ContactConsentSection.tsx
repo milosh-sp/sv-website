@@ -8,6 +8,7 @@ import { strings } from '@/lib/strings'
 import { cn } from '@/lib/utils'
 
 import type { ContactConsentSectionProps } from '@/types/ContactConsentSection.types'
+import { PrivacyPolicyConsent } from './PrivacyPolicyConsent'
 
 export function ContactConsentSection({
   name,
@@ -134,6 +135,13 @@ export function ContactConsentSection({
           disabled={isSubmitting}
         />
       )}
+
+      <PrivacyPolicyConsent
+        prefix={strings.waitlistForms.privacyPolicyConsent.prefix}
+        linkText={strings.waitlistForms.privacyPolicyConsent.linkText}
+        href={strings.waitlistForms.privacyPolicyConsent.href}
+        ariaLabel={strings.waitlistForms.privacyPolicyConsent.ariaLabel}
+      />
     </fieldset>
   )
 }

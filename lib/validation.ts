@@ -151,6 +151,11 @@ export function validateLinkedIn(url: string): ValidationResult {
  * Now uses generic URL validation
  */
 export function validateGitHubGitlab(url: string): ValidationResult {
+  if (!url) {
+    return {
+      isValid: true,
+    }
+  }
   return validateUrl(url, 'GitHub or GitLab profile URL')
 }
 

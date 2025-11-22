@@ -1417,7 +1417,7 @@ export const waitlistForms = {
   fields: {
     name: {
       label: `Name`,
-      placeholder: `Your name (optional)`,
+      placeholder: `How should we call you? (optional)`,
       ariaLabel: `Name field`,
     },
     email: {

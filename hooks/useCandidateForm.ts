@@ -5,7 +5,13 @@
 
 import { useForm } from '@/hooks/useForm'
 import { submitUnifiedForm } from '@/lib/api'
-import { validateEmail, validateLinkedIn, validateUrl } from '@/lib/validation'
+import { validateGitHubGitlabUrlIfProvided } from '@/lib/netlify/form-validation'
+import {
+  validateEmail,
+  validateGitHubGitlab,
+  validateLinkedIn,
+  validateUrl,
+} from '@/lib/validation'
 import { validateCandidateForm } from '@/lib/waitlistFormValidators'
 import type { CandidateFormData } from '@/types/CandidateFormData.types'
 import { INITIAL_CANDIDATE_FORM_DATA } from '@/types/CandidateFormData.types'
@@ -22,7 +28,7 @@ export function useCandidateForm(config?: UseCandidateFormConfig) {
     fields: [
       { name: 'email', validator: validateEmail },
       { name: 'linkedIn', validator: validateLinkedIn },
-      { name: 'githubGitlabUrl', validator: validateUrl },
+      { name: 'githubGitlabUrl', validator: validateGitHubGitlab },
     ],
     validateForm: validateCandidateForm,
     onSubmit: async (formData, honeypotValue, formStartTime) => {

@@ -1,15 +1,11 @@
+import type { StepId } from '@/lib/stepIdentifiers'
 import type { Handler } from '@netlify/functions'
 
 // ============================================================================
 // FORM TYPE DISCRIMINATOR
 // ============================================================================
 
-type FormType =
-  | 'signup'
-  | 'contact'
-  | 'candidate'
-  | 'hiring-manager'
-  | 'verifier'
+type FormType = 'contact' | 'candidate' | 'hiring-manager' | 'verifier'
 
 // ============================================================================
 // FORM FIELDS - GENERIC AND TYPE-SPECIFIC
@@ -20,16 +16,9 @@ interface FormFields {
   githubGitlabUrl?: string
   user_type?: string
   website?: string
+  form_step?: StepId
   form_start_time?: string
   [key: string]: unknown
-}
-
-// Signup form fields
-interface SignupFormFields extends FormFields {
-  linkedin?: string
-  githubGitlabUrl?: string
-  user_type?: string
-  source?: string
 }
 
 // Contact form fields
@@ -91,10 +80,6 @@ interface BaseFormSubmission {
   referredByReferralCode?: string
 }
 
-interface SignupFormSubmission extends BaseFormSubmission, SignupFormFields {
-  formType: 'signup'
-}
-
 interface ContactFormSubmission extends BaseFormSubmission, ContactFormFields {
   formType: 'contact'
 }
@@ -119,7 +104,6 @@ interface VerifierFormSubmission
 }
 
 type UnifiedFormSubmissionData =
-  | SignupFormSubmission
   | ContactFormSubmission
   | CandidateFormSubmission
   | HiringManagerFormSubmission
@@ -185,14 +169,12 @@ interface BotDetectionResult {
 export type {
   FormType,
   FormFields,
-  SignupFormFields,
   ContactFormFields,
   TechnicalProfileFormFields,
   CandidateFormFields,
   HiringManagerFormFields,
   VerifierFormFields,
   FormSubmissionData,
-  SignupFormSubmission,
   ContactFormSubmission,
   CandidateFormSubmission,
   HiringManagerFormSubmission,

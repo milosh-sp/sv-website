@@ -44,7 +44,6 @@ export function useCandidateForm(config?: UseCandidateFormConfig) {
         valuableOutcomeOther: formData.valuableOutcomeOther,
         website: honeypotValue,
         form_start_time: formStartTime,
-        referralCode: formData.referralCode,
         referredByReferralCode: formData.referredByReferralCode,
       } as CandidateFormSubmission)
     },

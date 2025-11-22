@@ -1,26 +1,43 @@
 'use client'
 
-import { SectionWrapper } from '@/components/templates/SectionWrapper'
 import { updateSubscriberData } from '@/lib/api'
 import { senderGroups } from '@/lib/consts'
-import { cn } from '@/lib/utils'
 import { generateReferralCode } from '@/lib/utils/convertToSnakeCase'
+import { SatelliteDishIcon } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
-import { Suspense, useEffect, useEffectEvent } from 'react'
+import { Suspense, useEffect, useEffectEvent, useState } from 'react'
+import { SuccessScreen } from '../organisms/SuccessScreen'
+import { strings } from '@/lib/strings'
 
 function ConfirmEmailContent() {
+  const [isVerifying, setIsVerifying] = useState(true)
+  const [error, setError] = useState<string | null>()
+  const [referralCode, setReferralCode] = useState<string | null>()
   const searchParams = useSearchParams()
   const userId = searchParams.get('userId')
 
-  const handleUpdate = useEffectEvent(() => {
-    updateSubscriberData({
+  const handleUpdate = useEffectEvent(async () => {
+    const referralCode = generateReferralCode()
+
+    const result = await updateSubscriberData({
       id: userId ?? '',
       fields: {
         email_verified: 'true',
         groups: [senderGroups.active],
-        referral_code: generateReferralCode(),
+        referral_code: referralCode,
       },
     })
+
+    if (result.error) {
+      setError(result.error)
+      setIsVerifying(false)
+    }
+
+    if (result.success) {
+      setError(null)
+      setReferralCode(referralCode)
+      setIsVerifying(false)
+    }
   })
 
   useEffect(() => {
@@ -29,14 +46,42 @@ function ConfirmEmailContent() {
     }
   }, [userId])
 
+  if (isVerifying) {
+    return (
+      <div
+        className='flex items-center justify-center min-h-screen'
+        aria-live='polite'
+        aria-busy='true'
+      >
+        <div
+          className='animate-spin rounded-full h-8 w-8 border-b-2 border-primary'
+          aria-hidden='true'
+        />
+      </div>
+    )
+  }
+
   return (
-    <SectionWrapper
-      id='confirm-email'
-      className={cn('py-16 bg-white')}
-      aria-labelledby='confirm-email-heading'
-    >
-      <h1>You verified your email!</h1>
-    </SectionWrapper>
+    <section>
+      {error && (
+        <SuccessScreen
+          icon={<SatelliteDishIcon className='w-16 h-16' />}
+          messageProps={{
+            ...strings.confirmEmailScreen.error,
+            description: `${strings.confirmEmailScreen.error.description} ${error}`,
+          }}
+        />
+      )}
+
+      {referralCode && !error && (
+        <SuccessScreen
+          messageProps={{
+            ...strings.confirmEmailScreen.success,
+            description: `${strings.confirmEmailScreen.success.description} ${referralCode}`,
+          }}
+        />
+      )}
+    </section>
   )
 }
 

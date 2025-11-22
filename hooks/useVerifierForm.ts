@@ -1,8 +1,3 @@
-/**
- * Custom hook for managing Verifier Waitlist Form
- * Reuses the generic useForm hook with verifier-specific validators
- */
-
 import { useForm } from '@/hooks/useForm'
 import { submitUnifiedForm } from '@/lib/api'
 import {
@@ -49,7 +44,6 @@ export function useVerifierForm(config?: UseVerifierFormConfig) {
         professionalFrustrationOther: formData.professionalFrustrationOther,
         website: honeypotValue,
         form_start_time: formStartTime,
-        referralCode: formData.referralCode,
         referredByReferralCode: formData.referredByReferralCode,
       } as VerifierFormSubmission)
     },

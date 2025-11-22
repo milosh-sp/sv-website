@@ -144,6 +144,9 @@ interface SenderNetSubscriber {
 
 interface SenderNetErrorResponse {
   message?: string
+  data?: {
+    id: string
+  }
   [key: string]: unknown
 }
 

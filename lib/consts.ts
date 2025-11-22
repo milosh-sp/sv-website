@@ -21,4 +21,8 @@ const senderGroups = {
   inactive: 'bq84PR',
 }
 
-export { COLOR_SCHEMES, senderGroups }
+const senderTransactionalCampaigns = {
+  confirmEmail: 'bY54Np',
+}
+
+export { COLOR_SCHEMES, senderGroups, senderTransactionalCampaigns }

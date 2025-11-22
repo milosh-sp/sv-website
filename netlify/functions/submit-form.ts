@@ -3,6 +3,7 @@ import {
   buildSubscriberData,
   getApiToken,
   logSenderNetError,
+  sendTransactionalEmail,
   submitToSenderNet,
 } from '../../lib/netlify/sender-api'
 import {
@@ -31,7 +32,7 @@ import {
   formatFormFields,
   validateUnifiedFormData,
 } from '../../lib/netlify/form-validation'
-import { senderGroups } from '@/lib/consts'
+import { senderGroups, senderTransactionalCampaigns } from '@/lib/consts'
 
 /**
  * Unified form submission handler
@@ -129,12 +130,34 @@ export const handler: Handler = async (
 
       return createSenderNetErrorResponse()
     }
+    console.log(
+      'Successfully added form data, response from sender.net:',
+      senderResponse.data
+    )
+    console.log('Sending confirmation email')
+
+    const transactionalResponse = await sendTransactionalEmail({
+      email,
+      apiToken,
+      emailVariables: {
+        subject: `Welcome to SkillVerdict!`,
+        userId: senderResponse.data.data?.id as string,
+      },
+      emailTemplateId: senderTransactionalCampaigns.confirmEmail,
+    })
+
+    if (!transactionalResponse.ok) {
+      logSenderNetError(
+        transactionalResponse.status,
+        '',
+        transactionalResponse.data
+      )
+      return createSenderNetErrorResponse()
+    }
 
     console.log(
-      'response from sender',
-      senderResponse.data,
-      'id?',
-      senderResponse.data.id
+      'Confirmation email sent successfully',
+      transactionalResponse.data
     )
 
     return createSuccessResponse(email, new Date().toISOString())

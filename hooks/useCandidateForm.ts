@@ -1,16 +1,9 @@
-/**
- * Custom hook for managing Candidate Waitlist Form
- * Reuses the generic useForm hook with candidate-specific validators
- */
-
 import { useForm } from '@/hooks/useForm'
 import { submitUnifiedForm } from '@/lib/api'
-import { validateGitHubGitlabUrlIfProvided } from '@/lib/netlify/form-validation'
 import {
   validateEmail,
   validateGitHubGitlab,
   validateLinkedIn,
-  validateUrl,
 } from '@/lib/validation'
 import { validateCandidateForm } from '@/lib/waitlistFormValidators'
 import type { CandidateFormData } from '@/types/CandidateFormData.types'

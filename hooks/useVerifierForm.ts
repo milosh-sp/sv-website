@@ -1,5 +1,6 @@
 import { useForm } from '@/hooks/useForm'
 import { submitUnifiedForm } from '@/lib/api'
+import type { StepId } from '@/lib/stepIdentifiers'
 import {
   validateEmail,
   validateGitHubGitlab,
@@ -13,6 +14,7 @@ import type { VerifierFormSubmission } from '@/types/netlify.types'
 interface UseVerifierFormConfig {
   onSuccess?: () => void
   debounceDelay?: number
+  currentStep?: StepId
 }
 
 export function useVerifierForm(config?: UseVerifierFormConfig) {
@@ -45,6 +47,7 @@ export function useVerifierForm(config?: UseVerifierFormConfig) {
         website: honeypotValue,
         form_start_time: formStartTime,
         referredByReferralCode: formData.referredByReferralCode,
+        formStep: config?.currentStep,
       } as VerifierFormSubmission)
     },
     onSuccess: config?.onSuccess,

@@ -30,6 +30,7 @@ const {
 export function CandidateWaitlistForm() {
   const context = useCandidateFormContext()
   const form = useCandidateForm({
+    currentStep: context.currentStep,
     onSuccess: () => {
       context.setSubmitStatus('success')
 
@@ -43,11 +44,6 @@ export function CandidateWaitlistForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     context.setIsSubmitting(true)
-
-    context.setFormData({
-      ...context.formData,
-      formStep: context.currentStep,
-    })
 
     try {
       await form.handleSubmit(e)

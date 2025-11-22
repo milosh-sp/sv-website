@@ -30,6 +30,7 @@ const {
 export function HiringManagerWaitlistForm() {
   const context = useHiringManagerFormContext()
   const form = useHiringManagerForm({
+    currentStep: context.currentStep,
     onSuccess: () => {
       context.setSubmitStatus('success')
 
@@ -43,12 +44,6 @@ export function HiringManagerWaitlistForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     context.setIsSubmitting(true)
-
-    context.setFormData({
-      ...context.formData,
-      formStep: context.currentStep,
-    })
-
     try {
       await form.handleSubmit(e)
       if (form.submitStatus === 'success') {

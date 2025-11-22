@@ -31,6 +31,7 @@ const {
 export function VerifierWaitlistForm() {
   const context = useVerifierFormContext()
   const form = useVerifierForm({
+    currentStep: context.currentStep,
     onSuccess: () => {
       context.setSubmitStatus('success')
 
@@ -44,11 +45,6 @@ export function VerifierWaitlistForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     context.setIsSubmitting(true)
-
-    context.setFormData({
-      ...context.formData,
-      formStep: context.currentStep,
-    })
 
     try {
       await form.handleSubmit(e)

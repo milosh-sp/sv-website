@@ -108,7 +108,7 @@ export function WaitlistFormWrapper({
         label={strings.waitlistForms.fields.website.label}
       />
 
-      {submitStatus === 'error' && errors.submit && (
+      {submitStatus === 'error' && errors.submit && currentStep === 'step4' && (
         <StatusMessage
           status='error'
           errorMessage={errors.submit}

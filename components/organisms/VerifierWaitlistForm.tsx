@@ -2,7 +2,6 @@
 
 import { ContactConsentSection } from '@/components/molecules/ContactConsentSection'
 import { FormFieldsStep } from '@/components/molecules/FormFieldsStep'
-import { PrivacyPolicyConsent } from '@/components/molecules/PrivacyPolicyConsent'
 import { SkillAreasSection } from '@/components/molecules/SkillAreasSection'
 import { TechnicalSkillsSection } from '@/components/molecules/TechnicalSkillsSection'
 import { VerifierProfileStep } from '@/components/molecules/VerifierProfileStep'
@@ -32,8 +31,16 @@ const {
 export function VerifierWaitlistForm() {
   const context = useVerifierFormContext()
   const form = useVerifierForm({
+    currentStep: context.currentStep,
     onSuccess: () => {
-      context.setSubmitStatus('success')
+      // On step 1 we do a silent submit, so we need to reset the status to initial
+      context.setSubmitStatus(
+        context.currentStep === 'step1' ? 'idle' : 'success'
+      )
+
+      if (context.currentStep === 'step1') {
+        context.goToStep('step2')
+      }
     },
   })
 
@@ -180,12 +187,6 @@ export function VerifierWaitlistForm() {
       return (
         <div className={cn('space-y-6')}>
           <FormFieldsStep fields={fields} isSubmitting={form.isSubmitting} />
-          <PrivacyPolicyConsent
-            prefix={strings.waitlistForms.privacyPolicyConsent.prefix}
-            linkText={strings.waitlistForms.privacyPolicyConsent.linkText}
-            href={strings.waitlistForms.privacyPolicyConsent.href}
-            ariaLabel={strings.waitlistForms.privacyPolicyConsent.ariaLabel}
-          />
         </div>
       )
     },

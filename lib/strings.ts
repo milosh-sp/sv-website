@@ -1417,7 +1417,7 @@ export const waitlistForms = {
   fields: {
     name: {
       label: `Name`,
-      placeholder: `Your name (optional)`,
+      placeholder: `How should we call you? (optional)`,
       ariaLabel: `Name field`,
     },
     email: {
@@ -1755,6 +1755,21 @@ export const waitlistForms = {
   },
 } as const
 
+const confirmEmailScreen = {
+  error: {
+    title: `Error verifying your email!`,
+    description: `Please try again later.`,
+    backToHomepage: `Back to homepage`,
+    checkEmailMessage: `If you do not receive an email within 5 minutes, please check your spam folder.`,
+  },
+  success: {
+    title: `You verified your email!`,
+    description: `You will receive an email with your referral code soon. Please check your inbox.`,
+    backToHomepage: `Back to homepage`,
+    checkEmailMessage: `If you do not receive an email within 5 minutes, please check your spam folder.`,
+  },
+}
+
 // ============================================================================
 // EXPORT ALL STRINGS
 // ============================================================================
@@ -1780,4 +1795,5 @@ export const strings = {
   checkbox,
   radioButton,
   waitlistForms,
+  confirmEmailScreen,
 } as const

@@ -3,7 +3,6 @@
 import { ContactConsentSection } from '@/components/molecules/ContactConsentSection'
 import { FormFieldsStep } from '@/components/molecules/FormFieldsStep'
 import { HiringManagerCompanyProfileStep } from '@/components/molecules/HiringManagerCompanyProfileStep'
-import { PrivacyPolicyConsent } from '@/components/molecules/PrivacyPolicyConsent'
 import { WaitlistFormWrapper } from '@/components/organisms/WaitlistFormWrapper'
 import { useHiringManagerFormContext } from '@/context/HiringManagerFormContext'
 import { useHiringManagerForm } from '@/hooks/useHiringManagerForm'
@@ -31,15 +30,23 @@ const {
 export function HiringManagerWaitlistForm() {
   const context = useHiringManagerFormContext()
   const form = useHiringManagerForm({
+    currentStep: context.currentStep,
     onSuccess: () => {
-      context.setSubmitStatus('success')
+      // On step 1 we do a silent submit, so we need to reset the status to initial
+      context.setSubmitStatus(
+        context.currentStep === 'step1' ? 'idle' : 'success'
+      )
+
+      if (context.currentStep === 'step1') {
+        context.goToStep('step2')
+        context.setSubmitStatus('idle')
+      }
     },
   })
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     context.setIsSubmitting(true)
-
     try {
       await form.handleSubmit(e)
       if (form.submitStatus === 'success') {
@@ -169,12 +176,6 @@ export function HiringManagerWaitlistForm() {
             },
           ]}
           isSubmitting={form.isSubmitting}
-        />
-        <PrivacyPolicyConsent
-          prefix={strings.waitlistForms.privacyPolicyConsent.prefix}
-          linkText={strings.waitlistForms.privacyPolicyConsent.linkText}
-          href={strings.waitlistForms.privacyPolicyConsent.href}
-          ariaLabel={strings.waitlistForms.privacyPolicyConsent.ariaLabel}
         />
       </>
     ),

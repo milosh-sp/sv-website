@@ -1,11 +1,11 @@
-/**
- * Custom hook for managing Verifier Waitlist Form
- * Reuses the generic useForm hook with verifier-specific validators
- */
-
 import { useForm } from '@/hooks/useForm'
 import { submitUnifiedForm } from '@/lib/api'
-import { validateEmail, validateLinkedIn, validateUrl } from '@/lib/validation'
+import type { StepId } from '@/lib/stepIdentifiers'
+import {
+  validateEmail,
+  validateGitHubGitlab,
+  validateLinkedIn,
+} from '@/lib/validation'
 import { validateVerifierForm } from '@/lib/waitlistFormValidators'
 import type { VerifierFormData } from '@/types/VerifierFormData.types'
 import { INITIAL_VERIFIER_FORM_DATA } from '@/types/VerifierFormData.types'
@@ -14,6 +14,7 @@ import type { VerifierFormSubmission } from '@/types/netlify.types'
 interface UseVerifierFormConfig {
   onSuccess?: () => void
   debounceDelay?: number
+  currentStep?: StepId
 }
 
 export function useVerifierForm(config?: UseVerifierFormConfig) {
@@ -22,14 +23,16 @@ export function useVerifierForm(config?: UseVerifierFormConfig) {
     fields: [
       { name: 'email', validator: validateEmail },
       { name: 'linkedIn', validator: validateLinkedIn },
-      { name: 'githubGitlabUrl', validator: validateUrl },
+      { name: 'githubGitlabUrl', validator: validateGitHubGitlab },
     ],
     validateForm: validateVerifierForm,
     onSubmit: async (formData, honeypotValue, formStartTime) => {
+      const referralCode = localStorage.getItem('referralCode') ?? ''
+
       // Submit to unified Netlify function with verifier-specific fields
       return submitUnifiedForm({
         formType: 'verifier',
-        name: formData.name,
+        contactName: formData.name,
         email: formData.email,
         linkedin: formData.linkedIn,
         githubGitlabUrl: formData.githubGitlabUrl,
@@ -45,6 +48,10 @@ export function useVerifierForm(config?: UseVerifierFormConfig) {
         professionalFrustrationOther: formData.professionalFrustrationOther,
         website: honeypotValue,
         form_start_time: formStartTime,
+        referredByReferralCode: referralCode,
+        formStep: config?.currentStep,
+        newsLetterOptIn: formData.newsletterOptIn,
+        privacyPolicyAgreed: new Date().toISOString(),
       } as VerifierFormSubmission)
     },
     onSuccess: config?.onSuccess,

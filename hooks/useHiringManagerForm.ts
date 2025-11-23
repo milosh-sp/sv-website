@@ -1,5 +1,6 @@
 import { useForm } from '@/hooks/useForm'
 import { submitUnifiedForm } from '@/lib/api'
+import type { StepId } from '@/lib/stepIdentifiers'
 import { validateEmail, validateUrl } from '@/lib/validation'
 import { validateHiringManagerForm } from '@/lib/waitlistFormValidators'
 import type { HiringManagerFormData } from '@/types/HiringManagerFormData.types'
@@ -9,6 +10,7 @@ import type { HiringManagerFormSubmission } from '@/types/netlify.types'
 interface UseHiringManagerFormConfig {
   onSuccess?: () => void
   debounceDelay?: number
+  currentStep?: StepId
 }
 
 export function useHiringManagerForm(config?: UseHiringManagerFormConfig) {
@@ -20,6 +22,8 @@ export function useHiringManagerForm(config?: UseHiringManagerFormConfig) {
     ],
     validateForm: validateHiringManagerForm,
     onSubmit: async (formData, honeypotValue, formStartTime) => {
+      const referralCode = localStorage.getItem('referralCode') ?? ''
+
       // Submit to unified Netlify function with hiring manager-specific fields
       return submitUnifiedForm({
         formType: 'hiring-manager',
@@ -35,6 +39,9 @@ export function useHiringManagerForm(config?: UseHiringManagerFormConfig) {
         hiringFailures: formData.hiringFailures,
         website: honeypotValue,
         form_start_time: formStartTime,
+        referredByReferralCode: referralCode,
+        newsLetterOptIn: formData.newsletterOptIn,
+        privacyPolicyAgreed: new Date().toISOString(),
       } as HiringManagerFormSubmission)
     },
     onSuccess: config?.onSuccess,

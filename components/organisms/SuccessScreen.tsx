@@ -11,11 +11,15 @@ import { Text } from '@/components/atoms/Text'
 import type { SuccessScreenProps } from '@/types/SuccessScreen.types'
 
 export function SuccessScreen({
+  icon = <CheckCircle className={cn('w-16 h-16 text-success')} />,
   personaType,
   className,
+  messageProps,
   ...props
 }: SuccessScreenProps) {
-  const message = strings.waitlistForms.successScreen[personaType]
+  const message =
+    messageProps ??
+    strings.waitlistForms.successScreen[personaType ?? 'candidate']
 
   return (
     <main
@@ -27,9 +31,7 @@ export function SuccessScreen({
     >
       <article className={cn('max-w-md w-full text-center space-y-6')}>
         {/* Success Icon */}
-        <div className={cn('flex justify-center')}>
-          <CheckCircle className={cn('w-16 h-16 text-success')} />
-        </div>
+        <div className={cn('flex justify-center')}>{icon}</div>
 
         {/* Title */}
         <Heading level={1} variant='heading'>

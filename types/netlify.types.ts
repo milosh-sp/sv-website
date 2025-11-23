@@ -1,15 +1,11 @@
+import type { StepId } from '@/lib/stepIdentifiers'
 import type { Handler } from '@netlify/functions'
 
 // ============================================================================
 // FORM TYPE DISCRIMINATOR
 // ============================================================================
 
-type FormType =
-  | 'signup'
-  | 'contact'
-  | 'candidate'
-  | 'hiring-manager'
-  | 'verifier'
+type FormType = 'contact' | 'candidate' | 'hiring-manager' | 'verifier'
 
 // ============================================================================
 // FORM FIELDS - GENERIC AND TYPE-SPECIFIC
@@ -20,16 +16,9 @@ interface FormFields {
   githubGitlabUrl?: string
   user_type?: string
   website?: string
+  form_step?: StepId
   form_start_time?: string
   [key: string]: unknown
-}
-
-// Signup form fields
-interface SignupFormFields extends FormFields {
-  linkedin?: string
-  githubGitlabUrl?: string
-  user_type?: string
-  source?: string
 }
 
 // Contact form fields
@@ -87,10 +76,8 @@ interface VerifierFormFields extends TechnicalProfileFormFields {
 
 interface BaseFormSubmission {
   email: string
-}
-
-interface SignupFormSubmission extends BaseFormSubmission, SignupFormFields {
-  formType: 'signup'
+  referralCode?: string
+  referredByReferralCode?: string
 }
 
 interface ContactFormSubmission extends BaseFormSubmission, ContactFormFields {
@@ -117,7 +104,6 @@ interface VerifierFormSubmission
 }
 
 type UnifiedFormSubmissionData =
-  | SignupFormSubmission
   | ContactFormSubmission
   | CandidateFormSubmission
   | HiringManagerFormSubmission
@@ -135,12 +121,16 @@ interface ClientIPAndCountry {
 }
 
 interface SenderNetSubscriber {
+  groups: string[]
   email: string
   fields: Record<string, unknown>
 }
 
 interface SenderNetErrorResponse {
   message?: string
+  data?: {
+    id: string
+  }
   [key: string]: unknown
 }
 
@@ -179,14 +169,12 @@ interface BotDetectionResult {
 export type {
   FormType,
   FormFields,
-  SignupFormFields,
   ContactFormFields,
   TechnicalProfileFormFields,
   CandidateFormFields,
   HiringManagerFormFields,
   VerifierFormFields,
   FormSubmissionData,
-  SignupFormSubmission,
   ContactFormSubmission,
   CandidateFormSubmission,
   HiringManagerFormSubmission,

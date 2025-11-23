@@ -1,5 +1,3 @@
-'use client'
-
 import { SubmitButton } from '@/components/atoms/SubmitButton'
 import { cn } from '@/lib/utils'
 import { strings } from '@/lib/strings'
@@ -42,12 +40,15 @@ export function FormNavigation({
         {strings.waitlistForms.buttons.previous}
       </Button>
 
-      {isLastStep ? (
+      {isLastStep || isFirstStep ? (
+        // On step 1 we submit partial information for the user
         <SubmitButton
           isSubmitting={isSubmitting}
           isDisabled={isSubmitting || !canProceed}
           ariaLabel={submitAriaLabel}
-          idleText={submitLabel}
+          idleText={
+            isFirstStep ? strings.waitlistForms.buttons.next : submitLabel
+          }
           loadingText={submitLoadingLabel}
         />
       ) : (

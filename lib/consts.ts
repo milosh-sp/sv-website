@@ -1,3 +1,5 @@
+import type { FormType } from '@/types/netlify.types'
+
 const COLOR_SCHEMES = {
   blue: {
     iconBg: 'from-accent to-accent/80',
@@ -17,4 +19,28 @@ const COLOR_SCHEMES = {
   },
 } as const
 
-export { COLOR_SCHEMES }
+const senderGroups = {
+  contactOnly: 'dykg1w',
+  unverified: 'bq84PR',
+  verified: 'e7JKjw',
+  contactUsForm: 'bmX4lE',
+}
+
+const senderTransactionalCampaigns = {
+  confirmEmail: 'bY54Np',
+  contactUsConfirmation: 'avZOrr',
+}
+
+const confirmEmailPerFormType: Record<FormType, string> = {
+  contact: senderTransactionalCampaigns.contactUsConfirmation,
+  candidate: senderTransactionalCampaigns.confirmEmail,
+  'hiring-manager': senderTransactionalCampaigns.confirmEmail,
+  verifier: senderTransactionalCampaigns.confirmEmail,
+}
+
+export {
+  COLOR_SCHEMES,
+  confirmEmailPerFormType,
+  senderGroups,
+  senderTransactionalCampaigns,
+}

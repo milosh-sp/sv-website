@@ -3,6 +3,7 @@ import {
   buildSubscriberData,
   getApiToken,
   logSenderNetError,
+  sendTransactionalEmail,
   submitToSenderNet,
 } from '../../lib/netlify/sender-api'
 import {
@@ -23,6 +24,7 @@ import {
 import { extractClientIPAndCountry } from '../../lib/netlify/client-info'
 import type {
   FormFields,
+  FormType,
   HttpResponse,
   UnifiedFormSubmissionData,
 } from '../../types/netlify.types'
@@ -31,6 +33,7 @@ import {
   formatFormFields,
   validateUnifiedFormData,
 } from '../../lib/netlify/form-validation'
+import { confirmEmailPerFormType, senderGroups } from '@/lib/consts'
 
 /**
  * Unified form submission handler
@@ -99,7 +102,34 @@ export const handler: Handler = async (
     // Format array fields to comma-separated strings for submission
     const formattedData = formatFormFields(requestData as FormFields)
     const subscriberData = buildSubscriberData(email, formattedData, clientIP)
-    const senderResponse = await submitToSenderNet(subscriberData, apiToken)
+
+    const groups = [senderGroups.unverified]
+    const isPartial = requestData.form_step === 'step1'
+
+    const formType = subscriberData.fields.form_type as FormType
+
+    // Adds to contact us group
+    if (formType === 'contact') {
+      groups.pop()
+      groups.push(senderGroups.contactUsForm)
+    }
+
+    if (isPartial && formType !== 'contact') {
+      groups.pop()
+      groups.push(senderGroups.contactOnly)
+    }
+
+    const senderResponse = await submitToSenderNet(
+      {
+        ...subscriberData,
+        groups,
+        fields: {
+          ...subscriberData.fields,
+          email_verified: 'false',
+        },
+      },
+      apiToken
+    )
 
     if (!senderResponse.ok) {
       logSenderNetError(senderResponse.status, '', senderResponse.data)
@@ -116,6 +146,43 @@ export const handler: Handler = async (
 
       return createSenderNetErrorResponse()
     }
+    console.log(
+      'Successfully added form data, response from sender.net:',
+      senderResponse.data
+    )
+
+    // Do not send confirmation email to partial submissions and on contact us form
+    if (isPartial) {
+      return createSuccessResponse(email, new Date().toISOString())
+    }
+
+    console.log(
+      `Sending confirmation email for form type ${formType} with email template id: `,
+      confirmEmailPerFormType[formType]
+    )
+
+    const transactionalResponse = await sendTransactionalEmail({
+      email,
+      apiToken,
+      emailVariables: {
+        userId: senderResponse.data.data?.id as string,
+      },
+      emailTemplateId: confirmEmailPerFormType[formType],
+    })
+
+    if (!transactionalResponse.ok) {
+      logSenderNetError(
+        transactionalResponse.status,
+        '',
+        transactionalResponse.data
+      )
+      return createSenderNetErrorResponse()
+    }
+
+    console.log(
+      'Confirmation email sent successfully',
+      transactionalResponse.data
+    )
 
     return createSuccessResponse(email, new Date().toISOString())
   } catch (error) {

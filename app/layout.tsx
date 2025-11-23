@@ -14,6 +14,7 @@ import {
 } from '@/lib/seo'
 import { strings } from '@/lib/strings'
 import { GoogleAnalytics } from '@/utils/GoogleAnalytics'
+import { CookieYesConsent } from '@/utils/CookieYesConsent'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -83,6 +84,7 @@ export default function RootLayout({
         />
       </head>
       <body className='font-sans'>
+        <CookieYesConsent />
         {/* Google Analytics 4 - Loads after page is interactive */}
         <GoogleAnalytics />
 

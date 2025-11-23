@@ -126,8 +126,6 @@ export const handler: Handler = async (
         fields: {
           ...subscriberData.fields,
           email_verified: 'false',
-          // Because we have, by submitting you agreed to our privacy policy
-          privacy_policy_agreed: 'true',
         },
       },
       apiToken
@@ -167,8 +165,6 @@ export const handler: Handler = async (
       email,
       apiToken,
       emailVariables: {
-        //TODO: Do different subjects
-        subject: `Welcome to SkillVerdict!`,
         userId: senderResponse.data.data?.id as string,
       },
       emailTemplateId: confirmEmailPerFormType[formType],

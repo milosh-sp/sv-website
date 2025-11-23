@@ -51,6 +51,7 @@ export function useVerifierForm(config?: UseVerifierFormConfig) {
         referredByReferralCode: referralCode,
         formStep: config?.currentStep,
         newsLetterOptIn: formData.newsletterOptIn,
+        privacyPolicyAgreed: new Date().toISOString(),
       } as VerifierFormSubmission)
     },
     onSuccess: config?.onSuccess,

@@ -51,6 +51,7 @@ export function useCandidateForm(config?: UseCandidateFormConfig) {
         referredByReferralCode: referralCode,
         formStep: config?.currentStep,
         newsLetterOptIn: formData.newsletterOptIn,
+        privacyPolicyAgreed: new Date().toISOString(),
       } as CandidateFormSubmission)
     },
     onSuccess: config?.onSuccess,

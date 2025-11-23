@@ -41,6 +41,7 @@ export function useHiringManagerForm(config?: UseHiringManagerFormConfig) {
         form_start_time: formStartTime,
         referredByReferralCode: referralCode,
         newsLetterOptIn: formData.newsletterOptIn,
+        privacyPolicyAgreed: new Date().toISOString(),
       } as HiringManagerFormSubmission)
     },
     onSuccess: config?.onSuccess,

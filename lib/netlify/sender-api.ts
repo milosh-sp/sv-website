@@ -92,8 +92,8 @@ async function sendTransactionalEmail({
   email: string
   apiToken: string
   emailVariables: {
-    subject: string
-    userId: string | null
+    subject?: string
+    userId: string
   }
   emailTemplateId: string
 }): Promise<{

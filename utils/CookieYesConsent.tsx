@@ -1,5 +1,6 @@
 'use client'
 
+import { envs } from '@/lib/envs'
 import Script from 'next/script'
 
 export function CookieYesConsent() {
@@ -11,7 +12,7 @@ export function CookieYesConsent() {
   return (
     <Script
       id='cookieyes'
-      src={`https://cdn-cookieyes.com/client_data/${process.env.NEXT_PUBLIC_COOKIEYES_ID}/script.js`}
+      src={`https://cdn-cookieyes.com/client_data/${envs.COOKIE_YES_CONSENT}/script.js`}
       strategy='afterInteractive'
     />
   )

@@ -128,6 +128,7 @@ export async function updateSubscriberData(
   data: {
     id: string
     fields: Record<string, unknown>
+    groups?: string[]
   },
   endpoint: string = '/.netlify/functions/update-form'
 ): Promise<ApiResponse> {

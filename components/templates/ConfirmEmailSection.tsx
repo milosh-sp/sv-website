@@ -21,9 +21,9 @@ function ConfirmEmailContent() {
 
     const result = await updateSubscriberData({
       id: userId ?? '',
+      groups: [senderGroups.verified],
       fields: {
         email_verified: 'true',
-        groups: [senderGroups.verified],
         referral_code: referralCode,
       },
     })

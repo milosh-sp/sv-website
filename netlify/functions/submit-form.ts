@@ -24,6 +24,7 @@ import {
 import { extractClientIPAndCountry } from '../../lib/netlify/client-info'
 import type {
   FormFields,
+  FormType,
   HttpResponse,
   UnifiedFormSubmissionData,
 } from '../../types/netlify.types'
@@ -105,13 +106,15 @@ export const handler: Handler = async (
     const groups = [senderGroups.unverified]
     const isPartial = requestData.form_step === 'step1'
 
+    const formType = subscriberData.fields.form_type as FormType
+
     // Adds to contact us group
-    if (requestData.formType === 'contact') {
+    if (formType === 'contact') {
       groups.pop()
       groups.push(senderGroups.contactUsForm)
     }
 
-    if (isPartial && requestData.formType !== 'contact') {
+    if (isPartial && formType !== 'contact') {
       groups.pop()
       groups.push(senderGroups.contactOnly)
     }
@@ -156,8 +159,8 @@ export const handler: Handler = async (
     }
 
     console.log(
-      'Sending confirmation email... with template: ',
-      confirmEmailPerFormType[requestData.formType]
+      `Sending confirmation email for form type ${formType} with email template id: `,
+      confirmEmailPerFormType[formType]
     )
 
     const transactionalResponse = await sendTransactionalEmail({
@@ -168,7 +171,7 @@ export const handler: Handler = async (
         subject: `Welcome to SkillVerdict!`,
         userId: senderResponse.data.data?.id as string,
       },
-      emailTemplateId: confirmEmailPerFormType[requestData.formType],
+      emailTemplateId: confirmEmailPerFormType[formType],
     })
 
     if (!transactionalResponse.ok) {

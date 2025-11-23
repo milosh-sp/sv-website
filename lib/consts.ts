@@ -1,3 +1,6 @@
+import { UserType } from '@/types/FormData.types'
+import { FormType } from '@/types/netlify.types'
+
 const COLOR_SCHEMES = {
   blue: {
     iconBg: 'from-accent to-accent/80',
@@ -29,7 +32,7 @@ const senderTransactionalCampaigns = {
   contactUsConfirmation: 'o2QQwA',
 }
 
-const confirmEmailPerFormType = {
+const confirmEmailPerFormType: Record<FormType, string> = {
   contact: senderTransactionalCampaigns.contactUsConfirmation,
   candidate: senderTransactionalCampaigns.confirmEmail,
   'hiring-manager': senderTransactionalCampaigns.confirmEmail,

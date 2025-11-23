@@ -575,7 +575,7 @@ const technicalSeo = {
   other: {
     'msapplication-TileColor': '#3b82f6',
     'theme-color': '#ffffff',
-    'apple-mobile-web-app-capable': 'yes',
+    'mobile-web-app-capable': 'yes',
     'apple-mobile-web-app-status-bar-style': 'black-translucent',
   },
 

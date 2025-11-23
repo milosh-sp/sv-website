@@ -155,7 +155,11 @@ export const handler: Handler = async (
       return createSuccessResponse(email, new Date().toISOString())
     }
 
-    console.log('Sending confirmation email...')
+    console.log(
+      'Sending confirmation email... with template: ',
+      confirmEmailPerFormType[requestData.formType]
+    )
+
     const transactionalResponse = await sendTransactionalEmail({
       email,
       apiToken,

@@ -4,6 +4,7 @@ import type {
   SenderNetErrorResponse,
   SenderNetSubscriber,
 } from '../../types/netlify.types'
+import { CORS_HEADERS } from './response-builder'
 
 const SENDER_API_URL = 'https://api.sender.net/v2'
 const SENDER_API_TIMEOUT_MS = 10000
@@ -49,6 +50,7 @@ async function submitToSenderNet(
     const response = await fetch(`${SENDER_API_URL}/subscribers`, {
       method: 'POST',
       headers: {
+        ...CORS_HEADERS,
         Authorization: `Bearer ${apiToken}`,
         'Content-Type': 'application/json',
         Accept: 'application/json',
@@ -110,6 +112,7 @@ async function sendTransactionalEmail({
       {
         method: 'POST',
         headers: {
+          ...CORS_HEADERS,
           Authorization: `Bearer ${apiToken}`,
           'Content-Type': 'application/json',
           Accept: 'application/json',
@@ -156,6 +159,7 @@ async function updateSubscriberData({
       {
         method: 'PATCH',
         headers: {
+          ...CORS_HEADERS,
           Authorization: `Bearer ${apiToken}`,
           'Content-Type': 'application/json',
           Accept: 'application/json',

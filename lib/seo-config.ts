@@ -1,9 +1,9 @@
+import { envs } from './envs'
 import { strings } from './strings'
 
 // ============================================================================
 // CORE SITE CONFIGURATION
 // ============================================================================
-
 const siteConfig = {
   // Basic site information
   name: strings.branding.companyName,
@@ -12,8 +12,8 @@ const siteConfig = {
   shortDescription: strings.hero.mainHeading,
 
   // URLs and domains
-  url: 'https://skillverdict.com',
-  baseUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://skillverdict.com',
+  url: envs.WEBSITE_DOMAIN ?? 'https://skillverdict.com',
+  baseUrl: envs.WEBSITE_DOMAIN ?? 'https://skillverdict.com',
 
   // Social media handles
   twitterHandle: '@skillverdict',
@@ -569,19 +569,13 @@ const technicalSeo = {
     google:
       process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION ||
       'your-google-verification-code',
-    yandex:
-      process.env.NEXT_PUBLIC_YANDEX_VERIFICATION ||
-      'your-yandex-verification-code',
-    yahoo:
-      process.env.NEXT_PUBLIC_YAHOO_VERIFICATION ||
-      'your-yahoo-verification-code',
   },
 
   // Additional meta tags
   other: {
     'msapplication-TileColor': '#3b82f6',
     'theme-color': '#ffffff',
-    'apple-mobile-web-app-capable': 'yes',
+    'mobile-web-app-capable': 'yes',
     'apple-mobile-web-app-status-bar-style': 'black-translucent',
   },
 

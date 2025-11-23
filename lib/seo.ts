@@ -1,7 +1,3 @@
-/**
- * SEO utilities and metadata generation for SkillVerdict
- */
-
 import type { Metadata } from 'next'
 import { siteConfig, seoKeywords, technicalSeo } from './seo-config'
 

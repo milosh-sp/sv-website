@@ -4,11 +4,12 @@ import type {
   HttpResponse,
 } from '../../types/netlify.types'
 import { strings } from '../strings'
+import { envs } from '../envs'
 
 const CORS_HEADERS = {
-  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Origin': envs.WEBSITE_DOMAIN ?? '',
   'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS, PATCH',
   'Access-Control-Max-Age': '86400',
 } as const
 

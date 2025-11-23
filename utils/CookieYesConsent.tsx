@@ -3,6 +3,11 @@
 import Script from 'next/script'
 
 export function CookieYesConsent() {
+  // Don't load CookieYes in development mode
+  if (process.env.NODE_ENV === 'development') {
+    return null
+  }
+
   return (
     <Script
       id='cookieyes'

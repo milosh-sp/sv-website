@@ -106,6 +106,7 @@ export function useForm<TFormData extends Record<string, string>>(
     e.preventDefault()
     setSubmitStatus('idle')
 
+    //FIXME: THIS PROBABLY DOES NOT ALLOW FORM TO BE SUBMITTED AGAIN
     if (!validateForm()) {
       return
     }

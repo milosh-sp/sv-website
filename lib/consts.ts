@@ -21,10 +21,24 @@ const senderGroups = {
   contactOnly: 'dykg1w',
   unverified: 'bq84PR',
   verified: 'e7JKjw',
+  contactUsForm: 'bmX4lE',
 }
 
 const senderTransactionalCampaigns = {
   confirmEmail: 'bY54Np',
+  contactUsConfirmation: 'o2QQwA',
 }
 
-export { COLOR_SCHEMES, senderGroups, senderTransactionalCampaigns }
+const confirmEmailPerFormType = {
+  contact: senderTransactionalCampaigns.contactUsConfirmation,
+  candidate: senderTransactionalCampaigns.confirmEmail,
+  'hiring-manager': senderTransactionalCampaigns.confirmEmail,
+  verifier: senderTransactionalCampaigns.confirmEmail,
+}
+
+export {
+  COLOR_SCHEMES,
+  senderGroups,
+  senderTransactionalCampaigns,
+  confirmEmailPerFormType,
+}

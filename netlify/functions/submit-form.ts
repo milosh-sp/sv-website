@@ -32,7 +32,7 @@ import {
   formatFormFields,
   validateUnifiedFormData,
 } from '../../lib/netlify/form-validation'
-import { senderGroups, senderTransactionalCampaigns } from '@/lib/consts'
+import { confirmEmailPerFormType, senderGroups } from '@/lib/consts'
 
 /**
  * Unified form submission handler
@@ -105,7 +105,13 @@ export const handler: Handler = async (
     const groups = [senderGroups.unverified]
     const isPartial = requestData.form_step === 'step1'
 
-    if (isPartial) {
+    // Adds to contact us group
+    if (requestData.formType === 'contact') {
+      groups.pop()
+      groups.push(senderGroups.contactUsForm)
+    }
+
+    if (isPartial && requestData.formType !== 'contact') {
       groups.pop()
       groups.push(senderGroups.contactOnly)
     }
@@ -144,21 +150,21 @@ export const handler: Handler = async (
       senderResponse.data
     )
 
-    // Do not send confirmation email to partial submissions
+    // Do not send confirmation email to partial submissions and on contact us form
     if (isPartial) {
       return createSuccessResponse(email, new Date().toISOString())
     }
 
-    console.log('Sending confirmation email')
-
+    console.log('Sending confirmation email...')
     const transactionalResponse = await sendTransactionalEmail({
       email,
       apiToken,
       emailVariables: {
+        //TODO: Do different subjects
         subject: `Welcome to SkillVerdict!`,
         userId: senderResponse.data.data?.id as string,
       },
-      emailTemplateId: senderTransactionalCampaigns.confirmEmail,
+      emailTemplateId: confirmEmailPerFormType[requestData.formType],
     })
 
     if (!transactionalResponse.ok) {

@@ -32,7 +32,10 @@ export function HiringManagerWaitlistForm() {
   const form = useHiringManagerForm({
     currentStep: context.currentStep,
     onSuccess: () => {
-      context.setSubmitStatus('success')
+      // On step 1 we do a silent submit, so we need to reset the status to initial
+      context.setSubmitStatus(
+        context.currentStep === 'step1' ? 'idle' : 'success'
+      )
 
       if (context.currentStep === 'step1') {
         context.goToStep('step2')

@@ -106,7 +106,6 @@ export function useForm<TFormData extends Record<string, string>>(
     e.preventDefault()
     setSubmitStatus('idle')
 
-    //FIXME: THIS PROBABLY DOES NOT ALLOW FORM TO BE SUBMITTED AGAIN
     if (!validateForm()) {
       return
     }
@@ -118,8 +117,6 @@ export function useForm<TFormData extends Record<string, string>>(
       const result = await onSubmit(formData, honeypotValue, formStartTime)
 
       if (result.success) {
-        setSubmitStatus('success')
-        setFormData(initialData)
         resetHoneypot()
         onSuccess?.()
       } else {

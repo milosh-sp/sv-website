@@ -77,7 +77,7 @@ function ConfirmEmailContent() {
         <SuccessScreen
           messageProps={{
             ...strings.confirmEmailScreen.success,
-            description: `${strings.confirmEmailScreen.success.description} ${referralCode}`,
+            description: strings.confirmEmailScreen.success.description,
           }}
         />
       )}

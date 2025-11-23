@@ -30,7 +30,7 @@ export function useVerifierForm(config?: UseVerifierFormConfig) {
       // Submit to unified Netlify function with verifier-specific fields
       return submitUnifiedForm({
         formType: 'verifier',
-        name: formData.name,
+        contactName: formData.name,
         email: formData.email,
         linkedin: formData.linkedIn,
         githubGitlabUrl: formData.githubGitlabUrl,
@@ -48,6 +48,7 @@ export function useVerifierForm(config?: UseVerifierFormConfig) {
         form_start_time: formStartTime,
         referredByReferralCode: formData.referredByReferralCode,
         formStep: config?.currentStep,
+        newsLetterOptIn: formData.newsletterOptIn,
       } as VerifierFormSubmission)
     },
     onSuccess: config?.onSuccess,

@@ -1,6 +1,6 @@
 import { useForm } from '@/hooks/useForm'
 import { submitUnifiedForm } from '@/lib/api'
-import { StepId } from '@/lib/stepIdentifiers'
+import type { StepId } from '@/lib/stepIdentifiers'
 import { validateEmail, validateUrl } from '@/lib/validation'
 import { validateHiringManagerForm } from '@/lib/waitlistFormValidators'
 import type { HiringManagerFormData } from '@/types/HiringManagerFormData.types'
@@ -38,6 +38,7 @@ export function useHiringManagerForm(config?: UseHiringManagerFormConfig) {
         website: honeypotValue,
         form_start_time: formStartTime,
         referredByReferralCode: formData.referredByReferralCode,
+        newsLetterOptIn: formData.newsletterOptIn,
       } as HiringManagerFormSubmission)
     },
     onSuccess: config?.onSuccess,

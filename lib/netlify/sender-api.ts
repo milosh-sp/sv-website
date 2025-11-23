@@ -77,8 +77,10 @@ function logSenderNetError(
   console.error('Sender.net API error:', {
     status,
     statusText,
-    data,
   })
+  if (data?.message) {
+    console.error('Sender.net API error message:', data.message)
+  }
 }
 
 async function sendTransactionalEmail({

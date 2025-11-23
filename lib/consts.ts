@@ -1,5 +1,4 @@
-import { UserType } from '@/types/FormData.types'
-import { FormType } from '@/types/netlify.types'
+import type { FormType } from '@/types/netlify.types'
 
 const COLOR_SCHEMES = {
   blue: {
@@ -41,7 +40,7 @@ const confirmEmailPerFormType: Record<FormType, string> = {
 
 export {
   COLOR_SCHEMES,
+  confirmEmailPerFormType,
   senderGroups,
   senderTransactionalCampaigns,
-  confirmEmailPerFormType,
 }

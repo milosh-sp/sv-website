@@ -14,6 +14,8 @@ import {
 } from '@/lib/seo'
 import { strings } from '@/lib/strings'
 import { CookieYesConsent } from '@/utils/CookieYesConsent'
+import { GoogleAnalytics } from '@/utils/GoogleAnalytics'
+import { GoogleAnalyticsIframe } from '@/utils/GoogleAnalyticsIframe'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -81,10 +83,11 @@ export default function RootLayout({
             __html: JSON.stringify(serviceSchema),
           }}
         />
+        <CookieYesConsent />
+        <GoogleAnalytics />
       </head>
       <body className='font-sans'>
-        <CookieYesConsent />
-
+        <GoogleAnalyticsIframe />
         {/* Skip to main content for accessibility */}
         <a
           href='#main-content'

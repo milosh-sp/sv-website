@@ -27,6 +27,8 @@ export function useCandidateForm(config?: UseCandidateFormConfig) {
     ],
     validateForm: validateCandidateForm,
     onSubmit: async (formData, honeypotValue, formStartTime) => {
+      const referralCode = localStorage.getItem('referralCode') ?? ''
+
       // Submit to unified Netlify function with candidate-specific fields
       return submitUnifiedForm({
         formType: 'candidate',
@@ -46,7 +48,7 @@ export function useCandidateForm(config?: UseCandidateFormConfig) {
         valuableOutcomeOther: formData.valuableOutcomeOther,
         website: honeypotValue,
         form_start_time: formStartTime,
-        referredByReferralCode: formData.referredByReferralCode,
+        referredByReferralCode: referralCode,
         formStep: config?.currentStep,
         newsLetterOptIn: formData.newsletterOptIn,
       } as CandidateFormSubmission)

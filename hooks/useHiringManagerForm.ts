@@ -22,6 +22,8 @@ export function useHiringManagerForm(config?: UseHiringManagerFormConfig) {
     ],
     validateForm: validateHiringManagerForm,
     onSubmit: async (formData, honeypotValue, formStartTime) => {
+      const referralCode = localStorage.getItem('referralCode') ?? ''
+
       // Submit to unified Netlify function with hiring manager-specific fields
       return submitUnifiedForm({
         formType: 'hiring-manager',
@@ -37,7 +39,7 @@ export function useHiringManagerForm(config?: UseHiringManagerFormConfig) {
         hiringFailures: formData.hiringFailures,
         website: honeypotValue,
         form_start_time: formStartTime,
-        referredByReferralCode: formData.referredByReferralCode,
+        referredByReferralCode: referralCode,
         newsLetterOptIn: formData.newsletterOptIn,
       } as HiringManagerFormSubmission)
     },

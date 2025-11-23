@@ -3,8 +3,9 @@
 import { strings } from '@/lib/strings'
 import { Award, CircleStar } from 'lucide-react'
 import { Button } from '@/components/atoms/Button'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { cn } from '@/lib/utils'
+import { useEffect } from 'react'
 
 export function HeroButtons({
   showCandidate = true,
@@ -14,6 +15,14 @@ export function HeroButtons({
   showVerifier?: boolean
 }) {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const referralCode = searchParams.get('referralCode')
+
+  useEffect(() => {
+    if (referralCode) {
+      localStorage.setItem('referralCode', referralCode)
+    }
+  }, [referralCode])
 
   const handleNavigateToCandidate = () => router.push('/candidate')
   const handleNavigateToVerifier = () => router.push('/verifier')

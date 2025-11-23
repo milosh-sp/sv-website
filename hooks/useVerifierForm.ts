@@ -27,6 +27,8 @@ export function useVerifierForm(config?: UseVerifierFormConfig) {
     ],
     validateForm: validateVerifierForm,
     onSubmit: async (formData, honeypotValue, formStartTime) => {
+      const referralCode = localStorage.getItem('referralCode') ?? ''
+
       // Submit to unified Netlify function with verifier-specific fields
       return submitUnifiedForm({
         formType: 'verifier',
@@ -46,7 +48,7 @@ export function useVerifierForm(config?: UseVerifierFormConfig) {
         professionalFrustrationOther: formData.professionalFrustrationOther,
         website: honeypotValue,
         form_start_time: formStartTime,
-        referredByReferralCode: formData.referredByReferralCode,
+        referredByReferralCode: referralCode,
         formStep: config?.currentStep,
         newsLetterOptIn: formData.newsletterOptIn,
       } as VerifierFormSubmission)

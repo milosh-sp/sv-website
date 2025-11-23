@@ -1,9 +1,9 @@
+import { envs } from './envs'
 import { strings } from './strings'
 
 // ============================================================================
 // CORE SITE CONFIGURATION
 // ============================================================================
-
 const siteConfig = {
   // Basic site information
   name: strings.branding.companyName,
@@ -12,8 +12,8 @@ const siteConfig = {
   shortDescription: strings.hero.mainHeading,
 
   // URLs and domains
-  url: 'https://skillverdict.com',
-  baseUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://skillverdict.com',
+  url: envs.WEBSITE_DOMAIN ?? 'https://skillverdict.com',
+  baseUrl: envs.WEBSITE_DOMAIN ?? 'https://skillverdict.com',
 
   // Social media handles
   twitterHandle: '@skillverdict',

@@ -569,12 +569,6 @@ const technicalSeo = {
     google:
       process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION ||
       'your-google-verification-code',
-    yandex:
-      process.env.NEXT_PUBLIC_YANDEX_VERIFICATION ||
-      'your-yandex-verification-code',
-    yahoo:
-      process.env.NEXT_PUBLIC_YAHOO_VERIFICATION ||
-      'your-yahoo-verification-code',
   },
 
   // Additional meta tags

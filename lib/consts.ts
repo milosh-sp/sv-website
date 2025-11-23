@@ -28,7 +28,7 @@ const senderGroups = {
 
 const senderTransactionalCampaigns = {
   confirmEmail: 'bY54Np',
-  contactUsConfirmation: 'o2QQwA',
+  contactUsConfirmation: 'avZOrr',
 }
 
 const confirmEmailPerFormType: Record<FormType, string> = {

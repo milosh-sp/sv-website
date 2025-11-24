@@ -45,6 +45,7 @@ export const handler: Handler = async (
 
     let requestData: {
       id: string
+      email: string
       fields: Record<string, unknown>
       groups: string[]
     }
@@ -76,6 +77,7 @@ export const handler: Handler = async (
 
     const senderResponse = await updateSubscriberData({
       id: requestData.id,
+      email: requestData.email,
       fields: requestData.fields,
       groups: requestData.groups,
       apiToken,

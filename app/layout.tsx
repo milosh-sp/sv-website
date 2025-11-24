@@ -49,6 +49,8 @@ export default function RootLayout({
   return (
     <html lang='en' className={`${inter.variable} antialiased`}>
       <head>
+        <CookieYesConsent />
+        <GoogleAnalytics />
         {/* Preconnect to external domains for performance */}
         {process.env.NODE_ENV === 'production' && (
           <>
@@ -83,8 +85,6 @@ export default function RootLayout({
             __html: JSON.stringify(serviceSchema),
           }}
         />
-        <CookieYesConsent />
-        <GoogleAnalytics />
       </head>
       <body className='font-sans'>
         <GoogleAnalyticsIframe />

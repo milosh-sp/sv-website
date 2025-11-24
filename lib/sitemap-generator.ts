@@ -1,6 +1,7 @@
 import { readdir, stat } from 'node:fs/promises'
 import { join } from 'node:path'
 import type { MetadataRoute } from 'next'
+import { siteConfig } from './seo-config'
 
 // ============================================================================
 // TYPES
@@ -97,7 +98,7 @@ function getPriority(route: string): number {
 
 /**
  * Recursively discover all image files in the public directory
- * Returns an array of image paths relative to the site root
+ * Returns an array of absolute image URLs
  */
 async function discoverImagesRecursive(
   dirPath: string,
@@ -116,10 +117,11 @@ async function discoverImagesRecursive(
         const subImages = await discoverImagesRecursive(fullPath, subPath)
         images.push(...subImages)
       } else if (entry.isFile() && isImageFile(entry.name)) {
-        const imagePath = basePath
+        const relativePath = basePath
           ? `/${basePath}/${entry.name}`
           : `/${entry.name}`
-        images.push(imagePath)
+        const absoluteUrl = `${siteConfig.baseUrl}${relativePath}`
+        images.push(absoluteUrl)
       }
     }
   } catch (error) {

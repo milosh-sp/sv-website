@@ -2,7 +2,7 @@
 
 import { updateSubscriberData } from '@/lib/api'
 import { senderGroups } from '@/lib/consts'
-import { generateReferralCode } from '@/lib/utils/convertToSnakeCase'
+import { generateId } from '@/lib/utils/convertToSnakeCase'
 import { SatelliteDishIcon } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
 import { Suspense, useEffect, useEffectEvent, useState } from 'react'
@@ -17,10 +17,10 @@ function ConfirmEmailContent() {
   const userId = searchParams.get('userId')
 
   const handleUpdate = useEffectEvent(async () => {
-    const referralCode = generateReferralCode()
+    const referralCode = generateId()
 
     const result = await updateSubscriberData({
-      email: userId ?? '',
+      id: userId ?? '',
       groups: [senderGroups.verified],
       fields: {
         email_verified: 'true',

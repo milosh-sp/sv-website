@@ -4,6 +4,7 @@ import {
   getApiToken,
   logSenderNetError,
   submitToSenderNet,
+  updateSubscriberData,
 } from '../../lib/netlify/sender-api'
 import {
   createBotDetectedResponse,
@@ -33,12 +34,8 @@ import {
   validateUnifiedFormData,
 } from '../../lib/netlify/form-validation'
 import { senderGroups } from '@/lib/consts'
+import { generateId } from '@/lib/utils/convertToSnakeCase'
 
-/**
- * Unified form submission handler
- * Supports all form types: signup, contact, candidate, hiring-manager, verifier
- * Routes to appropriate validation based on formType discriminator
- */
 export const handler: Handler = async (
   event: HandlerEvent,
   _context: HandlerContext
@@ -149,6 +146,30 @@ export const handler: Handler = async (
       'Successfully added form data, response from sender.net:',
       senderResponse.data
     )
+
+    console.log('Generating user id... ')
+
+    const updateResponse = await updateSubscriberData({
+      id: senderResponse.data.data?.id as string,
+      fields: {
+        user_id: senderResponse.data.data?.id as string,
+      },
+      apiToken,
+    })
+
+    if (!updateResponse.ok) {
+      logSenderNetError(updateResponse.status, '', updateResponse.data)
+
+      if (updateResponse.status === 422) {
+        return createSenderNetValidationErrorResponse(
+          updateResponse.data.message
+        )
+      }
+
+      return createSenderNetErrorResponse()
+    }
+
+    console.log('User id generated:', updateResponse.data)
 
     return createSuccessResponse(email, new Date().toISOString())
   } catch (error) {

@@ -20,7 +20,7 @@ export function BenefitCard({
   return (
     <article
       className={cn(
-        'card-interactive p-8 text-left group cursor-pointer',
+        'card-interactive p-8 text-left group cursor-pointer h-full',
         className
       )}
       aria-labelledby={`benefit-${benefit.title.toLowerCase().replace(/\s+/g, '-')}`}

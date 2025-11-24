@@ -143,6 +143,12 @@ export function validateUrl(url: string, fieldName = 'URL'): ValidationResult {
  * Now uses generic URL validation
  */
 export function validateLinkedIn(url: string): ValidationResult {
+  if (!url) {
+    return {
+      isValid: true,
+    }
+  }
+
   return validateUrl(url, 'LinkedIn profile URL')
 }
 

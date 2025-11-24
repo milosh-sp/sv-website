@@ -19,7 +19,7 @@ export function CVHeader({
   )
 
   const avatarClasses = cn(
-    'bg-slate-700 rounded-full flex items-center justify-center',
+    'bg-slate-700 rounded-full flex items-center justify-center w-full',
     isCompact ? 'w-16 h-16' : 'w-24 h-24'
   )
 
@@ -33,12 +33,12 @@ export function CVHeader({
   const titleClasses = cn('text-slate-200', isCompact ? 'text-sm' : 'text-lg')
 
   const containerClasses = cn(
-    'flex flex-col md:flex-row items-center',
-    isCompact ? 'gap-3' : 'gap-6'
+    'flex flex-col md:flex-row items-center ',
+    isCompact ? 'gap-3' : 'gap-10'
   )
 
   const textContainerClasses = cn(
-    isCompact ? 'text-center md:text-left' : 'text-center md:text-left'
+    isCompact ? 'text-center md:text-left' : 'text-center md:text-left flex-1'
   )
 
   return (

@@ -12,7 +12,6 @@ export function GoogleAnalytics() {
   return (
     <Script
       id='google-tag-manager'
-      strategy='afterInteractive'
       // biome-ignore lint/security/noDangerouslySetInnerHtml: Google Tag Manager requires a fragment
       dangerouslySetInnerHTML={{
         __html: `

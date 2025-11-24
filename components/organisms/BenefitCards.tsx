@@ -7,6 +7,7 @@ const COLOR_SCHEME_GRADIENTS = {
   emerald: 'from-success to-success/80',
   purple: 'from-primary to-primary/80',
   orange: 'from-warning to-warning/80',
+  companies: 'from-companies to-companies/80',
 } as const
 
 export function BenefitCards({

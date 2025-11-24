@@ -34,7 +34,6 @@ import {
   validateUnifiedFormData,
 } from '../../lib/netlify/form-validation'
 import { senderGroups } from '@/lib/consts'
-import { generateId } from '@/lib/utils/convertToSnakeCase'
 
 export const handler: Handler = async (
   event: HandlerEvent,

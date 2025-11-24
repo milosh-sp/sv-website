@@ -43,13 +43,9 @@ function validateContactConsentStep(data: {
 
   // LinkedIn validation (only if provided)
   if (data.linkedIn !== undefined) {
-    if (!data.linkedIn || data.linkedIn.trim() === '') {
-      errors.linkedIn = 'LinkedIn profile URL is required'
-    } else {
-      const linkedInValidation = validateLinkedIn(data.linkedIn)
-      if (!linkedInValidation.isValid) {
-        errors.linkedIn = linkedInValidation.message || 'Invalid LinkedIn URL'
-      }
+    const linkedInValidation = validateLinkedIn(data.linkedIn)
+    if (!linkedInValidation.isValid) {
+      errors.linkedIn = linkedInValidation.message || 'Invalid LinkedIn URL'
     }
   }
 

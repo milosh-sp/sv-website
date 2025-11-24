@@ -5,6 +5,6 @@ export interface BenefitCardsProps extends ComponentProps<'section'> {
   benefits: readonly BenefitItem[]
   description?: string
   icon?: ReactNode
-  colorScheme?: 'blue' | 'emerald' | 'purple' | 'orange'
+  colorScheme?: 'blue' | 'emerald' | 'purple' | 'orange' | 'companies'
   className?: string
 }

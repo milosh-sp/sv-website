@@ -11,13 +11,13 @@ export function HeaderLink({
 }: HeaderLinkProps) {
   // Base classes for all variants
   const baseClasses =
-    'text-slate-700 hover:text-blue-600 transition-all duration-200 font-medium cursor-pointer'
+    'text-slate-700 hover:text-primary transition-all duration-200 font-medium cursor-pointer'
 
   // Variant-specific classes
   const variantClasses =
     variant === 'desktop'
       ? 'py-2 px-1 relative group'
-      : 'text-left py-3 px-4 rounded-lg hover:bg-slate-50'
+      : 'text-left py-3 px-4 rounded-lg hover:bg-primary/10'
 
   return (
     <Link
@@ -27,7 +27,7 @@ export function HeaderLink({
     >
       {children}
       {variant === 'desktop' && (
-        <span className='absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full' />
+        <span className='absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-200 group-hover:w-full' />
       )}
     </Link>
   )

@@ -10,7 +10,7 @@ export function DecorativeText({
     <span
       className={cn(
         'text-2xl font-bold',
-        'bg-linear-to-r from-blue-600 to-blue-800',
+        'bg-linear-to-r from-primary to-primary/80',
         'bg-clip-text text-transparent',
         className
       )}

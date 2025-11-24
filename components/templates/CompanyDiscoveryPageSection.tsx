@@ -32,7 +32,7 @@ export function CompanyDiscoveryPageSection({ id }: SectionProps) {
         />
 
         <Button
-          variant='verdict'
+          variant='companies'
           onClick={() => router.push('/hiring-manager')}
           className={cn('mb-8 p-6')}
         >
@@ -48,7 +48,7 @@ export function CompanyDiscoveryPageSection({ id }: SectionProps) {
             />
           }
           benefits={companyDiscovery.benefits}
-          colorScheme='blue'
+          colorScheme='companies'
         />
       </main>
     </SectionWrapper>

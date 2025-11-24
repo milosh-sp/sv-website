@@ -62,6 +62,11 @@ const VARIANT_STYLES: Record<ButtonVariant, string> = {
     'active:bg-primary focus-visible:ring-primary/20',
     'dark:focus-visible:ring-primary/40 transition-all duration-300'
   ),
+  companies: cn(
+    'bg-companies text-primary-foreground shadow-md hover:bg-companies/90',
+    'active:bg-companies focus-visible:ring-primary/20',
+    'dark:focus-visible:ring-primary/40 transition-all duration-300'
+  ),
 } as const
 
 const SIZE_STYLES: Record<ButtonSize, string> = {
@@ -81,6 +86,7 @@ const ARIA_LABELS: Record<ButtonVariant, string> = {
   verdict: 'Verdict action button',
   'hero-emerald': 'Hero action button',
   'hero-blue': 'Hero action button',
+  companies: 'Companies action button',
 } as const
 
 export function Button({

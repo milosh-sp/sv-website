@@ -18,7 +18,7 @@ export function HeroVisual() {
         <Button
           onClick={() => router.push('/hiring-manager')}
           aria-label={strings.hero.accessibility.openEarnModal}
-          variant='hero-blue'
+          variant='companies'
           size='lg'
           className={cn('h-14 px-8 text-base rounded-lg font-semibold')}
           type='button'

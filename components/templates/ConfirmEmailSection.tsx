@@ -20,7 +20,7 @@ function ConfirmEmailContent() {
     const referralCode = generateReferralCode()
 
     const result = await updateSubscriberData({
-      id: userId ?? '',
+      email: userId ?? '',
       groups: [senderGroups.verified],
       fields: {
         email_verified: 'true',

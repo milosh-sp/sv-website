@@ -126,7 +126,8 @@ export async function submitUnifiedForm(
 
 export async function updateSubscriberData(
   data: {
-    id: string
+    id?: string
+    email?: string
     fields: Record<string, unknown>
     groups?: string[]
   },

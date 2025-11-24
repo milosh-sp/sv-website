@@ -15,7 +15,6 @@ import {
 import { strings } from '@/lib/strings'
 import { CookieYesConsent } from '@/utils/CookieYesConsent'
 import { GoogleAnalytics } from '@/utils/GoogleAnalytics'
-import { GoogleAnalyticsIframe } from '@/utils/GoogleAnalyticsIframe'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -49,7 +48,6 @@ export default function RootLayout({
   return (
     <html lang='en' className={`${inter.variable} antialiased`}>
       <head>
-        <GoogleAnalytics />
         <CookieYesConsent />
         {/* Preconnect to external domains for performance */}
         {process.env.NODE_ENV === 'production' && (
@@ -87,7 +85,7 @@ export default function RootLayout({
         />
       </head>
       <body className='font-sans'>
-        <GoogleAnalyticsIframe />
+        <GoogleAnalytics />
         {/* Skip to main content for accessibility */}
         <a
           href='#main-content'

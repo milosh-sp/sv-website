@@ -11,7 +11,7 @@ export function TwoSidesButtons({
   return (
     <div className='flex justify-center mb-12'>
       <div
-        className='flex p-2.5 bg-muted/80 backdrop-blur-sm rounded-xl shadow-sm border border-border/50'
+        className='flex p-1.5 md:p-2.5 bg-muted/80 backdrop-blur-sm rounded-xl shadow-sm border border-border/50'
         role='tablist'
         aria-label={strings.benefits.tabAccessibility.chooseUserType}
       >

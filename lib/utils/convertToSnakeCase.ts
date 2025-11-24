@@ -43,8 +43,8 @@ function convertKeysToSnakeCase(
   )
 }
 
-function generateReferralCode() {
+function generateId() {
   return (Math.random() + 1).toString(36).substring(2, 12)
 }
 
-export { convertKeysToSnakeCase, generateReferralCode }
+export { convertKeysToSnakeCase, generateId }

@@ -85,58 +85,6 @@ function logSenderNetError(
   }
 }
 
-async function sendTransactionalEmail({
-  email,
-  apiToken,
-  emailVariables,
-  emailTemplateId,
-}: {
-  email: string
-  apiToken: string
-  emailVariables: {
-    subject?: string
-    userId: string
-  }
-  emailTemplateId: string
-}): Promise<{
-  ok: boolean
-  status: number
-  data: SenderNetErrorResponse
-}> {
-  const controller = new AbortController()
-  const timeoutId = setTimeout(() => controller.abort(), SENDER_API_TIMEOUT_MS)
-
-  try {
-    const response = await fetch(
-      `${SENDER_API_URL}/message/${emailTemplateId}/send`,
-      {
-        method: 'POST',
-        headers: {
-          ...CORS_HEADERS,
-          Authorization: `Bearer ${apiToken}`,
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({
-          recipient_email: email,
-          variables: emailVariables,
-        }),
-        signal: controller.signal,
-      }
-    )
-
-    const data = await response.json()
-
-    return {
-      ok: response.ok,
-      status: response.status,
-      data,
-    }
-  } finally {
-    clearTimeout(timeoutId)
-  }
-}
-
 async function updateSubscriberData({
   id,
   email,
@@ -191,6 +139,5 @@ export {
   submitToSenderNet,
   logSenderNetError,
   SENDER_API_URL,
-  sendTransactionalEmail,
   updateSubscriberData,
 }

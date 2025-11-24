@@ -10,6 +10,7 @@ type ButtonVariant =
   | 'verdict'
   | 'hero-emerald'
   | 'hero-blue'
+  | 'companies'
 type ButtonSize = 'default' | 'sm' | 'lg' | 'icon'
 
 interface ButtonProps extends ComponentProps<'button'> {

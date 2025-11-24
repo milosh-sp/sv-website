@@ -31,7 +31,7 @@ export function HeroPageSection({ id }: SectionProps) {
             >
               <div
                 className={cn(
-                  'w-1 bg-linear-to-b from-primary to-primary/60 rounded-full'
+                  'hidden lg:block w-1 bg-linear-to-b from-primary to-primary/60 rounded-full'
                 )}
                 aria-hidden='true'
               />
@@ -54,7 +54,7 @@ export function HeroPageSection({ id }: SectionProps) {
               className={cn('flex gap-4 mb-8 justify-center lg:justify-start')}
             >
               <div
-                className={cn('w-1 bg-success rounded-full')}
+                className={cn('hidden lg:block w-1 bg-success rounded-full')}
                 aria-hidden='true'
               />
               <Text
@@ -72,7 +72,7 @@ export function HeroPageSection({ id }: SectionProps) {
               className={cn('flex gap-4 mb-8 justify-center lg:justify-start')}
             >
               <div
-                className={cn('w-1 rounded-full bg-purple')}
+                className={cn('hidden lg:block w-1 rounded-full bg-purple')}
                 aria-hidden='true'
               />
               <Text variant='body' className='font-medium'>

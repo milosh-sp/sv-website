@@ -9,13 +9,13 @@ interface BenefitItem {
 
 interface BenefitCardProps extends ComponentProps<'article'> {
   benefit: BenefitItem
-  colorScheme?: 'blue' | 'emerald' | 'purple' | 'orange'
+  colorScheme?: 'blue' | 'emerald' | 'purple' | 'orange' | 'companies'
   className?: string
 }
 
 interface BenefitGridProps extends ComponentProps<'ul'> {
   benefits: readonly BenefitItem[]
-  colorScheme?: 'blue' | 'emerald' | 'purple' | 'orange'
+  colorScheme?: 'blue' | 'emerald' | 'purple' | 'orange' | 'companies'
   columns?: 1 | 2 | 3 | 4
   className?: string
 }

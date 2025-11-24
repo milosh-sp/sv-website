@@ -15,6 +15,10 @@ const COLOR_SCHEMES = {
     iconBg: 'from-warning/20 to-warning/10',
     iconColor: 'text-warning',
   },
+  companies: {
+    iconBg: 'from-companies to-companies/80',
+    iconColor: 'text-white',
+  },
 } as const
 
 const senderGroups = {

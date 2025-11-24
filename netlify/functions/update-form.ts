@@ -75,6 +75,8 @@ export const handler: Handler = async (
       return createMissingApiTokenResponse()
     }
 
+    console.log('Update form function called:', requestData)
+
     const senderResponse = await updateSubscriberData({
       id: requestData.id,
       email: requestData.email,

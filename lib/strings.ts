@@ -175,7 +175,7 @@ export const benefits = {
   tabs: {
     members: `Members`,
     guruMembers: `Guru members`,
-    hiringManagers: `Hiring managers`,
+    hiringManagers: `Companies`,
   },
 
   // Tab accessibility

@@ -49,8 +49,8 @@ export default function RootLayout({
   return (
     <html lang='en' className={`${inter.variable} antialiased`}>
       <head>
-        <CookieYesConsent />
         <GoogleAnalytics />
+        <CookieYesConsent />
         {/* Preconnect to external domains for performance */}
         {process.env.NODE_ENV === 'production' && (
           <>

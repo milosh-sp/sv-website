@@ -27,7 +27,8 @@ const senderGroups = {
 }
 
 const senderTransactionalCampaigns = {
-  confirmEmail: 'bY54Np',
+  // confirmEmail: 'bY54Np',
+  confirmEmail: 'eg2v3j',
   contactUsConfirmation: 'avZOrr',
 }
 

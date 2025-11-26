@@ -266,6 +266,14 @@ function validateHiringManagerStep(
         errors,
         validateJsonArrayField(data.rolesHiring, 'rolesHiring')
       )
+      Object.assign(
+        errors,
+        validateConditionalOtherField(
+          data.rolesHiring,
+          data.rolesHiringOther,
+          'rolesHiringOther'
+        )
+      )
       // Hiring Challenges
       Object.assign(
         errors,
@@ -276,21 +284,23 @@ function validateHiringManagerStep(
         validateConditionalOtherField(
           data.hiringFrustrations,
           data.hiringFrustrationOther,
-          'hiringFrustrationOther'
+          'hiringFrustrationsOther'
         )
       )
       Object.assign(
         errors,
         validateJsonArrayField(data.hiringFailures, 'hiringFailures')
       )
+
       Object.assign(
         errors,
         validateConditionalOtherField(
           data.hiringFailures,
           data.hiringFailureOther,
-          'hiringFailureOther'
+          'hiringFailuresOther'
         )
       )
+
       break
     }
   }

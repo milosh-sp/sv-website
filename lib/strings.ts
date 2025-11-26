@@ -1311,6 +1311,7 @@ export const waitlistForms = {
       label:
         'A pre-formed squad (e.g., Full-stack + Engineering leadership + QA)',
     },
+    { value: 'other', label: 'Other:' },
   ],
 
   seniorityLevelOptions: [

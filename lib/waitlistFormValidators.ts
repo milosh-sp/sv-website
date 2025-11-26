@@ -283,7 +283,7 @@ function validateHiringManagerStep(
         errors,
         validateConditionalOtherField(
           data.hiringFrustrations,
-          data.hiringFrustrationOther,
+          data.hiringFrustrationsOther,
           'hiringFrustrationsOther'
         )
       )
@@ -296,7 +296,7 @@ function validateHiringManagerStep(
         errors,
         validateConditionalOtherField(
           data.hiringFailures,
-          data.hiringFailureOther,
+          data.hiringFailuresOther,
           'hiringFailuresOther'
         )
       )

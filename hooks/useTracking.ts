@@ -18,6 +18,7 @@ export const useTracking = () => {
       ignore_dnt: true,
       autocapture: true,
       record_sessions_percent: 100,
+      track_pageview: true,
     })
   })
 

@@ -15,6 +15,7 @@ export const useTracking = () => {
     // this snippet
     mixpanel.init(MIXPANEL_TOKEN, {
       opt_out_tracking_by_default: true,
+      record_mask_text_selector: '',
       ignore_dnt: true,
       autocapture: true,
       record_sessions_percent: 100,

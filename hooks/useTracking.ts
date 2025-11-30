@@ -18,7 +18,7 @@ export const useTracking = () => {
       record_mask_text_selector: '',
       ignore_dnt: true,
       autocapture: true,
-      record_sessions_percent: 100,
+      record_sessions_percent: 50,
       track_pageview: true,
     })
   })

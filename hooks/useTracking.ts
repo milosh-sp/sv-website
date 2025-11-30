@@ -1,32 +1,60 @@
-//Import Mixpanel SDK
-import mixpanel from 'mixpanel-browser'
-import { useEffect, useEffectEvent } from 'react'
+'use client'
+
 import { envs } from '@/lib/envs'
-const { MIXPANEL_TOKEN } = envs
+import type { Mixpanel, OverridedMixpanel } from 'mixpanel-browser'
+import mixpanel from 'mixpanel-browser'
+import { useEffect } from 'react'
 
-export const useTracking = () => {
-  const initMixpanel = useEffectEvent(() => {
-    if (!MIXPANEL_TOKEN) {
-      console.warn('Mixpanel token is missing! Check your .env file.')
-      return
-    }
+/**
+ * Opts in and out (DEFAULT) of tracking depending if GDPR regulations apply
+ */
+const optInOutTracking = (
+  optIn: boolean,
+  mixpanelIn: Mixpanel | OverridedMixpanel
+) => {
+  if (optIn) {
+    mixpanelIn.set_config({ ignore_dnt: true })
+    mixpanelIn.opt_in_tracking()
+  } else {
+    mixpanelIn.opt_out_tracking()
+  }
+}
 
-    // Create an instance of the Mixpanel object, your token is already added to
-    // this snippet
-    mixpanel.init(MIXPANEL_TOKEN, {
-      opt_out_tracking_by_default: true,
-      record_mask_text_selector: '',
-      ignore_dnt: true,
-      autocapture: true,
-      record_sessions_percent: 50,
-      track_pageview: true,
-    })
-  })
-
+/**
+ * Handles cookiebot consent and inits mixpanel for tracking
+ */
+export function useTracking() {
   useEffect(() => {
-    initMixpanel()
+    if (typeof window === 'undefined') return
+
+    if (!envs.MIXPANEL_TOKEN) {
+      throw new TypeError('Mixpanel token is missing! Check your .env file.')
+    }
+    mixpanel.init(envs.MIXPANEL_TOKEN, {
+      opt_out_tracking_by_default: true,
+      record_sessions_percent: 50,
+      record_mask_text_selector: '',
+      track_pageview: true,
+      autocapture: true,
+      record_heatmap_data: true,
+
+      loaded: (mixpanelIn) => {
+        const isConsentedToTrack: boolean =
+          // @ts-expect-error
+          Cookiebot?.consented &&
+          // @ts-expect-error
+          Cookiebot?.consent?.marketing
+        optInOutTracking(isConsentedToTrack, mixpanelIn)
+      },
+    })
+  }, [])
+
+  // CookieBot event listeners
+  useEffect(() => {
+    if (typeof window === 'undefined') return
 
     const onAcceptOrDecline = () => {
+      // Mix panel is classified as marketing cookie Needs to be ignored by TS
       // since this comes from the script itself from cookiebot no other way
       // https://www.cookiebot.com/en/developer/
       const consent: boolean =
@@ -35,11 +63,7 @@ export const useTracking = () => {
         // @ts-expect-error
         Cookiebot?.consent?.marketing
 
-      if (consent) {
-        mixpanel.opt_in_tracking()
-      } else {
-        mixpanel.opt_out_tracking()
-      }
+      optInOutTracking(consent, mixpanel)
     }
 
     // The event is triggered if the user accepts the use of cookies.
@@ -49,7 +73,6 @@ export const useTracking = () => {
     // in the cookie consent dialog.
     // The event is also triggered if the user already has declined at an earlier visit to the website.
     window.addEventListener('CookiebotOnDecline', onAcceptOrDecline)
-    // Fires when the cookie consent banner is displayed to the end user.
 
     return () => {
       window.removeEventListener('CookiebotOnAccept', onAcceptOrDecline)

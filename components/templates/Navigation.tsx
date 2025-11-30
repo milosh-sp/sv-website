@@ -10,12 +10,14 @@ import { HeaderLink } from '@/components/molecules/HeaderLink'
 import logo from '@/public/logo-sv.svg'
 import { cn } from '@/lib/utils'
 import { DecorativeText } from '../atoms/DecorativeText'
+import { useTracking } from '@/hooks/useTracking'
 
 const SCROLL_MARGIN_TOP_DESKTOP = 96
 const SCROLL_MARGIN_TOP_MOBILE = 96
 const MOBILE_BREAKPOINT = 930
 
 export function Header() {
+  useTracking()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const scrollToSection = (link: (typeof navigationData)[0]) => {

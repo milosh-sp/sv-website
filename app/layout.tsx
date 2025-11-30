@@ -13,7 +13,6 @@ import {
   generateWebsiteSchema,
 } from '@/lib/seo'
 import { strings } from '@/lib/strings'
-import { Cookiebot } from '@/utils/Cookiebot'
 import Script from 'next/script'
 
 const inter = Inter({
@@ -48,7 +47,13 @@ export default function RootLayout({
   return (
     <html lang='en' className={`${inter.variable} antialiased`}>
       <head>
-        {process.env.NODE_ENV === 'production' && <Cookiebot />}
+        <Script
+          strategy='beforeInteractive'
+          id='Cookiebot'
+          src='https://consent.cookiebot.eu/uc.js?cbid=d1c8b3c5-f11b-4020-ba46-349a7a015efa'
+          data-blockingmode='auto'
+          type='text/javascript'
+        />
         {/* Preconnect to external domains for performance */}
         {process.env.NODE_ENV === 'production' && (
           <>

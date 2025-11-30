@@ -37,6 +37,7 @@ export function useTracking() {
       track_pageview: true,
       autocapture: true,
       record_heatmap_data: true,
+      api_host: 'https://api-eu.mixpanel.com',
 
       loaded: (mixpanelIn) => {
         const isConsentedToTrack: boolean =

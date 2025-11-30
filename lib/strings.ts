@@ -757,7 +757,7 @@ export const legalPages = {
         title: `Cookies Etc.`,
         content: [
           `To learn more about how we use these and your choices in relation 
-          to these tracking technologies, please refer to our Cookie Policy.`,
+          to these tracking technologies, please refer to the Cookie Policy button on the bottom left of the page.`,
         ],
       },
       dataSecurity: {

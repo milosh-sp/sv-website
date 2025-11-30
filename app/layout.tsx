@@ -13,8 +13,8 @@ import {
   generateWebsiteSchema,
 } from '@/lib/seo'
 import { strings } from '@/lib/strings'
-import { CookieYesConsent } from '@/utils/CookieYesConsent'
-import { GoogleAnalytics } from '@/utils/GoogleAnalytics'
+import { Cookiebot } from '@/utils/Cookiebot'
+import Script from 'next/script'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -48,8 +48,7 @@ export default function RootLayout({
   return (
     <html lang='en' className={`${inter.variable} antialiased`}>
       <head>
-        <GoogleAnalytics />
-        <CookieYesConsent />
+        {process.env.NODE_ENV === 'production' && <Cookiebot />}
         {/* Preconnect to external domains for performance */}
         {process.env.NODE_ENV === 'production' && (
           <>
@@ -63,21 +62,21 @@ export default function RootLayout({
         )}
 
         {/* Structured Data */}
-        <script
+        <Script
           type='application/ld+json'
           /* biome-ignore lint/security/noDangerouslySetInnerHtml: Web schemas require dynamic content for structured data */
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(organizationSchema),
           }}
         />
-        <script
+        <Script
           type='application/ld+json'
           /* biome-ignore lint/security/noDangerouslySetInnerHtml: Web schemas require dynamic content for structured data */
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(websiteSchema),
           }}
         />
-        <script
+        <Script
           type='application/ld+json'
           /* biome-ignore lint/security/noDangerouslySetInnerHtml: Web schemas require dynamic content for structured data */
           dangerouslySetInnerHTML={{

@@ -1,7 +1,7 @@
 {
-  "name": "SkillVerdict - Monetize Your Expertise as a Developer",
-  "short_name": "SkillVerdict",
-  "description": "SkillVerdict is a decentralized, unbiased and respected community where global tech professionals from leading companies verify your skills.",
+  "name": "Skill Verdict - Don't chase, attract!",
+  "short_name": "Skill Verdict",
+  "description": "Backed by anonymous, peer-validated reviews and real-world skill assessments,  CV2.0 proves your true engineering ability and delivers actionable feedback to help you grow—while giving companies instant,trusted access to verified talent they can rely on",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -9,7 +9,7 @@
   "orientation": "portrait-primary",
   "scope": "/",
   "lang": "en",
-  "categories": ["productivity", "business", "education"],
+  "categories": ["productivity", "business", "education", "recruiting", "human resources", "hr", "talent", "talent management", "code review", "peer review","challenges" ,"skill verification"],
   "icons": [
     {
       "src": "/favicon-16x16.png",

@@ -120,11 +120,7 @@ export const hero = {
    * Will be placed next to the main heading to the right side, with a gradient applied
    */
   mainHeadingHighlight: ` CV2.0!`,
-  subHeading: `Backed by anonymous, peer-validated reviews and real-world skill assessments, 
-                CV2.0 proves your true engineering 
-                ability and delivers actionable feedback to 
-                help you grow—while giving companies instant,
-                 trusted access to verified talent they can rely on`,
+  subHeading: `Backed by anonymous, peer-validated reviews and real-world skill assessments, CV2.0 proves your true engineering ability and delivers actionable feedback to help you grow—while giving companies instant,trusted access to verified talent they can rely on`,
   callToAction: `Choose your path to get started:`,
 
   // Action buttons

@@ -18,9 +18,6 @@
   --secondary-foreground: oklch(0.35 0.08 240);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
-  /* Blue color will be used later */
-  /* --blue-pleasant: from-blue-600 to-blue-700; */
-  /* Updated accent to complement the muted blue */
   --accent: oklch(0.94 0.02 240);
   --accent-foreground: oklch(0.35 0.08 240);
   --destructive: oklch(0.577 0.245 27.325);
@@ -33,7 +30,6 @@
   /* Warning/pending state colors */
   --warning: oklch(0.75 0.15 70);
   --pending: #bb8c4a;
-  --warning-foreground: oklch(0.145 0 0);
   --purple: oklch(0.45 0.12 280);
   /* Purple brand color */
   --border: oklch(0.922 0 0);
@@ -94,7 +90,6 @@
   /* Dark mode warning/pending state colors */
   --warning: oklch(0.6 0.15 70);
   --pending: #bb8c4a;
-  --warning-foreground: oklch(0.2 0 0);
   --purple: oklch(0.65 0.12 280);
   /* Dark mode purple brand color */
   --border: oklch(0.269 0 0);
@@ -131,7 +126,6 @@
   --color-success-foreground: var(--success-foreground);
   --color-warning: var(--warning);
   --color-pending: var(--pending);
-  --color-warning-foreground: var(--warning-foreground);
   --color-purple: var(--purple);
 
   --radius-sm: calc(var(--radius) - 4px);
@@ -192,24 +186,6 @@ html {
     animation-iteration-count: 1;
     transition-duration: 0.01ms;
   }
-}
-
-/* Modern gradient system */
-.gradient-hero {
-  background: linear-gradient(
-    135deg,
-    rgb(239 246 255) 0%,
-    rgb(219 234 254) 50%,
-    rgb(191 219 254) 100%
-  );
-}
-
-.gradient-primary {
-  background: linear-gradient(135deg, rgb(59 130 246) 0%, #2563eb 100%);
-}
-
-.gradient-secondary {
-  background: linear-gradient(135deg, rgb(16 185 129) 0%, rgb(5 150 105) 100%);
 }
 
 /* Enhanced animation system with accessibility considerations */
@@ -287,22 +263,6 @@ html {
 }
 
 /* Responsive typography system */
-.text-display-1 {
-  @apply text-4xl md:text-5xl lg:text-6xl font-bold leading-tight;
-}
-
-.text-display-2 {
-  @apply text-3xl md:text-4xl lg:text-5xl font-bold leading-tight;
-}
-
-.text-heading-1 {
-  @apply text-2xl md:text-3xl lg:text-4xl font-semibold leading-tight;
-}
-
-.text-heading-2 {
-  @apply text-xl md:text-2xl lg:text-3xl font-semibold leading-tight;
-}
-
 .text-body-large {
   @apply text-lg md:text-xl leading-relaxed;
 }

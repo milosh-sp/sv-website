@@ -138,6 +138,5 @@ export {
   buildSubscriberData,
   submitToSenderNet,
   logSenderNetError,
-  SENDER_API_URL,
   updateSubscriberData,
 }

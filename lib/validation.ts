@@ -1,4 +1,4 @@
-export interface ValidationResult {
+interface ValidationResult {
   isValid: boolean
   message?: string
 }
@@ -6,7 +6,7 @@ export interface ValidationResult {
 /**
  * Validate email address format
  */
-export function validateEmail(email: string): ValidationResult {
+function validateEmail(email: string): ValidationResult {
   if (!email) {
     return {
       isValid: false,
@@ -58,7 +58,7 @@ export function validateEmail(email: string): ValidationResult {
  * Validates that a string is a properly formatted URL with https:// protocol
  * and valid domain structure
  */
-export function validateUrl(url: string, fieldName = 'URL'): ValidationResult {
+function validateUrl(url: string, fieldName = 'URL'): ValidationResult {
   if (!url) {
     return {
       isValid: false,
@@ -142,7 +142,7 @@ export function validateUrl(url: string, fieldName = 'URL'): ValidationResult {
  * Validate LinkedIn profile URL format
  * Now uses generic URL validation
  */
-export function validateLinkedIn(url: string): ValidationResult {
+function validateLinkedIn(url: string): ValidationResult {
   if (!url) {
     return {
       isValid: true,
@@ -156,7 +156,7 @@ export function validateLinkedIn(url: string): ValidationResult {
  * Validate GitHub/GitLab profile URL format
  * Now uses generic URL validation
  */
-export function validateGitHubGitlab(url: string): ValidationResult {
+function validateGitHubGitlab(url: string): ValidationResult {
   if (!url) {
     return {
       isValid: true,
@@ -166,29 +166,9 @@ export function validateGitHubGitlab(url: string): ValidationResult {
 }
 
 /**
- * Legacy validation functions for backward compatibility
- * These return boolean values like the original functions
- */
-function isValidEmail(email: string): boolean {
-  return validateEmail(email).isValid
-}
-
-function isValidUrl(url: string): boolean {
-  return validateUrl(url).isValid
-}
-
-function isValidLinkedIn(url: string): boolean {
-  return validateLinkedIn(url).isValid
-}
-
-function isValidGitHub(url: string): boolean {
-  return validateGitHubGitlab(url).isValid
-}
-
-/**
  * Validate contact name field for contact form
  */
-export function validateContactName(contactName: string): ValidationResult {
+function validateContactName(contactName: string): ValidationResult {
   if (!contactName) {
     return {
       isValid: false,
@@ -233,7 +213,7 @@ export function validateContactName(contactName: string): ValidationResult {
 /**
  * Validate message field for contact form
  */
-export function validateMessage(message: string): ValidationResult {
+function validateMessage(message: string): ValidationResult {
   if (!message) {
     return {
       isValid: false,
@@ -278,7 +258,7 @@ export function validateMessage(message: string): ValidationResult {
 /**
  * Contact form data interface
  */
-export interface ContactFormData {
+interface ContactFormData {
   email: string
   contactName: string
   message: string
@@ -287,9 +267,7 @@ export interface ContactFormData {
 /**
  * Validate contact form data
  */
-export function validateContactForm(
-  data: ContactFormData
-): FormValidationResult {
+function validateContactForm(data: ContactFormData): FormValidationResult {
   const errors: Record<string, string> = {}
 
   // Validate email
@@ -319,7 +297,7 @@ export function validateContactForm(
 /**
  * Check if contact form is valid (all fields filled and valid)
  */
-export function isContactFormValid(formData: ContactFormData): boolean {
+function isContactFormValid(formData: ContactFormData): boolean {
   if (!formData.email || !formData.contactName || !formData.message) {
     return false
   }
@@ -342,9 +320,20 @@ export function isContactFormValid(formData: ContactFormData): boolean {
   return true
 }
 
-export interface FormValidationResult {
+interface FormValidationResult {
   isValid: boolean
   errors: Record<string, string>
 }
 
-export { isValidEmail, isValidUrl, isValidLinkedIn, isValidGitHub }
+export type { ValidationResult, ContactFormData, FormValidationResult }
+
+export {
+  validateEmail,
+  validateUrl,
+  validateLinkedIn,
+  validateGitHubGitlab,
+  validateContactName,
+  validateMessage,
+  validateContactForm,
+  isContactFormValid,
+}

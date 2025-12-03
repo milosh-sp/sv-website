@@ -14,4 +14,4 @@ interface CheckboxProps extends Omit<ComponentProps<'input'>, 'size' | 'type'> {
   'aria-required'?: boolean
 }
 
-export type { CheckboxProps, CheckboxSize }
+export type { CheckboxProps }

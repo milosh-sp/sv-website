@@ -1,4 +1,3 @@
-import type { StepId } from '@/lib/stepIdentifiers'
 import type { Handler } from '@netlify/functions'
 
 // ============================================================================
@@ -16,7 +15,7 @@ interface FormFields {
   githubGitlabUrl?: string
   user_type?: string
   website?: string
-  form_step?: StepId
+  form_step?: 'step1' | 'step2' | 'step3' | 'step4'
   form_start_time?: string
   [key: string]: unknown
 }
@@ -174,7 +173,6 @@ export type {
   CandidateFormFields,
   HiringManagerFormFields,
   VerifierFormFields,
-  FormSubmissionData,
   ContactFormSubmission,
   CandidateFormSubmission,
   HiringManagerFormSubmission,

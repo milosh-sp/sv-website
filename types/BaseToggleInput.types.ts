@@ -19,4 +19,4 @@ interface BaseToggleInputProps
   defaultAriaLabel: string
 }
 
-export type { BaseToggleInputProps, ToggleInputSize, ToggleInputVariant }
+export type { BaseToggleInputProps }

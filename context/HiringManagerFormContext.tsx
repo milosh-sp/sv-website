@@ -8,8 +8,8 @@ import {
   STEP_IDS,
   getNextStepId,
   getPreviousStepId,
-  type StepId,
 } from '@/lib/stepIdentifiers'
+import type { StepId } from '@/types/netlify.types'
 
 const HiringManagerFormContext =
   createContext<HiringManagerFormContextType | null>(null)

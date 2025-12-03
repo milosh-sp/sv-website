@@ -14,10 +14,10 @@ import { cn } from '@/lib/utils'
 import { STEP_IDS } from '@/lib/stepIdentifiers'
 import type { FormFieldConfig } from '@/types/FormFieldsStep.types'
 import type { ReactNode } from 'react'
-import type { StepId } from '@/lib/stepIdentifiers'
 import { SuccessScreen } from './SuccessScreen'
 import { PageHeader } from '../molecules/PageHeader'
 import { PageLayout } from '../templates/PageLayout'
+import type { StepId } from '@/types/netlify.types'
 
 const {
   professionalFrustrationOptions,

@@ -1,5 +1,5 @@
 import type { HiringManagerFormData } from '@/types/HiringManagerFormData.types'
-import type { StepId } from '@/lib/stepIdentifiers'
+import type { StepId } from '@/types/netlify.types'
 
 interface HiringManagerFormContextType {
   formData: HiringManagerFormData

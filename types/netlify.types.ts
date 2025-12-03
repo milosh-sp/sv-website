@@ -10,12 +10,14 @@ type FormType = 'contact' | 'candidate' | 'hiring-manager' | 'verifier'
 // FORM FIELDS - GENERIC AND TYPE-SPECIFIC
 // ============================================================================
 
+type StepId = 'step1' | 'step2' | 'step3' | 'step4'
+
 interface FormFields {
   linkedin?: string
   githubGitlabUrl?: string
   user_type?: string
   website?: string
-  form_step?: 'step1' | 'step2' | 'step3' | 'step4'
+  form_step?: StepId
   form_start_time?: string
   [key: string]: unknown
 }
@@ -108,12 +110,6 @@ type UnifiedFormSubmissionData =
   | HiringManagerFormSubmission
   | VerifierFormSubmission
 
-// Legacy type for backward compatibility
-interface FormSubmissionData {
-  email: string
-  fields?: FormFields
-}
-
 interface ClientIPAndCountry {
   country: string
   clientIp: string
@@ -188,4 +184,5 @@ export type {
   ValidationError,
   BotDetectionResult,
   Handler,
+  StepId,
 }

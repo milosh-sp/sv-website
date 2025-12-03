@@ -7,11 +7,11 @@ import {
   validateUrlField,
 } from '@/lib/waitlistValidators'
 import { getStepNumber } from '@/lib/stepIdentifiers'
-import type { StepId } from '@/lib/stepIdentifiers'
 import type { CandidateFormData } from '@/types/CandidateFormData.types'
 import type { HiringManagerFormData } from '@/types/HiringManagerFormData.types'
 import type { VerifierFormData } from '@/types/VerifierFormData.types'
 import type { ValidationErrors } from '@/types/WaitlistValidation.types'
+import type { StepId } from '@/types/netlify.types'
 
 /**
  * Validate a specific step of the Candidate form

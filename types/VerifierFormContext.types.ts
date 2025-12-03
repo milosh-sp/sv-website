@@ -1,5 +1,5 @@
 import type { VerifierFormData } from '@/types/VerifierFormData.types'
-import type { StepId } from '@/lib/stepIdentifiers'
+import type { StepId } from './netlify.types'
 
 interface VerifierFormContextType {
   formData: VerifierFormData

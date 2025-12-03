@@ -11,12 +11,13 @@ import { useCandidateForm } from '@/hooks/useCandidateForm'
 import { strings } from '@/lib/strings'
 import { validateCandidateStep } from '@/lib/waitlistFormValidators'
 import { cn } from '@/lib/utils'
-import { STEP_IDS, type StepId } from '@/lib/stepIdentifiers'
 import type { FormFieldConfig } from '@/types/FormFieldsStep.types'
 import type { ReactNode } from 'react'
 import { SuccessScreen } from './SuccessScreen'
 import { PageLayout } from '../templates/PageLayout'
 import { PageHeader } from '../molecules/PageHeader'
+import { STEP_IDS } from '@/lib/stepIdentifiers'
+import type { StepId } from '@/types/netlify.types'
 const {
   jobSearchChallengeOptions,
   skillValidationOptions,

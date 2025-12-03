@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import type { StepId } from '@/lib/stepIdentifiers'
+import type { StepId } from './netlify.types'
 
 interface WaitlistFormLayoutProps {
   currentStep: StepId

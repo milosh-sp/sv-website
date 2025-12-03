@@ -1,17 +1,17 @@
 import type { ReactNode } from 'react'
 import { cn } from '@/lib/utils'
 import { strings } from '@/lib/strings'
-import { getStepNumber, type StepId } from '@/lib/stepIdentifiers'
 import { validateStepsUpTo } from '@/lib/waitlistFormValidators'
 import { ProgressIndicator } from '@/components/molecules/ProgressIndicator'
 import { FormNavigation } from '@/components/organisms/FormNavigation'
 import { HoneypotField } from '@/components/molecules/HoneypotField'
 import { StatusMessage } from '@/components/atoms/StatusMessage'
-
 import type { WaitlistFormWrapperProps } from '@/types/WaitlistFormWrapper.types'
 import type { CandidateFormData } from '@/types/CandidateFormData.types'
 import type { VerifierFormData } from '@/types/VerifierFormData.types'
 import type { HiringManagerFormData } from '@/types/HiringManagerFormData.types'
+import { getStepNumber } from '@/lib/stepIdentifiers'
+import type { StepId } from '@/types/netlify.types'
 
 function isStepNavigationAllowed(
   targetStep: StepId,

@@ -1,5 +1,5 @@
 import type { CandidateFormData } from '@/types/CandidateFormData.types'
-import type { StepId } from '@/lib/stepIdentifiers'
+import type { StepId } from '@/types/netlify.types'
 
 interface CandidateFormContextType {
   formData: CandidateFormData

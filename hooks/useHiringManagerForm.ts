@@ -1,11 +1,10 @@
 import { useForm } from '@/hooks/useForm'
 import { submitUnifiedForm } from '@/lib/api'
-import type { StepId } from '@/lib/stepIdentifiers'
 import { validateEmail, validateUrl } from '@/lib/validation'
 import { validateHiringManagerForm } from '@/lib/waitlistFormValidators'
 import type { HiringManagerFormData } from '@/types/HiringManagerFormData.types'
 import { INITIAL_HIRING_MANAGER_FORM_DATA } from '@/types/HiringManagerFormData.types'
-import type { HiringManagerFormSubmission } from '@/types/netlify.types'
+import type { HiringManagerFormSubmission, StepId } from '@/types/netlify.types'
 
 interface UseHiringManagerFormConfig {
   onSuccess?: () => void

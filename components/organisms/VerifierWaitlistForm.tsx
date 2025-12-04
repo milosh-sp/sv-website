@@ -60,7 +60,6 @@ export function VerifierWaitlistForm() {
 
   const stepRenderers: Record<StepId, () => ReactNode> = {
     [STEP_IDS.STEP_1]: () => {
-      const stepFields = strings.waitlistForms.stepConfigs.verifier[0].fields
       return (
         <ContactConsentSection
           name={form.formData.name}
@@ -68,7 +67,13 @@ export function VerifierWaitlistForm() {
           linkedIn={form.formData.linkedIn}
           githubGitlabUrl={form.formData.githubGitlabUrl}
           newsletterOptIn={form.formData.newsletterOptIn}
-          fields={stepFields}
+          fields={[
+            'name',
+            'email',
+            'linkedIn',
+            'githubGitlabUrl',
+            'newsletterOptIn',
+          ]}
           errors={form.errors}
           isSubmitting={form.isSubmitting}
           onNameChange={(value) => form.handleFieldChange('name', value)}

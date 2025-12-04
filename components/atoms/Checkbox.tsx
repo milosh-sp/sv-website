@@ -1,5 +1,3 @@
-'use client'
-
 import { useEffect, useRef } from 'react'
 import type { CheckboxProps } from '@/types/Checkbox.types'
 import { BaseToggleInput } from '@/components/atoms/BaseToggleInput'

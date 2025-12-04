@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils'
 import type { InputProps } from '@/types/Input.types'
 
-function Input({
+export function Input({
   className,
   type = 'text',
   'aria-label': ariaLabel,
@@ -32,5 +32,3 @@ function Input({
     />
   )
 }
-
-export { Input }

@@ -55,7 +55,7 @@ interface VerificationBadgeProps {
   className?: string
 }
 
-interface VerifierTooltipProps extends ComponentProps<'aside'> {
+interface TooltipProps extends ComponentProps<'aside'> {
   verifier: string
 }
 
@@ -68,7 +68,7 @@ export type {
   LanguageItem,
   CVSectionProps,
   VerificationBadgeProps,
-  VerifierTooltipProps,
+  TooltipProps,
   EducationSectionItem,
   BaseSectionItem,
   VerificationStatus,

@@ -1,11 +1,7 @@
 import { cn } from '@/lib/utils'
-import type { VerifierTooltipProps } from '@/types/CVPreview.types'
+import type { TooltipProps } from '@/types/CVPreview.types'
 
-export function VerifierTooltip({
-  verifier,
-  className,
-  ...props
-}: VerifierTooltipProps) {
+export function Tooltip({ verifier, className, ...props }: TooltipProps) {
   const [verifierName, verifierRole] = verifier.split(' - ')
 
   return (

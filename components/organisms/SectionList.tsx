@@ -1,6 +1,6 @@
 import { CVSectionHeader } from '@/components/organisms/CVSectionHeader'
 import { VerificationBadge } from '@/components/atoms/VerificationBadge'
-import { VerifierTooltip } from '@/components/atoms/ToolTip'
+import { Tooltip } from '@/components/atoms/ToolTip'
 import { cn } from '@/lib/utils'
 import type { BaseSectionItem } from '@/types/CVPreview.types'
 import type { SectionListProps } from '@/types/SectionList.types'
@@ -40,7 +40,7 @@ export function SectionList<T extends BaseSectionItem>({
               <div className={cn('relative flex items-center gap-1 shrink-0')}>
                 <VerificationBadge verified={item.verified ?? 'unverified'} />
                 {item.verifier && item.verified === 'verified' && (
-                  <VerifierTooltip verifier={item.verifier} />
+                  <Tooltip verifier={item.verifier} />
                 )}
               </div>
             </li>

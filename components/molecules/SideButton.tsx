@@ -1,5 +1,3 @@
-'use client'
-
 import { cn } from '@/lib/utils'
 import type { SideTabButtonProps } from '@/types/SideButton.types'
 import { Button } from '@/components/atoms/Button'

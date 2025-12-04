@@ -1,5 +1,7 @@
 import { cn } from '@/lib/utils'
 import type { FormInputWrapperProps } from '@/types/FormInputWrapper.types'
+import { Label } from '../atoms/Label'
+import { FieldError } from '../atoms/FieldError'
 
 export function FormInputWrapper({
   children,
@@ -21,25 +23,7 @@ export function FormInputWrapper({
     <div className='flex items-center gap-2'>
       {children}
       <div className='flex flex-col gap-1'>
-        {label && (
-          <label
-            htmlFor={inputId}
-            className={cn(
-              'font-light text-foreground cursor-pointer select-none',
-              'peer-disabled:cursor-not-allowed peer-disabled:opacity-50',
-              size === 'sm' && 'text-sm',
-              size === 'default' && 'text-base',
-              size === 'lg' && 'text-lg'
-            )}
-          >
-            {label}
-            {required && (
-              <span className='text-destructive ml-1' aria-hidden='true'>
-                *
-              </span>
-            )}
-          </label>
-        )}
+        {label && <Label inputId={inputId} label={label} required={required} />}
         {description && (
           <p
             id={descriptionId}
@@ -53,21 +37,7 @@ export function FormInputWrapper({
             {description}
           </p>
         )}
-        {error && (
-          <p
-            id={errorId}
-            className={cn(
-              'text-destructive',
-              size === 'sm' && 'text-xs',
-              size === 'default' && 'text-sm',
-              size === 'lg' && 'text-base'
-            )}
-            role='alert'
-            aria-live='polite'
-          >
-            {error}
-          </p>
-        )}
+        {error && <FieldError error={error} id={errorId} />}
       </div>
     </div>
   )

@@ -2,23 +2,13 @@ import type { BaseFormData } from '@/types/BaseFormData.types'
 import { INITIAL_BASE_FORM_DATA } from '@/types/BaseFormData.types'
 
 interface VerifierFormData extends BaseFormData {
-  // Step 3: Verifier Profile (extends base professionalStatus)
-  yearsOfExperience: string // 3-5, 6-10, 10+
-  hoursPerWeek: string // 1-3, 4-7, 8+
-  coachingMentoring: string // Yes, No
-
-  // Step 4: Motivation & Challenges
-  verifierMotivations: string // JSON stringified array
-  verifierMotivationOther: string // Custom motivation if "Other" selected
-  professionalFrustration: string // Single selection
-  professionalFrustrationOther: string // Custom frustration if "Other" selected
-}
-
-interface VerifierFormStep {
-  stepNumber: number
-  title: string
-  description: string
-  fields: string[]
+  yearsOfExperience: string
+  hoursPerWeek: string
+  coachingMentoring: string
+  verifierMotivations: string
+  verifierMotivationOther: string
+  professionalFrustration: string
+  professionalFrustrationOther: string
 }
 
 const INITIAL_VERIFIER_FORM_DATA: VerifierFormData = {
@@ -33,5 +23,5 @@ const INITIAL_VERIFIER_FORM_DATA: VerifierFormData = {
   name: '',
 }
 
-export type { VerifierFormData, VerifierFormStep }
+export type { VerifierFormData }
 export { INITIAL_VERIFIER_FORM_DATA }

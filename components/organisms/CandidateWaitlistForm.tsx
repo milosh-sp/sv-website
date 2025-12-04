@@ -1,7 +1,6 @@
 'use client'
 
 import { CandidateProfileStep } from '@/components/molecules/CandidateProfileStep'
-import { ContactConsentSection } from '@/components/molecules/ContactConsentSection'
 import { FormFieldsStep } from '@/components/molecules/FormFieldsStep'
 import { SkillAreasSection } from '@/components/molecules/SkillAreasSection'
 import { TechnicalSkillsSection } from '@/components/molecules/TechnicalSkillsSection'
@@ -18,6 +17,8 @@ import { PageLayout } from '../templates/PageLayout'
 import { PageHeader } from '../molecules/PageHeader'
 import { STEP_IDS } from '@/lib/stepIdentifiers'
 import type { StepId } from '@/types/netlify.types'
+import { ContactConsentSection } from './ContactConsentSection'
+
 const {
   jobSearchChallengeOptions,
   skillValidationOptions,

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { HeaderAndButtons } from '@/components/molecules/HeaderAndButtons'
+import { HeaderAndButtons } from '@/components/organisms/HeaderAndButtons'
 import { StepsGrid } from '@/components/organisms/Steps'
 import { strings } from '@/lib/strings'
 import type { UserType } from '@/types/FormData.types'

@@ -1,5 +1,3 @@
-'use client'
-
 import { cn } from '@/lib/utils'
 import { Checkbox } from '@/components/atoms/Checkbox'
 import { FieldError } from '@/components/atoms/FieldError'

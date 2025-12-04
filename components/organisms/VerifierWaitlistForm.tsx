@@ -1,6 +1,6 @@
 'use client'
 
-import { ContactConsentSection } from '@/components/molecules/ContactConsentSection'
+import { ContactConsentSection } from './ContactConsentSection'
 import { FormFieldsStep } from '@/components/molecules/FormFieldsStep'
 import { SkillAreasSection } from '@/components/molecules/SkillAreasSection'
 import { TechnicalSkillsSection } from '@/components/molecules/TechnicalSkillsSection'

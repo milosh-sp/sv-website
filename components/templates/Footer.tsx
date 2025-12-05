@@ -48,9 +48,6 @@ export function Footer() {
             className={cn('text-center md:text-right not-italic')}
             aria-labelledby='footer-contact-heading'
           >
-            <h2 id='footer-contact-heading' className={cn('sr-only')}>
-              Contact Information
-            </h2>
             <Text variant='caption' className={cn('text-slate-400 mb-2')}>
               {strings.footer.contactUs}
             </Text>

@@ -52,7 +52,7 @@ import { techSkills } from './tech-skills'
 // SITE BRANDING & IDENTITY
 // ============================================================================
 
-export const branding = {
+const branding = {
   // Company name and tagline
   companyName: `Skill Verdict`,
   tagline: `Don't chase, attract!`,
@@ -71,7 +71,7 @@ export const branding = {
 // NAVIGATION & HEADER
 // ============================================================================
 
-export const navigation = {
+const navigation = {
   // Main navigation items
   menu: {
     home: `Home`,
@@ -154,8 +154,7 @@ export const hero = {
 // ============================================================================
 // BENEFITS SECTION
 // ============================================================================
-
-export const benefits = {
+const benefits = {
   // Section header
   heading: `Peer-Powered Skill Verification, Inspired by Community Notes`,
   headingHighlight: `Skill`,
@@ -252,7 +251,7 @@ export const benefits = {
 // CV PREVIEW SECTION
 // ============================================================================
 
-export const cvPreview = {
+const cvPreview = {
   // Section header
   heading: `Your CV2.0 - The Living CV that Opens Opportunities`,
   description: `Showcase your verified skills in a way regular resumes can’t. With CV2.0, your profile automatically updates with your latest achievements and peer reviews, no manual work required.
@@ -291,7 +290,7 @@ Worried about privacy or control? Your data stays yours—customize what gets di
 // COMPANY DISCOVERY SECTION
 // ============================================================================
 
-export const companyDiscovery = {
+const companyDiscovery = {
   // Section content
   icon: Building2,
   iconAriaLabel: `Building icon for company discovery`,
@@ -334,7 +333,7 @@ export const companyDiscovery = {
 // PROCESS SECTION
 // ============================================================================
 
-export const process = {
+const process = {
   // Section header
   heading: `How Skill Verdict Works`,
   description: {
@@ -417,8 +416,7 @@ By mentoring and validating others,
 // ============================================================================
 // FAQ SECTION
 // ============================================================================
-
-export const faq = {
+const faq = {
   membersHeading: `Frequently asked questions for Members`,
   verifiersHeading: `Frequently asked questions for Guru members`,
   hiringManagersHeading: `Frequently asked questions for Hiring Managers`,
@@ -506,20 +504,10 @@ export const faq = {
 } as const
 
 // ============================================================================
-// FLOATING SIGNUP BUTTON
-// ============================================================================
-
-export const floatingSignupButton = {
-  text: `Sign Up`,
-  ariaLabel: `Scroll to hero section to sign up`,
-  iconAriaLabel: `User plus icon with sparkles`,
-} as const
-
-// ============================================================================
 // FOOTER
 // ============================================================================
 
-export const footer = {
+const footer = {
   // Links
   links: {
     privacyPolicy: `Privacy Policy`,
@@ -535,7 +523,7 @@ export const footer = {
 // CONTACT PAGE
 // ============================================================================
 
-export const contactPage = {
+const contactPage = {
   // Page header
   title: `Contact Us`,
   heading: `Get in Touch`,
@@ -629,7 +617,7 @@ export const contactPage = {
 // LEGAL PAGES CONTENT
 // ============================================================================
 
-export const legalPages = {
+const legalPages = {
   // Privacy Policy
   privacyPolicy: {
     title: `Privacy Policy`,
@@ -788,7 +776,7 @@ export const legalPages = {
 // ERROR PAGES CONTENT
 // ============================================================================
 
-export const errorPages = {
+const errorPages = {
   notFound: {
     title: `Page Not Found | Skill Verdict`,
     errorCode: `404`,
@@ -822,7 +810,7 @@ export const errorPages = {
 // LAYOUT & ACCESSIBILITY
 // ============================================================================
 
-export const layout = {
+const layout = {
   accessibility: {
     skipToMain: `Skip to main content`,
   },
@@ -832,7 +820,7 @@ export const layout = {
 // CV PREVIEW SAMPLE DATA
 // ============================================================================
 
-export const cvSampleData = {
+const cvSampleData = {
   profile: {
     name: `Alex Smith`,
     title: `Senior Full Stack Developer`,
@@ -986,7 +974,7 @@ export const cvSampleData = {
 // API & FORM SUBMISSION RESPONSES
 // ============================================================================
 
-export const apiResponses = {
+const apiResponses = {
   // Success messages
   success: {
     subscribed: `Successfully subscribed!`,
@@ -1017,7 +1005,7 @@ export const apiResponses = {
 // COMMON UI ELEMENTS
 // ============================================================================
 
-export const common = {
+const common = {
   // Loading states
   loading: `Loading...`,
 
@@ -1061,7 +1049,7 @@ export const common = {
 // CHECKBOX COMPONENT
 // ============================================================================
 
-export const checkbox = {
+const checkbox = {
   // Accessibility labels
   accessibility: {
     defaultLabel: `Checkbox`,
@@ -1081,7 +1069,7 @@ export const checkbox = {
 // RADIO BUTTON COMPONENT
 // ============================================================================
 
-export const radioButton = {
+const radioButton = {
   // Accessibility labels
   accessibility: {
     defaultLabel: `Radio button`,
@@ -1100,7 +1088,7 @@ export const radioButton = {
 // WAITLIST FORMS
 // ============================================================================
 
-export const waitlistForms = {
+const waitlistForms = {
   // ========================================================================
   // FORM CONFIGURATION
   // ========================================================================
@@ -1648,8 +1636,45 @@ const confirmEmailScreen = {
   },
 }
 
+const personalitySection = {
+  heading: `Personality Tests That Add Depth to Real-World Performance`,
+  description: `On Skill Verdict, you’re not just looking at resumes or polished profiles—you’re
+   exploring a talent pool where every candidate has proven their abilities through real, 
+  anonymous project work. This gives you a grounded, trustworthy starting point.
+   But skills alone don’t tell the whole story. 
+   That’s why Skill Verdict also includes personality tests to help you understand how someone works, not just what they can do.`,
+  cardColumns: [
+    {
+      title: `Personality tests`,
+      icon: Brain,
+      description: `We use well-known frameworks like the 16-personality test (MBTI), along with other research-backed assessments that measure traits such as communication style, teamwork, leadership tendencies, adaptability, and decision-making patterns. These tests aren’t treated as rigid labels or stereotypes. Instead, they offer helpful context—insights into how a person naturally approaches challenges, collaborates with others, or stays motivated.`,
+    },
+    {
+      title: `Real project results`,
+      icon: FileText,
+      description: `When combined with real project results, personality insights paint a fuller, more human picture of each candidate. 
+      You can see whether someone thrives in fast-paced environments, 
+      prefers structured tasks, leads with empathy, or brings a calm, analytical approach to problem-solving.`,
+    },
+    {
+      title: `For companies`,
+      icon: Building2,
+      description: `For companies, this means making hiring decisions with greater confidence—choosing people not 
+      just for their technical ability, but for the way they’ll fit into teams, communicate, grow, and contribute over time. `,
+    },
+    {
+      title: `For candidates`,
+      icon: User,
+      description: ` 
+      For candidates, it means being understood as a whole person, not just a list of skills.titl
+      Skill Verdict brings skills and personality together to help you hire people who are not only capable,
+      but also genuinely aligned with your culture and the way your team works..`,
+    },
+  ],
+}
+
 // ============================================================================
-// EXPORT ALL STRINGS
+// EXPORT ALL STRINGS AS CONSTANTS
 // ============================================================================
 
 export const strings = {
@@ -1661,7 +1686,6 @@ export const strings = {
   companyDiscovery,
   process,
   faq,
-  floatingSignupButton,
   footer,
   contactPage,
   legalPages,
@@ -1674,4 +1698,5 @@ export const strings = {
   radioButton,
   waitlistForms,
   confirmEmailScreen,
-} as const
+  personalitySection,
+}

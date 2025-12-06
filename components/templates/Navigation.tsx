@@ -103,7 +103,7 @@ export function Header() {
           {/* Desktop Navigation */}
           <ul
             className={cn(
-              'hidden min-[930px]:flex items-center gap-8',
+              'hidden min-[930px]:flex items-center gap-4',
               'list-none m-0 p-0'
             )}
             aria-label='Primary navigation'

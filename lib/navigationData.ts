@@ -5,6 +5,7 @@ import { CvPreviewPageSection } from '@/components/templates/CvPreviewPageSectio
 import { FaqPageSection } from '@/components/templates/FaqPageSection'
 import { HeroPageSection } from '@/components/templates/HeroPageSection'
 import { ProcessPageSection } from '@/components/templates/ProcessPageSection'
+import { PersonalityPageSection } from '@/components/templates/PersonalityPageSection'
 
 /**
  * Navigation data for the application,
@@ -22,6 +23,12 @@ export const navigationData = [
     label: strings.navigation.menu.benefits,
     href: '/#benefits',
     Component: BenefitsPageSection,
+  },
+  {
+    id: 'personality-cv',
+    label: `Personality`,
+    href: '/#personality-cv',
+    Component: PersonalityPageSection,
   },
   {
     id: 'company-discovery',

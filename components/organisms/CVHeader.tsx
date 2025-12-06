@@ -8,6 +8,7 @@ import { User } from 'lucide-react'
 export function CVHeader({
   variant = 'default',
   className,
+  headingLevel = 4,
   ...props
 }: CVHeaderProps) {
   const isCompact = variant === 'compact'
@@ -55,7 +56,7 @@ export function CVHeader({
           />
         </div>
         <div className={textContainerClasses}>
-          <Heading level={isCompact ? 5 : 4} size='md' className={nameClasses}>
+          <Heading level={headingLevel} size='md' className={nameClasses}>
             {strings.cvSampleData.profile.name}
           </Heading>
           <Text className={titleClasses} role='doc-subtitle'>

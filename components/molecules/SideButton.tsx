@@ -25,11 +25,10 @@ export function SideTabButton({
           : 'hover:text-foreground hover:bg-background/50',
         className
       )}
-      role='tab'
-      aria-selected={isActive}
       aria-controls={ariaControls}
       aria-label={label}
       tabIndex={isActive ? 0 : -1}
+      aria-pressed={isActive}
     >
       <Icon className='h-5 w-5' aria-hidden='true' />
       <span>{label}</span>

@@ -38,8 +38,6 @@ export function VerificationBadge({
         statusConfig.className,
         className
       )}
-      aria-label={statusConfig.ariaLabel}
-      role='img'
     >
       <Icon className='h-5 w-5 md:h-7 md:w-7' aria-hidden='true' />
     </span>

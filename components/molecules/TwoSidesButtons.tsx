@@ -11,24 +11,18 @@ export function TwoSidesButtons({
 }: TwoSidesButtonsProps) {
   return (
     <div className='flex justify-center mb-12'>
-      <div
-        className='flex flex-col md:flex-row p-2.5 bg-muted/80 backdrop-blur-sm rounded-xl shadow-sm border border-border/50'
-        role='tablist'
-        aria-label={strings.benefits.tabAccessibility.chooseUserType}
-      >
+      <div className='flex flex-col md:flex-row p-2.5 bg-muted/80 backdrop-blur-sm rounded-xl shadow-sm border border-border/50'>
         <SideTabButton
           isActive={activeTab === 'member'}
           onClick={() => onTabChange('member')}
           icon={CircleStar}
           label={strings.benefits.tabs.members}
-          ariaControls='member-panel'
         />
         <SideTabButton
           isActive={activeTab === 'guru'}
           onClick={() => onTabChange('guru')}
           icon={Award}
           label={strings.benefits.tabs.guruMembers}
-          ariaControls='guru-panel'
         />
         {showHiringManager && (
           <SideTabButton
@@ -36,7 +30,6 @@ export function TwoSidesButtons({
             onClick={() => onTabChange('hiring-manager')}
             icon={Handshake}
             label={strings.benefits.tabs.hiringManagers}
-            ariaControls='hiring-manager-panel'
           />
         )}
       </div>

@@ -6,6 +6,5 @@ export interface SideTabButtonProps extends ComponentProps<'button'> {
   onClick: () => void
   icon: LucideIcon
   label: string
-  ariaControls: string
   className?: string
 }

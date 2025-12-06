@@ -7,14 +7,10 @@ export function SideTabButton({
   onClick,
   icon: Icon,
   label,
-  ariaControls,
   className,
 }: SideTabButtonProps) {
-  const buttonId = `tab-${ariaControls}`
-
   return (
     <Button
-      id={buttonId}
       type='button'
       onClick={onClick}
       variant='ghost'
@@ -25,10 +21,6 @@ export function SideTabButton({
           : 'hover:text-foreground hover:bg-background/50',
         className
       )}
-      aria-controls={ariaControls}
-      aria-label={label}
-      tabIndex={isActive ? 0 : -1}
-      aria-pressed={isActive}
     >
       <Icon className='h-5 w-5' aria-hidden='true' />
       <span>{label}</span>

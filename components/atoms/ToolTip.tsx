@@ -6,8 +6,6 @@ export function Tooltip({ verifier, className, ...props }: TooltipProps) {
 
   return (
     <aside
-      role='tooltip'
-      aria-live='polite'
       className={cn(
         'absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2',
         'px-3 py-2 bg-slate-900 text-white text-xs rounded-lg',

@@ -109,7 +109,7 @@ export function Header() {
             aria-label='Primary navigation'
           >
             {navigationData.map((link) => (
-              <li key={link.id} role='none'>
+              <li key={link.id}>
                 <HeaderLink
                   scroll
                   href={link.href}

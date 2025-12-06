@@ -29,7 +29,7 @@ export function CvPreviewPageSection({ id }: SectionProps) {
           {strings.cvPreview.note}
         </Text>
 
-        <CVPreviewBody />
+        <CVPreviewBody headingLevel={5} />
 
         <CvFeaturesList />
       </div>

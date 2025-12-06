@@ -8,8 +8,15 @@ import { LanguagesSection } from './LanguagesSection'
 import { ProjectsSection } from './ProjectSection'
 import { QrCodeSection } from './QrCodeSection'
 import { TechnicalSkillsSectionCv } from './TechnicalSkillsSectionCv'
+import type { HeadingLevel } from '@/types/Heading.types'
 
-export function CVPreviewBody({ variant }: { variant?: CVHeaderVariant }) {
+export function CVPreviewBody({
+  variant,
+  headingLevel,
+}: {
+  variant?: CVHeaderVariant
+  headingLevel?: HeadingLevel
+}) {
   return (
     <main
       className={cn(
@@ -17,7 +24,7 @@ export function CVPreviewBody({ variant }: { variant?: CVHeaderVariant }) {
       )}
       aria-label='Sample curriculum vitae document'
     >
-      <CVHeader variant={variant ?? 'default'} />
+      <CVHeader variant={variant ?? 'default'} headingLevel={headingLevel} />
 
       <section className={cn('grid md:grid-cols-2 gap-8 p-8')}>
         {/* Left Column - Primary Information */}

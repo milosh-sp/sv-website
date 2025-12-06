@@ -1,6 +1,6 @@
 'use client'
 
-import { ContactConsentSection } from '@/components/molecules/ContactConsentSection'
+import { ContactConsentSection } from './ContactConsentSection'
 import { FormFieldsStep } from '@/components/molecules/FormFieldsStep'
 import { SkillAreasSection } from '@/components/molecules/SkillAreasSection'
 import { TechnicalSkillsSection } from '@/components/molecules/TechnicalSkillsSection'
@@ -14,10 +14,10 @@ import { cn } from '@/lib/utils'
 import { STEP_IDS } from '@/lib/stepIdentifiers'
 import type { FormFieldConfig } from '@/types/FormFieldsStep.types'
 import type { ReactNode } from 'react'
-import type { StepId } from '@/lib/stepIdentifiers'
 import { SuccessScreen } from './SuccessScreen'
 import { PageHeader } from '../molecules/PageHeader'
 import { PageLayout } from '../templates/PageLayout'
+import type { StepId } from '@/types/netlify.types'
 
 const {
   professionalFrustrationOptions,
@@ -60,7 +60,6 @@ export function VerifierWaitlistForm() {
 
   const stepRenderers: Record<StepId, () => ReactNode> = {
     [STEP_IDS.STEP_1]: () => {
-      const stepFields = strings.waitlistForms.stepConfigs.verifier[0].fields
       return (
         <ContactConsentSection
           name={form.formData.name}
@@ -68,7 +67,13 @@ export function VerifierWaitlistForm() {
           linkedIn={form.formData.linkedIn}
           githubGitlabUrl={form.formData.githubGitlabUrl}
           newsletterOptIn={form.formData.newsletterOptIn}
-          fields={stepFields}
+          fields={[
+            'name',
+            'email',
+            'linkedIn',
+            'githubGitlabUrl',
+            'newsletterOptIn',
+          ]}
           errors={form.errors}
           isSubmitting={form.isSubmitting}
           onNameChange={(value) => form.handleFieldChange('name', value)}

@@ -1,7 +1,6 @@
 'use client'
 
 import { CandidateProfileStep } from '@/components/molecules/CandidateProfileStep'
-import { ContactConsentSection } from '@/components/molecules/ContactConsentSection'
 import { FormFieldsStep } from '@/components/molecules/FormFieldsStep'
 import { SkillAreasSection } from '@/components/molecules/SkillAreasSection'
 import { TechnicalSkillsSection } from '@/components/molecules/TechnicalSkillsSection'
@@ -11,12 +10,15 @@ import { useCandidateForm } from '@/hooks/useCandidateForm'
 import { strings } from '@/lib/strings'
 import { validateCandidateStep } from '@/lib/waitlistFormValidators'
 import { cn } from '@/lib/utils'
-import { STEP_IDS, type StepId } from '@/lib/stepIdentifiers'
 import type { FormFieldConfig } from '@/types/FormFieldsStep.types'
 import type { ReactNode } from 'react'
 import { SuccessScreen } from './SuccessScreen'
 import { PageLayout } from '../templates/PageLayout'
 import { PageHeader } from '../molecules/PageHeader'
+import { STEP_IDS } from '@/lib/stepIdentifiers'
+import type { StepId } from '@/types/netlify.types'
+import { ContactConsentSection } from './ContactConsentSection'
+
 const {
   jobSearchChallengeOptions,
   skillValidationOptions,
@@ -59,7 +61,6 @@ export function CandidateWaitlistForm() {
 
   const stepRenderers: Record<StepId, () => ReactNode> = {
     [STEP_IDS.STEP_1]: () => {
-      const stepFields = strings.waitlistForms.stepConfigs.candidate[0].fields
       return (
         <ContactConsentSection
           name={form.formData.name}
@@ -67,7 +68,13 @@ export function CandidateWaitlistForm() {
           linkedIn={form.formData.linkedIn}
           githubGitlabUrl={form.formData.githubGitlabUrl}
           newsletterOptIn={form.formData.newsletterOptIn}
-          fields={stepFields}
+          fields={[
+            'name',
+            'email',
+            'linkedIn',
+            'githubGitlabUrl',
+            'newsletterOptIn',
+          ]}
           errors={form.errors}
           isSubmitting={form.isSubmitting}
           onNameChange={(value) => form.handleFieldChange('name', value)}

@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { Award, CircleStar } from 'lucide-react'
 import { BenefitCards } from '@/components/organisms/BenefitCards'
-import { HeaderAndButtons } from '@/components/molecules/HeaderAndButtons'
+import { HeaderAndButtons } from '@/components/organisms/HeaderAndButtons'
 import { strings } from '@/lib/strings'
 import { cn } from '@/lib/utils'
 import type { UserType } from '@/types/FormData.types'

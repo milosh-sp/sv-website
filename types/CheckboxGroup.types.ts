@@ -17,4 +17,4 @@ interface CheckboxGroupProps
   description?: string
 }
 
-export type { CheckboxOption, CheckboxGroupProps }
+export type { CheckboxGroupProps }

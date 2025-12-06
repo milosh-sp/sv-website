@@ -1,12 +1,4 @@
 /**
- * Waitlist Step Configuration Types
- * Defines the structure for data-driven step rendering
- * Enables reusable step components across different form personas
- */
-
-import type { ReactNode } from 'react'
-
-/**
  * Configuration for a single form step
  * Enables data-driven rendering of step content
  */
@@ -62,3 +54,5 @@ export interface WaitlistFormConfig<TFormData extends Record<string, string>> {
 }
 
 export type { WaitlistStepConfig as StepConfig }
+
+import type { ReactNode } from 'react'

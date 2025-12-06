@@ -1,5 +1,5 @@
 import type { HTMLAttributes } from 'react'
-import type { StepId } from '@/lib/stepIdentifiers'
+import type { StepId } from './netlify.types'
 
 interface ProgressIndicatorProps extends HTMLAttributes<HTMLDivElement> {
   currentStep: StepId

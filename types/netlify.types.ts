@@ -1,4 +1,3 @@
-import type { StepId } from '@/lib/stepIdentifiers'
 import type { Handler } from '@netlify/functions'
 
 // ============================================================================
@@ -10,6 +9,8 @@ type FormType = 'contact' | 'candidate' | 'hiring-manager' | 'verifier'
 // ============================================================================
 // FORM FIELDS - GENERIC AND TYPE-SPECIFIC
 // ============================================================================
+
+type StepId = 'step1' | 'step2' | 'step3' | 'step4'
 
 interface FormFields {
   linkedin?: string
@@ -109,12 +110,6 @@ type UnifiedFormSubmissionData =
   | HiringManagerFormSubmission
   | VerifierFormSubmission
 
-// Legacy type for backward compatibility
-interface FormSubmissionData {
-  email: string
-  fields?: FormFields
-}
-
 interface ClientIPAndCountry {
   country: string
   clientIp: string
@@ -174,7 +169,6 @@ export type {
   CandidateFormFields,
   HiringManagerFormFields,
   VerifierFormFields,
-  FormSubmissionData,
   ContactFormSubmission,
   CandidateFormSubmission,
   HiringManagerFormSubmission,
@@ -190,4 +184,5 @@ export type {
   ValidationError,
   BotDetectionResult,
   Handler,
+  StepId,
 }

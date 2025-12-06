@@ -1,6 +1,5 @@
 import { useForm } from '@/hooks/useForm'
 import { submitUnifiedForm } from '@/lib/api'
-import type { StepId } from '@/lib/stepIdentifiers'
 import {
   validateEmail,
   validateGitHubGitlab,
@@ -9,7 +8,7 @@ import {
 import { validateVerifierForm } from '@/lib/waitlistFormValidators'
 import type { VerifierFormData } from '@/types/VerifierFormData.types'
 import { INITIAL_VERIFIER_FORM_DATA } from '@/types/VerifierFormData.types'
-import type { VerifierFormSubmission } from '@/types/netlify.types'
+import type { StepId, VerifierFormSubmission } from '@/types/netlify.types'
 
 interface UseVerifierFormConfig {
   onSuccess?: () => void

@@ -1,7 +1,8 @@
 import { strings } from '@/lib/strings'
 import type { TwoSidesButtonsProps } from '@/types/TwoSidesButtons.types'
+
 import { Award, CircleStar, Handshake } from 'lucide-react'
-import { SideTabButton } from '@/components/atoms/SideButton'
+import { SideTabButton } from '@/components/molecules/SideButton'
 
 export function TwoSidesButtons({
   activeTab,

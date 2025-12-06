@@ -1,9 +1,6 @@
-import type { WaitlistStepConfig } from '@/types/WaitlistStep.types'
-
 // ============================================================================
 // WAITLIST FORM TYPES
 // ============================================================================
-
 interface SkillArea {
   id: string
   label: string
@@ -1633,122 +1630,6 @@ export const waitlistForms = {
         description: `Select all that apply`,
       },
     },
-  },
-
-  // Step configurations for each persona
-  stepConfigs: {
-    candidate: [
-      {
-        stepNumber: 1,
-        title: 'Contact Information',
-        description: 'Let us know how to reach you',
-        fields: [
-          'name',
-          'email',
-          'linkedIn',
-          'githubGitlabUrl',
-          'newsletterOptIn',
-        ],
-      },
-      {
-        stepNumber: 2,
-        title: 'Skills Profile',
-        description: 'Tell us about your skills',
-        fields: ['skillAreas', 'technicalSkills'],
-      },
-      {
-        stepNumber: 3,
-        title: 'Your Candidate Profile',
-        description: 'Tell us about your professional background',
-        fields: [
-          'professionalStatus',
-          'techCommunityMembership',
-          'techCommunityDetails',
-          'githubGitlabUrl',
-        ],
-      },
-      {
-        stepNumber: 4,
-        title: 'Motivation & Challenges',
-        description: 'Help us understand your goals',
-        fields: [
-          'skillValidationConfidence',
-          'jobSearchChallenges',
-          'jobSearchChallengeOther',
-          'valuableOutcomes',
-          'valuableOutcomeOther',
-        ],
-      },
-    ] as WaitlistStepConfig[],
-    verifier: [
-      {
-        stepNumber: 1,
-        title: 'Contact Information',
-        description: 'Let us know how to reach you',
-        fields: [
-          'name',
-          'email',
-          'linkedIn',
-          'githubGitlabUrl',
-          'newsletterOptIn',
-        ],
-      },
-      {
-        stepNumber: 2,
-        title: 'Skills Profile',
-        description: 'Tell us about your skills',
-        fields: ['skillAreas', 'technicalSkills'],
-      },
-      {
-        stepNumber: 3,
-        title: 'Your Verification Profile',
-        description: 'Share your professional experience',
-        fields: [
-          'yearsOfExperience',
-          'hoursPerWeek',
-          'professionalStatus',
-          'coachingMentoring',
-          'githubGitlabUrl',
-        ],
-      },
-      {
-        stepNumber: 4,
-        title: 'Your Motivation',
-        description: 'Help us understand your goals',
-        fields: [
-          'verifierMotivations',
-          'verifierMotivationOther',
-          'professionalFrustration',
-          'professionalFrustrationOther',
-        ],
-      },
-    ] as WaitlistStepConfig[],
-    'hiring-manager': [
-      {
-        stepNumber: 1,
-        title: 'Contact Information',
-        description: 'Let us know how to reach you',
-        fields: ['name', 'email', 'newsletterOptIn', 'companyUrl'],
-      },
-      {
-        stepNumber: 2,
-        title: 'Your Company Profile',
-        description: 'Tell us about your company',
-        fields: ['managerRole', 'fundingStage', 'engineeringTeamSize'],
-      },
-      {
-        stepNumber: 3,
-        title: 'Hiring Demand',
-        description: 'Share your hiring needs',
-        fields: ['rolesHiring', 'seniorityLevel', 'hiringInterviewHours'],
-      },
-      {
-        stepNumber: 4,
-        title: 'Hiring Challenges',
-        description: 'Tell us about your challenges',
-        fields: ['hiringFrustrations', 'hiringFailures'],
-      },
-    ] as WaitlistStepConfig[],
   },
 } as const
 

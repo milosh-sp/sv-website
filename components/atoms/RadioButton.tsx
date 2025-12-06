@@ -1,5 +1,3 @@
-'use client'
-
 import type { RadioButtonProps } from '@/types/RadioButton.types'
 import { BaseToggleInput } from '@/components/atoms/BaseToggleInput'
 

@@ -19,31 +19,6 @@ interface ContactFormErrors {
  */
 type ContactSubmitStatus = 'idle' | 'success' | 'error'
 
-// Form submission data for API
-interface ContactFormSubmissionData {
-  email: string
-  fields?: {
-    contactName?: string
-    message?: string
-    website?: string // Honeypot field
-    form_start_time?: string // For timing validation
-  }
-}
-
-// Contact form field props
-interface ContactFormFieldProps extends ComponentProps<'div'> {
-  id: string
-  type: 'email' | 'text'
-  placeholder: string
-  value: string
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  error?: string
-  disabled?: boolean
-  icon: React.ReactNode
-  label: string
-  ariaDescribedBy?: string
-}
-
 // Contact form textarea props
 interface ContactTextAreaFieldProps
   extends Omit<ComponentProps<'div'>, 'onChange'> {
@@ -73,22 +48,4 @@ interface ContactFormProps extends ComponentProps<'form'> {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void
 }
 
-// Contact submit button props
-interface ContactSubmitButtonProps extends ComponentProps<'button'> {
-  isSubmitting: boolean
-  isDisabled: boolean
-  ariaLabel: string
-  loadingText: string
-  idleText: string
-}
-
-export type {
-  ContactFormData,
-  ContactFormErrors,
-  ContactSubmitStatus,
-  ContactFormSubmissionData,
-  ContactFormFieldProps,
-  ContactTextAreaFieldProps,
-  ContactFormProps,
-  ContactSubmitButtonProps,
-}
+export type { ContactFormData, ContactTextAreaFieldProps, ContactFormProps }

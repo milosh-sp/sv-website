@@ -20,4 +20,4 @@ interface CompanyProfileStepProps extends HTMLAttributes<HTMLDivElement> {
   onCompanyWebsiteChange: (value: string) => void
 }
 
-export type { CompanySize, CompanyProfileStepProps }
+export type { CompanyProfileStepProps }

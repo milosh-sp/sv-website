@@ -8,19 +8,19 @@
 // STEP IDENTIFIER CONSTANTS
 // ============================================================================
 
-export const STEP_IDS = {
+const STEP_IDS = {
   STEP_1: 'step1',
   STEP_2: 'step2',
   STEP_3: 'step3',
   STEP_4: 'step4',
 } as const
 
-export type StepId = (typeof STEP_IDS)[keyof typeof STEP_IDS]
+type StepId = (typeof STEP_IDS)[keyof typeof STEP_IDS]
 
 /**
  * Array of all step identifiers in order
  */
-export const STEP_ID_ARRAY: StepId[] = [
+const STEP_ID_ARRAY: StepId[] = [
   STEP_IDS.STEP_1,
   STEP_IDS.STEP_2,
   STEP_IDS.STEP_3,
@@ -34,23 +34,15 @@ export const STEP_ID_ARRAY: StepId[] = [
 /**
  * Get the numeric position of a step identifier (1-based)
  */
-export function getStepNumber(stepId: StepId): number {
+function getStepNumber(stepId: StepId): number {
   const index = STEP_ID_ARRAY.indexOf(stepId)
   return index >= 0 ? index + 1 : 1
 }
 
 /**
- * Get the step identifier from a numeric position (1-based)
- */
-export function getStepId(stepNumber: number): StepId {
-  const index = Math.max(0, Math.min(stepNumber - 1, STEP_ID_ARRAY.length - 1))
-  return STEP_ID_ARRAY[index]
-}
-
-/**
  * Get the next step identifier
  */
-export function getNextStepId(currentStepId: StepId): StepId {
+function getNextStepId(currentStepId: StepId): StepId {
   const currentIndex = STEP_ID_ARRAY.indexOf(currentStepId)
   const nextIndex = Math.min(currentIndex + 1, STEP_ID_ARRAY.length - 1)
   return STEP_ID_ARRAY[nextIndex]
@@ -59,22 +51,16 @@ export function getNextStepId(currentStepId: StepId): StepId {
 /**
  * Get the previous step identifier
  */
-export function getPreviousStepId(currentStepId: StepId): StepId {
+function getPreviousStepId(currentStepId: StepId): StepId {
   const currentIndex = STEP_ID_ARRAY.indexOf(currentStepId)
   const prevIndex = Math.max(currentIndex - 1, 0)
   return STEP_ID_ARRAY[prevIndex]
 }
 
-/**
- * Check if a step identifier is valid
- */
-export function isValidStepId(stepId: unknown): stepId is StepId {
-  return STEP_ID_ARRAY.includes(stepId as StepId)
-}
-
-/**
- * Get total number of steps
- */
-export function getTotalSteps(): number {
-  return STEP_ID_ARRAY.length
+export {
+  STEP_IDS,
+  STEP_ID_ARRAY,
+  getStepNumber,
+  getNextStepId,
+  getPreviousStepId,
 }

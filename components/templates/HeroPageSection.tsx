@@ -1,6 +1,6 @@
 import { strings } from '@/lib/strings'
 import { HeroButtons } from '@/components/molecules/HeroButtons'
-import { HeroVisual } from '@/components/molecules/HeroVisual'
+import { HeroVisual } from '@/components/organisms/HeroVisual'
 import { SectionWrapper } from '@/components/templates/SectionWrapper'
 import { Heading } from '@/components/atoms/Heading'
 import { Text } from '@/components/atoms/Text'

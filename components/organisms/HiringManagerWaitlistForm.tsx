@@ -1,6 +1,6 @@
 'use client'
 
-import { ContactConsentSection } from '@/components/molecules/ContactConsentSection'
+import { ContactConsentSection } from './ContactConsentSection'
 import { FormFieldsStep } from '@/components/molecules/FormFieldsStep'
 import { HiringManagerCompanyProfileStep } from '@/components/molecules/HiringManagerCompanyProfileStep'
 import { WaitlistFormWrapper } from '@/components/organisms/WaitlistFormWrapper'
@@ -8,12 +8,13 @@ import { useHiringManagerFormContext } from '@/context/HiringManagerFormContext'
 import { useHiringManagerForm } from '@/hooks/useHiringManagerForm'
 import { strings } from '@/lib/strings'
 import { validateHiringManagerStep } from '@/lib/waitlistFormValidators'
-import { STEP_IDS, type StepId } from '@/lib/stepIdentifiers'
 import type { FormFieldConfig } from '@/types/FormFieldsStep.types'
 import type { ReactNode } from 'react'
 import { SuccessScreen } from './SuccessScreen'
 import { PageLayout } from '../templates/PageLayout'
 import { PageHeader } from '../molecules/PageHeader'
+import { STEP_IDS } from '@/lib/stepIdentifiers'
+import type { StepId } from '@/types/netlify.types'
 
 const {
   hiringFailureOptions,
@@ -59,14 +60,12 @@ export function HiringManagerWaitlistForm() {
 
   const stepRenderers: Record<StepId, () => ReactNode> = {
     [STEP_IDS.STEP_1]: () => {
-      const stepFields =
-        strings.waitlistForms.stepConfigs['hiring-manager'][0].fields
       return (
         <ContactConsentSection
           email={form.formData.email}
           companyUrl={form.formData.companyUrl}
           newsletterOptIn={form.formData.newsletterOptIn}
-          fields={stepFields}
+          fields={['name', 'email', 'newsletterOptIn', 'companyUrl']}
           errors={form.errors}
           isSubmitting={form.isSubmitting}
           onEmailChange={(value) => form.handleFieldChange('email', value)}

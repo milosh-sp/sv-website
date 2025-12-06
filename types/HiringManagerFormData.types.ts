@@ -1,10 +1,4 @@
-/**
- * Hiring Manager Waitlist Form Data Types
- * Represents the complete form data for hiring manager persona
- * Note: LinkedIn is NOT required for Hiring Managers
- */
-
-export interface HiringManagerFormData extends Record<string, string> {
+interface HiringManagerFormData extends Record<string, string> {
   // Step 1: Contact Information (NO LinkedIn or GitHub required)
   email: string
   companyUrl: string
@@ -25,14 +19,14 @@ export interface HiringManagerFormData extends Record<string, string> {
   hiringFailures: string // JSON stringified array
 }
 
-export interface HiringManagerFormStep {
+interface HiringManagerFormStep {
   stepNumber: number
   title: string
   description: string
   fields: string[]
 }
 
-export const INITIAL_HIRING_MANAGER_FORM_DATA: HiringManagerFormData = {
+const INITIAL_HIRING_MANAGER_FORM_DATA: HiringManagerFormData = {
   email: '',
   newsletterOptIn: 'false',
   managerRole: '',
@@ -45,3 +39,6 @@ export const INITIAL_HIRING_MANAGER_FORM_DATA: HiringManagerFormData = {
   hiringFailures: '[]',
   companyUrl: '',
 }
+
+export type { HiringManagerFormData, HiringManagerFormStep }
+export { INITIAL_HIRING_MANAGER_FORM_DATA }

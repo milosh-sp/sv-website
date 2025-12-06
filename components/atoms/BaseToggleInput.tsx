@@ -1,5 +1,3 @@
-'use client'
-
 import { useFormInputAccessibility } from '@/hooks/useFormInputAccessibility'
 import { cn } from '@/lib/utils'
 import type { BaseToggleInputProps } from '@/types/BaseToggleInput.types'

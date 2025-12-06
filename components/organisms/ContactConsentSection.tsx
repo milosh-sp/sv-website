@@ -1,14 +1,11 @@
-'use client'
-
 import { Building, Github, Linkedin, Mail, User } from 'lucide-react'
 
 import { Checkbox } from '@/components/atoms/Checkbox'
 import { FormField } from '@/components/molecules/FormField'
 import { strings } from '@/lib/strings'
 import { cn } from '@/lib/utils'
-
 import type { ContactConsentSectionProps } from '@/types/ContactConsentSection.types'
-import { PrivacyPolicyConsent } from './PrivacyPolicyConsent'
+import { PrivacyPolicyConsent } from '../molecules/PrivacyPolicyConsent'
 
 export function ContactConsentSection({
   name,

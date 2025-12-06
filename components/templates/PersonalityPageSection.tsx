@@ -2,7 +2,8 @@ import { cn } from '@/lib/utils'
 import { HeaderAndDescription } from '../molecules/HeaderAndDescription'
 import { SectionWrapper } from './SectionWrapper'
 import { strings } from '@/lib/strings'
-import { BenefitCards } from '../organisms/BenefitCards'
+import { Carousel } from '../atoms/Carousel'
+import { BenefitCard } from '../organisms/BenefitCard'
 
 export function PersonalityPageSection() {
   return (
@@ -12,9 +13,18 @@ export function PersonalityPageSection() {
         description={strings.personalitySection.description}
       />
       <div className='container-wide'>
-        <BenefitCards
-          benefits={strings.personalitySection.cardColumns}
-          colorScheme='companies'
+        <Carousel
+          options={{ loop: true }}
+          slides={strings.personalitySection.cardColumns.map((column) => ({
+            id: column.title,
+            element: (
+              <BenefitCard
+                benefit={column}
+                colorScheme='companies'
+                className={cn('w-3xl')}
+              />
+            ),
+          }))}
         />
       </div>
     </SectionWrapper>

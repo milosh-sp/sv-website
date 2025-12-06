@@ -1,0 +1,31 @@
+.embla {
+  overflow: hidden;
+  position: relative;
+}
+.embla__container {
+  display: flex;
+}
+.embla__slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.embla__buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  bottom: 50%;
+  width: 100%;
+}
+
+.embla__button {
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
+}

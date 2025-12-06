@@ -57,12 +57,7 @@ export function HeroPageSection({ id }: SectionProps) {
                 className={cn('hidden lg:block w-1 bg-success rounded-full')}
                 aria-hidden='true'
               />
-              <Text
-                id='hero-description'
-                variant='body-large'
-                className='text-muted-foreground'
-                pretty
-              >
+              <Text id='hero-description' variant='body-large' pretty>
                 {strings.hero.subHeading}
               </Text>
             </div>
@@ -100,9 +95,7 @@ export function HeroPageSection({ id }: SectionProps) {
                 return (
                   <li
                     key={indicator.text}
-                    className={cn(
-                      'flex items-center gap-3 text-muted-foreground'
-                    )}
+                    className={cn('flex items-center gap-3')}
                   >
                     <Icon
                       className={cn('h-5 w-5 text-success shrink-0')}
@@ -116,7 +109,10 @@ export function HeroPageSection({ id }: SectionProps) {
           </header>
 
           {/* Right Visual */}
-          <figure className={cn('animate-fade-in-up')}>
+          <figure
+            className={cn('animate-fade-in-up')}
+            aria-label='Hero visual CV2.0'
+          >
             <HeroVisual />
           </figure>
         </article>

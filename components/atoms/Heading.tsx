@@ -27,6 +27,7 @@ const LEVEL_TO_SIZE = {
   2: 'lg',
   3: 'md',
   4: 'sm',
+  5: 'sm',
 } as const
 
 export function Heading({

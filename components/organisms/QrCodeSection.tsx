@@ -15,26 +15,24 @@ export function QrCodeSection() {
       aria-labelledby='qr-code-heading'
     >
       <figure
+        aria-label='QR code'
         className={cn(
           'mb-4 bg-muted rounded-lg flex items-center justify-center'
         )}
       >
-        <QrCode
-          className={cn('h-12 w-12 text-muted-foreground')}
-          aria-hidden='true'
-        />
+        <QrCode className={cn('h-12 w-12')} aria-hidden='true' />
       </figure>
       <Text
         id='qr-code-heading'
         variant='caption'
-        className={cn('text-muted-foreground mb-2')}
+        className={cn('mb-2 text-semibold')}
       >
         {strings.cvSampleData.qrSection.scanText}
       </Text>
       <button
         type='button'
         className={cn(
-          'text-foreground text-sm hover:underline bg-transparent border-none cursor-pointer'
+          'text-foreground text-sm underline bg-transparent border-none cursor-pointer hover:text-primary'
         )}
         aria-label={`${strings.cvSampleData.qrSection.viewHistoryLink}`}
         onClick={() => router.push('/hiring-manager')}

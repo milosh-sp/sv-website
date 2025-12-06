@@ -13,13 +13,7 @@ export function Footer() {
           )}
         >
           {/* Copyright and links */}
-          <section
-            className={cn('text-center md:text-left')}
-            aria-labelledby='footer-legal-heading'
-          >
-            <h2 id='footer-legal-heading' className={cn('sr-only')}>
-              Legal Information
-            </h2>
+          <section className={cn('text-center md:text-left')}>
             <Text variant='caption' className={cn('text-slate-400 mb-4')}>
               {strings.branding.copyright}
             </Text>

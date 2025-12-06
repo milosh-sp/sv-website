@@ -55,7 +55,7 @@ export function CVHeader({
           />
         </div>
         <div className={textContainerClasses}>
-          <Heading level={4} size='md' className={nameClasses}>
+          <Heading level={isCompact ? 5 : 4} size='md' className={nameClasses}>
             {strings.cvSampleData.profile.name}
           </Heading>
           <Text className={titleClasses} role='doc-subtitle'>

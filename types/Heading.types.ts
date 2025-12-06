@@ -1,6 +1,6 @@
 import type { ComponentProps } from 'react'
 
-type HeadingLevel = 1 | 2 | 3 | 4
+type HeadingLevel = 1 | 2 | 3 | 4 | 5
 
 type HeadingVariant = 'display' | 'heading' | 'subheading'
 
@@ -17,7 +17,7 @@ type HeadingSize =
 
 interface HeadingProps extends ComponentProps<'h1'> {
   /**
-   * The heading level (1-4) which determines the semantic HTML element (h1-h4)
+   * The heading level (1-5) which determines the semantic HTML element (h1-h4)
    * @default 1
    */
   level?: HeadingLevel

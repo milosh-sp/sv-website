@@ -1647,7 +1647,9 @@ const personalitySection = {
     {
       title: `Personality tests`,
       icon: Brain,
-      description: `We use well-known frameworks like the 16-personality test (MBTI), along with other research-backed assessments that measure traits such as communication style, teamwork, leadership tendencies, adaptability, and decision-making patterns. These tests aren’t treated as rigid labels or stereotypes. Instead, they offer helpful context—insights into how a person naturally approaches challenges, collaborates with others, or stays motivated.`,
+      description: `We use well-known frameworks like the 16-personality test (MBTI), along with other research-backed assessments that measure traits such as communication style, 
+      teamwork, leadership tendencies, adaptability, and decision-making patterns. These tests aren’t treated as rigid labels or stereotypes. 
+      Instead, they offer helpful context—insights into how a person naturally approaches challenges, collaborates with others, or stays motivated.`,
     },
     {
       title: `Real project results`,
@@ -1666,7 +1668,7 @@ const personalitySection = {
       title: `For candidates`,
       icon: User,
       description: ` 
-      For candidates, it means being understood as a whole person, not just a list of skills.titl
+      For candidates, it means being understood as a whole person, not just a list of skills.
       Skill Verdict brings skills and personality together to help you hire people who are not only capable,
       but also genuinely aligned with your culture and the way your team works..`,
     },

@@ -38,9 +38,9 @@ export function CVPreviewBody({
         {/* Right Column - Supplementary Information */}
         <article className={cn('space-y-8')}>
           <ProjectsSection />
+          <PersonalitySection />
           <CertificationsSection />
           <LanguagesSection />
-          <PersonalitySection />
         </article>
       </section>
 

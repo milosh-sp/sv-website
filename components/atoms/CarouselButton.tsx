@@ -1,11 +1,4 @@
-import type { ComponentProps, ReactNode } from 'react'
-
-type CarouselButtonDirection = 'prev' | 'next'
-
-interface CarouselButtonProps extends ComponentProps<'button'> {
-  direction: CarouselButtonDirection
-  children: ReactNode
-}
+import type { CarouselButtonProps } from '@/types/CarouselButton.types'
 
 export function CarouselButton({
   direction,

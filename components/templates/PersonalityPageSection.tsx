@@ -1,9 +1,9 @@
 import { cn } from '@/lib/utils'
-import { HeaderAndDescription } from '../molecules/HeaderAndDescription'
-import { SectionWrapper } from './SectionWrapper'
+import { HeaderAndDescription } from '@/components/molecules/HeaderAndDescription'
+import { SectionWrapper } from '@/components/templates/SectionWrapper'
 import { strings } from '@/lib/strings'
-import { Carousel } from '../atoms/Carousel'
-import { BenefitCard } from '../organisms/BenefitCard'
+import { Carousel } from '@/components/organisms/Carousel'
+import { BenefitCard } from '@/components/organisms/BenefitCard'
 
 export function PersonalityPageSection() {
   return (
@@ -14,7 +14,8 @@ export function PersonalityPageSection() {
       />
       <div className='container-wide'>
         <Carousel
-          options={{ loop: true }}
+          // I don't know in what the duration is measured in, kilos? tons? miles?
+          options={{ loop: true, duration: 15 }}
           slides={strings.personalitySection.cardColumns.map((column) => ({
             id: column.title,
             element: (

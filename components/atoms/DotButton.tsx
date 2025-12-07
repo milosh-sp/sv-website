@@ -6,7 +6,7 @@ interface DotButtonProps extends ComponentProps<'button'> {
 
 export function DotButton({ children, ...restProps }: DotButtonProps) {
   return (
-    <button type='button' {...restProps}>
+    <button type='button' aria-label='Go to slide' {...restProps}>
       {children}
     </button>
   )

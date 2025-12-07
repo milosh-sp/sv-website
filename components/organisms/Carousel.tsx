@@ -1,24 +1,15 @@
 'use client'
 
 import useEmblaCarousel from 'embla-carousel-react'
-import type { ReactNode } from 'react'
 import { CarouselButton } from '@/components/atoms/CarouselButton'
 import { usePrevNextButtons } from '@/hooks/usePrevNextButtons'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { DotButton } from '@/components/atoms/DotButton'
 import { useDotButton } from '@/hooks/useDotButtons'
+import type { CarouselProps } from '@/types/Carousel.types'
 
-export function Carousel({
-  slides,
-  options,
-}: {
-  slides: {
-    id: string
-    element: ReactNode
-  }[]
-  options?: Parameters<typeof useEmblaCarousel>[0]
-}) {
+export function Carousel({ slides, options, ...props }: CarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel(options)
   const {
     prevBtnDisabled,
@@ -31,7 +22,7 @@ export function Carousel({
     useDotButton(emblaApi)
 
   return (
-    <section className='embla' ref={emblaRef}>
+    <section className='embla' ref={emblaRef} {...props}>
       <div className='embla__container'>
         {slides.map((slide) => (
           <div className='embla__slide' key={slide.id}>
@@ -68,12 +59,17 @@ export function Carousel({
         <div className='embla__dots'>
           {scrollSnaps.map((_, index) => {
             const dotId = `dot-${index}`
+            const isSelected = index === selectedIndex
+
             return (
               <DotButton
+                aria-label={`Go to slide ${index + 1}`}
+                aria-current={isSelected ? 'true' : 'false'}
+                aria-pressed={isSelected}
                 key={dotId}
                 onClick={() => onDotButtonClick(index)}
                 className={'embla__dot'.concat(
-                  index === selectedIndex ? ' embla__dot--selected' : ''
+                  isSelected ? ' embla__dot--selected' : ''
                 )}
               />
             )

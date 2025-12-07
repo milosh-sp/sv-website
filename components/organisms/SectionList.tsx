@@ -10,10 +10,11 @@ export function SectionList<T extends BaseSectionItem>({
   icon,
   items,
   itemRenderer,
+  gridLayout,
   ...props
 }: SectionListProps<T>) {
   // Memoize layout decision to prevent recalculation on every render
-  const useGridLayout = items.length >= 4
+  const useGridLayout = items.length >= 4 || gridLayout
 
   const sectionId = `section-${title.toLowerCase().replace(/\s+/g, '-')}`
 
@@ -38,7 +39,9 @@ export function SectionList<T extends BaseSectionItem>({
             >
               <div className={cn('flex-1 min-w-0')}>{itemRenderer(item)}</div>
               <div className={cn('relative flex items-center gap-1 shrink-0')}>
-                <VerificationBadge verified={item.verified ?? 'unverified'} />
+                {item.verified && (
+                  <VerificationBadge verified={item.verified} />
+                )}
                 {item.verifier && item.verified === 'verified' && (
                   <Tooltip verifier={item.verifier} />
                 )}

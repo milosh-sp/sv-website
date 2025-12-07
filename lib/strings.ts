@@ -835,6 +835,7 @@ const cvSampleData = {
     projects: `Projects`,
     certifications: `Certifications`,
     languages: `Languages`,
+    personality: `Personality: ISTP`,
   },
   skills: [
     { name: `Docker`, verified: `unverified` },
@@ -962,6 +963,20 @@ const cvSampleData = {
       level: `A2`,
       verified: `pending`,
       icon: Globe,
+    },
+  ],
+  personality: [
+    {
+      name: `Action oriented`,
+    },
+    {
+      name: `Self-starter`,
+    },
+    {
+      name: `Analytical`,
+    },
+    {
+      name: `Team player`,
     },
   ],
   qrSection: {
@@ -1362,15 +1377,15 @@ const waitlistForms = {
   pageHeaders: {
     candidate: {
       title: `Get Discovered — Unlock Opportunities!`,
-      description: `Answer few simple questions, and be the first to get exclusive early access to Skill Verdict`,
+      description: `Answer few simple questions, and be the first to get exclusive early access to Skill Verdict, and get special founder's perks`,
     },
     verifier: {
       title: `Become a Skill Verifier`,
-      description: `Answer few simple questions, and find out how you can earn money by verifying skills`,
+      description: `Answer few simple questions, unlock special founder's perks, and find out how you can earn money by verifying skills`,
     },
     'hiring-manager': {
       title: `Discover untapped potential and hire verified talent`,
-      description: `Gain access to a pool of verified talent and reduce your time-to-hire drastically`,
+      description: `Gain access to a pool of verified talent and reduce bad hires and your time-to-hire drastically`,
     },
   },
   // Success screen messages
@@ -1464,7 +1479,7 @@ const waitlistForms = {
   // Form labels and questions
   labels: {
     privacyConsent: `I agree to the Privacy Policy`,
-    newsletterOptIn: `Subscribe to our newsletter`,
+    newsletterOptIn: `Subscribe to our newsletter. We only send genuine updates and never spam.`,
     professionalStatus: `What is your current professional status?`,
     techCommunityMembership: `Are you already a part of an active tech communities?`,
     skillValidationConfidence: `How much do you agree with the following statement: "I would feel more confident in my job search if my skills were validated anonymously by senior engineers"`,
@@ -1638,14 +1653,14 @@ const confirmEmailScreen = {
 
 const personalitySection = {
   heading: `Personality Tests That Add Depth to Real-World Performance`,
-  description: `On Skill Verdict, you’re not just looking at resumes or polished profiles—you’re
+  description: `You’re not just looking at resumes or polished profiles you’re
    exploring a talent pool where every candidate has proven their abilities through real, 
   anonymous project work. This gives you a grounded, trustworthy starting point.
    But skills alone don’t tell the whole story. 
    That’s why Skill Verdict also includes personality tests to help you understand how someone works, not just what they can do.`,
   cardColumns: [
     {
-      title: `Personality tests`,
+      title: `Get an insight to who you are really hiring`,
       icon: Brain,
       description: `We use well-known frameworks like the 16-personality test (MBTI), along with other research-backed assessments that measure traits such as communication style, 
       teamwork, leadership tendencies, adaptability, and decision-making patterns. These tests aren’t treated as rigid labels or stereotypes. 
@@ -1659,18 +1674,20 @@ const personalitySection = {
       prefers structured tasks, leads with empathy, or brings a calm, analytical approach to problem-solving.`,
     },
     {
-      title: `For companies`,
+      title: `Helping you hire the right people`,
       icon: Building2,
-      description: `For companies, this means making hiring decisions with greater confidence—choosing people not 
-      just for their technical ability, but for the way they’ll fit into teams, communicate, grow, and contribute over time. `,
+      description: `For companies, this means making hiring decisions with greater confidence choosing people not 
+      just for their technical ability, but for the way they’ll fit into teams, communicate, grow, and contribute over time. 
+      You can hire an already pre-built team with the right personality and skills.`,
     },
     {
-      title: `For candidates`,
+      title: `Get the right person for your company culture`,
       icon: User,
       description: ` 
-      For candidates, it means being understood as a whole person, not just a list of skills.
       Skill Verdict brings skills and personality together to help you hire people who are not only capable,
-      but also genuinely aligned with your culture and the way your team works..`,
+      but also genuinely aligned with your culture and the way your team works.
+      For candidates, it means being understood as a person, not just as a list of skills.
+      `,
     },
   ],
 }

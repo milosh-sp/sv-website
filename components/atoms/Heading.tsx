@@ -46,7 +46,11 @@ export function Heading({
       computedSize as keyof (typeof VARIANT_STYLES)[typeof variant]
     ]
 
-  const baseStyles = cn('text-foreground', variantStyles, className)
+  const baseStyles = cn(
+    'font-[Inter] text-foreground',
+    variantStyles,
+    className
+  )
 
   return (
     <HeadingElement className={baseStyles} {...props}>

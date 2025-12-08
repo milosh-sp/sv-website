@@ -1,6 +1,6 @@
 import type React from 'react'
 import type { Metadata, Viewport } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter, Open_Sans } from 'next/font/google'
 
 import '../styles/globals.css'
 import '../styles/embla.css'
@@ -19,6 +19,13 @@ import Script from 'next/script'
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
+  display: 'swap', // Optimize font loading
+  fallback: ['system-ui', 'arial'], // Fallback fonts
+})
+
+const openSans = Open_Sans({
+  subsets: ['latin'],
+  variable: '--font-open-sans',
   display: 'swap', // Optimize font loading
   fallback: ['system-ui', 'arial'], // Fallback fonts
 })
@@ -46,7 +53,10 @@ export default function RootLayout({
   const serviceSchema = generateServiceSchema()
 
   return (
-    <html lang='en' className={`${inter.variable} antialiased`}>
+    <html
+      lang='en'
+      className={`${inter.variable} ${openSans.variable} antialiased`}
+    >
       <head>
         <Script
           strategy='beforeInteractive'

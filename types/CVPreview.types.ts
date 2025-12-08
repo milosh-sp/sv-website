@@ -43,6 +43,8 @@ interface LanguageItem extends BaseSectionItem {
   level: string
 }
 
+interface PersonalityItem extends BaseSectionItem {}
+
 interface CVSectionProps extends ComponentProps<'section'> {
   title: string
   icon: LucideIcon
@@ -66,6 +68,7 @@ export type {
   ProjectItem,
   CertificationItem,
   LanguageItem,
+  PersonalityItem,
   CVSectionProps,
   VerificationBadgeProps,
   TooltipProps,

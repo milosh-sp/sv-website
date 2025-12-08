@@ -9,6 +9,7 @@ import { ProjectsSection } from './ProjectSection'
 import { QrCodeSection } from './QrCodeSection'
 import { TechnicalSkillsSectionCv } from './TechnicalSkillsSectionCv'
 import type { HeadingLevel } from '@/types/Heading.types'
+import { PersonalitySection } from './PersonalititySection'
 
 export function CVPreviewBody({
   variant,
@@ -37,6 +38,7 @@ export function CVPreviewBody({
         {/* Right Column - Supplementary Information */}
         <article className={cn('space-y-8')}>
           <ProjectsSection />
+          <PersonalitySection />
           <CertificationsSection />
           <LanguagesSection />
         </article>

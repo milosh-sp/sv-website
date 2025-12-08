@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 
 import '../styles/globals.css'
+import '../styles/embla.css'
 
 import { Header } from '@/components/templates/Navigation'
 import { Footer } from '@/components/templates/Footer'

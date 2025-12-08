@@ -2,7 +2,7 @@
 
 import { HeaderAndDescription } from '@/components/molecules/HeaderAndDescription'
 import { SectionWrapper } from '@/components/templates/SectionWrapper'
-import { companyDiscovery, strings } from '@/lib/strings'
+import { strings } from '@/lib/strings'
 import type { SectionProps } from '@/types/Sections.types'
 import { Button } from '@/components/atoms/Button'
 import { useRouter } from 'next/navigation'
@@ -47,7 +47,7 @@ export function CompanyDiscoveryPageSection({ id }: SectionProps) {
               className={cn('h-10 w-10 text-white')}
             />
           }
-          benefits={companyDiscovery.benefits}
+          benefits={strings.companyDiscovery.benefits}
           colorScheme='companies'
         />
       </main>

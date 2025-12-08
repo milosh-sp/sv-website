@@ -16,6 +16,7 @@ type SectionListProps<T> = ComponentProps<'section'> & {
   icon: LucideIcon
   items: readonly T[]
   itemRenderer: (item: T) => React.ReactNode
+  gridLayout?: boolean
 }
 
 export type { SectionListProps, VerifiableItem, BaseItem }

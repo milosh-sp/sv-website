@@ -1,10 +1,16 @@
+:root {
+  --dot-size: 20px;
+}
+
 .embla {
   overflow: hidden;
   position: relative;
 }
+
 .embla__container {
   display: flex;
 }
+
 .embla__slide {
   flex: 0 0 100%;
   min-width: 0;
@@ -57,15 +63,15 @@
   border: 0;
   padding: 0;
   margin: 0;
-  width: 25px;
-  height: 25px;
+  width: var(--dot-size);
+  height: var(--dot-size);
   align-items: center;
   justify-content: center;
   border-radius: 50%;
 }
 .embla__dot:after {
-  width: 25px;
-  height: 25px;
+  width: var(--dot-size);
+  height: var(--dot-size);
   border-radius: 50%;
   display: flex;
   align-items: center;

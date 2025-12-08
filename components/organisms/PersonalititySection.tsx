@@ -9,7 +9,7 @@ export function PersonalitySection() {
   return (
     <SectionList
       gridLayout
-      className={cn('h-30 overflow-hidden md:overflow-visible md:h-auto')}
+      className={cn('h-29 overflow-hidden md:overflow-visible md:h-auto')}
       title={strings.cvSampleData.sections.personality}
       icon={UserSearch}
       items={strings.cvSampleData.personality}

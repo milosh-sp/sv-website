@@ -463,6 +463,14 @@ const faq = {
   // Verifiers FAQ
   verifiers: [
     {
+      question:
+        'How do you prevent a guru member verifying their own skills on their CV2.0?',
+      answer: `
+      We have a strict policy in place to prevent this. When a guru member applies to verify their own skills, 
+      the guru member won't be able to see themselves in the list of available verifiers and the Skill Verdict team will
+      investigate the case, if an attempt at cheating is made`,
+    },
+    {
       question: `How much can I earn as a guru member?`,
       answer: `Your earning power grows with your expertise. For every skill assessment you complete, you earn a share of the verification fee, higher complexity means higher rewards. Track your income and see exactly what you’ve earned in your dashboard. The more you help, the more you earn.`,
     },

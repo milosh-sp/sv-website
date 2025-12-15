@@ -1,29 +1,16 @@
-'use client'
-
-import { strings } from '@/lib/strings'
-import { Award, CircleStar } from 'lucide-react'
 import { Button } from '@/components/atoms/Button'
-import { useSearchParams } from 'next/navigation'
+import { strings } from '@/lib/strings'
 import { cn } from '@/lib/utils'
-import { Suspense, useEffect } from 'react'
+import { Award, CircleStar } from 'lucide-react'
 import Link from 'next/link'
 
-function HeroButtonsContent({
+export function HeroButtons({
   showCandidate = true,
   showVerifier = true,
 }: {
   showCandidate?: boolean
   showVerifier?: boolean
 }) {
-  const searchParams = useSearchParams()
-  const referralCode = searchParams.get('referralCode')
-
-  useEffect(() => {
-    if (referralCode) {
-      localStorage.setItem('referralCode', referralCode)
-    }
-  }, [referralCode])
-
   return (
     <article
       className={cn('flex flex-col sm:flex-row gap-4 mb-1 md:mb-12')}
@@ -61,33 +48,5 @@ function HeroButtonsContent({
         </Link>
       )}
     </article>
-  )
-}
-
-export function HeroButtons({
-  showCandidate = true,
-  showVerifier = true,
-}: {
-  showCandidate?: boolean
-  showVerifier?: boolean
-}) {
-  return (
-    <Suspense
-      fallback={
-        <article
-          className={cn('flex flex-col sm:flex-row gap-4 mb-1 md:mb-12')}
-          aria-label='Primary actions'
-        >
-          <div
-            className={cn('h-14 px-8 rounded-lg bg-muted/50 animate-pulse')}
-          />
-        </article>
-      }
-    >
-      <HeroButtonsContent
-        showCandidate={showCandidate}
-        showVerifier={showVerifier}
-      />
-    </Suspense>
   )
 }

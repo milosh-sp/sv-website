@@ -28,4 +28,6 @@ const senderGroups = {
   contactUsForm: 'bmX4lE',
 }
 
-export { COLOR_SCHEMES, senderGroups }
+const referralCodeKey = 'referralCode'
+
+export { COLOR_SCHEMES, senderGroups, referralCodeKey }

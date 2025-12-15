@@ -6,7 +6,9 @@ import { strings } from '@/lib/strings'
 import { Heading } from '@/components/atoms/Heading'
 import { Text } from '@/components/atoms/Text'
 
-export const metadata: Metadata = generateMetadata(pageSeoConfig.privacy)
+export const metadata: Metadata = generateMetadata(
+  pageSeoConfig['/privacy-policy']
+)
 
 export default function PrivacyPolicyPage() {
   return (

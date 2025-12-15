@@ -14,8 +14,6 @@ export function PersonalityPageSection() {
       />
       <div className='container-wide'>
         <Carousel
-          aria-roledescription='carousel'
-          aria-label='Personality CV'
           // I don't know in what the duration is measured in, kilos? tons? miles?
           options={{ loop: true, duration: 15 }}
           slides={strings.personalitySection.cardColumns.map((column) => ({

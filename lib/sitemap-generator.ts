@@ -92,6 +92,24 @@ function getPriority(route: string): number {
   return Math.max(0.5, DEFAULT_PRIORITY - depth * 0.1)
 }
 
+/**
+ * Check if a page has noIndex set to true in its metadata
+ * Returns true if the page should be excluded from sitemap
+ */
+function isPageNoIndex(route: string): boolean {
+  // Import pageSeoConfig dynamically to check noIndex status
+  const { pageSeoConfig } = require('./seo-config')
+
+  const pageConfig = pageSeoConfig?.[route]
+
+  if (!pageConfig) {
+    console.warn(`[Sitemap Generator] No SEO config found for route: ${route}`)
+    return false
+  }
+
+  return pageConfig?.noIndex === true
+}
+
 // ============================================================================
 // IMAGE DISCOVERY FUNCTION
 // ============================================================================
@@ -166,15 +184,21 @@ async function discoverPagesRecursive(
       } else if (entry.isFile() && entry.name === 'page.tsx') {
         // Found a page file
         const fileStats = await stat(fullPath)
+
         // Convert relative path to route (e.g., "candidate" -> "/candidate", "" -> "/")
         const route = basePath === '' ? '/' : `/${basePath}`
 
-        pages.push({
-          path: route,
-          lastModified: fileStats.mtime,
-          changeFrequency: DEFAULT_CHANGE_FREQUENCY,
-          priority: getPriority(route),
-        })
+        // Check if page has noIndex set to true
+        const shouldExclude = isPageNoIndex(route)
+
+        if (!shouldExclude) {
+          pages.push({
+            path: route,
+            lastModified: fileStats.mtime,
+            changeFrequency: DEFAULT_CHANGE_FREQUENCY,
+            priority: getPriority(route),
+          })
+        }
       }
     }
   } catch (error) {
@@ -217,8 +241,11 @@ export async function discoverPages(): Promise<PageEntry[]> {
 
     // Debug logging
     console.log(
-      '[Sitemap Generator] Discovered pages:',
+      '[Sitemap Generator] Discovered indexable pages:',
       sorted.map((p) => p.path)
+    )
+    console.log(
+      '\n Note: If page is not found in the list above, it has noIndex set to true in its metadata, or metadata is not defined. \n'
     )
     console.log(`[Sitemap Generator] Discovered ${images.length} images`)
 

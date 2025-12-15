@@ -399,7 +399,7 @@ const seoKeywords = {
 // ============================================================================
 
 const pageSeoConfig = {
-  home: {
+  '/': {
     keywords: seoKeywords.pages.home,
     canonical: siteConfig.url,
     ogImage: siteConfig.ogImage,
@@ -413,7 +413,7 @@ const pageSeoConfig = {
     },
   },
 
-  privacy: {
+  '/privacy-policy': {
     title: strings.legalPages.privacyPolicy.title,
     description: strings.legalPages.privacyPolicy.description,
     keywords: seoKeywords.pages.privacy,
@@ -421,7 +421,7 @@ const pageSeoConfig = {
     ogImage: siteConfig.ogImage,
   },
 
-  contact: {
+  '/contact': {
     title: strings.contactPage.title,
     description: strings.contactPage.description,
     keywords: seoKeywords.pages.contact,
@@ -429,7 +429,7 @@ const pageSeoConfig = {
     ogImage: siteConfig.ogImage,
   },
 
-  candidate: {
+  '/candidate': {
     title: strings.waitlistForms.pageHeaders.candidate.title,
     description: strings.waitlistForms.pageHeaders.candidate.description,
     keywords: seoKeywords.pages.candidate,
@@ -452,7 +452,7 @@ const pageSeoConfig = {
     },
   },
 
-  verifier: {
+  '/verifier': {
     title: strings.waitlistForms.pageHeaders.verifier.title,
     description: strings.waitlistForms.pageHeaders.verifier.description,
     keywords: seoKeywords.pages.verifier,
@@ -475,7 +475,7 @@ const pageSeoConfig = {
     },
   },
 
-  hiringManager: {
+  '/hiring-manager': {
     title: strings.waitlistForms.pageHeaders['hiring-manager'].title,
     description:
       strings.waitlistForms.pageHeaders['hiring-manager'].description,
@@ -497,6 +497,10 @@ const pageSeoConfig = {
         },
       ],
     },
+  },
+
+  '/confirm-email': {
+    noIndex: true,
   },
 }
 

@@ -1,5 +1,6 @@
 import { useForm } from '@/hooks/useForm'
 import { submitUnifiedForm } from '@/lib/api'
+import { referralCodeKey } from '@/lib/consts'
 import {
   validateEmail,
   validateGitHubGitlab,
@@ -26,7 +27,7 @@ export function useVerifierForm(config?: UseVerifierFormConfig) {
     ],
     validateForm: validateVerifierForm,
     onSubmit: async (formData, honeypotValue, formStartTime) => {
-      const referralCode = localStorage.getItem('referralCode') ?? ''
+      const referralCode = localStorage.getItem(referralCodeKey) ?? ''
 
       // Submit to unified Netlify function with verifier-specific fields
       return submitUnifiedForm({

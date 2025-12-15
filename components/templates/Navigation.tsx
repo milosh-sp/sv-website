@@ -11,6 +11,7 @@ import logo from '@/public/logo-sv.svg'
 import { cn } from '@/lib/utils'
 import { DecorativeText } from '../atoms/DecorativeText'
 import { useTracking } from '@/hooks/useTracking'
+import { ReferralStorage } from '../atoms/ReferralStorage'
 
 const SCROLL_MARGIN_TOP_DESKTOP = 96
 const SCROLL_MARGIN_TOP_MOBILE = 96
@@ -71,6 +72,7 @@ export function Header() {
         'border-b border-slate-200/50 z-50 shadow-sm'
       )}
     >
+      <ReferralStorage />
       <div
         className={cn('max-w-full mx-auto', 'px-6 sm:px-8 lg:px-12 xl:px-16')}
       >

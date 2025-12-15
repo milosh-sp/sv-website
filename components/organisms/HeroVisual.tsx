@@ -1,5 +1,3 @@
-'use client'
-
 import { CV2TeaserPreview } from '@/components/molecules/CV2TeaserPreview'
 import { Handshake } from 'lucide-react'
 import { cn } from '@/lib/utils'

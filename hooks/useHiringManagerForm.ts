@@ -1,5 +1,6 @@
 import { useForm } from '@/hooks/useForm'
 import { submitUnifiedForm } from '@/lib/api'
+import { referralCodeKey } from '@/lib/consts'
 import { validateEmail, validateUrl } from '@/lib/validation'
 import { validateHiringManagerForm } from '@/lib/waitlistFormValidators'
 import type { HiringManagerFormData } from '@/types/HiringManagerFormData.types'
@@ -21,7 +22,7 @@ export function useHiringManagerForm(config?: UseHiringManagerFormConfig) {
     ],
     validateForm: validateHiringManagerForm,
     onSubmit: async (formData, honeypotValue, formStartTime) => {
-      const referralCode = localStorage.getItem('referralCode') ?? ''
+      const referralCode = localStorage.getItem(referralCodeKey) ?? ''
 
       // Submit to unified Netlify function with hiring manager-specific fields
       return submitUnifiedForm({

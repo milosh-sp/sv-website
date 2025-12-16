@@ -535,7 +535,7 @@ const contactPage = {
   // Page header
   title: `Contact Us`,
   heading: `Get in Touch`,
-  description: `Have a question, feedback or want to learn more about Skill Verdict? 
+  description: `Have a question, hiring horror story or want to learn more about Skill Verdict? 
   We'd love to hear from you. Fill out the form below and we'll get back to you as soon as possible.`,
 
   // Form fields

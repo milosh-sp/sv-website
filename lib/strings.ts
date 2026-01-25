@@ -26,11 +26,13 @@ import {
   Clock,
   Database,
   DollarSign,
+  Facebook,
   FileText,
   FolderOpen,
   Globe,
   Home,
   IdCard,
+  Instagram,
   Mail,
   Medal,
   MessageCircle,
@@ -524,7 +526,20 @@ const footer = {
   contactUs: `Contact us`,
   email: `contact@skillverdict.com`,
   // Social media
-  social: {},
+  social: [
+    {
+      name: `Facebook`,
+      url: `https://www.facebook.com/skillverdict`,
+      label: `Follow us on Facebook`,
+      icon: Facebook,
+    },
+    {
+      name: `Instagram`,
+      url: `https://www.instagram.com/skill_verdict`,
+      label: `Follow us on Instagram`,
+      icon: Instagram,
+    },
+  ],
 } as const
 
 // ============================================================================

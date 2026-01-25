@@ -57,9 +57,33 @@ export function Footer() {
           </address>
         </div>
 
-        {/* LinkedIn prominent display */}
+        {/* Social media links */}
         <nav className={cn('mt-8 text-center')} aria-label='Social media links'>
-          <ul className={cn('list-none')}></ul>
+          <ul className={cn('flex justify-center gap-6 list-none')}>
+            {strings.footer.social.map((social) => {
+              const SocialIcon = social.icon
+              return (
+                <li key={social.name}>
+                  <a
+                    href={social.url}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    aria-label={social.label}
+                    className={cn(
+                      'inline-flex items-center justify-center',
+                      'w-10 h-10 rounded-full',
+                      'bg-slate-800 text-slate-400',
+                      'hover:bg-slate-700 hover:text-slate-300',
+                      'transition-colors duration-200',
+                      'focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 focus:ring-offset-slate-900'
+                    )}
+                  >
+                    <SocialIcon className={cn('w-5 h-5')} aria-hidden='true' />
+                  </a>
+                </li>
+              )
+            })}
+          </ul>
         </nav>
       </div>
     </footer>

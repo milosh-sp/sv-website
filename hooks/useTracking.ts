@@ -25,11 +25,15 @@ const optInOutTracking = (
  */
 export function useTracking() {
   useEffect(() => {
+    // Disable tracking in development mode
+    if (process.env.NODE_ENV === 'development') return
+
     if (typeof window === 'undefined') return
 
     if (!envs.MIXPANEL_TOKEN) {
       throw new TypeError('Mixpanel token is missing! Check your .env file.')
     }
+
     mixpanel.init(envs.MIXPANEL_TOKEN, {
       opt_out_tracking_by_default: true,
       record_sessions_percent: 50,

@@ -529,13 +529,13 @@ const footer = {
   social: [
     {
       name: `Facebook`,
-      url: `https://www.facebook.com/skillverdict`,
+      url: `https://facebook.com/skillverdict`,
       label: `Follow us on Facebook`,
       icon: Facebook,
     },
     {
       name: `Instagram`,
-      url: `https://www.instagram.com/skill_verdict`,
+      url: `https://instagram.com/skill_verdict`,
       label: `Follow us on Instagram`,
       icon: Instagram,
     },

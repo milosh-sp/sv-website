@@ -1716,6 +1716,108 @@ const personalitySection = {
 }
 
 // ============================================================================
+// PROBLEM SECTION
+// ============================================================================
+
+const problem = {
+  heading: `The Problem we solve`,
+  headingHighlight: `Hiring is based on claims. Not proof.`,
+  description: `Right now, the tech hiring process runs on trust. You say you know React. You say you worked with AWS. You say you're senior. And companies are expected to believe it.`,
+  s1: {
+    title: `It's all based on trust`,
+    description: `The tech hiring process runs on trust, not evidence.`,
+    points: [
+      { id: 's1-point-1', text: `You say you know React` },
+      { id: 's1-point-2', text: `You say you worked with AWS` },
+      { id: 's1-point-3', text: `You say you're senior` },
+    ],
+  },
+  s2: {
+    title: `So they rely on`,
+    description: `Companies rely on unverifiable signals to assess candidates.`,
+    points: [
+      { id: 's2-point-1', text: `CVs filled with keywords` },
+      { id: 's2-point-2', text: `Job titles that don't reflect real ability` },
+      {
+        id: 's2-point-3',
+        text: `LinkedIn profiles and GitHub links that are hard to evaluate`,
+      },
+      {
+        id: 's2-point-4',
+        text: `Interviews that test talking skills more than building skills`,
+      },
+    ],
+  },
+  problem1: {
+    title: `Problem #1 — Skilled developers get ignored`,
+    description: `Developers who are actually good at what they do often`,
+    reasons: [
+      {
+        id: 'problem1-reason-1',
+        text: `Don't know how to write impressive resumes`,
+      },
+      {
+        id: 'problem1-reason-2',
+        text: `Don't have big company names on their CV`,
+      },
+      {
+        id: 'problem1-reason-3',
+        text: `Struggle to "sell themselves" in interviews`,
+      },
+      {
+        id: 'problem1-reason-4',
+        text: `Get filtered out by keyword scanners before a human ever sees them`,
+      },
+      {
+        id: 'problem1-reason-5',
+        text: `Have trouble showing confidence during interviews`,
+      },
+    ],
+  },
+  problem2: {
+    title: `Problem #2 — Companies can't trust what they see`,
+    description: `Recruiters and hiring managers face hundreds of applications and still ask`,
+    quote: `But can this person actually do the work?`,
+    reasons: [
+      { id: 'problem2-reason-1', text: `A CV is a description, not evidence` },
+      { id: 'problem2-reason-2', text: `A portfolio is not standardized` },
+      { id: 'problem2-reason-3', text: `Interviews are short and subjective` },
+      {
+        id: 'problem2-reason-4',
+        text: `There is no reliable way to verify skills before hiring`,
+      },
+      {
+        id: 'problem2-reason-5',
+        text: `Don't know if the candidate will fit in the company's culture`,
+      },
+    ],
+  },
+  result: {
+    title: `The Result`,
+    description: `The hiring process rewards`,
+    rewards: {
+      title: `People who are good at presenting themselves`,
+      items: [
+        { id: 'result-reward-1', text: `Master the art of the interview` },
+        { id: 'result-reward-2', text: `Know how to sell themselves` },
+        { id: 'result-reward-3', text: `Have impressive resumes` },
+      ],
+    },
+    shouldReward: {
+      title: `Instead of`,
+      items: [
+        {
+          id: 'result-should-1',
+          text: `People who are good at building software`,
+        },
+        { id: 'result-should-2', text: `Those who can actually do the work` },
+        { id: 'result-should-3', text: `Real technical ability` },
+      ],
+    },
+  },
+}
+
+// ============================================================================
 // EXPORT ALL STRINGS AS CONSTANTS
 // ============================================================================
 
@@ -1741,4 +1843,5 @@ export const strings = {
   waitlistForms,
   confirmEmailScreen,
   personalitySection,
+  problem,
 }

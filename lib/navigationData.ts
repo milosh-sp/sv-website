@@ -6,6 +6,7 @@ import { FaqPageSection } from '@/components/templates/FaqPageSection'
 import { HeroPageSection } from '@/components/templates/HeroPageSection'
 import { ProcessPageSection } from '@/components/templates/ProcessPageSection'
 import { PersonalityPageSection } from '@/components/templates/PersonalityPageSection'
+import { ProblemSection } from '@/components/templates/ProblemSection'
 
 /**
  * Navigation data for the application,
@@ -17,6 +18,12 @@ export const navigationData = [
     label: strings.navigation.menu.home,
     href: '/#home',
     Component: HeroPageSection,
+  },
+  {
+    id: 'problem',
+    label: `The Problem`,
+    href: '/#problem',
+    Component: ProblemSection,
   },
   {
     id: 'benefits',

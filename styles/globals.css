@@ -241,7 +241,6 @@ html {
 
 .card-interactive:hover {
   @apply shadow-lg;
-  transform: translateY(-2px);
 }
 
 .btn-primary {

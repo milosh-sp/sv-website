@@ -24,6 +24,7 @@ export function ContactConsentSection({
   onCompanyUrlChange,
   onNewsletterOptInChange,
   className,
+  namePlaceholder,
   ...props
 }: ContactConsentSectionProps) {
   const newsletterOptInBool =
@@ -47,7 +48,9 @@ export function ContactConsentSection({
         <FormField
           id='name'
           type='text'
-          placeholder={strings.waitlistForms.fields.name.placeholder}
+          placeholder={
+            namePlaceholder ?? strings.waitlistForms.fields.name.placeholder
+          }
           value={name}
           onChange={(e) => onNameChange?.(e.target.value)}
           error={errors.name}

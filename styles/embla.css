@@ -1,5 +1,5 @@
 :root {
-  --dot-size: 20px;
+  --dot-size: 15px;
 }
 
 .embla {
@@ -9,10 +9,11 @@
 
 .embla__container {
   display: flex;
+  gap: 15px;
 }
 
 .embla__slide {
-  flex: 0 0 100%;
+  flex: 0 0 calc(100% - 5px);
   min-width: 0;
   display: flex;
   justify-content: center;

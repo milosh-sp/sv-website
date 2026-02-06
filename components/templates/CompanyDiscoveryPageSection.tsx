@@ -49,6 +49,7 @@ export function CompanyDiscoveryPageSection({ id }: SectionProps) {
           }
           benefits={strings.companyDiscovery.benefits}
           colorScheme='companies'
+          className={cn('w-full')}
         />
       </main>
     </SectionWrapper>

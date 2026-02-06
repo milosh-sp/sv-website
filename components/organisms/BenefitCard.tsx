@@ -7,20 +7,36 @@ import { Text } from '@/components/atoms/Text'
 /**
  * Semantic benefit card component
  * Uses article element for self-contained content with header and description
+ *
+ * Note: To override background color, use the className prop.
+ * The component applies base styles separately to allow proper override.
  */
 export function BenefitCard({
   benefit,
   colorScheme = 'blue',
   className,
+  children,
+  disableInteractive,
   ...props
 }: BenefitCardProps) {
-  const BenefitIcon = benefit.icon
+  const BenefitIcon = benefit?.icon
   const colors = COLOR_SCHEMES[colorScheme]
 
   return (
     <article
       className={cn(
-        'card-interactive p-8 text-left group cursor-pointer h-full',
+        // Base structural styles
+        'p-8 text-left group h-full',
+        // Interactive styles - split to allow background override
+        !disableInteractive && [
+          'border border-border rounded-lg shadow-md',
+          'cursor-pointer transition-all duration-200 ease-in-out',
+          'hover:shadow-lg',
+          // Default background - can be overridden by className
+          'bg-card',
+        ],
+        disableInteractive && 'cursor-default',
+        // User className comes last for proper override
         className
       )}
       aria-labelledby={`benefit-${benefit.title.toLowerCase().replace(/\s+/g, '-')}`}
@@ -28,7 +44,9 @@ export function BenefitCard({
     >
       <div
         className={cn(
-          'w-14 h-14 bg-linear-to-br rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-200',
+          `w-14 h-14 bg-linear-to-br rounded-xl flex items-center justify-center
+           mb-6 transition-transform duration-200'
+          `,
           colors.iconBg
         )}
         role='img'
@@ -51,6 +69,7 @@ export function BenefitCard({
         </Heading>
       </header>
       <Text variant='muted'>{benefit.description}</Text>
+      {children && <div className='mt-3'>{children}</div>}
     </article>
   )
 }

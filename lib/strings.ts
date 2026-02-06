@@ -158,9 +158,9 @@ export const hero = {
 // ============================================================================
 const benefits = {
   // Section header
-  heading: `Peer-Powered Skill Verification, Inspired by Community Notes`,
-  headingHighlight: `Skill`,
-  description: `Inspired by models like Twitter’s 
+  heading: `Peer-Powered Skill Verification,`,
+  headingHighlight: `Inspired by X Community Notes`,
+  description: `Inspired by models like X (Twitter’s) 
               Community Notes, Skill Verdict brings transparent,
                community-driven verification to your skills—enabling 
                trust and bias-free recognition for every member.`,
@@ -858,7 +858,7 @@ const cvSampleData = {
     projects: `Projects`,
     certifications: `Certifications`,
     languages: `Languages`,
-    personality: `Personality: ISTP`,
+    personality: `Personality:`,
   },
   skills: [
     { name: `Docker`, verified: `unverified` },
@@ -1438,6 +1438,7 @@ const waitlistForms = {
     name: {
       label: `Name`,
       placeholder: `How should we call you? (optional)`,
+      companyPlaceholder: `Company name (optional)`,
       ariaLabel: `Name field`,
     },
     email: {
@@ -1716,6 +1717,88 @@ const personalitySection = {
 }
 
 // ============================================================================
+// PROBLEM SECTION
+// ============================================================================
+
+const problem = {
+  heading: `The Problem we solve`,
+  headingHighlight: `Hiring is based on claims. Not proof.`,
+  description: ``,
+  s1: {
+    title: `The tech hiring process runs on claims, not evidence.`,
+    description: ``,
+    points: [
+      { id: 's1-point-1', text: `You claim to know React` },
+      { id: 's1-point-2', text: `You claim to have worked with AWS` },
+      { id: 's1-point-3', text: `You claim you're senior` },
+    ],
+  },
+  s2: {
+    title: `Companies rely on unverifiable signals to assess candidates.`,
+    description: ``,
+    points: [
+      { id: 's2-point-1', text: `CVs filled with keywords` },
+      { id: 's2-point-2', text: `Job titles that don't reflect real ability` },
+      {
+        id: 's2-point-3',
+        text: `LinkedIn profiles and GitHub links that are hard to evaluate`,
+      },
+      {
+        id: 's2-point-4',
+        text: `Interviews that test talking skills more than building skills`,
+      },
+    ],
+  },
+  conclusion: `This creates two big problems:`,
+  problem1: {
+    title: `Problem #1 — Skilled developers get ignored`,
+    description: `Developers who are actually good at what they do often`,
+    reasons: [
+      {
+        id: 'problem1-reason-1',
+        text: `Don't know how to write impressive resumes`,
+      },
+      {
+        id: 'problem1-reason-2',
+        text: `Don't have big company names on their CV`,
+      },
+      {
+        id: 'problem1-reason-3',
+        text: `Struggle to "sell themselves" in interviews`,
+      },
+      {
+        id: 'problem1-reason-4',
+        text: `Get filtered out by keyword scanners before a human ever sees them`,
+      },
+      {
+        id: 'problem1-reason-5',
+        text: `Have trouble showing confidence during interviews`,
+      },
+    ],
+    conclusion: `Their real ability never gets a chance to be seen...`,
+  },
+  problem2: {
+    title: `Problem #2 — Companies can't trust what they see`,
+    description: `Recruiters and hiring managers face hundreds of applications and still ask`,
+    quote: `But can this person actually do the work?`,
+    reasons: [
+      { id: 'problem2-reason-1', text: `A CV is a description, not evidence` },
+      { id: 'problem2-reason-2', text: `A portfolio is not standardized` },
+      { id: 'problem2-reason-3', text: `Interviews are short and subjective` },
+      {
+        id: 'problem2-reason-4',
+        text: `There is no reliable way to verify skills before hiring`,
+      },
+      {
+        id: 'problem2-reason-5',
+        text: `Don't know if the candidate will fit in the company's culture`,
+      },
+    ],
+    conclusion: `So companies waste time, money, and hires on guesswork.`,
+  },
+}
+
+// ============================================================================
 // EXPORT ALL STRINGS AS CONSTANTS
 // ============================================================================
 
@@ -1741,4 +1824,5 @@ export const strings = {
   waitlistForms,
   confirmEmailScreen,
   personalitySection,
+  problem,
 }

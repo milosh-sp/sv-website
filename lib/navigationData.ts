@@ -1,11 +1,11 @@
 import { strings } from '@/lib/strings'
-import { BenefitsPageSection } from '@/components/templates/BenefitsPageSection'
 import { CompanyDiscoveryPageSection } from '@/components/templates/CompanyDiscoveryPageSection'
 import { CvPreviewPageSection } from '@/components/templates/CvPreviewPageSection'
 import { FaqPageSection } from '@/components/templates/FaqPageSection'
 import { HeroPageSection } from '@/components/templates/HeroPageSection'
 import { ProcessPageSection } from '@/components/templates/ProcessPageSection'
 import { PersonalityPageSection } from '@/components/templates/PersonalityPageSection'
+import { ProblemPageSection } from '@/components/templates/ProblemPageSection'
 
 /**
  * Navigation data for the application,
@@ -19,10 +19,10 @@ export const navigationData = [
     Component: HeroPageSection,
   },
   {
-    id: 'benefits',
-    label: strings.navigation.menu.benefits,
-    href: '/#benefits',
-    Component: BenefitsPageSection,
+    id: 'problem',
+    label: `The Problem`,
+    href: '/#problem',
+    Component: ProblemPageSection,
   },
   {
     id: 'personality-cv',

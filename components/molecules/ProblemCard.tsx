@@ -61,7 +61,12 @@ export function ProblemCard({
             size={iconSize}
             colorScheme={colorScheme}
           />
-          <Heading level={3} variant='heading' size='md' className='font-semibold'>
+          <Heading
+            level={3}
+            variant='heading'
+            size='md'
+            className='font-semibold'
+          >
             {title}
           </Heading>
         </div>
@@ -103,4 +108,3 @@ export function ProblemCard({
     </article>
   )
 }
-

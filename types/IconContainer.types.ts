@@ -9,4 +9,3 @@ interface IconContainerProps extends ComponentProps<'div'> {
 }
 
 export type { IconContainerProps }
-

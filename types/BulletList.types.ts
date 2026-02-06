@@ -13,4 +13,3 @@ interface BulletListProps extends ComponentProps<'ul'> {
 }
 
 export type { BulletListItem, BulletListProps }
-

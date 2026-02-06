@@ -44,11 +44,10 @@ export function BulletList({
           key={item.id}
           className='flex items-start gap-2 text-muted-foreground'
         >
-          <span className={cn('mt-1.5', bulletColorClass)}>•</span>
+          <span className={cn('mt-0.5 leading-none', bulletColorClass)}>•</span>
           <span>{item.text}</span>
         </li>
       ))}
     </ul>
   )
 }
-

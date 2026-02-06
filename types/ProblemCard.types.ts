@@ -13,4 +13,3 @@ interface ProblemCardProps extends ComponentProps<'article'> {
 }
 
 export type { ProblemCardProps }
-

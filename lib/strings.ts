@@ -158,9 +158,9 @@ export const hero = {
 // ============================================================================
 const benefits = {
   // Section header
-  heading: `Peer-Powered Skill Verification, Inspired by Community Notes`,
-  headingHighlight: `Skill`,
-  description: `Inspired by models like Twitter’s 
+  heading: `Peer-Powered Skill Verification,`,
+  headingHighlight: `Inspired by X Community Notes`,
+  description: `Inspired by models like X (Twitter’s) 
               Community Notes, Skill Verdict brings transparent,
                community-driven verification to your skills—enabling 
                trust and bias-free recognition for every member.`,
@@ -1794,26 +1794,26 @@ const problem = {
   },
   result: {
     title: `The Result`,
-    description: `The hiring process rewards`,
+    description: `The hiring process rewards:`,
     rewards: {
-      title: `People who are good at presenting themselves`,
+      title: `We get:`,
       items: [
-        { id: 'result-reward-1', text: `Master the art of the interview` },
-        { id: 'result-reward-2', text: `Know how to sell themselves` },
-        { id: 'result-reward-3', text: `Have impressive resumes` },
+        {
+          id: 'result-reward-1',
+          text: `People who are good at presenting themselves`,
+        },
       ],
     },
     shouldReward: {
-      title: `Instead of`,
+      title: `Instead of:`,
       items: [
         {
           id: 'result-should-1',
           text: `People who are good at building software`,
         },
-        { id: 'result-should-2', text: `Those who can actually do the work` },
-        { id: 'result-should-3', text: `Real technical ability` },
       ],
     },
+    conclusion: `And both sides lose because of it.`,
   },
 }
 

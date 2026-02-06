@@ -1,5 +1,4 @@
 import { strings } from '@/lib/strings'
-import { BenefitsPageSection } from '@/components/templates/BenefitsPageSection'
 import { CompanyDiscoveryPageSection } from '@/components/templates/CompanyDiscoveryPageSection'
 import { CvPreviewPageSection } from '@/components/templates/CvPreviewPageSection'
 import { FaqPageSection } from '@/components/templates/FaqPageSection'

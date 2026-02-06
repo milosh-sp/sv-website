@@ -1,5 +1,3 @@
-'use client'
-
 import { strings } from '@/lib/strings'
 import { Heading } from '@/components/atoms/Heading'
 import { Text } from '@/components/atoms/Text'

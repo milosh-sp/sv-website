@@ -1,5 +1,3 @@
-'use client'
-
 import { cn } from '@/lib/utils'
 import type { StepsGridProps } from '@/types/Steps.types'
 import { Heading } from '@/components/atoms/Heading'

@@ -31,7 +31,7 @@ export function BenefitCard({
         !disableInteractive && [
           'border border-border rounded-lg shadow-md',
           'cursor-pointer transition-all duration-200 ease-in-out',
-          'hover:shadow-lg hover:-translate-y-0.5',
+          'hover:shadow-lg',
           // Default background - can be overridden by className
           'bg-card',
         ],
@@ -45,7 +45,7 @@ export function BenefitCard({
       <div
         className={cn(
           `w-14 h-14 bg-linear-to-br rounded-xl flex items-center justify-center
-           mb-6 group-hover:scale-110 transition-transform duration-200'
+           mb-6 transition-transform duration-200'
           `,
           colors.iconBg
         )}

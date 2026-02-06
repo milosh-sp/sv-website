@@ -75,6 +75,7 @@ export function HiringManagerWaitlistForm() {
           onCompanyUrlChange={(value) =>
             form.handleFieldChange('companyUrl', value)
           }
+          namePlaceholder={strings.waitlistForms.fields.name.companyPlaceholder}
         />
       )
     },

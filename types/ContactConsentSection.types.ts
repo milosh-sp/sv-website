@@ -17,6 +17,7 @@ interface ContactConsentSectionProps
   onGitHubGitlabUrlChange?: (value: string) => void
   onCompanyUrlChange?: (value: string) => void
   onNewsletterOptInChange: (checked: boolean) => void
+  namePlaceholder?: string
 }
 
 export type { ContactConsentSectionProps }

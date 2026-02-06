@@ -26,12 +26,6 @@ export const navigationData = [
     Component: ProblemPageSection,
   },
   {
-    id: 'benefits',
-    label: strings.navigation.menu.benefits,
-    href: '/#benefits',
-    Component: BenefitsPageSection,
-  },
-  {
     id: 'personality-cv',
     label: `Personality`,
     href: '/#personality-cv',

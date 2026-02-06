@@ -858,7 +858,7 @@ const cvSampleData = {
     projects: `Projects`,
     certifications: `Certifications`,
     languages: `Languages`,
-    personality: `Personality: ISTP`,
+    personality: `Personality:`,
   },
   skills: [
     { name: `Docker`, verified: `unverified` },
@@ -1438,6 +1438,7 @@ const waitlistForms = {
     name: {
       label: `Name`,
       placeholder: `How should we call you? (optional)`,
+      companyPlaceholder: `Company name (optional)`,
       ariaLabel: `Name field`,
     },
     email: {
@@ -1722,19 +1723,19 @@ const personalitySection = {
 const problem = {
   heading: `The Problem we solve`,
   headingHighlight: `Hiring is based on claims. Not proof.`,
-  description: `Right now, the tech hiring process runs on trust. You say you know React. You say you worked with AWS. You say you're senior. And companies are expected to believe it.`,
+  description: ``,
   s1: {
-    title: `It's all based on trust`,
-    description: `The tech hiring process runs on trust, not evidence.`,
+    title: `The tech hiring process runs on claims, not evidence.`,
+    description: ``,
     points: [
-      { id: 's1-point-1', text: `You say you know React` },
-      { id: 's1-point-2', text: `You say you worked with AWS` },
-      { id: 's1-point-3', text: `You say you're senior` },
+      { id: 's1-point-1', text: `You claim to know React` },
+      { id: 's1-point-2', text: `You claim to have worked with AWS` },
+      { id: 's1-point-3', text: `You claim you're senior` },
     ],
   },
   s2: {
-    title: `So they rely on`,
-    description: `Companies rely on unverifiable signals to assess candidates.`,
+    title: `Companies rely on unverifiable signals to assess candidates.`,
+    description: ``,
     points: [
       { id: 's2-point-1', text: `CVs filled with keywords` },
       { id: 's2-point-2', text: `Job titles that don't reflect real ability` },
@@ -1748,6 +1749,7 @@ const problem = {
       },
     ],
   },
+  conclusion: `This creates two big problems:`,
   problem1: {
     title: `Problem #1 — Skilled developers get ignored`,
     description: `Developers who are actually good at what they do often`,
@@ -1773,6 +1775,7 @@ const problem = {
         text: `Have trouble showing confidence during interviews`,
       },
     ],
+    conclusion: `Their real ability never gets a chance to be seen...`,
   },
   problem2: {
     title: `Problem #2 — Companies can't trust what they see`,
@@ -1791,29 +1794,7 @@ const problem = {
         text: `Don't know if the candidate will fit in the company's culture`,
       },
     ],
-  },
-  result: {
-    title: `The Result`,
-    description: `The hiring process rewards:`,
-    rewards: {
-      title: `We get:`,
-      items: [
-        {
-          id: 'result-reward-1',
-          text: `People who are good at presenting themselves`,
-        },
-      ],
-    },
-    shouldReward: {
-      title: `Instead of:`,
-      items: [
-        {
-          id: 'result-should-1',
-          text: `People who are good at building software`,
-        },
-      ],
-    },
-    conclusion: `And both sides lose because of it.`,
+    conclusion: `So companies waste time, money, and hires on guesswork.`,
   },
 }
 

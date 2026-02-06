@@ -27,10 +27,11 @@ export function ProblemPageSection({ id }: SectionProps) {
             headingHighlight={strings.problem.headingHighlight}
             description={strings.problem.description}
             highlightClassName='from-warning to-destructive/60'
+            className={cn('mb-0')}
           />
 
           {/* Problem Content */}
-          <div className='grid gap-12 lg:grid-cols-2 animate-fade-in-up'>
+          <div className='grid lg:grid-cols-2 animate-fade-in-up'>
             {/* S1: Trust-based hiring */}
             <BenefitCard
               benefit={{

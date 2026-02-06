@@ -1,6 +1,9 @@
+'use client'
+
 import { cn } from '@/lib/utils'
 import type { BenefitGridProps } from '@/types/GridCards.types'
 import { BenefitCard } from '@/components/organisms/BenefitCard'
+import { Carousel } from '@/components/organisms/Carousel'
 
 export function BenefitGrid({
   benefits,
@@ -16,22 +19,51 @@ export function BenefitGrid({
     4: 'md:grid-cols-4',
   } as const
 
+  const carouselSlides = benefits.map((benefit) => ({
+    id: benefit.title.toLowerCase().replace(/\s+/g, '-'),
+    element: (
+      <BenefitCard
+        benefit={benefit}
+        colorScheme={colorScheme}
+        className={cn('w-full')}
+      />
+    ),
+  }))
+
   return (
-    <ul
-      className={cn('grid gap-8 list-none', gridCols[columns], className)}
-      aria-label='Benefits list'
-      {...props}
-    >
-      {benefits.map((benefit, index) => (
-        <li key={`benefit-${benefit.title.toLowerCase().replace(/\s+/g, '-')}`}>
-          <BenefitCard
-            benefit={benefit}
-            colorScheme={colorScheme}
-            aria-posinset={index + 1}
-            aria-setsize={benefits.length}
-          />
-        </li>
-      ))}
-    </ul>
+    <>
+      {/* Mobile: Carousel */}
+      <div className={cn('md:hidden', className)}>
+        <Carousel
+          options={{ loop: true, duration: 15 }}
+          slides={carouselSlides}
+          aria-label='Benefits carousel'
+        />
+      </div>
+
+      {/* Desktop: Grid */}
+      <ul
+        className={cn(
+          'hidden md:grid gap-8 list-none',
+          gridCols[columns],
+          className
+        )}
+        aria-label='Benefits list'
+        {...props}
+      >
+        {benefits.map((benefit, index) => (
+          <li
+            key={`benefit-${benefit.title.toLowerCase().replace(/\s+/g, '-')}`}
+          >
+            <BenefitCard
+              benefit={benefit}
+              colorScheme={colorScheme}
+              aria-posinset={index + 1}
+              aria-setsize={benefits.length}
+            />
+          </li>
+        ))}
+      </ul>
+    </>
   )
 }

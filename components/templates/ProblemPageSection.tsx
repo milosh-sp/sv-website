@@ -8,7 +8,7 @@ import { HeaderAndDescription } from '../molecules/HeaderAndDescription'
 import { BlockQuote } from '../atoms/BlockQuote'
 import { BenefitCard } from '../organisms/BenefitCard'
 
-export function ProblemSection({ id }: SectionProps) {
+export function ProblemPageSection({ id }: SectionProps) {
   return (
     <SectionWrapper
       id={id}

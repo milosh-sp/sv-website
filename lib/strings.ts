@@ -858,7 +858,7 @@ const cvSampleData = {
     projects: `Projects`,
     certifications: `Certifications`,
     languages: `Languages`,
-    personality: `Personality:`,
+    personality: `Personality`,
   },
   skills: [
     { name: `Docker`, verified: `unverified` },

@@ -13,6 +13,30 @@ export interface PageEntry {
   changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency']
   priority: number
   images?: string[]
+  videos?: Array<{
+    title: string
+    thumbnail_loc: string
+    description: string
+    content_loc: string
+    player_loc?: string
+    duration?: number
+    publication_date?: string
+    family_friendly?: 'yes' | 'no'
+    restriction?: {
+      relationship: 'allow' | 'deny'
+      content: string
+    }
+    platform?: {
+      relationship: 'allow' | 'deny'
+      content: string
+    }
+    requires_subscription?: 'yes' | 'no'
+    uploader?: {
+      info?: string
+      content: string
+    }
+    live?: 'yes' | 'no'
+  }>
 }
 
 // ============================================================================
@@ -210,6 +234,7 @@ async function discoverPagesRecursive(
 
 /**
  * Main function to discover all pages and images, returning sorted sitemap entries
+ * Note: Videos are hosted on Mux and should be added manually to specific pages if needed
  */
 export async function discoverPages(): Promise<PageEntry[]> {
   const appDir = join(process.cwd(), 'app')
@@ -222,18 +247,19 @@ export async function discoverPages(): Promise<PageEntry[]> {
     ])
 
     // Add images to the home page entry (or distribute as needed)
-    const pagesWithImages = pages.map((page) => {
+    const pagesWithMedia = pages.map((page) => {
       if (page.path === '/' && images.length > 0) {
         return {
           ...page,
           images,
         }
       }
+
       return page
     })
 
     // Sort pages: home first, then by path
-    const sorted = pagesWithImages.sort((a, b) => {
+    const sorted = pagesWithMedia.sort((a, b) => {
       if (a.path === '/') return -1
       if (b.path === '/') return 1
       return a.path.localeCompare(b.path)

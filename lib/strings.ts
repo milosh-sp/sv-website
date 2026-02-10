@@ -1799,7 +1799,7 @@ const problem = {
 }
 
 const explainerVideo = {
-  heading: `Learn more about the broken tech hiring processes and how`,
+  heading: `Broken hiring process and Skill Verdict's solution`,
   headingHighlight: `Skill Verdict solves this major problem`,
 } as const
 

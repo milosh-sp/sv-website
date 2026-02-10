@@ -9,7 +9,7 @@ export function ExplainerVideoSection({ id }: SectionProps) {
   return (
     <SectionWrapper
       id={id}
-      className='py-20 bg-white'
+      className='py-20'
       aria-labelledby='explainer-video-heading'
     >
       <div className='container-wide'>
@@ -18,14 +18,14 @@ export function ExplainerVideoSection({ id }: SectionProps) {
           headingHighlight={headingHighlight}
         />
         <iframe
-          default-hidden-captions
           title='Skill Verdict explainer'
-          src='https://player.mux.com/6jVXgZ1hI7zHZ00Xw1qj6028F2OdaXqp4CVTeUevF8mEs?metadata-video-title=Skill+Verdict+explainer&video-title=Skill+Verdict+explainer'
+          src={`https://player.mux.com/6jVXgZ1hI7zHZ00Xw1qj6028F2OdaXqp4CVTeUevF8mEs?metadata-video-title=Skill+Verdict+explainer&video-title=Skill+Verdict+explainer&default-hidden-captions=true&thumbnail-time=38&accent-color=%235a8ab5`}
           style={{
             width: '100%',
             border: 'none',
             aspectRatio: '161/90',
             borderRadius: '1rem',
+            outline: 'none',
           }}
           allow='accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;'
           allowFullScreen

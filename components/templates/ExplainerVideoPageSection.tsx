@@ -4,7 +4,7 @@ import { strings } from '@/lib/strings'
 import { HeaderAndDescription } from '../molecules/HeaderAndDescription'
 import { HeroButtons } from '../molecules/HeroButtons'
 import { VideoPlayer } from '../atoms/VideoPlayer'
-import videoSrc from '@/videos/explainer-skill-verdict.mp4'
+import { cn } from '@/lib/utils'
 
 export function ExplainerVideoPageSection({
   id,
@@ -25,16 +25,20 @@ export function ExplainerVideoPageSection({
         />
 
         <div
-          style={{
-            borderRadius: '10px',
-            overflow: 'hidden',
-            width: '100%',
-          }}
+          className={cn(
+            'rounded-xl overflow-hidden w-full border-radius-[10px]'
+          )}
         >
           <VideoPlayer
-            poster={videoSrc.poster}
-            blurDataURL={videoSrc.blurDataURL}
-            src={videoSrc}
+            poster={
+              'https://image.mux.com/02DysWxqMAjYPRcNVZ7XBM01YV00h02JmN5N5J5021XPilRA/thumbnail.webp?time=38'
+            }
+            blurDataURL={
+              'https://image.mux.com/02DysWxqMAjYPRcNVZ7XBM01YV00h02JmN5N5J5021XPilRA/thumbnail.webp?time=38&width=16&blur=100'
+            }
+            src={
+              'https://stream.mux.com/02DysWxqMAjYPRcNVZ7XBM01YV00h02JmN5N5J5021XPilRA.m3u8'
+            }
             controls
             playsInline
             style={{

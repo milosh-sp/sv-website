@@ -126,7 +126,7 @@ export const hero = {
   buttons: {
     verifySkills: `Verify my skills`,
     earnByVerifying: `Earn by verifying`,
-    hireMeNow: `Hire me`,
+    hireMeNow: `Hire`,
   },
 
   // Trust indicators with embedded icons

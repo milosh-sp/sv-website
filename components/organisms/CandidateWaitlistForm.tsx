@@ -18,6 +18,7 @@ import { PageHeader } from '../molecules/PageHeader'
 import { STEP_IDS } from '@/lib/stepIdentifiers'
 import type { StepId } from '@/types/netlify.types'
 import { ContactConsentSection } from './ContactConsentSection'
+import { HeroButtons } from '../molecules/HeroButtons'
 
 const {
   jobSearchChallengeOptions,
@@ -233,6 +234,10 @@ export function CandidateWaitlistForm() {
   return (
     <PageLayout>
       <PageHeader title={title} description={description} />
+
+      <div className={cn('flex justify-center align-center')}>
+        <HeroButtons showVerifier showHiringManager />
+      </div>
 
       <WaitlistFormWrapper
         currentStep={context.currentStep}

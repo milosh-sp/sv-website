@@ -1,0 +1,23 @@
+{
+  "status": "ready",
+  "originalFilePath": "videos/explainer-skill-verdict.mp4",
+  "provider": "mux",
+  "providerMetadata": {
+    "mux": {
+      "uploadId": "4LWjHkjoHEqHEOERemwzjkM37a00iJA01i9EOnHtEAyJY",
+      "assetId": "T02hiHn3MLXxA4Ay1mcx4wA6EBbAth97MOWIkfrPVHKk",
+      "playbackId": "CgsD1IpkSV57N7QlZlxZjMseNwTBsSVG02qCw9HS00uFQ"
+    }
+  },
+  "createdAt": 1770754422899,
+  "updatedAt": 1770754434762,
+  "size": 15159514,
+  "sources": [
+    {
+      "src": "https://stream.mux.com/CgsD1IpkSV57N7QlZlxZjMseNwTBsSVG02qCw9HS00uFQ.m3u8",
+      "type": "application/x-mpegURL"
+    }
+  ],
+  "poster": "https://image.mux.com/CgsD1IpkSV57N7QlZlxZjMseNwTBsSVG02qCw9HS00uFQ/thumbnail.webp?time=38",
+  "blurDataURL": "https://image.mux.com/CgsD1IpkSV57N7QlZlxZjMseNwTBsSVG02qCw9HS00uFQ/thumbnail.webp?time=38&width=16&blur=100"
+}

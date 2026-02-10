@@ -37,7 +37,7 @@ export function ProcessPageSection({ id }: ProcessPageSectionProps) {
               'flex justify-center align-center mt-10 animate-fade-in-up'
             )}
           >
-            <HeroButtons showVerifier={false} />
+            <HeroButtons showCandidate />
           </div>
         </>
       )}
@@ -49,7 +49,7 @@ export function ProcessPageSection({ id }: ProcessPageSectionProps) {
               'flex justify-center align-center mt-10 animate-fade-in-up'
             )}
           >
-            <HeroButtons showCandidate={false} />
+            <HeroButtons showVerifier />
           </div>
         </>
       )}

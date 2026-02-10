@@ -2,8 +2,12 @@ import { SectionWrapper } from '@/components/templates/SectionWrapper'
 import type { SectionProps } from '@/types/Sections.types'
 import { strings } from '@/lib/strings'
 import { HeaderAndDescription } from '../molecules/HeaderAndDescription'
+import { HeroButtons } from '../molecules/HeroButtons'
 
-export function ExplainerVideoSection({ id }: SectionProps) {
+export function ExplainerVideoPageSection({
+  id,
+  hideCtaButtons,
+}: SectionProps) {
   const { heading, headingHighlight } = strings.explainerVideo
 
   return (
@@ -30,6 +34,11 @@ export function ExplainerVideoSection({ id }: SectionProps) {
           allow='accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;'
           allowFullScreen
         />
+      </div>
+      <div className='flex justify-center align-center mt-10 animate-fade-in-up'>
+        {!hideCtaButtons && (
+          <HeroButtons showHiringManager showCandidate showVerifier />
+        )}
       </div>
     </SectionWrapper>
   )

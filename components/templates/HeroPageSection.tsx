@@ -6,7 +6,7 @@ import { Heading } from '@/components/atoms/Heading'
 import { Text } from '@/components/atoms/Text'
 import { cn } from '@/lib/utils'
 import type { SectionProps } from '@/types/Sections.types'
-import { ExplainerVideoSection } from './ExplainerVideoSection'
+import { ExplainerVideoPageSection } from './ExplainerVideoPageSection'
 
 export function HeroPageSection({ id }: SectionProps) {
   return (
@@ -90,7 +90,7 @@ export function HeroPageSection({ id }: SectionProps) {
                 className={cn('mb-12 flex justify-center lg:justify-start')}
                 aria-label='Hero actions'
               >
-                <HeroButtons />
+                <HeroButtons showCandidate showVerifier />
               </nav>
 
               {/* Trust Indicators */}
@@ -130,7 +130,7 @@ export function HeroPageSection({ id }: SectionProps) {
           </article>
         </div>
       </SectionWrapper>
-      <ExplainerVideoSection id='explainer-video' />
+      <ExplainerVideoPageSection id='explainer-video' hideCtaButtons />
     </>
   )
 }

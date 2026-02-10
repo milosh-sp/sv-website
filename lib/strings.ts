@@ -1798,11 +1798,17 @@ const problem = {
   },
 }
 
+const explainerVideo = {
+  heading: `Learn more about the broken tech hiring processes and how`,
+  headingHighlight: `Skill Verdict solves this major problem`,
+} as const
+
 // ============================================================================
 // EXPORT ALL STRINGS AS CONSTANTS
 // ============================================================================
 
 export const strings = {
+  explainerVideo,
   branding,
   navigation,
   hero,

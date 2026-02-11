@@ -1,0 +1,73 @@
+
+> my-v0-project@0.1.0 build
+> npm run format && npm run lint && next build
+
+
+> my-v0-project@0.1.0 format
+> biome format
+
+Checked 242 files in 52ms. No fixes applied.
+
+> my-v0-project@0.1.0 lint
+> biome lint
+
+Checked 245 files in 92ms. No fixes applied.
+▲ Next.js 16.1.4 (Turbopack)
+- Environments: .env.local
+- Experiments (use with caution):
+  · optimizePackageImports
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 14.7s
+  Running TypeScript ...
+  Collecting page data using 11 workers ...
+  Generating static pages using 11 workers (0/12) ...
+  Generating static pages using 11 workers (3/12) 
+  Generating static pages using 11 workers (6/12) 
+[Sitemap Generator] Discovered video metadata for: explainer-skill-verdict.mp4
+  Generating static pages using 11 workers (9/12) 
+[Sitemap Generator] Component-to-Video map: {
+  "/components/templates/ExplainerVideoPageSection.tsx": [
+    "explainer-skill-verdict.mp4"
+  ]
+}
+[Sitemap Generator] Video-to-Page mapping: {
+  "explainer-skill-verdict.mp4": [
+    "/explainer-video"
+  ]
+}
+[Sitemap Generator] Associated video "explainer-skill-verdict.mp4" with page: /explainer-video
+[Sitemap Generator] Discovered indexable pages: [
+  '/',
+  '/candidate',
+  '/contact',
+  '/explainer-video',
+  '/hiring-manager',
+  '/privacy-policy',
+  '/verifier'
+]
+
+ Note: If page is not found in the list above, it has noIndex set to true in its metadata, or metadata is not defined. 
+
+[Sitemap Generator] Discovered 7 images
+[Sitemap Generator] Discovered 1 videos
+[Sitemap Generator] Page /explainer-video has 1 video(s)
+✓ Generating static pages using 11 workers (12/12) in 559.7ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /candidate
+├ ○ /confirm-email
+├ ○ /contact
+├ ○ /explainer-video
+├ ○ /hiring-manager
+├ ○ /privacy-policy
+├ ○ /robots.txt
+├ ○ /sitemap.xml
+└ ○ /verifier
+
+
+○  (Static)  prerendered as static content
+

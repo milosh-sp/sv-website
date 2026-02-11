@@ -205,11 +205,6 @@ function validateVideoMetadata(video: VideoMetadata): boolean {
     }
   }
 
-  if (video.tag && video.tag.length > 32) {
-    console.warn('[Sitemap Generator] Video cannot have more than 32 tags')
-    return false
-  }
-
   if (video.uploader?.content && video.uploader.content.length > 255) {
     console.warn(
       '[Sitemap Generator] Video uploader name cannot exceed 255 characters'
@@ -274,12 +269,270 @@ async function discoverImagesRecursive(
 }
 
 // ============================================================================
+// VIDEO-TO-PAGE MAPPING FUNCTION
+// ============================================================================
+
+/**
+ * Map of video filenames to the pages that use them
+ * Key: video filename (e.g., 'explainer-skill-verdict.mp4')
+ * Value: array of page routes that use this video
+ */
+interface VideoToPageMap {
+  [videoFileName: string]: string[]
+}
+
+/**
+ * Scan a file for video imports and return the video filenames found
+ * Matches patterns like: import videoName from '@/videos/video-file.mp4'
+ */
+async function extractVideoImportsFromFile(
+  filePath: string
+): Promise<string[]> {
+  try {
+    const content = await readFile(filePath, 'utf-8')
+    const videoImportRegex = /from\s+['"]@\/videos\/([^'"]+\.mp4)['"]/g
+    const matches = [...content.matchAll(videoImportRegex)]
+    return matches.map((match) => match[1])
+  } catch (error) {
+    console.error(`Error reading file ${filePath}:`, error)
+    return []
+  }
+}
+
+/**
+ * Recursively scan components directory to find video imports
+ * Returns a map of component paths to video filenames they import
+ */
+async function scanComponentsForVideos(
+  dirPath: string
+): Promise<Map<string, string[]>> {
+  const componentVideoMap = new Map<string, string[]>()
+
+  async function scanDirectory(currentPath: string): Promise<void> {
+    try {
+      const entries = await readdir(currentPath, { withFileTypes: true })
+
+      for (const entry of entries) {
+        const fullPath = join(currentPath, entry.name)
+
+        if (entry.isDirectory()) {
+          await scanDirectory(fullPath)
+        } else if (
+          entry.isFile() &&
+          (entry.name.endsWith('.tsx') || entry.name.endsWith('.ts'))
+        ) {
+          const videos = await extractVideoImportsFromFile(fullPath)
+          if (videos.length > 0) {
+            componentVideoMap.set(fullPath, videos)
+          }
+        }
+      }
+    } catch (error) {
+      console.error(`Error scanning directory ${currentPath}:`, error)
+    }
+  }
+
+  await scanDirectory(dirPath)
+  return componentVideoMap
+}
+
+/**
+ * Scan a file to find which components it uses
+ * Returns component file paths (both absolute and relative imports)
+ * Also handles imports from @/lib/ that might re-export components
+ */
+async function extractComponentImportsFromFile(
+  filePath: string,
+  componentsDir: string
+): Promise<string[]> {
+  try {
+    const content = await readFile(filePath, 'utf-8')
+    const componentPaths: string[] = []
+
+    // Match absolute imports from @/components
+    const absoluteImportRegex =
+      /import\s+(?:{[^}]*}|[\w]+)\s+from\s+['"]@\/components\/([^'"]+)['"]/g
+    const absoluteMatches = [...content.matchAll(absoluteImportRegex)]
+    for (const match of absoluteMatches) {
+      const componentPath = join(componentsDir, match[1])
+      // Add .tsx extension if not present
+      const fullPath = componentPath.endsWith('.tsx')
+        ? componentPath
+        : `${componentPath}.tsx`
+      componentPaths.push(fullPath)
+    }
+
+    // Match relative imports from ./
+    const relativeImportRegex =
+      /import\s+(?:{[^}]*}|[\w]+)\s+from\s+['"]\.\/([\w/]+)['"]/g
+    const relativeMatches = [...content.matchAll(relativeImportRegex)]
+    for (const match of relativeMatches) {
+      const fileDir = filePath.substring(0, filePath.lastIndexOf('/'))
+      const componentPath = join(fileDir, match[1])
+      // Add .tsx extension if not present
+      const fullPath = componentPath.endsWith('.tsx')
+        ? componentPath
+        : `${componentPath}.tsx`
+      componentPaths.push(fullPath)
+    }
+
+    // Match imports from @/lib/ that might contain component references
+    const libImportRegex =
+      /import\s+(?:{[^}]*}|[\w]+)\s+from\s+['"]@\/lib\/([^'"]+)['"]/g
+    const libMatches = [...content.matchAll(libImportRegex)]
+    for (const match of libMatches) {
+      const libPath = join(process.cwd(), 'lib', match[1])
+      // Add .ts extension if not present
+      const fullPath = libPath.endsWith('.ts') ? libPath : `${libPath}.ts`
+      // Recursively extract components from lib files
+      const libComponents = await extractComponentImportsFromFile(
+        fullPath,
+        componentsDir
+      )
+      componentPaths.push(...libComponents)
+    }
+
+    return componentPaths
+  } catch {
+    // Silently ignore errors for files that don't exist or can't be read
+    // This is expected for some imports like external packages
+    return []
+  }
+}
+
+/**
+ * Build a mapping of videos to the pages that use them
+ * Scans both page components and template components to trace video usage
+ * Uses recursive component dependency tracing to find videos in nested components
+ */
+async function buildVideoToPageMapping(
+  appDir: string,
+  componentsDir: string
+): Promise<VideoToPageMap> {
+  const videoToPageMap: VideoToPageMap = {}
+
+  // Step 1: Scan all components to find which ones import videos
+  const componentVideoMap = await scanComponentsForVideos(componentsDir)
+
+  console.log(
+    '[Sitemap Generator] Component-to-Video map:',
+    JSON.stringify(
+      Object.fromEntries(
+        Array.from(componentVideoMap.entries()).map(([path, videos]) => [
+          path.replace(process.cwd(), ''),
+          videos,
+        ])
+      ),
+      null,
+      2
+    )
+  )
+
+  /**
+   * Recursively find all videos used by a component and its dependencies
+   * Uses memoization to avoid re-processing components
+   */
+  const componentVideoCache = new Map<string, string[]>()
+
+  async function getVideosForComponent(
+    componentPath: string
+  ): Promise<string[]> {
+    // Check cache first
+    if (componentVideoCache.has(componentPath)) {
+      return componentVideoCache.get(componentPath) ?? []
+    }
+
+    const videos: string[] = []
+
+    // Get direct video imports from this component
+    const directVideos = componentVideoMap.get(componentPath) ?? []
+    videos.push(...directVideos)
+
+    // Get component dependencies and recursively find their videos
+    const componentDeps = await extractComponentImportsFromFile(
+      componentPath,
+      componentsDir
+    )
+
+    for (const depPath of componentDeps) {
+      const depVideos = await getVideosForComponent(depPath)
+      videos.push(...depVideos)
+    }
+
+    // Deduplicate and cache
+    const uniqueVideos = [...new Set(videos)]
+    componentVideoCache.set(componentPath, uniqueVideos)
+
+    return uniqueVideos
+  }
+
+  // Step 2: Scan all page.tsx files to find which components they use
+  async function scanPagesRecursive(
+    dirPath: string,
+    basePath = ''
+  ): Promise<void> {
+    try {
+      const entries = await readdir(dirPath, { withFileTypes: true })
+
+      for (const entry of entries) {
+        const fullPath = join(dirPath, entry.name)
+
+        if (entry.isDirectory()) {
+          if (shouldExcludeFolder(entry.name)) {
+            continue
+          }
+
+          const subPath = basePath ? `${basePath}/${entry.name}` : entry.name
+          await scanPagesRecursive(fullPath, subPath)
+        } else if (entry.isFile() && entry.name === 'page.tsx') {
+          const route = basePath === '' ? '/' : `/${basePath}`
+
+          // Get videos directly imported in the page
+          const pageVideos = await extractVideoImportsFromFile(fullPath)
+
+          // Get components imported in the page
+          const pageComponents = await extractComponentImportsFromFile(
+            fullPath,
+            componentsDir
+          )
+
+          // Find videos used by those components (recursively)
+          const componentVideos: string[] = []
+          for (const componentPath of pageComponents) {
+            const videos = await getVideosForComponent(componentPath)
+            componentVideos.push(...videos)
+          }
+
+          // Combine direct and component videos
+          const allVideos = [...new Set([...pageVideos, ...componentVideos])]
+
+          // Map each video to this page route
+          for (const video of allVideos) {
+            if (!videoToPageMap[video]) {
+              videoToPageMap[video] = []
+            }
+            if (!videoToPageMap[video].includes(route)) {
+              videoToPageMap[video].push(route)
+            }
+          }
+        }
+      }
+    } catch (error) {
+      console.error(`Error scanning pages directory ${dirPath}:`, error)
+    }
+  }
+
+  await scanPagesRecursive(appDir)
+  return videoToPageMap
+}
+
+// ============================================================================
 // VIDEO DISCOVERY FUNCTION
 // ============================================================================
 
 /**
  * Recursively discover all video metadata JSON files in the videos directory
- * Returns an array of VideoMetadata objects
+ * Returns an array of VideoMetadata objects WITHOUT page routes (to be added later)
  */
 async function discoverVideosRecursive(
   dirPath: string,
@@ -302,9 +555,14 @@ async function discoverVideosRecursive(
           const fileContent = await readFile(fullPath, 'utf-8')
           const rawData = JSON.parse(fileContent)
 
+          // Extract video filename from the JSON metadata
+          const videoFileName = rawData.originalFilePath
+            ? rawData.originalFilePath.split('/').pop()
+            : entry.name.replace('.json', '')
+
           // Transform raw JSON data to VideoMetadata format
+          // Note: page_route will be set later based on actual usage
           const videoMetadata: VideoMetadata = {
-            // Mux playback_ids structure: [{ policy: 'public', id: 'xxx' }]
             title: rawData.title ?? rawData.name ?? '',
             description: rawData.description ?? '',
             thumbnail_loc: rawData.poster ?? '',
@@ -321,27 +579,29 @@ async function discoverVideosRecursive(
             publication_date: rawData.created_at
               ? new Date(rawData.created_at * 1000).toISOString()
               : undefined,
-            family_friendly: 'yes',
+            family_friendly: 'yes' as const,
             restriction: undefined,
             platform: undefined,
-            requires_subscription: 'no',
+            requires_subscription: 'no' as const,
             uploader: rawData.uploader
               ? {
                   content: rawData.uploader.name ?? rawData.uploader,
                   info: rawData.uploader.url,
                 }
               : undefined,
-            live: rawData.live_stream_id ? 'yes' : 'no',
-            tag: Array.isArray(rawData.tag)
-              ? rawData.tags.slice(0, 32)
-              : rawData.passthrough
-                ? [rawData.passthrough]
-                : undefined,
-            page_route: rawData.passthrough ?? '/',
+            live: rawData.live_stream_id ? ('yes' as const) : ('no' as const),
+            page_route: undefined, // Will be set based on actual usage
           }
+
+          // Store the video filename for mapping purposes
+          ;(videoMetadata as VideoMetadata & { _fileName?: string })._fileName =
+            videoFileName
 
           if (validateVideoMetadata(videoMetadata)) {
             videos.push(videoMetadata)
+            console.log(
+              `[Sitemap Generator] Discovered video metadata for: ${videoFileName}`
+            )
           } else {
             console.warn(
               `[Sitemap Generator] Invalid video metadata in file: ${fullPath}`
@@ -419,24 +679,59 @@ export async function discoverPages(): Promise<PageEntry[]> {
   const appDir = join(process.cwd(), 'app')
   const publicDir = join(process.cwd(), 'public')
   const videosDir = join(process.cwd(), 'videos')
+  const componentsDir = join(process.cwd(), 'components')
 
   try {
-    const [pages, images, videos] = await Promise.all([
+    const [pages, images, videos, videoToPageMap] = await Promise.all([
       discoverPagesRecursive(appDir),
       discoverImagesRecursive(publicDir),
       discoverVideosRecursive(videosDir),
+      buildVideoToPageMapping(appDir, componentsDir),
     ])
 
+    console.log(
+      '[Sitemap Generator] Video-to-Page mapping:',
+      JSON.stringify(videoToPageMap, null, 2)
+    )
+
+    // Build a map of pages to their videos based on actual usage
     const videosByPage = new Map<
       string,
       NonNullable<MetadataRoute.Sitemap[number]['videos']>
     >()
 
+    // For each video, find which pages use it and add it to those pages
     for (const video of videos) {
-      const pageRoute = video.page_route ?? '/'
-      const existingVideos = videosByPage.get(pageRoute) ?? []
-      const transformedVideo = transformToSitemapVideo(video)
-      videosByPage.set(pageRoute, [...existingVideos, transformedVideo])
+      const videoFileName = (video as VideoMetadata & { _fileName?: string })
+        ._fileName
+
+      if (!videoFileName) {
+        console.warn(
+          `[Sitemap Generator] Video missing filename: ${video.title}`
+        )
+        continue
+      }
+
+      // Get the pages that use this video
+      const pagesUsingVideo = videoToPageMap[videoFileName] ?? []
+
+      if (pagesUsingVideo.length === 0) {
+        console.warn(
+          `[Sitemap Generator] Video "${videoFileName}" is not used in any page`
+        )
+        continue
+      }
+
+      // Add this video to each page that uses it
+      for (const pageRoute of pagesUsingVideo) {
+        const existingVideos = videosByPage.get(pageRoute) ?? []
+        const transformedVideo = transformToSitemapVideo(video)
+        videosByPage.set(pageRoute, [...existingVideos, transformedVideo])
+
+        console.log(
+          `[Sitemap Generator] Associated video "${videoFileName}" with page: ${pageRoute}`
+        )
+      }
     }
 
     const pagesWithMedia = pages.map((page) => {

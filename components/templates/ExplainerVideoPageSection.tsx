@@ -27,7 +27,7 @@ export function ExplainerVideoPageSection({
 
         <div
           className={cn(
-            'rounded-xl overflow-hidden w-full shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3),0_20px_60px_-15px_rgba(0,0,0,0.3)]'
+            'rounded-xl overflow-hidden w-full shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3),0_20px_60px_-15px_rgba(0,0,0,0.3)] anime-fade-in-up'
           )}
         >
           <VideoPlayer

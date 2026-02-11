@@ -1799,8 +1799,8 @@ const problem = {
 }
 
 const explainerVideo = {
-  heading: `Broken hiring process and Skill Verdict's solution`,
-  headingHighlight: `Skill Verdict solves this major problem`,
+  heading: `Learn in 2 minutes everything about broken hiring processes and`,
+  headingHighlight: `Skill Verdict's solution`,
 } as const
 
 // ============================================================================

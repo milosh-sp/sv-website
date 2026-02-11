@@ -26,18 +26,16 @@ export function ExplainerVideoPageSection({
 
         <div
           className={cn(
-            'rounded-xl overflow-hidden w-full border-radius-[10px]'
+            'rounded-xl overflow-hidden w-full shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3),0_20px_60px_-15px_rgba(0,0,0,0.3)] animate-fade-in-up'
           )}
         >
           <VideoPlayer
+            playbackId='02DysWxqMAjYPRcNVZ7XBM01YV00h02JmN5N5J5021XPilRA'
             poster={
               'https://image.mux.com/02DysWxqMAjYPRcNVZ7XBM01YV00h02JmN5N5J5021XPilRA/thumbnail.webp?time=38'
             }
             blurDataURL={
-              'https://image.mux.com/02DysWxqMAjYPRcNVZ7XBM01YV00h02JmN5N5J5021XPilRA/thumbnail.webp?time=38&width=16&blur=100'
-            }
-            src={
-              'https://stream.mux.com/02DysWxqMAjYPRcNVZ7XBM01YV00h02JmN5N5J5021XPilRA.m3u8'
+              'data:image/webp;base64,UklGRqgAAABXRUJQVlA4IJwAAAAwAgCdASoQAAkAAQAcJQBOhgiIMnBdh20v2AD+/diAj/0yMomtUSWQiJM/0GAtSlC/g5I7/gtNNTt8K3LNeJHRZtd9at8blo3NabBjXRMTIhW2mnYmcy2PCRhMbY8+rIL9e/DP5+y/t1sB/gzP0PfvHh/z3NJ75MrLZ+6oMS7T5RzZN/ocD+38Zs4IHjfrfmFlc7HHx8qn+AAAAAA='
             }
             controls
             playsInline

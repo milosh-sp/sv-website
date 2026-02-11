@@ -22,6 +22,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: page.changeFrequency,
       priority: page.priority,
       images: page.images,
+      videos: page.videos,
     }
 
     return sitemapEntry

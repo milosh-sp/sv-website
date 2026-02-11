@@ -1,0 +1,27 @@
+{
+  "status": "ready",
+  "originalFilePath": "videos/explainer-skill-verdict.mp4",
+  "provider": "mux",
+  "providerMetadata": {
+    "mux": {
+      "uploadId": "OSKjRJYfZ3Nt5bznOXkrk3gkgNqLMogbQtbhFXefB00g",
+      "assetId": "5Q5MaIq5gUav02009Alw6C3VLPAEeKXamVlYv9oJRCGzw",
+      "playbackId": "dBzfBybvRa02elnjzGqE00fsQV1kXJT6ZsH7kxYaCxsGE"
+    }
+  },
+  "createdAt": 1770821589814,
+  "updatedAt": 1770821597869,
+  "size": 15159514,
+  "sources": [
+    {
+      "src": "https://stream.mux.com/dBzfBybvRa02elnjzGqE00fsQV1kXJT6ZsH7kxYaCxsGE.m3u8",
+      "type": "application/x-mpegURL"
+    }
+  ],
+  "poster": "https://image.mux.com/dBzfBybvRa02elnjzGqE00fsQV1kXJT6ZsH7kxYaCxsGE/thumbnail.webp?time=38",
+  "blurDataURL": "data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoQAAkAAUAmJaQAA3AA/vuUAAA=",
+  "title": "Skill Verdict Explainer Video",
+  "duration": 120,
+  "description": "A video that explains what Skill Verdict is and how it works",
+  "tag": ["explainer", "skill verdict", "video"]
+}

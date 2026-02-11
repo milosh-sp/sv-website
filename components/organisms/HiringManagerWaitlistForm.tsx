@@ -15,6 +15,8 @@ import { PageLayout } from '../templates/PageLayout'
 import { PageHeader } from '../molecules/PageHeader'
 import { STEP_IDS } from '@/lib/stepIdentifiers'
 import type { StepId } from '@/types/netlify.types'
+import { cn } from '@/lib/utils'
+import { HeroButtons } from '../molecules/HeroButtons'
 
 const {
   hiringFailureOptions,
@@ -201,6 +203,9 @@ export function HiringManagerWaitlistForm() {
   return (
     <PageLayout>
       <PageHeader title={title} description={description} />
+      <div className={cn('flex justify-center align-center')}>
+        <HeroButtons showCandidate showVerifier />
+      </div>
       <WaitlistFormWrapper
         currentStep={context.currentStep}
         totalSteps={totalFormSteps}

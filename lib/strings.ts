@@ -126,7 +126,7 @@ export const hero = {
   buttons: {
     verifySkills: `Verify my skills`,
     earnByVerifying: `Earn by verifying`,
-    hireMeNow: `Hire me`,
+    hireMeNow: `Hire`,
   },
 
   // Trust indicators with embedded icons
@@ -1798,11 +1798,17 @@ const problem = {
   },
 }
 
+const explainerVideo = {
+  heading: `Broken hiring process and Skill Verdict's solution`,
+  headingHighlight: `Skill Verdict solves this major problem`,
+} as const
+
 // ============================================================================
 // EXPORT ALL STRINGS AS CONSTANTS
 // ============================================================================
 
 export const strings = {
+  explainerVideo,
   branding,
   navigation,
   hero,

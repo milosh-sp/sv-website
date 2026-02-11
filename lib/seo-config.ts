@@ -502,6 +502,13 @@ const pageSeoConfig = {
   '/confirm-email': {
     noIndex: true,
   },
+
+  '/explainer-video': {
+    title: strings.explainerVideo.heading,
+    keywords: seoKeywords.pages.home,
+    canonical: `${siteConfig.url}/explainer-video`,
+    ogImage: siteConfig.ogImage,
+  },
 }
 
 // ============================================================================

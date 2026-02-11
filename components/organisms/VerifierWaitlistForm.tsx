@@ -18,6 +18,7 @@ import { SuccessScreen } from './SuccessScreen'
 import { PageHeader } from '../molecules/PageHeader'
 import { PageLayout } from '../templates/PageLayout'
 import type { StepId } from '@/types/netlify.types'
+import { HeroButtons } from '../molecules/HeroButtons'
 
 const {
   professionalFrustrationOptions,
@@ -214,6 +215,11 @@ export function VerifierWaitlistForm() {
   return (
     <PageLayout>
       <PageHeader title={title} description={description} />
+
+      <div className={cn('flex justify-center align-center')}>
+        <HeroButtons showCandidate showHiringManager />
+      </div>
+
       <WaitlistFormWrapper
         currentStep={context.currentStep}
         totalSteps={totalFormSteps}

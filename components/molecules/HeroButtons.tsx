@@ -1,15 +1,20 @@
 import { Button } from '@/components/atoms/Button'
 import { strings } from '@/lib/strings'
 import { cn } from '@/lib/utils'
-import { Award, CircleStar } from 'lucide-react'
+import { Award, CircleStar, Handshake } from 'lucide-react'
 import Link from 'next/link'
 
+/**
+ * By default all buttons are hidden
+ */
 export function HeroButtons({
-  showCandidate = true,
-  showVerifier = true,
+  showCandidate,
+  showVerifier,
+  showHiringManager,
 }: {
   showCandidate?: boolean
   showVerifier?: boolean
+  showHiringManager?: boolean
 }) {
   return (
     <article
@@ -44,6 +49,21 @@ export function HeroButtons({
           >
             <Award className={cn('h-5 w-5 mr-2')} aria-hidden='true' />
             <span>{strings.hero.buttons.earnByVerifying}</span>
+          </Button>
+        </Link>
+      )}
+
+      {showHiringManager && (
+        <Link href='/hiring-manager'>
+          <Button
+            variant='companies'
+            size='lg'
+            className={cn('h-14 px-8 text-base rounded-lg font-semibold')}
+            aria-label={strings.hero.accessibility.openEarnModal}
+            type='button'
+          >
+            <Handshake className={cn('h-5 w-5')} aria-hidden='true' />
+            <span>{strings.hero.buttons.hireMeNow}</span>
           </Button>
         </Link>
       )}

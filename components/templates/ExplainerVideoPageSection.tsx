@@ -5,6 +5,7 @@ import { HeaderAndDescription } from '../molecules/HeaderAndDescription'
 import { HeroButtons } from '../molecules/HeroButtons'
 import { VideoPlayer } from '../atoms/VideoPlayer'
 import { cn } from '@/lib/utils'
+import explainerVideo from '@/videos/explainer-skill-verdict.mp4'
 
 export function ExplainerVideoPageSection({
   id,
@@ -26,17 +27,13 @@ export function ExplainerVideoPageSection({
 
         <div
           className={cn(
-            'rounded-xl overflow-hidden w-full shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3),0_20px_60px_-15px_rgba(0,0,0,0.3)] animate-fade-in-up'
+            'rounded-xl overflow-hidden w-full shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3),0_20px_60px_-15px_rgba(0,0,0,0.3)]'
           )}
         >
           <VideoPlayer
-            playbackId='02DysWxqMAjYPRcNVZ7XBM01YV00h02JmN5N5J5021XPilRA'
-            poster={
-              'https://image.mux.com/02DysWxqMAjYPRcNVZ7XBM01YV00h02JmN5N5J5021XPilRA/thumbnail.webp?time=38'
-            }
-            blurDataURL={
-              'data:image/webp;base64,UklGRqgAAABXRUJQVlA4IJwAAAAwAgCdASoQAAkAAQAcJQBOhgiIMnBdh20v2AD+/diAj/0yMomtUSWQiJM/0GAtSlC/g5I7/gtNNTt8K3LNeJHRZtd9at8blo3NabBjXRMTIhW2mnYmcy2PCRhMbY8+rIL9e/DP5+y/t1sB/gzP0PfvHh/z3NJ75MrLZ+6oMS7T5RzZN/ocD+38Zs4IHjfrfmFlc7HHx8qn+AAAAAA='
-            }
+            src={explainerVideo}
+            poster={explainerVideo.poster}
+            blurDataURL={explainerVideo.blurDataURL}
             controls
             playsInline
             style={{

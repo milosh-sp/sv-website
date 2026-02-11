@@ -300,7 +300,45 @@ async function discoverVideosRecursive(
       } else if (entry.isFile() && isVideoMetadataFile(entry.name)) {
         try {
           const fileContent = await readFile(fullPath, 'utf-8')
-          const videoMetadata: VideoMetadata = JSON.parse(fileContent)
+          const rawData = JSON.parse(fileContent)
+
+          // Transform raw JSON data to VideoMetadata format
+          const videoMetadata: VideoMetadata = {
+            // Mux playback_ids structure: [{ policy: 'public', id: 'xxx' }]
+            title: rawData.title ?? rawData.name ?? '',
+            description: rawData.description ?? '',
+            thumbnail_loc: rawData.poster ?? '',
+            player_loc: rawData.sources?.[0]?.src ?? '',
+            content_loc: undefined,
+            duration: rawData.duration
+              ? Math.round(rawData.duration)
+              : undefined,
+            expiration_date: undefined,
+            rating: undefined,
+            view_count: rawData.view_count
+              ? Number.parseInt(String(rawData.view_count), 10)
+              : undefined,
+            publication_date: rawData.created_at
+              ? new Date(rawData.created_at * 1000).toISOString()
+              : undefined,
+            family_friendly: 'yes',
+            restriction: undefined,
+            platform: undefined,
+            requires_subscription: 'no',
+            uploader: rawData.uploader
+              ? {
+                  content: rawData.uploader.name ?? rawData.uploader,
+                  info: rawData.uploader.url,
+                }
+              : undefined,
+            live: rawData.live_stream_id ? 'yes' : 'no',
+            tag: Array.isArray(rawData.tag)
+              ? rawData.tags.slice(0, 32)
+              : rawData.passthrough
+                ? [rawData.passthrough]
+                : undefined,
+            page_route: rawData.passthrough ?? '/',
+          }
 
           if (validateVideoMetadata(videoMetadata)) {
             videos.push(videoMetadata)

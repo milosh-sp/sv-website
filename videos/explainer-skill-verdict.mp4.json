@@ -19,5 +19,9 @@
     }
   ],
   "poster": "https://image.mux.com/dBzfBybvRa02elnjzGqE00fsQV1kXJT6ZsH7kxYaCxsGE/thumbnail.webp?time=38",
-  "blurDataURL": "data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoQAAkAAUAmJaQAA3AA/vuUAAA="
+  "blurDataURL": "data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoQAAkAAUAmJaQAA3AA/vuUAAA=",
+  "title": "Skill Verdict Explainer Video",
+  "duration": 120,
+  "description": "A video that explains what Skill Verdict is and how it works",
+  "tag": ["explainer", "skill verdict", "video"]
 }

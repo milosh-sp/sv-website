@@ -17,6 +17,7 @@ import { STEP_IDS } from '@/lib/stepIdentifiers'
 import type { StepId } from '@/types/netlify.types'
 import { cn } from '@/lib/utils'
 import { HeroButtons } from '../molecules/HeroButtons'
+import { Text } from '../atoms/Text'
 
 const {
   hiringFailureOptions,
@@ -203,6 +204,11 @@ export function HiringManagerWaitlistForm() {
   return (
     <PageLayout>
       <PageHeader title={title} description={description} />
+
+      <Text className='text-center mb-1'>
+        {strings.waitlistForms.ctaToOtherForms}
+      </Text>
+
       <div className={cn('flex justify-center align-center')}>
         <HeroButtons showCandidate showVerifier />
       </div>

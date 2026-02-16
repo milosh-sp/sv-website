@@ -19,6 +19,7 @@ import { PageHeader } from '../molecules/PageHeader'
 import { PageLayout } from '../templates/PageLayout'
 import type { StepId } from '@/types/netlify.types'
 import { HeroButtons } from '../molecules/HeroButtons'
+import { Text } from '../atoms/Text'
 
 const {
   professionalFrustrationOptions,
@@ -215,6 +216,10 @@ export function VerifierWaitlistForm() {
   return (
     <PageLayout>
       <PageHeader title={title} description={description} />
+
+      <Text className='text-center mb-1'>
+        {strings.waitlistForms.ctaToOtherForms}
+      </Text>
 
       <div className={cn('flex justify-center align-center')}>
         <HeroButtons showCandidate showHiringManager />

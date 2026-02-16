@@ -19,6 +19,7 @@ import { STEP_IDS } from '@/lib/stepIdentifiers'
 import type { StepId } from '@/types/netlify.types'
 import { ContactConsentSection } from './ContactConsentSection'
 import { HeroButtons } from '../molecules/HeroButtons'
+import { Text } from '../atoms/Text'
 
 const {
   jobSearchChallengeOptions,
@@ -234,6 +235,10 @@ export function CandidateWaitlistForm() {
   return (
     <PageLayout>
       <PageHeader title={title} description={description} />
+
+      <Text className='text-center mb-1'>
+        {strings.waitlistForms.ctaToOtherForms}
+      </Text>
 
       <div className={cn('flex justify-center align-center')}>
         <HeroButtons showVerifier showHiringManager />

@@ -18,7 +18,7 @@ export function HeroButtons({
 }) {
   return (
     <article
-      className={cn('flex flex-col sm:flex-row gap-4 mb-1 md:mb-12')}
+      className={cn('flex flex-col sm:flex-row gap-4 mb-10 md:mb-12')}
       aria-label='Primary actions'
     >
       {showCandidate && (
@@ -26,7 +26,7 @@ export function HeroButtons({
           <Button
             variant='hero-emerald'
             size='lg'
-            className={cn('h-14 px-8 text-base rounded-lg')}
+            className={cn('h-14 px-8 text-base rounded-lg w-full sm:w-auto')}
             aria-label={strings.hero.accessibility.openSignupModal}
             type='button'
           >
@@ -43,7 +43,9 @@ export function HeroButtons({
           <Button
             variant='hero-blue'
             size='lg'
-            className={cn('h-14 px-8 text-base rounded-lg font-semibold')}
+            className={cn(
+              'h-14 px-8 text-base rounded-lg font-semibold w-full sm:w-auto'
+            )}
             aria-label={strings.hero.accessibility.openEarnModal}
             type='button'
           >
@@ -58,7 +60,9 @@ export function HeroButtons({
           <Button
             variant='companies'
             size='lg'
-            className={cn('h-14 px-8 text-base rounded-lg font-semibold')}
+            className={cn(
+              'h-14 px-8 text-base rounded-lg font-semibold w-full sm:w-auto'
+            )}
             aria-label={strings.hero.accessibility.openEarnModal}
             type='button'
           >

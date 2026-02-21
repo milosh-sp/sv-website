@@ -4,8 +4,11 @@ import { strings } from '@/lib/strings'
 import { HeaderAndDescription } from '../molecules/HeaderAndDescription'
 import { HeroButtons } from '../molecules/HeroButtons'
 import { VideoPlayer } from '../atoms/VideoPlayer'
-import { cn } from '@/lib/utils'
+import { cn, secondsToISODuration } from '@/lib/utils'
 import explainerVideo from '@/videos/explainer-skill-verdict.mp4'
+import videoMetadata from '@/videos/explainer-skill-verdict.mp4.json'
+import Script from 'next/script'
+import { generateVideoSchema } from '@/lib/seo'
 
 export function ExplainerVideoPageSection({
   id,
@@ -13,12 +16,33 @@ export function ExplainerVideoPageSection({
 }: SectionProps) {
   const { heading, headingHighlight } = strings.explainerVideo
 
+  console.log(secondsToISODuration(videoMetadata.duration))
+
   return (
     <SectionWrapper
       id={id}
       className='py-20'
       aria-labelledby='explainer-video-heading'
     >
+      <Script
+        type='application/ld+json'
+        /* biome-ignore lint/security/noDangerouslySetInnerHtml: Web schemas require dynamic content for structured data */
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            generateVideoSchema({
+              name: videoMetadata.title,
+              description: videoMetadata.description,
+              thumbnailUrl: [videoMetadata.poster],
+              uploadDate: new Date(videoMetadata.createdAt).toISOString(),
+              duration: videoMetadata.duration
+                ? secondsToISODuration(videoMetadata.duration)
+                : undefined,
+              contentUrl: videoMetadata.sources?.[0]?.src,
+              embedUrl: videoMetadata.sources?.[0]?.src,
+            })
+          ),
+        }}
+      />
       <div className='container-wide'>
         <HeaderAndDescription
           heading={heading}

@@ -1453,12 +1453,12 @@ const waitlistForms = {
     },
     linkedIn: {
       label: `LinkedIn Profile URL`,
-      placeholder: `https://linkedin.com/in/yourprofile`,
+      placeholder: `https://linkedin.com/in/yourprofile (optional)`,
       ariaLabel: `LinkedIn profile URL field`,
     },
     githubGitlabUrl: {
       label: `GitHub or GitLab Profile URL`,
-      placeholder: `GitHub or GitLab profile URL`,
+      placeholder: `GitHub or GitLab profile URL (optional)`,
       ariaLabel: `GitHub or GitLab profile URL field`,
     },
     companyUrl: {

@@ -16,8 +16,6 @@ export function ExplainerVideoPageSection({
 }: SectionProps) {
   const { heading, headingHighlight } = strings.explainerVideo
 
-  console.log(secondsToISODuration(videoMetadata.duration))
-
   return (
     <SectionWrapper
       id={id}

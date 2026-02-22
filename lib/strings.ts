@@ -539,6 +539,12 @@ const footer = {
       label: `Follow us on Instagram`,
       icon: Instagram,
     },
+    {
+      name: `Mastodon`,
+      url: `https://mastodon.social/@skillverdict`,
+      label: `Follow us on Mastodon`,
+      icon: MessageCircle,
+    },
   ],
 } as const
 

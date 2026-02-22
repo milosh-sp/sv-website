@@ -67,7 +67,7 @@ export function Footer() {
                   <a
                     href={social.url}
                     target='_blank'
-                    rel='noopener noreferrer'
+                    rel='noopener noreferrer me'
                     aria-label={social.label}
                     className={cn(
                       'inline-flex items-center justify-center',

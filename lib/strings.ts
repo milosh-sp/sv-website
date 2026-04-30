@@ -1811,6 +1811,16 @@ const explainerVideo = {
 } as const
 
 // ============================================================================
+// LAUNCHING SOON MODAL
+// ============================================================================
+
+const launchingSoonModal = {
+  title: `Be the first to get a special early access invitation`,
+  description: `Be the first to get a special early access invitation`,
+  dismissButtonText: `Got it!`,
+} as const
+
+// ============================================================================
 // EXPORT ALL STRINGS AS CONSTANTS
 // ============================================================================
 
@@ -1838,4 +1848,5 @@ export const strings = {
   confirmEmailScreen,
   personalitySection,
   problem,
+  launchingSoonModal,
 }

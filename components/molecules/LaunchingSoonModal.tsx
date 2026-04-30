@@ -1,7 +1,6 @@
 'use client'
 
 import { Modal } from '@/components/atoms/Modal'
-import { HeroButtons } from '@/components/molecules/HeroButtons'
 import { useLocalStorageModal } from '@/hooks/useLocalStorageModal'
 import { strings } from '@/lib/strings'
 import { Suspense } from 'react'

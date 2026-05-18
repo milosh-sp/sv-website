@@ -117,6 +117,7 @@ export function useForm<TFormData extends Record<string, string>>(
       const result = await onSubmit(formData, honeypotValue, formStartTime)
 
       if (result.success) {
+        setSubmitStatus('success')
         resetHoneypot()
         onSuccess?.()
       } else {

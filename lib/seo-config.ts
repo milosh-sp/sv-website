@@ -499,6 +499,33 @@ const pageSeoConfig = {
     },
   },
 
+  '/for-talent-cv2.0': {
+    title: 'For Talent — Build Your CV2.0 | Get Verified or Review Work',
+    description:
+      'Prove your skills with a peer-verified CV2.0, or earn by reviewing real engineering work. Verification by experienced peer engineers—not AI or an agency.',
+    keywords: [
+      ...seoKeywords.pages.candidate,
+      ...seoKeywords.pages.verifier,
+    ] as string[],
+    canonical: `${siteConfig.url}/for-talent-cv2.0`,
+    ogImage: siteConfig.ogImage,
+    schema: {
+      type: 'BreadcrumbList',
+      itemListElement: [
+        {
+          position: 1,
+          name: 'Home',
+          item: siteConfig.url,
+        },
+        {
+          position: 2,
+          name: 'For Talent',
+          item: `${siteConfig.url}/for-talent-cv2.0`,
+        },
+      ],
+    },
+  },
+
   '/confirm-email': {
     noIndex: true,
   },

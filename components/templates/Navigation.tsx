@@ -1,12 +1,17 @@
 'use client'
 
 import { strings } from '@/lib/strings'
-import { navigationData } from '@/lib/navigationData'
+import {
+  contactLink,
+  headerMenus,
+  type NavMenuItem,
+} from '@/lib/navigationData'
 import { Menu, X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import { HeaderLink } from '@/components/molecules/HeaderLink'
+import { NavDropdown } from '@/components/molecules/NavDropdown'
 import logo from '@/public/logo-sv.svg'
 import { cn } from '@/lib/utils'
 import { DecorativeText } from '../atoms/DecorativeText'
@@ -21,39 +26,42 @@ export function Header() {
   useTracking()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  const scrollToSection = (link: (typeof navigationData)[0]) => {
-    // If the link doesn't have a hash, it's an external link
-    // so a warning does not spam every click
-    if (!link || (link && !link.href.includes('#'))) return
-
-    const { id: sectionId } = link
-
+  // Smooth-scroll only when the target section is on the current page.
+  // Cross-page hash links (e.g. /#faq clicked from /for-talent-cv2.0) fall
+  // through to normal Next.js navigation, which handles the hash on load.
+  const handleNavClick = (
+    event: React.MouseEvent<HTMLAnchorElement>,
+    item: NavMenuItem
+  ) => {
     setIsMenuOpen(false)
-    const element = document.getElementById(sectionId)
+
+    if (!item.href.includes('#')) return
+
+    const [path, hash] = item.href.split('#')
+    const targetPath = path === '' ? '/' : path
+    if (targetPath !== window.location.pathname) return
+
+    const element = document.getElementById(hash)
     if (!element) {
-      console.warn(`Section with id "${sectionId}" not found`)
+      console.warn(`Section with id "${hash}" not found`)
       return
     }
 
-    // Close mobile menu before scrolling
-    setIsMenuOpen(false)
+    // Same-page anchor: take over from the default jump and scroll smoothly
+    event.preventDefault()
 
-    // Check if user prefers reduced motion
     const prefersReducedMotion = window.matchMedia(
       '(prefers-reduced-motion: reduce)'
     ).matches
 
-    // Get scroll margin based on viewport
     const isMobile = window.innerWidth < MOBILE_BREAKPOINT
     const scrollMargin = isMobile
       ? SCROLL_MARGIN_TOP_MOBILE
       : SCROLL_MARGIN_TOP_DESKTOP
 
-    // Calculate target scroll position
     const elementPosition = element.getBoundingClientRect().top
     const offsetPosition = elementPosition + window.scrollY - scrollMargin
 
-    // Scroll with smooth behavior (respects prefers-reduced-motion)
     window.scrollTo({
       top: offsetPosition,
       behavior: prefersReducedMotion ? 'auto' : 'smooth',
@@ -110,18 +118,24 @@ export function Header() {
             )}
             aria-label='Primary navigation'
           >
-            {navigationData.map((link) => (
-              <li key={link.id}>
-                <HeaderLink
-                  scroll
-                  href={link.href}
-                  onClick={() => scrollToSection(link)}
-                  variant='desktop'
-                >
-                  {link.label}
-                </HeaderLink>
-              </li>
+            {headerMenus.map((menu) => (
+              <NavDropdown
+                key={menu.id}
+                label={menu.label}
+                items={menu.items}
+                variant='desktop'
+                onItemClick={handleNavClick}
+              />
             ))}
+            <li>
+              <HeaderLink
+                href={contactLink.href}
+                variant='desktop'
+                onClick={(event) => handleNavClick(event, contactLink)}
+              >
+                {contactLink.label}
+              </HeaderLink>
+            </li>
           </ul>
 
           {/* Mobile Menu Toggle */}
@@ -164,17 +178,24 @@ export function Header() {
             aria-label='Mobile navigation'
           >
             <ul className={cn('flex flex-col gap-2', 'list-none m-0 p-0')}>
-              {navigationData.map((link) => (
-                <li key={link.id} role='none'>
-                  <HeaderLink
-                    href={link.href}
-                    onClick={() => scrollToSection(link)}
-                    variant='mobile'
-                  >
-                    {link.label}
-                  </HeaderLink>
-                </li>
+              {headerMenus.map((menu) => (
+                <NavDropdown
+                  key={menu.id}
+                  label={menu.label}
+                  items={menu.items}
+                  variant='mobile'
+                  onItemClick={handleNavClick}
+                />
               ))}
+              <li role='none'>
+                <HeaderLink
+                  href={contactLink.href}
+                  variant='mobile'
+                  onClick={(event) => handleNavClick(event, contactLink)}
+                >
+                  {contactLink.label}
+                </HeaderLink>
+              </li>
             </ul>
           </nav>
         )}

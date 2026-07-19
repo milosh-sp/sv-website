@@ -6,6 +6,7 @@ import { Heading } from '@/components/atoms/Heading'
 import { Text } from '@/components/atoms/Text'
 import { cn } from '@/lib/utils'
 import type { SectionProps } from '@/types/Sections.types'
+import Link from 'next/link'
 import { ExplainerVideoPageSection } from './ExplainerVideoPageSection'
 
 export function HeroPageSection({ id }: SectionProps) {
@@ -87,11 +88,30 @@ export function HeroPageSection({ id }: SectionProps) {
 
               {/* Buttons */}
               <nav
-                className={cn('mb-12 flex justify-center lg:justify-start')}
+                className={cn(
+                  'mb-4 flex flex-col items-center lg:items-start gap-3'
+                )}
                 aria-label='Hero actions'
               >
-                <HeroButtons showCandidate showVerifier />
+                <HeroButtons showHiringManager />
               </nav>
+
+              {/* Secondary prompt for candidates and reviewers */}
+              <Text
+                variant='body'
+                className={cn('mb-12 text-center lg:text-left')}
+              >
+                {strings.hero.talentPrompt}{' '}
+                <Link
+                  href='/for-talent-cv2.0'
+                  className={cn(
+                    'font-semibold text-primary hover:underline underline-offset-4'
+                  )}
+                >
+                  {strings.hero.talentLinkText}
+                  <span aria-hidden='true'> &rarr;</span>
+                </Link>
+              </Text>
 
               {/* Trust Indicators */}
               <ul

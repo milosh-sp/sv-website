@@ -71,7 +71,7 @@ export default function NotFound() {
           </p>
           <div className='space-y-2 text-sm'>
             <Link
-              href='/#cv-preview'
+              href='/for-talent-cv2.0#cv-preview'
               className='block text-blue-600 hover:text-blue-800 transition-colors'
             >
               {strings.errorPages.notFound.helpfulLinks.cvPreview}

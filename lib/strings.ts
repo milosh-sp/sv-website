@@ -57,7 +57,7 @@ import { techSkills } from './tech-skills'
 const branding = {
   // Company name and tagline
   companyName: `Skill Verdict`,
-  tagline: `Don't chase, attract!`,
+  tagline: `Hire with evidence.`,
 
   // Logo and visual elements
   logo: {
@@ -74,24 +74,28 @@ const branding = {
 // ============================================================================
 
 const navigation = {
-  // Main navigation items
+  // Top-level grouped menus (arc.dev-style)
   menu: {
     home: `Home`,
-    benefits: `Benefits`,
-    cvPreview: `CV2.0`,
-    companies: `Companies`,
-    howToJoin: `How it works`,
-    faqs: `FAQs`,
+    companies: `For companies`,
+    talent: `For talent CV2.0`,
     contact: `Contact`,
   },
 
-  // Mobile menu specific items
-  mobile: {
-    cvPreview: `CV2.0`,
-    forCompanies: `Companies`,
-    process: `Process`,
-    faq: `FAQ`,
-    contact: `Contact`,
+  // "For companies" dropdown items (all on the homepage)
+  companyMenu: {
+    howItWorks: `How Skill Verdict works`,
+    interviewProcess: `The interview process`,
+    personality: `Personality`,
+    faq: `FAQs`,
+  },
+
+  // "For talent CV2.0" dropdown items (all on the /for-talent-cv2.0 page)
+  talentMenu: {
+    whatIsCv2: `What is CV2.0`,
+    getVerified: `How it works`,
+    becomeReviewer: `Become a reviewer`,
+    faq: `FAQs`,
   },
 
   // Menu accessibility labels
@@ -114,33 +118,37 @@ const navigation = {
 
 export const hero = {
   // Main hero content
-  mainHeading: `Attract Careers, Not Just Interviews—With the Peer-Verified`,
+  mainHeading: `Hire engineers whose skills are`,
   /**
    * Will be placed next to the main heading to the right side, with a gradient applied
    */
-  mainHeadingHighlight: ` CV2.0!`,
-  subHeading: `Backed by anonymous, peer-validated reviews and real-world skill assessments, CV2.0 proves your true engineering ability and delivers actionable feedback to help you grow—while giving companies instant,trusted access to verified talent they can rely on`,
-  callToAction: `Choose your path to get started:`,
+  mainHeadingHighlight: ` already proven`,
+  subHeading: `Every candidate has a CV2.0 with skills verified by experienced peer engineers—not AI, not an agency, not self-reported. Interview the people worth your time.`,
+  callToAction: `Start hiring with evidence.`,
+
+  // Secondary prompt directing candidates/reviewers to the talent page
+  talentPrompt: `Looking to get verified or review work?`,
+  talentLinkText: `For talent CV2.0`,
 
   // Action buttons
   buttons: {
-    verifySkills: `Verify my skills`,
-    earnByVerifying: `Earn by verifying`,
-    hireMeNow: `Hire`,
+    verifySkills: `Get hired`,
+    earnByVerifying: `Become a reviewer`,
+    hireMeNow: `Hire verified talent`,
   },
 
   // Trust indicators with embedded icons
   trustIndicators: [
     {
-      text: `100% Secure & transparent`,
+      text: `Fewer screening rounds`,
       icon: Shield,
     },
     {
-      text: `Your time, your schedule`,
+      text: `Real skills, peer-verified`,
       icon: Clock,
     },
     {
-      text: `Verified by world's top talent`,
+      text: `Evidence before interviews`,
       icon: UserCheck,
     },
   ],
@@ -158,18 +166,15 @@ export const hero = {
 // ============================================================================
 const benefits = {
   // Section header
-  heading: `Peer-Powered Skill Verification,`,
-  headingHighlight: `Inspired by X Community Notes`,
-  description: `Inspired by models like X (Twitter’s) 
-              Community Notes, Skill Verdict brings transparent,
-               community-driven verification to your skills—enabling 
-               trust and bias-free recognition for every member.`,
+  heading: `Better signals for`,
+  headingHighlight: `better hires`,
+  description: `Independent peer reviews turn real engineering work into evidence companies can trust.`,
 
   // Tab labels
   tabs: {
-    members: `Members`,
-    guruMembers: `Guru members`,
-    hiringManagers: `Companies`,
+    members: `Candidates`,
+    guruMembers: `Reviewers`,
+    hiringManagers: `Hiring teams`,
   },
 
   // Tab accessibility
@@ -182,31 +187,26 @@ const benefits = {
   // Members section
   members: {
     iconAriaLabel: `Award icon for members`,
-    description: `Get your skills verified by global industry experts and boost your
-      career with a next-generation CV2.0.`,
+    description: `Prove what you can do and let the right companies find you.`,
     benefits: [
       {
-        title: `Your verified skill badges`,
-        description: `Get verified skill badges on your profile—professionally 
-                      endorsed evidence of your abilities.`,
+        title: `Verified skills`,
+        description: `Turn professional peer reviews into credentials employers can trust.`,
         icon: Medal,
       },
       {
-        title: `Anonymous, fair and unbiased skill verification`,
-        description: `We make that the verification process as transparent and fair as possible, the guru members
-        will not know who they are verifying, which insures they focus on the candidate's skills and not their personal biases.`,
+        title: `Fair, anonymous reviews`,
+        description: `Reviewers assess the work, not the name, background, or location.`,
         icon: Users,
       },
       {
-        title: `Increase your hiring chances`,
-        description: `Verified skills from respected professionals catch employers 
-        attention—don't just claim you’re good, prove it and possibly skip technical interviews!`,
+        title: `Stand out with proof`,
+        description: `Give hiring teams a stronger signal than claims on a traditional CV.`,
         icon: Rocket,
       },
       {
-        title: `Passive discovery`,
-        description: `No need to apply to jobs, jobs will be apply to you. With passive discovery 
-        companies will contact you and offer you opportunities.`,
+        title: `Get discovered`,
+        description: `Let companies contact you when your verified skills match their needs.`,
         icon: QrCode,
       },
     ],
@@ -215,27 +215,26 @@ const benefits = {
   // Guru member section
   guruMembers: {
     iconAriaLabel: `Dollar sign icon for tech professionals`,
-    description: `Top talent is valued in the Skill Verdict community. Monetize your
-      expertise by verifying the skills of other members.`,
+    description: `Use your experience to assess talent, help engineers grow, and earn.`,
     benefits: [
       {
         title: `Earn extra income`,
-        description: `Get paid for reviewing code and conducting technical interviews—turn your experience into extra income.`,
+        description: `Get paid to review real work and assess practical engineering skills.`,
         icon: DollarSign,
       },
       {
-        title: `Your schedule`,
-        description: `By verifying skills, you establish yourself as an industry expert, building your professional reputation among peers.`,
+        title: `Work on your schedule`,
+        description: `Choose when and how many candidate reviews you take on.`,
         icon: Calendar,
       },
       {
         title: `Build your reputation`,
-        description: `By verifying skills, you establish yourself as an industry expert, building your professional reputation among peers`,
+        description: `Build visible credibility through consistent, high-quality reviews.`,
         icon: TrendingUp,
       },
       {
         title: `Expand your skills and network`,
-        description: `By collaborating with talented members across the Skill Verdict community. `,
+        description: `Meet skilled engineers while staying sharp on modern practices.`,
         icon: Network,
       },
     ],
@@ -255,34 +254,30 @@ const benefits = {
 
 const cvPreview = {
   // Section header
-  heading: `Your CV2.0 - The Living CV that Opens Opportunities`,
-  description: `Showcase your verified skills in a way regular resumes can’t. With CV2.0, your profile automatically updates with your latest achievements and peer reviews, no manual work required.
-
-Demonstrate real expertise with verified badges, and always keep your credentials fresh, accurate, and matched to what employers actually want to see.
-
-Worried about privacy or control? Your data stays yours—customize what gets displayed and update your CV2.0 anytime.`,
-  note: `Note: This is a demo—help us shape CV2.0 to fit your needs. Your feedback will make it even more powerful and personalized. The community will build the CV2.0, not us.`,
+  heading: `CV2.0: evidence, not claims`,
+  description: `A living profile that combines experience with independently verified skills. Hiring teams see what a candidate can do before the first interview, while candidates control what they share.`,
+  note: `This preview is evolving with feedback from candidates, reviewers, and hiring teams.`,
 
   // CV features
   features: [
     {
-      title: `Share instantly, connect everywhere`,
-      description: `Anyone can access your CV2.0 by scanning your unique QR code — network in person, online, or at events with one seamless tap.`,
+      title: `Share anywhere`,
+      description: `Open a CV2.0 instantly through a direct link or unique QR code.`,
       icon: QrCode,
     },
     {
-      title: `Skill Badges`,
-      description: `Visual badges highlight every skill you’ve been peer-verified for — stand out to employers and collaborators at a glance.`,
+      title: `Verified skill badges`,
+      description: `See which skills were independently reviewed and how they were proven.`,
       icon: Shield,
     },
     {
-      title: `Optimized metadata`,
-      description: `Your live CV2.0 and exported PDF come with optimized metadata, so you’re more discoverable in recruiter searches and professional databases.`,
+      title: `Easy to discover`,
+      description: `Structured skill data helps recruiters find relevant candidates faster.`,
       icon: Database,
     },
     {
-      title: `Your brand, your personal business card`,
-      description: `Add your CV2.0 to your Apple or Google Wallet — now your verified skills travel with you, ready to share anytime, anywhere.`,
+      title: `Always up to date`,
+      description: `One living profile keeps achievements, reviews, and credentials current.`,
       icon: IdCard,
     },
   ],
@@ -296,34 +291,34 @@ const companyDiscovery = {
   // Section content
   icon: Building2,
   iconAriaLabel: `Building icon for company discovery`,
-  heading: `Discover and Hire Verified Talent, Instantly`,
-  description: `Ditch the guesswork. Skill Verdict gives your company access to a trusted pool of peer-verified engineers—proven in real-world conditions, not just interview puzzles.`,
+  heading: `Spend less time screening. More time hiring.`,
+  description: `Meet engineers whose skills have already been tested through real work and validated by experienced peer engineers—not AI or an agency.`,
   // Benefits list
   benefits: [
     {
-      title: `Instantly identify true experts`,
-      description: `Browse a talent pool where every candidate's abilities are validated through anonymous, real-world project evaluations—no more relying on self-reported claims or artificial assessments.`,
+      title: `See proven ability`,
+      description: `CV2.0 shows verified skills, practical work, and reviewer evidence at a glance.`,
       icon: UserCheck,
     },
     {
-      title: `Reduce Time-to-Hire`,
-      description: `Skip redundant screening rounds. Candidates demonstrate proven skills in hands-on, scenario-based reviews, so your team interviews only those already recognized for excellence by domain experts.`,
+      title: `Shorten time-to-hire`,
+      description: `Skip repetitive screening and interview candidates who already meet the bar.`,
       icon: Clock,
     },
 
     {
-      title: `Access Broader, More Diverse Talent`,
-      description: `Skill Verdict's decentralized, anonymous review process neutralizes hiring bias, allowing you to connect with high-potential professionals from all backgrounds and geographies—opening doors to hidden talent.`,
+      title: `Find overlooked talent`,
+      description: `Anonymous reviews surface ability regardless of pedigree, background, or location.`,
       icon: Globe,
     },
     {
-      title: `Seamless Integration & Passive Candidate Discovery`,
-      description: `Reach out directly to pre-qualified professionals whose verified skills match your exact requirements, or let passive discovery bring strong contenders to you.`,
+      title: `Reach the right people`,
+      description: `Search by verified skills and contact qualified candidates directly.`,
       icon: Search,
     },
   ],
   buttons: {
-    hiringManagerCta: `Discover verified talent`,
+    hiringManagerCta: `Start hiring`,
   },
   // Section accessibility
   accessibility: {
@@ -337,49 +332,38 @@ const companyDiscovery = {
 
 const process = {
   // Section header
-  heading: `How Skill Verdict Works`,
+  heading: `How CV2.0 works`,
   description: {
-    members: `As a Member, your skills are evaluated by Guru reviewers with their own real world techniques so every endorsement reflects practical, professional expertise, not just another generic quiz. Want to expand your abilities? Verify as many skills as you like and add new ones whenever you’re ready.
-     Each review boosts your profile with peer-validated badges,
-      making you stand out to employers who trust 
-      Skill Verdict’s hiring signal.`,
-    guruMembers: `As a Guru, you set the standard — review Members’ skills your way, using your preferred methods and proven expertise. 
-    Your evaluations shape authentic, actionable feedback, helping candidates grow through real-world scenarios, not just theory.
-By mentoring and validating others,
- you not only influence the next generation of
- talent but also build your reputation as a respected industry expert.`,
+    members: `Build a living CV with skills independently verified through practical work.`,
+    guruMembers: `Assess real engineering work, give useful feedback, and strengthen the hiring signal.`,
   },
 
   // Tab labels
   tabs: {
-    members: `Members`,
-    guruMembers: `Guru members`,
+    members: `Candidates`,
+    guruMembers: `Reviewers`,
   },
 
   // Process steps for members
   memberSteps: [
     {
       title: `1. Create your profile`,
-      description: `Connect your professional and portfolio accounts to instantly build your new, dynamic CV2.0 and showcase your real-world experience.`,
+      description: `Connect your experience and portfolio to create your CV2.0.`,
       icon: FileText,
     },
     {
-      title: `2. Prepare for verification`,
-      description: `Select any skills you want to get verified (add more any time) and pick your Guru for a personalized, skill-based assessment.`,
+      title: `2. Choose a skill`,
+      description: `Select what you want verified and begin a practical assessment.`,
       icon: Brain,
     },
     {
-      title: `3. Verification process`,
-      description: `Receive a practical assignment from your Guru reviewer, 
-      complete it, and get actionable, 
-      growth-focused feedback in a real conversation.`,
+      title: `3. Prove your ability`,
+      description: `Complete real-world work and discuss it with an experienced reviewer.`,
       icon: Video,
     },
     {
-      title: `4. Final verdict`,
-      description: `Pass the review to earn your verified skill badge, 
-      boost your profile visibility, 
-      and rate your experience to help others choose top Gurus.`,
+      title: `4. Earn verification`,
+      description: `Add the result and reviewer feedback to your CV2.0.`,
       icon: CheckCircle,
     },
   ],
@@ -387,29 +371,23 @@ By mentoring and validating others,
   // Process steps for tech professionals
   guruMembersteps: [
     {
-      title: `1. Create your Guru profile`,
-      description: `Connect your professional and portfolio accounts to showcase your real industry expertise and 
-      set up your personalized Guru identity.`,
+      title: `1. Create your reviewer profile`,
+      description: `Show your experience and the skills you are qualified to assess.`,
       icon: ClipboardList,
     },
     {
-      title: `2. Pass the Guru interview`,
-      description: `Join a collaborative interview with 
-      other Gurus to demonstrate your technical know-how 
-      and mentoring experience—the community only admits trusted experts.`,
+      title: `2. Get approved`,
+      description: `Demonstrate your technical judgment and mentoring ability.`,
       icon: Video,
     },
     {
-      title: `3. Start mentoring`,
-      description: `Access our intuitive AI-powered dashboard 
-      to review candidates, design meaningful assessments,
-      and provide valuable feedback that strengthens the entire community.`,
+      title: `3. Review real work`,
+      description: `Assess candidates with practical tasks and clear feedback.`,
       icon: MessageCircle,
     },
     {
-      title: `4. Earn recognition and income`,
-      description: `Get rewarded for your expertise: 
-      earn money with every review, grow your reputation as an industry leader, and sharpen your skills through real-world candidate challenges.`,
+      title: `4. Earn and build trust`,
+      description: `Get paid for each review and grow your professional reputation.`,
       icon: DollarSign,
     },
   ],
@@ -419,96 +397,79 @@ By mentoring and validating others,
 // FAQ SECTION
 // ============================================================================
 const faq = {
-  membersHeading: `Frequently asked questions for Members`,
-  verifiersHeading: `Frequently asked questions for Guru members`,
-  hiringManagersHeading: `Frequently asked questions for Hiring Managers`,
-  contactUsButton: `Have more questions? Contact us`,
+  membersHeading: `Candidate questions`,
+  verifiersHeading: `Reviewer questions`,
+  hiringManagersHeading: `Hiring questions`,
+  contactUsButton: `Talk to us`,
 
   // Members FAQ
   members: [
     {
       question: `How does the verification process work?`,
-      answer: `Our multi-step process lets your skills shine—every 
-      submission is reviewed by expert Gurus with real
-       hiring backgrounds (think Google, Netflix, Amazon, Meta).
-        You’ll complete practical assessments, get actionable feedback, and, once verified,
-         your skills are recorded and easily shareable by QR code or direct link—ready for 
-         employers to see in seconds.`,
+      answer: `Complete a practical assessment reviewed by an experienced engineer. Your result and feedback become part of your shareable CV2.0.`,
     },
     {
-      question: `How long does it take to get a skill or skills verified?`,
-      answer: `No more endless waiting. 
-      Most verifications take just 1–3 day, so you can move forward in your job search or unlock new opportunities right away. 
-      Timing depends on the skills and Guru availability, but we keep it fast.`,
+      question: `How long does skill verification take?`,
+      answer: `Most reviews take 1–3 days, depending on the skill and reviewer availability.`,
     },
     {
       question: `Can I update my skills after verification?`,
-      answer: `Absolutely. Add new skills anytime, or ask for re-verification as you level up your CV2.0 evolves with your career. You’re never locked, making ongoing growth and credibility effortless.`,
+      answer: `Yes. Add skills or request another review as you grow; your CV2.0 evolves with your career.`,
     },
     {
       question: `What if I’m not happy with my verification outcome?`,
-      answer: `Your fairness matters. If you feel your skills weren’t evaluated properly, simply file a complaint. We’ll review your case, and if needed, connect you to a different Guru for a fresh, unbiased assessment—so you always have a voice and a path to a fair outcome.`,
+      answer: `You can dispute a result. We will review the case and arrange a fresh assessment when appropriate.`,
     },
     {
-      question: `Can I become a Guru member and earn?`,
-      answer: `Absolutely! Once you've successfully verified your own skills, you can apply to become a Guru. Share your expertise, help others grow, and earn income each time you verify members’ skills. It’s a rewarding way to level up your own reputation, grow your network, and get paid for your experience.`,
+      question: `Can I become a reviewer and earn?`,
+      answer: `Yes. Qualified engineers can apply to review candidates and earn for each completed assessment.`,
     },
     {
       question: `Is my data and code safe? Who can see my verification results?`,
-      answer: `Your privacy and security are at the core of Skill Verdict. 
-      Only your assigned verifiers can see your code and assignment solutions. 
-      Your public CV2.0 and profile will display just the skills you choose and you always control what’s visible to employers or the public. 
-      You’re in charge of your data, your privacy, and every detail of your profile.`,
+      answer: `Only assigned reviewers can access assessment work. You control which results and profile details appear publicly.`,
     },
   ],
 
   // Verifiers FAQ
   verifiers: [
     {
-      question:
-        'How do you prevent a guru member verifying their own skills on their CV2.0?',
-      answer: `
-      We have a strict policy in place to prevent this. When a guru member applies to verify their own skills, 
-      the guru member won't be able to see themselves in the list of available verifiers and the Skill Verdict team will
-      investigate the case, if an attempt at cheating is made`,
+      question: `How do you prevent reviewers from verifying themselves?`,
+      answer: `Reviewers cannot access their own assessments. Suspicious activity is flagged for investigation.`,
     },
     {
-      question: `How much can I earn as a guru member?`,
-      answer: `Your earning power grows with your expertise. For every skill assessment you complete, you earn a share of the verification fee, higher complexity means higher rewards. Track your income and see exactly what you’ve earned in your dashboard. The more you help, the more you earn.`,
+      question: `How much can I earn as a reviewer?`,
+      answer: `Pay varies by the skill and assessment complexity. Earnings are shown clearly in your dashboard.`,
     },
     {
-      question: `What's the time commitment for being a guru member?`,
-      answer: `You’re in control! There’s no minimum time requirement. Take on as many or as few verifications as you want, whenever it fits your schedule. It’s flexible by design, so you can contribute and earn on your terms, no pressure.`,
+      question: `What is the time commitment?`,
+      answer: `There is no minimum. Accept reviews when they fit your schedule.`,
     },
     {
       question: `How does the "AI-assisted dashboard" help me?`,
-      answer: `Our dashboard does the heavy lifting, so you can focus on what matters—mentoring and evaluating. It speeds up code review, flags patterns, organizes your queue, and provides templates for feedback, letting you deliver great, consistent experiences without extra busywork.`,
+      answer: `It organizes reviews, supports code analysis, and provides feedback templates so you can focus on judgment and mentoring.`,
     },
     {
       question: `What happens if a candidate disputes my assessment?`,
-      answer: `We stand by fairness. If a candidate disputes your review, our admins handle the case neutrally and privately. As long as your feedback is fair and constructive, your reputation remains protected. The platform is designed to support both verifiers and candidates, making sure everyone gets a fair process.`,
+      answer: `Our team handles disputes privately and reviews the evidence from both sides.`,
     },
     {
       question: `What payment methods do you support?`,
-      answer: `We will support many payment methods, including bank transfer, Bitcoin, Ethereum, and more. You can view and manage your earnings in your dashboard.`,
+      answer: `Supported methods will be listed at launch, and all earnings will be visible in your dashboard.`,
     },
   ],
 
   hiringManagers: [
     {
       question: `Can I hire entire teams or just individuals?`,
-      answer: `You can hire both pre-formed teams (squads) and individual vetted developers, helping to speed up project launches with ready-to-work groups.`,
+      answer: `Both. Hire an individual engineer or a pre-formed team with complementary verified skills.`,
     },
     {
-      question: `What if a candidate doesn’t meet our skill level?`,
-      answer: `Candidates receive clear feedback and a roadmap to improve, making every assessment a growth opportunity instead of a dead end.`,
+      question: `How do I know a candidate meets our bar?`,
+      answer: `CV2.0 shows the skill assessed, practical evidence, reviewer feedback, and verification result before you interview.`,
     },
     {
       question: `How does peer-validated assessment reduce hiring risk?`,
-      answer: `Traditional interviews often fail to surface true skill, leading to costly bad hires. 
-      With CV 2.0, candidates are evaluated by a decentralized network of qualified engineers and domain experts. 
-      This peer review system ensures that only candidates with proven, real-world abilities receive higher skill tiers.
-       You can trust these credentials because they’re backed by community validation, not just a single company’s flawed process.`,
+      answer: `It adds independent evidence before the interview. You spend less time validating basic claims and more time assessing the role-specific fit.`,
     },
   ],
 } as const
@@ -1683,42 +1644,28 @@ const confirmEmailScreen = {
 }
 
 const personalitySection = {
-  heading: `Personality Tests That Add Depth to Real-World Performance`,
-  description: `You’re not just looking at resumes or polished profiles you’re
-   exploring a talent pool where every candidate has proven their abilities through real, 
-  anonymous project work. This gives you a grounded, trustworthy starting point.
-   But skills alone don’t tell the whole story. 
-   That’s why Skill Verdict also includes personality tests to help you understand how someone works, not just what they can do.`,
+  heading: `Know how they work—not just what they know`,
+  description: `Verified skills show capability. Work-style insights add context on communication, collaboration, and team fit.`,
   cardColumns: [
     {
-      title: `Get an insight to who you are really hiring`,
+      title: `Understand work style`,
       icon: Brain,
-      description: `We use well-known frameworks like the 16-personality test (MBTI), along with other research-backed assessments that measure traits such as communication style, 
-      teamwork, leadership tendencies, adaptability, and decision-making patterns. These tests aren’t treated as rigid labels or stereotypes. 
-      Instead, they offer helpful context—insights into how a person naturally approaches challenges, collaborates with others, or stays motivated.`,
+      description: `See useful context on communication, teamwork, adaptability, and decision-making without reducing people to labels.`,
     },
     {
       title: `Real project results`,
       icon: FileText,
-      description: `When combined with real project results, personality insights paint a fuller, more human picture of each candidate. 
-      You can see whether someone thrives in fast-paced environments, 
-      prefers structured tasks, leads with empathy, or brings a calm, analytical approach to problem-solving.`,
+      description: `Combine practical evidence with work-style insights for a fuller view of each candidate.`,
     },
     {
-      title: `Helping you hire the right people`,
+      title: `Hire for the role and team`,
       icon: Building2,
-      description: `For companies, this means making hiring decisions with greater confidence choosing people not 
-      just for their technical ability, but for the way they’ll fit into teams, communicate, grow, and contribute over time. 
-      You can hire an already pre-built team with the right personality and skills.`,
+      description: `Assess technical ability alongside the collaboration style your environment needs.`,
     },
     {
-      title: `Get the right person for your company culture`,
+      title: `Look beyond a skill list`,
       icon: User,
-      description: ` 
-      Skill Verdict brings skills and personality together to help you hire people who are not only capable,
-      but also genuinely aligned with your culture and the way your team works.
-      For candidates, it means being understood as a person, not just as a list of skills.
-      `,
+      description: `Give candidates a fairer chance to show how they think, communicate, and contribute.`,
     },
   ],
 }
@@ -1728,86 +1675,69 @@ const personalitySection = {
 // ============================================================================
 
 const problem = {
-  heading: `The Problem we solve`,
-  headingHighlight: `Hiring is based on claims. Not proof.`,
+  heading: `Hiring still runs on claims,`,
+  headingHighlight: `not evidence.`,
   description: ``,
   s1: {
-    title: `The tech hiring process runs on claims, not evidence.`,
+    title: `Candidates are asked to claim`,
     description: ``,
     points: [
-      { id: 's1-point-1', text: `You claim to know React` },
-      { id: 's1-point-2', text: `You claim to have worked with AWS` },
-      { id: 's1-point-3', text: `You claim you're senior` },
+      { id: 's1-point-1', text: `Which technologies they know` },
+      { id: 's1-point-2', text: `How senior they are` },
+      { id: 's1-point-3', text: `What they can deliver` },
     ],
   },
   s2: {
-    title: `Companies rely on unverifiable signals to assess candidates.`,
+    title: `Hiring teams are left to guess from`,
     description: ``,
     points: [
-      { id: 's2-point-1', text: `CVs filled with keywords` },
-      { id: 's2-point-2', text: `Job titles that don't reflect real ability` },
+      { id: 's2-point-1', text: `Keyword-heavy CVs` },
+      { id: 's2-point-2', text: `Inconsistent titles and portfolios` },
       {
         id: 's2-point-3',
-        text: `LinkedIn profiles and GitHub links that are hard to evaluate`,
-      },
-      {
-        id: 's2-point-4',
-        text: `Interviews that test talking skills more than building skills`,
+        text: `Short, subjective interviews`,
       },
     ],
   },
-  conclusion: `This creates two big problems:`,
+  conclusion: `The result is predictable:`,
   problem1: {
-    title: `Problem #1 — Skilled developers get ignored`,
-    description: `Developers who are actually good at what they do often`,
+    title: `Strong engineers get overlooked`,
+    description: `Ability is easy to miss when presentation matters more than proof.`,
     reasons: [
       {
         id: 'problem1-reason-1',
-        text: `Don't know how to write impressive resumes`,
+        text: `Good work is hidden behind a weak CV`,
       },
       {
         id: 'problem1-reason-2',
-        text: `Don't have big company names on their CV`,
+        text: `Pedigree outweighs demonstrated skill`,
       },
       {
         id: 'problem1-reason-3',
-        text: `Struggle to "sell themselves" in interviews`,
-      },
-      {
-        id: 'problem1-reason-4',
-        text: `Get filtered out by keyword scanners before a human ever sees them`,
-      },
-      {
-        id: 'problem1-reason-5',
-        text: `Have trouble showing confidence during interviews`,
+        text: `Great builders may not be great self-promoters`,
       },
     ],
-    conclusion: `Their real ability never gets a chance to be seen...`,
+    conclusion: `Real ability never gets seen.`,
   },
   problem2: {
-    title: `Problem #2 — Companies can't trust what they see`,
-    description: `Recruiters and hiring managers face hundreds of applications and still ask`,
+    title: `Companies repeat the same screening`,
+    description: `Hiring teams review hundreds of applications and still ask`,
     quote: `But can this person actually do the work?`,
     reasons: [
-      { id: 'problem2-reason-1', text: `A CV is a description, not evidence` },
-      { id: 'problem2-reason-2', text: `A portfolio is not standardized` },
-      { id: 'problem2-reason-3', text: `Interviews are short and subjective` },
+      { id: 'problem2-reason-1', text: `Every CV needs manual validation` },
       {
-        id: 'problem2-reason-4',
-        text: `There is no reliable way to verify skills before hiring`,
+        id: 'problem2-reason-2',
+        text: `Engineers repeat basic technical screens`,
       },
-      {
-        id: 'problem2-reason-5',
-        text: `Don't know if the candidate will fit in the company's culture`,
-      },
+      { id: 'problem2-reason-3', text: `Bad signals increase hiring risk` },
     ],
-    conclusion: `So companies waste time, money, and hires on guesswork.`,
+    conclusion: `CV2.0 replaces guesswork with evidence validated by experienced peer engineers—not AI or an agency.`,
   },
 }
 
 const explainerVideo = {
-  heading: `Learn in 2 minutes everything about broken hiring processes and`,
-  headingHighlight: `Skill Verdict's solution`,
+  heading: `See why hiring needs`,
+  headingHighlight: `a better signal.`,
 } as const
 
 // ============================================================================

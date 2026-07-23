@@ -10,17 +10,19 @@ import Link from 'next/link'
 
 const AUDIENCE_THEME: Record<
   PageHeroAudience,
-  { highlight: string; bar: string; eyebrow: string }
+  { highlight: string; bar: string; eyebrow: string; trustIcon: string }
 > = {
   companies: {
     highlight: 'from-companies to-companies/60',
     bar: 'bg-linear-to-b from-companies to-companies/60',
     eyebrow: 'text-companies',
+    trustIcon: 'text-purple',
   },
   talent: {
     highlight: 'from-success to-success/60',
     bar: 'bg-linear-to-b from-success to-success/60',
     eyebrow: 'text-success',
+    trustIcon: 'text-success',
   },
 }
 
@@ -177,7 +179,7 @@ export function PageHero({
                   className={cn('flex items-center gap-3')}
                 >
                   <Icon
-                    className={cn('h-5 w-5 text-purple shrink-0')}
+                    className={cn('h-5 w-5 shrink-0', theme.trustIcon)}
                     aria-hidden='true'
                   />
                   <span className={cn('font-medium')}>{indicator.text}</span>

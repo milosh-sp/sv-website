@@ -156,6 +156,9 @@ export const hero = {
   // Accessibility labels
   accessibility: {
     heroSection: `Hero section`,
+    heroActions: `Hero actions`,
+    trustIndicators: `Trust indicators`,
+    heroVisual: `Hero visual CV2.0`,
     openSignupModal: `Navigate to the candidate wait-list`,
     openEarnModal: `Navigate to the verifier wait-list`,
   },
@@ -253,32 +256,73 @@ const benefits = {
 // ============================================================================
 
 const cvPreview = {
-  // Section header
-  heading: `CV2.0: evidence, not claims`,
-  description: `A living profile that combines experience with independently verified skills. Hiring teams see what a candidate can do before the first interview, while candidates control what they share.`,
-  note: `This preview is evolving with feedback from candidates, reviewers, and hiring teams.`,
+  heroHeading: `Your skills,`,
+  heroHeadingHighlight: ` verified and shareable`,
+  heroSubheading: `A living profile that combines experience with independently verified skills. Share one link and let hiring teams see what you can do before the first interview.`,
+  callToAction: `Build your evidence-backed profile.`,
 
-  // CV features
-  features: [
+  trustIndicators: [
     {
-      title: `Share anywhere`,
-      description: `Open a CV2.0 instantly through a direct link or unique QR code.`,
-      icon: QrCode,
+      text: `Peer-verified, not self-reported`,
+      icon: Shield,
     },
+    {
+      text: `Export to PDF or share one link`,
+      icon: FileText,
+    },
+    {
+      text: `Grows with your career`,
+      icon: TrendingUp,
+    },
+  ],
+
+  accessibility: {
+    heroSection: `CV2.0 introduction`,
+    heroVisual: `CV2.0 benefits overview`,
+    heroActions: `CV2.0 actions`,
+    trustIndicators: `CV2.0 trust indicators`,
+    featuresSection: `CV2.0 benefits`,
+    featuresList: `CV2.0 benefits list`,
+    qrVisual: `Verification history QR code illustration`,
+  },
+
+  features: [
     {
       title: `Verified skill badges`,
       description: `See which skills were independently reviewed and how they were proven.`,
       icon: Shield,
+      iconAriaLabel: `Verified skill badges icon`,
+    },
+    {
+      title: `Verification history`,
+      description: `Every verification links to full reviewer evidence—scan the QR or open history anytime.`,
+      icon: QrCode,
+      iconAriaLabel: `Verification history icon`,
+      showQrVisual: true,
+    },
+    {
+      title: `Export & share`,
+      description: `Download as PDF or share one link—your profile goes wherever you do.`,
+      icon: FileText,
+      iconAriaLabel: `Export and share icon`,
+    },
+    {
+      title: `Share anywhere`,
+      description: `Open a CV2.0 instantly through a direct link or unique QR code.`,
+      icon: Send,
+      iconAriaLabel: `Share anywhere icon`,
     },
     {
       title: `Easy to discover`,
       description: `Structured skill data helps recruiters find relevant candidates faster.`,
       icon: Database,
+      iconAriaLabel: `Easy to discover icon`,
     },
     {
       title: `Always up to date`,
       description: `One living profile keeps achievements, reviews, and credentials current.`,
       icon: IdCard,
+      iconAriaLabel: `Always up to date icon`,
     },
   ],
 } as const
@@ -789,7 +833,7 @@ const errorPages = {
     },
     helpfulLinks: {
       title: `Looking for something specific?`,
-      cvPreview: `View CV2.0 Preview`,
+      cvPreview: `Explore CV2.0 for talent`,
       faq: `Frequently Asked Questions`,
       privacyPolicy: `Privacy Policy`,
     },

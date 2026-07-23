@@ -1,4 +1,5 @@
 import type { ComponentType } from 'react'
+import { TALENT_PATH } from '@/lib/consts'
 import { strings } from '@/lib/strings'
 import { BenefitsPageSection } from '@/components/templates/BenefitsPageSection'
 import { CvPreviewPageSection } from '@/components/templates/CvPreviewPageSection'
@@ -14,8 +15,7 @@ import { ProcessPageSection } from '@/components/templates/ProcessPageSection'
 import { PersonalityPageSection } from '@/components/templates/PersonalityPageSection'
 import type { SectionProps } from '@/types/Sections.types'
 
-/** Route of the dedicated candidate + reviewer page. */
-export const TALENT_PATH = '/for-talent-cv2.0'
+export { TALENT_PATH }
 
 export interface NavMenuItem {
   id: string

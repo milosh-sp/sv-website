@@ -1,5 +1,5 @@
 import { strings } from '@/lib/strings'
-import { TALENT_PATH } from '@/lib/navigationData'
+import { TALENT_PATH } from '@/lib/consts'
 import { PageHero } from '@/components/templates/PageHero'
 import { SectionWrapper } from '@/components/templates/SectionWrapper'
 import { cn } from '@/lib/utils'

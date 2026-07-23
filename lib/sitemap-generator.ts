@@ -343,7 +343,8 @@ async function scanComponentsForVideos(
  */
 async function extractComponentImportsFromFile(
   filePath: string,
-  componentsDir: string
+  componentsDir: string,
+  visitedLibFiles: Set<string> = new Set()
 ): Promise<string[]> {
   try {
     const content = await readFile(filePath, 'utf-8')
@@ -384,10 +385,14 @@ async function extractComponentImportsFromFile(
       const libPath = join(process.cwd(), 'lib', match[1])
       // Add .ts extension if not present
       const fullPath = libPath.endsWith('.ts') ? libPath : `${libPath}.ts`
-      // Recursively extract components from lib files
+      if (visitedLibFiles.has(fullPath)) {
+        continue
+      }
+      visitedLibFiles.add(fullPath)
       const libComponents = await extractComponentImportsFromFile(
         fullPath,
-        componentsDir
+        componentsDir,
+        visitedLibFiles
       )
       componentPaths.push(...libComponents)
     }
@@ -433,37 +438,41 @@ async function buildVideoToPageMapping(
    * Uses memoization to avoid re-processing components
    */
   const componentVideoCache = new Map<string, string[]>()
+  const visitingComponents = new Set<string>()
 
   async function getVideosForComponent(
     componentPath: string
   ): Promise<string[]> {
-    // Check cache first
     if (componentVideoCache.has(componentPath)) {
       return componentVideoCache.get(componentPath) ?? []
     }
-
-    const videos: string[] = []
-
-    // Get direct video imports from this component
-    const directVideos = componentVideoMap.get(componentPath) ?? []
-    videos.push(...directVideos)
-
-    // Get component dependencies and recursively find their videos
-    const componentDeps = await extractComponentImportsFromFile(
-      componentPath,
-      componentsDir
-    )
-
-    for (const depPath of componentDeps) {
-      const depVideos = await getVideosForComponent(depPath)
-      videos.push(...depVideos)
+    if (visitingComponents.has(componentPath)) {
+      return []
     }
 
-    // Deduplicate and cache
-    const uniqueVideos = [...new Set(videos)]
-    componentVideoCache.set(componentPath, uniqueVideos)
+    visitingComponents.add(componentPath)
+    try {
+      const videos: string[] = []
 
-    return uniqueVideos
+      const directVideos = componentVideoMap.get(componentPath) ?? []
+      videos.push(...directVideos)
+
+      const componentDeps = await extractComponentImportsFromFile(
+        componentPath,
+        componentsDir
+      )
+
+      for (const depPath of componentDeps) {
+        const depVideos = await getVideosForComponent(depPath)
+        videos.push(...depVideos)
+      }
+
+      const uniqueVideos = [...new Set(videos)]
+      componentVideoCache.set(componentPath, uniqueVideos)
+      return uniqueVideos
+    } finally {
+      visitingComponents.delete(componentPath)
+    }
   }
 
   // Step 2: Scan all page.tsx files to find which components they use

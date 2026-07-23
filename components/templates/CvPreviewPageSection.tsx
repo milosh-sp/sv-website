@@ -1,4 +1,3 @@
-import { CV2TeaserPreview } from '@/components/molecules/CV2TeaserPreview'
 import { PageHero } from '@/components/templates/PageHero'
 import { SectionWrapper } from '@/components/templates/SectionWrapper'
 import { strings } from '@/lib/strings'
@@ -10,12 +9,14 @@ export function CvPreviewPageSection({ id }: SectionProps) {
     <SectionWrapper
       id={id}
       className={cn(
-        'flex justify-center bg-linear-to-b from-accent to-accent/50 py-16 md:py-24 overflow-hidden'
+        'flex justify-center bg-linear-to-b from-success/12 via-accent/40 to-background py-16 md:py-24 overflow-hidden'
       )}
       aria-labelledby='cv-preview-hero-heading'
       aria-describedby='cv-preview-hero-description'
     >
       <PageHero
+        audience='talent'
+        eyebrow={strings.cvPreview.eyebrow}
         headingId='cv-preview-hero-heading'
         descriptionId='cv-preview-hero-description'
         mainHeading={strings.cvPreview.heroHeading}
@@ -30,7 +31,6 @@ export function CvPreviewPageSection({ id }: SectionProps) {
         }}
         showCandidate
         showVerifier
-        visual={<CV2TeaserPreview showVerificationHistory />}
       />
     </SectionWrapper>
   )

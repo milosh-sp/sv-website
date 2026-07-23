@@ -12,12 +12,14 @@ export function HeroPageSection({ id }: SectionProps) {
       <SectionWrapper
         id={id}
         className={cn(
-          'flex justify-center bg-linear-to-b from-accent to-accent/50 py-16 md:py-24'
+          'flex justify-center bg-linear-to-b from-companies/12 via-accent/40 to-background py-16 md:py-24'
         )}
         aria-labelledby='hero-heading'
         aria-describedby='hero-description'
       >
         <PageHero
+          audience='companies'
+          eyebrow={strings.hero.eyebrow}
           headingId='hero-heading'
           descriptionId='hero-description'
           mainHeading={strings.hero.mainHeading}

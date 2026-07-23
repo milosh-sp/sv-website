@@ -3,10 +3,29 @@ import { Text } from '@/components/atoms/Text'
 import { HeroButtons } from '@/components/molecules/HeroButtons'
 import { HeroVisual } from '@/components/organisms/HeroVisual'
 import { cn } from '@/lib/utils'
-import type { PageHeroProps } from '@/types/PageHero.types'
+import type { PageHeroAudience, PageHeroProps } from '@/types/PageHero.types'
+
 import Link from 'next/link'
 
+const AUDIENCE_THEME: Record<
+  PageHeroAudience,
+  { highlight: string; bar: string; eyebrow: string }
+> = {
+  companies: {
+    highlight: 'from-companies to-companies/60',
+    bar: 'bg-linear-to-b from-companies to-companies/60',
+    eyebrow: 'text-companies',
+  },
+  talent: {
+    highlight: 'from-success to-success/60',
+    bar: 'bg-linear-to-b from-success to-success/60',
+    eyebrow: 'text-success',
+  },
+}
+
 export function PageHero({
+  audience,
+  eyebrow,
   headingId,
   descriptionId,
   mainHeading,
@@ -19,8 +38,9 @@ export function PageHero({
   showCandidate,
   showVerifier,
   secondaryPrompt,
-  visual,
 }: PageHeroProps) {
+  const theme = AUDIENCE_THEME[audience]
+
   return (
     <div className={cn('max-w-400 mx-auto px-4')}>
       <article
@@ -33,17 +53,25 @@ export function PageHero({
             className={cn('flex gap-4 mb-8 justify-center lg:justify-start')}
           >
             <div
-              className={cn(
-                'hidden lg:block w-1 bg-linear-to-b from-primary to-primary/60 rounded-full'
-              )}
+              className={cn('hidden lg:block w-1 rounded-full', theme.bar)}
               aria-hidden='true'
             />
             <div>
+              <Text
+                variant='caption'
+                className={cn(
+                  'mb-3 font-semibold uppercase tracking-widest',
+                  theme.eyebrow
+                )}
+              >
+                {eyebrow}
+              </Text>
               <Heading level={1} variant='display' id={headingId}>
                 {mainHeading}
                 <strong
                   className={cn(
-                    'bg-linear-to-r from-primary to-primary/60 bg-clip-text text-transparent'
+                    'bg-linear-to-r bg-clip-text text-transparent',
+                    theme.highlight
                   )}
                 >
                   {mainHeadingHighlight}
@@ -136,7 +164,7 @@ export function PageHero({
           className={cn('animate-fade-in-up w-full')}
           aria-label={accessibility.heroVisual}
         >
-          {visual ?? <HeroVisual />}
+          <HeroVisual />
         </figure>
       </article>
     </div>

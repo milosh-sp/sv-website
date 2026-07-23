@@ -1,5 +1,4 @@
 import type { LucideIcon } from 'lucide-react'
-import type { ReactNode } from 'react'
 
 export type PageHeroTrustIndicator = {
   text: string
@@ -18,7 +17,11 @@ export type PageHeroSecondaryPrompt = {
   href: string
 }
 
+export type PageHeroAudience = 'companies' | 'talent'
+
 export type PageHeroProps = {
+  audience: PageHeroAudience
+  eyebrow: string
   headingId: string
   descriptionId: string
   mainHeading: string
@@ -31,5 +34,4 @@ export type PageHeroProps = {
   showCandidate?: boolean
   showVerifier?: boolean
   secondaryPrompt?: PageHeroSecondaryPrompt
-  visual?: ReactNode
 }

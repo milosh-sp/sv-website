@@ -117,6 +117,8 @@ const navigation = {
 // ============================================================================
 
 export const hero = {
+  // Audience eyebrow (companies)
+  eyebrow: `For hiring teams`,
   // Main hero content
   mainHeading: `Hire engineers whose skills are`,
   /**
@@ -256,6 +258,8 @@ const benefits = {
 // ============================================================================
 
 const cvPreview = {
+  // Audience eyebrow (engineers + reviewers)
+  eyebrow: `For engineers & reviewers`,
   heroHeading: `Your skills,`,
   heroHeadingHighlight: ` verified and shareable`,
   heroSubheading: `A living profile that combines experience with independently verified skills. Share one link and let hiring teams see what you can do before the first interview.`,

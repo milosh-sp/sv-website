@@ -26,6 +26,7 @@ export function HeroPageSection({ id }: SectionProps) {
           mainHeadingHighlight={strings.hero.mainHeadingHighlight}
           subHeading={strings.hero.subHeading}
           callToAction={strings.hero.callToAction}
+          ctaBadge={strings.hero.ctaBadge}
           trustIndicators={strings.hero.trustIndicators}
           accessibility={{
             heroActions: strings.hero.accessibility.heroActions,

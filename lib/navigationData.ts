@@ -8,6 +8,9 @@ import {
   FaqPageSection,
 } from '@/components/templates/FaqPageSection'
 import { HeroPageSection } from '@/components/templates/HeroPageSection'
+import { StatsBandPageSection } from '@/components/templates/StatsBandPageSection'
+import { AiSearchPageSection } from '@/components/templates/AiSearchPageSection'
+import { DifferentiatorsPageSection } from '@/components/templates/DifferentiatorsPageSection'
 import { ProcessPageSection } from '@/components/templates/ProcessPageSection'
 import { PersonalityPageSection } from '@/components/templates/PersonalityPageSection'
 import { ProblemPageSection } from '@/components/templates/ProblemPageSection'
@@ -38,14 +41,14 @@ export const headerMenus: readonly NavMenu[] = [
     label: strings.navigation.menu.companies,
     items: [
       {
-        id: 'company-discovery',
-        label: strings.navigation.companyMenu.howItWorks,
-        href: '/#company-discovery',
+        id: 'ai-search',
+        label: strings.navigation.companyMenu.smartSearch,
+        href: '/#ai-search',
       },
       {
-        id: 'problem',
-        label: strings.navigation.companyMenu.interviewProcess,
-        href: '/#problem',
+        id: 'differentiators',
+        label: strings.navigation.companyMenu.whyDifferent,
+        href: '/#differentiators',
       },
       {
         id: 'personality-cv',
@@ -107,8 +110,9 @@ export interface PageSection {
 /** Homepage = company-facing. Order here is the render order. */
 export const homePageSections: readonly PageSection[] = [
   { id: 'home', Component: HeroPageSection },
-  { id: 'company-discovery', Component: CompanyDiscoveryPageSection },
-  { id: 'problem', Component: ProblemPageSection },
+  { id: 'stats', Component: StatsBandPageSection },
+  { id: 'ai-search', Component: AiSearchPageSection },
+  { id: 'differentiators', Component: DifferentiatorsPageSection },
   { id: 'personality-cv', Component: PersonalityPageSection },
   { id: 'faq', Component: FaqPageSection, props: { variant: 'companies' } },
 ]

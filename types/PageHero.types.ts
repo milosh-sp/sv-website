@@ -28,6 +28,7 @@ export type PageHeroProps = {
   mainHeadingHighlight: string
   subHeading: string
   callToAction: string
+  ctaBadge?: string
   trustIndicators: readonly PageHeroTrustIndicator[]
   accessibility: PageHeroAccessibility
   showHiringManager?: boolean

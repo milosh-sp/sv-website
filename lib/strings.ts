@@ -84,6 +84,8 @@ const navigation = {
 
   // "For companies" dropdown items (all on the homepage)
   companyMenu: {
+    smartSearch: `Smart AI search`,
+    whyDifferent: `Why Skill Verdict is different`,
     howItWorks: `How Skill Verdict works`,
     interviewProcess: `The interview process`,
     personality: `Personality`,
@@ -120,38 +122,41 @@ export const hero = {
   // Audience eyebrow (companies)
   eyebrow: `For hiring teams`,
   // Main hero content
-  mainHeading: `Hire engineers whose skills are`,
+  mainHeading: `Hire international top talent,`,
   /**
    * Will be placed next to the main heading to the right side, with a gradient applied
    */
-  mainHeadingHighlight: ` already proven`,
-  subHeading: `Every candidate has a CV2.0 with skills verified by experienced peer engineers—not AI, not an agency, not self-reported. Interview the people worth your time.`,
-  callToAction: `Start hiring with evidence.`,
+  mainHeadingHighlight: ` peer-vetted.`,
+  subHeading: `Every candidate skills and personality is vetted by senior engineers who do the work themselves. Stricter than a screening call, sourced from real peers, not self-reported. Hire already interviewed talent, ideal for fast paced start ups.`,
+  callToAction: `Simply paste a job description and meet your shortlist.`,
+
+  // Prominent pricing badge shown under the primary hero actions
+  ctaBadge: `$0 until you hire`,
 
   // Secondary prompt directing candidates/reviewers to the talent page
-  talentPrompt: `Looking to get verified or review work?`,
+  talentPrompt: `Looking to join as talent or talent vetter?`,
   talentLinkText: `For talent CV2.0`,
 
   // Action buttons
   buttons: {
     verifySkills: `Get hired`,
     earnByVerifying: `Become a reviewer`,
-    hireMeNow: `Hire verified talent`,
+    hireMeNow: `Hire vetted talent`,
   },
 
   // Trust indicators with embedded icons
   trustIndicators: [
     {
-      text: `Fewer screening rounds`,
+      text: `Peer-vetted, ready to get hired`,
       icon: Shield,
     },
     {
-      text: `Real skills, peer-verified`,
-      icon: Clock,
+      text: `Anonymous, bias-free vetting`,
+      icon: Users,
     },
     {
-      text: `Evidence before interviews`,
-      icon: UserCheck,
+      text: `Shortlist in few minutes`,
+      icon: Clock,
     },
   ],
 
@@ -299,14 +304,14 @@ const cvPreview = {
     },
     {
       title: `Verification history`,
-      description: `Every verification links to full reviewer evidence—scan the QR or open history anytime.`,
+      description: `Every verification links to full reviewer evidence, scan the QR or open history anytime.`,
       icon: QrCode,
       iconAriaLabel: `Verification history icon`,
       showQrVisual: true,
     },
     {
       title: `Export & share`,
-      description: `Download as PDF or share one link—your profile goes wherever you do.`,
+      description: `Download as PDF or share one link, your profile goes wherever you do.`,
       icon: FileText,
       iconAriaLabel: `Export and share icon`,
     },
@@ -339,29 +344,29 @@ const companyDiscovery = {
   // Section content
   icon: Building2,
   iconAriaLabel: `Building icon for company discovery`,
-  heading: `Spend less time screening. More time hiring.`,
-  description: `Meet engineers whose skills have already been tested through real work and validated by experienced peer engineers—not AI or an agency.`,
+  heading: `Spend less. Hire faster.`,
+  description: `Meet engineers whose skills are peer-vetted by senior engineers, not AI, not an agency, not self-reported.`,
   // Benefits list
   benefits: [
     {
       title: `See proven ability`,
-      description: `CV2.0 shows verified skills, practical work, and reviewer evidence at a glance.`,
+      description: `Every CV2.0 shows peer-vetted skills, real work, and reviewer evidence at a glance.`,
       icon: UserCheck,
     },
     {
-      title: `Shorten time-to-hire`,
-      description: `Skip repetitive screening and interview candidates who already meet the bar.`,
+      title: `Ready to hire, day one`,
+      description: `Pre-vetted talent is ready to start, perfect for startups where time and resources are limited.`,
       icon: Clock,
     },
 
     {
-      title: `Find overlooked talent`,
-      description: `Anonymous reviews surface ability regardless of pedigree, background, or location.`,
+      title: `Hire globally, spend less`,
+      description: `Outsource with confidence to peer-vetted overseas talent and cut spend by up to 58% versus local hiring.`,
       icon: Globe,
     },
     {
       title: `Reach the right people`,
-      description: `Search by verified skills and contact qualified candidates directly.`,
+      description: `Paste a job description and let AI surface qualified, peer-vetted matches.`,
       icon: Search,
     },
   ],
@@ -508,16 +513,20 @@ const faq = {
 
   hiringManagers: [
     {
+      question: `How does the smart AI search work?`,
+      answer: `Paste a job description and your requirements and our AI instantly surfaces peer-vetted candidates whose personality and skills match. It is up to you who to hire or do additional interviews.`,
+    },
+    {
       question: `Can I hire entire teams or just individuals?`,
-      answer: `Both. Hire an individual engineer or a pre-formed team with complementary verified skills.`,
+      answer: `Both. Hire an individual engineer or a pre-formed team with complementary peer-vetted skills. You can ask our AI team builder to find the best fit for your team by mix and matching the right personalities and skills for the role.`,
     },
     {
       question: `How do I know a candidate meets our bar?`,
-      answer: `CV2.0 shows the skill assessed, practical evidence, reviewer feedback, and verification result before you interview.`,
+      answer: `Each CV2.0 shows the skill assessed, practical evidence, reviewer feedback, and a work-style read before you hire, additionally you can interview the candidate.`,
     },
     {
-      question: `How does peer-validated assessment reduce hiring risk?`,
-      answer: `It adds independent evidence before the interview. You spend less time validating basic claims and more time assessing the role-specific fit.`,
+      question: `How do you keep hiring fair and unbiased?`,
+      answer: `Reviewers assess the work anonymously, not the name, background, or location, which surfaces overlooked talent and reduces bias.`,
     },
   ],
 } as const
@@ -1415,7 +1424,7 @@ const waitlistForms = {
   // Page headers for waitlist forms
   pageHeaders: {
     candidate: {
-      title: `Get Discovered — Unlock Opportunities!`,
+      title: `Get Discovered, Unlock Opportunities!`,
       description: `Answer few simple questions, and be the first to get exclusive early access to Skill Verdict, and get special founder's perks`,
     },
     verifier: {
@@ -1692,7 +1701,7 @@ const confirmEmailScreen = {
 }
 
 const personalitySection = {
-  heading: `Know how they work—not just what they know`,
+  heading: `Know how they work, not just what they know`,
   description: `Verified skills show capability. Work-style insights add context on communication, collaboration, and team fit.`,
   cardColumns: [
     {
@@ -1779,13 +1788,94 @@ const problem = {
       },
       { id: 'problem2-reason-3', text: `Bad signals increase hiring risk` },
     ],
-    conclusion: `CV2.0 replaces guesswork with evidence validated by experienced peer engineers—not AI or an agency.`,
+    conclusion: `CV2.0 replaces guesswork with evidence validated by experienced peer engineers, not AI or an agency.`,
   },
 }
 
 const explainerVideo = {
-  heading: `See why hiring needs`,
-  headingHighlight: `a better signal.`,
+  heading: `Find out how peer-vetted talent is`,
+  headingHighlight: `help you find the best fit.`,
+} as const
+
+// ============================================================================
+// STATS BAND SECTION
+// ============================================================================
+
+const stats = {
+  heading: `Why choose us?`,
+  items: [
+    { value: `$0`, label: `until you hire` },
+    { value: `61%`, label: `lower cost vs traditional hiring` },
+    { value: `5 min`, label: `to get already interviewed talent` },
+    { value: `100%`, label: `human-first vetting` },
+  ],
+} as const
+
+// ============================================================================
+// SMART AI SEARCH SECTION
+// ============================================================================
+
+const aiSearch = {
+  eyebrow: `Smart AI search`,
+  heading: `Paste a job description.`,
+  headingHighlight: ` Meet your shortlist fit for the role.`,
+  description: `Our AI reads your role and instantly surfaces candidates who are already peer-vetted, using personality matching and skills as parameters. No boolean filters, no resume piles.`,
+  humanFirst: `AI does the searching. Humans do the vetting.`,
+  placeholder: `Paste your job description...`,
+  cta: `Try smart search`,
+  points: [
+    {
+      title: `Instant matches`,
+      description: `Paste a job description and get ranked, peer-vetted candidates in seconds.`,
+      icon: Search,
+    },
+    {
+      title: `Human-first vetting`,
+      description: `AI narrows the field, senior engineers confirm real ability.`,
+      icon: UserCheck,
+    },
+    {
+      title: `No time wasted`,
+      description: `Skip initial screening or potentially full interview processes.`,
+      icon: Clock,
+    },
+  ],
+  accessibility: {
+    section: `Smart AI search for peer-vetted candidates`,
+    inputMock: `Job description search preview`,
+  },
+} as const
+
+// ============================================================================
+// DIFFERENTIATORS SECTION
+// ============================================================================
+
+const differentiators = {
+  heading: `Why Skill Verdict is different`,
+  description: `A talent marketplace, but with a stricter, peer-sourced bar and a fuller picture of every candidate.`,
+  iconAriaLabel: `Star icon for Skill Verdict differentiators`,
+  cards: [
+    {
+      title: `Candidates are already screened for you`,
+      description: `Candidates are vetted by senior engineers who do the work themselves, a higher bar than a screening call or an agency.`,
+      icon: Users,
+    },
+    {
+      title: `Personality on the CV2.0`,
+      description: `Verified skills come with a work-style read on communication, collaboration, and decision-making, so you hire for the role and the team.`,
+      icon: Brain,
+    },
+    {
+      title: `Anonymous and bias-free`,
+      description: `Reviewers assess the work, not the name, background, or location, surfacing overlooked talent and reducing bias.`,
+      icon: Shield,
+    },
+    {
+      title: `Verifiable CV2.0`,
+      description: `Peer-vetted skills with linked reviewer evidence and full verification history, shareable via one link.`,
+      icon: QrCode,
+    },
+  ],
 } as const
 
 // ============================================================================
@@ -1816,4 +1906,7 @@ export const strings = {
   confirmEmailScreen,
   personalitySection,
   problem,
+  stats,
+  aiSearch,
+  differentiators,
 }

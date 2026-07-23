@@ -5,6 +5,7 @@ import { HeroVisual } from '@/components/organisms/HeroVisual'
 import { cn } from '@/lib/utils'
 import type { PageHeroAudience, PageHeroProps } from '@/types/PageHero.types'
 
+import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 
 const AUDIENCE_THEME: Record<
@@ -32,6 +33,7 @@ export function PageHero({
   mainHeadingHighlight,
   subHeading,
   callToAction,
+  ctaBadge,
   trustIndicators,
   accessibility,
   showHiringManager,
@@ -115,22 +117,47 @@ export function PageHero({
               showCandidate={showCandidate}
               showVerifier={showVerifier}
             />
+
+            {ctaBadge && (
+              <span
+                className={cn(
+                  '-mt-6 inline-flex items-center gap-2 self-center lg:self-start rounded-full',
+                  'bg-companies/10 px-4 py-1.5 text-sm font-semibold text-companies'
+                )}
+              >
+                <span
+                  className={cn('h-2 w-2 rounded-full bg-companies')}
+                  aria-hidden='true'
+                />
+                {ctaBadge}
+              </span>
+            )}
           </nav>
 
           {secondaryPrompt && (
             <Text
               variant='body'
-              className={cn('mb-12 text-center lg:text-left')}
+              className={cn(
+                'mb-12 flex flex-wrap items-center justify-center gap-x-2 gap-y-3 lg:justify-start'
+              )}
             >
               {secondaryPrompt.prompt}{' '}
               <Link
                 href={secondaryPrompt.href}
                 className={cn(
-                  'font-semibold text-primary hover:underline underline-offset-4'
+                  'group inline-flex items-center gap-2 rounded-full border border-success/30 bg-success/10',
+                  'px-4 py-1.5 font-semibold text-success shadow-sm transition-all',
+                  'hover:border-success/50 hover:bg-success/15 hover:shadow-md',
+                  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-success/50'
                 )}
               >
                 {secondaryPrompt.linkText}
-                <span aria-hidden='true'> &rarr;</span>
+                <ArrowRight
+                  className={cn(
+                    'h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1'
+                  )}
+                  aria-hidden='true'
+                />
               </Link>
             </Text>
           )}
@@ -150,7 +177,7 @@ export function PageHero({
                   className={cn('flex items-center gap-3')}
                 >
                   <Icon
-                    className={cn('h-5 w-5 text-success shrink-0')}
+                    className={cn('h-5 w-5 text-purple shrink-0')}
                     aria-hidden='true'
                   />
                   <span className={cn('font-medium')}>{indicator.text}</span>

@@ -135,9 +135,9 @@ export function NavDropdown({
           <ul
             className={cn(
               'flex flex-col gap-1 p-2 list-none m-0',
-              'bg-white/95 backdrop-blur-md',
+              'bg-white',
               'border border-slate-200/50 rounded-lg shadow-lg',
-              'animate-fade-in-scale'
+              'animate-nav-dropdown-in'
             )}
           >
             {items.map((item) => (

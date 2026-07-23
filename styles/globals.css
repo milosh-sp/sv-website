@@ -230,6 +230,19 @@ html {
   animation: fadeInScale 0.5s ease-out;
 }
 
+@keyframes navDropdownIn {
+  from {
+    transform: scale(0.98);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.animate-nav-dropdown-in {
+  animation: navDropdownIn 0.15s ease-out;
+}
+
 .animate-slide-in-left {
   animation: slideInLeft 0.6s ease-out;
 }

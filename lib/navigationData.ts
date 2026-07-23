@@ -1,7 +1,6 @@
 import type { ComponentType } from 'react'
 import { strings } from '@/lib/strings'
 import { BenefitsPageSection } from '@/components/templates/BenefitsPageSection'
-import { CompanyDiscoveryPageSection } from '@/components/templates/CompanyDiscoveryPageSection'
 import { CvPreviewPageSection } from '@/components/templates/CvPreviewPageSection'
 import {
   type FaqVariant,
@@ -13,7 +12,6 @@ import { AiSearchPageSection } from '@/components/templates/AiSearchPageSection'
 import { DifferentiatorsPageSection } from '@/components/templates/DifferentiatorsPageSection'
 import { ProcessPageSection } from '@/components/templates/ProcessPageSection'
 import { PersonalityPageSection } from '@/components/templates/PersonalityPageSection'
-import { ProblemPageSection } from '@/components/templates/ProblemPageSection'
 import type { SectionProps } from '@/types/Sections.types'
 
 /** Route of the dedicated candidate + reviewer page. */

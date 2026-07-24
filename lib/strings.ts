@@ -172,8 +172,8 @@ export const hero = {
 // ============================================================================
 const benefits = {
   // Section header
-  heading: `Why talent chooses`,
-  headingHighlight: `CV2.0`,
+  heading: `Benefits of joining`,
+  headingHighlight: `Skill Verdict`,
   description: `A vetted, live profile you own, so remote companies find you and the right role comes to you.`,
 
   // Tab labels
@@ -197,7 +197,7 @@ const benefits = {
     benefits: [
       {
         title: `Vetting you own, live anywhere`,
-        description: `Your verified skills live on a page you control. Share one link or QR on any job board, profile, or email, always current.`,
+        description: `Your verified skills live on a page you control. Share one link or QR on any job board, profile, or email, always current. You are in full control of your privacy`,
         icon: Send,
       },
       {
@@ -207,7 +207,7 @@ const benefits = {
       },
       {
         title: `Land your next role faster`,
-        description: `A proof-backed profile gives hiring teams what they need up front, shortening the path from match to offer.`,
+        description: `A proof-backed profile gives hiring teams what they need up front, shortening the path from match to offer. Possibility skipping the whole interview.`,
         icon: Rocket,
       },
       {
@@ -263,9 +263,9 @@ const benefits = {
 const cvPreview = {
   // Audience eyebrow (engineers + reviewers)
   eyebrow: `For engineers & reviewers`,
-  heroHeading: `Your skills,`,
-  heroHeadingHighlight: ` verified and shareable`,
-  heroSubheading: `A live page you own: independently vetted skills you can share on any job board, profile, or link. Companies discover you when your skills match, and you stay open to remote roles worldwide, no endless applications.`,
+  heroHeading: `Don't chase, attract your next role`,
+  heroHeadingHighlight: ` with your CV2.0`,
+  heroSubheading: `With Skill Verdict's passive discovery companies come to you. Your CV2.0 is proof that you are fit for the role you want, possibility skipping interviews since you already been interviewed once.`,
   callToAction: `Build your CV2.0 and let remote companies find you.`,
 
   trustIndicators: [
@@ -391,7 +391,7 @@ const process = {
   },
   description: {
     members: `Build a live CV2.0 with skills independently verified through practical work, then share it anywhere and let remote companies find you.`,
-    guruMembers: `Assess real engineering work remotely, give useful feedback, and earn on your own schedule.`,
+    guruMembers: `Assess real engineering work remotely, give useful feedback, and earn income on your own schedule.`,
   },
 
   // Tab labels
@@ -403,23 +403,23 @@ const process = {
   // Process steps for members
   memberSteps: [
     {
-      title: `1. Create your profile`,
-      description: `Connect your experience and portfolio to create your CV2.0.`,
+      title: `1. Create your account and upload your CV`,
+      description: `Your CV will be upgraded to CV2.0 in seconds, it becomes a live page you own, you can share it anywhere.`,
       icon: FileText,
     },
     {
-      title: `2. Choose your assessment`,
-      description: `Select what you want verified and begin a practical assessment.`,
+      title: `2. Prepare for verification`,
+      description: `Choose what you want to verify first skills, identity, work experience, etc.`,
       icon: Brain,
     },
     {
       title: `3. Prove your ability`,
-      description: `Complete real-world work and discuss it with an experienced reviewer.`,
+      description: `Complete real-world work and discuss it with an senior reviewer.`,
       icon: Video,
     },
     {
-      title: `4. Earn verification`,
-      description: `Add the result and reviewer feedback to your CV2.0.`,
+      title: `4. Final verdict`,
+      description: `After final verdict is received you get a badge can you can show or hide on your CV2.0`,
       icon: CheckCircle,
     },
   ],
@@ -472,10 +472,6 @@ const faq = {
     {
       question: `Do companies find me, or do I have to apply?`,
       answer: `Companies discover you. When your peer-vetted skills match a role, hiring teams reach out, so you can stay open to remote opportunities without endless applications.`,
-    },
-    {
-      question: `How does the verification process work?`,
-      answer: `Complete a practical assessment reviewed by an experienced engineer. Your result and feedback become part of your shareable CV2.0.`,
     },
     {
       question: `How long does skill verification take?`,

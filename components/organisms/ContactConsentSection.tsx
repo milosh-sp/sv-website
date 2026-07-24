@@ -12,6 +12,7 @@ export function ContactConsentSection({
   email,
   linkedIn = '',
   githubGitlabUrl = '',
+  companyName = '',
   companyUrl = '',
   newsletterOptIn,
   fields,
@@ -21,6 +22,7 @@ export function ContactConsentSection({
   onEmailChange,
   onLinkedInChange,
   onGitHubGitlabUrlChange,
+  onCompanyNameChange,
   onCompanyUrlChange,
   onNewsletterOptInChange,
   className,
@@ -39,6 +41,7 @@ export function ContactConsentSection({
   const showGitHubGitlab = fields?.includes('githubGitlabUrl')
   const showNewsletter = !fields || fields.includes('newsletterOptIn')
   const showCompanyUrl = fields?.includes('companyUrl')
+  const showCompanyName = fields?.includes('companyName')
   const showName = fields?.includes('name')
 
   return (
@@ -58,6 +61,22 @@ export function ContactConsentSection({
           icon={<User className={cn('w-5 h-5')} />}
           label={strings.waitlistForms.fields.name.label}
           ariaDescribedBy='name-error'
+        />
+      )}
+
+      {/* Company Name Field - Conditional */}
+      {showCompanyName && (
+        <FormField
+          id='companyName'
+          type='text'
+          placeholder={strings.waitlistForms.fields.companyName.placeholder}
+          value={companyName}
+          onChange={(e) => onCompanyNameChange?.(e.target.value)}
+          error={errors.companyName}
+          disabled={isSubmitting}
+          icon={<Building className={cn('w-5 h-5')} />}
+          label={strings.waitlistForms.fields.companyName.label}
+          ariaDescribedBy='companyName-error'
         />
       )}
 

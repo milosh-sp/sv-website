@@ -50,6 +50,7 @@ interface CandidateFormFields extends TechnicalProfileFormFields {
 
 // Hiring Manager form fields
 interface HiringManagerFormFields extends FormFields {
+  companyName?: string
   managerRole?: string
   fundingStage?: string
   engineeringTeamSize?: string

@@ -1511,7 +1511,7 @@ const waitlistForms = {
     },
     'hiring-manager': {
       title: `You just tapped into the world's best talent!`,
-      description: `Thank you for showing interest in community verified talent. We’ll connect you with the first group of thoroughly verified candidates as soon as we go live, helping you hire with confidence from day one.`,
+      description: `Thank you for showing interest in peer vetted talent. We’ll connect you with the first group of thoroughly verified candidates as soon as we go live, helping you hire with confidence from day one.`,
       checkEmailMessage: `Keep a look at your inbox, we will keep you updated, and not spam you.`,
       backToHomepage: `Learn more about Skill Verdict`,
     },
@@ -1522,8 +1522,12 @@ const waitlistForms = {
     name: {
       label: `Name`,
       placeholder: `How should we call you? (optional)`,
-      companyPlaceholder: `Company name (optional)`,
       ariaLabel: `Name field`,
+    },
+    companyName: {
+      label: `Company Name`,
+      placeholder: `Company name (optional)`,
+      ariaLabel: `Company name field`,
     },
     email: {
       label: `Email Address`,

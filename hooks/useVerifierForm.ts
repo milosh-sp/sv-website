@@ -70,9 +70,6 @@ export function useVerifierForm(config?: UseVerifierFormConfig) {
 
     try {
       await form.handleSubmit(e)
-      if (form.submitStatus === 'success') {
-        context.setSubmitStatus('success')
-      }
     } finally {
       context.setIsSubmitting(false)
     }

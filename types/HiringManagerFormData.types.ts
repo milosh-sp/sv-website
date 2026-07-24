@@ -1,6 +1,7 @@
 interface HiringManagerFormData extends Record<string, string> {
   // Step 1: Contact Information (NO LinkedIn or GitHub required)
   email: string
+  companyName: string
   companyUrl: string
   newsletterOptIn: string // Stored as 'true' or 'false'
 
@@ -28,6 +29,7 @@ interface HiringManagerFormStep {
 
 const INITIAL_HIRING_MANAGER_FORM_DATA: HiringManagerFormData = {
   email: '',
+  companyName: '',
   newsletterOptIn: 'false',
   managerRole: '',
   fundingStage: '',

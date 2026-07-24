@@ -26,6 +26,7 @@ export function useHiringManagerForm(config?: UseHiringManagerFormConfig) {
       return submitUnifiedForm({
         formType: 'hiring-manager',
         email: formData.email,
+        companyName: formData.companyName,
         companyUrl: formData.companyUrl,
         managerRole: formData.managerRole,
         fundingStage: formData.fundingStage,
@@ -64,9 +65,6 @@ export function useHiringManagerForm(config?: UseHiringManagerFormConfig) {
 
     try {
       await form.handleSubmit(e)
-      if (form.submitStatus === 'success') {
-        context.setSubmitStatus('success')
-      }
     } finally {
       context.setIsSubmitting(false)
     }

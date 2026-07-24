@@ -70,9 +70,6 @@ export function useCandidateForm(config?: UseCandidateFormConfig) {
 
     try {
       await form.handleSubmit(e)
-      if (form.submitStatus === 'success') {
-        context.setSubmitStatus('success')
-      }
     } finally {
       context.setIsSubmitting(false)
     }

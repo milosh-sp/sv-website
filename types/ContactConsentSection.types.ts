@@ -6,6 +6,7 @@ interface ContactConsentSectionProps
   email: string
   linkedIn?: string
   githubGitlabUrl?: string
+  companyName?: string
   companyUrl?: string
   newsletterOptIn: string | boolean // Accept both for compatibility
   fields?: string[] // New: array of field names to render
@@ -15,6 +16,7 @@ interface ContactConsentSectionProps
   onEmailChange: (value: string) => void
   onLinkedInChange?: (value: string) => void
   onGitHubGitlabUrlChange?: (value: string) => void
+  onCompanyNameChange?: (value: string) => void
   onCompanyUrlChange?: (value: string) => void
   onNewsletterOptInChange: (checked: boolean) => void
   namePlaceholder?: string

@@ -927,10 +927,13 @@ const cvSampleData = {
     personality: `Personality`,
   },
   skills: [
-    { name: `Docker`, verified: `unverified` },
+    {
+      name: `Docker`,
+      verified: `unverified`,
+    },
     {
       name: `JavaScript`,
-      verified: `pending`,
+      verified: `unverified`,
       verifier: `Sarah Chen - Senior Developer at Google`,
     },
     { name: `Node.js`, verified: `pending` },
@@ -956,15 +959,15 @@ const cvSampleData = {
       degree: `MSc Computer Science`,
       institution: `Harvard University`,
       period: `2014 - 2016`,
-      verified: `unverified`,
+      verified: `verified`,
+      verifier: `David Malan - Professor at Harvard University`,
     },
     {
       name: `BSc Software Engineering`,
       degree: `BSc Software Engineering`,
       institution: `Oxford University`,
       period: `2010 - 2014`,
-      verified: `verified`,
-      verifier: `Peter Tufano - Professor at Oxford University`,
+      verified: `unverified`,
     },
   ],
   experience: [

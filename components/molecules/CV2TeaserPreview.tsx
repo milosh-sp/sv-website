@@ -8,7 +8,7 @@ export function CV2TeaserPreview() {
   return (
     <div
       className={cn(
-        'relative h-140 w-full overflow-hidden rounded-xl sm:h-170',
+        'relative h-160 w-full overflow-hidden rounded-xl sm:h-170',
         'bg-white border border-slate-200 shadow-2xl'
       )}
     >

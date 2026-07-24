@@ -3,7 +3,7 @@ import type {
   FormFields,
   SenderNetErrorResponse,
   SenderNetSubscriber,
-} from '../../types/netlify.types'
+} from '@/types/netlify.types'
 import { CORS_HEADERS } from './response-builder'
 
 const SENDER_API_URL = 'https://api.sender.net/v2'

@@ -5,7 +5,7 @@ import { FormField } from '@/components/molecules/FormField'
 import { strings } from '@/lib/strings'
 import { cn } from '@/lib/utils'
 import type { ContactConsentSectionProps } from '@/types/ContactConsentSection.types'
-import { PrivacyPolicyConsent } from '../molecules/PrivacyPolicyConsent'
+import { PrivacyPolicyConsent } from '@/components/molecules/PrivacyPolicyConsent'
 
 export function ContactConsentSection({
   name,

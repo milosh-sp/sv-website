@@ -1,6 +1,19 @@
 import type { ApiResponse } from '@/types/api.types'
 import type { UnifiedFormSubmissionData } from '@/types/netlify.types'
 import { convertKeysToSnakeCase } from '@/lib/utils/convertToSnakeCase'
+import { strings } from '@/lib/strings'
+
+const clientErrors = strings.apiResponses.client
+
+function formatClientMessage(
+  template: string,
+  values: Record<string, string>
+): string {
+  return Object.entries(values).reduce(
+    (message, [key, value]) => message.replaceAll(`{${key}}`, value),
+    template
+  )
+}
 
 /**
  * Type guard to validate ApiResponse structure
@@ -16,24 +29,18 @@ function isApiResponse(value: unknown): value is ApiResponse {
 
 /**
  * Submit form data to unified Netlify function
- * Supports all form types via discriminated union
- * Converts all camelCase keys to snake_case for backend compatibility
  */
 export async function submitUnifiedForm(
   data: UnifiedFormSubmissionData,
   endpoint: string = '/.netlify/functions/submit-form'
 ): Promise<ApiResponse> {
   try {
-    // Convert all keys to snake_case for backend compatibility
-    // Filter out empty strings and empty arrays before conversion
     const filteredData = Object.entries(data).reduce(
       (acc, [key, value]) => {
-        // Skip empty strings
         if (value === '') {
           return acc
         }
 
-        // Skip empty arrays (both actual arrays and stringified "[]")
         if (Array.isArray(value) && value.length === 0) {
           return acc
         }
@@ -57,7 +64,6 @@ export async function submitUnifiedForm(
       body: JSON.stringify(snakeCaseData),
     })
 
-    // Check if response is JSON
     const contentType = response.headers.get('content-type')
     const isJson = contentType?.includes('application/json')
 
@@ -70,11 +76,12 @@ export async function submitUnifiedForm(
         console.error('JSON parsing error:', jsonError)
         return {
           success: false,
-          error: `Server returned invalid JSON. Status: ${response.status}`,
+          error: formatClientMessage(clientErrors.invalidJson, {
+            status: String(response.status),
+          }),
         }
       }
     } else {
-      // Handle non-JSON responses (HTML error pages, plain text, etc.)
       const textResponse = await response.text()
       console.error('Non-JSON response received:', {
         status: response.status,
@@ -87,7 +94,10 @@ export async function submitUnifiedForm(
 
       return {
         success: false,
-        error: `Server error. Status: ${response.status} ${response.statusText}`,
+        error: formatClientMessage(clientErrors.serverError, {
+          status: String(response.status),
+          statusText: response.statusText,
+        }),
       }
     }
 
@@ -98,7 +108,9 @@ export async function submitUnifiedForm(
         'error' in result &&
         typeof (result as Record<string, unknown>).error === 'string'
           ? (result as Record<string, unknown>).error
-          : `HTTP error! status: ${response.status}`
+          : formatClientMessage(clientErrors.httpError, {
+              status: String(response.status),
+            })
 
       return {
         success: false,
@@ -106,20 +118,19 @@ export async function submitUnifiedForm(
       }
     }
 
-    // Validate and return the response
     if (isApiResponse(result)) {
       return result
     }
 
     return {
       success: false,
-      error: 'Unexpected error occurred',
+      error: clientErrors.unexpectedError,
     }
   } catch (error) {
     console.error('Form submission error:', error)
     return {
       success: false,
-      error: 'Network error. Please check your connection and try again.',
+      error: clientErrors.networkError,
     }
   }
 }
@@ -142,7 +153,6 @@ export async function updateSubscriberData(
       body: JSON.stringify(data),
     })
 
-    // Check if response is JSON
     const contentType = response.headers.get('content-type')
     const isJson = contentType?.includes('application/json')
 
@@ -155,11 +165,12 @@ export async function updateSubscriberData(
         console.error('JSON parsing error:', jsonError)
         return {
           success: false,
-          error: `Server returned invalid JSON. Status: ${response.status}`,
+          error: formatClientMessage(clientErrors.invalidJson, {
+            status: String(response.status),
+          }),
         }
       }
     } else {
-      // Handle non-JSON responses
       const textResponse = await response.text()
       console.error('Non-JSON response received:', {
         status: response.status,
@@ -172,7 +183,10 @@ export async function updateSubscriberData(
 
       return {
         success: false,
-        error: `Server error. Status: ${response.status} ${response.statusText}`,
+        error: formatClientMessage(clientErrors.serverError, {
+          status: String(response.status),
+          statusText: response.statusText,
+        }),
       }
     }
 
@@ -183,7 +197,9 @@ export async function updateSubscriberData(
         'error' in result &&
         typeof (result as Record<string, unknown>).error === 'string'
           ? (result as Record<string, unknown>).error
-          : `HTTP error! status: ${response.status}`
+          : formatClientMessage(clientErrors.httpError, {
+              status: String(response.status),
+            })
 
       return {
         success: false,
@@ -197,13 +213,13 @@ export async function updateSubscriberData(
 
     return {
       success: false,
-      error: 'Unexpected error occurred',
+      error: clientErrors.unexpectedError,
     }
   } catch (error) {
     console.error('Subscriber update error:', error)
     return {
       success: false,
-      error: 'Network error. Please check your connection and try again.',
+      error: clientErrors.networkError,
     }
   }
 }

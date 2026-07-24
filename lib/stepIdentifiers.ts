@@ -8,14 +8,14 @@
 // STEP IDENTIFIER CONSTANTS
 // ============================================================================
 
+import type { StepId } from '@/types/netlify.types'
+
 const STEP_IDS = {
   STEP_1: 'step1',
   STEP_2: 'step2',
   STEP_3: 'step3',
   STEP_4: 'step4',
 } as const
-
-type StepId = (typeof STEP_IDS)[keyof typeof STEP_IDS]
 
 /**
  * Array of all step identifiers in order

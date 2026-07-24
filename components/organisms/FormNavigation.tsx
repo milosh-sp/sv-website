@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils'
 import { strings } from '@/lib/strings'
 import { getStepNumber } from '@/lib/stepIdentifiers'
 import type { FormNavigationProps } from '@/types/FormNavigation.types'
-import { Button } from '../atoms/Button'
+import { Button } from '@/components/atoms/Button'
 import { SubmitButton } from '@/components/molecules/SubmitButton'
 
 export function FormNavigation({

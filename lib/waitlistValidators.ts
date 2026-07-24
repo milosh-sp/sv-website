@@ -1,15 +1,6 @@
 /**
  * Waitlist Validator Factory
  * Composes and shares common validation logic across form personas
- * Eliminates 50% of validation code duplication
- *
- * Shared validators (100% identical across personas):
- * - Step 1: Contact & Consent (name, email, LinkedIn, GitHub/GitLab, privacy consent, company URL)
- * - Step 2: Skills Profile (skill areas, technical skills)
- *
- * Persona-specific validators:
- * - Step 3: Profile (varies by persona)
- * - Step 4: Motivation/Challenges (varies by persona)
  */
 
 import {
@@ -18,15 +9,74 @@ import {
   validateLinkedIn,
   validateUrl,
 } from '@/lib/validation'
+import { strings } from '@/lib/strings'
 import type { ValidationErrors } from '@/types/WaitlistValidation.types'
 
-/**
- * Shared Step 1 validation (Contact Information)
- * Used by: Candidate, Verifier, Hiring Manager
- * Validates: name, email, LinkedIn (optional), GitHub/GitLab (optional)
- * Note: Consent is implicit - users consent by submitting the form
- * LinkedIn and GitHub/GitLab are only validated if provided (for Candidate/Verifier forms)
- */
+const waitlistValidation = strings.waitlistForms.validation
+const commonValidation = strings.validationCommon
+
+function formatMessage(
+  template: string,
+  values: Record<string, string>
+): string {
+  return Object.entries(values).reduce(
+    (message, [key, value]) => message.replaceAll(`{${key}}`, value),
+    template
+  )
+}
+
+const RADIO_FIELD_MESSAGES: Record<string, string> = {
+  professionalStatus: waitlistValidation.professionalStatusRequired,
+  techCommunityMembership: waitlistValidation.techCommunityMembershipRequired,
+  skillValidationConfidence:
+    waitlistValidation.skillValidationConfidenceRequired,
+  yearsOfExperience: waitlistValidation.yearsOfExperienceRequired,
+  hoursPerWeek: waitlistValidation.hoursPerWeekRequired,
+  coachingMentoring: waitlistValidation.coachingMentoringRequired,
+  managerRole: waitlistValidation.managerRoleRequired,
+  fundingStage: waitlistValidation.fundingStageRequired,
+  engineeringTeamSize: waitlistValidation.engineeringTeamSizeRequired,
+  seniorityLevel: waitlistValidation.seniorityLevelRequired,
+  hiringInterviewHours: waitlistValidation.hiringInterviewHoursRequired,
+}
+
+const ARRAY_FIELD_MESSAGES: Record<string, string> = {
+  skillAreas: waitlistValidation.skillAreasRequired,
+  technicalSkills: waitlistValidation.technicalSkillsRequired,
+  jobSearchChallenges: waitlistValidation.jobSearchChallengesRequired,
+  valuableOutcomes: waitlistValidation.valuableOutcomesRequired,
+  verifierMotivations: waitlistValidation.verifierMotivationsRequired,
+  professionalFrustration: waitlistValidation.professionalFrustrationRequired,
+  rolesHiring: waitlistValidation.rolesHiringRequired,
+  hiringFrustrations: waitlistValidation.hiringFrustrationsRequired,
+  hiringFailures: waitlistValidation.hiringFailuresRequired,
+}
+
+const OTHER_FIELD_MESSAGES: Record<string, string> = {
+  jobSearchChallengeOther: waitlistValidation.jobSearchChallengeOtherRequired,
+  valuableOutcomeOther: waitlistValidation.valuableOutcomeOtherRequired,
+  verifierMotivationOther: waitlistValidation.verifierMotivationOtherRequired,
+  professionalFrustrationOther:
+    waitlistValidation.professionalFrustrationOtherRequired,
+  rolesHiringOther: waitlistValidation.rolesHiringOtherRequired,
+  hiringFrustrationsOther: waitlistValidation.hiringFrustrationsOtherRequired,
+  hiringFailuresOther: waitlistValidation.hiringFailuresOtherRequired,
+}
+
+const URL_FIELD_MESSAGES: Record<
+  string,
+  { required: string; invalid: string }
+> = {
+  githubGitlabUrl: {
+    required: waitlistValidation.githubGitlabUrlRequired,
+    invalid: waitlistValidation.githubGitlabUrlInvalid,
+  },
+  companyUrl: {
+    required: commonValidation.companyUrlRequired,
+    invalid: commonValidation.companyUrlInvalid,
+  },
+}
+
 function validateContactConsentStep(data: {
   email: string
   linkedIn?: string
@@ -35,38 +85,36 @@ function validateContactConsentStep(data: {
 }): ValidationErrors {
   const errors: Record<string, string> = {}
 
-  // Email validation
   const emailValidation = validateEmail(data.email)
   if (!emailValidation.isValid) {
-    errors.email = emailValidation.message || 'Invalid email'
+    errors.email = emailValidation.message || waitlistValidation.emailInvalid
   }
 
-  // LinkedIn validation (only if provided)
   if (data.linkedIn !== undefined) {
     const linkedInValidation = validateLinkedIn(data.linkedIn)
     if (!linkedInValidation.isValid) {
-      errors.linkedIn = linkedInValidation.message || 'Invalid LinkedIn URL'
+      errors.linkedIn =
+        linkedInValidation.message || waitlistValidation.linkedInInvalid
     }
   }
 
-  // GitHub/GitLab validation (only if provided)
   if (data.githubGitlabUrl !== undefined) {
     const githubGitlabValidation = validateGitHubGitlab(data.githubGitlabUrl)
     if (!githubGitlabValidation.isValid) {
       errors.githubGitlabUrl =
-        githubGitlabValidation.message || 'Invalid GitHub or GitLab URL'
+        githubGitlabValidation.message ||
+        waitlistValidation.githubGitlabUrlInvalid
     }
   }
 
-  // Company URL validation (only if provided)
   if (data.companyUrl !== undefined) {
     if (!data.companyUrl || data.companyUrl.trim() === '') {
-      errors.companyUrl = 'Company website URL is required'
+      errors.companyUrl = commonValidation.companyUrlRequired
     } else {
       const companyUrlValidation = validateUrl(data.companyUrl)
       if (!companyUrlValidation.isValid) {
         errors.companyUrl =
-          companyUrlValidation.message || 'Invalid company URL'
+          companyUrlValidation.message || commonValidation.companyUrlInvalid
       }
     }
   }
@@ -77,25 +125,18 @@ function validateContactConsentStep(data: {
   }
 }
 
-/**
- * Shared Step 2 validation (Skills Profile)
- * Used by: Candidate, Verifier
- * Validates: skill areas, technical skills
- */
 function validateSkillsProfileStep(data: {
   skillAreas: string
   technicalSkills: string
 }): ValidationErrors {
   const errors: Record<string, string> = {}
 
-  // Skill areas validation
   if (!data.skillAreas || data.skillAreas === '[]') {
-    errors.skillAreas = 'Please select at least one skill area'
+    errors.skillAreas = waitlistValidation.skillAreasRequired
   }
 
-  // Technical skills validation
   if (!data.technicalSkills || data.technicalSkills === '[]') {
-    errors.technicalSkills = 'Please select at least one technical skill'
+    errors.technicalSkills = waitlistValidation.technicalSkillsRequired
   }
 
   return {
@@ -104,33 +145,30 @@ function validateSkillsProfileStep(data: {
   }
 }
 
-/**
- * Validate JSON array field
- * Reusable for any field that stores JSON stringified arrays
- */
 function validateJsonArrayField(
   fieldValue: string,
   fieldName: string,
   minItems: number = 1
 ): Record<string, string> {
   const errors: Record<string, string> = {}
+  const message =
+    ARRAY_FIELD_MESSAGES[fieldName] ||
+    formatMessage(commonValidation.minOptionsSelected, {
+      count: String(minItems),
+    })
 
   try {
     const parsed = JSON.parse(fieldValue)
     if (!Array.isArray(parsed) || parsed.length < minItems) {
-      errors[fieldName] = `Please select at least ${minItems} option(s)`
+      errors[fieldName] = message
     }
   } catch {
-    errors[fieldName] = `Please select at least ${minItems} option(s)`
+    errors[fieldName] = message
   }
 
   return errors
 }
 
-/**
- * Validate conditional "other" field
- * Used when a field has an "other" option that requires text input
- */
 function validateConditionalOtherField(
   arrayFieldValue: string,
   otherFieldValue: string,
@@ -143,7 +181,10 @@ function validateConditionalOtherField(
     if (Array.isArray(parsed) && parsed.includes('other')) {
       if (!otherFieldValue || otherFieldValue.trim() === '') {
         errors[otherFieldName] =
-          `Please specify your ${otherFieldName.toLowerCase()}`
+          OTHER_FIELD_MESSAGES[otherFieldName] ||
+          formatMessage(commonValidation.fieldRequired, {
+            fieldName: otherFieldName,
+          })
       }
     }
   } catch {
@@ -153,35 +194,33 @@ function validateConditionalOtherField(
   return errors
 }
 
-/**
- * Validate URL field
- * Reusable for GitHub/GitLab URLs and company websites
- */
 function validateUrlField(
   fieldValue: string,
   fieldName: string,
   required: boolean = true
 ): Record<string, string> {
   const errors: Record<string, string> = {}
+  const fieldMessages = URL_FIELD_MESSAGES[fieldName]
 
   if (!fieldValue || fieldValue.trim() === '') {
     if (required) {
-      errors[fieldName] = `${fieldName} is required`
+      errors[fieldName] =
+        fieldMessages?.required ||
+        formatMessage(commonValidation.fieldRequired, { fieldName })
     }
   } else {
     const urlValidation = validateUrl(fieldValue)
     if (!urlValidation.isValid) {
-      errors[fieldName] = urlValidation.message || `Invalid ${fieldName}`
+      errors[fieldName] =
+        urlValidation.message ||
+        fieldMessages?.invalid ||
+        formatMessage(commonValidation.invalidField, { fieldName })
     }
   }
 
   return errors
 }
 
-/**
- * Validate radio button field
- * Reusable for single-select fields
- */
 function validateRadioField(
   fieldValue: string,
   fieldName: string
@@ -189,7 +228,8 @@ function validateRadioField(
   const errors: Record<string, string> = {}
 
   if (!fieldValue || fieldValue.trim() === '') {
-    errors[fieldName] = `Please select an option for ${fieldName}`
+    errors[fieldName] =
+      RADIO_FIELD_MESSAGES[fieldName] || commonValidation.selectOptionRequired
   }
 
   return errors

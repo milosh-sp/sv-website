@@ -23,7 +23,11 @@ export function StatsBandPageSection({ id }: SectionProps) {
           {strings.stats.heading}
         </Heading>
 
-        <dl className={cn('grid grid-cols-2 gap-8 text-center md:grid-cols-4')}>
+        <dl
+          className={cn(
+            'flex flex-row flex-wrap justify-center gap-10 text-center'
+          )}
+        >
           {strings.stats.items.map((stat) => (
             <div key={stat.label} className={cn('flex flex-col items-center')}>
               <dt className={cn('sr-only')}>{stat.label}</dt>

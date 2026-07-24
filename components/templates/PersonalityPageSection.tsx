@@ -3,7 +3,7 @@ import { HeaderAndDescription } from '@/components/molecules/HeaderAndDescriptio
 import { SectionWrapper } from '@/components/templates/SectionWrapper'
 import { strings } from '@/lib/strings'
 import { Carousel } from '@/components/organisms/Carousel'
-import { BenefitCard } from '@/components/organisms/BenefitCard'
+import { BenefitCard } from '@/components/molecules/BenefitCard'
 
 export function PersonalityPageSection() {
   return (

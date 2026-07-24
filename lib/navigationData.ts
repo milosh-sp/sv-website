@@ -1,33 +1,22 @@
-import type { ComponentType } from 'react'
 import { TALENT_PATH } from '@/lib/consts'
 import { strings } from '@/lib/strings'
 import { BenefitsPageSection } from '@/components/templates/BenefitsPageSection'
 import { CvPreviewPageSection } from '@/components/templates/CvPreviewPageSection'
-import {
-  type FaqVariant,
-  FaqPageSection,
-} from '@/components/templates/FaqPageSection'
+import { FaqPageSection } from '@/components/templates/FaqPageSection'
 import { HeroPageSection } from '@/components/templates/HeroPageSection'
 import { StatsBandPageSection } from '@/components/templates/StatsBandPageSection'
 import { AiSearchPageSection } from '@/components/templates/AiSearchPageSection'
 import { DifferentiatorsPageSection } from '@/components/templates/DifferentiatorsPageSection'
 import { ProcessPageSection } from '@/components/templates/ProcessPageSection'
 import { PersonalityPageSection } from '@/components/templates/PersonalityPageSection'
-import type { SectionProps } from '@/types/Sections.types'
+import type {
+  NavMenu,
+  NavMenuItem,
+  PageSection,
+} from '@/types/Navigation.types'
 
 export { TALENT_PATH }
-
-export interface NavMenuItem {
-  id: string
-  label: string
-  href: string
-}
-
-export interface NavMenu {
-  id: string
-  label: string
-  items: readonly NavMenuItem[]
-}
+export type { NavMenu, NavMenuItem, PageSection }
 
 /**
  * Grouped header menus (arc.dev-style). "For companies" scrolls to homepage
@@ -99,12 +88,6 @@ export const contactLink: NavMenuItem = {
  * A section optionally carries extra props (currently only the FAQ variant),
  * so both pages can reuse the same components with page-specific behavior.
  */
-export interface PageSection {
-  id: string
-  Component: ComponentType<SectionProps & { variant?: FaqVariant }>
-  props?: { variant?: FaqVariant }
-}
-
 /** Homepage = company-facing. Order here is the render order. */
 export const homePageSections: readonly PageSection[] = [
   { id: 'home', Component: HeroPageSection },

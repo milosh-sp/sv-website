@@ -1,4 +1,5 @@
 import type { StatusMessageProps } from '@/types/FormComponents.types'
+import { strings } from '@/lib/strings'
 
 export function StatusMessage({
   status,
@@ -15,7 +16,7 @@ export function StatusMessage({
       <section
         className='mt-4 p-4 bg-success/10 border border-success rounded-lg'
         aria-live='polite'
-        aria-label='Success message'
+        aria-label={strings.common.accessibility.successMessage}
         {...props}
       >
         <p className='text-success text-sm font-medium flex items-start gap-2'>
@@ -34,7 +35,7 @@ export function StatusMessage({
         className='mt-4 p-4 bg-destructive/10 border border-destructive rounded-lg'
         role='alert'
         aria-live='assertive'
-        aria-label='Error message'
+        aria-label={strings.common.accessibility.errorMessage}
         {...props}
       >
         <p className='text-destructive text-sm font-medium flex items-start gap-2'>

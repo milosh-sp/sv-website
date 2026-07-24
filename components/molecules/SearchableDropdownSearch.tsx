@@ -1,5 +1,6 @@
 import { Search } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { strings } from '@/lib/strings'
 import type { SearchableDropdownSearchProps } from '@/types/SearchableDropdownSearch.types'
 import { Input } from '@/components/atoms/Input'
 
@@ -45,7 +46,7 @@ export function SearchableDropdownSearch({
           onChange={(e) => onSearchChange(e.target.value)}
           onKeyDown={onKeyDown}
           placeholder={searchPlaceholder}
-          aria-label='Search options'
+          aria-label={strings.common.accessibility.searchOptions}
           aria-controls={listboxId}
           className='pl-9'
         />

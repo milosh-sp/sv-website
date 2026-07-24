@@ -1,5 +1,5 @@
 import type { HandlerEvent } from '@netlify/functions'
-import type { ClientIPAndCountry } from '../../types/netlify.types'
+import type { ClientIPAndCountry } from '@/types/netlify.types'
 
 function extractClientIPAndCountry(event: HandlerEvent): ClientIPAndCountry {
   const forwardedFor = event.headers['x-forwarded-for'] ?? ''

@@ -1,5 +1,8 @@
 import type { Metadata } from 'next'
 import { siteConfig, seoKeywords, technicalSeo } from './seo-config'
+import type { PageMetadata } from '@/types/Seo.types'
+
+export type { PageMetadata }
 
 // Default metadata for the application
 export const defaultMetadata: Metadata = {
@@ -56,19 +59,6 @@ export const defaultMetadata: Metadata = {
   },
   verification: technicalSeo.verification,
   other: technicalSeo.other,
-}
-
-// Generate metadata for specific pages
-export interface PageMetadata {
-  title?: string
-  description?: string
-  keywords?: string[]
-  ogImage?: string
-  noIndex?: boolean
-  canonical?: string
-  alternates?: {
-    languages?: Record<string, string>
-  }
 }
 
 export function generateMetadata(pageData: PageMetadata): Metadata {

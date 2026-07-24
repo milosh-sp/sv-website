@@ -14,9 +14,9 @@ import { HeaderLink } from '@/components/molecules/HeaderLink'
 import { NavDropdown } from '@/components/molecules/NavDropdown'
 import logo from '@/public/logo-sv.svg'
 import { cn } from '@/lib/utils'
-import { DecorativeText } from '../atoms/DecorativeText'
+import { DecorativeText } from '@/components/atoms/DecorativeText'
 import { useTracking } from '@/hooks/useTracking'
-import { ReferralStorage } from '../atoms/ReferralStorage'
+import { ReferralStorage } from '@/components/atoms/ReferralStorage'
 
 const SCROLL_MARGIN_TOP_DESKTOP = 96
 const SCROLL_MARGIN_TOP_MOBILE = 96
@@ -116,7 +116,7 @@ export function Header() {
               'hidden min-[930px]:flex items-center gap-4',
               'list-none m-0 p-0'
             )}
-            aria-label='Primary navigation'
+            aria-label={strings.navigation.accessibility.primaryNavigation}
           >
             {headerMenus.map((menu) => (
               <NavDropdown
@@ -175,7 +175,7 @@ export function Header() {
               'animate-fade-in-scale',
               'sticky top-20 z-40'
             )}
-            aria-label='Mobile navigation'
+            aria-label={strings.navigation.accessibility.mobileNavigation}
           >
             <ul className={cn('flex flex-col gap-2', 'list-none m-0 p-0')}>
               {headerMenus.map((menu) => (

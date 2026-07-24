@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { siteConfig } from '@/lib/seo-config'
 import { discoverPages } from '@/lib/sitemap-generator'
-import type { PageEntry } from '@/lib/sitemap-generator'
+import type { PageEntry } from '@/types/Sitemap.types'
 
 export const dynamic = 'force-static'
 

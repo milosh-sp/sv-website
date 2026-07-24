@@ -5,7 +5,6 @@ import { FormFieldsStep } from '@/components/molecules/FormFieldsStep'
 import { SkillAreasSection } from '@/components/molecules/SkillAreasSection'
 import { TechnicalSkillsSection } from '@/components/molecules/TechnicalSkillsSection'
 import { WaitlistFormWrapper } from '@/components/organisms/WaitlistFormWrapper'
-import { useCandidateFormContext } from '@/context/CandidateFormContext'
 import { useCandidateForm } from '@/hooks/useCandidateForm'
 import { strings } from '@/lib/strings'
 import { validateCandidateStep } from '@/lib/waitlistFormValidators'
@@ -13,13 +12,13 @@ import { cn } from '@/lib/utils'
 import type { FormFieldConfig } from '@/types/FormFieldsStep.types'
 import type { ReactNode } from 'react'
 import { SuccessScreen } from './SuccessScreen'
-import { PageLayout } from '../templates/PageLayout'
-import { PageHeader } from '../molecules/PageHeader'
+import { PageLayout } from '@/components/templates/PageLayout'
+import { PageHeader } from '@/components/molecules/PageHeader'
 import { STEP_IDS } from '@/lib/stepIdentifiers'
 import type { StepId } from '@/types/netlify.types'
 import { ContactConsentSection } from './ContactConsentSection'
-import { HeroButtons } from '../molecules/HeroButtons'
-import { Text } from '../atoms/Text'
+import { HeroButtons } from '@/components/molecules/HeroButtons'
+import { Text } from '@/components/atoms/Text'
 
 const {
   jobSearchChallengeOptions,
@@ -32,34 +31,7 @@ const {
 } = strings.waitlistForms
 
 export function CandidateWaitlistForm() {
-  const context = useCandidateFormContext()
-  const form = useCandidateForm({
-    currentStep: context.currentStep,
-    onSuccess: () => {
-      // On step 1 we do a silent submit, so we need to reset the status to initial
-      context.setSubmitStatus(
-        context.currentStep === 'step1' ? 'idle' : 'success'
-      )
-
-      if (context.currentStep === 'step1') {
-        context.goToStep('step2')
-      }
-    },
-  })
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    context.setIsSubmitting(true)
-
-    try {
-      await form.handleSubmit(e)
-      if (form.submitStatus === 'success') {
-        context.setSubmitStatus('success')
-      }
-    } finally {
-      context.setIsSubmitting(false)
-    }
-  }
+  const form = useCandidateForm()
 
   const stepRenderers: Record<StepId, () => ReactNode> = {
     [STEP_IDS.STEP_1]: () => {
@@ -219,16 +191,16 @@ export function CandidateWaitlistForm() {
   }
 
   const renderStep = () => {
-    const renderer = stepRenderers[context.currentStep]
+    const renderer = stepRenderers[form.currentStep]
     return renderer ? renderer() : null
   }
 
   const isCurrentStepValid = validateCandidateStep(
-    context.currentStep,
+    form.currentStep,
     form.formData
   ).isValid
 
-  if (context.submitStatus === 'success') {
+  if (form.submitStatus === 'success') {
     return <SuccessScreen personaType='candidate' />
   }
 
@@ -245,7 +217,7 @@ export function CandidateWaitlistForm() {
       </div>
 
       <WaitlistFormWrapper
-        currentStep={context.currentStep}
+        currentStep={form.currentStep}
         totalSteps={totalFormSteps}
         isSubmitting={form.isSubmitting}
         isCurrentStepValid={isCurrentStepValid}
@@ -253,10 +225,10 @@ export function CandidateWaitlistForm() {
         errors={form.errors}
         honeypotValue={form.honeypotValue}
         onHoneypotChange={(value) => form.handleHoneypotChange(value)}
-        onStepClick={(step) => context.goToStep(step)}
-        onPrevious={() => context.previousStep()}
-        onNext={() => context.nextStep()}
-        onSubmit={handleSubmit}
+        onStepClick={(step) => form.goToStep(step)}
+        onPrevious={() => form.previousStep()}
+        onNext={() => form.nextStep()}
+        onSubmit={form.handleStepSubmit}
         formData={form.formData}
       >
         {renderStep()}

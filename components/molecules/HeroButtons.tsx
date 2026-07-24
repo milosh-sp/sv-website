@@ -19,7 +19,7 @@ export function HeroButtons({
   return (
     <article
       className={cn('flex flex-col sm:flex-row gap-4 mb-10 md:mb-12')}
-      aria-label='Primary actions'
+      aria-label={strings.hero.accessibility.primaryActions}
     >
       {showHiringManager && (
         <Link href='/hiring-manager'>
@@ -29,7 +29,7 @@ export function HeroButtons({
             className={cn(
               'h-14 px-8 text-base rounded-lg font-semibold w-full sm:w-auto'
             )}
-            aria-label='Join the hiring manager waitlist'
+            aria-label={strings.hero.accessibility.hiringManagerWaitlist}
             type='button'
           >
             <Handshake className={cn('h-5 w-5')} aria-hidden='true' />

@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils'
 import type { FormInputWrapperProps } from '@/types/FormInputWrapper.types'
-import { Label } from '../atoms/Label'
-import { FieldError } from '../atoms/FieldError'
+import { Label } from '@/components/atoms/Label'
+import { FieldError } from '@/components/atoms/FieldError'
 
 export function FormInputWrapper({
   children,

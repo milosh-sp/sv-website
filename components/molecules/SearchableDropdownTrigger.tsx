@@ -1,5 +1,6 @@
 import { ChevronDown, Loader2, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { strings } from '@/lib/strings'
 import type { SearchableDropdownTriggerProps } from '@/types/SearchableDropdownTrigger.types'
 
 const SIZE_STYLES = {
@@ -82,7 +83,7 @@ export function SearchableDropdownTrigger<T = string>({
             type='button'
             onClick={onClear}
             className='hover:bg-accent rounded p-0.5 transition-colors'
-            aria-label='Clear selection'
+            aria-label={strings.common.accessibility.clearSelection}
             tabIndex={-1}
           >
             <X className={sizeStyles.icon} />

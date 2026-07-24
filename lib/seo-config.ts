@@ -500,9 +500,8 @@ const pageSeoConfig = {
   },
 
   '/for-talent-cv2.0': {
-    title: 'For Talent — Build Your CV2.0 | Get Verified or Review Work',
-    description:
-      'Prove your skills with a peer-verified CV2.0, or earn by reviewing real engineering work. Verification by experienced peer engineers—not AI or an agency.',
+    title: strings.seoPages.forTalent.title,
+    description: strings.seoPages.forTalent.description,
     keywords: [
       ...seoKeywords.pages.candidate,
       ...seoKeywords.pages.verifier,
@@ -519,7 +518,7 @@ const pageSeoConfig = {
         },
         {
           position: 2,
-          name: 'For Talent',
+          name: strings.seoPages.forTalent.breadcrumbName,
           item: `${siteConfig.url}/for-talent-cv2.0`,
         },
       ],
@@ -604,9 +603,7 @@ const technicalSeo = {
 
   // Verification codes
   verification: {
-    google:
-      process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION ||
-      'your-google-verification-code',
+    google: envs.GOOGLE_VERIFICATION || 'your-google-verification-code',
   },
 
   // Additional meta tags

@@ -1,16 +1,8 @@
 // ============================================================================
 // WAITLIST FORM TYPES
 // ============================================================================
-interface SkillArea {
-  id: string
-  label: string
-  description?: string
-}
-
-interface TechnicalSkill {
-  id: string
-  label: string
-}
+import type { SkillArea } from '@/types/SkillAreasSection.types'
+import type { TechnicalSkill } from '@/types/TechnicalSkillsSection.types'
 
 // ============================================================================
 // LUCIDE REACT ICON IMPORTS
@@ -110,6 +102,8 @@ const navigation = {
     goToProcess: `Go to process section`,
     goToFaq: `Go to FAQ section`,
     scrollToHero: `Scroll to hero section to join the community`,
+    primaryNavigation: `Primary navigation`,
+    mobileNavigation: `Mobile navigation`,
   },
 } as const
 
@@ -163,6 +157,8 @@ export const hero = {
   accessibility: {
     heroSection: `Hero section`,
     heroActions: `Hero actions`,
+    primaryActions: `Primary actions`,
+    hiringManagerWaitlist: `Join the hiring manager waitlist`,
     trustIndicators: `Trust indicators`,
     heroVisual: `Hero visual CV2.0`,
     openSignupModal: `Navigate to the candidate wait-list`,
@@ -254,6 +250,8 @@ const benefits = {
     benefitsSection: `How Skill Verdict works for different users`,
     membersPanel: `Members panel`,
     guruMembersPanel: `Guru member panel`,
+    benefitsCarousel: `Benefits carousel`,
+    benefitsList: `Benefits list`,
   },
 } as const
 
@@ -292,6 +290,8 @@ const cvPreview = {
     featuresSection: `CV2.0 benefits`,
     featuresList: `CV2.0 benefits list`,
     qrVisual: `Verification history QR code illustration`,
+    sampleCvDocument: `Sample curriculum vitae document`,
+    qrCode: `QR code`,
   },
 
   features: [
@@ -443,6 +443,11 @@ const process = {
       icon: DollarSign,
     },
   ],
+
+  accessibility: {
+    processSteps: `Process steps`,
+    processStepsCarousel: `Process steps carousel`,
+  },
 } as const
 
 // ============================================================================
@@ -571,10 +576,11 @@ const footer = {
       icon: MessageCircle,
     },
   ],
+  accessibility: {
+    legalLinks: `Legal links`,
+    socialMediaLinks: `Social media links`,
+  },
 } as const
-
-// ============================================================================
-// CONTACT PAGE
 // ============================================================================
 
 const contactPage = {
@@ -679,6 +685,16 @@ const legalPages = {
       protect and handle your data.`,
     lastUpdated: `11-Nov-2025`,
     effectiveDate: `13-Nov-2025`,
+    meta: {
+      lastUpdatedLabel: `Last Updated On:`,
+      effectiveDateLabel: `Effective Date:`,
+    },
+    contactSection: {
+      title: `Contact Information`,
+      emailLabel: `Email:`,
+      phoneLabel: `Phone:`,
+      addressLabel: `Address:`,
+    },
     sections: {
       introduction: {
         title: `Introduction`,
@@ -823,6 +839,18 @@ const legalPages = {
       address: `Skill Verdict, Dover, Delaware 19901, United States of 
         America`,
     },
+  },
+} as const
+
+// ============================================================================
+// PAGE SEO COPY (titles/descriptions — keyword corpus stays in seo-config.ts)
+// ============================================================================
+
+const seoPages = {
+  forTalent: {
+    title: `For Talent — Build Your CV2.0 | Get Verified or Review Work`,
+    description: `Prove your skills with a peer-verified CV2.0, or earn by reviewing real engineering work. Verification by experienced peer engineers—not AI or an agency.`,
+    breadcrumbName: `For Talent`,
   },
 } as const
 
@@ -1068,6 +1096,15 @@ const apiResponses = {
     subscriptionFailed: `Failed to subscribe. Please try again later.`,
     unexpectedError: `An unexpected error occurred. Please try again later.`,
   },
+
+  // Client-side fetch errors (lib/api.ts)
+  client: {
+    invalidJson: `Server returned invalid JSON. Status: {status}`,
+    serverError: `Server error. Status: {status} {statusText}`,
+    httpError: `HTTP error! status: {status}`,
+    unexpectedError: `Unexpected error occurred`,
+    networkError: `Network error. Please check your connection and try again.`,
+  },
 } as const
 
 // ============================================================================
@@ -1111,6 +1148,11 @@ const common = {
     checked: `Checked`,
     unchecked: `Unchecked`,
     indeterminate: `Partially selected`,
+    successMessage: `Success message`,
+    errorMessage: `Error message`,
+    goToSlide: `Go to slide`,
+    clearSelection: `Clear selection`,
+    searchOptions: `Search options`,
   },
 } as const
 
@@ -1606,6 +1648,9 @@ const waitlistForms = {
     hiringInterviewHoursRequired: `Please select an option`,
     hiringFrustrationsRequired: `Please select at least one frustration`,
     hiringFailuresRequired: `Please select at least one failure`,
+    rolesHiringOtherRequired: `Please specify the role`,
+    hiringFrustrationsOtherRequired: `Please specify your frustration`,
+    hiringFailuresOtherRequired: `Please specify the failure`,
   },
 
   // Accessibility labels
@@ -1811,7 +1856,6 @@ const explainerVideo = {
 const stats = {
   heading: `Why choose us?`,
   items: [
-    { value: `$0`, label: `until you hire` },
     { value: `61%`, label: `lower cost vs traditional hiring` },
     { value: `5 min`, label: `to get already interviewed talent` },
     { value: `100%`, label: `human-first vetting` },
@@ -1886,6 +1930,37 @@ const differentiators = {
 } as const
 
 // ============================================================================
+// SHARED VALIDATION MESSAGES (validators, API, Netlify functions)
+// ============================================================================
+
+const validationCommon = {
+  emailMustBeString: `Email must be a string`,
+  emailTooLong: `Email address is too long`,
+  nameMustBeString: `Name must be a string`,
+  messageMustBeString: `Message must be a string`,
+  invalidEmail: `Invalid email`,
+  invalidName: `Invalid name`,
+  invalidMessage: `Invalid message`,
+  fieldRequired: `{fieldName} is required`,
+  fieldMustBeString: `{fieldName} must be a string`,
+  fieldTooLong: `{fieldName} is too long`,
+  urlInvalid: `Please enter a valid URL (e.g., https://example.com)`,
+  urlHttpsRequired: `{fieldName} must use HTTPS protocol`,
+  urlInvalidDomain: `{fieldName} must have a valid domain`,
+  urlInvalidTld: `{fieldName} must have a valid domain with a top-level domain`,
+  urlInvalidStructure: `{fieldName} has an invalid domain structure`,
+  emailFormatFallback: `Please provide a valid email address.`,
+  nameFormatFallback: `Please provide a valid name.`,
+  messageFormatFallback: `Please provide a valid message.`,
+  urlFormatFallback: `Please provide a valid {fieldName}.`,
+  minOptionsSelected: `Please select at least {count} option(s)`,
+  selectOptionRequired: `Please select an option`,
+  invalidField: `Invalid {fieldName}`,
+  companyUrlRequired: `Company website URL is required`,
+  companyUrlInvalid: `Invalid company URL`,
+} as const
+
+// ============================================================================
 // EXPORT ALL STRINGS AS CONSTANTS
 // ============================================================================
 
@@ -1916,4 +1991,6 @@ export const strings = {
   stats,
   aiSearch,
   differentiators,
+  validationCommon,
+  seoPages,
 }

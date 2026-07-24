@@ -1,4 +1,4 @@
-import type { ValidationResult } from '@/lib/validation'
+import type { ValidationResult } from '@/types/Validation.types'
 
 interface FormFieldConfig<TFieldName extends string> {
   name: TFieldName

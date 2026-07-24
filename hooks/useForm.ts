@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import { useDebouncedCallback } from '@/hooks/useDebounce'
 import { useHoneypot } from '@/hooks/useHoneypot'
-import type { ValidationResult } from '@/lib/validation'
+import type { ValidationResult } from '@/types/Validation.types'
 import type { UseFormConfig, UseFormReturn } from '@/types/UseForm.types'
 
 export function useForm<TFormData extends Record<string, string>>(

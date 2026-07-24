@@ -4,17 +4,8 @@ import { useEffect, useRef, useState } from 'react'
 import { ChevronDown } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { HeaderLink } from '@/components/molecules/HeaderLink'
-import type { NavMenuItem } from '@/lib/navigationData'
-
-interface NavDropdownProps {
-  label: string
-  items: readonly NavMenuItem[]
-  variant?: 'desktop' | 'mobile'
-  onItemClick?: (
-    event: React.MouseEvent<HTMLAnchorElement>,
-    item: NavMenuItem
-  ) => void
-}
+import type { NavDropdownProps } from '@/types/NavDropdown.types'
+import type { NavMenuItem } from '@/types/Navigation.types'
 
 export function NavDropdown({
   label,

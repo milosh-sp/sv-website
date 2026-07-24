@@ -7,7 +7,7 @@ import { StatusMessage } from '@/components/atoms/StatusMessage'
 import { SubmitButton } from '@/components/molecules/SubmitButton'
 import { TextAreaField } from '@/components/molecules/TextAreaField'
 import { cn } from '@/lib/utils'
-import { PrivacyPolicyConsent } from '../molecules/PrivacyPolicyConsent'
+import { PrivacyPolicyConsent } from '@/components/molecules/PrivacyPolicyConsent'
 
 // Icons are embedded in strings
 const MailIcon = strings.contactPage.form.email.icon

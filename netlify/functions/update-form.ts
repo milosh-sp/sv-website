@@ -1,5 +1,5 @@
 import type { Handler, HandlerContext, HandlerEvent } from '@netlify/functions'
-import { detectBot } from '../../lib/netlify/form-validation'
+import { detectBot } from '@/lib/netlify/form-validation'
 import {
   createBotDetectedResponse,
   createFormSessionExpiredResponse,
@@ -12,13 +12,13 @@ import {
   createSenderNetValidationErrorResponse,
   createSuccessResponse,
   createUnexpectedErrorResponse,
-} from '../../lib/netlify/response-builder'
+} from '@/lib/netlify/response-builder'
 import {
   getApiToken,
   logSenderNetError,
   updateSubscriberData,
-} from '../../lib/netlify/sender-api'
-import type { FormFields, HttpResponse } from '../../types/netlify.types'
+} from '@/lib/netlify/sender-api'
+import type { FormFields, HttpResponse } from '@/types/netlify.types'
 
 export const handler: Handler = async (
   event: HandlerEvent,

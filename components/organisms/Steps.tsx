@@ -1,4 +1,5 @@
 import { cn } from '@/lib/utils'
+import { strings } from '@/lib/strings'
 import type { StepsGridProps } from '@/types/Steps.types'
 import { Heading } from '@/components/atoms/Heading'
 import { Text } from '@/components/atoms/Text'
@@ -86,14 +87,14 @@ export function StepsGrid({
   return (
     <section
       className={cn('animate-fade-in-scale', className)}
-      aria-label='Process steps'
+      aria-label={strings.process.accessibility.processSteps}
     >
       {/* Mobile: Carousel */}
       <div className={cn('md:hidden')}>
         <Carousel
           options={{ loop: true, duration: 15 }}
           slides={carouselSlides}
-          aria-label='Process steps carousel'
+          aria-label={strings.process.accessibility.processStepsCarousel}
         />
       </div>
 

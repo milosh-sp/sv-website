@@ -2,53 +2,13 @@ import { readdir, stat, readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import type { MetadataRoute } from 'next'
 import { siteConfig } from './seo-config'
+import type {
+  PageEntry,
+  VideoMetadata,
+  VideoToPageMap,
+} from '@/types/Sitemap.types'
 
-// ============================================================================
-// TYPES
-// ============================================================================
-
-/**
- * Video metadata structure matching Next.js MetadataRoute.Sitemap video format
- * @see https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap#video-sitemaps
- */
-export interface VideoMetadata {
-  title: string
-  description: string
-  thumbnail_loc: string
-  content_loc?: string
-  player_loc?: string
-  duration?: number
-  expiration_date?: string
-  rating?: number
-  view_count?: number
-  publication_date?: string
-  family_friendly?: 'yes' | 'no'
-  restriction?: {
-    relationship: 'allow' | 'deny'
-    content: string
-  }
-  platform?: {
-    relationship: 'allow' | 'deny'
-    content: string
-  }
-  requires_subscription?: 'yes' | 'no'
-  uploader?: {
-    info?: string
-    content: string
-  }
-  live?: 'yes' | 'no'
-  tag?: string[]
-  page_route?: string
-}
-
-export interface PageEntry {
-  path: string
-  lastModified: Date
-  changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency']
-  priority: number
-  images?: NonNullable<MetadataRoute.Sitemap[number]['images']>
-  videos?: NonNullable<MetadataRoute.Sitemap[number]['videos']>
-}
+export type { PageEntry, VideoMetadata }
 
 // ============================================================================
 // CONSTANTS
@@ -271,15 +231,6 @@ async function discoverImagesRecursive(
 // ============================================================================
 // VIDEO-TO-PAGE MAPPING FUNCTION
 // ============================================================================
-
-/**
- * Map of video filenames to the pages that use them
- * Key: video filename (e.g., 'explainer-skill-verdict.mp4')
- * Value: array of page routes that use this video
- */
-interface VideoToPageMap {
-  [videoFileName: string]: string[]
-}
 
 /**
  * Scan a file for video imports and return the video filenames found

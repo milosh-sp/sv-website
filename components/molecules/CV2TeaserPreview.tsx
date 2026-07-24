@@ -1,4 +1,4 @@
-import { CVPreviewBody } from '../organisms/CVPreviewBody'
+import { CVPreviewBody } from '@/components/organisms/CVPreviewBody'
 import { cn } from '@/lib/utils'
 import { QrCode } from 'lucide-react'
 import { Text } from '@/components/atoms/Text'

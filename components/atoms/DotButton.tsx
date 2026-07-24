@@ -1,12 +1,13 @@
-import type { ComponentProps, ReactNode } from 'react'
-
-interface DotButtonProps extends ComponentProps<'button'> {
-  children?: ReactNode
-}
+import type { DotButtonProps } from '@/types/DotButton.types'
+import { strings } from '@/lib/strings'
 
 export function DotButton({ children, ...restProps }: DotButtonProps) {
   return (
-    <button type='button' aria-label='Go to slide' {...restProps}>
+    <button
+      type='button'
+      aria-label={strings.common.accessibility.goToSlide}
+      {...restProps}
+    >
       {children}
     </button>
   )

@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import type { CheckboxProps } from '@/types/Checkbox.types'
 import { BaseToggleInput } from '@/components/atoms/BaseToggleInput'
+import { strings } from '@/lib/strings'
 
 export function Checkbox({
   className,
@@ -43,7 +44,7 @@ export function Checkbox({
       required={required}
       disabled={disabled}
       id={id}
-      defaultAriaLabel='Checkbox'
+      defaultAriaLabel={strings.checkbox.accessibility.defaultLabel}
       {...props}
     />
   )

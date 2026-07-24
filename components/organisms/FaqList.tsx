@@ -1,7 +1,7 @@
 import type { FaqListProps } from '@/types/FaqList.types'
-import { FaqItem } from '@/components/organisms/FaqItem'
+import { FaqItem } from '@/components/molecules/FaqItem'
 import { cn } from '@/lib/utils'
-import { HeaderAndDescription } from '../molecules/HeaderAndDescription'
+import { HeaderAndDescription } from '@/components/molecules/HeaderAndDescription'
 
 export function FaqList({
   faqs,

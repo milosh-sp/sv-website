@@ -1,6 +1,15 @@
-interface ValidationResult {
-  isValid: boolean
-  message?: string
+import { strings } from '@/lib/strings'
+import type {
+  ContactFormValidationData,
+  FormValidationResult,
+  ValidationResult,
+} from '@/types/Validation.types'
+
+const contactValidation = strings.contactPage.validation
+const commonValidation = strings.validationCommon
+
+function fieldMessage(template: string, fieldName: string): string {
+  return template.replaceAll('{fieldName}', fieldName)
 }
 
 /**
@@ -10,14 +19,14 @@ function validateEmail(email: string): ValidationResult {
   if (!email) {
     return {
       isValid: false,
-      message: 'Email is required',
+      message: contactValidation.emailRequired,
     }
   }
 
   if (typeof email !== 'string') {
     return {
       isValid: false,
-      message: 'Email must be a string',
+      message: commonValidation.emailMustBeString,
     }
   }
 
@@ -25,26 +34,24 @@ function validateEmail(email: string): ValidationResult {
   if (!trimmedEmail) {
     return {
       isValid: false,
-      message: 'Email is required',
+      message: contactValidation.emailRequired,
     }
   }
 
-  // More comprehensive email regex that handles edge cases
   const emailRegex =
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
 
   if (!emailRegex.test(trimmedEmail)) {
     return {
       isValid: false,
-      message: 'Please enter a valid email address',
+      message: contactValidation.emailInvalid,
     }
   }
 
-  // Check for reasonable length limits
   if (trimmedEmail.length > 254) {
     return {
       isValid: false,
-      message: 'Email address is too long',
+      message: commonValidation.emailTooLong,
     }
   }
 
@@ -55,21 +62,19 @@ function validateEmail(email: string): ValidationResult {
 
 /**
  * Generic URL validator
- * Validates that a string is a properly formatted URL with https:// protocol
- * and valid domain structure
  */
 function validateUrl(url: string, fieldName = 'URL'): ValidationResult {
   if (!url) {
     return {
       isValid: false,
-      message: `${fieldName} is required`,
+      message: fieldMessage(commonValidation.fieldRequired, fieldName),
     }
   }
 
   if (typeof url !== 'string') {
     return {
       isValid: false,
-      message: `${fieldName} must be a string`,
+      message: fieldMessage(commonValidation.fieldMustBeString, fieldName),
     }
   }
 
@@ -77,59 +82,53 @@ function validateUrl(url: string, fieldName = 'URL'): ValidationResult {
   if (!trimmedUrl) {
     return {
       isValid: false,
-      message: `${fieldName} is required`,
+      message: fieldMessage(commonValidation.fieldRequired, fieldName),
     }
   }
 
-  // Check for reasonable length limits
   if (trimmedUrl.length > 2048) {
     return {
       isValid: false,
-      message: `${fieldName} is too long`,
+      message: fieldMessage(commonValidation.fieldTooLong, fieldName),
     }
   }
 
-  // Try to parse as URL using the URL constructor
   let parsedUrl: URL
   try {
     parsedUrl = new URL(trimmedUrl)
   } catch (_error) {
     return {
       isValid: false,
-      message: `Please enter a valid URL (e.g., https://example.com)`,
+      message: commonValidation.urlInvalid,
     }
   }
 
-  // Validate protocol - only allow https
   if (parsedUrl.protocol !== 'https:') {
     return {
       isValid: false,
-      message: `${fieldName} must use HTTPS protocol`,
+      message: fieldMessage(commonValidation.urlHttpsRequired, fieldName),
     }
   }
 
-  // Validate hostname exists and has proper structure
   if (!parsedUrl.hostname || parsedUrl.hostname.length === 0) {
     return {
       isValid: false,
-      message: `${fieldName} must have a valid domain`,
+      message: fieldMessage(commonValidation.urlInvalidDomain, fieldName),
     }
   }
 
-  // Check for valid domain structure (at least one dot for TLD)
   const domainParts = parsedUrl.hostname.split('.')
   if (domainParts.length < 2) {
     return {
       isValid: false,
-      message: `${fieldName} must have a valid domain with a top-level domain`,
+      message: fieldMessage(commonValidation.urlInvalidTld, fieldName),
     }
   }
 
-  // Validate each domain part is not empty
   if (domainParts.some((part) => part.length === 0)) {
     return {
       isValid: false,
-      message: `${fieldName} has an invalid domain structure`,
+      message: fieldMessage(commonValidation.urlInvalidStructure, fieldName),
     }
   }
 
@@ -138,10 +137,6 @@ function validateUrl(url: string, fieldName = 'URL'): ValidationResult {
   }
 }
 
-/**
- * Validate LinkedIn profile URL format
- * Now uses generic URL validation
- */
 function validateLinkedIn(url: string): ValidationResult {
   if (!url) {
     return {
@@ -152,10 +147,6 @@ function validateLinkedIn(url: string): ValidationResult {
   return validateUrl(url, 'LinkedIn profile URL')
 }
 
-/**
- * Validate GitHub/GitLab profile URL format
- * Now uses generic URL validation
- */
 function validateGitHubGitlab(url: string): ValidationResult {
   if (!url) {
     return {
@@ -165,21 +156,18 @@ function validateGitHubGitlab(url: string): ValidationResult {
   return validateUrl(url, 'GitHub or GitLab profile URL')
 }
 
-/**
- * Validate contact name field for contact form
- */
 function validateContactName(contactName: string): ValidationResult {
   if (!contactName) {
     return {
       isValid: false,
-      message: 'Name is required',
+      message: contactValidation.nameRequired,
     }
   }
 
   if (typeof contactName !== 'string') {
     return {
       isValid: false,
-      message: 'Name must be a string',
+      message: commonValidation.nameMustBeString,
     }
   }
 
@@ -187,21 +175,21 @@ function validateContactName(contactName: string): ValidationResult {
   if (!trimmedName) {
     return {
       isValid: false,
-      message: 'Name is required',
+      message: contactValidation.nameRequired,
     }
   }
 
   if (trimmedName.length < 2) {
     return {
       isValid: false,
-      message: 'Name must be at least 2 characters',
+      message: contactValidation.nameMinLength,
     }
   }
 
   if (trimmedName.length > 100) {
     return {
       isValid: false,
-      message: 'Name must be less than 100 characters',
+      message: contactValidation.nameMaxLength,
     }
   }
 
@@ -210,21 +198,18 @@ function validateContactName(contactName: string): ValidationResult {
   }
 }
 
-/**
- * Validate message field for contact form
- */
 function validateMessage(message: string): ValidationResult {
   if (!message) {
     return {
       isValid: false,
-      message: 'Message is required',
+      message: contactValidation.messageRequired,
     }
   }
 
   if (typeof message !== 'string') {
     return {
       isValid: false,
-      message: 'Message must be a string',
+      message: commonValidation.messageMustBeString,
     }
   }
 
@@ -232,21 +217,21 @@ function validateMessage(message: string): ValidationResult {
   if (!trimmedMessage) {
     return {
       isValid: false,
-      message: 'Message is required',
+      message: contactValidation.messageRequired,
     }
   }
 
   if (trimmedMessage.length < 10) {
     return {
       isValid: false,
-      message: 'Message must be at least 10 characters',
+      message: contactValidation.messageMinLength,
     }
   }
 
   if (trimmedMessage.length > 1000) {
     return {
       isValid: false,
-      message: 'Message must be less than 1000 characters',
+      message: contactValidation.messageMaxLength,
     }
   }
 
@@ -255,37 +240,26 @@ function validateMessage(message: string): ValidationResult {
   }
 }
 
-/**
- * Contact form data interface
- */
-interface ContactFormData {
-  email: string
-  contactName: string
-  message: string
-}
-
-/**
- * Validate contact form data
- */
-function validateContactForm(data: ContactFormData): FormValidationResult {
+function validateContactForm(
+  data: ContactFormValidationData
+): FormValidationResult {
   const errors: Record<string, string> = {}
 
-  // Validate email
   const emailValidation = validateEmail(data.email)
   if (!emailValidation.isValid) {
-    errors.email = emailValidation.message || 'Invalid email'
+    errors.email = emailValidation.message || commonValidation.invalidEmail
   }
 
-  // Validate contact name
   const contactNameValidation = validateContactName(data.contactName)
   if (!contactNameValidation.isValid) {
-    errors.contactName = contactNameValidation.message || 'Invalid name'
+    errors.contactName =
+      contactNameValidation.message || commonValidation.invalidName
   }
 
-  // Validate message
   const messageValidation = validateMessage(data.message)
   if (!messageValidation.isValid) {
-    errors.message = messageValidation.message || 'Invalid message'
+    errors.message =
+      messageValidation.message || commonValidation.invalidMessage
   }
 
   return {
@@ -294,10 +268,7 @@ function validateContactForm(data: ContactFormData): FormValidationResult {
   }
 }
 
-/**
- * Check if contact form is valid (all fields filled and valid)
- */
-function isContactFormValid(formData: ContactFormData): boolean {
+function isContactFormValid(formData: ContactFormValidationData): boolean {
   if (!formData.email || !formData.contactName || !formData.message) {
     return false
   }
@@ -320,12 +291,11 @@ function isContactFormValid(formData: ContactFormData): boolean {
   return true
 }
 
-interface FormValidationResult {
-  isValid: boolean
-  errors: Record<string, string>
+export type {
+  ValidationResult,
+  ContactFormValidationData,
+  FormValidationResult,
 }
-
-export type { ValidationResult, ContactFormData, FormValidationResult }
 
 export {
   validateEmail,

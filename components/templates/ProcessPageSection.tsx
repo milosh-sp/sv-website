@@ -6,7 +6,7 @@ import { StepsGrid } from '@/components/organisms/Steps'
 import { strings } from '@/lib/strings'
 import type { UserType } from '@/types/FormData.types'
 import type { ProcessPageSectionProps } from '@/types/ProcessPageSection.types'
-import { HeroButtons } from '../molecules/HeroButtons'
+import { HeroButtons } from '@/components/molecules/HeroButtons'
 import { cn } from '@/lib/utils'
 
 // Steps already have icons embedded in strings

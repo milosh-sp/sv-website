@@ -6,7 +6,7 @@ import { generateId } from '@/lib/utils/convertToSnakeCase'
 import { SatelliteDishIcon } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
 import { Suspense, useEffect, useEffectEvent, useState } from 'react'
-import { SuccessScreen } from '../organisms/SuccessScreen'
+import { SuccessScreen } from '@/components/organisms/SuccessScreen'
 import { strings } from '@/lib/strings'
 
 function ConfirmEmailContent() {
@@ -85,7 +85,7 @@ function ConfirmEmailContent() {
   )
 }
 
-export function ConfirmEmailSection() {
+export function ConfirmEmailPageSection() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <ConfirmEmailContent />

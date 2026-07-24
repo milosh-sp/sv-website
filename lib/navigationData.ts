@@ -26,6 +26,7 @@ export const headerMenus: readonly NavMenu[] = [
   {
     id: 'companies',
     label: strings.navigation.menu.companies,
+    href: '/',
     items: [
       {
         id: 'ai-search',
@@ -52,12 +53,8 @@ export const headerMenus: readonly NavMenu[] = [
   {
     id: 'talent',
     label: strings.navigation.menu.talent,
+    href: TALENT_PATH,
     items: [
-      {
-        id: 'cv-preview',
-        label: strings.navigation.talentMenu.whatIsCv2,
-        href: `${TALENT_PATH}#cv-preview`,
-      },
       {
         id: 'process',
         label: strings.navigation.talentMenu.getVerified,

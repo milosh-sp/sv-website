@@ -16,6 +16,7 @@ export function BenefitCards({
   icon,
   colorScheme = 'blue',
   className = '',
+  controlColor = 'companies',
   ...props
 }: BenefitCardsProps) {
   return (
@@ -42,7 +43,11 @@ export function BenefitCards({
           {description}
         </p>
       </header>
-      <BenefitGrid benefits={benefits} colorScheme={colorScheme} />
+      <BenefitGrid
+        benefits={benefits}
+        colorScheme={colorScheme}
+        controlColor={controlColor}
+      />
     </section>
   )
 }

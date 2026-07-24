@@ -3,15 +3,18 @@
 import { useEffect, useRef, useState } from 'react'
 import { ChevronDown } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { strings } from '@/lib/strings'
 import { HeaderLink } from '@/components/molecules/HeaderLink'
 import type { NavDropdownProps } from '@/types/NavDropdown.types'
 import type { NavMenuItem } from '@/types/Navigation.types'
 
 export function NavDropdown({
   label,
+  href,
   items,
   variant = 'desktop',
   onItemClick,
+  onLabelClick,
 }: NavDropdownProps) {
   const [open, setOpen] = useState(false)
   const containerRef = useRef<HTMLLIElement>(null)
@@ -40,6 +43,11 @@ export function NavDropdown({
     }
   }, [open, variant])
 
+  const handleLabelClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    onLabelClick?.(event, href)
+    setOpen(false)
+  }
+
   const handleItemClick = (
     event: React.MouseEvent<HTMLAnchorElement>,
     item: NavMenuItem
@@ -51,33 +59,53 @@ export function NavDropdown({
   if (variant === 'mobile') {
     return (
       <li role='none' className={cn('list-none')}>
-        <button
-          type='button'
-          onClick={() => setOpen((prev) => !prev)}
-          aria-expanded={open}
-          className={cn(
-            'w-full flex items-center justify-between',
-            'text-left py-3 px-4 rounded-lg font-medium cursor-pointer',
-            'text-slate-700 hover:text-primary hover:bg-primary/10',
-            'transition-all duration-200'
-          )}
-        >
-          <span>{label}</span>
-          <ChevronDown
+        <div className={cn('flex items-center')}>
+          <HeaderLink
+            href={href}
+            variant='mobile'
+            className={cn('flex-1 font-semibold text-slate-900')}
+            onClick={handleLabelClick}
+          >
+            {label}
+          </HeaderLink>
+          <button
+            type='button'
+            onClick={() => setOpen((prev) => !prev)}
+            aria-expanded={open}
+            aria-label={strings.navigation.accessibility.openSubmenu}
             className={cn(
-              'h-4 w-4 transition-transform duration-200',
-              open && 'rotate-180'
+              'p-3 rounded-lg cursor-pointer',
+              'text-slate-700 hover:text-primary hover:bg-primary/10',
+              'transition-all duration-200'
             )}
-            aria-hidden='true'
-          />
-        </button>
+          >
+            <ChevronDown
+              className={cn(
+                'h-4 w-4 transition-transform duration-200',
+                open && 'rotate-180'
+              )}
+              aria-hidden='true'
+            />
+          </button>
+        </div>
         {open && (
-          <ul className={cn('flex flex-col gap-1 pl-4 mt-1 list-none m-0 p-0')}>
+          <ul
+            className={cn(
+              'flex flex-col gap-0.5 mt-1 mb-2 ml-4 pl-4',
+              'border-l-2 border-slate-200',
+              'list-none m-0 p-0'
+            )}
+          >
             {items.map((item) => (
               <li key={item.id} role='none'>
                 <HeaderLink
                   href={item.href}
                   variant='mobile'
+                  className={cn(
+                    'text-sm font-normal text-slate-600',
+                    'py-2 px-3 rounded-md',
+                    'hover:text-primary hover:bg-primary/5'
+                  )}
                   onClick={(event) => handleItemClick(event, item)}
                 >
                   {item.label}
@@ -97,30 +125,35 @@ export function NavDropdown({
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
-      <button
-        type='button'
-        onClick={() => setOpen((prev) => !prev)}
-        aria-haspopup='true'
-        aria-expanded={open}
-        className={cn(
-          'flex items-center gap-1 py-2 px-1 font-medium cursor-pointer',
-          'text-slate-700 hover:text-primary transition-all duration-200'
-        )}
-      >
-        <span>{label}</span>
-        <ChevronDown
+      <div className={cn('flex items-center gap-0.5')}>
+        <HeaderLink href={href} variant='desktop' onClick={handleLabelClick}>
+          {label}
+        </HeaderLink>
+        <button
+          type='button'
+          onClick={() => setOpen((prev) => !prev)}
+          aria-haspopup='true'
+          aria-expanded={open}
+          aria-label={strings.navigation.accessibility.openSubmenu}
           className={cn(
-            'h-4 w-4 transition-transform duration-200',
-            open && 'rotate-180'
+            'p-1 rounded-md cursor-pointer',
+            'text-slate-700 hover:text-primary transition-all duration-200'
           )}
-          aria-hidden='true'
-        />
-      </button>
+        >
+          <ChevronDown
+            className={cn(
+              'h-4 w-4 transition-transform duration-200',
+              open && 'rotate-180'
+            )}
+            aria-hidden='true'
+          />
+        </button>
+      </div>
       {open && (
         <div
           className={cn(
             // pt-2 bridges the gap so hover doesn't flicker between button and panel
-            'absolute left-0 top-full min-w-56 pt-2 z-50'
+            'absolute left-0 top-full w-max pt-2 z-50'
           )}
         >
           <ul
@@ -136,7 +169,7 @@ export function NavDropdown({
                 <HeaderLink
                   href={item.href}
                   variant='mobile'
-                  className={cn('block')}
+                  className={cn('block whitespace-nowrap')}
                   onClick={(event) => handleItemClick(event, item)}
                 >
                   {item.label}

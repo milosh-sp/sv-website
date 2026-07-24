@@ -68,7 +68,11 @@ export function AiSearchPageSection({ id }: SectionProps) {
               const Icon = point.icon
               return (
                 <li key={point.title} className={cn('flex items-start gap-4')}>
-                  <IconContainer icon={Icon} size='md' colorScheme='primary' />
+                  <IconContainer
+                    icon={Icon}
+                    size='md'
+                    colorScheme='companies'
+                  />
                   <div>
                     <Text variant='body' className={cn('font-semibold')}>
                       {point.title}

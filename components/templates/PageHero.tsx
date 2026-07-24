@@ -115,6 +115,7 @@ export function PageHero({
             aria-label={accessibility.heroActions}
           >
             <HeroButtons
+              audience={audience}
               showHiringManager={showHiringManager}
               showCandidate={showCandidate}
               showVerifier={showVerifier}
@@ -147,10 +148,10 @@ export function PageHero({
               <Link
                 href={secondaryPrompt.href}
                 className={cn(
-                  'group inline-flex items-center gap-2 rounded-full border border-success/30 bg-success/10',
-                  'px-4 py-1.5 font-semibold text-success shadow-sm transition-all',
-                  'hover:border-success/50 hover:bg-success/15 hover:shadow-md',
-                  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-success/50'
+                  'group inline-flex items-center gap-2 rounded-full border border-companies/30 bg-companies/10',
+                  'px-4 py-1.5 font-semibold text-companies shadow-sm transition-all',
+                  'hover:border-companies/50 hover:bg-companies/15 hover:shadow-md',
+                  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-companies/50'
                 )}
               >
                 {secondaryPrompt.linkText}

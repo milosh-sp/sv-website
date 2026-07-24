@@ -4,6 +4,7 @@ import { SectionWrapper } from '@/components/templates/SectionWrapper'
 import { strings } from '@/lib/strings'
 import { cn } from '@/lib/utils'
 import type { SectionProps } from '@/types/Sections.types'
+import { HeaderAndDescription } from '../molecules/HeaderAndDescription'
 
 export function StatsBandPageSection({ id }: SectionProps) {
   return (
@@ -13,15 +14,10 @@ export function StatsBandPageSection({ id }: SectionProps) {
       aria-labelledby='stats-heading'
     >
       <div className={cn('container-wide')}>
-        <Heading
-          level={2}
-          size='sm'
-          variant='heading'
-          id='stats-heading'
-          className={cn('mb-10 text-center')}
-        >
-          {strings.stats.heading}
-        </Heading>
+        <HeaderAndDescription
+          heading={strings.stats.heading}
+          description={strings.stats.description}
+        />
 
         <dl
           className={cn(

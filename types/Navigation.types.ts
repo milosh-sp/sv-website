@@ -11,6 +11,8 @@ interface NavMenuItem {
 interface NavMenu {
   id: string
   label: string
+  /** Top-level label target (homepage or talent page). */
+  href: string
   items: readonly NavMenuItem[]
 }
 

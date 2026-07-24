@@ -9,7 +9,12 @@ import { DotButton } from '@/components/atoms/DotButton'
 import { useDotButton } from '@/hooks/useDotButtons'
 import type { CarouselProps } from '@/types/Carousel.types'
 
-export function Carousel({ slides, options, ...props }: CarouselProps) {
+export function Carousel({
+  slides,
+  options,
+  controlColor = 'companies',
+  ...props
+}: CarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel(options)
   const {
     prevBtnDisabled,
@@ -20,6 +25,9 @@ export function Carousel({ slides, options, ...props }: CarouselProps) {
 
   const { selectedIndex, scrollSnaps, onDotButtonClick } =
     useDotButton(emblaApi)
+
+  const activeControlColor =
+    controlColor === 'success' ? 'text-success' : 'text-companies'
 
   return (
     <section className='embla' ref={emblaRef} {...props}>
@@ -40,7 +48,7 @@ export function Carousel({ slides, options, ...props }: CarouselProps) {
           >
             <ChevronLeft
               className={cn(
-                `h-10 w-10 ${prevBtnDisabled ? 'text-slate-300' : 'text-primary'}`
+                `h-10 w-10 ${prevBtnDisabled ? 'text-slate-300' : activeControlColor}`
               )}
             />
           </CarouselButton>
@@ -51,7 +59,7 @@ export function Carousel({ slides, options, ...props }: CarouselProps) {
           >
             <ChevronRight
               className={cn(
-                `h-10 w-10 ${nextBtnDisabled ? 'text-slate-300' : 'text-primary'}`
+                `h-10 w-10 ${nextBtnDisabled ? 'text-slate-300' : activeControlColor}`
               )}
             />
           </CarouselButton>

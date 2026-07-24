@@ -20,7 +20,11 @@ export function ProcessPageSection({ id }: ProcessPageSectionProps) {
     <HeaderAndButtons
       activeTab={activeTab}
       onTabChange={setActiveTab}
-      heading={strings.process.heading}
+      heading={
+        activeTab === 'member'
+          ? strings.process.heading.members
+          : strings.process.heading.guruMembers
+      }
       description={
         activeTab === 'member'
           ? strings.process.description.members
@@ -31,25 +35,35 @@ export function ProcessPageSection({ id }: ProcessPageSectionProps) {
     >
       {activeTab === 'member' && (
         <>
-          <StepsGrid steps={memberSteps} columns={4} colorScheme='emerald' />
+          <StepsGrid
+            steps={memberSteps}
+            columns={4}
+            colorScheme='emerald'
+            controlColor='success'
+          />
           <div
             className={cn(
               'flex justify-center align-center mt-10 animate-fade-in-up'
             )}
           >
-            <HeroButtons showCandidate />
+            <HeroButtons audience='talent' showCandidate />
           </div>
         </>
       )}
       {activeTab === 'guru' && (
         <>
-          <StepsGrid steps={guruMemberSteps} columns={4} colorScheme='blue' />
+          <StepsGrid
+            steps={guruMemberSteps}
+            columns={4}
+            colorScheme='blue'
+            controlColor='success'
+          />
           <div
             className={cn(
               'flex justify-center align-center mt-10 animate-fade-in-up'
             )}
           >
-            <HeroButtons showVerifier />
+            <HeroButtons audience='talent' showVerifier />
           </div>
         </>
       )}

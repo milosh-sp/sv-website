@@ -27,7 +27,7 @@ export function HeaderAndDescription({
         {headingHighlight && (
           <span
             className={cn(
-              'ml-1.5 bg-linear-to-r from-primary to-primary/60 bg-clip-text text-transparent',
+              'ml-1.5 bg-linear-to-r from-companies to-companies/60 bg-clip-text text-transparent',
               highlightClassName
             )}
           >

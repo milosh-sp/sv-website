@@ -11,6 +11,7 @@ export function BenefitGrid({
   colorScheme = 'blue',
   columns = 2,
   className,
+  controlColor = 'companies',
   ...props
 }: BenefitGridProps) {
   const gridCols = {
@@ -38,6 +39,7 @@ export function BenefitGrid({
         <Carousel
           options={{ loop: true, duration: 15 }}
           slides={carouselSlides}
+          controlColor={controlColor}
           aria-label={strings.benefits.accessibility.benefitsCarousel}
         />
       </div>

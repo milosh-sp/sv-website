@@ -76,18 +76,18 @@ const navigation = {
   // "For companies" dropdown items (all on the homepage)
   companyMenu: {
     smartSearch: `Smart AI search`,
-    whyDifferent: `Why Skill Verdict is different`,
+    whyDifferent: `How Skill Verdict is different`,
     howItWorks: `How Skill Verdict works`,
     interviewProcess: `The interview process`,
-    personality: `Personality`,
+    personality: `Personality based hiring`,
     faq: `FAQs`,
   },
 
   // "For talent CV2.0" dropdown items (all on the /for-talent-cv2.0 page)
   talentMenu: {
     whatIsCv2: `What is CV2.0`,
-    getVerified: `How it works`,
-    becomeReviewer: `How to join`,
+    getVerified: `How to join`,
+    becomeReviewer: `Benefits`,
     faq: `FAQs`,
   },
 
@@ -104,6 +104,7 @@ const navigation = {
     scrollToHero: `Scroll to hero section to join the community`,
     primaryNavigation: `Primary navigation`,
     mobileNavigation: `Mobile navigation`,
+    openSubmenu: `Open submenu`,
   },
 } as const
 
@@ -124,7 +125,7 @@ export const hero = {
   callToAction: `Simply paste a job description and meet your shortlist.`,
 
   // Prominent pricing badge shown under the primary hero actions
-  ctaBadge: `$0 until you hire`,
+  ctaBadge: ``,
 
   // Secondary prompt directing candidates/reviewers to the talent page
   talentPrompt: `Looking to join as talent or talent vetter?`,
@@ -384,7 +385,10 @@ const companyDiscovery = {
 
 const process = {
   // Section header
-  heading: `How CV2.0 works`,
+  heading: {
+    members: `How to join as Candidate`,
+    guruMembers: `How to join as Reviewer`,
+  },
   description: {
     members: `Build a live CV2.0 with skills independently verified through practical work, then share it anywhere and let remote companies find you.`,
     guruMembers: `Assess real engineering work remotely, give useful feedback, and earn on your own schedule.`,
@@ -1845,7 +1849,7 @@ const problem = {
 }
 
 const explainerVideo = {
-  heading: `Find out how peer-vetted talent is`,
+  heading: `Find out how peer-vetted talent can`,
   headingHighlight: `help you find the best fit.`,
 } as const
 
@@ -1855,6 +1859,7 @@ const explainerVideo = {
 
 const stats = {
   heading: `Why choose us?`,
+  description: `We offer ready to hire talent, compared to others who offer "ready to interview" talent!`,
   items: [
     { value: `61%`, label: `lower cost vs traditional hiring` },
     { value: `5 min`, label: `to get already interviewed talent` },
@@ -1902,7 +1907,7 @@ const aiSearch = {
 // ============================================================================
 
 const differentiators = {
-  heading: `Why Skill Verdict is different`,
+  heading: `How Skill Verdict is different`,
   description: `A talent marketplace, but with a stricter, peer-sourced bar and a fuller picture of every candidate.`,
   iconAriaLabel: `Star icon for Skill Verdict differentiators`,
   cards: [

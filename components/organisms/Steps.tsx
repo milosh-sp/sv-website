@@ -10,6 +10,7 @@ const ICON_BG_COLORS = {
   emerald: 'bg-success/20',
   purple: 'bg-primary/20',
   orange: 'bg-warning/20',
+  companies: 'bg-companies/20',
 } as const
 
 const ICON_COLORS = {
@@ -17,6 +18,7 @@ const ICON_COLORS = {
   emerald: 'text-success',
   purple: 'text-primary',
   orange: 'text-warning',
+  companies: 'text-companies',
 } as const
 
 function StepCard({
@@ -67,6 +69,7 @@ export function StepsGrid({
   className,
   columns = 4,
   colorScheme = 'blue',
+  controlColor = 'companies',
 }: StepsGridProps) {
   const gridCols = {
     2: 'md:grid-cols-2',
@@ -94,6 +97,7 @@ export function StepsGrid({
         <Carousel
           options={{ loop: true, duration: 15 }}
           slides={carouselSlides}
+          controlColor={controlColor}
           aria-label={strings.process.accessibility.processStepsCarousel}
         />
       </div>

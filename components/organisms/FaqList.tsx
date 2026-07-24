@@ -11,6 +11,7 @@ export function FaqList({
   onToggle,
   idPrefix,
   indexOffset = 0,
+  iconClassName = 'text-companies',
   ...props
 }: FaqListProps) {
   return (
@@ -30,6 +31,7 @@ export function FaqList({
               isOpen={isOpen}
               onToggle={onToggle}
               idPrefix={idPrefix}
+              iconClassName={iconClassName}
             />
           )
         })}

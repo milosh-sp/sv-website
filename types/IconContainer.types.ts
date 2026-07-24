@@ -5,7 +5,7 @@ interface IconContainerProps extends ComponentProps<'div'> {
   icon: LucideIcon
   size?: 'sm' | 'md' | 'lg'
   variant?: 'gradient' | 'solid'
-  colorScheme?: 'destructive' | 'success' | 'primary' | 'warning'
+  colorScheme?: 'destructive' | 'success' | 'primary' | 'warning' | 'companies'
 }
 
 export type { IconContainerProps }

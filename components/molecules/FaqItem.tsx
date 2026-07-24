@@ -17,6 +17,7 @@ export function FaqItem({
   isOpen,
   onToggle,
   idPrefix,
+  iconClassName = 'text-companies',
   ...props
 }: FaqItemProps) {
   const buttonId = `faq-button-${idPrefix}-${index}`
@@ -35,7 +36,8 @@ export function FaqItem({
   const icon = (
     <ChevronDown
       className={cn(
-        'h-5 w-5 text-primary shrink-0 ml-4',
+        'h-5 w-5 shrink-0 ml-4',
+        iconClassName,
         'transition-transform duration-300 ease-in-out',
         isOpen && 'rotate-180'
       )}

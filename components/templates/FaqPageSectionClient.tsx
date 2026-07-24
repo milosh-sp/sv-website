@@ -49,6 +49,7 @@ export function FaqPageSectionClient({
               openItems={openItems}
               onToggle={toggleItem}
               idPrefix='member'
+              iconClassName='text-success'
             />
           )}
 
@@ -61,6 +62,7 @@ export function FaqPageSectionClient({
               onToggle={toggleItem}
               idPrefix='verifier'
               indexOffset={memberFaqs.length}
+              iconClassName='text-primary'
             />
           )}
 
@@ -77,7 +79,13 @@ export function FaqPageSectionClient({
 
           <Button
             onClick={() => router.push('/contact')}
-            variant='hero-blue'
+            variant={
+              variant === 'talent'
+                ? activeTab === 'guru'
+                  ? 'hero-blue'
+                  : 'hero-emerald'
+                : 'companies'
+            }
             size='lg'
             className={cn(
               'h-14 px-8 text-base rounded-lg font-semibold animate-fade-in-up'

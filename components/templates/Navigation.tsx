@@ -29,6 +29,28 @@ export function Header() {
   // Smooth-scroll only when the target section is on the current page.
   // Cross-page hash links (e.g. /#faq clicked from /for-talent-cv2.0) fall
   // through to normal Next.js navigation, which handles the hash on load.
+  const handleMenuLabelClick = (
+    event: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    setIsMenuOpen(false)
+
+    const targetPath = href.split('#')[0] || '/'
+    if (targetPath !== window.location.pathname) return
+
+    event.preventDefault()
+
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches
+
+    window.scrollTo({
+      top: 0,
+      behavior: prefersReducedMotion ? 'auto' : 'smooth',
+      left: 0,
+    })
+  }
+
   const handleNavClick = (
     event: React.MouseEvent<HTMLAnchorElement>,
     item: NavMenuItem
@@ -122,9 +144,11 @@ export function Header() {
               <NavDropdown
                 key={menu.id}
                 label={menu.label}
+                href={menu.href}
                 items={menu.items}
                 variant='desktop'
                 onItemClick={handleNavClick}
+                onLabelClick={handleMenuLabelClick}
               />
             ))}
             <li>
@@ -182,9 +206,11 @@ export function Header() {
                 <NavDropdown
                   key={menu.id}
                   label={menu.label}
+                  href={menu.href}
                   items={menu.items}
                   variant='mobile'
                   onItemClick={handleNavClick}
+                  onLabelClick={handleMenuLabelClick}
                 />
               ))}
               <li role='none'>

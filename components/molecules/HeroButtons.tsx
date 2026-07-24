@@ -8,10 +8,12 @@ import Link from 'next/link'
  * By default all buttons are hidden
  */
 export function HeroButtons({
+  audience = 'companies',
   showCandidate,
   showVerifier,
   showHiringManager,
 }: {
+  audience?: 'companies' | 'talent'
   showCandidate?: boolean
   showVerifier?: boolean
   showHiringManager?: boolean
@@ -41,7 +43,13 @@ export function HeroButtons({
       {showCandidate && (
         <Link href='/candidate'>
           <Button
-            variant={showHiringManager ? 'outline' : 'hero-emerald'}
+            variant={
+              showHiringManager
+                ? 'outline'
+                : audience === 'talent'
+                  ? 'hero-emerald'
+                  : 'companies'
+            }
             size='lg'
             className={cn('h-14 px-8 text-base rounded-lg w-full sm:w-auto')}
             aria-label={strings.hero.accessibility.openSignupModal}
@@ -58,7 +66,13 @@ export function HeroButtons({
       {showVerifier && (
         <Link href='/verifier'>
           <Button
-            variant={showHiringManager ? 'outline' : 'hero-blue'}
+            variant={
+              showHiringManager
+                ? 'outline'
+                : audience === 'talent'
+                  ? 'hero-blue'
+                  : 'companies'
+            }
             size='lg'
             className={cn(
               'h-14 px-8 text-base rounded-lg font-semibold w-full sm:w-auto'

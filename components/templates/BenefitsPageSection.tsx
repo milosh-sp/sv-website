@@ -24,6 +24,7 @@ export function BenefitsPageSection({ id }: SectionProps) {
       heading={strings.benefits.heading}
       headingHighlight={strings.benefits.headingHighlight}
       description={strings.benefits.description}
+      highlightClassName='from-success to-success/60'
       ariaLabel={strings.benefits.accessibility.benefitsSection}
       className={cn('p-5 md:p-15 bg-gradient-to-b from-white to-slate-50/50')}
     >
@@ -38,6 +39,7 @@ export function BenefitsPageSection({ id }: SectionProps) {
           description={strings.benefits.members.description}
           benefits={candidateBenefits}
           colorScheme='emerald'
+          controlColor='success'
         />
       )}
       {activeTab === 'guru' && (
@@ -52,6 +54,7 @@ export function BenefitsPageSection({ id }: SectionProps) {
           description={strings.benefits.guruMembers.description}
           benefits={vetterBenefits}
           colorScheme='blue'
+          controlColor='success'
         />
       )}
     </HeaderAndButtons>

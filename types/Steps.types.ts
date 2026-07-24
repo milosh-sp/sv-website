@@ -14,7 +14,9 @@ interface StepsGridProps {
   /** Number of columns for grid layout */
   columns?: 2 | 3 | 4
   /** Color scheme for icon background and color */
-  colorScheme?: 'blue' | 'emerald' | 'purple' | 'orange'
+  colorScheme?: 'blue' | 'emerald' | 'purple' | 'orange' | 'companies'
+  /** Carousel arrow color */
+  controlColor?: 'companies' | 'success'
 }
 
 export type { StepItem, StepsGridProps }

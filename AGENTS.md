@@ -33,6 +33,7 @@ violations will fail formatting, linting, or type-checks in the build.
   - [16. Build and deployment](#16-build-and-deployment)
   - [17. Git conventions](#17-git-conventions)
     - [Things to keep in mind always](#things-to-keep-in-mind-always)
+  - [re-use that already does the same functionality and behavior](#re-use-that-already-does-the-same-functionality-and-behavior)
 
 ---
 
@@ -479,6 +480,8 @@ dashboard, never committed.
 - Put shared util functions in `lib/utils.ts` (e.g. `cn()`) or focused modules
   under `lib/utils/` (e.g. `convertToSnakeCase.ts`); avoid one file per function
 - If the projects stalls building delete `.next` and try again, this is a known issue
+- Repeated `tsx` should be a separate component, if there is no component to
+  re-use that already does the same functionality and behavior
 ---
 
 *Last updated: July 2026*

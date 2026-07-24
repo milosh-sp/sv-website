@@ -14,6 +14,7 @@ export function HeaderAndButtons({
   className,
   activeTab,
   onTabChange,
+  highlightClassName,
   ...props
 }: HeaderAndButtonsProps) {
   return (
@@ -31,6 +32,7 @@ export function HeaderAndButtons({
           heading={heading}
           headingHighlight={headingHighlight}
           description={description}
+          highlightClassName={highlightClassName}
         />
         <TwoSidesButtons activeTab={activeTab} onTabChange={onTabChange} />
         {children}

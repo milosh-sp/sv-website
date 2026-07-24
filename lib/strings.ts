@@ -25,6 +25,7 @@ import {
   Home,
   IdCard,
   Instagram,
+  Linkedin,
   Mail,
   MessageCircle,
   Network,
@@ -568,6 +569,12 @@ const footer = {
       url: `https://instagram.com/skill_verdict`,
       label: `Follow us on Instagram`,
       icon: Instagram,
+    },
+    {
+      name: `LinkedIn`,
+      url: `https://www.linkedin.com/company/skill-verdict/`,
+      label: `Follow us on LinkedIn`,
+      icon: Linkedin,
     },
     {
       name: `Mastodon`,

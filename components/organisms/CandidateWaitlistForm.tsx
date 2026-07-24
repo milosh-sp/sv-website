@@ -213,7 +213,7 @@ export function CandidateWaitlistForm() {
       </Text>
 
       <div className={cn('flex justify-center align-center')}>
-        <HeroButtons showVerifier showHiringManager />
+        <HeroButtons audience='talent' showVerifier showHiringManager />
       </div>
 
       <WaitlistFormWrapper

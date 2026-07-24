@@ -1491,8 +1491,8 @@ const waitlistForms = {
       description: `Answer few simple questions, unlock special founder's perks, and find out how you can earn money by verifying skills`,
     },
     'hiring-manager': {
-      title: `Discover untapped potential and hire verified talent`,
-      description: `Gain access to a pool of verified talent and reduce bad hires and your time-to-hire drastically`,
+      title: `Discover untapped potential and hire peer verified talent`,
+      description: `Gain access to a pool of peer verified talent and reduce bad hires and your time-to-hire drastically`,
     },
   },
   // Success screen messages

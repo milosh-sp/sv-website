@@ -194,7 +194,7 @@ export function VerifierWaitlistForm() {
       </Text>
 
       <div className={cn('flex justify-center align-center')}>
-        <HeroButtons showCandidate showHiringManager />
+        <HeroButtons audience='talent' showCandidate showHiringManager />
       </div>
 
       <WaitlistFormWrapper

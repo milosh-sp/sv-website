@@ -182,7 +182,7 @@ export function HiringManagerWaitlistForm() {
       </Text>
 
       <div className={cn('flex justify-center align-center')}>
-        <HeroButtons showCandidate showVerifier />
+        <HeroButtons audience='talent' showCandidate showVerifier />
       </div>
       <WaitlistFormWrapper
         currentStep={form.currentStep}

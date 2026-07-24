@@ -37,6 +37,11 @@ const COLOR_SCHEMES = {
     solid: 'bg-warning/20',
     iconColor: 'text-warning',
   },
+  companies: {
+    gradient: 'from-companies/20 to-companies/10',
+    solid: 'bg-companies/20',
+    iconColor: 'text-companies',
+  },
 } as const
 
 export function IconContainer({

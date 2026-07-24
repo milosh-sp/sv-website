@@ -7,4 +7,5 @@ export interface BenefitCardsProps extends ComponentProps<'section'> {
   icon?: ReactNode
   colorScheme?: 'blue' | 'emerald' | 'purple' | 'orange' | 'companies'
   className?: string
+  controlColor?: 'companies' | 'success'
 }

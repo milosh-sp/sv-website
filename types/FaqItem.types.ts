@@ -33,6 +33,11 @@ interface FaqItemProps extends Omit<ComponentProps<'div'>, 'onToggle'> {
    * Used to create buttonId and panelId for accessibility
    */
   idPrefix: string
+
+  /**
+   * Optional class for the expand/collapse chevron icon
+   */
+  iconClassName?: string
 }
 
 export type { FaqItemProps }

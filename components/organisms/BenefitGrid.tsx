@@ -1,8 +1,9 @@
 'use client'
 
 import { cn } from '@/lib/utils'
+import { strings } from '@/lib/strings'
 import type { BenefitGridProps } from '@/types/GridCards.types'
-import { BenefitCard } from '@/components/organisms/BenefitCard'
+import { BenefitCard } from '@/components/molecules/BenefitCard'
 import { Carousel } from '@/components/organisms/Carousel'
 
 export function BenefitGrid({
@@ -10,6 +11,7 @@ export function BenefitGrid({
   colorScheme = 'blue',
   columns = 2,
   className,
+  controlColor = 'companies',
   ...props
 }: BenefitGridProps) {
   const gridCols = {
@@ -37,7 +39,8 @@ export function BenefitGrid({
         <Carousel
           options={{ loop: true, duration: 15 }}
           slides={carouselSlides}
-          aria-label='Benefits carousel'
+          controlColor={controlColor}
+          aria-label={strings.benefits.accessibility.benefitsCarousel}
         />
       </div>
 
@@ -48,7 +51,7 @@ export function BenefitGrid({
           gridCols[columns],
           className
         )}
-        aria-label='Benefits list'
+        aria-label={strings.benefits.accessibility.benefitsList}
         {...props}
       >
         {benefits.map((benefit, index) => (

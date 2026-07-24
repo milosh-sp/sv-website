@@ -1,5 +1,6 @@
 import type { RadioButtonProps } from '@/types/RadioButton.types'
 import { BaseToggleInput } from '@/components/atoms/BaseToggleInput'
+import { strings } from '@/lib/strings'
 
 export function RadioButton({
   className,
@@ -31,7 +32,7 @@ export function RadioButton({
       required={required}
       disabled={disabled}
       id={id}
-      defaultAriaLabel='Radio button'
+      defaultAriaLabel={strings.radioButton.accessibility.defaultLabel}
       {...props}
     />
   )

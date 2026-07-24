@@ -1,3 +1,4 @@
+import { useCandidateFormContext } from '@/context/CandidateFormContext'
 import { useForm } from '@/hooks/useForm'
 import { submitUnifiedForm } from '@/lib/api'
 import { referralCodeKey } from '@/lib/consts'
@@ -10,15 +11,12 @@ import { validateCandidateForm } from '@/lib/waitlistFormValidators'
 import type { CandidateFormData } from '@/types/CandidateFormData.types'
 import { INITIAL_CANDIDATE_FORM_DATA } from '@/types/CandidateFormData.types'
 import type { CandidateFormSubmission } from '@/types/netlify.types'
-import type { StepId } from '@/types/netlify.types'
-
-interface UseCandidateFormConfig {
-  onSuccess?: () => void
-  debounceDelay?: number
-  currentStep?: StepId
-}
+import type { UseCandidateFormConfig } from '@/types/UseCandidateForm.types'
 
 export function useCandidateForm(config?: UseCandidateFormConfig) {
+  const context = useCandidateFormContext()
+  const { currentStep } = context
+
   const form = useForm<CandidateFormData>({
     initialData: INITIAL_CANDIDATE_FORM_DATA,
     fields: [
@@ -30,7 +28,6 @@ export function useCandidateForm(config?: UseCandidateFormConfig) {
     onSubmit: async (formData, honeypotValue, formStartTime) => {
       const referralCode = localStorage.getItem(referralCodeKey) ?? ''
 
-      // Submit to unified Netlify function with candidate-specific fields
       return submitUnifiedForm({
         formType: 'candidate',
         contactName: formData.name,
@@ -50,14 +47,44 @@ export function useCandidateForm(config?: UseCandidateFormConfig) {
         website: honeypotValue,
         form_start_time: formStartTime,
         referredByReferralCode: referralCode,
-        formStep: config?.currentStep,
+        formStep: currentStep,
         newsLetterOptIn: formData.newsletterOptIn,
         privacyPolicyAgreed: new Date().toISOString(),
       } as CandidateFormSubmission)
     },
-    onSuccess: config?.onSuccess,
+    onSuccess: () => {
+      context.setSubmitStatus(currentStep === 'step1' ? 'idle' : 'success')
+
+      if (currentStep === 'step1') {
+        context.goToStep('step2')
+      }
+
+      config?.onSuccess?.()
+    },
     debounceDelay: config?.debounceDelay,
   })
 
-  return form
+  const handleStepSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    context.setIsSubmitting(true)
+
+    try {
+      await form.handleSubmit(e)
+      if (form.submitStatus === 'success') {
+        context.setSubmitStatus('success')
+      }
+    } finally {
+      context.setIsSubmitting(false)
+    }
+  }
+
+  return {
+    ...form,
+    currentStep: context.currentStep,
+    submitStatus: context.submitStatus,
+    goToStep: context.goToStep,
+    nextStep: context.nextStep,
+    previousStep: context.previousStep,
+    handleStepSubmit,
+  }
 }

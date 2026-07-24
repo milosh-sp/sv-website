@@ -1,3 +1,4 @@
+import { useHiringManagerFormContext } from '@/context/HiringManagerFormContext'
 import { useForm } from '@/hooks/useForm'
 import { submitUnifiedForm } from '@/lib/api'
 import { referralCodeKey } from '@/lib/consts'
@@ -5,15 +6,13 @@ import { validateEmail, validateUrl } from '@/lib/validation'
 import { validateHiringManagerForm } from '@/lib/waitlistFormValidators'
 import type { HiringManagerFormData } from '@/types/HiringManagerFormData.types'
 import { INITIAL_HIRING_MANAGER_FORM_DATA } from '@/types/HiringManagerFormData.types'
-import type { HiringManagerFormSubmission, StepId } from '@/types/netlify.types'
-
-interface UseHiringManagerFormConfig {
-  onSuccess?: () => void
-  debounceDelay?: number
-  currentStep?: StepId
-}
+import type { UseHiringManagerFormConfig } from '@/types/UseHiringManagerForm.types'
+import type { HiringManagerFormSubmission } from '@/types/netlify.types'
 
 export function useHiringManagerForm(config?: UseHiringManagerFormConfig) {
+  const context = useHiringManagerFormContext()
+  const { currentStep } = context
+
   const form = useForm<HiringManagerFormData>({
     initialData: INITIAL_HIRING_MANAGER_FORM_DATA,
     fields: [
@@ -24,7 +23,6 @@ export function useHiringManagerForm(config?: UseHiringManagerFormConfig) {
     onSubmit: async (formData, honeypotValue, formStartTime) => {
       const referralCode = localStorage.getItem(referralCodeKey) ?? ''
 
-      // Submit to unified Netlify function with hiring manager-specific fields
       return submitUnifiedForm({
         formType: 'hiring-manager',
         email: formData.email,
@@ -47,9 +45,40 @@ export function useHiringManagerForm(config?: UseHiringManagerFormConfig) {
         privacyPolicyAgreed: new Date().toISOString(),
       } as HiringManagerFormSubmission)
     },
-    onSuccess: config?.onSuccess,
+    onSuccess: () => {
+      context.setSubmitStatus(currentStep === 'step1' ? 'idle' : 'success')
+
+      if (currentStep === 'step1') {
+        context.goToStep('step2')
+        context.setSubmitStatus('idle')
+      }
+
+      config?.onSuccess?.()
+    },
     debounceDelay: config?.debounceDelay,
   })
 
-  return form
+  const handleStepSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    context.setIsSubmitting(true)
+
+    try {
+      await form.handleSubmit(e)
+      if (form.submitStatus === 'success') {
+        context.setSubmitStatus('success')
+      }
+    } finally {
+      context.setIsSubmitting(false)
+    }
+  }
+
+  return {
+    ...form,
+    currentStep: context.currentStep,
+    submitStatus: context.submitStatus,
+    goToStep: context.goToStep,
+    nextStep: context.nextStep,
+    previousStep: context.previousStep,
+    handleStepSubmit,
+  }
 }

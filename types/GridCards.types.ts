@@ -32,6 +32,7 @@ interface BenefitGridProps extends ComponentProps<'ul'> {
     | 'warning'
   columns?: 1 | 2 | 3 | 4
   className?: string
+  controlColor?: 'companies' | 'success'
 }
 
 export type { BenefitItem, BenefitCardProps, BenefitGridProps }

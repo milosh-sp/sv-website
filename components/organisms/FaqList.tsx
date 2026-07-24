@@ -1,7 +1,7 @@
 import type { FaqListProps } from '@/types/FaqList.types'
-import { FaqItem } from '@/components/organisms/FaqItem'
+import { FaqItem } from '@/components/molecules/FaqItem'
 import { cn } from '@/lib/utils'
-import { HeaderAndDescription } from '../molecules/HeaderAndDescription'
+import { HeaderAndDescription } from '@/components/molecules/HeaderAndDescription'
 
 export function FaqList({
   faqs,
@@ -11,6 +11,7 @@ export function FaqList({
   onToggle,
   idPrefix,
   indexOffset = 0,
+  iconClassName = 'text-companies',
   ...props
 }: FaqListProps) {
   return (
@@ -30,6 +31,7 @@ export function FaqList({
               isOpen={isOpen}
               onToggle={onToggle}
               idPrefix={idPrefix}
+              iconClassName={iconClassName}
             />
           )
         })}

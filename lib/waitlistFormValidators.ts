@@ -7,6 +7,7 @@ import {
   validateUrlField,
 } from '@/lib/waitlistValidators'
 import { getStepNumber } from '@/lib/stepIdentifiers'
+import { strings } from '@/lib/strings'
 import type { CandidateFormData } from '@/types/CandidateFormData.types'
 import type { HiringManagerFormData } from '@/types/HiringManagerFormData.types'
 import type { VerifierFormData } from '@/types/VerifierFormData.types'
@@ -64,7 +65,8 @@ function validateCandidateStep(
           !data.techCommunityDetails ||
           data.techCommunityDetails.trim() === ''
         ) {
-          errors.techCommunityDetails = 'Please specify which tech community'
+          errors.techCommunityDetails =
+            strings.waitlistForms.validation.techCommunityDetailsRequired
         }
       }
 

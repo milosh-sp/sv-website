@@ -34,10 +34,12 @@ export default function PrivacyPolicyPage() {
             </Text>
             <div className='text-sm text-slate-500 mt-4 space-y-1'>
               <Text variant='caption' className='text-slate-500'>
-                Last Updated On: {strings.legalPages.privacyPolicy.lastUpdated}
+                {strings.legalPages.privacyPolicy.meta.lastUpdatedLabel}{' '}
+                {strings.legalPages.privacyPolicy.lastUpdated}
               </Text>
               <Text variant='caption' className='text-slate-500'>
-                Effective Date: {strings.legalPages.privacyPolicy.effectiveDate}
+                {strings.legalPages.privacyPolicy.meta.effectiveDateLabel}{' '}
+                {strings.legalPages.privacyPolicy.effectiveDate}
               </Text>
             </div>
           </div>
@@ -295,24 +297,39 @@ export default function PrivacyPolicyPage() {
                   <Globe className='h-5 w-5 text-blue-600' />
                 </div>
                 <Heading level={2} variant='heading'>
-                  Contact Information
+                  {strings.legalPages.privacyPolicy.contactSection.title}
                 </Heading>
               </div>
               <div className='space-y-4'>
                 <div className='bg-slate-50 p-6 rounded-lg border border-slate-200'>
                   <ul className='space-y-2'>
                     <li>
-                      <strong>Email:</strong>{' '}
+                      <strong>
+                        {
+                          strings.legalPages.privacyPolicy.contactSection
+                            .emailLabel
+                        }
+                      </strong>{' '}
                       {strings.legalPages.privacyPolicy.contact.email}
                     </li>
                     {strings.legalPages.privacyPolicy.contact.phone && (
                       <li>
-                        <strong>Phone:</strong>{' '}
+                        <strong>
+                          {
+                            strings.legalPages.privacyPolicy.contactSection
+                              .phoneLabel
+                          }
+                        </strong>{' '}
                         {strings.legalPages.privacyPolicy.contact.phone}
                       </li>
                     )}
                     <li>
-                      <strong>Address:</strong>{' '}
+                      <strong>
+                        {
+                          strings.legalPages.privacyPolicy.contactSection
+                            .addressLabel
+                        }
+                      </strong>{' '}
                       {strings.legalPages.privacyPolicy.contact.address}
                     </li>
                   </ul>

@@ -17,12 +17,14 @@ export function TwoSidesButtons({
           onClick={() => onTabChange('member')}
           icon={CircleStar}
           label={strings.benefits.tabs.members}
+          activeAccent='success'
         />
         <SideTabButton
           isActive={activeTab === 'guru'}
           onClick={() => onTabChange('guru')}
           icon={Award}
           label={strings.benefits.tabs.guruMembers}
+          activeAccent='primary'
         />
         {showHiringManager && (
           <SideTabButton
@@ -30,6 +32,7 @@ export function TwoSidesButtons({
             onClick={() => onTabChange('hiring-manager')}
             icon={Handshake}
             label={strings.benefits.tabs.hiringManagers}
+            activeAccent='companies'
           />
         )}
       </div>

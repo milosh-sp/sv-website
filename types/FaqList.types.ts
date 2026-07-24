@@ -9,6 +9,7 @@ interface FaqListProps extends Omit<ComponentProps<'article'>, 'onToggle'> {
   idPrefix: string
   onToggle: (index: number) => void
   indexOffset?: number
+  iconClassName?: string
 }
 
 export type { FaqListProps }

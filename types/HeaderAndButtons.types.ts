@@ -11,4 +11,5 @@ export interface HeaderAndButtonsProps extends ComponentProps<'section'> {
   className?: string
   activeTab: UserType
   onTabChange: (tab: UserType) => void
+  highlightClassName?: string
 }

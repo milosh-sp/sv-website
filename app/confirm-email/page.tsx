@@ -1,4 +1,4 @@
-import { ConfirmEmailSection } from '@/components/templates/ConfirmEmailSection'
+import { ConfirmEmailPageSection } from '@/components/templates/ConfirmEmailPageSection'
 import { generateMetadata } from '@/lib/seo'
 import { pageSeoConfig } from '@/lib/seo-config'
 import type { Metadata } from 'next'
@@ -10,7 +10,7 @@ export const metadata: Metadata = generateMetadata(
 export default function ConfirmEmailPage() {
   return (
     <div>
-      <ConfirmEmailSection />
+      <ConfirmEmailPageSection />
     </div>
   )
 }

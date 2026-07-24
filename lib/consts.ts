@@ -34,4 +34,7 @@ const senderGroups = {
 
 const referralCodeKey = 'referralCode'
 
-export { COLOR_SCHEMES, senderGroups, referralCodeKey }
+/** Route of the dedicated candidate + reviewer page. */
+const TALENT_PATH = '/for-talent-cv2.0'
+
+export { COLOR_SCHEMES, senderGroups, referralCodeKey, TALENT_PATH }

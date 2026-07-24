@@ -17,7 +17,7 @@ export function Footer() {
             <Text variant='caption' className={cn('text-slate-400 mb-4')}>
               {strings.branding.copyright}
             </Text>
-            <nav aria-label='Legal links'>
+            <nav aria-label={strings.footer.accessibility.legalLinks}>
               <ul
                 className={cn(
                   'flex flex-col sm:flex-row justify-center md:justify-start gap-4 list-none'
@@ -58,7 +58,10 @@ export function Footer() {
         </div>
 
         {/* Social media links */}
-        <nav className={cn('mt-8 text-center')} aria-label='Social media links'>
+        <nav
+          className={cn('mt-8 text-center')}
+          aria-label={strings.footer.accessibility.socialMediaLinks}
+        >
           <ul className={cn('flex justify-center gap-6 list-none')}>
             {strings.footer.social.map((social) => {
               const SocialIcon = social.icon

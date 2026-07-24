@@ -2,53 +2,13 @@ import { readdir, stat, readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import type { MetadataRoute } from 'next'
 import { siteConfig } from './seo-config'
+import type {
+  PageEntry,
+  VideoMetadata,
+  VideoToPageMap,
+} from '@/types/Sitemap.types'
 
-// ============================================================================
-// TYPES
-// ============================================================================
-
-/**
- * Video metadata structure matching Next.js MetadataRoute.Sitemap video format
- * @see https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap#video-sitemaps
- */
-export interface VideoMetadata {
-  title: string
-  description: string
-  thumbnail_loc: string
-  content_loc?: string
-  player_loc?: string
-  duration?: number
-  expiration_date?: string
-  rating?: number
-  view_count?: number
-  publication_date?: string
-  family_friendly?: 'yes' | 'no'
-  restriction?: {
-    relationship: 'allow' | 'deny'
-    content: string
-  }
-  platform?: {
-    relationship: 'allow' | 'deny'
-    content: string
-  }
-  requires_subscription?: 'yes' | 'no'
-  uploader?: {
-    info?: string
-    content: string
-  }
-  live?: 'yes' | 'no'
-  tag?: string[]
-  page_route?: string
-}
-
-export interface PageEntry {
-  path: string
-  lastModified: Date
-  changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency']
-  priority: number
-  images?: NonNullable<MetadataRoute.Sitemap[number]['images']>
-  videos?: NonNullable<MetadataRoute.Sitemap[number]['videos']>
-}
+export type { PageEntry, VideoMetadata }
 
 // ============================================================================
 // CONSTANTS
@@ -273,15 +233,6 @@ async function discoverImagesRecursive(
 // ============================================================================
 
 /**
- * Map of video filenames to the pages that use them
- * Key: video filename (e.g., 'explainer-skill-verdict.mp4')
- * Value: array of page routes that use this video
- */
-interface VideoToPageMap {
-  [videoFileName: string]: string[]
-}
-
-/**
  * Scan a file for video imports and return the video filenames found
  * Matches patterns like: import videoName from '@/videos/video-file.mp4'
  */
@@ -343,7 +294,8 @@ async function scanComponentsForVideos(
  */
 async function extractComponentImportsFromFile(
   filePath: string,
-  componentsDir: string
+  componentsDir: string,
+  visitedLibFiles: Set<string> = new Set()
 ): Promise<string[]> {
   try {
     const content = await readFile(filePath, 'utf-8')
@@ -384,10 +336,14 @@ async function extractComponentImportsFromFile(
       const libPath = join(process.cwd(), 'lib', match[1])
       // Add .ts extension if not present
       const fullPath = libPath.endsWith('.ts') ? libPath : `${libPath}.ts`
-      // Recursively extract components from lib files
+      if (visitedLibFiles.has(fullPath)) {
+        continue
+      }
+      visitedLibFiles.add(fullPath)
       const libComponents = await extractComponentImportsFromFile(
         fullPath,
-        componentsDir
+        componentsDir,
+        visitedLibFiles
       )
       componentPaths.push(...libComponents)
     }
@@ -433,37 +389,41 @@ async function buildVideoToPageMapping(
    * Uses memoization to avoid re-processing components
    */
   const componentVideoCache = new Map<string, string[]>()
+  const visitingComponents = new Set<string>()
 
   async function getVideosForComponent(
     componentPath: string
   ): Promise<string[]> {
-    // Check cache first
     if (componentVideoCache.has(componentPath)) {
       return componentVideoCache.get(componentPath) ?? []
     }
-
-    const videos: string[] = []
-
-    // Get direct video imports from this component
-    const directVideos = componentVideoMap.get(componentPath) ?? []
-    videos.push(...directVideos)
-
-    // Get component dependencies and recursively find their videos
-    const componentDeps = await extractComponentImportsFromFile(
-      componentPath,
-      componentsDir
-    )
-
-    for (const depPath of componentDeps) {
-      const depVideos = await getVideosForComponent(depPath)
-      videos.push(...depVideos)
+    if (visitingComponents.has(componentPath)) {
+      return []
     }
 
-    // Deduplicate and cache
-    const uniqueVideos = [...new Set(videos)]
-    componentVideoCache.set(componentPath, uniqueVideos)
+    visitingComponents.add(componentPath)
+    try {
+      const videos: string[] = []
 
-    return uniqueVideos
+      const directVideos = componentVideoMap.get(componentPath) ?? []
+      videos.push(...directVideos)
+
+      const componentDeps = await extractComponentImportsFromFile(
+        componentPath,
+        componentsDir
+      )
+
+      for (const depPath of componentDeps) {
+        const depVideos = await getVideosForComponent(depPath)
+        videos.push(...depVideos)
+      }
+
+      const uniqueVideos = [...new Set(videos)]
+      componentVideoCache.set(componentPath, uniqueVideos)
+      return uniqueVideos
+    } finally {
+      visitingComponents.delete(componentPath)
+    }
   }
 
   // Step 2: Scan all page.tsx files to find which components they use

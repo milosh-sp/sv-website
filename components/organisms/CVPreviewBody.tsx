@@ -1,15 +1,16 @@
 import { cn } from '@/lib/utils'
+import { strings } from '@/lib/strings'
 import type { CVHeaderVariant } from '@/types/CVHeader.types'
 import { CertificationsSection } from './CertificationSection'
 import { CVHeader } from './CVHeader'
 import { EducationSection } from './EducationSection'
-import { ExperienceSection } from './ExperianceSection'
+import { ExperienceSection } from './ExperienceSection'
 import { LanguagesSection } from './LanguagesSection'
 import { ProjectsSection } from './ProjectSection'
 import { QrCodeSection } from './QrCodeSection'
 import { TechnicalSkillsSectionCv } from './TechnicalSkillsSectionCv'
 import type { HeadingLevel } from '@/types/Heading.types'
-import { PersonalitySection } from './PersonalititySection'
+import { PersonalitySection } from './PersonalitySection'
 
 export function CVPreviewBody({
   variant,
@@ -23,7 +24,7 @@ export function CVPreviewBody({
       className={cn(
         'max-w-5xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden'
       )}
-      aria-label='Sample curriculum vitae document'
+      aria-label={strings.cvPreview.accessibility.sampleCvDocument}
     >
       <CVHeader variant={variant ?? 'default'} headingLevel={headingLevel} />
 
@@ -37,8 +38,8 @@ export function CVPreviewBody({
 
         {/* Right Column - Supplementary Information */}
         <article className={cn('space-y-8')}>
-          <ProjectsSection />
           <PersonalitySection />
+          <ProjectsSection />
           <CertificationsSection />
           <LanguagesSection />
         </article>

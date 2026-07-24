@@ -499,6 +499,32 @@ const pageSeoConfig = {
     },
   },
 
+  '/for-talent-cv2.0': {
+    title: strings.seoPages.forTalent.title,
+    description: strings.seoPages.forTalent.description,
+    keywords: [
+      ...seoKeywords.pages.candidate,
+      ...seoKeywords.pages.verifier,
+    ] as string[],
+    canonical: `${siteConfig.url}/for-talent-cv2.0`,
+    ogImage: siteConfig.ogImage,
+    schema: {
+      type: 'BreadcrumbList',
+      itemListElement: [
+        {
+          position: 1,
+          name: 'Home',
+          item: siteConfig.url,
+        },
+        {
+          position: 2,
+          name: strings.seoPages.forTalent.breadcrumbName,
+          item: `${siteConfig.url}/for-talent-cv2.0`,
+        },
+      ],
+    },
+  },
+
   '/confirm-email': {
     noIndex: true,
   },
@@ -577,9 +603,7 @@ const technicalSeo = {
 
   // Verification codes
   verification: {
-    google:
-      process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION ||
-      'your-google-verification-code',
+    google: envs.GOOGLE_VERIFICATION || 'your-google-verification-code',
   },
 
   // Additional meta tags

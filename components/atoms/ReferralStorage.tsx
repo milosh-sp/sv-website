@@ -1,22 +1,10 @@
 'use client'
 
-import { referralCodeKey } from '@/lib/consts'
-import { useSearchParams } from 'next/navigation'
-import { useEffect, Suspense } from 'react'
+import { Suspense } from 'react'
+import { useReferralStorage } from '@/hooks/useReferralStorage'
 
-/**
- * Stores the referral code in local storage if the user lands on the homepage
- */
 function ReferralStorageContent() {
-  const searchParams = useSearchParams()
-  const referralCode = searchParams.get(referralCodeKey)
-
-  useEffect(() => {
-    if (referralCode) {
-      localStorage.setItem(referralCodeKey, referralCode)
-    }
-  }, [referralCode])
-
+  useReferralStorage()
   return null
 }
 

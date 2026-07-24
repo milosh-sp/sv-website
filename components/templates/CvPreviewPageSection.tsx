@@ -1,38 +1,37 @@
-import { HeaderAndDescription } from '@/components/molecules/HeaderAndDescription'
-import { CvFeaturesList } from '@/components/organisms/CvFeaturesList'
+import { PageHero } from '@/components/templates/PageHero'
 import { SectionWrapper } from '@/components/templates/SectionWrapper'
 import { strings } from '@/lib/strings'
+import { cn } from '@/lib/utils'
 import type { SectionProps } from '@/types/Sections.types'
-import { CVPreviewBody } from '../organisms/CVPreviewBody'
-import { Text } from '@/components/atoms/Text'
 
 export function CvPreviewPageSection({ id }: SectionProps) {
   return (
     <SectionWrapper
       id={id}
-      className='py-20 bg-white'
-      aria-labelledby='cv-preview-heading'
+      className={cn(
+        'flex justify-center bg-linear-to-b from-success/12 via-accent/40 to-background py-16 md:py-24 overflow-hidden'
+      )}
+      aria-labelledby='cv-preview-hero-heading'
+      aria-describedby='cv-preview-hero-description'
     >
-      <div className='container mx-auto px-4'>
-        <HeaderAndDescription
-          heading={strings.cvPreview.heading}
-          description={strings.cvPreview.description}
-          className='mb-12'
-          id='cv-preview-heading'
-        />
-        <Text
-          variant='caption'
-          className='text-gray-500 max-w-3xl mx-auto text-center mb-12'
-          role='note'
-          aria-label='CV preview disclaimer'
-        >
-          {strings.cvPreview.note}
-        </Text>
-
-        <CVPreviewBody headingLevel={5} />
-
-        <CvFeaturesList />
-      </div>
+      <PageHero
+        audience='talent'
+        eyebrow={strings.cvPreview.eyebrow}
+        headingId='cv-preview-hero-heading'
+        descriptionId='cv-preview-hero-description'
+        mainHeading={strings.cvPreview.heroHeading}
+        mainHeadingHighlight={strings.cvPreview.heroHeadingHighlight}
+        subHeading={strings.cvPreview.heroSubheading}
+        callToAction={strings.cvPreview.callToAction}
+        trustIndicators={strings.cvPreview.trustIndicators}
+        accessibility={{
+          heroActions: strings.cvPreview.accessibility.heroActions,
+          trustIndicators: strings.cvPreview.accessibility.trustIndicators,
+          heroVisual: strings.cvPreview.accessibility.heroVisual,
+        }}
+        showCandidate
+        showVerifier
+      />
     </SectionWrapper>
   )
 }

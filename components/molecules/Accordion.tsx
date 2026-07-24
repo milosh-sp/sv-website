@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils'
 import type { AccordionProps } from '@/types/Accordion.types'
-import { AccordionButton } from '../atoms/AccordionButton'
-import { AccordionContent } from '../atoms/AccordionContent'
+import { AccordionButton } from '@/components/atoms/AccordionButton'
+import { AccordionContent } from '@/components/atoms/AccordionContent'
 
 export function Accordion({
   isOpen,

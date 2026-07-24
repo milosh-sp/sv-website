@@ -1,4 +1,5 @@
 import { cn } from '@/lib/utils'
+import { strings } from '@/lib/strings'
 import type { StepsGridProps } from '@/types/Steps.types'
 import { Heading } from '@/components/atoms/Heading'
 import { Text } from '@/components/atoms/Text'
@@ -9,6 +10,7 @@ const ICON_BG_COLORS = {
   emerald: 'bg-success/20',
   purple: 'bg-primary/20',
   orange: 'bg-warning/20',
+  companies: 'bg-companies/20',
 } as const
 
 const ICON_COLORS = {
@@ -16,6 +18,7 @@ const ICON_COLORS = {
   emerald: 'text-success',
   purple: 'text-primary',
   orange: 'text-warning',
+  companies: 'text-companies',
 } as const
 
 function StepCard({
@@ -66,6 +69,7 @@ export function StepsGrid({
   className,
   columns = 4,
   colorScheme = 'blue',
+  controlColor = 'companies',
 }: StepsGridProps) {
   const gridCols = {
     2: 'md:grid-cols-2',
@@ -86,14 +90,15 @@ export function StepsGrid({
   return (
     <section
       className={cn('animate-fade-in-scale', className)}
-      aria-label='Process steps'
+      aria-label={strings.process.accessibility.processSteps}
     >
       {/* Mobile: Carousel */}
       <div className={cn('md:hidden')}>
         <Carousel
           options={{ loop: true, duration: 15 }}
           slides={carouselSlides}
-          aria-label='Process steps carousel'
+          controlColor={controlColor}
+          aria-label={strings.process.accessibility.processStepsCarousel}
         />
       </div>
 

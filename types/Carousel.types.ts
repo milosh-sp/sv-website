@@ -7,6 +7,7 @@ interface CarouselProps extends ComponentProps<'section'> {
     element: ReactNode
   }[]
   options?: Parameters<typeof useEmblaCarousel>[0]
+  controlColor?: 'companies' | 'success'
 }
 
 export type { CarouselProps }

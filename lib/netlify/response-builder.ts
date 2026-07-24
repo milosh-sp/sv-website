@@ -2,9 +2,9 @@ import type {
   ApiErrorResponse,
   ApiSuccessResponse,
   HttpResponse,
-} from '../../types/netlify.types'
-import { strings } from '../strings'
-import { envs } from '../envs'
+} from '@/types/netlify.types'
+import { strings } from '@/lib/strings'
+import { envs } from '@/lib/envs'
 
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': envs.WEBSITE_DOMAIN ?? '',

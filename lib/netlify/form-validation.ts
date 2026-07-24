@@ -3,13 +3,21 @@ import {
   validateUrl,
   validateContactName,
   validateMessage,
-} from '../validation'
+} from '@/lib/validation'
+import { strings } from '@/lib/strings'
 import type {
   BotDetectionResult,
   FormFields,
   ValidationError,
   UnifiedFormSubmissionData,
-} from '../../types/netlify.types'
+} from '@/types/netlify.types'
+
+const contactValidation = strings.contactPage.validation
+const commonValidation = strings.validationCommon
+
+function fieldMessage(template: string, fieldName: string): string {
+  return template.replaceAll('{fieldName}', fieldName)
+}
 
 const FORM_SUBMISSION_MIN_TIME_MS = 1000
 const FORM_SUBMISSION_MAX_TIME_MS = 30 * 60 * 1000
@@ -135,7 +143,7 @@ function validateRequiredEmail(email: unknown): ValidationError | null {
   if (!email) {
     return {
       field: 'email',
-      message: 'Email is required.',
+      message: contactValidation.emailRequired,
     }
   }
 
@@ -148,8 +156,7 @@ function validateEmailFormat(email: string): ValidationError | null {
   if (!emailValidation.isValid) {
     return {
       field: 'email',
-      message:
-        emailValidation.message || 'Please provide a valid email address.',
+      message: emailValidation.message || commonValidation.emailFormatFallback,
     }
   }
 
@@ -173,7 +180,9 @@ function validateUrlIfProvided(
   if (!urlValidation.isValid) {
     return {
       field: fieldName,
-      message: urlValidation.message || `Please provide a valid ${fieldLabel}.`,
+      message:
+        urlValidation.message ||
+        fieldMessage(commonValidation.urlFormatFallback, fieldLabel),
     }
   }
 
@@ -283,7 +292,7 @@ function validateContactFormDataUnified(
   if (!data.contactName) {
     return {
       field: 'contactName',
-      message: 'Name is required.',
+      message: contactValidation.nameRequired,
     }
   }
 
@@ -291,15 +300,14 @@ function validateContactFormDataUnified(
   if (!nameValidation.isValid) {
     return {
       field: 'contactName',
-      message: nameValidation.message || 'Please provide a valid name.',
+      message: nameValidation.message || commonValidation.nameFormatFallback,
     }
   }
 
-  // Validate message
   if (!data.message) {
     return {
       field: 'message',
-      message: 'Message is required.',
+      message: contactValidation.messageRequired,
     }
   }
 
@@ -307,7 +315,8 @@ function validateContactFormDataUnified(
   if (!messageValidation.isValid) {
     return {
       field: 'message',
-      message: messageValidation.message || 'Please provide a valid message.',
+      message:
+        messageValidation.message || commonValidation.messageFormatFallback,
     }
   }
 

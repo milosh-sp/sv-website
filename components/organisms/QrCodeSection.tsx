@@ -15,7 +15,7 @@ export function QrCodeSection() {
       aria-labelledby='qr-code-heading'
     >
       <figure
-        aria-label='QR code'
+        aria-label={strings.cvPreview.accessibility.qrCode}
         className={cn(
           'mb-4 bg-muted rounded-lg flex items-center justify-center'
         )}

@@ -58,10 +58,11 @@ export default function RootLayout({
       className={`${inter.variable} ${openSans.variable} antialiased`}
     >
       <head>
-        {/* Meta Pixel Code */}
-        <Script
+        {/* Meta Pixel Code: Cookiebot activates it only after marketing consent */}
+        <script
           id='meta-pixel'
-          strategy='afterInteractive'
+          type='text/plain'
+          data-cookieconsent='marketing'
           // biome-ignore lint/security/noDangerouslySetInnerHtml: needs to be like
           dangerouslySetInnerHTML={{
             __html: `

@@ -3,9 +3,8 @@ import type { SectionProps } from '@/types/Sections.types'
 import { strings } from '@/lib/strings'
 import { HeaderAndDescription } from '@/components/molecules/HeaderAndDescription'
 import { HeroButtons } from '@/components/molecules/HeroButtons'
-import { VideoPlayer } from '@/components/atoms/VideoPlayer'
+import { ExplainerVideo } from '@/components/organisms/ExplainerVideo'
 import { cn, secondsToISODuration } from '@/lib/utils'
-import explainerVideo from '@/videos/explainer-skill-verdict.mp4'
 import videoMetadata from '@/videos/explainer-skill-verdict.mp4.json'
 import Script from 'next/script'
 import { generateVideoSchema } from '@/lib/seo'
@@ -52,26 +51,7 @@ export function ExplainerVideoPageSection({
             'rounded-xl overflow-hidden w-full shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3),0_20px_60px_-15px_rgba(0,0,0,0.3)] anime-fade-in-up'
           )}
         >
-          <VideoPlayer
-            src={explainerVideo}
-            poster={explainerVideo.poster}
-            blurDataURL={explainerVideo.blurDataURL}
-            controls
-            playsInline
-            preload='none'
-            style={{
-              width: '100%',
-              aspectRatio: '161/90',
-              outline: 'none',
-            }}
-          >
-            <track
-              kind='captions'
-              src='/captions/explainer-skill-verdict.vtt'
-              srcLang='en'
-              label={strings.explainerVideo.captionsLabel}
-            />
-          </VideoPlayer>
+          <ExplainerVideo />
         </div>
       </div>
       <div className='flex justify-center align-center mt-10 animate-fade-in-up'>

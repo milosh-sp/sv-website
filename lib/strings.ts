@@ -1859,6 +1859,7 @@ const explainerVideo = {
   heading: `Find out how peer-vetted talent can`,
   headingHighlight: `help you find the best fit.`,
   captionsLabel: `English`,
+  playVideo: `Play video`,
 } as const
 
 // ============================================================================

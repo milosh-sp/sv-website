@@ -32,4 +32,17 @@ function secondsToISODuration(seconds: number) {
   return `PT${hoursStr}H${minutesStr}M${secs}S`
 }
 
-export { cn, defaultDropdownFilter, secondsToISODuration }
+/**
+ * Builds a responsive srcSet for a Mux thumbnail URL via its `width` param.
+ */
+function muxPosterSrcSet(poster: string, widths: readonly number[]) {
+  return widths
+    .map((width) => {
+      const url = new URL(poster)
+      url.searchParams.set('width', String(width))
+      return `${url} ${width}w`
+    })
+    .join(', ')
+}
+
+export { cn, defaultDropdownFilter, muxPosterSrcSet, secondsToISODuration }

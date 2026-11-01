@@ -135,7 +135,7 @@ export function AiSearchPageSection({ id }: SectionProps) {
                 </div>
                 <span
                   className={cn(
-                    'rounded-full bg-success/15 px-2.5 py-1 text-xs font-semibold text-success'
+                    'rounded-full bg-success/10 px-2.5 py-1 text-xs font-semibold text-success'
                   )}
                 >
                   {match}% match

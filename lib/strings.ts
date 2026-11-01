@@ -160,11 +160,8 @@ export const hero = {
     heroSection: `Hero section`,
     heroActions: `Hero actions`,
     primaryActions: `Primary actions`,
-    hiringManagerWaitlist: `Join the hiring manager waitlist`,
     trustIndicators: `Trust indicators`,
     heroVisual: `Hero visual CV2.0`,
-    openSignupModal: `Navigate to the candidate wait-list`,
-    openEarnModal: `Navigate to the verifier wait-list`,
   },
 } as const
 
@@ -1861,6 +1858,7 @@ const problem = {
 const explainerVideo = {
   heading: `Find out how peer-vetted talent can`,
   headingHighlight: `help you find the best fit.`,
+  captionsLabel: `English`,
 } as const
 
 // ============================================================================

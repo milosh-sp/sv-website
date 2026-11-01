@@ -120,7 +120,6 @@ export function Header() {
               'hover:opacity-80 transition-opacity duration-200',
               'rounded-lg'
             )}
-            aria-label={strings.navigation.accessibility.goToHomepage}
           >
             <Image
               src={logo}

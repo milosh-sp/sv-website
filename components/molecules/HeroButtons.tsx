@@ -31,7 +31,6 @@ export function HeroButtons({
             className={cn(
               'h-14 px-8 text-base rounded-lg font-semibold w-full sm:w-auto'
             )}
-            aria-label={strings.hero.accessibility.hiringManagerWaitlist}
             type='button'
           >
             <Handshake className={cn('h-5 w-5')} aria-hidden='true' />
@@ -46,7 +45,6 @@ export function HeroButtons({
             variant={audience === 'talent' ? 'hero-emerald' : 'companies'}
             size='lg'
             className={cn('h-14 px-8 text-base rounded-lg w-full sm:w-auto')}
-            aria-label={strings.hero.accessibility.openSignupModal}
             type='button'
           >
             <CircleStar className={cn('h-5 w-5 mr-2')} aria-hidden='true' />
@@ -65,7 +63,6 @@ export function HeroButtons({
             className={cn(
               'h-14 px-8 text-base rounded-lg font-semibold w-full sm:w-auto'
             )}
-            aria-label={strings.hero.accessibility.openEarnModal}
             type='button'
           >
             <Award className={cn('h-5 w-5 mr-2')} aria-hidden='true' />

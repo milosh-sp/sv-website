@@ -58,12 +58,20 @@ export function ExplainerVideoPageSection({
             blurDataURL={explainerVideo.blurDataURL}
             controls
             playsInline
+            preload='none'
             style={{
               width: '100%',
               aspectRatio: '161/90',
               outline: 'none',
             }}
-          />
+          >
+            <track
+              kind='captions'
+              src='/captions/explainer-skill-verdict.vtt'
+              srcLang='en'
+              label={strings.explainerVideo.captionsLabel}
+            />
+          </VideoPlayer>
         </div>
       </div>
       <div className='flex justify-center align-center mt-10 animate-fade-in-up'>

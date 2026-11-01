@@ -13,7 +13,7 @@ export function CV2TeaserPreview() {
       )}
     >
       <div className={cn('relative h-full')}>
-        <CVPreviewBody variant='compact' />
+        <CVPreviewBody variant='compact' headingLevel={2} />
         <div
           className={cn(
             'absolute bottom-0 left-0 right-0 h-[40%]',
